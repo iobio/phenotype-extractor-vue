@@ -4,15 +4,14 @@
       text-center
       wrap
     >
-      <v-flex xs12 mt-5>
+      <v-flex xs12 mt-5 mb-6>
         <h1 class="display-2 font-weight-bold mb-3">
-          Welcome to Vuetify
         </h1>
-        <div id="SingleEntryInput" style="display:inline-block; padding-top:5px;">
+        <div class="ml-2 mr-4" id="SingleEntryInput" style="display:inline-block; padding-top:5px;">
           <input
             id="single_entry_input"
             ref="single_entry_input"
-            class="form-control"
+            class="pl-4 pr=4"
             type="text"
             v-model="textNotes"
             v-show="textNotes.length<45"
@@ -30,6 +29,55 @@
             ></v-textarea>
         </div>
         <v-btn :disabled="textNotes.length<4" @click="extract" color="primary">Submit</v-btn>
+      </v-flex>
+
+
+      <v-flex xs12 mt-5>
+        <!-- Start searched terms view -->
+          <v-card-text>
+            <div class="row">
+              <div class="col-md-4 mb-2">
+                <strong>GTR Terms: </strong>
+                <br>
+                <span v-for="(term, i) in GtrTermsAdded" v-if="GtrTermsAdded.length">
+                  <v-chip slot="activator" color="primary" text-color="white" close :key="i" @input="remove(term, i, 'GTR')">
+                    <span v-if="term.DiseaseName!==undefined">{{ i+1 }} . {{ term.DiseaseName }}</span>
+                    <span v-else> {{ i+1 }} . {{ term }}</span>
+                  </v-chip>
+                </span>
+                <span v-if="GtrTermsAdded.length===0">
+                  <v-chip ><v-icon left>error_outline</v-icon> No conditions</v-chip>
+                </span>
+              </div>
+              <div class="col-md-4 mb-2">
+                <strong>Phenolyzer Terms: </strong>
+                <br>
+                <span v-for="(term, i) in phenolyzerTermsAdded" v-if="phenolyzerTermsAdded.length">
+                  <v-chip v-if="i>0" slot="activator" color="primary" text-color="white" close :key="i" @input="remove(term, i, 'phenolyzer')">
+                  {{ i }} . {{ term.value }}
+                  </v-chip>
+                </span>
+                <span v-if="phenolyzerTermsAdded.length===1 || phenolyzerTermsAdded.length===0">
+                  <v-chip ><v-icon left>error_outline</v-icon> No phenotypes</v-chip>
+                </span>
+              </div>
+              <div class="col-md-4 mb-2">
+                <strong>HPO Terms: </strong>
+                <br>
+                <span v-for="(term, i) in hpoTermsAdded" v-if="hpoTermsAdded.length">
+                  <v-chip slot="activator" color="primary" text-color="white" close :key="i" @input="remove(term, i, 'HPO')">
+                  {{ i+1 }} . {{ term.HPO_Data }}
+                  </v-chip>
+                </span>
+                <span v-if="hpoTermsAdded.length===0">
+                  <v-chip ><v-icon left>error_outline</v-icon> No HPO terms</v-chip>
+                </span>
+              </div>
+            </div>
+          </v-card-text>
+        <!-- End searched terms view  -->
+
+
       </v-flex>
 
       <!-- Loading dialog box -->
@@ -86,16 +134,16 @@
                 <div v-if="GtrReviewTerms.length && termsReviewDialogPage===1">
                   Terms Selected:
                   <span v-for="(term, i) in GtrTermsAdded" v-if="GtrTermsAdded.length">
-                    <v-chip outlined color="primary">
+                    <v-chip class="mr-2" small outlined color="primary">
                       {{ term.DiseaseName }}
                     </v-chip>
                   </span>
                   <span v-for="(term, i) in GtrTermsAdded_temp" v-if="GtrTermsAdded_temp.length">
-                    <v-chip outlined color="primary">
+                    <v-chip class="mr-2" small outlined color="primary">
                       {{ term.DiseaseName }}
                     </v-chip>
                   </span>
-
+                  <br>
                   <div v-if="GtrReviewTerms.length===1">
                     <div >
                       <v-expansion-panels multiple popout focusable>
@@ -126,32 +174,31 @@
                   </div>
                   <div v-if="GtrReviewTerms.length>1">
                     <div>
-                      <v-expansion-panel v-model="gtrExpansionPanelMultiple" expand popout focusable>
-                        <v-expansion-panel-content
-                          v-for="(item, i) in GtrReviewTerms" :key="i">
-                          <template v-slot:header>
-                            <div><strong>{{ item.DiseaseName }}</strong></div>
-                          </template>
-                          <v-card class="reviewCard">
-                            <v-card-text >
-                              <div v-for="sub in item.reviewTerms_gtr" >
-                                <div class="row">
-                                  <div class="col-md-2">
-                                    <v-checkbox color="primary" style="margin-top:-2px; margin-bottom:-12px;" v-model="GtrTermsAdded_temp" :value="sub"></v-checkbox>
-                                  </div>
-                                  <div class="col-md-10">
-                                    <span v-if="sub.general">
-                                      <span class="highlighted_condition">{{ sub.DiseaseName }}</span>
-                                    </span>
-                                    <span v-else>{{ sub.DiseaseName }}</span>
+                      <v-expansion-panels multiple popout focusable>
+                        <v-expansion-panel v-model="gtrExpansionPanelMultiple" v-for="(item, i) in GtrReviewTerms" :key="i">
+                          <v-expansion-panel-header><div><strong>{{ item.DiseaseName }}</strong></div></v-expansion-panel-header>
+                          <v-expansion-panel-content>
+                            <div class="reviewCard">
+                              <v-card-text >
+                                <div v-for="sub in item.reviewTerms_gtr" >
+                                  <div class="row">
+                                    <div class="col-md-2">
+                                      <v-checkbox color="primary" style="margin-top:-2px; margin-bottom:-12px;" v-model="GtrTermsAdded_temp" :value="sub"></v-checkbox>
+                                    </div>
+                                    <div class="col-md-10">
+                                      <span v-if="sub.general">
+                                        <span class="highlighted_condition">{{ sub.DiseaseName }}</span>
+                                      </span>
+                                      <span v-else>{{ sub.DiseaseName }}</span>
+                                    </div>
                                   </div>
                                 </div>
-                              </div>
-                            </v-card-text>
-                          </v-card>
-                        </v-expansion-panel-content>
+                              </v-card-text>
+                            </div>
+                          </v-expansion-panel-content>
+                        </v-expansion-panel>
+                      </v-expansion-panels>
 
-                      </v-expansion-panel>
                     </div>
                   </div>
 
@@ -166,57 +213,24 @@
                 <div v-if="phenolyzerReviewTerms.length && termsReviewDialogPage===2">
                   Terms Selected:
                   <span v-for="(term, i) in phenolyzerTermsAdded" v-if="phenolyzerTermsAdded.length">
-                    <v-chip outlined color="primary">
+                    <v-chip class="mr-2" small outlined color="primary">
                       {{ term.value }}
                     </v-chip>
                   </span>
                   <span v-for="(term, i) in phenolyzerTermsAdded_temp" v-if="phenolyzerTermsAdded_temp.length">
-                    <v-chip outlined color="primary">
+                    <v-chip class="mr-2" small outlined color="primary">
                       {{ term.value }}
                     </v-chip>
                   </span>
-
+                  <br>
                   <div v-if="phenolyzerReviewTerms.length===1">
                     <div >
-                      <v-expansion-panel v-model="phenolyzerExpansionPanel" expand popout focusable>
-                        <v-expansion-panel-content v-for="(item, i) in phenolyzerReviewTerms" :key="i">
-                          <template v-slot:header>
-                            <div><strong>{{ item.DiseaseName }}</strong></div>
-                          </template>
-
-                          <v-card class="reviewCard">
-                            <v-card-text>
-                              <div v-for="sub in item.reviewTerms_phenolyzer" class="row">
-                                <div class="col-md-2">
-                                  <v-checkbox color="primary" style="margin-top:-2px; margin-bottom:-12px;" v-model="phenolyzerTermsAdded_temp" :value="sub"></v-checkbox>
-                                </div>
-                                <div class="col-md-10">
-                                  <span v-if="sub.general">
-                                    <span class="highlighted_condition">{{ sub.value | to-firstCharacterUppercase }}</span>
-                                  </span>
-                                  <span v-else>{{ sub.value | to-firstCharacterUppercase }}</span>
-                                </div>
-                              </div>
-                            </v-card-text>
-                          </v-card>
-                        </v-expansion-panel-content>
-
-                      </v-expansion-panel>
-                    </div>
-                  </div>
-                  <div v-if="phenolyzerReviewTerms.length>1">
-                    <div>
-                      <v-expansion-panel v-model="phenolyzerExpansionPanelMultiple" expand popout focusable>
-                        <v-expansion-panel-content
-                          v-for="(item, i) in phenolyzerReviewTerms" :key="i">
-                          <template v-slot:header>
-                            <div><strong>{{ item.DiseaseName }}</strong></div>
-                          </template>
-                          <v-card class="reviewCard">
-                            <v-card-text >
-                              <!-- <div v-for="sub in searchFilter(item.reviewTerms_phenolyzer)" > -->
-                              <div v-for="sub in item.reviewTerms_phenolyzer" >
-                                <div class="row">
+                      <v-expansion-panels popout focusable>
+                        <v-expansion-panel v-model="phenolyzerExpansionPanel" v-for="(item, i) in phenolyzerReviewTerms" :key="i">
+                          <v-expansion-panel-header><div><strong>{{ item.DiseaseName }}</strong></div></v-expansion-panel-header>
+                            <div class="reviewCard">
+                              <v-card-text>
+                                <div v-for="sub in item.reviewTerms_phenolyzer" class="row">
                                   <div class="col-md-2">
                                     <v-checkbox color="primary" style="margin-top:-2px; margin-bottom:-12px;" v-model="phenolyzerTermsAdded_temp" :value="sub"></v-checkbox>
                                   </div>
@@ -225,15 +239,44 @@
                                       <span class="highlighted_condition">{{ sub.value | to-firstCharacterUppercase }}</span>
                                     </span>
                                     <span v-else>{{ sub.value | to-firstCharacterUppercase }}</span>
-
                                   </div>
                                 </div>
-                              </div>
-                            </v-card-text>
-                          </v-card>
-                        </v-expansion-panel-content>
+                              </v-card-text>
+                            </div>
+                          </v-expansion-panel-content>
+                        </v-expansion-panel>
+                      </v-expansion-panels>
 
-                      </v-expansion-panel>
+                    </div>
+                  </div>
+                  <div v-if="phenolyzerReviewTerms.length>1">
+                    <div>
+                      <v-expansion-panels multiple popout focusable>
+                        <v-expansion-panel v-model="phenolyzerExpansionPanelMultiple" v-for="(item, i) in phenolyzerReviewTerms" :key="i">
+                          <v-expansion-panel-header><div><strong>{{ item.DiseaseName }}</strong></div></v-expansion-panel-header>
+                          <v-expansion-panel-content>
+                            <div class="reviewCard">
+                              <v-card-text >
+                                <!-- <div v-for="sub in searchFilter(item.reviewTerms_phenolyzer)" > -->
+                                <div v-for="sub in item.reviewTerms_phenolyzer" >
+                                  <div class="row">
+                                    <div class="col-md-2">
+                                      <v-checkbox color="primary" style="margin-top:-2px; margin-bottom:-12px;" v-model="phenolyzerTermsAdded_temp" :value="sub"></v-checkbox>
+                                    </div>
+                                    <div class="col-md-10">
+                                      <span v-if="sub.general">
+                                        <span class="highlighted_condition">{{ sub.value | to-firstCharacterUppercase }}</span>
+                                      </span>
+                                      <span v-else>{{ sub.value | to-firstCharacterUppercase }}</span>
+                                    </div>
+                                  </div>
+                                </div>
+                              </v-card-text>
+                            </div>
+                          </v-expansion-panel-content>
+                        </v-expansion-panel>
+                      </v-expansion-panels>
+
                     </div>
                   </div>
                 </div>
@@ -246,16 +289,16 @@
                 <div v-if="HpoReviewTerms.length && termsReviewDialogPage===3">
                   Terms Selected:
                   <span v-for="(term, i) in hpoTermsAdded" v-if="hpoTermsAdded.length">
-                    <v-chip outlined color="primary">
+                    <v-chip class="mr-2" small outlined color="primary">
                       {{ term.HPO_Data }}
                     </v-chip>
                   </span>
                   <span v-for="(term, i) in hpoTermsAdded_temp" v-if="hpoTermsAdded_temp.length">
-                    <v-chip outlined color="primary">
+                    <v-chip class="mr-2" small outlined color="primary">
                       {{ term.HPO_Data }}
                     </v-chip>
                   </span>
-
+                  <br>
 
                   <v-card class="elevation-4">
                     <v-card-text>
@@ -450,6 +493,20 @@ export default {
     phenolyzer_push_idx: 0,
     gtr_push_idx: 0,
   }),
+  watch: {
+    textNotes(){
+      if(this.textNotes.length===45){
+        setTimeout(()=>{
+          this.$refs.single_entry_input_textarea.focus();
+        },10)
+      }
+      else if(this.textNotes.length===44){
+        setTimeout(()=>{
+          this.$refs.single_entry_input.focus();
+        },10)
+      }
+    },
+  },
   methods: {
     extract(){
       this.WorkflowStepsflag = false;
@@ -659,8 +716,6 @@ export default {
           }
         })
       })
-      // this.gtrExpansionPanelMultiple = Array(this.GtrReviewTerms.length).fill('true');
-      console.log("this.GtrReviewTerms", this.GtrReviewTerms)
       setTimeout(()=>{
           this.termsReviewDialog = true;
           this.termsReviewDialogPage = 1;
@@ -669,8 +724,97 @@ export default {
 
     },
     selectReviewTerms(){
-      console.log("review terms selected!!")
-    }
+      this.GtrTermsAdded_temp = this.GtrTermsAdded_temp.filter(o1 => this.GtrTermsAdded.every(o2 => {
+        return o1.DiseaseName !== o2.DiseaseName
+      }));
+      this.GtrTermsAdded = [...this.GtrTermsAdded, ...this.GtrTermsAdded_temp];
+      this.phenolyzerTermsAdded = [...this.phenolyzerTermsAdded, ...this.phenolyzerTermsAdded_temp];
+      this.hpoTermsAdded = [...this.hpoTermsAdded, ...this.hpoTermsAdded_temp];
+
+      this.GtrTermsAdded_temp = [];
+      this.phenolyzerTermsAdded_temp = [];
+      this.hpoTermsAdded_temp = [];
+
+      for (var i = this.gtr_push_idx; i < this.GtrTermsAdded.length; i++) {
+        var term = this.GtrTermsAdded[i];
+        var searchTerm ="";
+        var conceptId = ""
+        searchTerm = term.DiseaseName;
+        conceptId = term.ConceptID;
+
+        if(!this.multipleSearchTerms.includes(searchTerm) && searchTerm!==undefined){
+          if(searchTerm.length>1){
+            this.multipleSearchTerms.push(searchTerm);
+            this.searchTermsObj.push(term);
+            this.Gtr_searchTermsObj.push(term);
+            this.$set(this.Gtr_searchTermsObj[this.gtr_push_idx], 'gtrSearchStatus', "Not started");
+            this.gtr_push_idx = this.gtr_push_idx + 1;
+          }
+        }
+      }
+
+
+
+      if(this.phenolyzer_push_idx===0){
+        var tempTerm = {
+          id: "pqrst",
+          label: "pqrst",
+          value: "pqrst"
+        }
+        this.phenolyzerTermsAdded.unshift(tempTerm);
+      }
+
+      for (var i = this.phenolyzer_push_idx; i < this.phenolyzerTermsAdded.length; i++) {
+        var term = this.phenolyzerTermsAdded[i];
+        var searchTerm ="";
+        searchTerm = term.value;
+        if(!this.multipleSearchTerms.includes(searchTerm) && searchTerm!==undefined){
+          if(searchTerm.length>1){
+              this.multipleSearchTerms.push(searchTerm);
+              this.searchTermsObj.push(term);
+              this.Phenolyzer_searchTermsObj.push(term);
+              this.$set(this.Phenolyzer_searchTermsObj[this.phenolyzer_push_idx], 'phenolyzerSearchStatus', "Not started");
+              this.phenolyzer_push_idx = this.phenolyzer_push_idx + 1;
+          }
+        }
+      }
+
+      this.hpoTermsAdded.map(term => {
+        var searchTerm ="";
+        searchTerm = term.HPO_Data;
+        if(term.hpoSearchStatus!=="Completed" || term.hpoSearchStatus===undefined){
+          this.$set(term, 'status', "Not started");
+          this.$set(term, 'gtrSearchStatus', "Not started");
+          // this.$set(term, 'phenolyzerSearchStatus', "Not started");
+          this.$set(term, 'hpoSearchStatus', "Not started");
+          this.$set(term, 'tool_to_search', 'Hpo');
+          this.$set(term, 'DiseaseName', term.HPO_Data);
+        }
+
+        var res = searchTerm.split(" - ");
+        var hpoId = res[1].replace(/[\])}[{(]/g, '').trim();
+        var phenoTerm = res[0];
+        term.hpoNumber = hpoId;
+        term.phenotype = phenoTerm;
+
+
+        if(!this.multipleSearchTerms.includes(searchTerm) && searchTerm!==undefined){
+          if(searchTerm.length>1){
+            this.multipleSearchTerms.push(searchTerm);
+            this.searchTermsObj.push(term);
+            this.Hpo_searchTermsObj.push(term);
+          }
+        }
+      })
+
+      this.termsReviewDialog = false;
+      this.search = '';
+      this.textNotes = '';
+      this.termsReviewDialogPage = 0;
+      // if(this.hpoTermsAdded.length || this.GtrTermsAdded.length || this.phenolyzerTermsAdded.length){
+      //   this.performSearchEvent();
+      // }
+    },
   }
 };
 </script>
