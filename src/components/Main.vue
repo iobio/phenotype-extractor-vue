@@ -397,7 +397,9 @@
         </v-card>
         <!-- End terms review dialog -->
 
-        <GtrSearch/>
+        <GtrSearch
+          v-on:filteredDiseasesItems="filteredDiseasesItems">
+        </GtrSearch>
 
     </v-layout>
   </v-container>
@@ -496,6 +498,7 @@ export default {
     snackbarFlag: false,
     phenolyzer_push_idx: 0,
     gtr_push_idx: 0,
+    filteredDiseasesItemsArray: []
   }),
   watch: {
     textNotes(){
@@ -826,23 +829,81 @@ export default {
       this.searchStatusDialog = true;
     },
     Gtr_performSearchEvent(){
-      if(this.Gtr_searchTermsObj.length && this.Gtr_idx<this.Gtr_searchTermsObj.length){ //Second condition here ensures that the index does not become more than the length of the array, which would throw undefined error.
-        this.searchStatus = true;
-        this.searchComplete = false;
-        this.expansionpanlExpand = ['true'];
+      // if(this.Gtr_searchTermsObj.length && this.Gtr_idx<this.Gtr_searchTermsObj.length){ //Second condition here ensures that the index does not become more than the length of the array, which would throw undefined error.
+      //   this.searchStatus = true;
+      //   this.searchComplete = false;
+      //   this.expansionpanlExpand = ['true'];
+      //
+      //   this.gtrFetchCompleted = false;
+      //   this.$set(this.Gtr_searchTermsObj[this.Gtr_idx], 'status', "Searching");
+      //   this.$set(this.Gtr_searchTermsObj[this.Gtr_idx], 'gtrSearchStatus', "Searching");
+      //   bus.$emit("singleTermSearchGTR", this.Gtr_searchTermsObj[this.Gtr_idx]);
+      // }
+      // else {
+      //   this.gtrFetchCompleted = true;
+      //   setTimeout(()=>{
+      //     this.checkToCloseSearchStatusDialog();
+      //   }, 2000)
+      //  }
 
-        this.gtrFetchCompleted = false;
-        this.$set(this.Gtr_searchTermsObj[this.Gtr_idx], 'status', "Searching");
-        this.$set(this.Gtr_searchTermsObj[this.Gtr_idx], 'gtrSearchStatus', "Searching");
-        bus.$emit("singleTermSearchGTR", this.Gtr_searchTermsObj[this.Gtr_idx]);
+      // for(let i=0; i<this.Gtr_searchTermsObj.length; i++){
+      //   setTimeout(()=>{
+      //     bus.$emit("singleTermSearchGTR", this.Gtr_searchTermsObj[i]);
+      //   }, 5000)
+      // }
+
+      this.Gtr_searchTermsObj.forEach((term, i) => {
+        ((ind) =>{
+          setTimeout(() =>{
+            bus.$emit("singleTermSearchGTR", term);
+          }, 200 + (2000 * ind));
+        })(i);
+
+      })
+
+    },
+    filteredDiseasesItems(items){
+      // this.filteredDiseasesItemsArray.push(items);
+      this.filteredDiseasesItemsArray = [...this.filteredDiseasesItemsArray, ...items]
+      console.log("this.filteredDiseasesItemsArray", this.filteredDiseasesItemsArray);
+      this.addDiseases(this.filteredDiseasesItemsArray)
+    },
+    addDiseases: function(e){
+      // this.removeSearchTermFlag = false;
+      // this.disordersSearchedByUser= true;
+      for(var i=0; i<e.length; i++){
+        for(var j=e.length-1; j>i; j--){
+          {
+            if(e[i].Title === e[j].Title){
+              e[i].searchTerm = e[i].searchTerm + " " + e[j].searchTerm;
+              e[i].searchTermArray = [...e[i].searchTermArray, ...e[j].searchTermArray];
+              // e[i].searchTermIndex = [...e[i].searchTermIndex, ...e[j].searchTermIndex];
+            }
+          }
+        }
       }
-      else {
-        this.gtrFetchCompleted = true;
-        setTimeout(()=>{
-          this.checkToCloseSearchStatusDialog();
-        }, 2000)
-       }
 
+      //Remove duplicates from the disorders array.
+      e = e.filter((disorder, index, self) =>
+        index === self.findIndex((t) => (
+          t.Title === disorder.Title
+        ))
+      );
+      // this.DisordersPropsBackArr = e;
+      // this.showSummaryComponent = true
+      // this.diseases = e;
+      console.log("e in addDisease", e)
+      // this.$emit("diseasesCB", e);
+      // if(e.length<= 0){
+      //   this.geneProps = [];
+      //   this.diseasesProps = [];
+      //   this.vendorList=[];
+      //   this.disorderNamesList=[];
+      //   this.modeOfInheritanceProps=[];
+      //   this.selectedGenesText = "";
+      //   this.$emit("UpdateListOfSelectedGenesGTR", []);
+      //   this.$emit("GtrFullGeneList", [])
+      // }
     },
   }
 };
