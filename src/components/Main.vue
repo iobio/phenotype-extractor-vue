@@ -397,7 +397,7 @@
         </v-card>
         <!-- End terms review dialog -->
 
-
+        <GtrSearch/>
 
     </v-layout>
   </v-container>
@@ -411,10 +411,14 @@ import DiseaseNames from '../data/DiseaseNamesCleaned.json';
 import HPO_Phenotypes from '../data/HPO_Phenotypes';
 import HPO_Terms from '../data/HPO_Terms';
 import HpoTermsData from '../data/HpoTermsData.json';
+import { bus } from '../main';
+import GtrSearch from './GtrSearch.vue';
 
 export default {
   name: 'HelloWorld',
-
+  components: {
+    GtrSearch
+  },
   data: () => ({
     search: '',
     multipleSearchTerms: [],
@@ -811,9 +815,34 @@ export default {
       this.search = '';
       this.textNotes = '';
       this.termsReviewDialogPage = 0;
-      // if(this.hpoTermsAdded.length || this.GtrTermsAdded.length || this.phenolyzerTermsAdded.length){
-      //   this.performSearchEvent();
-      // }
+      if(this.hpoTermsAdded.length || this.GtrTermsAdded.length || this.phenolyzerTermsAdded.length){
+        this.performSearchEvent();
+      }
+    },
+    performSearchEvent(){
+      this.Gtr_performSearchEvent();
+      // this.Phenolyzer_performSearchEvent();
+      // this.Hpo_performSearchEvent();
+      this.searchStatusDialog = true;
+    },
+    Gtr_performSearchEvent(){
+      if(this.Gtr_searchTermsObj.length && this.Gtr_idx<this.Gtr_searchTermsObj.length){ //Second condition here ensures that the index does not become more than the length of the array, which would throw undefined error.
+        this.searchStatus = true;
+        this.searchComplete = false;
+        this.expansionpanlExpand = ['true'];
+
+        this.gtrFetchCompleted = false;
+        this.$set(this.Gtr_searchTermsObj[this.Gtr_idx], 'status', "Searching");
+        this.$set(this.Gtr_searchTermsObj[this.Gtr_idx], 'gtrSearchStatus', "Searching");
+        bus.$emit("singleTermSearchGTR", this.Gtr_searchTermsObj[this.Gtr_idx]);
+      }
+      else {
+        this.gtrFetchCompleted = true;
+        setTimeout(()=>{
+          this.checkToCloseSearchStatusDialog();
+        }, 2000)
+       }
+
     },
   }
 };
