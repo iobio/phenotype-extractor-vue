@@ -416,6 +416,10 @@ import HpoTermsData from '../data/HpoTermsData.json';
 import { bus } from '../main';
 import GtrSearch from './GtrSearch.vue';
 
+import Model from '../models/Model';
+var model = new Model();
+
+
 export default {
   name: 'HelloWorld',
   components: {
@@ -498,7 +502,18 @@ export default {
     snackbarFlag: false,
     phenolyzer_push_idx: 0,
     gtr_push_idx: 0,
-    filteredDiseasesItemsArray: []
+    filteredDiseasesItemsArray: [],
+    diseasesProps: [],
+    associatedGenes: [],
+    selectedPanelFilters: ["specific", "moderate"],
+    lowerLimit: 20,
+    upperLimit: 45,
+    geneProps: [],
+    arrangedSearchData: [],
+    launchedFromClinProps: false,
+    GenesToDisplay: [],
+    DataToIncludeSearchTerms: [],
+    items: [],
   }),
   watch: {
     textNotes(){
@@ -904,6 +919,220 @@ export default {
       //   this.$emit("UpdateListOfSelectedGenesGTR", []);
       //   this.$emit("GtrFullGeneList", [])
       // }
+      this.diseasesProps = e;
+      this.checkForAssociatedGenes();
+      this.AddGenePanelData(this.diseasesProps);
+    },
+    checkForAssociatedGenes: function(){
+      var temp = [];
+      this.diseasesProps.map(x=>{
+        if(x.ConceptMeta.AssociatedGenes!==undefined && x.ConceptMeta.AssociatedGenes!=="" && x.ConceptMeta.AssociatedGenes!=="EMPTY_STRING"){
+          if(x.ConceptMeta.AssociatedGenes.Gene.__text!==undefined){
+            temp.push({
+              name: x.ConceptMeta.AssociatedGenes.Gene.__text,
+              searchTermIndex: x.searchTermIndex,
+              searchTermArray: x.searchTermArray
+            })
+          }
+          else if(x.ConceptMeta.AssociatedGenes.Gene.__text===undefined){
+            x.ConceptMeta.AssociatedGenes.Gene.map(y=>{
+              temp.push({
+                name: y.__text,
+                searchTermIndex: x.searchTermIndex,
+                searchTermArray: x.searchTermArray
+              })
+            })
+          }
+        }
+      })
+      this.associatedGenes = temp;
+    },
+    AddGenePanelData: function(){
+      //new code
+      // this.DiseasePanel = this.DiseasePanelData
+      // var mergedGenePanels = model.mergeGenePanelsAcrossDiseases(this.DiseasePanel);
+      // this.mergedGene = mergedGenePanels
+
+      var mergedGenePanels = model.mergeGenePanelsAcrossDiseases(this.diseasesProps);
+      // this.items = mergedGenePanels;
+      // this.tempItems = mergedGenePanels;
+      mergedGenePanels.map(x=>{
+        if(x.genecount<this.lowerLimit){
+          x.filter = "specific";
+        }
+        else if(x.genecount>=this.lowerLimit && x.genecount<this.upperLimit){
+          x.filter = "moderate";
+        }
+        else if(x.genecount>=this.upperLimit){
+          x.filter = "general"
+        }
+      })
+
+      var temp =[];
+      this.selectedPanelFilters.map(x=>{
+        mergedGenePanels.map(y=>{
+          if(x === y.filter){
+            temp.push(y);
+          }
+        })
+      })
+
+      console.log("mergedGenePanels", mergedGenePanels)
+      // let vendors = model.getGenePanelVendors(mergedGenePanels);
+      // var vendorsToBeSelected = this.getVendorsToBeSelected(temp, vendors);
+
+      // this.vendorList = vendors;
+      // this.selected = this.items.slice();
+      // this.$emit('setVendorList', this.vendorList.sort()); //Emit the vendor list
+      //                     //back to the parent so it can be used as props in filterpanel
+      // this.$emit('selectVendors', vendorsToBeSelected);
+      // temp = null;
+      // vendorsToBeSelected = null;
+      // vendors = null;
+      this.selectPanels(mergedGenePanels);
+    },
+    selectPanels: function(e){
+      console.log("e in selectPanels", e)
+      var temp = [];
+      this.selectedPanelFilters.map(x=>{
+        e.map(y=>{
+          if(x === y.filter){
+            temp.push(y);
+          }
+        })
+      })
+      this.geneProps = temp; //Selected panels
+      console.log("this.geneProps", this.geneProps);
+      this.AddGeneData();
+    },
+    AddGeneData: function(){
+      if(this.associatedGenes.length){
+        this.associatedGenes.map(x=>{
+          x.omimSrc= `https://www.ncbi.nlm.nih.gov/omim/?term=${x.name}`;
+          x.medGenSrc= `https://www.ncbi.nlm.nih.gov/medgen/?term=${x.name}`;
+          x.geneCardsSrc= `https://www.genecards.org/cgi-bin/carddisp.pl?gene=${x.name}`;
+          x.ghrSrc= `https://ghr.nlm.nih.gov/gene/${x.name}`;
+          x.clinGenLink= `https://www.ncbi.nlm.nih.gov/projects/dbvar/clingen/clingen_gene.cgi?sym=${x.name}`;
+          // x.htmlData = this.drawHtmlData($('#genes-table').innerWidth());
+          x.isAssociatedGene = true;
+          x.value = 0;
+        })
+      }
+
+      // this.modeOfInheritanceList = this.modeOfInheritanceData;
+      this.DataToIncludeSearchTerms = this.geneProps;
+      this.arrangedSearchData = this.searchTermsForGeneId(this.DataToIncludeSearchTerms);
+
+      var mergedGenes = model.mergeGenesAcrossPanels(this.geneProps);
+      let data = model.getGeneBarChartData(mergedGenes, 850, this.launchedFromClinProps );
+      this.GenesToDisplay = data;
+
+      this.arrangeAllData(this.arrangedSearchData, this.GenesToDisplay);
+
+      if(this.associatedGenes.length){
+        this.associatedGenes.map(x=>{
+          var checkIfAssociatedGeneExist = obj => obj.name === x.name;
+          if(data.some(checkIfAssociatedGeneExist)){
+            var genes = [];
+            data.map(y=>{
+              genes.push(y.name);
+            });
+            var i = genes.indexOf(x.name);
+            x.htmlData = data[i].htmlData;
+            x.value = data[i].value;
+            x.conditions = data[i].conditions;
+            x.diseases = data[i].diseases;
+            x.geneid = data[i].geneid;
+
+            data.splice(i, 1);
+            data = [...data];
+          }
+        })
+      }
+
+      if(this.associatedGenes.length){
+
+        this.associatedGenes.sort((a,b) => (a.value < b.value) ? 1 : ((b.value < a.value) ? -1 : 0));
+        this.items = [...this.associatedGenes, ...data];
+      }
+      else{
+        this.items = data;
+      }
+      // this.noOfSourcesSvg();
+      console.log("this.items", this.items)
+    },
+    arrangeAllData: function(terms, genesData){
+      for(var i=0; i<terms.length; i++){
+        for(var j=0; j<genesData.length; j++){
+          if(terms[i].id == genesData[j].geneid){
+            genesData[j].searchTermIndex = terms[i].searchData;
+            genesData[j].searchTermArray = terms[i].searchDataTerms;
+          }
+        }
+      }
+    },
+    searchTermsForGeneId: function(genePanels){
+      genePanels.forEach(function(genePanel) {
+        genePanel._genes.forEach(function(gene, i) {
+          gene["searchTermArray"] = genePanel.searchTermArray;
+          gene["searchTermIndex"] = genePanel.searchTermIndex;
+        })
+      })
+
+      var genesTempArr = [];
+      var tempGeneArrId = [];
+
+      genePanels.forEach(function(genePanel) {
+        genePanel._genes.forEach(function(gene, i) {
+          genesTempArr.push(gene);
+          tempGeneArrId.push(gene.geneid)
+        })
+      })
+
+      var dupsObj = {};
+
+      for(var i=0; i<genesTempArr.length; i++){
+        if(dupsObj[genesTempArr[i].geneid]===undefined){
+          dupsObj[genesTempArr[i].geneid] = genesTempArr[i];
+        }
+        else {
+          dupsObj[genesTempArr[i].geneid].searchTermIndex = [...dupsObj[genesTempArr[i].geneid].searchTermIndex, ...genesTempArr[i].searchTermIndex];
+          dupsObj[genesTempArr[i].geneid].searchTermIndex = Array.from(new Set(dupsObj[genesTempArr[i].geneid].searchTermIndex))
+          dupsObj[genesTempArr[i].geneid].searchTermArray = [...dupsObj[genesTempArr[i].geneid].searchTermArray, ...genesTempArr[i].searchTermArray];
+          dupsObj[genesTempArr[i].geneid].searchTermArray = Array.from(new Set(dupsObj[genesTempArr[i].geneid].searchTermArray))
+
+        }
+      }
+
+      var newGeneArr = [];
+
+      for(var key in dupsObj){
+        newGeneArr.push(dupsObj[key])
+      }
+      var obj = {};
+      for(var i=0; i<newGeneArr.length; i++){
+        if(obj[newGeneArr[i].geneid]===undefined){
+          obj[newGeneArr[i].geneid] = {
+            index: newGeneArr[i].searchTermIndex,
+            terms: newGeneArr[i].searchTermArray
+          }
+        }
+      }
+
+      var anotherArr = [];
+      for(var key in obj){
+        anotherArr.push({
+          id: key,
+          searchData: obj[key].index,
+          searchDataTerms: obj[key].terms
+        })
+      }
+
+      anotherArr.map(x=>{
+        x.searchData.sort();
+      })
+      return anotherArr
+
     },
   }
 };
