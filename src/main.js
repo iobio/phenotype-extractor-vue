@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import App from './App.vue'
-import router from './router'
+// import router from './router'
 import store from './store'
 import vuetify from './plugins/vuetify';
 
@@ -16,12 +16,12 @@ Vue.filter('to-firstCharacterUppercase', function(value){
 });
 
 
-//Bus event 
+//Bus event
 export const bus = new Vue();
 
 
 new Vue({
-  router,
+  // router,
   store,
   vuetify,
   render: h => h(App)

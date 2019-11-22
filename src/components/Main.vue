@@ -847,7 +847,7 @@ export default {
     },
     performSearchEvent(){
       this.Gtr_performSearchEvent();
-      // this.Phenolyzer_performSearchEvent();
+      this.Phenolyzer_performSearchEvent();
       // this.Hpo_performSearchEvent();
       this.searchStatusDialog = true;
     },
@@ -892,8 +892,6 @@ export default {
       this.addDiseases(this.filteredDiseasesItemsArray)
     },
     addDiseases: function(e){
-      // this.removeSearchTermFlag = false;
-      // this.disordersSearchedByUser= true;
       for(var i=0; i<e.length; i++){
         for(var j=e.length-1; j>i; j--){
           {
@@ -912,21 +910,6 @@ export default {
           t.Title === disorder.Title
         ))
       );
-      // this.DisordersPropsBackArr = e;
-      // this.showSummaryComponent = true
-      // this.diseases = e;
-      // console.log("e in addDisease", e)
-      // this.$emit("diseasesCB", e);
-      // if(e.length<= 0){
-      //   this.geneProps = [];
-      //   this.diseasesProps = [];
-      //   this.vendorList=[];
-      //   this.disorderNamesList=[];
-      //   this.modeOfInheritanceProps=[];
-      //   this.selectedGenesText = "";
-      //   this.$emit("UpdateListOfSelectedGenesGTR", []);
-      //   this.$emit("GtrFullGeneList", [])
-      // }
       this.diseasesProps = e;
       this.checkForAssociatedGenes();
       this.AddGenePanelData(this.diseasesProps);
@@ -957,13 +940,8 @@ export default {
     },
     AddGenePanelData: function(){
       //new code
-      // this.DiseasePanel = this.DiseasePanelData
-      // var mergedGenePanels = model.mergeGenePanelsAcrossDiseases(this.DiseasePanel);
-      // this.mergedGene = mergedGenePanels
 
       var mergedGenePanels = model.mergeGenePanelsAcrossDiseases(this.diseasesProps);
-      // this.items = mergedGenePanels;
-      // this.tempItems = mergedGenePanels;
       mergedGenePanels.map(x=>{
         if(x.genecount<this.lowerLimit){
           x.filter = "specific";
@@ -1016,7 +994,6 @@ export default {
         })
       }
 
-      // this.modeOfInheritanceList = this.modeOfInheritanceData;
       this.DataToIncludeSearchTerms = this.geneProps;
       this.arrangedSearchData = this.searchTermsForGeneId(this.DataToIncludeSearchTerms);
 
@@ -1200,9 +1177,6 @@ export default {
         })
       })
       this.genePropsIndividual = temp; //Selected panels
-      // console.log("this.geneProps", this.geneProps);
-      // this.AddGeneData();
-      // this.createSeparatePanelsObj(this.genePropsIndividual, searchTerm);
     },
     createSeparatePanelsObj: function(panels, searchTerm){
       if(this.panelsSearchTermObj[searchTerm]===undefined){
@@ -1220,12 +1194,23 @@ export default {
     currentSearchTerm: function(term){
       this.currentSearchedTerm = term;
     },
+    Phenolyzer_performSearchEvent(){
+      this.Phenolyzer_searchTermsObj.forEach((term, i) => {
+        ((ind) =>{
+          setTimeout(() =>{
+            var str = term.value.replace("-", " ").replace(/\s\s+/g, ' ').toLowerCase();
+
+            bus.$emit("singleTermSearchPhenolyzer", str);
+          }, 200 + (2000 * ind));
+        })(i);
+      })
+    }
   }
 };
 </script>
 
 
-<style lang="sass">
+<style lang="sass" scoped>
   #single_entry_input
     width: 600px
     height: 49px
