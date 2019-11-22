@@ -98,12 +98,13 @@ export default {
 
       if(!this.multipleSearchTerms.includes(searchTerm)){
         this.multipleSearchTerms.push(searchTerm);
+        this.$emit("currentSearchTerm", searchTerm)
         var diseases;
         var dataMain;
 
         model.promiseGetDiseases(searchTerm, conceptId, this.HierarchyRelations, this.HierarchyParentData)
           .then(function(data){
-            console.log("data" , data)
+            // console.log("data" , data)
             // createDefinitionsObj(data)
             dataMain = data;
             diseases = data.diseases;
@@ -126,7 +127,7 @@ export default {
                         .then((data)=>{
                             var filteredGenePanels = model.processGenePanelData(data.genePanels);
                             data.disease.genePanels = filteredGenePanels;
-                            console.log("filteredGenePanels", filteredGenePanels)
+                            // console.log("filteredGenePanels", filteredGenePanels)
                         },
                         function(error) {
                           console.log("error", error)
@@ -288,12 +289,16 @@ export default {
                 x["searchTermIndex"] = [this.multipleSearchTerms.indexOf(searchTerm)+1];
                 this.filteredDiseasesItems.push(x);
               });
-              this.$emit("searchTermDiseases", filteredDiseases)
+              // this.$emit("searchTermDiseases", filteredDiseases)
+              this.$emit("searchTermDiseases", {
+                "filteredDiseases": filteredDiseases,
+                "searchTerm": searchTerm
+              })
             }
 
             if(this.multipleSearchTerms.includes(searchTerm)){
               bus.$emit("newSearch")
-              console.log("filteredDiseasesItems", this.filteredDiseasesItems)
+              // console.log("filteredDiseasesItems", this.filteredDiseasesItems)
               this.$emit('filteredDiseasesItems', this.filteredDiseasesItems);
               this.filteredDiseasesItems = [];
               filteredDiseases = null;

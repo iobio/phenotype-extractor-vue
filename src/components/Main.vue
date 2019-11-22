@@ -398,7 +398,9 @@
         <!-- End terms review dialog -->
 
         <GtrSearch
-          v-on:filteredDiseasesItems="filteredDiseasesItems">
+          v-on:filteredDiseasesItems="filteredDiseasesItems"
+          v-on:searchTermDiseases="searchTermDiseases($event)"
+          v-on:currentSearchTerm="currentSearchTerm($event)">
         </GtrSearch>
 
     </v-layout>
@@ -514,6 +516,12 @@ export default {
     GenesToDisplay: [],
     DataToIncludeSearchTerms: [],
     items: [],
+    individualDiseases: [],
+    diseasesPropsIndividual: [],
+    associatedGenesIndividual: [],
+    genePropsIndividual: [],
+    panelsSearchTermObj: {},
+    currentSearchedTerm: "",
   }),
   watch: {
     textNotes(){
@@ -547,7 +555,7 @@ export default {
               this.extractedTerms.push(x);
             }
           })
-          console.log(this.extractedTerms);
+          // console.log(this.extractedTerms);
 
           this.HpoReviewTerms = [];
           this.fetchHpoTerm();
@@ -589,7 +597,7 @@ export default {
             })
 
           })
-          console.log("this.phenolyzerReviewTerms", this.phenolyzerReviewTerms)
+          // console.log("this.phenolyzerReviewTerms", this.phenolyzerReviewTerms)
 
           this.loadingDialog = false;
           this.openReviewDialogForExtractedTerms();
@@ -638,7 +646,7 @@ export default {
       return fetch(`https://nv-prod.iobio.io/hpo/hot/lookup/?term=${str}`)
           .then(response => response.json())
           .then(data => {
-            console.log(data);
+            // console.log(data);
             return data
           })
     },
@@ -880,7 +888,7 @@ export default {
     filteredDiseasesItems(items){
       // this.filteredDiseasesItemsArray.push(items);
       this.filteredDiseasesItemsArray = [...this.filteredDiseasesItemsArray, ...items]
-      console.log("this.filteredDiseasesItemsArray", this.filteredDiseasesItemsArray);
+      // console.log("this.filteredDiseasesItemsArray", this.filteredDiseasesItemsArray);
       this.addDiseases(this.filteredDiseasesItemsArray)
     },
     addDiseases: function(e){
@@ -907,7 +915,7 @@ export default {
       // this.DisordersPropsBackArr = e;
       // this.showSummaryComponent = true
       // this.diseases = e;
-      console.log("e in addDisease", e)
+      // console.log("e in addDisease", e)
       // this.$emit("diseasesCB", e);
       // if(e.length<= 0){
       //   this.geneProps = [];
@@ -977,22 +985,11 @@ export default {
         })
       })
 
-      console.log("mergedGenePanels", mergedGenePanels)
-      // let vendors = model.getGenePanelVendors(mergedGenePanels);
-      // var vendorsToBeSelected = this.getVendorsToBeSelected(temp, vendors);
-
-      // this.vendorList = vendors;
-      // this.selected = this.items.slice();
-      // this.$emit('setVendorList', this.vendorList.sort()); //Emit the vendor list
-      //                     //back to the parent so it can be used as props in filterpanel
-      // this.$emit('selectVendors', vendorsToBeSelected);
-      // temp = null;
-      // vendorsToBeSelected = null;
-      // vendors = null;
+      // console.log("mergedGenePanels", mergedGenePanels)
       this.selectPanels(mergedGenePanels);
     },
     selectPanels: function(e){
-      console.log("e in selectPanels", e)
+      // console.log("e in selectPanels", e)
       var temp = [];
       this.selectedPanelFilters.map(x=>{
         e.map(y=>{
@@ -1002,7 +999,7 @@ export default {
         })
       })
       this.geneProps = temp; //Selected panels
-      console.log("this.geneProps", this.geneProps);
+      // console.log("this.geneProps", this.geneProps);
       this.AddGeneData();
     },
     AddGeneData: function(){
@@ -1133,6 +1130,95 @@ export default {
       })
       return anotherArr
 
+    },
+    searchTermDiseases:function(diseases){
+      this.individualDiseases = diseases;
+      this.diseasesPropsIndividual = diseases.filteredDiseases;
+      console.log("diseases", diseases)
+      this.checkForAssociatedGenesIndividual();
+      this.AddGenePanelDataIndividual(this.diseasesPropsIndividual, diseases.searchTerm)
+    },
+    checkForAssociatedGenesIndividual: function(){
+      var temp = [];
+      this.diseasesPropsIndividual.map(x=>{
+        if(x.ConceptMeta.AssociatedGenes!==undefined && x.ConceptMeta.AssociatedGenes!=="" && x.ConceptMeta.AssociatedGenes!=="EMPTY_STRING"){
+          if(x.ConceptMeta.AssociatedGenes.Gene.__text!==undefined){
+            temp.push({
+              name: x.ConceptMeta.AssociatedGenes.Gene.__text,
+              searchTermIndex: x.searchTermIndex,
+              searchTermArray: x.searchTermArray
+            })
+          }
+          else if(x.ConceptMeta.AssociatedGenes.Gene.__text===undefined){
+            x.ConceptMeta.AssociatedGenes.Gene.map(y=>{
+              temp.push({
+                name: y.__text,
+                searchTermIndex: x.searchTermIndex,
+                searchTermArray: x.searchTermArray
+              })
+            })
+          }
+        }
+      })
+      this.associatedGenesIndividual = temp;
+    },
+    AddGenePanelDataIndividual: function(data, searchTerm){
+      //new code
+      var mergedGenePanels = model.mergeGenePanelsAcrossDiseases(this.diseasesPropsIndividual);
+      mergedGenePanels.map(x=>{
+        if(x.genecount<this.lowerLimit){
+          x.filter = "specific";
+        }
+        else if(x.genecount>=this.lowerLimit && x.genecount<this.upperLimit){
+          x.filter = "moderate";
+        }
+        else if(x.genecount>=this.upperLimit){
+          x.filter = "general"
+        }
+      })
+
+      var temp =[];
+      this.selectedPanelFilters.map(x=>{
+        mergedGenePanels.map(y=>{
+          if(x === y.filter){
+            temp.push(y);
+          }
+        })
+      })
+
+      console.log("mergedGenePanels individual", mergedGenePanels, "searchTerm is ", searchTerm)
+      // this.selectPanelsIndividual(mergedGenePanels);
+      this.createSeparatePanelsObj(mergedGenePanels, searchTerm)
+    },
+    selectPanelsIndividual: function(e){
+      var temp = [];
+      this.selectedPanelFilters.map(x=>{
+        e.map(y=>{
+          if(x === y.filter){
+            temp.push(y);
+          }
+        })
+      })
+      this.genePropsIndividual = temp; //Selected panels
+      // console.log("this.geneProps", this.geneProps);
+      // this.AddGeneData();
+      // this.createSeparatePanelsObj(this.genePropsIndividual, searchTerm);
+    },
+    createSeparatePanelsObj: function(panels, searchTerm){
+      if(this.panelsSearchTermObj[searchTerm]===undefined){
+        this.panelsSearchTermObj[searchTerm] = [];
+      }
+      this.updatePanelsSearchObj(panels, searchTerm);
+    },
+    updatePanelsSearchObj: function(panels, searchTerm){
+      if(!this.panelsSearchTermObj[searchTerm].length){
+        this.panelsSearchTermObj[searchTerm] = panels;
+      }
+      console.log("this.panelsSearchTermObj", this.panelsSearchTermObj)
+      // this.$emit('individualPanelsSearchObj', this.panelsSearchTermObj)
+    },
+    currentSearchTerm: function(term){
+      this.currentSearchedTerm = term;
     },
   }
 };
