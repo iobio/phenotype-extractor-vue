@@ -7,7 +7,7 @@
       <v-flex xs12 sm12 md8 lg8>
         <v-card>
           <v-card-title>
-            Nutrition
+            Gene list
             <v-spacer></v-spacer>
             <v-text-field
               v-model="search"
@@ -19,9 +19,34 @@
           </v-card-title>
           <v-data-table
             :headers="headers"
-            :items="desserts"
+            :items="GtrGeneList"
             :search="search"
-          ></v-data-table>
+          >
+          <template slot="items" slot-scope="props">
+            <tr :active="props.selected" :key="props.item.name">
+              <td>{{ props.item.key + 1 }}</td>
+              <td>
+                <span style="font-size:14px; font-weight:600; margin-top:2px; cursor:pointer">{{ props.item.name }}</span>
+                <!-- <span style="font-size:14px; font-weight:600; margin-top:2px" slot="activator">{{ props.item.name }}</span> -->
+                <span v-if="props.item.isAssociatedGene===true">
+                  <v-icon style="font-size:20px" color="blue darken-2">verified_user</v-icon>
+                </span>
+                <span v-if="props.item.reviewed===true">
+                  <v-icon style="font-size:20px" color="green darken-2">rate_review</v-icon>
+                </span>
+              </td>
+              <td> </td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td>
+              </td>
+              <td>
+              </td>
+
+            </tr>
+          </template>
+          </v-data-table>
         </v-card>
       </v-flex>
     </v-layout>
@@ -33,103 +58,36 @@ export default {
   name: 'GeneList',
   components: {
   },
+  props: {
+    gtrGenes: {
+      type: Array
+    }
+  },
+  watch:{
+    gtrGenes(){
+      console.log("gtrGenes changing");
+      this.GtrGeneList = this.gtrGenes;
+    }
+  },
   data () {
     return {
       search: '',
+      GtrGeneList: [],
       headers: [
         {
-          text: 'Dessert (100g serving)',
+          text: 'Number',
           align: 'left',
           sortable: false,
-          value: 'name',
+          value: 'key',
         },
-        { text: 'Calories', value: 'calories', sortable: false, },
-        { text: 'Fat (g)', value: 'fat' },
-        { text: 'Carbs (g)', value: 'carbs' },
-        { text: 'Protein (g)', value: 'protein' },
-        { text: 'Iron (%)', value: 'iron' },
-      ],
-      desserts: [
-        {
-          name: 'Frozen Yogurt',
-          calories: 159,
-          fat: 6.0,
-          carbs: 24,
-          protein: 4.0,
-          iron: '1%',
-        },
-        {
-          name: 'Ice cream sandwich',
-          calories: 237,
-          fat: 9.0,
-          carbs: 37,
-          protein: 4.3,
-          iron: '1%',
-        },
-        {
-          name: 'Eclair',
-          calories: 262,
-          fat: 16.0,
-          carbs: 23,
-          protein: 6.0,
-          iron: '7%',
-        },
-        {
-          name: 'Cupcake',
-          calories: 305,
-          fat: 3.7,
-          carbs: 67,
-          protein: 4.3,
-          iron: '8%',
-        },
-        {
-          name: 'Gingerbread',
-          calories: 356,
-          fat: 16.0,
-          carbs: 49,
-          protein: 3.9,
-          iron: '16%',
-        },
-        {
-          name: 'Jelly bean',
-          calories: 375,
-          fat: 0.0,
-          carbs: 94,
-          protein: 0.0,
-          iron: '0%',
-        },
-        {
-          name: 'Lollipop',
-          calories: 392,
-          fat: 0.2,
-          carbs: 98,
-          protein: 0,
-          iron: '2%',
-        },
-        {
-          name: 'Honeycomb',
-          calories: 408,
-          fat: 3.2,
-          carbs: 87,
-          protein: 6.5,
-          iron: '45%',
-        },
-        {
-          name: 'Donut',
-          calories: 452,
-          fat: 25.0,
-          carbs: 51,
-          protein: 4.9,
-          iron: '22%',
-        },
-        {
-          name: 'KitKat',
-          calories: 518,
-          fat: 26.0,
-          carbs: 65,
-          protein: 7,
-          iron: '6%',
-        },
+        { text: 'Gene Name', value: 'name', sortable: false, },
+        { text: 'Added Gene', value: '', sortable: false, },
+        { text: 'HPO', value: '', sortable: false, },
+        { text: 'GTR', value: '', sortable: false, },
+        { text: 'Phenolyzer', value: '', sortable: false, },
+        { text: ' ', align: 'left', sortable: false, value: [] },
+        { text: '', align: 'left', sortable: false, value: [] },
+
       ],
     }
   },
