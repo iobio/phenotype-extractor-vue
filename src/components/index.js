@@ -1,10 +1,12 @@
 import Vue from 'vue';
 import Main from './Main.vue';
 import PhenotypeExtractor from './PhenotypeExtractor.vue';
+import GeneList from './GeneList.vue'
 
 const Components = {
   Main,
-  PhenotypeExtractor
+  PhenotypeExtractor,
+  GeneList
 };
 
 Object.keys(Components).forEach(name => {
