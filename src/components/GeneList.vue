@@ -95,3 +95,15 @@ export default {
 }
 
 </script>
+
+<style lang="sass">
+  body, .v-application
+    font-family: 'Poppins', sans-serif
+
+  .v-application--wrap
+    font-family: 'Poppins', sans-serif
+
+  .v-btn
+    text-transform: none
+
+</style>

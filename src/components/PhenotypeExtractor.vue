@@ -387,10 +387,10 @@
               <v-card-actions>
                 <div class="flex-grow-1"></div>
                 <!-- <v-btn small color="blue darken-1" round outlined dark text @click="termsReviewDialog=false">Skip</v-btn> -->
-                <v-btn :disabled="termsReviewDialogPage===1" small color="blue darken-1" text @click="--termsReviewDialogPage">Back</v-btn>
-                <v-btn :disabled="termsReviewDialogPage>3" small color="blue darken-1" text @click="++termsReviewDialogPage">Next</v-btn>
+                <v-btn :disabled="termsReviewDialogPage===1" small color="primary" text @click="--termsReviewDialogPage">Back</v-btn>
+                <v-btn :disabled="termsReviewDialogPage>3" small color="primary" text @click="++termsReviewDialogPage">Next</v-btn>
                 <v-spacer></v-spacer>
-                <v-btn :disabled="termsReviewDialogPage!==4" small color="blue darken-1" text @click="selectReviewTerms">Done</v-btn>
+                <v-btn :disabled="termsReviewDialogPage!==4" small color="primary" text @click="selectReviewTerms">Done</v-btn>
               </v-card-actions>
             </v-card>
           </v-dialog>
@@ -1034,7 +1034,7 @@ export default {
       }
       // this.noOfSourcesSvg();
       console.log("this.items", this.items)
-      this.$emit("GtrGeneList", this.items); 
+      this.$emit("GtrGeneList", this.items);
     },
     arrangeAllData: function(terms, genesData){
       for(var i=0; i<terms.length; i++){
@@ -1211,7 +1211,18 @@ export default {
 </script>
 
 
-<style lang="sass" scoped>
+<style lang="sass">
+  @import url('https://fonts.googleapis.com/css?family=Poppins&display=swap')
+
+  body, .v-application
+    font-family: 'Poppins', sans-serif
+
+  .v-application--wrap
+    font-family: 'Poppins', sans-serif
+
+  .v-btn
+    text-transform: none
+
   #single_entry_input
     width: 600px
     height: 49px
