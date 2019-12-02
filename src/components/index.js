@@ -1,8 +1,10 @@
 import Vue from 'vue';
 import Main from './Main.vue';
+import PhenotypeExtractor from './PhenotypeExtractor.vue';
 
 const Components = {
-  Main
+  Main,
+  PhenotypeExtractor
 };
 
 Object.keys(Components).forEach(name => {
