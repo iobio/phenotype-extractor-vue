@@ -6,13 +6,13 @@
     >
       Phenotype Extractor
       <PhenotypeExtractor
-        @GtrGeneList="GtrGeneList($event)">
+        @summaryGenes="summaryGenes($event)">
       </PhenotypeExtractor>
 
       <br>
       Gene list
       <GeneList
-        :gtrGenes="gtrGenes">
+        :summaryGeneList="summaryGeneList">
       </GeneList>
     </v-layout>
   </v-container>
@@ -43,13 +43,15 @@ export default {
   },
   data: () => ({
     gtrGenes: [],
+    summaryGeneList: []
   }),
   watch: {
   },
   methods: {
-    GtrGeneList(genes){
+    summaryGenes(genes){
       console.log("genes returned", genes)
-      this.gtrGenes = genes;
+      // this.gtrGenes = genes;
+      this.summaryGeneList = genes;
     }
   }
 };

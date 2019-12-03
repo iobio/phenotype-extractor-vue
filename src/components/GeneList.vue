@@ -23,21 +23,15 @@
             :search="search"
           >
           <template slot="items" slot-scope="props">
-            <tr :active="props.selected" :key="props.item.name">
-              <td>{{ props.item.key + 1 }}</td>
+            <tr :key="props.item.name">
               <td>
-                <span style="font-size:14px; font-weight:600; margin-top:2px; cursor:pointer">{{ props.item.name }}</span>
-                <!-- <span style="font-size:14px; font-weight:600; margin-top:2px" slot="activator">{{ props.item.name }}</span> -->
-                <span v-if="props.item.isAssociatedGene===true">
-                  <v-icon style="font-size:20px" color="blue darken-2">verified_user</v-icon>
-                </span>
-                <span v-if="props.item.reviewed===true">
-                  <v-icon style="font-size:20px" color="green darken-2">rate_review</v-icon>
-                </span>
+                <span style="font-size:14px; font-weight:600; margin-top:2px; cursor:pointer" @click="showGeneInfo(props.item)">{{ props.item.name }}</span>
               </td>
-              <td> </td>
+              <td>{{ props.item.isGtr }} </td>
               <td></td>
-              <td></td>
+              <td>
+                <span>{{ props.item.value }}</span>
+              </td>
               <td></td>
               <td>
               </td>
@@ -59,14 +53,14 @@ export default {
   components: {
   },
   props: {
-    gtrGenes: {
+    summaryGeneList: {
       type: Array
     }
   },
   watch:{
-    gtrGenes(){
+    summaryGeneList(){
       console.log("gtrGenes changing");
-      this.GtrGeneList = this.gtrGenes;
+      this.GtrGeneList = this.summaryGeneList;
     }
   },
   data () {
@@ -74,16 +68,10 @@ export default {
       search: '',
       GtrGeneList: [],
       headers: [
-        {
-          text: 'Number',
-          align: 'left',
-          sortable: false,
-          value: 'key',
-        },
-        { text: 'Gene Name', value: 'name', sortable: false, },
+        { text: 'Gene Name', align: 'left', value: 'name', sortable: false, },
         { text: 'Added Gene', value: '', sortable: false, },
         { text: 'HPO', value: '', sortable: false, },
-        { text: 'GTR', value: '', sortable: false, },
+        { text: 'GTR (Panels)', value: 'value', sortable: false, },
         { text: 'Phenolyzer', value: '', sortable: false, },
         { text: ' ', align: 'left', sortable: false, value: [] },
         { text: '', align: 'left', sortable: false, value: [] },
@@ -91,6 +79,12 @@ export default {
       ],
     }
   },
+
+  methods: {
+    showGeneInfo(gene){
+      console.log("gene", gene)
+    }
+  }
 
 }
 

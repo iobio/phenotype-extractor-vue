@@ -537,6 +537,21 @@
           v-on:currentSearchTerm="currentSearchTerm($event)">
         </GtrSearch>
 
+
+        <SummaryTab
+          v-bind:GtrGenesForSummary="GtrGenesForSummary"
+          v-bind:PhenolyzerGenesForSummary="PhenolyzerGenesForSummary"
+          v-bind:manuallyAddedGenes="manuallyAddedGenes"
+          v-bind:clinPhenSelectedGenes="clinPhenSelectedGenes"
+          v-bind:gtrCompleteGeneList="GtrGenesForSummary"
+          v-bind:phenolyzerCompleteGeneList="PhenolyzerGenesForSummary"
+          :GtrTermsLength="GtrTermsAdded.length"
+          :PhenolyzerTermsLength="phenolyzerTermsAdded.length"
+          :HpoTermsLength="hpoTermsAdded.length"
+          :multipleSearchTerms="multipleSearchTerms"
+          @summaryGenesFullList="summaryGenesFullList($event)">
+        </SummaryTab>
+
     </v-layout>
   </v-container>
 </template>
@@ -551,6 +566,7 @@ import HPO_Terms from '../data/HPO_Terms';
 import HpoTermsData from '../data/HpoTermsData.json';
 import { bus } from '../main';
 import GtrSearch from './GtrSearch.vue';
+import SummaryTab from './SummaryTab.vue';
 
 import Model from '../models/Model';
 var model = new Model();
@@ -559,7 +575,8 @@ var model = new Model();
 export default {
   name: 'PhenotypeExtractor',
   components: {
-    GtrSearch
+    GtrSearch,
+    SummaryTab
   },
   data: () => ({
     search: '',
@@ -657,7 +674,12 @@ export default {
     panelsSearchTermObj: {},
     currentSearchedTerm: "",
     Gtr_searchTermArray: [], //An array of Gtr searched terms, not an object
-    Gtr_search_complete_idx: 0
+    Gtr_search_complete_idx: 0,
+    manuallyAddedGenes: [],
+    clinGenesSummary: [],
+    GtrGenesForSummary: [],
+    PhenolyzerGenesForSummary: [],
+    clinPhenSelectedGenes: []
   }),
   watch: {
     textNotes(){
@@ -674,6 +696,9 @@ export default {
     },
   },
   methods: {
+    summaryGenesFullList(genes){
+      this.$emit('summaryGenes', genes)
+    },
     extract(){
       this.WorkflowStepsflag = false;
       this.LevenshteinResults = [];
@@ -1153,8 +1178,10 @@ export default {
         this.items = data;
       }
       // this.noOfSourcesSvg();
-      console.log("this.items", this.items)
-      this.$emit("GtrGeneList", this.items);
+      console.log("this.items", this.items);
+      this.GtrGenesForSummary = this.items;
+      // this.$emit("GtrGeneList", this.items);
+
     },
     arrangeAllData: function(terms, genesData){
       for(var i=0; i<terms.length; i++){
