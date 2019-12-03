@@ -27,6 +27,16 @@
               rows="2"
               style="padding-top:5px"
             ></v-textarea>
+            <typeahead
+              v-model="search"
+              hide-details="false"
+              target="#single_entry_input"
+              force-select :force-clear="true"
+              :data="DiseaseNames"
+              :limit="parseInt(100)"
+              v-on:keydown="EnterForSearch"
+              v-on:input="mouseSelect"
+              item-key="DiseaseName"/>
         </div>
         <v-btn :disabled="textNotes.length<4" @click="extract" color="primary">Submit</v-btn>
       </v-flex>
@@ -567,6 +577,7 @@ import HpoTermsData from '../data/HpoTermsData.json';
 import { bus } from '../main';
 import GtrSearch from './GtrSearch.vue';
 import SummaryTab from './SummaryTab.vue';
+import { Typeahead } from 'uiv';
 
 import Model from '../models/Model';
 var model = new Model();
@@ -693,6 +704,24 @@ export default {
           this.$refs.single_entry_input.focus();
         },10)
       }
+    },
+  },
+  mounted(){
+    this.HPO_Terms_data = HPO_Terms;
+    this.HPO_Phenotypes_data = HPO_Phenotypes;
+    this.HpoTermsTypeaheadData  = HpoTermsData.data;
+  },
+  computed: {
+    DiseaseNames: function() {
+      return DiseaseNames.data.sort(function(a,b) {
+        if (a.DiseaseName < b.DiseaseName) {
+          return -1;
+        } else if (a.DiseaseName > b.DiseaseName) {
+          return 1;
+        } else {
+          return 0;
+        }
+      });
     },
   },
   methods: {
@@ -883,6 +912,26 @@ export default {
       this.GtrTermsAdded_temp = [];
       this.phenolyzerTermsAdded_temp = [];
       this.hpoTermsAdded_temp = [];
+    },
+    mouseSelect(){
+      if(this.search!==undefined){
+        this.WorkflowStepsflag = false;
+        this.loadingDialog = true;
+        // this.checkBeforeAddTerm();
+        setTimeout(()=>{
+          // this.checkBeforeAddTerm();
+          this.openReviewDialog();
+        }, 1000)
+      }
+    },
+    EnterForSearch(){
+      if(event.key === 'Enter') {
+        this.WorkflowStepsflag = false;
+        setTimeout(()=>{
+          // this.checkBeforeAddTerm();
+          this.openReviewDialog();
+        }, 1000)
+      }
     },
     openReviewDialogForExtractedTerms(){
       this.GtrReviewTerms = this.extractedTermsObj;
@@ -1397,4 +1446,10 @@ export default {
   .reviewCard
     height: 250px
     overflow-y: auto
+
+  .open>.dropdown-menu
+    padding-left: 0px !important
+
+  .dropdown-menu>.active>a
+    background-color: #45688e  
 </style>

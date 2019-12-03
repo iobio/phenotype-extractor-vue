@@ -4,6 +4,13 @@ import App from './App.vue'
 import store from './store'
 import vuetify from './plugins/vuetify';
 
+
+import { Typeahead } from 'uiv';
+
+import * as uiv from 'uiv';
+Vue.use(uiv)
+
+
 Vue.config.productionTip = false
 
 import 'material-design-icons-iconfont/dist/material-design-icons.css'
