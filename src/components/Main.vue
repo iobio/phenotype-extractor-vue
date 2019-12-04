@@ -6,7 +6,9 @@
     >
       Phenotype Extractor
       <PhenotypeExtractor
-        @summaryGenes="summaryGenes($event)">
+        :phenotypes="phenotypes"
+        @summaryGenes="summaryGenes($event)"
+        @saveSearchedPhenotypes="saveSearchedPhenotypes($event)">
       </PhenotypeExtractor>
 
       <br>
@@ -43,7 +45,29 @@ export default {
   },
   data: () => ({
     gtrGenes: [],
-    summaryGeneList: []
+    summaryGeneList: [],
+    phenotypes: [
+      [
+        {
+          "DiseaseName": "Dejerine-Sottas disease",
+          "ConceptID": "C0011195",
+          "general": true,
+          "gtrSearchStatus": "Completed"
+        }
+      ],
+      [
+        {
+          "id": "dejerine sottas disease",
+          "label": "dejerine sottas disease",
+          "value": "dejerine sottas disease",
+          "general": true,
+          "phenolyzerSearchStatus": "Completed"
+        }
+      ],
+      [
+
+      ]
+    ]
   }),
   watch: {
   },
@@ -52,6 +76,9 @@ export default {
       console.log("genes returned", genes)
       // this.gtrGenes = genes;
       this.summaryGeneList = genes;
+    },
+    saveSearchedPhenotypes(phenotypes){
+      console.log("saveSearchedPhenotypes", phenotypes)
     }
   }
 };

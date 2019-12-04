@@ -63,13 +63,21 @@
                 <strong>Phenolyzer Terms: </strong>
                 <br>
                 <div class="mb-2" v-for="(term, i) in phenolyzerTermsAdded" v-if="phenolyzerTermsAdded.length">
+                  <v-chip slot="activator" color="primary" text-color="white" close :key="i" @input="remove(term, i, 'phenolyzer')">
+                  {{ i+1 }} . {{ term.value }}
+                  </v-chip>
+                </div>
+                <div class="mb-2" v-if="phenolyzerTermsAdded.length===0">
+                  <v-chip ><v-icon left>error_outline</v-icon> No phenotypes</v-chip>
+                </div>
+                <!-- <div class="mb-2" v-for="(term, i) in phenolyzerTermsAdded" v-if="phenolyzerTermsAdded.length">
                   <v-chip v-if="i>0" slot="activator" color="primary" text-color="white" close :key="i" @input="remove(term, i, 'phenolyzer')">
                   {{ i }} . {{ term.value }}
                   </v-chip>
                 </div>
                 <div class="mb-2" v-if="phenolyzerTermsAdded.length===1 || phenolyzerTermsAdded.length===0">
                   <v-chip ><v-icon left>error_outline</v-icon> No phenotypes</v-chip>
-                </div>
+                </div> -->
               </div>
               <div class="col-md-4 mb-2">
                 <strong>HPO Terms: </strong>
@@ -589,6 +597,11 @@ export default {
     GtrSearch,
     SummaryTab
   },
+  props: {
+    phenotypes: {
+      type: Array
+    }
+  },
   data: () => ({
     search: '',
     multipleSearchTerms: [],
@@ -710,6 +723,23 @@ export default {
     this.HPO_Terms_data = HPO_Terms;
     this.HPO_Phenotypes_data = HPO_Phenotypes;
     this.HpoTermsTypeaheadData  = HpoTermsData.data;
+    if(this.phenotypes!==undefined && this.phenotypes[0].length){
+      this.GtrTermsAdded = this.phenotypes[0];
+      this.GtrTermsAdded.map(term => {
+        this.gtr_push_idx = this.gtr_push_idx + 1;
+        this.Gtr_searchTermsObj.push(term);
+        this.Gtr_searchTermArray.push(term.DiseaseName);
+      })
+    }
+    if(this.phenotypes!==undefined && this.phenotypes[1].length){
+      this.phenolyzerTermsAdded = this.phenotypes[1];
+      // this.phenolyzerTermsAdded.map(term => {
+      //   this.phenolyzer_push_idx = this.phenolyzer_push_idx + 1;
+      // })
+    }
+    if(this.phenotypes!==undefined && this.phenotypes[2].length){
+      this.hpoTermsAdded = this.phenotypes[2];
+    }
   },
   computed: {
     DiseaseNames: function() {
@@ -975,6 +1005,10 @@ export default {
       this.phenolyzerTermsAdded_temp = [];
       this.hpoTermsAdded_temp = [];
 
+      var allPhenotypes = [this.GtrTermsAdded, this.phenolyzerTermsAdded, this.hpoTermsAdded];
+      console.log("allPhenotypes", allPhenotypes)
+      this.$emit('saveSearchedPhenotypes', allPhenotypes)
+
       for (var i = this.gtr_push_idx; i < this.GtrTermsAdded.length; i++) {
         var term = this.GtrTermsAdded[i];
         var searchTerm ="";
@@ -999,14 +1033,14 @@ export default {
 
 
 
-      if(this.phenolyzer_push_idx===0){
-        var tempTerm = {
-          id: "pqrst",
-          label: "pqrst",
-          value: "pqrst"
-        }
-        this.phenolyzerTermsAdded.unshift(tempTerm);
-      }
+      // if(this.phenolyzer_push_idx===0){
+      //   var tempTerm = {
+      //     id: "pqrst",
+      //     label: "pqrst",
+      //     value: "pqrst"
+      //   }
+      //   this.phenolyzerTermsAdded.unshift(tempTerm);
+      // }
 
       for (var i = this.phenolyzer_push_idx; i < this.phenolyzerTermsAdded.length; i++) {
         var term = this.phenolyzerTermsAdded[i];
@@ -1451,5 +1485,5 @@ export default {
     padding-left: 0px !important
 
   .dropdown-menu>.active>a
-    background-color: #45688e  
+    background-color: #45688e
 </style>
