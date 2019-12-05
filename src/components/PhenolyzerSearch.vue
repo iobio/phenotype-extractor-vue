@@ -120,6 +120,7 @@ export default {
             } else {
               self.tempItems = geneModel.phenolyzerGenes;
               console.log("phenolyzer self.tempItems", self.tempItems)
+              this.$emit("phenolyzerIndividualGenes", self.tempItems)
               self.multipleSearchTerms.push(searchTerm);
               // self.updateTableHeaders();
               self.checked = false;
@@ -142,6 +143,7 @@ export default {
                 })
               }
               this.$emit("individualGenesObjPhenolyzer", self.genesSearchTermObj)
+              console.log("individualGenesObjPhenolyzer", self.genesSearchTermObj)
               self.scoreBasedSort? self.sortScores() : self.sortSources();
               // bus.$emit("completeFetchRequest", "Phenolyzer")
               bus.$emit("completePhenolyzerFetchRequest", searchTerm)

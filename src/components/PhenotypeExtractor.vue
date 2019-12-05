@@ -559,8 +559,13 @@
           v-on:currentSearchTerm="currentSearchTerm($event)">
         </GtrSearch>
 
-        <PhenolyzerSearch>
+        <PhenolyzerSearch
+          @phenolyzerIndividualGenes="phenolyzerIndividualGenes($event)"
+          @PhenolyzerFullGeneList="PhenolyzerFullGeneList($event)">
         </PhenolyzerSearch>
+
+        <HpoSearch>
+        </HpoSearch>
 
 
         <SummaryTab
@@ -594,6 +599,7 @@ import GtrSearch from './GtrSearch.vue';
 import SummaryTab from './SummaryTab.vue';
 import { Typeahead } from 'uiv';
 import PhenolyzerSearch from './PhenolyzerSearch.vue';
+import HpoSearch from './HpoSearch.vue';
 
 import Model from '../models/Model';
 var model = new Model();
@@ -604,7 +610,8 @@ export default {
   components: {
     GtrSearch,
     SummaryTab,
-    PhenolyzerSearch
+    PhenolyzerSearch,
+    HpoSearch
   },
   props: {
     phenotypes: {
@@ -714,7 +721,9 @@ export default {
     clinGenesSummary: [],
     GtrGenesForSummary: [],
     PhenolyzerGenesForSummary: [],
-    clinPhenSelectedGenes: []
+    clinPhenSelectedGenes: [],
+    phenolyzerIndividualItems: [],
+    phenolyzerItems: [],
   }),
   watch: {
     textNotes(){
@@ -734,6 +743,7 @@ export default {
     this.HPO_Terms_data = HPO_Terms;
     this.HPO_Phenotypes_data = HPO_Phenotypes;
     this.HpoTermsTypeaheadData  = HpoTermsData.data;
+
     bus.$on("completePhenolyzerFetchRequest", searchTerm => {
       var idx = this.Phenolyzer_searchTermArray.indexOf(searchTerm);
       this.$set(this.Phenolyzer_searchTermsObj[idx], 'phenolyzerSearchStatus', "Completed");
@@ -1046,18 +1056,7 @@ export default {
         }
       }
 
-
-
-
-      // if(this.phenolyzer_push_idx===0){
-      //   var tempTerm = {
-      //     id: "pqrst",
-      //     label: "pqrst",
-      //     value: "pqrst"
-      //   }
-      //   this.phenolyzerTermsAdded.unshift(tempTerm);
-      // }
-
+      //Add Phenolyzer selected terms from review
       for (var i = this.phenolyzer_push_idx; i < this.phenolyzerTermsAdded.length; i++) {
         var term = this.phenolyzerTermsAdded[i];
         var searchTerm ="";
@@ -1113,7 +1112,7 @@ export default {
     performSearchEvent(){
       this.Gtr_performSearchEvent();
       this.Phenolyzer_performSearchEvent();
-      // this.Hpo_performSearchEvent();
+      this.Hpo_performSearchEvent();
       this.searchStatusDialog = true;
     },
     Gtr_performSearchEvent(){
@@ -1409,7 +1408,7 @@ export default {
         })
       })
 
-      console.log("mergedGenePanels individual", mergedGenePanels, "searchTerm is ", searchTerm)
+      // console.log("mergedGenePanels individual", mergedGenePanels, "searchTerm is ", searchTerm)
       // this.selectPanelsIndividual(mergedGenePanels);
       this.createSeparatePanelsObj(mergedGenePanels, searchTerm)
     },
@@ -1434,6 +1433,9 @@ export default {
       if(!this.panelsSearchTermObj[searchTerm].length){
         this.panelsSearchTermObj[searchTerm] = panels;
       }
+
+      console.log("individualGenesObjGtr", this.panelsSearchTermObj)
+
       var idx = this.Gtr_searchTermArray.indexOf(searchTerm);
 
       this.$set(this.Gtr_searchTermsObj[idx], 'gtrSearchStatus', "Completed");
@@ -1448,9 +1450,11 @@ export default {
       console.log("this.panelsSearchTermObj", this.panelsSearchTermObj)
       // this.$emit('individualPanelsSearchObj', this.panelsSearchTermObj)
     },
+
     currentSearchTerm: function(term){
       this.currentSearchedTerm = term;
     },
+
     Phenolyzer_performSearchEvent(){
       // TODO: Replace forEach with for loop.
       this.Phenolyzer_searchTermsObj.forEach((term, i) => {
@@ -1458,6 +1462,26 @@ export default {
           setTimeout(() =>{
             var str = term.value.replace("-", " ").replace(/\s\s+/g, ' ').toLowerCase();
             bus.$emit("singleTermSearchPhenolyzer", str);
+          }, 200 + (2000 * ind));
+        })(i);
+      })
+    },
+
+    phenolyzerIndividualGenes(genes){
+      // TODO: event should be individualGenesObjPhenolyzer from phenolyzer
+    },
+
+    PhenolyzerFullGeneList(genes){
+      this.phenolyzerItems = genes;
+      this.PhenolyzerGenesForSummary = genes;
+    },
+
+    Hpo_performSearchEvent(){
+      this.Hpo_searchTermsObj.forEach((term, i) => {
+        ((ind) =>{
+          setTimeout(() =>{
+            // var str = term.value.replace("-", " ").replace(/\s\s+/g, ' ').toLowerCase();
+            bus.$emit("singleTermSearchHPO", term);
           }, 200 + (2000 * ind));
         })(i);
       })
