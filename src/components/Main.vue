@@ -46,28 +46,29 @@ export default {
   data: () => ({
     gtrGenes: [],
     summaryGeneList: [],
-    phenotypes: [
-      [
-        {
-          "DiseaseName": "Dejerine-Sottas disease",
-          "ConceptID": "C0011195",
-          "general": true,
-          "gtrSearchStatus": "Completed"
-        }
-      ],
-      [
-        {
-          "id": "dejerine sottas disease",
-          "label": "dejerine sottas disease",
-          "value": "dejerine sottas disease",
-          "general": true,
-          "phenolyzerSearchStatus": "Completed"
-        }
-      ],
-      [
-
-      ]
-    ]
+    phenotypes: [],
+    // phenotypes: [
+    //   [
+    //     {
+    //       "DiseaseName": "Dejerine-Sottas disease",
+    //       "ConceptID": "C0011195",
+    //       "general": true,
+    //       "gtrSearchStatus": "Completed"
+    //     }
+    //   ],
+    //   [
+    //     {
+    //       "id": "dejerine sottas disease",
+    //       "label": "dejerine sottas disease",
+    //       "value": "dejerine sottas disease",
+    //       "general": true,
+    //       "phenolyzerSearchStatus": "Completed"
+    //     }
+    //   ],
+    //   [
+    //
+    //   ]
+    // ]
   }),
   watch: {
   },

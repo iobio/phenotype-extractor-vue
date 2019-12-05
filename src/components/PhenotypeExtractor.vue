@@ -470,8 +470,9 @@
                         <thead>
                           <tr>
                             <strong>Phenolyzer Search status</strong>
-                            <div v-if="Phenolyzer_searchTermsObj.length>1">
-                              <div v-if="phenolyzerRunningStatus!==null" class="row">
+                            <!-- <div v-if="Phenolyzer_searchTermsObj.length>1"> -->
+                            <div v-if="Phenolyzer_searchTermsObj.length>0">
+                              <!-- <div v-if="phenolyzerRunningStatus!==null" class="row">
                                 <div class="col-md-3">
                                   <i>{{ phenolyzerRunningStatus | to-firstCharacterUppercase }} </i>
                                 </div>
@@ -481,14 +482,16 @@
                                 <div class="col-md-2">
                                   <v-btn flat icon @click="stopPhenolyzerSearch"><v-icon>close</v-icon></v-btn>
                                 </div>
-                              </div>
+                              </div> -->
                             </div>
                           </tr>
                         </thead>
                         <tbody>
                           <tr v-for="(term, i) in Phenolyzer_searchTermsObj" :key="i">
-                            <td v-if="i>0">{{ term.value }}</td>
-                            <td v-if="i>0" >
+                            <!-- <td v-if="i>0">{{ term.value }}</td>
+                            <td v-if="i>0" > -->
+                            <td>{{ term.value }}</td>
+                            <td>
                               <span v-if="term.phenolyzerSearchStatus==='Searching'">
                                 <v-progress-circular
                                   :width="2"
@@ -506,7 +509,8 @@
                           </tr>
                         </tbody>
                       </table>
-                      <div v-if="Phenolyzer_searchTermsObj.length<2">
+                      <!-- <div v-if="Phenolyzer_searchTermsObj.length<2"> -->
+                      <div v-if="Phenolyzer_searchTermsObj.length<1">
                         <span><i>Not Selected...</i></span>
                       </div>
                     </div>
@@ -555,6 +559,9 @@
           v-on:currentSearchTerm="currentSearchTerm($event)">
         </GtrSearch>
 
+        <PhenolyzerSearch>
+        </PhenolyzerSearch>
+
 
         <SummaryTab
           v-bind:GtrGenesForSummary="GtrGenesForSummary"
@@ -586,6 +593,7 @@ import { bus } from '../main';
 import GtrSearch from './GtrSearch.vue';
 import SummaryTab from './SummaryTab.vue';
 import { Typeahead } from 'uiv';
+import PhenolyzerSearch from './PhenolyzerSearch.vue';
 
 import Model from '../models/Model';
 var model = new Model();
@@ -595,7 +603,8 @@ export default {
   name: 'PhenotypeExtractor',
   components: {
     GtrSearch,
-    SummaryTab
+    SummaryTab,
+    PhenolyzerSearch
   },
   props: {
     phenotypes: {
@@ -723,23 +732,20 @@ export default {
     this.HPO_Terms_data = HPO_Terms;
     this.HPO_Phenotypes_data = HPO_Phenotypes;
     this.HpoTermsTypeaheadData  = HpoTermsData.data;
-    if(this.phenotypes!==undefined && this.phenotypes[0].length){
-      this.GtrTermsAdded = this.phenotypes[0];
-      this.GtrTermsAdded.map(term => {
-        this.gtr_push_idx = this.gtr_push_idx + 1;
-        this.Gtr_searchTermsObj.push(term);
-        this.Gtr_searchTermArray.push(term.DiseaseName);
-      })
-    }
-    if(this.phenotypes!==undefined && this.phenotypes[1].length){
-      this.phenolyzerTermsAdded = this.phenotypes[1];
-      // this.phenolyzerTermsAdded.map(term => {
-      //   this.phenolyzer_push_idx = this.phenolyzer_push_idx + 1;
-      // })
-    }
-    if(this.phenotypes!==undefined && this.phenotypes[2].length){
-      this.hpoTermsAdded = this.phenotypes[2];
-    }
+    // if(this.phenotypes!==undefined && this.phenotypes[0].length){
+    //   this.GtrTermsAdded = this.phenotypes[0];
+    //   this.GtrTermsAdded.map(term => {
+    //     this.gtr_push_idx = this.gtr_push_idx + 1;
+    //     this.Gtr_searchTermsObj.push(term);
+    //     this.Gtr_searchTermArray.push(term.DiseaseName);
+    //   })
+    // }
+    // if(this.phenotypes!==undefined && this.phenotypes[1].length){
+    //   this.phenolyzerTermsAdded = this.phenotypes[1];
+    // }
+    // if(this.phenotypes!==undefined && this.phenotypes[2].length){
+    //   this.hpoTermsAdded = this.phenotypes[2];
+    // }
   },
   computed: {
     DiseaseNames: function() {
@@ -1006,16 +1012,15 @@ export default {
       this.hpoTermsAdded_temp = [];
 
       var allPhenotypes = [this.GtrTermsAdded, this.phenolyzerTermsAdded, this.hpoTermsAdded];
-      console.log("allPhenotypes", allPhenotypes)
       this.$emit('saveSearchedPhenotypes', allPhenotypes)
 
+      //Add GTR selected terms from review
       for (var i = this.gtr_push_idx; i < this.GtrTermsAdded.length; i++) {
         var term = this.GtrTermsAdded[i];
         var searchTerm ="";
         var conceptId = ""
         searchTerm = term.DiseaseName;
         conceptId = term.ConceptID;
-
         if(!this.multipleSearchTerms.includes(searchTerm) && searchTerm!==undefined){
           if(searchTerm.length>1){
             this.multipleSearchTerms.push(searchTerm);
@@ -1029,7 +1034,6 @@ export default {
         }
       }
 
-      console.log("this.Gtr_searchTermArray", this.Gtr_searchTermArray)
 
 
 
@@ -1051,11 +1055,12 @@ export default {
               this.multipleSearchTerms.push(searchTerm);
               this.searchTermsObj.push(term);
               this.Phenolyzer_searchTermsObj.push(term);
-              this.$set(this.Phenolyzer_searchTermsObj[this.phenolyzer_push_idx], 'phenolyzerSearchStatus', "Not started");
+              this.$set(this.Phenolyzer_searchTermsObj[this.phenolyzer_push_idx], 'phenolyzerSearchStatus', "Searching");
               this.phenolyzer_push_idx = this.phenolyzer_push_idx + 1;
           }
         }
       }
+      console.log("Phenolyzer_searchTermsObj", this.Phenolyzer_searchTermsObj)
 
       this.hpoTermsAdded.map(term => {
         var searchTerm ="";
@@ -1109,9 +1114,7 @@ export default {
             bus.$emit("singleTermSearchGTR", term);
           }, 200 + (2000 * ind));
         })(i);
-
       })
-
     },
     filteredDiseasesItems(items){
       // this.filteredDiseasesItemsArray.push(items);
@@ -1441,7 +1444,6 @@ export default {
         ((ind) =>{
           setTimeout(() =>{
             var str = term.value.replace("-", " ").replace(/\s\s+/g, ' ').toLowerCase();
-
             bus.$emit("singleTermSearchPhenolyzer", str);
           }, 200 + (2000 * ind));
         })(i);
