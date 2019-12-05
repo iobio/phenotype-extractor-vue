@@ -753,9 +753,8 @@ export default {
       this.$set(this.Phenolyzer_searchTermsObj[idx], 'phenolyzerSearchStatus', "Completed");
       this.Phenolyzer_search_complete_idx = this.Phenolyzer_search_complete_idx+1;
       if(this.Phenolyzer_search_complete_idx === this.Phenolyzer_searchTermArray.length){
-        setTimeout(()=>{
-          this.searchStatusDialog = false;
-        }, 3000)
+        this.phenolyzerFetchCompleted = true;
+        this.checkToCloseSearchStatusDialog();
       }
     })
 
@@ -764,9 +763,8 @@ export default {
       this.$set(this.Hpo_searchTermsObj[idx], 'hpoSearchStatus', "Completed");
       this.Hpo_search_complete_idx = this.Hpo_search_complete_idx+1;
       if(this.Hpo_search_complete_idx === this.Hpo_searchTermArray.length){
-        setTimeout(()=>{
-          this.searchStatusDialog = false;
-        }, 3000)
+        this.hpoFetchCompleted = true;
+        this.checkToCloseSearchStatusDialog();
       }
     })
 
@@ -1130,7 +1128,7 @@ export default {
       this.searchStatusDialog = true;
     },
     Gtr_performSearchEvent(){
-
+      this.gtrFetchCompleted = false;
       this.Gtr_searchTermsObj.forEach((term, i) => {
         ((ind) =>{
           setTimeout(() =>{
@@ -1456,9 +1454,8 @@ export default {
       this.Gtr_search_complete_idx = this.Gtr_search_complete_idx+1;
 
       if(this.Gtr_search_complete_idx === this.Gtr_searchTermArray.length){
-        setTimeout(()=>{
-          this.searchStatusDialog = false;
-        }, 3000)
+        this.gtrFetchCompleted = true;
+        this.checkToCloseSearchStatusDialog();
       }
 
       console.log("this.panelsSearchTermObj", this.panelsSearchTermObj)
@@ -1471,6 +1468,7 @@ export default {
 
     Phenolyzer_performSearchEvent(){
       // TODO: Replace forEach with for loop.
+      this.phenolyzerFetchCompleted = false;
       this.Phenolyzer_searchTermsObj.forEach((term, i) => {
         ((ind) =>{
           setTimeout(() =>{
@@ -1491,6 +1489,7 @@ export default {
     },
 
     Hpo_performSearchEvent(){
+      this.hpoFetchCompleted = false;
       this.Hpo_searchTermsObj.forEach((term, i) => {
         ((ind) =>{
           setTimeout(() =>{
@@ -1509,6 +1508,14 @@ export default {
     hpoIndividualGenes(obj){
 
     },
+
+    checkToCloseSearchStatusDialog(){
+      if(this.gtrFetchCompleted && this.phenolyzerFetchCompleted && this.hpoFetchCompleted){
+        setTimeout(()=>{
+          this.searchStatusDialog = false;
+        }, 3000)
+      }
+    }
 
   }
 };
