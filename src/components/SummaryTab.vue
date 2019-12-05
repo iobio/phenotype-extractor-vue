@@ -145,9 +145,10 @@ var model = new Model();
         this.PhenolyzerGenes = [];
         this.UniquePhenoData = [];
         this.uniqueGtrData = [];
-        this.PhenolyzerGenes = this.PhenolyzerGenesForSummary;
+        // this.PhenolyzerGenes = this.PhenolyzerGenesForSummary;
         this.summaryTableArray=[];
         this.performSetOperations();
+        this.performSetOperationsFullList();
       },
       searchTermGTR: function(){
         this.GtrSearchTerms = this.searchTermGTR;

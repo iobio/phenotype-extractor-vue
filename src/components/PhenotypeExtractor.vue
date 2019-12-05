@@ -564,7 +564,9 @@
           @PhenolyzerFullGeneList="PhenolyzerFullGeneList($event)">
         </PhenolyzerSearch>
 
-        <HpoSearch>
+        <HpoSearch
+          @hpoIndividualGenes="hpoIndividualGenes($event)"
+          @HpoFullGeneList="HpoFullGeneList($event)">
         </HpoSearch>
 
 
@@ -724,6 +726,8 @@ export default {
     clinPhenSelectedGenes: [],
     phenolyzerIndividualItems: [],
     phenolyzerItems: [],
+    Hpo_searchTermArray: [],
+    Hpo_search_complete_idx: 0,
   }),
   watch: {
     textNotes(){
@@ -754,6 +758,19 @@ export default {
         }, 3000)
       }
     })
+
+    bus.$on("completeHpoFetchRequest", searchTerm => {
+      var idx = this.Hpo_searchTermArray.indexOf(searchTerm);
+      this.$set(this.Hpo_searchTermsObj[idx], 'hpoSearchStatus', "Completed");
+      this.Hpo_search_complete_idx = this.Hpo_search_complete_idx+1;
+      if(this.Hpo_search_complete_idx === this.Hpo_searchTermArray.length){
+        setTimeout(()=>{
+          this.searchStatusDialog = false;
+        }, 3000)
+      }
+    })
+
+    //Code for retriving state: Uncomment when other stuff is fixed:
     // if(this.phenotypes!==undefined && this.phenotypes[0].length){
     //   this.GtrTermsAdded = this.phenotypes[0];
     //   this.GtrTermsAdded.map(term => {
@@ -1077,10 +1094,7 @@ export default {
         var searchTerm ="";
         searchTerm = term.HPO_Data;
         if(term.hpoSearchStatus!=="Completed" || term.hpoSearchStatus===undefined){
-          this.$set(term, 'status', "Not started");
-          this.$set(term, 'gtrSearchStatus', "Not started");
-          // this.$set(term, 'phenolyzerSearchStatus', "Not started");
-          this.$set(term, 'hpoSearchStatus', "Not started");
+          this.$set(term, 'hpoSearchStatus', "Searching");
           this.$set(term, 'tool_to_search', 'Hpo');
           this.$set(term, 'DiseaseName', term.HPO_Data);
         }
@@ -1091,12 +1105,12 @@ export default {
         term.hpoNumber = hpoId;
         term.phenotype = phenoTerm;
 
-
         if(!this.multipleSearchTerms.includes(searchTerm) && searchTerm!==undefined){
           if(searchTerm.length>1){
             this.multipleSearchTerms.push(searchTerm);
             this.searchTermsObj.push(term);
             this.Hpo_searchTermsObj.push(term);
+            this.Hpo_searchTermArray.push(hpoId);
           }
         }
       })
@@ -1485,7 +1499,17 @@ export default {
           }, 200 + (2000 * ind));
         })(i);
       })
-    }
+    },
+
+    HpoFullGeneList(genes){
+      console.log("HpoFullGeneList", genes)
+      this.clinPhenSelectedGenes = genes;
+    },
+
+    hpoIndividualGenes(obj){
+
+    },
+
   }
 };
 </script>

@@ -20,7 +20,7 @@ var geneModel = new GeneModel();
 import HPO_Phenotypes from '../data/HPO_Phenotypes';
 import HPO_Terms from '../data/HPO_Terms';
 import HpoTermsData from '../data/HpoTermsData.json';
-import hpo_genes from '../data/hpo_genes.json'; 
+import hpo_genes from '../data/hpo_genes.json';
 
 export default {
   components: {
@@ -67,6 +67,7 @@ export default {
       x: null,
       mode: '',
       snackbarTimeout: 4000,
+      hpoGenesSearchTermObj: {},
     }
   },
 
@@ -107,6 +108,7 @@ export default {
               hpoId = cleanedInputString;
               phenoTerm = this.HPO_Phenotypes_data[idx];
               if(!this.multipleSearchTerms.includes(hpoId)){
+                this.getIndividualGenes(hpoId);
                 this.multipleSearchTerms.push(hpoId);
                 this.HpoTerms.push(
                   {
@@ -130,6 +132,7 @@ export default {
               phenoTerm = cleanedInputString;
               hpoId = this.HPO_Terms_data[idx];
               if(!this.multipleSearchTerms.includes(hpoId)){
+                this.getIndividualGenes(hpoId);
                 this.multipleSearchTerms.push(hpoId);
                 this.HpoTerms.push(
                   {
@@ -152,6 +155,7 @@ export default {
           hpoId = res[1].replace(/[\])}[{(]/g, '').trim();
           phenoTerm = res[0];
           if(!this.multipleSearchTerms.includes(hpoId)){
+            this.getIndividualGenes(hpoId);
             this.multipleSearchTerms.push(hpoId);
             bus.$emit('AddHpoTermsInSingleEntry', {
               HPO_Data: this.searchInput.HPO_Data,
@@ -204,11 +208,13 @@ export default {
             })
           }
         })
+        // console.log("HpoGenesData", this.HpoGenesData)
         this.checked = false;
         this.items.sort((a,b)=> b.hpoSource - a.hpoSource );
         this.noOfSourcesSvg();
         // this.selectGenes();
         console.log("items in hpo", this.items)
+        this.$emit("HpoFullGeneList", this.items)
         bus.$emit("completeFetchRequest", "hpo");
       },
 
@@ -228,6 +234,28 @@ export default {
           x.clinGenLink = `https://www.ncbi.nlm.nih.gov/projects/dbvar/clingen/clingen_gene.cgi?sym=${x.gene}`;
 
         });
+      },
+
+      getIndividualGenes(term){
+        var genes = [];
+        var individualGenes= [];
+        if(this.hpoGenesSearchTermObj[term]===undefined){
+          if(this.HpoGenesData[term]!==undefined){
+            this.HpoGenesData[term].gene_symbol.map(gene_name=>{
+              if(!genes.includes(gene_name)){
+                genes.push(gene_name);
+                individualGenes.push({
+                  gene: gene_name,
+                  hpoTerm: [term],
+                  componentSource: "ClinPhen",
+                })
+              }
+            })
+          }
+        }
+        this.hpoGenesSearchTermObj[term] = individualGenes;
+        bus.$emit("completeHpoFetchRequest", term)
+        this.$emit("hpoIndividualGenes", this.hpoGenesSearchTermObj)
       },
 
 
