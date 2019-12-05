@@ -708,6 +708,8 @@ export default {
     currentSearchedTerm: "",
     Gtr_searchTermArray: [], //An array of Gtr searched terms, not an object
     Gtr_search_complete_idx: 0,
+    Phenolyzer_searchTermArray: [],
+    Phenolyzer_search_complete_idx: 0,
     manuallyAddedGenes: [],
     clinGenesSummary: [],
     GtrGenesForSummary: [],
@@ -732,6 +734,16 @@ export default {
     this.HPO_Terms_data = HPO_Terms;
     this.HPO_Phenotypes_data = HPO_Phenotypes;
     this.HpoTermsTypeaheadData  = HpoTermsData.data;
+    bus.$on("completePhenolyzerFetchRequest", searchTerm => {
+      var idx = this.Phenolyzer_searchTermArray.indexOf(searchTerm);
+      this.$set(this.Phenolyzer_searchTermsObj[idx], 'phenolyzerSearchStatus', "Completed");
+      this.Phenolyzer_search_complete_idx = this.Phenolyzer_search_complete_idx+1;
+      if(this.Phenolyzer_search_complete_idx === this.Phenolyzer_searchTermArray.length){
+        setTimeout(()=>{
+          this.searchStatusDialog = false;
+        }, 3000)
+      }
+    })
     // if(this.phenotypes!==undefined && this.phenotypes[0].length){
     //   this.GtrTermsAdded = this.phenotypes[0];
     //   this.GtrTermsAdded.map(term => {
@@ -1055,12 +1067,12 @@ export default {
               this.multipleSearchTerms.push(searchTerm);
               this.searchTermsObj.push(term);
               this.Phenolyzer_searchTermsObj.push(term);
+              this.Phenolyzer_searchTermArray.push(searchTerm);
               this.$set(this.Phenolyzer_searchTermsObj[this.phenolyzer_push_idx], 'phenolyzerSearchStatus', "Searching");
               this.phenolyzer_push_idx = this.phenolyzer_push_idx + 1;
           }
         }
       }
-      console.log("Phenolyzer_searchTermsObj", this.Phenolyzer_searchTermsObj)
 
       this.hpoTermsAdded.map(term => {
         var searchTerm ="";
@@ -1440,6 +1452,7 @@ export default {
       this.currentSearchedTerm = term;
     },
     Phenolyzer_performSearchEvent(){
+      // TODO: Replace forEach with for loop.
       this.Phenolyzer_searchTermsObj.forEach((term, i) => {
         ((ind) =>{
           setTimeout(() =>{

@@ -143,7 +143,8 @@ export default {
               }
               this.$emit("individualGenesObjPhenolyzer", self.genesSearchTermObj)
               self.scoreBasedSort? self.sortScores() : self.sortSources();
-              bus.$emit("completeFetchRequest", "Phenolyzer")
+              // bus.$emit("completeFetchRequest", "Phenolyzer")
+              bus.$emit("completePhenolyzerFetchRequest", searchTerm)
               //event that individual search is complete
             }
           } else {
