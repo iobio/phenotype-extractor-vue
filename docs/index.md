@@ -1,8 +1,7 @@
 
-
 ## **Clin.iobio components** (Phenotype extractor and Gene List)
-
 <br>
+
 ### Installation
 
 `$ npm i iobio-phenotype-extractor-vue `
@@ -16,7 +15,7 @@
 ### Registering components:
 ```
 components: {
-	...ClinComponents
+  ...ClinComponents
 }
 ```
 
@@ -39,15 +38,22 @@ The `PhenotypeExtractor` component is used to enter clinical notes or conditions
 #### API
 ##### Props:
 **name**:  phenotypes
+
 **type**:  `Array`
+
 **Description**:  This prop passes the saved phenotypes from the previous search
+
+<br>
 
 ##### Events:
  **name**:  summaryGenes
+
 **value**:  `Array`
+
 **Description**:  The compiled gene list from all the tools.
 
 
+ <br>
 
 
 ## Gene List
@@ -63,5 +69,7 @@ The `GeneList` component displays the generated gene list from all the tools (GT
 #### API
 ##### Props:
 **name**:  summaryGeneList
+
 **type**:  `Array`
+
 **Description**:  This prop passes the gene list to the component.  
