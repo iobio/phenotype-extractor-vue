@@ -255,7 +255,7 @@ export default {
         }
         this.hpoGenesSearchTermObj[term] = individualGenes;
         bus.$emit("completeHpoFetchRequest", term)
-        this.$emit("hpoIndividualGenes", this.hpoGenesSearchTermObj)
+        this.$emit("individualGenesObjHpo", this.hpoGenesSearchTermObj)
       },
 
 

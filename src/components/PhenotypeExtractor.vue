@@ -567,7 +567,8 @@
 
         <HpoSearch
           @hpoIndividualGenes="hpoIndividualGenes($event)"
-          @HpoFullGeneList="HpoFullGeneList($event)">
+          @HpoFullGeneList="HpoFullGeneList($event)"
+          @individualGenesObjHpo="individualGenesObjHpo($event)">
         </HpoSearch>
 
 
@@ -734,6 +735,7 @@ export default {
     individualGtrPanelsSearchObj: {},
     selectedObj: {},
     individualGenesSearchTermGtr:{},
+    individualGenesSearchTermHpo:{},
   }),
   watch: {
     textNotes(){
@@ -818,6 +820,7 @@ export default {
             geneId: gene.geneId,
             score: gene.score,
             genePanels: gene.value,
+            searchTermHpo: this.setSearchTermsHpo(gene.hpoTerm, gene.name),
             searchTermsPhenolyzer: this.setSearchTermsPhenolyzer(gene.searchTermPheno, gene.name),
             searchTermsGtr: this.setSearchTermsGTR(gene.searchTermArrayGTR, gene.name),
             geneRankGtr: gene.geneRankGtr,
@@ -878,6 +881,23 @@ export default {
               searchTerm: x,
               rank: Number(y[idx].rank),
               score: Number(y[idx].score)
+            })
+          }
+        })
+      }
+      return arr;
+    },
+
+
+    setSearchTermsHpo: function(searchTermhpo, geneName){
+      var arr =[];
+      if(this.individualGenesSearchTermHpo){
+        searchTermhpo.map(x=>{
+          var idx = this.individualGenesSearchTermHpo[x].findIndex(obj=>obj.name === geneName);
+          if(this.individualGenesSearchTermHpo.hasOwnProperty(x)){
+            // var y = this.individualGenesSearchTermHpo[x];
+            arr.push({
+              searchTerm: x,
             })
           }
         })
@@ -1635,6 +1655,9 @@ export default {
       this.individualGenesSearchTermPhenolyzer = obj;
     },
 
+    individualGenesObjHpo: function(obj){
+      this.individualGenesSearchTermHpo = obj;
+    },
 
     getIndividualRankedGene(){
       var panelsId = [];
