@@ -810,7 +810,7 @@ export default {
   },
   methods: {
     summaryGenesFullList(genes){
-      this.$emit('summaryGenes', genes);
+      // this.$emit('summaryGenes', genes);
       this.summaryAllGenes = genes;
       this.getIndividualGeneList();
       var clinData = this.summaryAllGenes.map(gene=> {
@@ -828,6 +828,8 @@ export default {
           }
         })
         console.log("clinData", clinData)
+        this.$emit('summaryGenes', clinData);
+
     },
 
     getIndividualGeneList(){
