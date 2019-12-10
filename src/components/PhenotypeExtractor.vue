@@ -418,11 +418,11 @@
 
 
         <!-- Search statis dialog -->
+        <!-- TODO: persistent property removed, add it back -->
         <v-card>
           <v-dialog
             v-model="searchStatusDialog"
             scrollable
-            persistent
             :overlay="false"
             max-width="1000px"
             transition="dialog-transition"
@@ -561,7 +561,8 @@
 
         <PhenolyzerSearch
           @phenolyzerIndividualGenes="phenolyzerIndividualGenes($event)"
-          @PhenolyzerFullGeneList="PhenolyzerFullGeneList($event)">
+          @PhenolyzerFullGeneList="PhenolyzerFullGeneList($event)"
+          @individualGenesObjPhenolyzer="individualGenesObjPhenolyzer($event)">
         </PhenolyzerSearch>
 
         <HpoSearch
@@ -728,6 +729,11 @@ export default {
     phenolyzerItems: [],
     Hpo_searchTermArray: [],
     Hpo_search_complete_idx: 0,
+    summaryAllGenes: [],
+    individualGenesSearchTermPhenolyzer: [],
+    individualGtrPanelsSearchObj: {},
+    selectedObj: {},
+    individualGenesSearchTermGtr:{},
   }),
   watch: {
     textNotes(){
@@ -742,6 +748,9 @@ export default {
         },10)
       }
     },
+    // AllSelectedGtrPanels: function(){
+    //   this.getIndividualRankedGene();
+    // },
   },
   mounted(){
     this.HPO_Terms_data = HPO_Terms;
@@ -799,8 +808,83 @@ export default {
   },
   methods: {
     summaryGenesFullList(genes){
-      this.$emit('summaryGenes', genes)
+      this.$emit('summaryGenes', genes);
+      this.summaryAllGenes = genes;
+      this.getIndividualGeneList();
+      var clinData = this.summaryAllGenes.map(gene=> {
+          return {
+            name: gene.name,
+            source: gene.sources,
+            geneId: gene.geneId,
+            score: gene.score,
+            genePanels: gene.value,
+            searchTermsPhenolyzer: this.setSearchTermsPhenolyzer(gene.searchTermPheno, gene.name),
+            searchTermsGtr: this.setSearchTermsGTR(gene.searchTermArrayGTR, gene.name),
+            geneRankGtr: gene.geneRankGtr,
+            geneRankPhenolyzer: gene.geneRankPhenolyzer
+          }
+        })
+        console.log("clinData", clinData)
     },
+
+    getIndividualGeneList(){
+      for(const prop in this.selectedObj){
+        var mergedGenes = model.mergeGenesAcrossPanels(this.selectedObj[prop]);
+        let data = model.getIndividualGenes(mergedGenes );
+        this.createSeperateGenesObj(data, prop);
+      }
+    },
+    createSeperateGenesObj(genes, term){
+      this.individualGenesSearchTermGtr[term] = genes;
+      this.individualGenesSearchTermGtr[term].map((x,i)=>{
+        x.genePanelsCount = x.value;
+        x.rank = i+1;
+      })
+    },
+
+    setSearchTermsGTR(searchTermArrayGTR, geneName){
+        var arr =[];
+        if(this.individualGenesSearchTermGtr){
+          searchTermArrayGTR.map(x=>{
+            var idx = this.individualGenesSearchTermGtr[x].findIndex(obj=>obj.name === geneName);
+            var y = this.individualGenesSearchTermGtr[x];
+            if(this.individualGenesSearchTermGtr.hasOwnProperty(x)){
+              if(y[idx]!==undefined){
+                arr.push({
+                  searchTerm: x,
+                  rank: y[idx].rank,
+                  genePanelsCount: y[idx].genePanelsCount
+                })
+              }
+              else {
+                arr.push({
+                  searchTerm: x
+                })
+              }
+            }
+          })
+        }
+        return arr;
+      },
+
+    setSearchTermsPhenolyzer: function(searchTermPheno, geneName){
+      var arr =[];
+      if(this.individualGenesSearchTermPhenolyzer){
+        searchTermPheno.map(x=>{
+          var idx = this.individualGenesSearchTermPhenolyzer[x].findIndex(obj=>obj.name === geneName);
+          if(this.individualGenesSearchTermPhenolyzer.hasOwnProperty(x)){
+            var y = this.individualGenesSearchTermPhenolyzer[x];
+            arr.push({
+              searchTerm: x,
+              rank: Number(y[idx].rank),
+              score: Number(y[idx].score)
+            })
+          }
+        })
+      }
+      return arr;
+    },
+
     extract(){
       this.WorkflowStepsflag = false;
       this.LevenshteinResults = [];
@@ -1233,6 +1317,8 @@ export default {
       this.geneProps = temp; //Selected panels
       // console.log("this.geneProps", this.geneProps);
       this.AddGeneData();
+      this.AllSelectedGtrPanels = temp; //Can move this to selectPanelsIndividual if issue exists.
+      this.getIndividualRankedGene();
     },
     AddGeneData: function(){
       if(this.associatedGenes.length){
@@ -1286,12 +1372,19 @@ export default {
       else{
         this.items = data;
       }
-      // this.noOfSourcesSvg();
+      this.noOfSourcesSvg();
       console.log("this.items", this.items);
       this.GtrGenesForSummary = this.items;
       // this.$emit("GtrGeneList", this.items);
 
     },
+
+    noOfSourcesSvg: function(){
+      this.items.map((x, i)=>{
+        x.indexVal = i+1;
+      });
+    },
+
     arrangeAllData: function(terms, genesData){
       for(var i=0; i<terms.length; i++){
         for(var j=0; j<genesData.length; j++){
@@ -1421,10 +1514,10 @@ export default {
       })
 
       // console.log("mergedGenePanels individual", mergedGenePanels, "searchTerm is ", searchTerm)
-      // this.selectPanelsIndividual(mergedGenePanels);
+      // this.selectPanelsIndividual(mergedGenePanels, searchTerm);
       this.createSeparatePanelsObj(mergedGenePanels, searchTerm)
     },
-    selectPanelsIndividual: function(e){
+    selectPanelsIndividual: function(e, searchTerm){
       var temp = [];
       this.selectedPanelFilters.map(x=>{
         e.map(y=>{
@@ -1434,7 +1527,13 @@ export default {
         })
       })
       this.genePropsIndividual = temp; //Selected panels
+      // this.AddGeneDataIndividual(searchTerm);
     },
+
+    AddGeneDataIndividual: function(searchTerm){
+
+    },
+
     createSeparatePanelsObj: function(panels, searchTerm){
       if(this.panelsSearchTermObj[searchTerm]===undefined){
         this.panelsSearchTermObj[searchTerm] = [];
@@ -1460,6 +1559,11 @@ export default {
 
       console.log("this.panelsSearchTermObj", this.panelsSearchTermObj)
       // this.$emit('individualPanelsSearchObj', this.panelsSearchTermObj)
+      this.individualPanelsSearchObj(this.panelsSearchTermObj);
+    },
+
+    individualPanelsSearchObj: function(panels){
+      this.individualGtrPanelsSearchObj = panels;
     },
 
     currentSearchTerm: function(term){
@@ -1515,7 +1619,53 @@ export default {
           this.searchStatusDialog = false;
         }, 3000)
       }
-    }
+      else if(this.gtrFetchCompleted && !this.Phenolyzer_searchTermsObj && !this.Hpo_searchTermsObj){
+        setTimeout(()=>{
+          this.searchStatusDialog = false;
+        }, 3000)
+      }
+      else if(this.phenolyzerFetchCompleted && !this.Gtr_searchTermsObj && !this.Hpo_searchTermsObj){
+        setTimeout(()=>{
+          this.searchStatusDialog = false;
+        }, 3000)
+      }
+    },
+
+    individualGenesObjPhenolyzer:function(obj){
+      this.individualGenesSearchTermPhenolyzer = obj;
+    },
+
+
+    getIndividualRankedGene(){
+      var panelsId = [];
+      this.AllSelectedGtrPanels.map(x=>{
+        panelsId.push(x.id)
+      })
+      for(const prop in this.individualGtrPanelsSearchObj){
+        if(this.selectedObj[prop]===undefined){
+          this.selectedObj[prop] = []
+        }
+      }
+
+    for(const prop in this.individualGtrPanelsSearchObj){
+      var temp = [];
+      this.individualGtrPanelsSearchObj[prop].map(x=>{
+        if(panelsId.includes(x.id)){
+          temp.push(x);
+        }
+      })
+
+      var obj = {};
+      var len = temp.length;
+      for ( var i=0; i < len; i++ )
+          obj[temp[i]['id']] = temp[i];
+      var y  = new Array();
+      for ( var key in obj )
+          y.push(obj[key]);
+      this.selectedObj[prop] = y;
+      }
+      console.log("this.selectedObj", this.selectedObj)
+    },
 
   }
 };

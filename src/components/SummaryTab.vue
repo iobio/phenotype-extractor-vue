@@ -708,7 +708,7 @@ var model = new Model();
           }
         })
 
-
+        console.log("gtrGenes", this.gtrFullGeneList)
         //Check if the gene is in GTR
         uniqueGenes.map((x,i)=>{
           if(gtrGenes.includes(x)){
