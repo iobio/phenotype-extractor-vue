@@ -23,7 +23,7 @@
             :search="search"
           >
           <template v-slot:item.name="{ item }">
-            <v-chip dark>{{ item.name }}</v-chip>
+            <v-chip @click="showGeneInfo(item.name)" dark>{{ item.name }}</v-chip>
           </template>
           <template v-slot:item.searchTermsPhenolyzer="{ item }">
     				<div v-for="(x, i) in item.searchTermsPhenolyzer">
@@ -40,23 +40,6 @@
               <v-chip class="mb-1 mt-2"> {{ x.searchTerm }}</v-chip>
             </div>
           </template>
-
-          <!-- <template slot="items" slot-scope="props">
-            <tr :key="props.item.name">
-              <td>
-                <span style="font-size:14px; font-weight:600; margin-top:2px; cursor:pointer" @click="showGeneInfo(props.item)">{{ props.item.name }}</span>
-              </td>
-              <td>{{ props.item.geneId }} </td>
-              <td>
-                <div v-for="(x, i) in props.item.searchTermsGtr">
-                  <v-chip> {{ x.searchTerm }}</v-chip>
-                </div>
-              </td>
-              <td>
-                {{ props.item.searchTermsPhenolyzer }}
-              </td>
-            </tr>
-          </template> -->
           </v-data-table>
         </v-card>
       </v-flex>
@@ -65,6 +48,10 @@
 </template>
 
 <script>
+
+import GeneModel from '../models/GeneModel';
+var geneModel = new GeneModel();
+
 export default {
   name: 'GeneList',
   components: {
@@ -76,7 +63,6 @@ export default {
   },
   watch:{
     summaryGeneList(){
-      console.log("gtrGenes changing");
       this.GtrGeneList = this.summaryGeneList;
     }
   },
@@ -89,15 +75,22 @@ export default {
         { text: 'GTR', value: 'searchTermsGtr', sortable: false, },
         { text: 'Phenolyzer', value: 'searchTermsPhenolyzer', sortable: false, },
         { text: 'HPO', value: 'searchTermHpo', sortable: false, },
-
       ],
+      clickedGene: {},
+      ncbiSummary: null,
+      dialog: false,
     }
   },
 
   methods: {
     showGeneInfo(gene){
-      console.log("gene", gene)
-    }
+      this.clickedGene = gene;
+      geneModel.promiseGetNCBIGeneSummary(gene.name)
+      .then((data)=>{
+        this.ncbiSummary = data;
+      })
+      this.dialog = true;
+    },
   }
 
 }
