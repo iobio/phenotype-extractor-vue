@@ -780,20 +780,20 @@ export default {
     })
 
     //Code for retriving state: Uncomment when other stuff is fixed:
-    // if(this.phenotypes!==undefined && this.phenotypes[0].length){
-    //   this.GtrTermsAdded = this.phenotypes[0];
-    //   this.GtrTermsAdded.map(term => {
-    //     this.gtr_push_idx = this.gtr_push_idx + 1;
-    //     this.Gtr_searchTermsObj.push(term);
-    //     this.Gtr_searchTermArray.push(term.DiseaseName);
-    //   })
-    // }
-    // if(this.phenotypes!==undefined && this.phenotypes[1].length){
-    //   this.phenolyzerTermsAdded = this.phenotypes[1];
-    // }
-    // if(this.phenotypes!==undefined && this.phenotypes[2].length){
-    //   this.hpoTermsAdded = this.phenotypes[2];
-    // }
+    if(this.phenotypes!==undefined && this.phenotypes[0].length){
+      this.GtrTermsAdded = this.phenotypes[0];
+      this.GtrTermsAdded.map(term => {
+        this.gtr_push_idx = this.gtr_push_idx + 1;
+        this.Gtr_searchTermsObj.push(term);
+        this.Gtr_searchTermArray.push(term.DiseaseName);
+      })
+    }
+    if(this.phenotypes!==undefined && this.phenotypes[1].length){
+      this.phenolyzerTermsAdded = this.phenotypes[1];
+    }
+    if(this.phenotypes!==undefined && this.phenotypes[2].length){
+      this.hpoTermsAdded = this.phenotypes[2];
+    }
   },
   computed: {
     DiseaseNames: function() {

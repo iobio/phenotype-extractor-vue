@@ -6,15 +6,18 @@
     >
       Phenotype Extractor
       <PhenotypeExtractor
-        :phenotypes="phenotypes"
+        :phenotypes="analysis.payload.phenotypes"
         @summaryGenes="summaryGenes($event)"
         @saveSearchedPhenotypes="saveSearchedPhenotypes($event)">
       </PhenotypeExtractor>
 
       <br>
       Gene list
-      <GeneList
+      <!-- <GeneList
         :summaryGeneList="summaryGeneList">
+      </GeneList> -->
+      <GeneList
+        :summaryGeneList="analysis.payload.genesReport">
       </GeneList>
     </v-layout>
   </v-container>
@@ -32,12 +35,13 @@ import { bus } from '../main';
 import GtrSearch from './GtrSearch.vue';
 import PhenotypeExtractor from './PhenotypeExtractor.vue'
 import GeneList from './GeneList.vue'
+import analysisData from '../data/analysis.json';
 import Model from '../models/Model';
 var model = new Model();
 
 
 export default {
-  name: 'HelloWorld',
+  name: 'Main',
   components: {
     GtrSearch,
     PhenotypeExtractor,
@@ -47,6 +51,7 @@ export default {
     gtrGenes: [],
     summaryGeneList: [],
     phenotypes: [],
+    analysis: null,
     // phenotypes: [
     //   [
     //     {
@@ -71,6 +76,12 @@ export default {
     // ]
   }),
   watch: {
+  },
+  created(){
+    this.analysis = analysisData;
+    console.log("this.analysis", this.analysis)
+  },
+  mounted(){
   },
   methods: {
     summaryGenes(genes){
