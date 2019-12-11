@@ -745,7 +745,10 @@ export default {
     gtr_saved_idx: 0,
     phenolyzerSavedState: false,
     phenolyzerSavedTermsLength: 0,
-    phenolyzer_saved_idx: 0
+    phenolyzer_saved_idx: 0,
+    hpoSavedState: false,
+    hpoSavedTermsLength: 0,
+    hpo_saved_idx: 0
   }),
   watch: {
     textNotes(){
@@ -760,9 +763,6 @@ export default {
         },10)
       }
     },
-    // AllSelectedGtrPanels: function(){
-    //   this.getIndividualRankedGene();
-    // },
   },
   mounted(){
     this.HPO_Terms_data = HPO_Terms;
@@ -791,7 +791,8 @@ export default {
       }
     })
 
-    if(this.phenotypes!==undefined && this.phenotypes[0].length){
+
+    if(this.phenotypes.length && this.phenotypes[0].length){
       this.gtrSavedState= true;
       this.gtrSavedTermsLength = this.phenotypes[0].length;
       this.GtrTermsAdded = this.phenotypes[0];
@@ -803,7 +804,7 @@ export default {
       this.Gtr_performSearchEvent_saved()
     }
 
-    if(this.phenotypes!==undefined && this.phenotypes[1].length){
+    if(this.phenotypes.length && this.phenotypes[1].length){
       this.phenolyzerSavedState= true;
       this.phenolyzerSavedTermsLength = this.phenotypes[1].length;
       this.phenolyzerTermsAdded = this.phenotypes[1];
@@ -815,21 +816,17 @@ export default {
       this.Phenolyzer_performSearchEvent_saved()
     }
 
-    //Code for retriving state: Uncomment when other stuff is fixed:
-    // if(this.phenotypes!==undefined && this.phenotypes[0].length){
-    //   this.GtrTermsAdded = this.phenotypes[0];
-    //   this.GtrTermsAdded.map(term => {
-    //     this.gtr_push_idx = this.gtr_push_idx + 1;
-    //     this.Gtr_searchTermsObj.push(term);
-    //     this.Gtr_searchTermArray.push(term.DiseaseName);
-    //   })
-    // }
-    // if(this.phenotypes!==undefined && this.phenotypes[1].length){
-    //   this.phenolyzerTermsAdded = this.phenotypes[1];
-    // }
-    // if(this.phenotypes!==undefined && this.phenotypes[2].length){
-    //   this.hpoTermsAdded = this.phenotypes[2];
-    // }
+    if(this.phenotypes.length && this.phenotypes[2].length){
+      this.hpoSavedState= true;
+      this.hpoSavedTermsLength = this.phenotypes[1].length;
+      this.hpoTermsAdded = this.phenotypes[1];
+      this.hpoTermsAdded.map(term => {
+        this.Hpo_searchTermsObj.push(term);
+        this.Hpo_searchTermArray.push(term.hpoNumber);
+      })
+      this.Hpo_performSearchEvent_saved()
+    }
+
   },
   computed: {
     DiseaseNames: function() {
@@ -1720,9 +1717,30 @@ export default {
       }
     },
 
+    Hpo_performSearchEvent_saved(){
+      // this.hpoFetchCompleted = false;
+      console.log("performing saved search")
+      let startVal = this.Hpo_idx;
+      for(let i=startVal; i<this.Hpo_searchTermsObj.length; i++){
+        ((ind) =>{
+          setTimeout(() =>{
+            var term = this.Hpo_searchTermsObj[i];
+            bus.$emit("singleTermSearchHPO", term);
+            this.Hpo_idx = this.Hpo_idx + 1;
+          }, 200 + (2000 * ind));
+        })(i);
+      }
+    },
+
     HpoFullGeneList(genes){
       // console.log("HpoFullGeneList", genes)
-      this.clinPhenSelectedGenes = genes;
+      this.hpo_saved_idx = this.hpo_saved_idx+1;
+      if(this.hpo_saved_idx>this.hpoSavedTermsLength){
+        this.hpoSavedState = false;
+      }
+      if(!this.hpoSavedState){ //Ensures that summary component is called only after state is built from the saved object.
+        this.clinPhenSelectedGenes = genes;
+      }
     },
 
     hpoIndividualGenes(obj){
