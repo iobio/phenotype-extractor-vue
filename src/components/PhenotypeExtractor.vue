@@ -1252,7 +1252,6 @@ export default {
       for(let i=startVal; i<this.Gtr_searchTermsObj.length; i++){
         ((ind) =>{
           setTimeout(() =>{
-            console.log("term", this.Gtr_searchTermsObj[i])
             this.$set(this.Gtr_searchTermsObj[i], 'gtrSearchStatus', "Searching");
             bus.$emit("singleTermSearchGTR", this.Gtr_searchTermsObj[i]);
             this.Gtr_idx = this.Gtr_idx + 1;
@@ -1608,16 +1607,18 @@ export default {
     },
 
     Phenolyzer_performSearchEvent(){
-      // TODO: Replace forEach with for loop.
       this.phenolyzerFetchCompleted = false;
-      this.Phenolyzer_searchTermsObj.forEach((term, i) => {
+      let startVal = this.Phenolyzer_idx;
+      for(let i=startVal; i<this.Phenolyzer_searchTermsObj.length; i++){
         ((ind) =>{
           setTimeout(() =>{
+            var term = this.Phenolyzer_searchTermsObj[i];
             var str = term.value.replace("-", " ").replace(/\s\s+/g, ' ').toLowerCase();
             bus.$emit("singleTermSearchPhenolyzer", str);
+            this.Phenolyzer_idx = this.Phenolyzer_idx + 1;
           }, 200 + (2000 * ind));
         })(i);
-      })
+      }
     },
 
     phenolyzerIndividualGenes(genes){
@@ -1631,14 +1632,25 @@ export default {
 
     Hpo_performSearchEvent(){
       this.hpoFetchCompleted = false;
-      this.Hpo_searchTermsObj.forEach((term, i) => {
+      // this.Hpo_searchTermsObj.forEach((term, i) => {
+      //   ((ind) =>{
+      //     setTimeout(() =>{
+      //       // var str = term.value.replace("-", " ").replace(/\s\s+/g, ' ').toLowerCase();
+      //       bus.$emit("singleTermSearchHPO", term);
+      //     }, 200 + (2000 * ind));
+      //   })(i);
+      // })
+
+      let startVal = this.Hpo_idx;
+      for(let i=startVal; i<this.Hpo_searchTermsObj.length; i++){
         ((ind) =>{
           setTimeout(() =>{
-            // var str = term.value.replace("-", " ").replace(/\s\s+/g, ' ').toLowerCase();
+            var term = this.Hpo_searchTermsObj[i];
             bus.$emit("singleTermSearchHPO", term);
+            this.Hpo_idx = this.Hpo_idx + 1;
           }, 200 + (2000 * ind));
         })(i);
-      })
+      }
     },
 
     HpoFullGeneList(genes){
