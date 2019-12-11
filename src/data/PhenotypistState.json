@@ -1,0 +1,1516 @@
+{
+  "payload": {
+    "GtrGenes": [
+      {
+        "name": "MPZ",
+        "searchTermIndex": [
+          1
+        ],
+        "searchTermArray": [
+          "Dejerine-Sottas disease"
+        ],
+        "omimSrc": "https://www.ncbi.nlm.nih.gov/omim/?term=MPZ",
+        "medGenSrc": "https://www.ncbi.nlm.nih.gov/medgen/?term=MPZ",
+        "geneCardsSrc": "https://www.genecards.org/cgi-bin/carddisp.pl?gene=MPZ",
+        "ghrSrc": "https://ghr.nlm.nih.gov/gene/MPZ",
+        "clinGenLink": "https://www.ncbi.nlm.nih.gov/projects/dbvar/clingen/clingen_gene.cgi?sym=MPZ",
+        "isAssociatedGene": true,
+        "value": 32,
+        "conditions": "Dejerine-Sottas disease",
+        "diseases": 1,
+        "geneid": 4359,
+        "indexVal": 1
+      },
+      {
+        "name": "EGR2",
+        "searchTermIndex": [
+          1
+        ],
+        "searchTermArray": [
+          "Dejerine-Sottas disease"
+        ],
+        "omimSrc": "https://www.ncbi.nlm.nih.gov/omim/?term=EGR2",
+        "medGenSrc": "https://www.ncbi.nlm.nih.gov/medgen/?term=EGR2",
+        "geneCardsSrc": "https://www.genecards.org/cgi-bin/carddisp.pl?gene=EGR2",
+        "ghrSrc": "https://ghr.nlm.nih.gov/gene/EGR2",
+        "clinGenLink": "https://www.ncbi.nlm.nih.gov/projects/dbvar/clingen/clingen_gene.cgi?sym=EGR2",
+        "isAssociatedGene": true,
+        "value": 28,
+        "conditions": "Dejerine-Sottas disease",
+        "diseases": 1,
+        "geneid": 1959,
+        "indexVal": 2
+      },
+      {
+        "name": "PMP22",
+        "searchTermIndex": [
+          1
+        ],
+        "searchTermArray": [
+          "Dejerine-Sottas disease"
+        ],
+        "omimSrc": "https://www.ncbi.nlm.nih.gov/omim/?term=PMP22",
+        "medGenSrc": "https://www.ncbi.nlm.nih.gov/medgen/?term=PMP22",
+        "geneCardsSrc": "https://www.genecards.org/cgi-bin/carddisp.pl?gene=PMP22",
+        "ghrSrc": "https://ghr.nlm.nih.gov/gene/PMP22",
+        "clinGenLink": "https://www.ncbi.nlm.nih.gov/projects/dbvar/clingen/clingen_gene.cgi?sym=PMP22",
+        "isAssociatedGene": true,
+        "value": 26,
+        "conditions": "Dejerine-Sottas disease",
+        "diseases": 1,
+        "geneid": 5376,
+        "indexVal": 3
+      },
+      {
+        "name": "PRX",
+        "searchTermIndex": [
+          1
+        ],
+        "searchTermArray": [
+          "Dejerine-Sottas disease"
+        ],
+        "omimSrc": "https://www.ncbi.nlm.nih.gov/omim/?term=PRX",
+        "medGenSrc": "https://www.ncbi.nlm.nih.gov/medgen/?term=PRX",
+        "geneCardsSrc": "https://www.genecards.org/cgi-bin/carddisp.pl?gene=PRX",
+        "ghrSrc": "https://ghr.nlm.nih.gov/gene/PRX",
+        "clinGenLink": "https://www.ncbi.nlm.nih.gov/projects/dbvar/clingen/clingen_gene.cgi?sym=PRX",
+        "isAssociatedGene": true,
+        "value": 22,
+        "conditions": "Dejerine-Sottas disease",
+        "diseases": 1,
+        "geneid": 57716,
+        "indexVal": 4
+      },
+      {
+        "key": 4,
+        "name": "GJB1",
+        "geneid": 2705,
+        "value": 18,
+        "diseases": 1,
+        "conditions": "Dejerine-Sottas disease",
+        "searchTermArray": [
+          "Dejerine-Sottas disease"
+        ],
+        "searchTermIndex": [
+          1
+        ],
+        "isAssociatedGene": false,
+        "omimSrc": "https://www.ncbi.nlm.nih.gov/omim/?term=GJB1",
+        "medGenSrc": "https://www.ncbi.nlm.nih.gov/medgen/?term=GJB1",
+        "geneCardsSrc": "https://www.genecards.org/cgi-bin/carddisp.pl?gene=GJB1",
+        "ghrSrc": "https://ghr.nlm.nih.gov/gene/GJB1",
+        "clinGenLink": "https://www.ncbi.nlm.nih.gov/projects/dbvar/clingen/clingen_gene.cgi?sym=GJB1",
+        "geneIdLink": "https://www.ncbi.nlm.nih.gov/gene/2705",
+        "indexVal": 5
+      },
+      {
+        "key": 5,
+        "name": "GDAP1",
+        "geneid": 54332,
+        "value": 18,
+        "diseases": 1,
+        "conditions": "Dejerine-Sottas disease",
+        "searchTermArray": [
+          "Dejerine-Sottas disease"
+        ],
+        "searchTermIndex": [
+          1
+        ],
+        "isAssociatedGene": false,
+        "omimSrc": "https://www.ncbi.nlm.nih.gov/omim/?term=GDAP1",
+        "medGenSrc": "https://www.ncbi.nlm.nih.gov/medgen/?term=GDAP1",
+        "geneCardsSrc": "https://www.genecards.org/cgi-bin/carddisp.pl?gene=GDAP1",
+        "ghrSrc": "https://ghr.nlm.nih.gov/gene/GDAP1",
+        "clinGenLink": "https://www.ncbi.nlm.nih.gov/projects/dbvar/clingen/clingen_gene.cgi?sym=GDAP1",
+        "geneIdLink": "https://www.ncbi.nlm.nih.gov/gene/54332",
+        "indexVal": 6
+      },
+      {
+        "key": 6,
+        "name": "FGD4",
+        "geneid": 121512,
+        "value": 17,
+        "diseases": 1,
+        "conditions": "Dejerine-Sottas disease",
+        "searchTermArray": [
+          "Dejerine-Sottas disease"
+        ],
+        "searchTermIndex": [
+          1
+        ],
+        "isAssociatedGene": false,
+        "omimSrc": "https://www.ncbi.nlm.nih.gov/omim/?term=FGD4",
+        "medGenSrc": "https://www.ncbi.nlm.nih.gov/medgen/?term=FGD4",
+        "geneCardsSrc": "https://www.genecards.org/cgi-bin/carddisp.pl?gene=FGD4",
+        "ghrSrc": "https://ghr.nlm.nih.gov/gene/FGD4",
+        "clinGenLink": "https://www.ncbi.nlm.nih.gov/projects/dbvar/clingen/clingen_gene.cgi?sym=FGD4",
+        "geneIdLink": "https://www.ncbi.nlm.nih.gov/gene/121512",
+        "indexVal": 7
+      },
+      {
+        "key": 7,
+        "name": "AARS1",
+        "geneid": 16,
+        "value": 16,
+        "diseases": 1,
+        "conditions": "Dejerine-Sottas disease",
+        "searchTermArray": [
+          "Dejerine-Sottas disease"
+        ],
+        "searchTermIndex": [
+          1
+        ],
+        "isAssociatedGene": false,
+        "omimSrc": "https://www.ncbi.nlm.nih.gov/omim/?term=AARS1",
+        "medGenSrc": "https://www.ncbi.nlm.nih.gov/medgen/?term=AARS1",
+        "geneCardsSrc": "https://www.genecards.org/cgi-bin/carddisp.pl?gene=AARS1",
+        "ghrSrc": "https://ghr.nlm.nih.gov/gene/AARS1",
+        "clinGenLink": "https://www.ncbi.nlm.nih.gov/projects/dbvar/clingen/clingen_gene.cgi?sym=AARS1",
+        "geneIdLink": "https://www.ncbi.nlm.nih.gov/gene/16",
+        "indexVal": 8
+      },
+      {
+        "key": 8,
+        "name": "DNM2",
+        "geneid": 1785,
+        "value": 16,
+        "diseases": 1,
+        "conditions": "Dejerine-Sottas disease",
+        "searchTermArray": [
+          "Dejerine-Sottas disease"
+        ],
+        "searchTermIndex": [
+          1
+        ],
+        "isAssociatedGene": false,
+        "omimSrc": "https://www.ncbi.nlm.nih.gov/omim/?term=DNM2",
+        "medGenSrc": "https://www.ncbi.nlm.nih.gov/medgen/?term=DNM2",
+        "geneCardsSrc": "https://www.genecards.org/cgi-bin/carddisp.pl?gene=DNM2",
+        "ghrSrc": "https://ghr.nlm.nih.gov/gene/DNM2",
+        "clinGenLink": "https://www.ncbi.nlm.nih.gov/projects/dbvar/clingen/clingen_gene.cgi?sym=DNM2",
+        "geneIdLink": "https://www.ncbi.nlm.nih.gov/gene/1785",
+        "indexVal": 9
+      },
+      {
+        "key": 9,
+        "name": "GARS1",
+        "geneid": 2617,
+        "value": 16,
+        "diseases": 1,
+        "conditions": "Dejerine-Sottas disease",
+        "searchTermArray": [
+          "Dejerine-Sottas disease"
+        ],
+        "searchTermIndex": [
+          1
+        ],
+        "isAssociatedGene": false,
+        "omimSrc": "https://www.ncbi.nlm.nih.gov/omim/?term=GARS1",
+        "medGenSrc": "https://www.ncbi.nlm.nih.gov/medgen/?term=GARS1",
+        "geneCardsSrc": "https://www.genecards.org/cgi-bin/carddisp.pl?gene=GARS1",
+        "ghrSrc": "https://ghr.nlm.nih.gov/gene/GARS1",
+        "clinGenLink": "https://www.ncbi.nlm.nih.gov/projects/dbvar/clingen/clingen_gene.cgi?sym=GARS1",
+        "geneIdLink": "https://www.ncbi.nlm.nih.gov/gene/2617",
+        "indexVal": 10
+      },
+      {
+        "key": 10,
+        "name": "HSPB1",
+        "geneid": 3315,
+        "value": 16,
+        "diseases": 1,
+        "conditions": "Dejerine-Sottas disease",
+        "searchTermArray": [
+          "Dejerine-Sottas disease"
+        ],
+        "searchTermIndex": [
+          1
+        ],
+        "isAssociatedGene": false,
+        "omimSrc": "https://www.ncbi.nlm.nih.gov/omim/?term=HSPB1",
+        "medGenSrc": "https://www.ncbi.nlm.nih.gov/medgen/?term=HSPB1",
+        "geneCardsSrc": "https://www.genecards.org/cgi-bin/carddisp.pl?gene=HSPB1",
+        "ghrSrc": "https://ghr.nlm.nih.gov/gene/HSPB1",
+        "clinGenLink": "https://www.ncbi.nlm.nih.gov/projects/dbvar/clingen/clingen_gene.cgi?sym=HSPB1",
+        "geneIdLink": "https://www.ncbi.nlm.nih.gov/gene/3315",
+        "indexVal": 11
+      },
+      {
+        "key": 11,
+        "name": "FIG4",
+        "geneid": 9896,
+        "value": 16,
+        "diseases": 1,
+        "conditions": "Dejerine-Sottas disease",
+        "searchTermArray": [
+          "Dejerine-Sottas disease"
+        ],
+        "searchTermIndex": [
+          1
+        ],
+        "isAssociatedGene": false,
+        "omimSrc": "https://www.ncbi.nlm.nih.gov/omim/?term=FIG4",
+        "medGenSrc": "https://www.ncbi.nlm.nih.gov/medgen/?term=FIG4",
+        "geneCardsSrc": "https://www.genecards.org/cgi-bin/carddisp.pl?gene=FIG4",
+        "ghrSrc": "https://ghr.nlm.nih.gov/gene/FIG4",
+        "clinGenLink": "https://www.ncbi.nlm.nih.gov/projects/dbvar/clingen/clingen_gene.cgi?sym=FIG4",
+        "geneIdLink": "https://www.ncbi.nlm.nih.gov/gene/9896",
+        "indexVal": 12
+      },
+      {
+        "key": 12,
+        "name": "DYNC1H1",
+        "geneid": 1778,
+        "value": 15,
+        "diseases": 1,
+        "conditions": "Dejerine-Sottas disease",
+        "searchTermArray": [
+          "Dejerine-Sottas disease"
+        ],
+        "searchTermIndex": [
+          1
+        ],
+        "isAssociatedGene": false,
+        "omimSrc": "https://www.ncbi.nlm.nih.gov/omim/?term=DYNC1H1",
+        "medGenSrc": "https://www.ncbi.nlm.nih.gov/medgen/?term=DYNC1H1",
+        "geneCardsSrc": "https://www.genecards.org/cgi-bin/carddisp.pl?gene=DYNC1H1",
+        "ghrSrc": "https://ghr.nlm.nih.gov/gene/DYNC1H1",
+        "clinGenLink": "https://www.ncbi.nlm.nih.gov/projects/dbvar/clingen/clingen_gene.cgi?sym=DYNC1H1",
+        "geneIdLink": "https://www.ncbi.nlm.nih.gov/gene/1778",
+        "indexVal": 13
+      },
+      {
+        "key": 13,
+        "name": "NEFL",
+        "geneid": 4747,
+        "value": 15,
+        "diseases": 1,
+        "conditions": "Dejerine-Sottas disease",
+        "searchTermArray": [
+          "Dejerine-Sottas disease"
+        ],
+        "searchTermIndex": [
+          1
+        ],
+        "isAssociatedGene": false,
+        "omimSrc": "https://www.ncbi.nlm.nih.gov/omim/?term=NEFL",
+        "medGenSrc": "https://www.ncbi.nlm.nih.gov/medgen/?term=NEFL",
+        "geneCardsSrc": "https://www.genecards.org/cgi-bin/carddisp.pl?gene=NEFL",
+        "ghrSrc": "https://ghr.nlm.nih.gov/gene/NEFL",
+        "clinGenLink": "https://www.ncbi.nlm.nih.gov/projects/dbvar/clingen/clingen_gene.cgi?sym=NEFL",
+        "geneIdLink": "https://www.ncbi.nlm.nih.gov/gene/4747",
+        "indexVal": 14
+      },
+      {
+        "key": 14,
+        "name": "MFN2",
+        "geneid": 9927,
+        "value": 15,
+        "diseases": 1,
+        "conditions": "Dejerine-Sottas disease",
+        "searchTermArray": [
+          "Dejerine-Sottas disease"
+        ],
+        "searchTermIndex": [
+          1
+        ],
+        "isAssociatedGene": false,
+        "omimSrc": "https://www.ncbi.nlm.nih.gov/omim/?term=MFN2",
+        "medGenSrc": "https://www.ncbi.nlm.nih.gov/medgen/?term=MFN2",
+        "geneCardsSrc": "https://www.genecards.org/cgi-bin/carddisp.pl?gene=MFN2",
+        "ghrSrc": "https://ghr.nlm.nih.gov/gene/MFN2",
+        "clinGenLink": "https://www.ncbi.nlm.nih.gov/projects/dbvar/clingen/clingen_gene.cgi?sym=MFN2",
+        "geneIdLink": "https://www.ncbi.nlm.nih.gov/gene/9927",
+        "indexVal": 15
+      },
+      {
+        "key": 15,
+        "name": "LMNA",
+        "geneid": 4000,
+        "value": 14,
+        "diseases": 1,
+        "conditions": "Dejerine-Sottas disease",
+        "searchTermArray": [
+          "Dejerine-Sottas disease"
+        ],
+        "searchTermIndex": [
+          1
+        ],
+        "isAssociatedGene": false,
+        "omimSrc": "https://www.ncbi.nlm.nih.gov/omim/?term=LMNA",
+        "medGenSrc": "https://www.ncbi.nlm.nih.gov/medgen/?term=LMNA",
+        "geneCardsSrc": "https://www.genecards.org/cgi-bin/carddisp.pl?gene=LMNA",
+        "ghrSrc": "https://ghr.nlm.nih.gov/gene/LMNA",
+        "clinGenLink": "https://www.ncbi.nlm.nih.gov/projects/dbvar/clingen/clingen_gene.cgi?sym=LMNA",
+        "geneIdLink": "https://www.ncbi.nlm.nih.gov/gene/4000",
+        "indexVal": 16
+      },
+      {
+        "key": 16,
+        "name": "MTMR2",
+        "geneid": 8898,
+        "value": 14,
+        "diseases": 1,
+        "conditions": "Dejerine-Sottas disease",
+        "searchTermArray": [
+          "Dejerine-Sottas disease"
+        ],
+        "searchTermIndex": [
+          1
+        ],
+        "isAssociatedGene": false,
+        "omimSrc": "https://www.ncbi.nlm.nih.gov/omim/?term=MTMR2",
+        "medGenSrc": "https://www.ncbi.nlm.nih.gov/medgen/?term=MTMR2",
+        "geneCardsSrc": "https://www.genecards.org/cgi-bin/carddisp.pl?gene=MTMR2",
+        "ghrSrc": "https://ghr.nlm.nih.gov/gene/MTMR2",
+        "clinGenLink": "https://www.ncbi.nlm.nih.gov/projects/dbvar/clingen/clingen_gene.cgi?sym=MTMR2",
+        "geneIdLink": "https://www.ncbi.nlm.nih.gov/gene/8898",
+        "indexVal": 17
+      },
+      {
+        "key": 17,
+        "name": "NDRG1",
+        "geneid": 10397,
+        "value": 14,
+        "diseases": 1,
+        "conditions": "Dejerine-Sottas disease",
+        "searchTermArray": [
+          "Dejerine-Sottas disease"
+        ],
+        "searchTermIndex": [
+          1
+        ],
+        "isAssociatedGene": false,
+        "omimSrc": "https://www.ncbi.nlm.nih.gov/omim/?term=NDRG1",
+        "medGenSrc": "https://www.ncbi.nlm.nih.gov/medgen/?term=NDRG1",
+        "geneCardsSrc": "https://www.genecards.org/cgi-bin/carddisp.pl?gene=NDRG1",
+        "ghrSrc": "https://ghr.nlm.nih.gov/gene/NDRG1",
+        "clinGenLink": "https://www.ncbi.nlm.nih.gov/projects/dbvar/clingen/clingen_gene.cgi?sym=NDRG1",
+        "geneIdLink": "https://www.ncbi.nlm.nih.gov/gene/10397",
+        "indexVal": 18
+      },
+      {
+        "key": 18,
+        "name": "SH3TC2",
+        "geneid": 79628,
+        "value": 14,
+        "diseases": 1,
+        "conditions": "Dejerine-Sottas disease",
+        "searchTermArray": [
+          "Dejerine-Sottas disease"
+        ],
+        "searchTermIndex": [
+          1
+        ],
+        "isAssociatedGene": false,
+        "omimSrc": "https://www.ncbi.nlm.nih.gov/omim/?term=SH3TC2",
+        "medGenSrc": "https://www.ncbi.nlm.nih.gov/medgen/?term=SH3TC2",
+        "geneCardsSrc": "https://www.genecards.org/cgi-bin/carddisp.pl?gene=SH3TC2",
+        "ghrSrc": "https://ghr.nlm.nih.gov/gene/SH3TC2",
+        "clinGenLink": "https://www.ncbi.nlm.nih.gov/projects/dbvar/clingen/clingen_gene.cgi?sym=SH3TC2",
+        "geneIdLink": "https://www.ncbi.nlm.nih.gov/gene/79628",
+        "indexVal": 19
+      },
+      {
+        "key": 19,
+        "name": "SBF2",
+        "geneid": 81846,
+        "value": 14,
+        "diseases": 1,
+        "conditions": "Dejerine-Sottas disease",
+        "searchTermArray": [
+          "Dejerine-Sottas disease"
+        ],
+        "searchTermIndex": [
+          1
+        ],
+        "isAssociatedGene": false,
+        "omimSrc": "https://www.ncbi.nlm.nih.gov/omim/?term=SBF2",
+        "medGenSrc": "https://www.ncbi.nlm.nih.gov/medgen/?term=SBF2",
+        "geneCardsSrc": "https://www.genecards.org/cgi-bin/carddisp.pl?gene=SBF2",
+        "ghrSrc": "https://ghr.nlm.nih.gov/gene/SBF2",
+        "clinGenLink": "https://www.ncbi.nlm.nih.gov/projects/dbvar/clingen/clingen_gene.cgi?sym=SBF2",
+        "geneIdLink": "https://www.ncbi.nlm.nih.gov/gene/81846",
+        "indexVal": 20
+      },
+      {
+        "key": 20,
+        "name": "RAB7A",
+        "geneid": 7879,
+        "value": 13,
+        "diseases": 1,
+        "conditions": "Dejerine-Sottas disease",
+        "searchTermArray": [
+          "Dejerine-Sottas disease"
+        ],
+        "searchTermIndex": [
+          1
+        ],
+        "isAssociatedGene": false,
+        "omimSrc": "https://www.ncbi.nlm.nih.gov/omim/?term=RAB7A",
+        "medGenSrc": "https://www.ncbi.nlm.nih.gov/medgen/?term=RAB7A",
+        "geneCardsSrc": "https://www.genecards.org/cgi-bin/carddisp.pl?gene=RAB7A",
+        "ghrSrc": "https://ghr.nlm.nih.gov/gene/RAB7A",
+        "clinGenLink": "https://www.ncbi.nlm.nih.gov/projects/dbvar/clingen/clingen_gene.cgi?sym=RAB7A",
+        "geneIdLink": "https://www.ncbi.nlm.nih.gov/gene/7879",
+        "indexVal": 21
+      },
+      {
+        "key": 21,
+        "name": "LITAF",
+        "geneid": 9516,
+        "value": 13,
+        "diseases": 1,
+        "conditions": "Dejerine-Sottas disease",
+        "searchTermArray": [
+          "Dejerine-Sottas disease"
+        ],
+        "searchTermIndex": [
+          1
+        ],
+        "isAssociatedGene": false,
+        "omimSrc": "https://www.ncbi.nlm.nih.gov/omim/?term=LITAF",
+        "medGenSrc": "https://www.ncbi.nlm.nih.gov/medgen/?term=LITAF",
+        "geneCardsSrc": "https://www.genecards.org/cgi-bin/carddisp.pl?gene=LITAF",
+        "ghrSrc": "https://ghr.nlm.nih.gov/gene/LITAF",
+        "clinGenLink": "https://www.ncbi.nlm.nih.gov/projects/dbvar/clingen/clingen_gene.cgi?sym=LITAF",
+        "geneIdLink": "https://www.ncbi.nlm.nih.gov/gene/9516",
+        "indexVal": 22
+      },
+      {
+        "key": 22,
+        "name": "HSPB8",
+        "geneid": 26353,
+        "value": 13,
+        "diseases": 1,
+        "conditions": "Dejerine-Sottas disease",
+        "searchTermArray": [
+          "Dejerine-Sottas disease"
+        ],
+        "searchTermIndex": [
+          1
+        ],
+        "isAssociatedGene": false,
+        "omimSrc": "https://www.ncbi.nlm.nih.gov/omim/?term=HSPB8",
+        "medGenSrc": "https://www.ncbi.nlm.nih.gov/medgen/?term=HSPB8",
+        "geneCardsSrc": "https://www.genecards.org/cgi-bin/carddisp.pl?gene=HSPB8",
+        "ghrSrc": "https://ghr.nlm.nih.gov/gene/HSPB8",
+        "clinGenLink": "https://www.ncbi.nlm.nih.gov/projects/dbvar/clingen/clingen_gene.cgi?sym=HSPB8",
+        "geneIdLink": "https://www.ncbi.nlm.nih.gov/gene/26353",
+        "indexVal": 23
+      },
+      {
+        "key": 23,
+        "name": "TRPV4",
+        "geneid": 59341,
+        "value": 13,
+        "diseases": 1,
+        "conditions": "Dejerine-Sottas disease",
+        "searchTermArray": [
+          "Dejerine-Sottas disease"
+        ],
+        "searchTermIndex": [
+          1
+        ],
+        "isAssociatedGene": false,
+        "omimSrc": "https://www.ncbi.nlm.nih.gov/omim/?term=TRPV4",
+        "medGenSrc": "https://www.ncbi.nlm.nih.gov/medgen/?term=TRPV4",
+        "geneCardsSrc": "https://www.genecards.org/cgi-bin/carddisp.pl?gene=TRPV4",
+        "ghrSrc": "https://ghr.nlm.nih.gov/gene/TRPV4",
+        "clinGenLink": "https://www.ncbi.nlm.nih.gov/projects/dbvar/clingen/clingen_gene.cgi?sym=TRPV4",
+        "geneIdLink": "https://www.ncbi.nlm.nih.gov/gene/59341",
+        "indexVal": 24
+      },
+      {
+        "key": 24,
+        "name": "LRSAM1",
+        "geneid": 90678,
+        "value": 13,
+        "diseases": 1,
+        "conditions": "Dejerine-Sottas disease",
+        "searchTermArray": [
+          "Dejerine-Sottas disease"
+        ],
+        "searchTermIndex": [
+          1
+        ],
+        "isAssociatedGene": false,
+        "omimSrc": "https://www.ncbi.nlm.nih.gov/omim/?term=LRSAM1",
+        "medGenSrc": "https://www.ncbi.nlm.nih.gov/medgen/?term=LRSAM1",
+        "geneCardsSrc": "https://www.genecards.org/cgi-bin/carddisp.pl?gene=LRSAM1",
+        "ghrSrc": "https://ghr.nlm.nih.gov/gene/LRSAM1",
+        "clinGenLink": "https://www.ncbi.nlm.nih.gov/projects/dbvar/clingen/clingen_gene.cgi?sym=LRSAM1",
+        "geneIdLink": "https://www.ncbi.nlm.nih.gov/gene/90678",
+        "indexVal": 25
+      },
+      {
+        "key": 25,
+        "name": "YARS1",
+        "geneid": 8565,
+        "value": 12,
+        "diseases": 1,
+        "conditions": "Dejerine-Sottas disease",
+        "searchTermArray": [
+          "Dejerine-Sottas disease"
+        ],
+        "searchTermIndex": [
+          1
+        ],
+        "isAssociatedGene": false,
+        "omimSrc": "https://www.ncbi.nlm.nih.gov/omim/?term=YARS1",
+        "medGenSrc": "https://www.ncbi.nlm.nih.gov/medgen/?term=YARS1",
+        "geneCardsSrc": "https://www.genecards.org/cgi-bin/carddisp.pl?gene=YARS1",
+        "ghrSrc": "https://ghr.nlm.nih.gov/gene/YARS1",
+        "clinGenLink": "https://www.ncbi.nlm.nih.gov/projects/dbvar/clingen/clingen_gene.cgi?sym=YARS1",
+        "geneIdLink": "https://www.ncbi.nlm.nih.gov/gene/8565",
+        "indexVal": 26
+      },
+      {
+        "key": 26,
+        "name": "GNB4",
+        "geneid": 59345,
+        "value": 12,
+        "diseases": 1,
+        "conditions": "Dejerine-Sottas disease",
+        "searchTermArray": [
+          "Dejerine-Sottas disease"
+        ],
+        "searchTermIndex": [
+          1
+        ],
+        "isAssociatedGene": false,
+        "omimSrc": "https://www.ncbi.nlm.nih.gov/omim/?term=GNB4",
+        "medGenSrc": "https://www.ncbi.nlm.nih.gov/medgen/?term=GNB4",
+        "geneCardsSrc": "https://www.genecards.org/cgi-bin/carddisp.pl?gene=GNB4",
+        "ghrSrc": "https://ghr.nlm.nih.gov/gene/GNB4",
+        "clinGenLink": "https://www.ncbi.nlm.nih.gov/projects/dbvar/clingen/clingen_gene.cgi?sym=GNB4",
+        "geneIdLink": "https://www.ncbi.nlm.nih.gov/gene/59345",
+        "indexVal": 27
+      },
+      {
+        "key": 27,
+        "name": "MED25",
+        "geneid": 81857,
+        "value": 12,
+        "diseases": 1,
+        "conditions": "Dejerine-Sottas disease",
+        "searchTermArray": [
+          "Dejerine-Sottas disease"
+        ],
+        "searchTermIndex": [
+          1
+        ],
+        "isAssociatedGene": false,
+        "omimSrc": "https://www.ncbi.nlm.nih.gov/omim/?term=MED25",
+        "medGenSrc": "https://www.ncbi.nlm.nih.gov/medgen/?term=MED25",
+        "geneCardsSrc": "https://www.genecards.org/cgi-bin/carddisp.pl?gene=MED25",
+        "ghrSrc": "https://ghr.nlm.nih.gov/gene/MED25",
+        "clinGenLink": "https://www.ncbi.nlm.nih.gov/projects/dbvar/clingen/clingen_gene.cgi?sym=MED25",
+        "geneIdLink": "https://www.ncbi.nlm.nih.gov/gene/81857",
+        "indexVal": 28
+      },
+      {
+        "key": 28,
+        "name": "PRPS1",
+        "geneid": 5631,
+        "value": 11,
+        "diseases": 1,
+        "conditions": "Dejerine-Sottas disease",
+        "searchTermArray": [
+          "Dejerine-Sottas disease"
+        ],
+        "searchTermIndex": [
+          1
+        ],
+        "isAssociatedGene": false,
+        "omimSrc": "https://www.ncbi.nlm.nih.gov/omim/?term=PRPS1",
+        "medGenSrc": "https://www.ncbi.nlm.nih.gov/medgen/?term=PRPS1",
+        "geneCardsSrc": "https://www.genecards.org/cgi-bin/carddisp.pl?gene=PRPS1",
+        "ghrSrc": "https://ghr.nlm.nih.gov/gene/PRPS1",
+        "clinGenLink": "https://www.ncbi.nlm.nih.gov/projects/dbvar/clingen/clingen_gene.cgi?sym=PRPS1",
+        "geneIdLink": "https://www.ncbi.nlm.nih.gov/gene/5631",
+        "indexVal": 29
+      },
+      {
+        "key": 29,
+        "name": "AIFM1",
+        "geneid": 9131,
+        "value": 11,
+        "diseases": 1,
+        "conditions": "Dejerine-Sottas disease",
+        "searchTermArray": [
+          "Dejerine-Sottas disease"
+        ],
+        "searchTermIndex": [
+          1
+        ],
+        "isAssociatedGene": false,
+        "omimSrc": "https://www.ncbi.nlm.nih.gov/omim/?term=AIFM1",
+        "medGenSrc": "https://www.ncbi.nlm.nih.gov/medgen/?term=AIFM1",
+        "geneCardsSrc": "https://www.genecards.org/cgi-bin/carddisp.pl?gene=AIFM1",
+        "ghrSrc": "https://ghr.nlm.nih.gov/gene/AIFM1",
+        "clinGenLink": "https://www.ncbi.nlm.nih.gov/projects/dbvar/clingen/clingen_gene.cgi?sym=AIFM1",
+        "geneIdLink": "https://www.ncbi.nlm.nih.gov/gene/9131",
+        "indexVal": 30
+      },
+      {
+        "key": 30,
+        "name": "BSCL2",
+        "geneid": 26580,
+        "value": 11,
+        "diseases": 1,
+        "conditions": "Dejerine-Sottas disease",
+        "searchTermArray": [
+          "Dejerine-Sottas disease"
+        ],
+        "searchTermIndex": [
+          1
+        ],
+        "isAssociatedGene": false,
+        "omimSrc": "https://www.ncbi.nlm.nih.gov/omim/?term=BSCL2",
+        "medGenSrc": "https://www.ncbi.nlm.nih.gov/medgen/?term=BSCL2",
+        "geneCardsSrc": "https://www.genecards.org/cgi-bin/carddisp.pl?gene=BSCL2",
+        "ghrSrc": "https://ghr.nlm.nih.gov/gene/BSCL2",
+        "clinGenLink": "https://www.ncbi.nlm.nih.gov/projects/dbvar/clingen/clingen_gene.cgi?sym=BSCL2",
+        "geneIdLink": "https://www.ncbi.nlm.nih.gov/gene/26580",
+        "indexVal": 31
+      },
+      {
+        "key": 31,
+        "name": "COX6A1",
+        "geneid": 1337,
+        "value": 10,
+        "diseases": 1,
+        "conditions": "Dejerine-Sottas disease",
+        "searchTermArray": [
+          "Dejerine-Sottas disease"
+        ],
+        "searchTermIndex": [
+          1
+        ],
+        "isAssociatedGene": false,
+        "omimSrc": "https://www.ncbi.nlm.nih.gov/omim/?term=COX6A1",
+        "medGenSrc": "https://www.ncbi.nlm.nih.gov/medgen/?term=COX6A1",
+        "geneCardsSrc": "https://www.genecards.org/cgi-bin/carddisp.pl?gene=COX6A1",
+        "ghrSrc": "https://ghr.nlm.nih.gov/gene/COX6A1",
+        "clinGenLink": "https://www.ncbi.nlm.nih.gov/projects/dbvar/clingen/clingen_gene.cgi?sym=COX6A1",
+        "geneIdLink": "https://www.ncbi.nlm.nih.gov/gene/1337",
+        "indexVal": 32
+      },
+      {
+        "key": 32,
+        "name": "PDK3",
+        "geneid": 5165,
+        "value": 9,
+        "diseases": 1,
+        "conditions": "Dejerine-Sottas disease",
+        "searchTermArray": [
+          "Dejerine-Sottas disease"
+        ],
+        "searchTermIndex": [
+          1
+        ],
+        "isAssociatedGene": false,
+        "omimSrc": "https://www.ncbi.nlm.nih.gov/omim/?term=PDK3",
+        "medGenSrc": "https://www.ncbi.nlm.nih.gov/medgen/?term=PDK3",
+        "geneCardsSrc": "https://www.genecards.org/cgi-bin/carddisp.pl?gene=PDK3",
+        "ghrSrc": "https://ghr.nlm.nih.gov/gene/PDK3",
+        "clinGenLink": "https://www.ncbi.nlm.nih.gov/projects/dbvar/clingen/clingen_gene.cgi?sym=PDK3",
+        "geneIdLink": "https://www.ncbi.nlm.nih.gov/gene/5165",
+        "indexVal": 33
+      },
+      {
+        "key": 33,
+        "name": "DHTKD1",
+        "geneid": 55526,
+        "value": 9,
+        "diseases": 1,
+        "conditions": "Dejerine-Sottas disease",
+        "searchTermArray": [
+          "Dejerine-Sottas disease"
+        ],
+        "searchTermIndex": [
+          1
+        ],
+        "isAssociatedGene": false,
+        "omimSrc": "https://www.ncbi.nlm.nih.gov/omim/?term=DHTKD1",
+        "medGenSrc": "https://www.ncbi.nlm.nih.gov/medgen/?term=DHTKD1",
+        "geneCardsSrc": "https://www.genecards.org/cgi-bin/carddisp.pl?gene=DHTKD1",
+        "ghrSrc": "https://ghr.nlm.nih.gov/gene/DHTKD1",
+        "clinGenLink": "https://www.ncbi.nlm.nih.gov/projects/dbvar/clingen/clingen_gene.cgi?sym=DHTKD1",
+        "geneIdLink": "https://www.ncbi.nlm.nih.gov/gene/55526",
+        "indexVal": 34
+      },
+      {
+        "key": 34,
+        "name": "PLEKHG5",
+        "geneid": 57449,
+        "value": 9,
+        "diseases": 1,
+        "conditions": "Dejerine-Sottas disease",
+        "searchTermArray": [
+          "Dejerine-Sottas disease"
+        ],
+        "searchTermIndex": [
+          1
+        ],
+        "isAssociatedGene": false,
+        "omimSrc": "https://www.ncbi.nlm.nih.gov/omim/?term=PLEKHG5",
+        "medGenSrc": "https://www.ncbi.nlm.nih.gov/medgen/?term=PLEKHG5",
+        "geneCardsSrc": "https://www.genecards.org/cgi-bin/carddisp.pl?gene=PLEKHG5",
+        "ghrSrc": "https://ghr.nlm.nih.gov/gene/PLEKHG5",
+        "clinGenLink": "https://www.ncbi.nlm.nih.gov/projects/dbvar/clingen/clingen_gene.cgi?sym=PLEKHG5",
+        "geneIdLink": "https://www.ncbi.nlm.nih.gov/gene/57449",
+        "indexVal": 35
+      },
+      {
+        "key": 35,
+        "name": "KARS1",
+        "geneid": 3735,
+        "value": 8,
+        "diseases": 1,
+        "conditions": "Dejerine-Sottas disease",
+        "searchTermArray": [
+          "Dejerine-Sottas disease"
+        ],
+        "searchTermIndex": [
+          1
+        ],
+        "isAssociatedGene": false,
+        "omimSrc": "https://www.ncbi.nlm.nih.gov/omim/?term=KARS1",
+        "medGenSrc": "https://www.ncbi.nlm.nih.gov/medgen/?term=KARS1",
+        "geneCardsSrc": "https://www.genecards.org/cgi-bin/carddisp.pl?gene=KARS1",
+        "ghrSrc": "https://ghr.nlm.nih.gov/gene/KARS1",
+        "clinGenLink": "https://www.ncbi.nlm.nih.gov/projects/dbvar/clingen/clingen_gene.cgi?sym=KARS1",
+        "geneIdLink": "https://www.ncbi.nlm.nih.gov/gene/3735",
+        "indexVal": 36
+      },
+      {
+        "key": 36,
+        "name": "KIF1B",
+        "geneid": 23095,
+        "value": 8,
+        "diseases": 1,
+        "conditions": "Dejerine-Sottas disease",
+        "searchTermArray": [
+          "Dejerine-Sottas disease"
+        ],
+        "searchTermIndex": [
+          1
+        ],
+        "isAssociatedGene": false,
+        "omimSrc": "https://www.ncbi.nlm.nih.gov/omim/?term=KIF1B",
+        "medGenSrc": "https://www.ncbi.nlm.nih.gov/medgen/?term=KIF1B",
+        "geneCardsSrc": "https://www.genecards.org/cgi-bin/carddisp.pl?gene=KIF1B",
+        "ghrSrc": "https://ghr.nlm.nih.gov/gene/KIF1B",
+        "clinGenLink": "https://www.ncbi.nlm.nih.gov/projects/dbvar/clingen/clingen_gene.cgi?sym=KIF1B",
+        "geneIdLink": "https://www.ncbi.nlm.nih.gov/gene/23095",
+        "indexVal": 37
+      },
+      {
+        "key": 37,
+        "name": "TRIM2",
+        "geneid": 23321,
+        "value": 8,
+        "diseases": 1,
+        "conditions": "Dejerine-Sottas disease",
+        "searchTermArray": [
+          "Dejerine-Sottas disease"
+        ],
+        "searchTermIndex": [
+          1
+        ],
+        "isAssociatedGene": false,
+        "omimSrc": "https://www.ncbi.nlm.nih.gov/omim/?term=TRIM2",
+        "medGenSrc": "https://www.ncbi.nlm.nih.gov/medgen/?term=TRIM2",
+        "geneCardsSrc": "https://www.genecards.org/cgi-bin/carddisp.pl?gene=TRIM2",
+        "ghrSrc": "https://ghr.nlm.nih.gov/gene/TRIM2",
+        "clinGenLink": "https://www.ncbi.nlm.nih.gov/projects/dbvar/clingen/clingen_gene.cgi?sym=TRIM2",
+        "geneIdLink": "https://www.ncbi.nlm.nih.gov/gene/23321",
+        "indexVal": 38
+      },
+      {
+        "key": 38,
+        "name": "INF2",
+        "geneid": 64423,
+        "value": 8,
+        "diseases": 1,
+        "conditions": "Dejerine-Sottas disease",
+        "searchTermArray": [
+          "Dejerine-Sottas disease"
+        ],
+        "searchTermIndex": [
+          1
+        ],
+        "isAssociatedGene": false,
+        "omimSrc": "https://www.ncbi.nlm.nih.gov/omim/?term=INF2",
+        "medGenSrc": "https://www.ncbi.nlm.nih.gov/medgen/?term=INF2",
+        "geneCardsSrc": "https://www.genecards.org/cgi-bin/carddisp.pl?gene=INF2",
+        "ghrSrc": "https://ghr.nlm.nih.gov/gene/INF2",
+        "clinGenLink": "https://www.ncbi.nlm.nih.gov/projects/dbvar/clingen/clingen_gene.cgi?sym=INF2",
+        "geneIdLink": "https://www.ncbi.nlm.nih.gov/gene/64423",
+        "indexVal": 39
+      },
+      {
+        "key": 39,
+        "name": "IGHMBP2",
+        "geneid": 3508,
+        "value": 7,
+        "diseases": 1,
+        "conditions": "Dejerine-Sottas disease",
+        "searchTermArray": [
+          "Dejerine-Sottas disease"
+        ],
+        "searchTermIndex": [
+          1
+        ],
+        "isAssociatedGene": false,
+        "omimSrc": "https://www.ncbi.nlm.nih.gov/omim/?term=IGHMBP2",
+        "medGenSrc": "https://www.ncbi.nlm.nih.gov/medgen/?term=IGHMBP2",
+        "geneCardsSrc": "https://www.genecards.org/cgi-bin/carddisp.pl?gene=IGHMBP2",
+        "ghrSrc": "https://ghr.nlm.nih.gov/gene/IGHMBP2",
+        "clinGenLink": "https://www.ncbi.nlm.nih.gov/projects/dbvar/clingen/clingen_gene.cgi?sym=IGHMBP2",
+        "geneIdLink": "https://www.ncbi.nlm.nih.gov/gene/3508",
+        "indexVal": 40
+      },
+      {
+        "key": 40,
+        "name": "SBF1",
+        "geneid": 6305,
+        "value": 7,
+        "diseases": 1,
+        "conditions": "Dejerine-Sottas disease",
+        "searchTermArray": [
+          "Dejerine-Sottas disease"
+        ],
+        "searchTermIndex": [
+          1
+        ],
+        "isAssociatedGene": false,
+        "omimSrc": "https://www.ncbi.nlm.nih.gov/omim/?term=SBF1",
+        "medGenSrc": "https://www.ncbi.nlm.nih.gov/medgen/?term=SBF1",
+        "geneCardsSrc": "https://www.genecards.org/cgi-bin/carddisp.pl?gene=SBF1",
+        "ghrSrc": "https://ghr.nlm.nih.gov/gene/SBF1",
+        "clinGenLink": "https://www.ncbi.nlm.nih.gov/projects/dbvar/clingen/clingen_gene.cgi?sym=SBF1",
+        "geneIdLink": "https://www.ncbi.nlm.nih.gov/gene/6305",
+        "indexVal": 41
+      },
+      {
+        "key": 41,
+        "name": "C12orf65",
+        "geneid": 91574,
+        "value": 7,
+        "diseases": 1,
+        "conditions": "Dejerine-Sottas disease",
+        "searchTermArray": [
+          "Dejerine-Sottas disease"
+        ],
+        "searchTermIndex": [
+          1
+        ],
+        "isAssociatedGene": false,
+        "omimSrc": "https://www.ncbi.nlm.nih.gov/omim/?term=C12orf65",
+        "medGenSrc": "https://www.ncbi.nlm.nih.gov/medgen/?term=C12orf65",
+        "geneCardsSrc": "https://www.genecards.org/cgi-bin/carddisp.pl?gene=C12orf65",
+        "ghrSrc": "https://ghr.nlm.nih.gov/gene/C12orf65",
+        "clinGenLink": "https://www.ncbi.nlm.nih.gov/projects/dbvar/clingen/clingen_gene.cgi?sym=C12orf65",
+        "geneIdLink": "https://www.ncbi.nlm.nih.gov/gene/91574",
+        "indexVal": 42
+      },
+      {
+        "key": 42,
+        "name": "ATP1A1",
+        "geneid": 476,
+        "value": 6,
+        "diseases": 1,
+        "conditions": "Dejerine-Sottas disease",
+        "searchTermArray": [
+          "Dejerine-Sottas disease"
+        ],
+        "searchTermIndex": [
+          1
+        ],
+        "isAssociatedGene": false,
+        "omimSrc": "https://www.ncbi.nlm.nih.gov/omim/?term=ATP1A1",
+        "medGenSrc": "https://www.ncbi.nlm.nih.gov/medgen/?term=ATP1A1",
+        "geneCardsSrc": "https://www.genecards.org/cgi-bin/carddisp.pl?gene=ATP1A1",
+        "ghrSrc": "https://ghr.nlm.nih.gov/gene/ATP1A1",
+        "clinGenLink": "https://www.ncbi.nlm.nih.gov/projects/dbvar/clingen/clingen_gene.cgi?sym=ATP1A1",
+        "geneIdLink": "https://www.ncbi.nlm.nih.gov/gene/476",
+        "indexVal": 43
+      },
+      {
+        "key": 43,
+        "name": "HADHB",
+        "geneid": 3032,
+        "value": 6,
+        "diseases": 1,
+        "conditions": "Dejerine-Sottas disease",
+        "searchTermArray": [
+          "Dejerine-Sottas disease"
+        ],
+        "searchTermIndex": [
+          1
+        ],
+        "isAssociatedGene": false,
+        "omimSrc": "https://www.ncbi.nlm.nih.gov/omim/?term=HADHB",
+        "medGenSrc": "https://www.ncbi.nlm.nih.gov/medgen/?term=HADHB",
+        "geneCardsSrc": "https://www.genecards.org/cgi-bin/carddisp.pl?gene=HADHB",
+        "ghrSrc": "https://ghr.nlm.nih.gov/gene/HADHB",
+        "clinGenLink": "https://www.ncbi.nlm.nih.gov/projects/dbvar/clingen/clingen_gene.cgi?sym=HADHB",
+        "geneIdLink": "https://www.ncbi.nlm.nih.gov/gene/3032",
+        "indexVal": 44
+      },
+      {
+        "key": 44,
+        "name": "TFG",
+        "geneid": 10342,
+        "value": 5,
+        "diseases": 1,
+        "conditions": "Dejerine-Sottas disease",
+        "searchTermArray": [
+          "Dejerine-Sottas disease"
+        ],
+        "searchTermIndex": [
+          1
+        ],
+        "isAssociatedGene": false,
+        "omimSrc": "https://www.ncbi.nlm.nih.gov/omim/?term=TFG",
+        "medGenSrc": "https://www.ncbi.nlm.nih.gov/medgen/?term=TFG",
+        "geneCardsSrc": "https://www.genecards.org/cgi-bin/carddisp.pl?gene=TFG",
+        "ghrSrc": "https://ghr.nlm.nih.gov/gene/TFG",
+        "clinGenLink": "https://www.ncbi.nlm.nih.gov/projects/dbvar/clingen/clingen_gene.cgi?sym=TFG",
+        "geneIdLink": "https://www.ncbi.nlm.nih.gov/gene/10342",
+        "indexVal": 45
+      },
+      {
+        "key": 45,
+        "name": "GLA",
+        "geneid": 2717,
+        "value": 4,
+        "diseases": 1,
+        "conditions": "Dejerine-Sottas disease",
+        "searchTermArray": [
+          "Dejerine-Sottas disease"
+        ],
+        "searchTermIndex": [
+          1
+        ],
+        "isAssociatedGene": false,
+        "omimSrc": "https://www.ncbi.nlm.nih.gov/omim/?term=GLA",
+        "medGenSrc": "https://www.ncbi.nlm.nih.gov/medgen/?term=GLA",
+        "geneCardsSrc": "https://www.genecards.org/cgi-bin/carddisp.pl?gene=GLA",
+        "ghrSrc": "https://ghr.nlm.nih.gov/gene/GLA",
+        "clinGenLink": "https://www.ncbi.nlm.nih.gov/projects/dbvar/clingen/clingen_gene.cgi?sym=GLA",
+        "geneIdLink": "https://www.ncbi.nlm.nih.gov/gene/2717",
+        "indexVal": 46
+      },
+      {
+        "key": 46,
+        "name": "HINT1",
+        "geneid": 3094,
+        "value": 4,
+        "diseases": 1,
+        "conditions": "Dejerine-Sottas disease",
+        "searchTermArray": [
+          "Dejerine-Sottas disease"
+        ],
+        "searchTermIndex": [
+          1
+        ],
+        "isAssociatedGene": false,
+        "omimSrc": "https://www.ncbi.nlm.nih.gov/omim/?term=HINT1",
+        "medGenSrc": "https://www.ncbi.nlm.nih.gov/medgen/?term=HINT1",
+        "geneCardsSrc": "https://www.genecards.org/cgi-bin/carddisp.pl?gene=HINT1",
+        "ghrSrc": "https://ghr.nlm.nih.gov/gene/HINT1",
+        "clinGenLink": "https://www.ncbi.nlm.nih.gov/projects/dbvar/clingen/clingen_gene.cgi?sym=HINT1",
+        "geneIdLink": "https://www.ncbi.nlm.nih.gov/gene/3094",
+        "indexVal": 47
+      },
+      {
+        "key": 47,
+        "name": "DNAJB2",
+        "geneid": 3300,
+        "value": 3,
+        "diseases": 1,
+        "conditions": "Dejerine-Sottas disease",
+        "searchTermArray": [
+          "Dejerine-Sottas disease"
+        ],
+        "searchTermIndex": [
+          1
+        ],
+        "isAssociatedGene": false,
+        "omimSrc": "https://www.ncbi.nlm.nih.gov/omim/?term=DNAJB2",
+        "medGenSrc": "https://www.ncbi.nlm.nih.gov/medgen/?term=DNAJB2",
+        "geneCardsSrc": "https://www.genecards.org/cgi-bin/carddisp.pl?gene=DNAJB2",
+        "ghrSrc": "https://ghr.nlm.nih.gov/gene/DNAJB2",
+        "clinGenLink": "https://www.ncbi.nlm.nih.gov/projects/dbvar/clingen/clingen_gene.cgi?sym=DNAJB2",
+        "geneIdLink": "https://www.ncbi.nlm.nih.gov/gene/3300",
+        "indexVal": 48
+      },
+      {
+        "key": 48,
+        "name": "MARS1",
+        "geneid": 4141,
+        "value": 3,
+        "diseases": 1,
+        "conditions": "Dejerine-Sottas disease",
+        "searchTermArray": [
+          "Dejerine-Sottas disease"
+        ],
+        "searchTermIndex": [
+          1
+        ],
+        "isAssociatedGene": false,
+        "omimSrc": "https://www.ncbi.nlm.nih.gov/omim/?term=MARS1",
+        "medGenSrc": "https://www.ncbi.nlm.nih.gov/medgen/?term=MARS1",
+        "geneCardsSrc": "https://www.genecards.org/cgi-bin/carddisp.pl?gene=MARS1",
+        "ghrSrc": "https://ghr.nlm.nih.gov/gene/MARS1",
+        "clinGenLink": "https://www.ncbi.nlm.nih.gov/projects/dbvar/clingen/clingen_gene.cgi?sym=MARS1",
+        "geneIdLink": "https://www.ncbi.nlm.nih.gov/gene/4141",
+        "indexVal": 49
+      },
+      {
+        "key": 49,
+        "name": "SPG11",
+        "geneid": 80208,
+        "value": 3,
+        "diseases": 1,
+        "conditions": "Dejerine-Sottas disease",
+        "searchTermArray": [
+          "Dejerine-Sottas disease"
+        ],
+        "searchTermIndex": [
+          1
+        ],
+        "isAssociatedGene": false,
+        "omimSrc": "https://www.ncbi.nlm.nih.gov/omim/?term=SPG11",
+        "medGenSrc": "https://www.ncbi.nlm.nih.gov/medgen/?term=SPG11",
+        "geneCardsSrc": "https://www.genecards.org/cgi-bin/carddisp.pl?gene=SPG11",
+        "ghrSrc": "https://ghr.nlm.nih.gov/gene/SPG11",
+        "clinGenLink": "https://www.ncbi.nlm.nih.gov/projects/dbvar/clingen/clingen_gene.cgi?sym=SPG11",
+        "geneIdLink": "https://www.ncbi.nlm.nih.gov/gene/80208",
+        "indexVal": 50
+      },
+      {
+        "key": 50,
+        "name": "HARS1",
+        "geneid": 3035,
+        "value": 2,
+        "diseases": 1,
+        "conditions": "Dejerine-Sottas disease",
+        "searchTermArray": [
+          "Dejerine-Sottas disease"
+        ],
+        "searchTermIndex": [
+          1
+        ],
+        "isAssociatedGene": false,
+        "omimSrc": "https://www.ncbi.nlm.nih.gov/omim/?term=HARS1",
+        "medGenSrc": "https://www.ncbi.nlm.nih.gov/medgen/?term=HARS1",
+        "geneCardsSrc": "https://www.genecards.org/cgi-bin/carddisp.pl?gene=HARS1",
+        "ghrSrc": "https://ghr.nlm.nih.gov/gene/HARS1",
+        "clinGenLink": "https://www.ncbi.nlm.nih.gov/projects/dbvar/clingen/clingen_gene.cgi?sym=HARS1",
+        "geneIdLink": "https://www.ncbi.nlm.nih.gov/gene/3035",
+        "indexVal": 51
+      },
+      {
+        "key": 51,
+        "name": "HK1",
+        "geneid": 3098,
+        "value": 2,
+        "diseases": 1,
+        "conditions": "Dejerine-Sottas disease",
+        "searchTermArray": [
+          "Dejerine-Sottas disease"
+        ],
+        "searchTermIndex": [
+          1
+        ],
+        "isAssociatedGene": false,
+        "omimSrc": "https://www.ncbi.nlm.nih.gov/omim/?term=HK1",
+        "medGenSrc": "https://www.ncbi.nlm.nih.gov/medgen/?term=HK1",
+        "geneCardsSrc": "https://www.genecards.org/cgi-bin/carddisp.pl?gene=HK1",
+        "ghrSrc": "https://ghr.nlm.nih.gov/gene/HK1",
+        "clinGenLink": "https://www.ncbi.nlm.nih.gov/projects/dbvar/clingen/clingen_gene.cgi?sym=HK1",
+        "geneIdLink": "https://www.ncbi.nlm.nih.gov/gene/3098",
+        "indexVal": 52
+      },
+      {
+        "key": 52,
+        "name": "KIF5A",
+        "geneid": 3798,
+        "value": 2,
+        "diseases": 1,
+        "conditions": "Dejerine-Sottas disease",
+        "searchTermArray": [
+          "Dejerine-Sottas disease"
+        ],
+        "searchTermIndex": [
+          1
+        ],
+        "isAssociatedGene": false,
+        "omimSrc": "https://www.ncbi.nlm.nih.gov/omim/?term=KIF5A",
+        "medGenSrc": "https://www.ncbi.nlm.nih.gov/medgen/?term=KIF5A",
+        "geneCardsSrc": "https://www.genecards.org/cgi-bin/carddisp.pl?gene=KIF5A",
+        "ghrSrc": "https://ghr.nlm.nih.gov/gene/KIF5A",
+        "clinGenLink": "https://www.ncbi.nlm.nih.gov/projects/dbvar/clingen/clingen_gene.cgi?sym=KIF5A",
+        "geneIdLink": "https://www.ncbi.nlm.nih.gov/gene/3798",
+        "indexVal": 53
+      },
+      {
+        "key": 53,
+        "name": "TTR",
+        "geneid": 7276,
+        "value": 2,
+        "diseases": 1,
+        "conditions": "Dejerine-Sottas disease",
+        "searchTermArray": [
+          "Dejerine-Sottas disease"
+        ],
+        "searchTermIndex": [
+          1
+        ],
+        "isAssociatedGene": false,
+        "omimSrc": "https://www.ncbi.nlm.nih.gov/omim/?term=TTR",
+        "medGenSrc": "https://www.ncbi.nlm.nih.gov/medgen/?term=TTR",
+        "geneCardsSrc": "https://www.genecards.org/cgi-bin/carddisp.pl?gene=TTR",
+        "ghrSrc": "https://ghr.nlm.nih.gov/gene/TTR",
+        "clinGenLink": "https://www.ncbi.nlm.nih.gov/projects/dbvar/clingen/clingen_gene.cgi?sym=TTR",
+        "geneIdLink": "https://www.ncbi.nlm.nih.gov/gene/7276",
+        "indexVal": 54
+      },
+      {
+        "key": 54,
+        "name": "CTDP1",
+        "geneid": 9150,
+        "value": 2,
+        "diseases": 1,
+        "conditions": "Dejerine-Sottas disease",
+        "searchTermArray": [
+          "Dejerine-Sottas disease"
+        ],
+        "searchTermIndex": [
+          1
+        ],
+        "isAssociatedGene": false,
+        "omimSrc": "https://www.ncbi.nlm.nih.gov/omim/?term=CTDP1",
+        "medGenSrc": "https://www.ncbi.nlm.nih.gov/medgen/?term=CTDP1",
+        "geneCardsSrc": "https://www.genecards.org/cgi-bin/carddisp.pl?gene=CTDP1",
+        "ghrSrc": "https://ghr.nlm.nih.gov/gene/CTDP1",
+        "clinGenLink": "https://www.ncbi.nlm.nih.gov/projects/dbvar/clingen/clingen_gene.cgi?sym=CTDP1",
+        "geneIdLink": "https://www.ncbi.nlm.nih.gov/gene/9150",
+        "indexVal": 55
+      },
+      {
+        "key": 55,
+        "name": "FBLN5",
+        "geneid": 10516,
+        "value": 2,
+        "diseases": 1,
+        "conditions": "Dejerine-Sottas disease",
+        "searchTermArray": [
+          "Dejerine-Sottas disease"
+        ],
+        "searchTermIndex": [
+          1
+        ],
+        "isAssociatedGene": false,
+        "omimSrc": "https://www.ncbi.nlm.nih.gov/omim/?term=FBLN5",
+        "medGenSrc": "https://www.ncbi.nlm.nih.gov/medgen/?term=FBLN5",
+        "geneCardsSrc": "https://www.genecards.org/cgi-bin/carddisp.pl?gene=FBLN5",
+        "ghrSrc": "https://ghr.nlm.nih.gov/gene/FBLN5",
+        "clinGenLink": "https://www.ncbi.nlm.nih.gov/projects/dbvar/clingen/clingen_gene.cgi?sym=FBLN5",
+        "geneIdLink": "https://www.ncbi.nlm.nih.gov/gene/10516",
+        "indexVal": 56
+      },
+      {
+        "key": 56,
+        "name": "SPTLC1",
+        "geneid": 10558,
+        "value": 2,
+        "diseases": 1,
+        "conditions": "Dejerine-Sottas disease",
+        "searchTermArray": [
+          "Dejerine-Sottas disease"
+        ],
+        "searchTermIndex": [
+          1
+        ],
+        "isAssociatedGene": false,
+        "omimSrc": "https://www.ncbi.nlm.nih.gov/omim/?term=SPTLC1",
+        "medGenSrc": "https://www.ncbi.nlm.nih.gov/medgen/?term=SPTLC1",
+        "geneCardsSrc": "https://www.genecards.org/cgi-bin/carddisp.pl?gene=SPTLC1",
+        "ghrSrc": "https://ghr.nlm.nih.gov/gene/SPTLC1",
+        "clinGenLink": "https://www.ncbi.nlm.nih.gov/projects/dbvar/clingen/clingen_gene.cgi?sym=SPTLC1",
+        "geneIdLink": "https://www.ncbi.nlm.nih.gov/gene/10558",
+        "indexVal": 57
+      },
+      {
+        "key": 57,
+        "name": "MORC2",
+        "geneid": 22880,
+        "value": 2,
+        "diseases": 1,
+        "conditions": "Dejerine-Sottas disease",
+        "searchTermArray": [
+          "Dejerine-Sottas disease"
+        ],
+        "searchTermIndex": [
+          1
+        ],
+        "isAssociatedGene": false,
+        "omimSrc": "https://www.ncbi.nlm.nih.gov/omim/?term=MORC2",
+        "medGenSrc": "https://www.ncbi.nlm.nih.gov/medgen/?term=MORC2",
+        "geneCardsSrc": "https://www.genecards.org/cgi-bin/carddisp.pl?gene=MORC2",
+        "ghrSrc": "https://ghr.nlm.nih.gov/gene/MORC2",
+        "clinGenLink": "https://www.ncbi.nlm.nih.gov/projects/dbvar/clingen/clingen_gene.cgi?sym=MORC2",
+        "geneIdLink": "https://www.ncbi.nlm.nih.gov/gene/22880",
+        "indexVal": 58
+      },
+      {
+        "key": 58,
+        "name": "DNMT1",
+        "geneid": 1786,
+        "value": 1,
+        "diseases": 1,
+        "conditions": "Dejerine-Sottas disease",
+        "searchTermArray": [
+          "Dejerine-Sottas disease"
+        ],
+        "searchTermIndex": [
+          1
+        ],
+        "isAssociatedGene": false,
+        "omimSrc": "https://www.ncbi.nlm.nih.gov/omim/?term=DNMT1",
+        "medGenSrc": "https://www.ncbi.nlm.nih.gov/medgen/?term=DNMT1",
+        "geneCardsSrc": "https://www.genecards.org/cgi-bin/carddisp.pl?gene=DNMT1",
+        "ghrSrc": "https://ghr.nlm.nih.gov/gene/DNMT1",
+        "clinGenLink": "https://www.ncbi.nlm.nih.gov/projects/dbvar/clingen/clingen_gene.cgi?sym=DNMT1",
+        "geneIdLink": "https://www.ncbi.nlm.nih.gov/gene/1786",
+        "indexVal": 59
+      },
+      {
+        "key": 59,
+        "name": "HOXD10",
+        "geneid": 3236,
+        "value": 1,
+        "diseases": 1,
+        "conditions": "Dejerine-Sottas disease",
+        "searchTermArray": [
+          "Dejerine-Sottas disease"
+        ],
+        "searchTermIndex": [
+          1
+        ],
+        "isAssociatedGene": false,
+        "omimSrc": "https://www.ncbi.nlm.nih.gov/omim/?term=HOXD10",
+        "medGenSrc": "https://www.ncbi.nlm.nih.gov/medgen/?term=HOXD10",
+        "geneCardsSrc": "https://www.genecards.org/cgi-bin/carddisp.pl?gene=HOXD10",
+        "ghrSrc": "https://ghr.nlm.nih.gov/gene/HOXD10",
+        "clinGenLink": "https://www.ncbi.nlm.nih.gov/projects/dbvar/clingen/clingen_gene.cgi?sym=HOXD10",
+        "geneIdLink": "https://www.ncbi.nlm.nih.gov/gene/3236",
+        "indexVal": 60
+      },
+      {
+        "key": 60,
+        "name": "PEX7",
+        "geneid": 5191,
+        "value": 1,
+        "diseases": 1,
+        "conditions": "Dejerine-Sottas disease",
+        "searchTermArray": [
+          "Dejerine-Sottas disease"
+        ],
+        "searchTermIndex": [
+          1
+        ],
+        "isAssociatedGene": false,
+        "omimSrc": "https://www.ncbi.nlm.nih.gov/omim/?term=PEX7",
+        "medGenSrc": "https://www.ncbi.nlm.nih.gov/medgen/?term=PEX7",
+        "geneCardsSrc": "https://www.genecards.org/cgi-bin/carddisp.pl?gene=PEX7",
+        "ghrSrc": "https://ghr.nlm.nih.gov/gene/PEX7",
+        "clinGenLink": "https://www.ncbi.nlm.nih.gov/projects/dbvar/clingen/clingen_gene.cgi?sym=PEX7",
+        "geneIdLink": "https://www.ncbi.nlm.nih.gov/gene/5191",
+        "indexVal": 61
+      },
+      {
+        "key": 61,
+        "name": "PHYH",
+        "geneid": 5264,
+        "value": 1,
+        "diseases": 1,
+        "conditions": "Dejerine-Sottas disease",
+        "searchTermArray": [
+          "Dejerine-Sottas disease"
+        ],
+        "searchTermIndex": [
+          1
+        ],
+        "isAssociatedGene": false,
+        "omimSrc": "https://www.ncbi.nlm.nih.gov/omim/?term=PHYH",
+        "medGenSrc": "https://www.ncbi.nlm.nih.gov/medgen/?term=PHYH",
+        "geneCardsSrc": "https://www.genecards.org/cgi-bin/carddisp.pl?gene=PHYH",
+        "ghrSrc": "https://ghr.nlm.nih.gov/gene/PHYH",
+        "clinGenLink": "https://www.ncbi.nlm.nih.gov/projects/dbvar/clingen/clingen_gene.cgi?sym=PHYH",
+        "geneIdLink": "https://www.ncbi.nlm.nih.gov/gene/5264",
+        "indexVal": 62
+      },
+      {
+        "key": 62,
+        "name": "SCN9A",
+        "geneid": 6335,
+        "value": 1,
+        "diseases": 1,
+        "conditions": "Dejerine-Sottas disease",
+        "searchTermArray": [
+          "Dejerine-Sottas disease"
+        ],
+        "searchTermIndex": [
+          1
+        ],
+        "isAssociatedGene": false,
+        "omimSrc": "https://www.ncbi.nlm.nih.gov/omim/?term=SCN9A",
+        "medGenSrc": "https://www.ncbi.nlm.nih.gov/medgen/?term=SCN9A",
+        "geneCardsSrc": "https://www.genecards.org/cgi-bin/carddisp.pl?gene=SCN9A",
+        "ghrSrc": "https://ghr.nlm.nih.gov/gene/SCN9A",
+        "clinGenLink": "https://www.ncbi.nlm.nih.gov/projects/dbvar/clingen/clingen_gene.cgi?sym=SCN9A",
+        "geneIdLink": "https://www.ncbi.nlm.nih.gov/gene/6335",
+        "indexVal": 63
+      },
+      {
+        "key": 63,
+        "name": "SPAST",
+        "geneid": 6683,
+        "value": 1,
+        "diseases": 1,
+        "conditions": "Dejerine-Sottas disease",
+        "searchTermArray": [
+          "Dejerine-Sottas disease"
+        ],
+        "searchTermIndex": [
+          1
+        ],
+        "isAssociatedGene": false,
+        "omimSrc": "https://www.ncbi.nlm.nih.gov/omim/?term=SPAST",
+        "medGenSrc": "https://www.ncbi.nlm.nih.gov/medgen/?term=SPAST",
+        "geneCardsSrc": "https://www.genecards.org/cgi-bin/carddisp.pl?gene=SPAST",
+        "ghrSrc": "https://ghr.nlm.nih.gov/gene/SPAST",
+        "clinGenLink": "https://www.ncbi.nlm.nih.gov/projects/dbvar/clingen/clingen_gene.cgi?sym=SPAST",
+        "geneIdLink": "https://www.ncbi.nlm.nih.gov/gene/6683",
+        "indexVal": 64
+      },
+      {
+        "key": 64,
+        "name": "GAN",
+        "geneid": 8139,
+        "value": 1,
+        "diseases": 1,
+        "conditions": "Dejerine-Sottas disease",
+        "searchTermArray": [
+          "Dejerine-Sottas disease"
+        ],
+        "searchTermIndex": [
+          1
+        ],
+        "isAssociatedGene": false,
+        "omimSrc": "https://www.ncbi.nlm.nih.gov/omim/?term=GAN",
+        "medGenSrc": "https://www.ncbi.nlm.nih.gov/medgen/?term=GAN",
+        "geneCardsSrc": "https://www.genecards.org/cgi-bin/carddisp.pl?gene=GAN",
+        "ghrSrc": "https://ghr.nlm.nih.gov/gene/GAN",
+        "clinGenLink": "https://www.ncbi.nlm.nih.gov/projects/dbvar/clingen/clingen_gene.cgi?sym=GAN",
+        "geneIdLink": "https://www.ncbi.nlm.nih.gov/gene/8139",
+        "indexVal": 65
+      },
+      {
+        "key": 65,
+        "name": "SPTLC2",
+        "geneid": 9517,
+        "value": 1,
+        "diseases": 1,
+        "conditions": "Dejerine-Sottas disease",
+        "searchTermArray": [
+          "Dejerine-Sottas disease"
+        ],
+        "searchTermIndex": [
+          1
+        ],
+        "isAssociatedGene": false,
+        "omimSrc": "https://www.ncbi.nlm.nih.gov/omim/?term=SPTLC2",
+        "medGenSrc": "https://www.ncbi.nlm.nih.gov/medgen/?term=SPTLC2",
+        "geneCardsSrc": "https://www.genecards.org/cgi-bin/carddisp.pl?gene=SPTLC2",
+        "ghrSrc": "https://ghr.nlm.nih.gov/gene/SPTLC2",
+        "clinGenLink": "https://www.ncbi.nlm.nih.gov/projects/dbvar/clingen/clingen_gene.cgi?sym=SPTLC2",
+        "geneIdLink": "https://www.ncbi.nlm.nih.gov/gene/9517",
+        "indexVal": 66
+      },
+      {
+        "key": 66,
+        "name": "SLC12A6",
+        "geneid": 9990,
+        "value": 1,
+        "diseases": 1,
+        "conditions": "Dejerine-Sottas disease",
+        "searchTermArray": [
+          "Dejerine-Sottas disease"
+        ],
+        "searchTermIndex": [
+          1
+        ],
+        "isAssociatedGene": false,
+        "omimSrc": "https://www.ncbi.nlm.nih.gov/omim/?term=SLC12A6",
+        "medGenSrc": "https://www.ncbi.nlm.nih.gov/medgen/?term=SLC12A6",
+        "geneCardsSrc": "https://www.genecards.org/cgi-bin/carddisp.pl?gene=SLC12A6",
+        "ghrSrc": "https://ghr.nlm.nih.gov/gene/SLC12A6",
+        "clinGenLink": "https://www.ncbi.nlm.nih.gov/projects/dbvar/clingen/clingen_gene.cgi?sym=SLC12A6",
+        "geneIdLink": "https://www.ncbi.nlm.nih.gov/gene/9990",
+        "indexVal": 67
+      },
+      {
+        "key": 67,
+        "name": "ATL1",
+        "geneid": 51062,
+        "value": 1,
+        "diseases": 1,
+        "conditions": "Dejerine-Sottas disease",
+        "searchTermArray": [
+          "Dejerine-Sottas disease"
+        ],
+        "searchTermIndex": [
+          1
+        ],
+        "isAssociatedGene": false,
+        "omimSrc": "https://www.ncbi.nlm.nih.gov/omim/?term=ATL1",
+        "medGenSrc": "https://www.ncbi.nlm.nih.gov/medgen/?term=ATL1",
+        "geneCardsSrc": "https://www.genecards.org/cgi-bin/carddisp.pl?gene=ATL1",
+        "ghrSrc": "https://ghr.nlm.nih.gov/gene/ATL1",
+        "clinGenLink": "https://www.ncbi.nlm.nih.gov/projects/dbvar/clingen/clingen_gene.cgi?sym=ATL1",
+        "geneIdLink": "https://www.ncbi.nlm.nih.gov/gene/51062",
+        "indexVal": 68
+      },
+      {
+        "key": 68,
+        "name": "REEP1",
+        "geneid": 65055,
+        "value": 1,
+        "diseases": 1,
+        "conditions": "Dejerine-Sottas disease",
+        "searchTermArray": [
+          "Dejerine-Sottas disease"
+        ],
+        "searchTermIndex": [
+          1
+        ],
+        "isAssociatedGene": false,
+        "omimSrc": "https://www.ncbi.nlm.nih.gov/omim/?term=REEP1",
+        "medGenSrc": "https://www.ncbi.nlm.nih.gov/medgen/?term=REEP1",
+        "geneCardsSrc": "https://www.genecards.org/cgi-bin/carddisp.pl?gene=REEP1",
+        "ghrSrc": "https://ghr.nlm.nih.gov/gene/REEP1",
+        "clinGenLink": "https://www.ncbi.nlm.nih.gov/projects/dbvar/clingen/clingen_gene.cgi?sym=REEP1",
+        "geneIdLink": "https://www.ncbi.nlm.nih.gov/gene/65055",
+        "indexVal": 69
+      }
+    ]
+  }
+}

@@ -59,6 +59,9 @@ var model = new Model();
       },
       multipleSearchTerms: {
         type: Array
+      },
+      summaryFullGeneList: {
+        type: Array
       }
     },
     data: () => ({
@@ -178,6 +181,7 @@ var model = new Model();
     updated(){
     },
     mounted(){
+      console.log("summaryFullGeneList", this.summaryFullGeneList)
       // this.HelpDialogsData = HelpDialogs.data;
       this.GtrGenes = this.GtrGenesForSummary;
       this.PhenolyzerGenes = this.PhenolyzerGenesForSummary;
@@ -318,7 +322,7 @@ var model = new Model();
             summaryGenes[i].score =  this.PhenolyzerGenes[idx].score;
             summaryGenes[i].searchTermPheno =  this.PhenolyzerGenes[idx].searchTerm;
             summaryGenes[i].searchTermIndex =  this.PhenolyzerGenes[idx].searchTermIndex;
-            summaryGenes[i].sourcePheno =  this.PhenolyzerGenes[idx].searchTermIndexSVG;
+            // summaryGenes[i].sourcePheno =  this.PhenolyzerGenes[idx].searchTermIndexSVG;
             summaryGenes[i].omimSrc =  this.PhenolyzerGenes[idx].omimSrc;
             summaryGenes[i].medGenSrc =  this.PhenolyzerGenes[idx].medGenSrc;
             summaryGenes[i].geneCardsSrc =  this.PhenolyzerGenes[idx].geneCardsSrc;
@@ -332,7 +336,7 @@ var model = new Model();
             summaryGenes[i].score =  "";
             summaryGenes[i].searchTermPheno =  [];
             summaryGenes[i].searchTermIndex =  [];
-            summaryGenes[i].sourcePheno =  [];
+            // summaryGenes[i].sourcePheno =  [];
             summaryGenes[i].geneRankPhenolyzer = -1;
           }
         })
@@ -762,7 +766,7 @@ var model = new Model();
             summaryGenes[i].score =  this.PhenolyzerFullGeneList[idx].score;
             summaryGenes[i].searchTermPheno =  this.PhenolyzerFullGeneList[idx].searchTerm;
             summaryGenes[i].searchTermIndex =  this.PhenolyzerFullGeneList[idx].searchTermIndex;
-            summaryGenes[i].sourcePheno =  this.PhenolyzerFullGeneList[idx].searchTermIndexSVG;
+            // summaryGenes[i].sourcePheno =  this.PhenolyzerFullGeneList[idx].searchTermIndexSVG;
             summaryGenes[i].omimSrc =  this.PhenolyzerFullGeneList[idx].omimSrc;
             summaryGenes[i].medGenSrc =  this.PhenolyzerFullGeneList[idx].medGenSrc;
             summaryGenes[i].geneCardsSrc =  this.PhenolyzerFullGeneList[idx].geneCardsSrc;
@@ -776,7 +780,7 @@ var model = new Model();
             summaryGenes[i].score =  "";
             summaryGenes[i].searchTermPheno =  [];
             summaryGenes[i].searchTermIndex =  [];
-            summaryGenes[i].sourcePheno =  [];
+            // summaryGenes[i].sourcePheno =  [];
             summaryGenes[i].geneRankPhenolyzer = -1;
           }
         })

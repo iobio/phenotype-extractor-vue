@@ -583,6 +583,7 @@
           :PhenolyzerTermsLength="phenolyzerTermsAdded.length"
           :HpoTermsLength="hpoTermsAdded.length"
           :multipleSearchTerms="multipleSearchTerms"
+          :summaryFullGeneList="summaryFullGeneList"
           @summaryGenesFullList="summaryGenesFullList($event)">
         </SummaryTab>
 
@@ -619,6 +620,9 @@ export default {
   },
   props: {
     phenotypes: {
+      type: Array
+    },
+    summaryFullGeneList: {
       type: Array
     }
   },
@@ -677,7 +681,7 @@ export default {
     Gtr_searchTermsObj: [],
     Phenolyzer_searchTermsObj: [],
     Hpo_searchTermsObj: [],
-    Gtr_idx: 0,
+    Gtr_idx: 0, //increment when event emitted for search
     Phenolyzer_idx: 0,
     Hpo_idx: 0,
     searchStatusDialog: false,
@@ -698,7 +702,7 @@ export default {
     snackbarText: "",
     snackbarFlag: false,
     phenolyzer_push_idx: 0,
-    gtr_push_idx: 0,
+    gtr_push_idx: 0, //increment when new term is added to gtr_Searchobj after reveiew
     filteredDiseasesItemsArray: [],
     diseasesProps: [],
     associatedGenes: [],
@@ -780,20 +784,20 @@ export default {
     })
 
     //Code for retriving state: Uncomment when other stuff is fixed:
-    if(this.phenotypes!==undefined && this.phenotypes[0].length){
-      this.GtrTermsAdded = this.phenotypes[0];
-      this.GtrTermsAdded.map(term => {
-        this.gtr_push_idx = this.gtr_push_idx + 1;
-        this.Gtr_searchTermsObj.push(term);
-        this.Gtr_searchTermArray.push(term.DiseaseName);
-      })
-    }
-    if(this.phenotypes!==undefined && this.phenotypes[1].length){
-      this.phenolyzerTermsAdded = this.phenotypes[1];
-    }
-    if(this.phenotypes!==undefined && this.phenotypes[2].length){
-      this.hpoTermsAdded = this.phenotypes[2];
-    }
+    // if(this.phenotypes!==undefined && this.phenotypes[0].length){
+    //   this.GtrTermsAdded = this.phenotypes[0];
+    //   this.GtrTermsAdded.map(term => {
+    //     this.gtr_push_idx = this.gtr_push_idx + 1;
+    //     this.Gtr_searchTermsObj.push(term);
+    //     this.Gtr_searchTermArray.push(term.DiseaseName);
+    //   })
+    // }
+    // if(this.phenotypes!==undefined && this.phenotypes[1].length){
+    //   this.phenolyzerTermsAdded = this.phenotypes[1];
+    // }
+    // if(this.phenotypes!==undefined && this.phenotypes[2].length){
+    //   this.hpoTermsAdded = this.phenotypes[2];
+    // }
   },
   computed: {
     DiseaseNames: function() {
@@ -1235,15 +1239,26 @@ export default {
     },
     Gtr_performSearchEvent(){
       this.gtrFetchCompleted = false;
-      this.Gtr_searchTermsObj.forEach((term, i) => {
+      // this.Gtr_searchTermsObj.forEach((term, i) => {
+      //   ((ind) =>{
+      //     setTimeout(() =>{
+      //       console.log("term", term)
+      //       this.$set(term, 'gtrSearchStatus', "Searching");
+      //       bus.$emit("singleTermSearchGTR", term);
+      //     }, 200 + (2000 * ind));
+      //   })(i);
+      // })
+      let startVal = this.Gtr_idx;
+      for(let i=startVal; i<this.Gtr_searchTermsObj.length; i++){
         ((ind) =>{
           setTimeout(() =>{
-            console.log("term", term)
-            this.$set(term, 'gtrSearchStatus', "Searching");
-            bus.$emit("singleTermSearchGTR", term);
+            console.log("term", this.Gtr_searchTermsObj[i])
+            this.$set(this.Gtr_searchTermsObj[i], 'gtrSearchStatus', "Searching");
+            bus.$emit("singleTermSearchGTR", this.Gtr_searchTermsObj[i]);
+            this.Gtr_idx = this.Gtr_idx + 1;
           }, 200 + (2000 * ind));
         })(i);
-      })
+      }
     },
     filteredDiseasesItems(items){
       // this.filteredDiseasesItemsArray.push(items);
@@ -1374,7 +1389,7 @@ export default {
               genes.push(y.name);
             });
             var i = genes.indexOf(x.name);
-            x.htmlData = data[i].htmlData;
+            // x.htmlData = data[i].htmlData;
             x.value = data[i].value;
             x.conditions = data[i].conditions;
             x.diseases = data[i].diseases;
@@ -1395,7 +1410,7 @@ export default {
         this.items = data;
       }
       this.noOfSourcesSvg();
-      console.log("this.items", this.items);
+      console.log("this.GtrGenesForSummary", this.items);
       this.GtrGenesForSummary = this.items;
       // this.$emit("GtrGeneList", this.items);
 

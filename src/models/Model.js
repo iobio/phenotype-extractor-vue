@@ -640,14 +640,6 @@ mergeGenesAcrossPanels(genePanels) {
               ghrSrc: `https://ghr.nlm.nih.gov/gene/${gene.name}`,
               clinGenLink: `https://www.ncbi.nlm.nih.gov/projects/dbvar/clingen/clingen_gene.cgi?sym=${gene.name}`,
               geneIdLink: `https://www.ncbi.nlm.nih.gov/gene/${gene.geneid}`,
-              htmlData: `<svg width="${svgWidth}" height="18" xmlns="http://www.w3.org/2000/svg">
-                            <rect class="genepanelsRect"
-                                x="1" y="1" rx="5" width="${gene._genePanelCount * multiplicationFactor}" height="16"/>
-                            <rect class="grayRect"
-                                x="${(gene._genePanelCount * multiplicationFactor)+3}" y="1" rx="5" width="${(firstBarWidth - (gene._genePanelCount * multiplicationFactor))}" height="16"/>
-                            <text class="tableRectBarText"
-                                x="${(firstBarWidth + 19)}" y="14" font-size="13">${gene._genePanelCount}</text>
-                        </svg>`,
             };
       });
 

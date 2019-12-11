@@ -6,19 +6,25 @@
     >
       Phenotype Extractor
       <PhenotypeExtractor
-        :phenotypes="analysis.payload.phenotypes"
+        :phenotypes="phenotypes"
         @summaryGenes="summaryGenes($event)"
         @saveSearchedPhenotypes="saveSearchedPhenotypes($event)">
       </PhenotypeExtractor>
+      <!-- <PhenotypeExtractor
+        :phenotypes="analysis.payload.phenotypes"
+        :summaryFullGeneList="analysis.payload.summaryGeneList"
+        @summaryGenes="summaryGenes($event)"
+        @saveSearchedPhenotypes="saveSearchedPhenotypes($event)">
+      </PhenotypeExtractor> -->
 
       <br>
       Gene list
-      <!-- <GeneList
-        :summaryGeneList="summaryGeneList">
-      </GeneList> -->
       <GeneList
-        :summaryGeneList="analysis.payload.genesReport">
+        :summaryGeneList="summaryGeneList">
       </GeneList>
+      <!-- <GeneList
+        :summaryGeneList="analysis.payload.genesReport">
+      </GeneList> -->
     </v-layout>
   </v-container>
 </template>
@@ -36,6 +42,7 @@ import GtrSearch from './GtrSearch.vue';
 import PhenotypeExtractor from './PhenotypeExtractor.vue'
 import GeneList from './GeneList.vue'
 import analysisData from '../data/analysis.json';
+import PhenotypistData from '../data/PhenotypistState.json';
 import Model from '../models/Model';
 var model = new Model();
 
@@ -52,6 +59,7 @@ export default {
     summaryGeneList: [],
     phenotypes: [],
     analysis: null,
+    PhenotypistState: null,
     // phenotypes: [
     //   [
     //     {
@@ -79,14 +87,12 @@ export default {
   },
   created(){
     this.analysis = analysisData;
-    console.log("this.analysis", this.analysis)
+    this.PhenotypistState = PhenotypistData;
   },
   mounted(){
   },
   methods: {
     summaryGenes(genes){
-      console.log("genes returned", genes)
-      // this.gtrGenes = genes;
       this.summaryGeneList = genes;
     },
     saveSearchedPhenotypes(phenotypes){
