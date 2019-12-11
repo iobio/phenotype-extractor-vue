@@ -742,6 +742,7 @@ export default {
     individualGenesSearchTermHpo:{},
     gtrSavedState: false,
     gtrSavedTermsLength: 0,
+    gtr_saved_idx: 0
   }),
   watch: {
     textNotes(){
@@ -794,6 +795,7 @@ export default {
         this.Gtr_searchTermsObj.push(term);
         this.Gtr_searchTermArray.push(term.DiseaseName);
       })
+      this.Gtr_performSearchEvent_saved()
     }
 
     //Code for retriving state: Uncomment when other stuff is fixed:
@@ -1272,103 +1274,39 @@ export default {
         })(i);
       }
     },
+
+    Gtr_performSearchEvent_saved(){
+      // this.gtrFetchCompleted = false;
+      console.log("performing saved search")
+      let startVal = this.Gtr_idx;
+      for(let i=startVal; i<this.Gtr_searchTermsObj.length; i++){
+        ((ind) =>{
+          setTimeout(() =>{
+            this.$set(this.Gtr_searchTermsObj[i], 'gtrSearchStatus', "Completed");
+            bus.$emit("singleTermSearchGTR", this.Gtr_searchTermsObj[i]);
+            this.Gtr_idx = this.Gtr_idx + 1;
+          }, 200 + (2000 * ind));
+        })(i);
+      }
+    },
+
     filteredDiseasesItems(items){
       // this.filteredDiseasesItemsArray.push(items);
-      var obj = {
-        payload: {
-        }
+      this.filteredDiseasesItemsArray = [...this.filteredDiseasesItemsArray, ...items];
+      console.log("this.gtrSavedState", this.gtrSavedState);
+      console.log("this.gtr_saved_idx", this.gtr_saved_idx);
+      console.log("this.gtrSavedState", this.gtrSavedState);
+      this.gtr_saved_idx = this.gtr_saved_idx+1;
+      if(this.gtr_saved_idx>this.gtrSavedTermsLength){
+        this.gtrSavedState = false;
       }
-      this.filteredDiseasesItemsArray = [...this.filteredDiseasesItemsArray, ...items]
-      // console.log("this.filteredDiseasesItemsArray", this.filteredDiseasesItemsArray);
-      this.addDiseases(this.filteredDiseasesItemsArray)
+      console.log("this.gtrSavedState after", this.gtrSavedState);
+      console.log("this.gtr_saved_idx after", this.gtr_saved_idx);
+      console.log("this.gtrSavedState after", this.gtrSavedState);
+      if(!this.gtrSavedState){
+        this.addDiseases(this.filteredDiseasesItemsArray)
+      }
       console.log("this.filteredDiseasesItemsArray", this.filteredDiseasesItemsArray)
-      // var obj = {};
-      // var panels = {};
-      //
-      // this.filteredDiseasesItemsArray.map(x=>{
-      //   console.log("x is ", x)
-      //   var title = x.Title
-      //   if(obj.x === undefined){
-      //     obj.x = {};
-      //     var temp = obj.x;
-      //     temp.ConceptId = x.ConceptId;
-      //     temp.ConceptMeta = x.ConceptMeta;
-      //     temp.Definition = x.Definition;
-      //     temp.Merged = x.Merged;
-      //     temp.ModificationDate = x.ModificationDate;
-      //     temp.SemanticId = x.SemanticId;
-      //     temp.SemanticType = x.SemanticType;
-      //     temp.Suppressed = x.Suppressed;
-      //     temp.Title = x.Title;
-      //     temp.searchTerm = x.searchTerm;
-      //     temp.searchTermArray = x.searchTermArray;
-      //     temp.searchTermIndex = x.searchTermIndex;
-      //     temp._geneCount = x._geneCount;
-      //     temp._geneNames = x._geneNames;
-      //     temp._genePanelCount = x._genePanelCount;
-      //     temp._modeOfInheritance = x._modeOfInheritance;
-      //     temp._omim = x._omim;
-      //     temp._rowNumber = x._rowNumber;
-      //     temp._uid = x._uid;
-      //   }
-
-        // if(panels.x === undefined){
-        //   var temp = panels.x;
-        //   panels.genePanels = x.genePanels;
-        // }
-        // x.genePanels.map(y=>{
-        //
-        // })
-      //   var z = x.genePanels[0];
-      //   panels.genePanels = {
-      //     accession: z.accession,
-      //     analyticalvalidity: z.analyticalvalidity,
-      //     certifications: z.certifications,
-      //     conditioncount: z.conditioncount,
-      //     conditionlist: z.conditionlist,
-      //     directorlist: z.directorlist,
-      //     // disease: z.disease,
-      //     filter: z.filter,
-      //     extra: z.extra,
-      //     flags: z.flags,
-      //     genecount: z.genecount,
-      //     genelist: z.genelist,
-      //     id: z.id,
-      //     method: z.method,
-      //     offerer: z.offerer,
-      //     offererid: z.offererid,
-      //     offererlocation: z.offererlocation,
-      //     searchTermIndex: z.searchTermIndex,
-      //     searchTermArray: z.searchTermArray,
-      //     source: z.source,
-      //     studydesc: z.studydesc,
-      //     summary: z.summary,
-      //     targetpopulation: z.targetpopulation,
-      //     testname: z.testname,
-      //     testtargetcount: z.testtargetcount,
-      //     testtargetlist: z.testtargetlist,
-      //     testtype: z.testtype,
-      //     uid: z.uid,
-      //     _conditionNames: z._conditionNames,
-      //     _diseaseCount: z._diseaseCount,
-      //     _diseaseNames: z._diseaseNames,
-      //     // _diseases: z._diseases,
-      //     _geneNames: z._geneNames,
-      //     // _genes: z._genes,
-      //     _rowNumber: z._rowNumber,
-      //     _uid: z._uid,
-      //
-      //
-      //   }
-      // })
-      // console.log("obj", obj)
-      // console.log("panels", panels)
-      // var file = require('file-system');
-      // var fs = require('fs');
-      //
-      // fs.writeFileSync("data.json", JSON.stringify(this.filteredDiseasesItemsArray));
-      // obj.payload.filteredDiseasesItemsArray = JSON.stringify(this.filteredDiseasesItemsArray);
-      // console.log("obj", obj)
     },
     addDiseases: function(e){
       for(var i=0; i<e.length; i++){
