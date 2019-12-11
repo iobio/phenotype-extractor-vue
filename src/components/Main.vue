@@ -5,17 +5,17 @@
       wrap
     >
       Phenotype Extractor
-      <PhenotypeExtractor
+      <!-- <PhenotypeExtractor
         :phenotypes="phenotypes"
         @summaryGenes="summaryGenes($event)"
         @saveSearchedPhenotypes="saveSearchedPhenotypes($event)">
-      </PhenotypeExtractor>
-      <!-- <PhenotypeExtractor
+      </PhenotypeExtractor> -->
+      <PhenotypeExtractor
         :phenotypes="analysis.payload.phenotypes"
         :summaryFullGeneList="analysis.payload.summaryGeneList"
         @summaryGenes="summaryGenes($event)"
         @saveSearchedPhenotypes="saveSearchedPhenotypes($event)">
-      </PhenotypeExtractor> -->
+      </PhenotypeExtractor>
 
       <br>
       Gene list

@@ -13,6 +13,9 @@ Vue.use(uiv)
 
 Vue.config.productionTip = false
 
+import Clipboard from 'v-clipboard';
+Vue.use(Clipboard)
+
 import 'material-design-icons-iconfont/dist/material-design-icons.css'
 
 //Filters

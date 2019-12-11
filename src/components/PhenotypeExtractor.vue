@@ -740,6 +740,8 @@ export default {
     selectedObj: {},
     individualGenesSearchTermGtr:{},
     individualGenesSearchTermHpo:{},
+    gtrSavedState: false,
+    gtrSavedTermsLength: 0,
   }),
   watch: {
     textNotes(){
@@ -782,6 +784,17 @@ export default {
         this.checkToCloseSearchStatusDialog();
       }
     })
+
+    if(this.phenotypes!==undefined && this.phenotypes[0].length){
+      this.gtrSavedState= true;
+      this.gtrSavedTermsLength = this.phenotypes[0].length;
+      this.GtrTermsAdded = this.phenotypes[0];
+      this.GtrTermsAdded.map(term => {
+        this.gtr_push_idx = this.gtr_push_idx + 1;
+        this.Gtr_searchTermsObj.push(term);
+        this.Gtr_searchTermArray.push(term.DiseaseName);
+      })
+    }
 
     //Code for retriving state: Uncomment when other stuff is fixed:
     // if(this.phenotypes!==undefined && this.phenotypes[0].length){
@@ -831,7 +844,7 @@ export default {
             geneRankPhenolyzer: gene.geneRankPhenolyzer
           }
         })
-        console.log("clinData", clinData)
+        // console.log("clinData", clinData)
         this.$emit('summaryGenes', clinData);
 
     },
@@ -1261,9 +1274,101 @@ export default {
     },
     filteredDiseasesItems(items){
       // this.filteredDiseasesItemsArray.push(items);
+      var obj = {
+        payload: {
+        }
+      }
       this.filteredDiseasesItemsArray = [...this.filteredDiseasesItemsArray, ...items]
       // console.log("this.filteredDiseasesItemsArray", this.filteredDiseasesItemsArray);
       this.addDiseases(this.filteredDiseasesItemsArray)
+      console.log("this.filteredDiseasesItemsArray", this.filteredDiseasesItemsArray)
+      // var obj = {};
+      // var panels = {};
+      //
+      // this.filteredDiseasesItemsArray.map(x=>{
+      //   console.log("x is ", x)
+      //   var title = x.Title
+      //   if(obj.x === undefined){
+      //     obj.x = {};
+      //     var temp = obj.x;
+      //     temp.ConceptId = x.ConceptId;
+      //     temp.ConceptMeta = x.ConceptMeta;
+      //     temp.Definition = x.Definition;
+      //     temp.Merged = x.Merged;
+      //     temp.ModificationDate = x.ModificationDate;
+      //     temp.SemanticId = x.SemanticId;
+      //     temp.SemanticType = x.SemanticType;
+      //     temp.Suppressed = x.Suppressed;
+      //     temp.Title = x.Title;
+      //     temp.searchTerm = x.searchTerm;
+      //     temp.searchTermArray = x.searchTermArray;
+      //     temp.searchTermIndex = x.searchTermIndex;
+      //     temp._geneCount = x._geneCount;
+      //     temp._geneNames = x._geneNames;
+      //     temp._genePanelCount = x._genePanelCount;
+      //     temp._modeOfInheritance = x._modeOfInheritance;
+      //     temp._omim = x._omim;
+      //     temp._rowNumber = x._rowNumber;
+      //     temp._uid = x._uid;
+      //   }
+
+        // if(panels.x === undefined){
+        //   var temp = panels.x;
+        //   panels.genePanels = x.genePanels;
+        // }
+        // x.genePanels.map(y=>{
+        //
+        // })
+      //   var z = x.genePanels[0];
+      //   panels.genePanels = {
+      //     accession: z.accession,
+      //     analyticalvalidity: z.analyticalvalidity,
+      //     certifications: z.certifications,
+      //     conditioncount: z.conditioncount,
+      //     conditionlist: z.conditionlist,
+      //     directorlist: z.directorlist,
+      //     // disease: z.disease,
+      //     filter: z.filter,
+      //     extra: z.extra,
+      //     flags: z.flags,
+      //     genecount: z.genecount,
+      //     genelist: z.genelist,
+      //     id: z.id,
+      //     method: z.method,
+      //     offerer: z.offerer,
+      //     offererid: z.offererid,
+      //     offererlocation: z.offererlocation,
+      //     searchTermIndex: z.searchTermIndex,
+      //     searchTermArray: z.searchTermArray,
+      //     source: z.source,
+      //     studydesc: z.studydesc,
+      //     summary: z.summary,
+      //     targetpopulation: z.targetpopulation,
+      //     testname: z.testname,
+      //     testtargetcount: z.testtargetcount,
+      //     testtargetlist: z.testtargetlist,
+      //     testtype: z.testtype,
+      //     uid: z.uid,
+      //     _conditionNames: z._conditionNames,
+      //     _diseaseCount: z._diseaseCount,
+      //     _diseaseNames: z._diseaseNames,
+      //     // _diseases: z._diseases,
+      //     _geneNames: z._geneNames,
+      //     // _genes: z._genes,
+      //     _rowNumber: z._rowNumber,
+      //     _uid: z._uid,
+      //
+      //
+      //   }
+      // })
+      // console.log("obj", obj)
+      // console.log("panels", panels)
+      // var file = require('file-system');
+      // var fs = require('fs');
+      //
+      // fs.writeFileSync("data.json", JSON.stringify(this.filteredDiseasesItemsArray));
+      // obj.payload.filteredDiseasesItemsArray = JSON.stringify(this.filteredDiseasesItemsArray);
+      // console.log("obj", obj)
     },
     addDiseases: function(e){
       for(var i=0; i<e.length; i++){
@@ -1581,7 +1686,7 @@ export default {
         this.panelsSearchTermObj[searchTerm] = panels;
       }
 
-      console.log("individualGenesObjGtr", this.panelsSearchTermObj)
+      // console.log("individualGenesObjGtr", this.panelsSearchTermObj)
 
       var idx = this.Gtr_searchTermArray.indexOf(searchTerm);
 
@@ -1593,7 +1698,7 @@ export default {
         this.checkToCloseSearchStatusDialog();
       }
 
-      console.log("this.panelsSearchTermObj", this.panelsSearchTermObj)
+      // console.log("this.panelsSearchTermObj", this.panelsSearchTermObj)
       // this.$emit('individualPanelsSearchObj', this.panelsSearchTermObj)
       this.individualPanelsSearchObj(this.panelsSearchTermObj);
     },
@@ -1654,7 +1759,7 @@ export default {
     },
 
     HpoFullGeneList(genes){
-      console.log("HpoFullGeneList", genes)
+      // console.log("HpoFullGeneList", genes)
       this.clinPhenSelectedGenes = genes;
     },
 
@@ -1716,7 +1821,7 @@ export default {
           y.push(obj[key]);
       this.selectedObj[prop] = y;
       }
-      console.log("this.selectedObj", this.selectedObj)
+      // console.log("this.selectedObj", this.selectedObj)
     },
 
   }
