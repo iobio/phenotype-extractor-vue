@@ -742,7 +742,10 @@ export default {
     individualGenesSearchTermHpo:{},
     gtrSavedState: false,
     gtrSavedTermsLength: 0,
-    gtr_saved_idx: 0
+    gtr_saved_idx: 0,
+    phenolyzerSavedState: false,
+    phenolyzerSavedTermsLength: 0,
+    phenolyzer_saved_idx: 0
   }),
   watch: {
     textNotes(){
@@ -772,7 +775,9 @@ export default {
       this.Phenolyzer_search_complete_idx = this.Phenolyzer_search_complete_idx+1;
       if(this.Phenolyzer_search_complete_idx === this.Phenolyzer_searchTermArray.length){
         this.phenolyzerFetchCompleted = true;
-        this.checkToCloseSearchStatusDialog();
+        if(!this.phenolyzerSavedState){
+          this.checkToCloseSearchStatusDialog();
+        }
       }
     })
 
@@ -796,6 +801,18 @@ export default {
         this.Gtr_searchTermArray.push(term.DiseaseName);
       })
       this.Gtr_performSearchEvent_saved()
+    }
+
+    if(this.phenotypes!==undefined && this.phenotypes[1].length){
+      this.phenolyzerSavedState= true;
+      this.phenolyzerSavedTermsLength = this.phenotypes[1].length;
+      this.phenolyzerTermsAdded = this.phenotypes[1];
+      this.phenolyzerTermsAdded.map(term => {
+        this.phenolyzer_push_idx = this.phenolyzer_push_idx + 1;
+        this.Phenolyzer_searchTermsObj.push(term);
+        this.Phenolyzer_searchTermArray.push(term.value);
+      })
+      this.Phenolyzer_performSearchEvent_saved()
     }
 
     //Code for retriving state: Uncomment when other stuff is fixed:
@@ -1277,7 +1294,6 @@ export default {
 
     Gtr_performSearchEvent_saved(){
       // this.gtrFetchCompleted = false;
-      console.log("performing saved search")
       let startVal = this.Gtr_idx;
       for(let i=startVal; i<this.Gtr_searchTermsObj.length; i++){
         ((ind) =>{
@@ -1293,20 +1309,14 @@ export default {
     filteredDiseasesItems(items){
       // this.filteredDiseasesItemsArray.push(items);
       this.filteredDiseasesItemsArray = [...this.filteredDiseasesItemsArray, ...items];
-      console.log("this.gtrSavedState", this.gtrSavedState);
-      console.log("this.gtr_saved_idx", this.gtr_saved_idx);
-      console.log("this.gtrSavedState", this.gtrSavedState);
       this.gtr_saved_idx = this.gtr_saved_idx+1;
       if(this.gtr_saved_idx>this.gtrSavedTermsLength){
         this.gtrSavedState = false;
       }
-      console.log("this.gtrSavedState after", this.gtrSavedState);
-      console.log("this.gtr_saved_idx after", this.gtr_saved_idx);
-      console.log("this.gtrSavedState after", this.gtrSavedState);
       if(!this.gtrSavedState){
         this.addDiseases(this.filteredDiseasesItemsArray)
       }
-      console.log("this.filteredDiseasesItemsArray", this.filteredDiseasesItemsArray)
+      // console.log("this.filteredDiseasesItemsArray", this.filteredDiseasesItemsArray)
     },
     addDiseases: function(e){
       for(var i=0; i<e.length; i++){
@@ -1664,26 +1674,40 @@ export default {
       }
     },
 
+    Phenolyzer_performSearchEvent_saved(){
+      // this.phenolyzerFetchCompleted = false;
+      console.log("performing saved search")
+      let startVal = this.Phenolyzer_idx;
+      console.log("this.Phenolyzer_searchTermsObj", this.Phenolyzer_searchTermsObj)
+      for(let i=startVal; i<this.Phenolyzer_searchTermsObj.length; i++){
+        ((ind) =>{
+          setTimeout(() =>{
+            var term = this.Phenolyzer_searchTermsObj[i];
+            var str = term.value.replace("-", " ").replace(/\s\s+/g, ' ').toLowerCase();
+            bus.$emit("singleTermSearchPhenolyzer", str);
+            this.Phenolyzer_idx = this.Phenolyzer_idx + 1;
+          }, 200 + (2000 * ind));
+        })(i);
+      }
+    },
+
     phenolyzerIndividualGenes(genes){
       // TODO: event should be individualGenesObjPhenolyzer from phenolyzer
     },
 
     PhenolyzerFullGeneList(genes){
       this.phenolyzerItems = genes;
-      this.PhenolyzerGenesForSummary = genes;
+      this.phenolyzer_saved_idx = this.phenolyzer_saved_idx+1;
+      if(this.phenolyzer_saved_idx>this.phenolyzerSavedTermsLength){
+        this.phenolyzerSavedState = false;
+      }
+      if(!this.phenolyzerSavedState){ //Ensures that summary component is called only after state is built from the saved object.
+        this.PhenolyzerGenesForSummary = genes;
+      }
     },
 
     Hpo_performSearchEvent(){
       this.hpoFetchCompleted = false;
-      // this.Hpo_searchTermsObj.forEach((term, i) => {
-      //   ((ind) =>{
-      //     setTimeout(() =>{
-      //       // var str = term.value.replace("-", " ").replace(/\s\s+/g, ' ').toLowerCase();
-      //       bus.$emit("singleTermSearchHPO", term);
-      //     }, 200 + (2000 * ind));
-      //   })(i);
-      // })
-
       let startVal = this.Hpo_idx;
       for(let i=startVal; i<this.Hpo_searchTermsObj.length; i++){
         ((ind) =>{
