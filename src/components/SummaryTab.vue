@@ -1,5 +1,14 @@
 <template>
   <div>
+    <v-card>
+      <v-card-title primary-title>
+        Genes Overview
+      </v-card-title>
+      <v-divider></v-divider>
+      <center class="pl-2 pr-2">
+        <div id="venn" style="margin-top:-40px; margin-bottom:-10px"></div>
+      </center>
+    </v-card>
   </div>
 </template>
 
@@ -12,6 +21,8 @@ global.$ = jQuery;
 
 import Model from '../models/Model';
 var model = new Model();
+
+import d3 from 'd3'
 
 
   export default {
@@ -631,6 +642,7 @@ var model = new Model();
 
       },
       generateVennDiagramData(summaryObj){
+        console.log("summaryObj", summaryObj)
         this.vennData = {
           "data": [
             {"sets" : [0], "label" : "GTR", "size" : summaryObj.gtr.count, "isGtr":true, "isImportedGenes":false, "isPheno": false, "isClinPhen": false},
@@ -650,16 +662,16 @@ var model = new Model();
             {"sets" : [0,1,2,3],  "size":summaryObj.gtr_phenolyzer_ImportedGenes_ClinPhen.count, "isGtr":true, "isImportedGenes":true, "isPheno": true, "isClinPhen": true}
           ]
         }
-
-        if((this.GtrGenesArr.length>0 && this.PhenolyzerGenesArr.length>0) ||
-              (this.GtrGenesArr.length>0 && this.clinPhenSelectedGenes.length>0) ||
-              (this.PhenolyzerGenesArr.length>0 && this.clinPhenSelectedGenes.length>0) ||
-              (this.GtrGenesArr.length>0 && this.PhenolyzerGenesArr.length>0 && this.clinPhenSelectedGenes.length>0)){
-          this.drawVennDiagram();
-        }
-        else {
-          d3.select("#venn").select("svg").remove();
-        }
+        this.drawVennDiagram();
+        // if((this.GtrGenesArr.length>0 && this.PhenolyzerGenesArr.length>0) ||
+        //       (this.GtrGenesArr.length>0 && this.clinPhenSelectedGenes.length>0) ||
+        //       (this.PhenolyzerGenesArr.length>0 && this.clinPhenSelectedGenes.length>0) ||
+        //       (this.GtrGenesArr.length>0 && this.PhenolyzerGenesArr.length>0 && this.clinPhenSelectedGenes.length>0)){
+        //   this.drawVennDiagram();
+        // }
+        // else {
+        //   d3.select("#venn").select("svg").remove();
+        // }
       },
       performSetOperationsFullList: function(){
         //Create an array of GTR Gene Names
@@ -1023,10 +1035,11 @@ var model = new Model();
         console.log("this.summaryTableArrayFullList", this.summaryTableArrayFullList)
         this.$emit('summaryGenesFullList', this.summaryTableArrayFullList);
         // this.addSummaryGenesFullList(this.summaryTableArrayFullList);
+        this.generateVennDiagramData(summaryObj);
       },
       drawVennDiagram(){
         d3.select("#venn").select("svg").remove();
-        // var x = require('venn.js')
+        var x = require('venn.js')
         var chart = x.VennDiagram()
                  .width(325)
                  .height(325);
@@ -1106,5 +1119,18 @@ var model = new Model();
 </script>
 
 <style lang="sass">
+  .venntooltip
+    position: absolute
+    text-align: center
+    width: 128px
+    height: 26px
+    background: #333
+    color: #ddd
+    padding: 2px
+    border: 0px
+    border-radius: 8px
+    opacity: 0
+
+
 
 </style>

@@ -763,6 +763,10 @@ export default {
         },10)
       }
     },
+
+    phenolyzerSavedState(){
+      console.log("phenolyzerSavedState", this.phenolyzerSavedState)
+    }
   },
   mounted(){
     this.HPO_Terms_data = HPO_Terms;
@@ -1261,6 +1265,8 @@ export default {
       }
     },
     performSearchEvent(){
+      //Check if all saved state is built
+      // if built then fire functions to send to summary page and meanwhile start performing search
       this.Gtr_performSearchEvent();
       this.Phenolyzer_performSearchEvent();
       this.Hpo_performSearchEvent();
