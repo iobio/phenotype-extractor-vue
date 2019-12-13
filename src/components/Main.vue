@@ -97,7 +97,7 @@ export default {
       this.analysis.payload.genesReport = this.summaryGeneList;
     },
     saveSearchedPhenotypes(phenotypes){
-      console.log("saveSearchedPhenotypes", phenotypes)
+      this.analysis.payload.phenotypes = phenotypes;
     }
   }
 };
