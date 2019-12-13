@@ -553,6 +553,59 @@
         </v-card>
         <!-- End search status dialog -->
 
+        <div class="container">
+          <div class="row">
+            <div class="col-md-4">
+              <SummaryTab
+                v-bind:GtrGenesForSummary="GtrGenesForSummary"
+                v-bind:PhenolyzerGenesForSummary="PhenolyzerGenesForSummary"
+                v-bind:manuallyAddedGenes="manuallyAddedGenes"
+                v-bind:clinPhenSelectedGenes="clinPhenSelectedGenes"
+                v-bind:gtrCompleteGeneList="GtrGenesForSummary"
+                v-bind:phenolyzerCompleteGeneList="PhenolyzerGenesForSummary"
+                :GtrTermsLength="GtrTermsAdded.length"
+                :PhenolyzerTermsLength="phenolyzerTermsAdded.length"
+                :HpoTermsLength="hpoTermsAdded.length"
+                :multipleSearchTerms="multipleSearchTerms"
+                :summaryFullGeneList="summaryFullGeneList"
+                @summaryGenesFullList="summaryGenesFullList($event)">
+              </SummaryTab>
+            </div>
+            <div class="col-md-4">
+              <v-simple-table class="ml-2 mr-2">
+                <template v-slot:default>
+                  <thead>
+                    <tr>
+                      <th class="text-left">Top 5 GTR Genes</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr v-for="item in GtrGenesForSummary.slice(0,5)" :key="item.name">
+                      <td>{{ item.name }}</td>
+                    </tr>
+                  </tbody>
+                </template>
+              </v-simple-table>
+            </div>
+            <div class="col-md-4">
+              <v-simple-table class="ml-4 mr-4">
+                <template v-slot:default>
+                  <thead>
+                    <tr>
+                      <th class="text-left">Top 5 Phenolyzer Genes</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr v-for="item in PhenolyzerGenesForSummary.slice(0,5)" :key="item.geneName">
+                      <td>{{ item.geneName }}</td>
+                    </tr>
+                  </tbody>
+                </template>
+              </v-simple-table>
+            </div>
+          </div>
+        </div>
+
         <GtrSearch
           v-on:filteredDiseasesItems="filteredDiseasesItems"
           v-on:searchTermDiseases="searchTermDiseases($event)"
@@ -571,21 +624,6 @@
           @individualGenesObjHpo="individualGenesObjHpo($event)">
         </HpoSearch>
 
-
-        <SummaryTab
-          v-bind:GtrGenesForSummary="GtrGenesForSummary"
-          v-bind:PhenolyzerGenesForSummary="PhenolyzerGenesForSummary"
-          v-bind:manuallyAddedGenes="manuallyAddedGenes"
-          v-bind:clinPhenSelectedGenes="clinPhenSelectedGenes"
-          v-bind:gtrCompleteGeneList="GtrGenesForSummary"
-          v-bind:phenolyzerCompleteGeneList="PhenolyzerGenesForSummary"
-          :GtrTermsLength="GtrTermsAdded.length"
-          :PhenolyzerTermsLength="phenolyzerTermsAdded.length"
-          :HpoTermsLength="hpoTermsAdded.length"
-          :multipleSearchTerms="multipleSearchTerms"
-          :summaryFullGeneList="summaryFullGeneList"
-          @summaryGenesFullList="summaryGenesFullList($event)">
-        </SummaryTab>
 
     </v-layout>
   </v-container>

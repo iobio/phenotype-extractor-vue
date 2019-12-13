@@ -1,14 +1,12 @@
 <template>
   <div>
-    <v-card>
-      <v-card-title primary-title>
-        Genes Overview
-      </v-card-title>
+    <!-- <v-card> -->
+      Genes Overview
       <v-divider></v-divider>
       <center class="pl-2 pr-2">
         <div id="venn" style="margin-top:-40px; margin-bottom:-10px"></div>
       </center>
-    </v-card>
+    <!-- </v-card> -->
   </div>
 </template>
 
