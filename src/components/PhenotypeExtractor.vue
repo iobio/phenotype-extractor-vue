@@ -786,7 +786,9 @@ export default {
     phenolyzer_saved_idx: 0,
     hpoSavedState: false,
     hpoSavedTermsLength: 0,
-    hpo_saved_idx: 0
+    hpo_saved_idx: 0,
+    has_saved_state: null,
+    hpoItems: [],
   }),
   watch: {
     textNotes(){
@@ -804,6 +806,10 @@ export default {
 
     phenolyzerSavedState(){
       console.log("phenolyzerSavedState", this.phenolyzerSavedState)
+    },
+
+    gtrSavedState(){
+      console.log("gtrSavedState", this.gtrSavedState)
     }
   },
   mounted(){
@@ -833,6 +839,10 @@ export default {
       }
     })
 
+    //Check if there is saved state
+    if(this.phenotypes.length){
+      this.has_saved_state = true;
+    }
 
     if(this.phenotypes.length && this.phenotypes[0].length){
       this.gtrSavedState= true;
@@ -1305,10 +1315,37 @@ export default {
     performSearchEvent(){
       //Check if all saved state is built
       // if built then fire functions to send to summary page and meanwhile start performing search
-      this.Gtr_performSearchEvent();
-      this.Phenolyzer_performSearchEvent();
-      this.Hpo_performSearchEvent();
-      this.searchStatusDialog = true;
+      if(this.has_saved_state===null){
+        //check if all the data from saved state is built in the background or if there is no saved state
+        this.Gtr_performSearchEvent();
+        this.Phenolyzer_performSearchEvent();
+        this.Hpo_performSearchEvent();
+        this.searchStatusDialog = true;
+      }
+      else if(this.has_saved_state){
+        //check if all the data from saved state is built in the background
+        if(!this.gtrSavedState && !this.phenolyzerSavedState && !this.hpoSavedState){
+          //pass all the data from the components to the summary
+          this.addDiseases(this.filteredDiseasesItemsArray);
+          this.sendPhenolyzerGenesToSummary(this.phenolyzerItems);
+          this.sendHpoGenesToSummary(this.hpoItems);
+
+          this.has_saved_state = null; //data from saved state is built in background and no need to checkc this condition again
+
+          this.Gtr_performSearchEvent();
+          this.Phenolyzer_performSearchEvent();
+          this.Hpo_performSearchEvent();
+          this.searchStatusDialog = true;
+        }
+        else {
+          // TODO keep checking if the state is completed
+          if(this.gtrSavedState){
+            setTimeout(()=>{
+              this.performSearchEvent();
+            }, 1500)
+          }
+        }
+      }
     },
     Gtr_performSearchEvent(){
       this.gtrFetchCompleted = false;
@@ -1351,10 +1388,16 @@ export default {
       // this.filteredDiseasesItemsArray.push(items);
       this.filteredDiseasesItemsArray = [...this.filteredDiseasesItemsArray, ...items];
       this.gtr_saved_idx = this.gtr_saved_idx+1;
-      if(this.gtr_saved_idx>this.gtrSavedTermsLength){
+      // if(this.gtr_saved_idx>this.gtrSavedTermsLength){
+      //   this.gtrSavedState = false;
+      // }
+      // if(!this.gtrSavedState){
+      //   this.addDiseases(this.filteredDiseasesItemsArray)
+      // }
+      if(this.gtr_saved_idx===this.gtrSavedTermsLength){
         this.gtrSavedState = false;
       }
-      if(!this.gtrSavedState){
+      if(this.gtr_saved_idx>this.gtrSavedTermsLength && !this.gtrSavedState){
         this.addDiseases(this.filteredDiseasesItemsArray)
       }
       // console.log("this.filteredDiseasesItemsArray", this.filteredDiseasesItemsArray)
@@ -1739,12 +1782,22 @@ export default {
     PhenolyzerFullGeneList(genes){
       this.phenolyzerItems = genes;
       this.phenolyzer_saved_idx = this.phenolyzer_saved_idx+1;
-      if(this.phenolyzer_saved_idx>this.phenolyzerSavedTermsLength){
+      // if(this.phenolyzer_saved_idx>this.phenolyzerSavedTermsLength){
+      //   this.phenolyzerSavedState = false;
+      // }
+      // if(!this.phenolyzerSavedState){ //Ensures that summary component is called only after state is built from the saved object.
+      //   this.PhenolyzerGenesForSummary = genes;
+      // }
+      if(this.phenolyzer_saved_idx===this.phenolyzerSavedTermsLength){
         this.phenolyzerSavedState = false;
       }
-      if(!this.phenolyzerSavedState){ //Ensures that summary component is called only after state is built from the saved object.
-        this.PhenolyzerGenesForSummary = genes;
+      if(this.phenolyzer_saved_idx>this.phenolyzerSavedTermsLength){ //Ensures that summary component is called only after state is built from the saved object.
+        this.sendPhenolyzerGenesToSummary(this.phenolyzerItems);
       }
+    },
+
+    sendPhenolyzerGenesToSummary(genes){
+      this.PhenolyzerGenesForSummary = genes;
     },
 
     Hpo_performSearchEvent(){
@@ -1778,13 +1831,24 @@ export default {
 
     HpoFullGeneList(genes){
       // console.log("HpoFullGeneList", genes)
+      this.hpoItems = genes;
       this.hpo_saved_idx = this.hpo_saved_idx+1;
-      if(this.hpo_saved_idx>this.hpoSavedTermsLength){
+      // if(this.hpo_saved_idx>this.hpoSavedTermsLength){
+      //   this.hpoSavedState = false;
+      // }
+      // if(!this.hpoSavedState){ //Ensures that summary component is called only after state is built from the saved object.
+      //   this.clinPhenSelectedGenes = genes;
+      // }
+      if(this.hpo_saved_idx===this.hpoSavedTermsLength){
         this.hpoSavedState = false;
       }
-      if(!this.hpoSavedState){ //Ensures that summary component is called only after state is built from the saved object.
-        this.clinPhenSelectedGenes = genes;
+      if(this.hpo_saved_idx>this.hpoSavedTermsLength){ //Ensures that summary component is called only after state is built from the saved object.
+
       }
+    },
+
+    sendHpoGenesToSummary(genes){
+      this.clinPhenSelectedGenes = genes;
     },
 
     hpoIndividualGenes(obj){

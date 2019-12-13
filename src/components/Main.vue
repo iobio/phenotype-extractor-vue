@@ -5,26 +5,26 @@
       wrap
     >
       Phenotype Extractor
-      <PhenotypeExtractor
+      <!-- <PhenotypeExtractor
         :phenotypes="phenotypes"
         @summaryGenes="summaryGenes($event)"
         @saveSearchedPhenotypes="saveSearchedPhenotypes($event)">
-      </PhenotypeExtractor>
-      <!-- <PhenotypeExtractor
+      </PhenotypeExtractor> -->
+      <PhenotypeExtractor
         :phenotypes="analysis.payload.phenotypes"
         :summaryFullGeneList="analysis.payload.summaryGeneList"
         @summaryGenes="summaryGenes($event)"
         @saveSearchedPhenotypes="saveSearchedPhenotypes($event)">
-      </PhenotypeExtractor> -->
+      </PhenotypeExtractor>
 
       <br>
       Gene list
-      <!-- <GeneList
-        :summaryGeneList="summaryGeneList">
-      </GeneList> -->
       <GeneList
-        :summaryGeneList="analysis.payload.genesReport">
+        :summaryGeneList="summaryGeneList">
       </GeneList>
+      <!-- <GeneList
+        :summaryGeneList="analysis.payload.genesReport">
+      </GeneList> -->
     </v-layout>
   </v-container>
 </template>
