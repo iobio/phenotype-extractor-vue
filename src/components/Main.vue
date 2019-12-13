@@ -19,12 +19,12 @@
 
       <br>
       Gene list
-      <GeneList
-        :summaryGeneList="summaryGeneList">
-      </GeneList>
       <!-- <GeneList
-        :summaryGeneList="analysis.payload.genesReport">
+        :summaryGeneList="summaryGeneList">
       </GeneList> -->
+      <GeneList
+        :summaryGeneList="analysis.payload.genesReport">
+      </GeneList>
     </v-layout>
   </v-container>
 </template>
@@ -94,6 +94,7 @@ export default {
   methods: {
     summaryGenes(genes){
       this.summaryGeneList = genes;
+      this.analysis.payload.genesReport = this.summaryGeneList;
     },
     saveSearchedPhenotypes(phenotypes){
       console.log("saveSearchedPhenotypes", phenotypes)
