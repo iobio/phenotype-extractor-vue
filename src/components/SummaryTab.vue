@@ -71,6 +71,9 @@ import d3 from 'd3'
       },
       summaryFullGeneList: {
         type: Array
+      },
+      VennDiagramData: {
+        type: Object
       }
     },
     data: () => ({
@@ -190,7 +193,7 @@ import d3 from 'd3'
     updated(){
     },
     mounted(){
-      console.log("summaryFullGeneList", this.summaryFullGeneList)
+      this.generateVennDiagramData(this.VennDiagramData)
       // this.HelpDialogsData = HelpDialogs.data;
       this.GtrGenes = this.GtrGenesForSummary;
       this.PhenolyzerGenes = this.PhenolyzerGenesForSummary;

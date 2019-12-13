@@ -568,7 +568,8 @@
                 :HpoTermsLength="hpoTermsAdded.length"
                 :multipleSearchTerms="multipleSearchTerms"
                 :summaryFullGeneList="summaryFullGeneList"
-                @summaryGenesFullList="summaryGenesFullList($event)">
+                @summaryGenesFullList="summaryGenesFullList($event)"
+                :VennDiagramData="VennDiagramData">
               </SummaryTab>
             </div>
             <div class="col-md-4">
@@ -662,6 +663,9 @@ export default {
     },
     summaryFullGeneList: {
       type: Array
+    },
+    VennDiagramData: {
+      type: Object
     }
   },
   data: () => ({
@@ -1782,12 +1786,6 @@ export default {
     PhenolyzerFullGeneList(genes){
       this.phenolyzerItems = genes;
       this.phenolyzer_saved_idx = this.phenolyzer_saved_idx+1;
-      // if(this.phenolyzer_saved_idx>this.phenolyzerSavedTermsLength){
-      //   this.phenolyzerSavedState = false;
-      // }
-      // if(!this.phenolyzerSavedState){ //Ensures that summary component is called only after state is built from the saved object.
-      //   this.PhenolyzerGenesForSummary = genes;
-      // }
       if(this.phenolyzer_saved_idx===this.phenolyzerSavedTermsLength){
         this.phenolyzerSavedState = false;
       }
@@ -1833,12 +1831,6 @@ export default {
       // console.log("HpoFullGeneList", genes)
       this.hpoItems = genes;
       this.hpo_saved_idx = this.hpo_saved_idx+1;
-      // if(this.hpo_saved_idx>this.hpoSavedTermsLength){
-      //   this.hpoSavedState = false;
-      // }
-      // if(!this.hpoSavedState){ //Ensures that summary component is called only after state is built from the saved object.
-      //   this.clinPhenSelectedGenes = genes;
-      // }
       if(this.hpo_saved_idx===this.hpoSavedTermsLength){
         this.hpoSavedState = false;
       }

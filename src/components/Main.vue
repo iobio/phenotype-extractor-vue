@@ -14,7 +14,8 @@
         :phenotypes="analysis.payload.phenotypes"
         :summaryFullGeneList="analysis.payload.summaryGeneList"
         @summaryGenes="summaryGenes($event)"
-        @saveSearchedPhenotypes="saveSearchedPhenotypes($event)">
+        @saveSearchedPhenotypes="saveSearchedPhenotypes($event)"
+        :VennDiagramData="analysis.payload.VennDiagramData">
       </PhenotypeExtractor>
 
       <br>
