@@ -20,12 +20,12 @@
 
       <br>
       Gene list
-      <GeneList
-        :summaryGeneList="summaryGeneList">
-      </GeneList>
       <!-- <GeneList
-        :summaryGeneList="analysis.payload.genesReport">
+        :summaryGeneList="summaryGeneList">
       </GeneList> -->
+      <GeneList
+        :summaryGeneList="analysis.payload.genesReport">
+      </GeneList>
     </v-layout>
   </v-container>
 </template>

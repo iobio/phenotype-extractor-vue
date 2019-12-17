@@ -1835,7 +1835,7 @@ export default {
         this.hpoSavedState = false;
       }
       if(this.hpo_saved_idx>this.hpoSavedTermsLength){ //Ensures that summary component is called only after state is built from the saved object.
-
+        this.sendHpoGenesToSummary(genes)
       }
     },
 
