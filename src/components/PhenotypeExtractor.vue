@@ -1853,12 +1853,17 @@ export default {
           this.searchStatusDialog = false;
         }, 3000)
       }
-      else if(this.gtrFetchCompleted && !this.Phenolyzer_searchTermsObj && !this.Hpo_searchTermsObj){
+      else if(this.gtrFetchCompleted && !this.phenolyzerFetchCompleted && !this.hpoFetchCompleted){
         setTimeout(()=>{
           this.searchStatusDialog = false;
         }, 3000)
       }
-      else if(this.phenolyzerFetchCompleted && !this.Gtr_searchTermsObj && !this.Hpo_searchTermsObj){
+      else if(this.phenolyzerFetchCompleted && !this.gtrFetchCompleted && !this.hpoFetchCompleted){
+        setTimeout(()=>{
+          this.searchStatusDialog = false;
+        }, 3000)
+      }
+      else if(this.hpoFetchCompleted && !this.gtrFetchCompleted && !this.phenolyzerFetchCompleted){
         setTimeout(()=>{
           this.searchStatusDialog = false;
         }, 3000)
