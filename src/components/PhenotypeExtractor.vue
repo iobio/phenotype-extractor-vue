@@ -1983,6 +1983,10 @@ export default {
           this.hpoTermsAdded.splice(idx, 1)
           this.hpoTermsAdded = [...this.hpoTermsAdded];
         }
+
+        var allPhenotypes = [this.GtrTermsAdded, this.phenolyzerTermsAdded, this.hpoTermsAdded];
+        this.$emit('saveSearchedPhenotypes', allPhenotypes)
+
       },
 
   }
