@@ -1,5 +1,6 @@
 export default class GeneModel {
   constructor() {
+    this.searchTerm_preventSearchCB = {};
     this.preventSearchCB = false;
     this.geneSource = null;
     this.refseqOnly = {};
@@ -652,12 +653,18 @@ export default class GeneModel {
     });
   }
 
-  StopAjaxCall(){
-    this.preventSearchCB = true;
+  StopAjaxCall(searchTerm){
+    // this.preventSearchCB = true;
+    this.searchTerm_preventSearchCB[searchTerm].preventSearchCB = true;
   }
 
-  newSearchCall(){
-    this.preventSearchCB = false;
+  newSearchCall(searchTerm){
+    // this.preventSearchCB = false;
+    if(this.searchTerm_preventSearchCB[searchTerm]===undefined){
+      this.searchTerm_preventSearchCB[searchTerm] = {
+        preventSearchCB: false
+      }
+    }
   }
 
   searchPhenolyzerGenes(phenotypeTerm, selectGeneCount, statusCallback) {
@@ -667,7 +674,8 @@ export default class GeneModel {
     console.log("url is ", url)
     var status = null;
 
-    if(!this.preventSearchCB){
+    // if(!this.preventSearchCB){
+    if(!this.searchTerm_preventSearchCB[phenotypeTerm].preventSearchCB){
       $.ajax({
         url: url,
         type: "GET",

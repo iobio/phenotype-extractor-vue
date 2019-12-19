@@ -519,10 +519,21 @@
                                   color="primary"
                                 ></v-progress-circular>
                               </span>
+                              <span v-else-if="term.phenolyzerSearchStatus==='running'">
+                                <v-progress-circular
+                                  :width="2"
+                                  :size="20"
+                                  indeterminate
+                                  color="primary"
+                                ></v-progress-circular>
+                                Running
+                                <br>
+                                <span @click="stopPhenolyzerSearch(term.value)">close</span>
+                              </span>
                               <span v-else-if="term.phenolyzerSearchStatus==='Completed'"><v-icon color="green">done</v-icon></span>
                               <span v-else-if="term.phenolyzerSearchStatus==='NoGenes'"><v-icon color="red">error</v-icon></span>
                               <span v-else-if="term.phenolyzerSearchStatus==='NotAvailable'"><v-icon>indeterminate_check_box</v-icon></span>
-                              <span v-else-if="term.phenolyzerSearchStatus==='Cancelled'">Cancelled</span>
+                              <span v-else-if="term.phenolyzerSearchStatus==='Cancelled'"><v-icon color="gray lighten-4">cancel_schedule_send</v-icon></span>
                               <span v-else> <v-icon color="gray lighten-4">error</v-icon>  </span>
                             </td>
                           </tr>
@@ -773,13 +784,6 @@ export default {
       }
     },
 
-    phenolyzerSavedState(){
-      console.log("phenolyzerSavedState", this.phenolyzerSavedState)
-    },
-
-    gtrSavedState(){
-      console.log("gtrSavedState", this.gtrSavedState)
-    }
   },
   mounted(){
     this.HPO_Terms_data = HPO_Terms;
@@ -797,6 +801,25 @@ export default {
         }
       }
     })
+
+    bus.$on("RunningPhenolyzerFetchRequest", searchTerm => {
+      var idx = this.Phenolyzer_searchTermArray.indexOf(searchTerm);
+      this.$set(this.Phenolyzer_searchTermsObj[idx], 'phenolyzerSearchStatus', "running");
+    })
+
+
+    bus.$on("StoppedPhenolyzerFetchRequest", searchTerm => {
+      var idx = this.Phenolyzer_searchTermArray.indexOf(searchTerm);
+      this.$set(this.Phenolyzer_searchTermsObj[idx], 'phenolyzerSearchStatus', "Cancelled");
+      this.Phenolyzer_search_complete_idx = this.Phenolyzer_search_complete_idx+1;
+      if(this.Phenolyzer_search_complete_idx === this.Phenolyzer_searchTermArray.length){
+        this.phenolyzerFetchCompleted = true;
+        if(!this.phenolyzerSavedState){
+          this.checkToCloseSearchStatusDialog();
+        }
+      }
+    })
+
 
     bus.$on("NoGenesPhenolyzerRequest", searchTerm => {
       var idx = this.Phenolyzer_searchTermArray.indexOf(searchTerm);
@@ -1885,6 +1908,10 @@ export default {
       }
       // console.log("this.selectedObj", this.selectedObj)
     },
+
+    stopPhenolyzerSearch(term){
+      bus.$emit('stopPhenolyzerQueued', term);
+    }
 
   }
 };

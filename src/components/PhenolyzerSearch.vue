@@ -84,6 +84,11 @@ export default {
       }
       this.getPhenotypeDataSearch();
     })
+
+    bus.$on("stopPhenolyzerQueued", (term) => {
+      geneModel.StopAjaxCall(term);
+      bus.$emit("StoppedPhenolyzerFetchRequest", term)
+    })
   },
   methods:{
     getPhenotypeDataSearch(){
@@ -101,7 +106,7 @@ export default {
         //   this.$emit("PhenolyzerFullGeneList", this.items);
         // }
         self.phenotypeTermEntered = self.phenotypeTerm.value;
-        geneModel.newSearchCall();
+        geneModel.newSearchCall(searchTerm);
         geneModel.searchPhenolyzerGenes(searchTerm, this.phenolyzerTop,
         (status, error)=> {
           if (status == 'done') {
@@ -120,7 +125,7 @@ export default {
               }
             } else {
               self.tempItems = geneModel.phenolyzerGenes;
-              console.log("phenolyzer self.tempItems", self.tempItems)
+              // console.log("phenolyzer self.tempItems", self.tempItems)
               this.$emit("phenolyzerIndividualGenes", self.tempItems)
               self.multipleSearchTerms.push(searchTerm);
               // self.updateTableHeaders();
@@ -152,6 +157,8 @@ export default {
             }
           } else {
             self.phenolyzerStatus = status;
+            bus.$emit("RunningPhenolyzerFetchRequest", searchTerm)
+            // console.log("self.phenolyzerStatus: ", self.phenolyzerStatus, " searchTerm: ", searchTerm)
             // self.updatePhenolyzerStatusGlobal(status);
           }
         });
