@@ -46,7 +46,7 @@
         <!-- Start searched terms view -->
           <v-card-text>
             <div class="row">
-              <div class="col-md-4 mb-2">
+              <div class="col-md-3 mb-2">
                 <strong>GTR Terms: </strong>
                 <br>
                 <div class="mb-2" v-for="(term, i) in GtrTermsAdded" v-if="GtrTermsAdded.length">
@@ -59,7 +59,7 @@
                   <v-chip ><v-icon left>error_outline</v-icon> No conditions</v-chip>
                 </span>
               </div>
-              <div class="col-md-4 mb-2">
+              <div class="col-md-3 mb-2">
                 <strong>Phenolyzer Terms: </strong>
                 <br>
                 <div class="mb-2" v-for="(term, i) in phenolyzerTermsAdded" v-if="phenolyzerTermsAdded.length">
@@ -79,18 +79,37 @@
                   <v-chip ><v-icon left>error_outline</v-icon> No phenotypes</v-chip>
                 </div> -->
               </div>
-              <div class="col-md-4 mb-2">
+              <div class="col-md-3 mb-2">
                 <strong>HPO Terms: </strong>
                 <br>
-                <span v-for="(term, i) in hpoTermsAdded" v-if="hpoTermsAdded.length">
+                <div class="mb-2" v-for="(term, i) in hpoTermsAdded" v-if="hpoTermsAdded.length">
                   <v-chip slot="activator" color="primary" text-color="white" close :key="i" @input="remove(term, i, 'HPO')">
                   {{ i+1 }} . {{ term.HPO_Data }}
                   </v-chip>
-                </span>
-                <span v-if="hpoTermsAdded.length===0">
+                </div>
+                <div class="mb-2" v-if="hpoTermsAdded.length===0">
                   <v-chip ><v-icon left>error_outline</v-icon> No HPO terms</v-chip>
-                </span>
+                </div>
               </div>
+
+              <div class="col-md-3">
+                <SummaryTab
+                  v-bind:GtrGenesForSummary="GtrGenesForSummary"
+                  v-bind:PhenolyzerGenesForSummary="PhenolyzerGenesForSummary"
+                  v-bind:manuallyAddedGenes="manuallyAddedGenes"
+                  v-bind:clinPhenSelectedGenes="clinPhenSelectedGenes"
+                  v-bind:gtrCompleteGeneList="GtrGenesForSummary"
+                  v-bind:phenolyzerCompleteGeneList="PhenolyzerGenesForSummary"
+                  :GtrTermsLength="GtrTermsAdded.length"
+                  :PhenolyzerTermsLength="phenolyzerTermsAdded.length"
+                  :HpoTermsLength="hpoTermsAdded.length"
+                  :multipleSearchTerms="multipleSearchTerms"
+                  :summaryFullGeneList="summaryFullGeneList"
+                  @summaryGenesFullList="summaryGenesFullList($event)"
+                  :VennDiagramData="VennDiagramData">
+                </SummaryTab>
+              </div>
+
             </div>
           </v-card-text>
         <!-- End searched terms view  -->
@@ -552,60 +571,6 @@
           </v-dialog>
         </v-card>
         <!-- End search status dialog -->
-
-        <div class="container">
-          <div class="row">
-            <div class="col-md-4">
-              <SummaryTab
-                v-bind:GtrGenesForSummary="GtrGenesForSummary"
-                v-bind:PhenolyzerGenesForSummary="PhenolyzerGenesForSummary"
-                v-bind:manuallyAddedGenes="manuallyAddedGenes"
-                v-bind:clinPhenSelectedGenes="clinPhenSelectedGenes"
-                v-bind:gtrCompleteGeneList="GtrGenesForSummary"
-                v-bind:phenolyzerCompleteGeneList="PhenolyzerGenesForSummary"
-                :GtrTermsLength="GtrTermsAdded.length"
-                :PhenolyzerTermsLength="phenolyzerTermsAdded.length"
-                :HpoTermsLength="hpoTermsAdded.length"
-                :multipleSearchTerms="multipleSearchTerms"
-                :summaryFullGeneList="summaryFullGeneList"
-                @summaryGenesFullList="summaryGenesFullList($event)"
-                :VennDiagramData="VennDiagramData">
-              </SummaryTab>
-            </div>
-            <div class="col-md-4">
-              <v-simple-table class="ml-2 mr-2">
-                <template v-slot:default>
-                  <thead>
-                    <tr>
-                      <th class="text-left">Top 5 GTR Genes</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr v-for="item in GtrGenesForSummary.slice(0,5)" :key="item.name">
-                      <td>{{ item.name }}</td>
-                    </tr>
-                  </tbody>
-                </template>
-              </v-simple-table>
-            </div>
-            <div class="col-md-4">
-              <v-simple-table class="ml-4 mr-4">
-                <template v-slot:default>
-                  <thead>
-                    <tr>
-                      <th class="text-left">Top 5 Phenolyzer Genes</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr v-for="item in PhenolyzerGenesForSummary.slice(0,5)" :key="item.geneName">
-                      <td>{{ item.geneName }}</td>
-                    </tr>
-                  </tbody>
-                </template>
-              </v-simple-table>
-            </div>
-          </div>
-        </div>
 
         <GtrSearch
           v-on:filteredDiseasesItems="filteredDiseasesItems"
