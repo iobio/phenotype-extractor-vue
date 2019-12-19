@@ -1414,8 +1414,8 @@ export default {
     },
 
     filteredDiseasesItems_removeItem(items){
-      console.log("filteredDiseasesItems_removeItem", items)
-      this.addDiseases(items)
+      this.filteredDiseasesItemsArray = items;
+      this.addDiseases(this.filteredDiseasesItemsArray)
     },
 
     addDiseases: function(e){
@@ -1438,7 +1438,6 @@ export default {
         ))
       );
       this.diseasesProps = e;
-      console.log("this.diseasesProps", this.diseasesProps);
       if(this.diseasesProps.length>0){
         this.checkForAssociatedGenes();
         this.AddGenePanelData(this.diseasesProps);
@@ -1791,9 +1790,7 @@ export default {
 
     Phenolyzer_performSearchEvent_saved(){
       // this.phenolyzerFetchCompleted = false;
-      console.log("performing saved search")
       let startVal = this.Phenolyzer_idx;
-      console.log("this.Phenolyzer_searchTermsObj", this.Phenolyzer_searchTermsObj)
       for(let i=startVal; i<this.Phenolyzer_searchTermsObj.length; i++){
         ((ind) =>{
           setTimeout(() =>{
@@ -1941,7 +1938,6 @@ export default {
     },
 
     remove(item, idx, component){
-      console.log("clicked", item)
         if(component === 'GTR'){
           bus.$emit('pass_filteredDiseasesItems', this.diseasesProps)
           bus.$emit("removeGtrTerm", item.DiseaseName)
@@ -1953,7 +1949,6 @@ export default {
           this.Gtr_searchTermsObj = [...this.Gtr_searchTermsObj];
           this.Gtr_searchTermArray.splice(idx, 1);
           this.Gtr_searchTermArray = [...this.Gtr_searchTermArray];
-
           this.Gtr_idx = this.Gtr_idx - 1;
           this.gtr_push_idx = this.gtr_push_idx - 1;
         }
