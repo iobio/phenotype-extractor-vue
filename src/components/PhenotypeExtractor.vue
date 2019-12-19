@@ -1939,6 +1939,7 @@ export default {
 
 
     remove(item, idx, component){
+
         if(component === 'GTR'){
 
           if(this.has_saved_state){ //Ensures that genes of other tools are passed to the summary to built the list
@@ -1967,11 +1968,25 @@ export default {
           this.Gtr_idx = this.Gtr_idx - 1;
           this.gtr_push_idx = this.gtr_push_idx - 1;
         }
+
         else if(component === 'phenolyzer'){
+
+          if(this.has_saved_state){ //Ensures that genes of other tools are passed to the summary to built the list
+            if(!this.gtrSavedState && !this.hpoSavedState){
+              this.addDiseases(this.filteredDiseasesItemsArray);
+              this.sendHpoGenesToSummary(this.hpoItems);
+              this.has_saved_state = null; //data from saved state is built in background and no need to check this condition again
+            }
+            else{
+              setTimeout(()=>{
+                this.remove(item, idx, component); //Test this condition
+              }, 1500)
+            }
+          }
+
           bus.$emit("removePhenolyzerTerm", item.value)
           this.multipleSearchTerms.splice(this.multipleSearchTerms.indexOf(item.value), 1)
           this.multipleSearchTerms = [...this.multipleSearchTerms];
-
           this.phenolyzerTermsAdded.splice(idx, 1)
           this.phenolyzerTermsAdded = [...this.phenolyzerTermsAdded];
           this.Phenolyzer_searchTermsObj.splice(idx, 1);
@@ -1980,7 +1995,6 @@ export default {
           this.Phenolyzer_searchTermArray = [...this.Phenolyzer_searchTermArray];
           this.Phenolyzer_idx = this.Phenolyzer_idx - 1;
           this.phenolyzer_push_idx = this.phenolyzer_push_idx - 1;
-
         }
         else if(component === 'HPO'){
           // bus.$emit("removeHpoTerm", item)
