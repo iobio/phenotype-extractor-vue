@@ -798,6 +798,18 @@ export default {
       }
     })
 
+    bus.$on("NoGenesPhenolyzerRequest", searchTerm => {
+      var idx = this.Phenolyzer_searchTermArray.indexOf(searchTerm);
+      this.$set(this.Phenolyzer_searchTermsObj[idx], 'phenolyzerSearchStatus', "NoGenes");
+      this.Phenolyzer_search_complete_idx = this.Phenolyzer_search_complete_idx+1;
+      if(this.Phenolyzer_search_complete_idx === this.Phenolyzer_searchTermArray.length){
+        this.phenolyzerFetchCompleted = true;
+        if(!this.phenolyzerSavedState){
+          this.checkToCloseSearchStatusDialog();
+        }
+      }
+    })
+
     bus.$on("completeHpoFetchRequest", searchTerm => {
       var idx = this.Hpo_searchTermArray.indexOf(searchTerm);
       this.$set(this.Hpo_searchTermsObj[idx], 'hpoSearchStatus', "Completed");

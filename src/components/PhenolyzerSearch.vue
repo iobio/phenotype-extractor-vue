@@ -112,10 +112,11 @@ export default {
               self.checked = false;
               self.alert = true;
               if(!self.noResultsArr.includes(searchTerm)) {
-                if(searchTerm!=="pqrst"){
-                  self.noResultsArr.push(searchTerm);
-                }
-                bus.$emit("completeFetchRequest", "noPhenolyzerGenes");
+                // if(searchTerm!=="pqrst"){
+                //   self.noResultsArr.push(searchTerm);
+                // }
+                // bus.$emit("completeFetchRequest", "noPhenolyzerGenes");
+                bus.$emit("NoGenesPhenolyzerRequest", searchTerm);
               }
             } else {
               self.tempItems = geneModel.phenolyzerGenes;
