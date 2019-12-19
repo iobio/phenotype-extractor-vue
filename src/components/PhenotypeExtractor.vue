@@ -1402,7 +1402,9 @@ export default {
         this.gtrSavedState = false;
       }
       if(this.gtr_saved_idx>this.gtrSavedTermsLength && !this.gtrSavedState){
-        this.addDiseases(this.filteredDiseasesItemsArray)
+        if(items.length){ // length of items is present only when genepanels are there for the search term.
+          this.addDiseases(this.filteredDiseasesItemsArray)
+        }
       }
       // console.log("this.filteredDiseasesItemsArray", this.filteredDiseasesItemsArray)
     },
@@ -1717,17 +1719,24 @@ export default {
       }
       this.updatePanelsSearchObj(panels, searchTerm);
     },
+
     updatePanelsSearchObj: function(panels, searchTerm){
+
       if(!this.panelsSearchTermObj[searchTerm].length){
         this.panelsSearchTermObj[searchTerm] = panels;
       }
 
       // console.log("individualGenesObjGtr", this.panelsSearchTermObj)
-
       var idx = this.Gtr_searchTermArray.indexOf(searchTerm);
 
-      this.$set(this.Gtr_searchTermsObj[idx], 'gtrSearchStatus', "Completed");
-      this.Gtr_search_complete_idx = this.Gtr_search_complete_idx+1;
+      if(!panels.length){
+        this.$set(this.Gtr_searchTermsObj[idx], 'gtrSearchStatus', "NoGenes");
+        this.Gtr_search_complete_idx = this.Gtr_search_complete_idx+1;
+      }
+      else {
+        this.$set(this.Gtr_searchTermsObj[idx], 'gtrSearchStatus', "Completed");
+        this.Gtr_search_complete_idx = this.Gtr_search_complete_idx+1;
+      }
 
       if(this.Gtr_search_complete_idx === this.Gtr_searchTermArray.length){
         this.gtrFetchCompleted = true;
