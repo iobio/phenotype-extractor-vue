@@ -63,7 +63,7 @@
                 <strong>Phenolyzer Terms: </strong>
                 <br>
                 <div class="mb-2" v-for="(term, i) in phenolyzerTermsAdded" v-if="phenolyzerTermsAdded.length">
-                  <v-chip slot="activator" color="primary" text-color="white" close :key="i" @input="remove(term, i, 'phenolyzer')">
+                  <v-chip slot="activator" color="primary" text-color="white" close :key="i" @click:close="remove(term, i, 'phenolyzer')">
                   {{ i+1 }} . {{ term.value }}
                   </v-chip>
                 </div>
@@ -1949,7 +1949,7 @@ export default {
             }
             else{
               setTimeout(()=>{
-                this.remove(item, idx, component);
+                this.remove(item, idx, component); //Test this condition
               }, 1500)
             }
           }
@@ -1967,14 +1967,21 @@ export default {
           this.Gtr_idx = this.Gtr_idx - 1;
           this.gtr_push_idx = this.gtr_push_idx - 1;
         }
-        // else if(component === 'phenolyzer'){
-        //   bus.$emit("removePhenolyzerTerm", item.value)
-        //   this.multipleSearchTerms.splice(this.multipleSearchTerms.indexOf(item.value), 1)
-        //   this.multipleSearchTerms = [...this.multipleSearchTerms];
-        //
-        //   this.phenolyzerTermsAdded.splice(idx, 1)
-        //   this.phenolyzerTermsAdded = [...this.phenolyzerTermsAdded];
-        // }
+        else if(component === 'phenolyzer'){
+          bus.$emit("removePhenolyzerTerm", item.value)
+          this.multipleSearchTerms.splice(this.multipleSearchTerms.indexOf(item.value), 1)
+          this.multipleSearchTerms = [...this.multipleSearchTerms];
+
+          this.phenolyzerTermsAdded.splice(idx, 1)
+          this.phenolyzerTermsAdded = [...this.phenolyzerTermsAdded];
+          this.Phenolyzer_searchTermsObj.splice(idx, 1);
+          this.Phenolyzer_searchTermsObj = [...this.Phenolyzer_searchTermsObj];
+          this.Phenolyzer_searchTermArray.splice(idx, 1);
+          this.Phenolyzer_searchTermArray = [...this.Phenolyzer_searchTermArray];
+          this.Phenolyzer_idx = this.Phenolyzer_idx - 1;
+          this.phenolyzer_push_idx = this.phenolyzer_push_idx - 1;
+
+        }
         else if(component === 'HPO'){
           // bus.$emit("removeHpoTerm", item)
           // this.multipleSearchTerms.splice(this.multipleSearchTerms.indexOf(item.HPO_Data), 1)

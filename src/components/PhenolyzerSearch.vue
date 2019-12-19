@@ -89,8 +89,68 @@ export default {
       geneModel.StopAjaxCall(term);
       bus.$emit("StoppedPhenolyzerFetchRequest", term)
     })
+
+    bus.$on("removePhenolyzerTerm", (item)=>{
+      this.remove(item);
+    })
   },
   methods:{
+
+    remove(item) {
+      bus.$emit("clearSearchInput");
+      this.scoreBasedSort = true;
+      this.sourceBasedSort = false;
+      this.items = [];
+      this.selected = [];
+      this.search = '';
+      this.openSearchBox = false;
+      this.multipleSearchTerms.splice(this.multipleSearchTerms.indexOf(item), 1)
+      this.multipleSearchTerms = [...this.multipleSearchTerms];
+      this.dictionaryArr = this.dictionaryArr.filter(term=>term.name!==item);
+      // this.$emit('phenotypeSearchTermArray', this.multipleSearchTerms);
+      var combinedList = this.combineList(this.dictionaryArr);
+      var createdObj = this.createObj(combinedList);
+      var averagedData = this.performMeanOperation(combinedList, createdObj);
+      var meanData = this.getMeanData(averagedData, this.multipleSearchTerms.length)
+      var sortedPhenotypeData = this.sortTheOrder(meanData);
+      // var sortedPhenotypeData = this.sortTheOrder(averagedData);
+
+      if(this.multipleSearchTerms.length>0){
+        // let data = this.drawSvgBars(sortedPhenotypeData);
+        var rankedList = this.rankTheList(sortedPhenotypeData)
+        // let data = self.drawSvgBars(sortedPhenotypeData);
+        let data = this.drawSvgBars(rankedList);
+        this.items = data;
+        this.noOfSourcesSvg();
+        this.items.map(x=>{
+          x.individualRank = this.getRankForEachTerm(x.geneName)
+        })
+
+        if(this.launchedFromClin){
+          this.selected = this.items.slice(0,10);
+        }
+        else {
+          this.selected = this.items.slice(0,this.genesTop);
+        }
+        this.phenolyzerStatus = null;
+        this.selectedGenesText= ""+ this.selected.length + " of " + this.items.length + " genes selected";
+        this.$emit("UpdatePhenolyzerSelectedGenesText", this.selectedGenesText);
+        this.$emit("NoOfGenesSelectedFromPhenolyzer", this.selected.length);
+        this.$emit("SelectedPhenolyzerGenesToCopy", this.selected);
+        this.$emit("PhenolyzerFullGeneList", this.items);
+      }
+      else {
+        this.items = [];
+        this.selected = [];
+        this.phenolyzerStatus = null;
+        this.selectedGenesText= ""+ this.selected.length + " of " + this.items.length + " genes selected";
+        this.$emit("UpdatePhenolyzerSelectedGenesText", this.selectedGenesText);
+        this.$emit("NoOfGenesSelectedFromPhenolyzer", this.selected.length);
+        this.$emit("SelectedPhenolyzerGenesToCopy", this.selected);
+        this.$emit("PhenolyzerFullGeneList", this.items);
+      }
+    },
+
     getPhenotypeDataSearch(){
       let self = this;
       var searchTerm = self.phenotypeTerm.value;
