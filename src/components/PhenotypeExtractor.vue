@@ -50,7 +50,7 @@
                 <strong>GTR Terms: </strong>
                 <br>
                 <div class="mb-2" v-for="(term, i) in GtrTermsAdded" v-if="GtrTermsAdded.length">
-                  <v-chip slot="activator" color="primary" text-color="white" close :key="i" @input="remove(term, i, 'GTR')">
+                  <v-chip color="primary" text-color="white" close :key="i" @click:close="remove(term, i, 'GTR')">
                     <span v-if="term.DiseaseName!==undefined">{{ i+1 }} . {{ term.DiseaseName }}</span>
                     <span v-else> {{ i+1 }} . {{ term }}</span>
                   </v-chip>
@@ -83,7 +83,7 @@
                 <strong>HPO Terms: </strong>
                 <br>
                 <div class="mb-2" v-for="(term, i) in hpoTermsAdded" v-if="hpoTermsAdded.length">
-                  <v-chip slot="activator" color="primary" text-color="white" close :key="i" @input="remove(term, i, 'HPO')">
+                  <v-chip color="primary" text-color="white" close :key="i" @click:close="remove(term, i, 'HPO')">
                   {{ i+1 }} . {{ term.HPO_Data }}
                   </v-chip>
                 </div>
@@ -585,6 +585,7 @@
 
         <GtrSearch
           v-on:filteredDiseasesItems="filteredDiseasesItems"
+          v-on:filteredDiseasesItems_removeItem="filteredDiseasesItems_removeItem"
           v-on:searchTermDiseases="searchTermDiseases($event)"
           v-on:currentSearchTerm="currentSearchTerm($event)">
         </GtrSearch>
@@ -1242,7 +1243,7 @@ export default {
       this.GtrTermsAdded_temp = [];
       this.phenolyzerTermsAdded_temp = [];
       this.hpoTermsAdded_temp = [];
-
+      console.log("this.GtrTermsAdded", this.GtrTermsAdded)
       var allPhenotypes = [this.GtrTermsAdded, this.phenolyzerTermsAdded, this.hpoTermsAdded];
       this.$emit('saveSearchedPhenotypes', allPhenotypes)
 
@@ -1352,6 +1353,9 @@ export default {
       }
     },
     Gtr_performSearchEvent(){
+      console.log("performing GTR search")
+      console.log("this.Gtr_idx", this.Gtr_idx);
+      console.log("this.Gtr_searchTermsObj", this.Gtr_searchTermsObj)
       this.gtrFetchCompleted = false;
       // this.Gtr_searchTermsObj.forEach((term, i) => {
       //   ((ind) =>{
@@ -1408,6 +1412,12 @@ export default {
       }
       // console.log("this.filteredDiseasesItemsArray", this.filteredDiseasesItemsArray)
     },
+
+    filteredDiseasesItems_removeItem(items){
+      console.log("filteredDiseasesItems_removeItem", items)
+      this.addDiseases(items)
+    },
+
     addDiseases: function(e){
       for(var i=0; i<e.length; i++){
         for(var j=e.length-1; j>i; j--){
@@ -1428,8 +1438,16 @@ export default {
         ))
       );
       this.diseasesProps = e;
-      this.checkForAssociatedGenes();
-      this.AddGenePanelData(this.diseasesProps);
+      console.log("this.diseasesProps", this.diseasesProps);
+      if(this.diseasesProps.length>0){
+        this.checkForAssociatedGenes();
+        this.AddGenePanelData(this.diseasesProps);
+      }
+      else {
+        //make gtr gene list empty
+        this.GtrGenesForSummary = [];
+        this.items = [];
+      }
     },
     checkForAssociatedGenes: function(){
       var temp = [];
@@ -1920,7 +1938,42 @@ export default {
 
     stopPhenolyzerSearch(term){
       bus.$emit('stopPhenolyzerQueued', term);
-    }
+    },
+
+    remove(item, idx, component){
+      console.log("clicked", item)
+        if(component === 'GTR'){
+          bus.$emit('pass_filteredDiseasesItems', this.diseasesProps)
+          bus.$emit("removeGtrTerm", item.DiseaseName)
+          this.multipleSearchTerms.splice(this.multipleSearchTerms.indexOf(item.DiseaseName), 1)
+          this.multipleSearchTerms = [...this.multipleSearchTerms];
+          this.GtrTermsAdded.splice(idx, 1)
+          this.GtrTermsAdded = [...this.GtrTermsAdded];
+          this.Gtr_searchTermsObj.splice(idx, 1);
+          this.Gtr_searchTermsObj = [...this.Gtr_searchTermsObj];
+          this.Gtr_searchTermArray.splice(idx, 1);
+          this.Gtr_searchTermArray = [...this.Gtr_searchTermArray];
+
+          this.Gtr_idx = this.Gtr_idx - 1;
+          this.gtr_push_idx = this.gtr_push_idx - 1;
+        }
+        // else if(component === 'phenolyzer'){
+        //   bus.$emit("removePhenolyzerTerm", item.value)
+        //   this.multipleSearchTerms.splice(this.multipleSearchTerms.indexOf(item.value), 1)
+        //   this.multipleSearchTerms = [...this.multipleSearchTerms];
+        //
+        //   this.phenolyzerTermsAdded.splice(idx, 1)
+        //   this.phenolyzerTermsAdded = [...this.phenolyzerTermsAdded];
+        // }
+        else if(component === 'HPO'){
+          // bus.$emit("removeHpoTerm", item)
+          // this.multipleSearchTerms.splice(this.multipleSearchTerms.indexOf(item.HPO_Data), 1)
+          // this.multipleSearchTerms = [...this.multipleSearchTerms];
+
+          this.hpoTermsAdded.splice(idx, 1)
+          this.hpoTermsAdded = [...this.hpoTermsAdded];
+        }
+      },
 
   }
 };

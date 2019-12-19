@@ -63,6 +63,15 @@ export default {
       this.search = term;
       this.performSearch();
     })
+
+    bus.$on("removeGtrTerm", (item)=>{
+      this.removeItem(item);
+    })
+
+    bus.$on('pass_filteredDiseasesItems', (filteredDiseasesItems) => {
+      this.filteredDiseasesItems = filteredDiseasesItems;
+    })
+
   },
   updated(){
 
@@ -303,12 +312,43 @@ export default {
               this.filteredDiseasesItems = [];
               filteredDiseases = null;
             }
-
           }
-
       }
+    }, //ends performSearch method
 
-    }
+    removeItem(item){
+      this.multipleSearchTerms.splice(this.multipleSearchTerms.indexOf(item), 1)
+      this.multipleSearchTerms = [...this.multipleSearchTerms];
+      var temp = [];
+      this.filteredDiseasesItems.map(x=>{
+        if(x["searchTermArray"].includes(item) && x["searchTermArray"].length>1){
+          temp.push(x);
+        }
+        else if(!x["searchTermArray"].includes(item)){
+          temp.push(x);
+        }
+      })
+
+      temp.map(x=>{
+        if(x["searchTermArray"].includes(item)){
+          x["searchTermArray"].splice(x["searchTermArray"].indexOf(item), 1)
+          x["searchTermArray"] = [...x["searchTermArray"]];
+        }
+      })
+
+      temp.map(x=>{
+        x["searchTermIndex"] = [];
+        x["searchTermArray"].map(y=>{
+          x["searchTermIndex"].push(this.multipleSearchTerms.indexOf(y)+1)
+        })
+      })
+
+      this.filteredDiseasesItems = temp;
+      this.$emit('filteredDiseasesItems_removeItem', this.filteredDiseasesItems);
+      this.filteredDiseasesItems = []; //if something breaks delete this line
+    },
+
+
   }
 }
 
