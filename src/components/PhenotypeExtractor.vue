@@ -1937,8 +1937,23 @@ export default {
       bus.$emit('stopPhenolyzerQueued', term);
     },
 
+
     remove(item, idx, component){
         if(component === 'GTR'){
+
+          if(this.has_saved_state){ //Ensures that genes of other tools are passed to the summary to built the list
+            if(!this.phenolyzerSavedState && !this.hpoSavedState){
+              this.sendPhenolyzerGenesToSummary(this.phenolyzerItems);
+              this.sendHpoGenesToSummary(this.hpoItems);
+              this.has_saved_state = null; //data from saved state is built in background and no need to check this condition again
+            }
+            else{
+              setTimeout(()=>{
+                this.remove(item, idx, component);
+              }, 1500)
+            }
+          }
+
           bus.$emit('pass_filteredDiseasesItems', this.diseasesProps)
           bus.$emit("removeGtrTerm", item.DiseaseName)
           this.multipleSearchTerms.splice(this.multipleSearchTerms.indexOf(item.DiseaseName), 1)
