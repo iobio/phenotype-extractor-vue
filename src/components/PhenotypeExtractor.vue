@@ -46,49 +46,57 @@
         <!-- Start searched terms view -->
           <v-card-text>
             <div class="row">
-              <div class="col-md-3 mb-2">
-                <strong>GTR Terms: </strong>
-                <br>
-                <div class="mb-2" v-for="(term, i) in GtrTermsAdded" v-if="GtrTermsAdded.length">
-                  <v-chip color="primary" text-color="white" close :key="i" @click:close="remove(term, i, 'GTR')">
-                    <span v-if="term.DiseaseName!==undefined">{{ i+1 }} . {{ term.DiseaseName }}</span>
-                    <span v-else> {{ i+1 }} . {{ term }}</span>
-                  </v-chip>
-                </div>
-                <span v-if="GtrTermsAdded.length===0">
-                  <v-chip ><v-icon left>error_outline</v-icon> No conditions</v-chip>
-                </span>
-              </div>
-              <div class="col-md-3 mb-2">
-                <strong>Phenolyzer Terms: </strong>
-                <br>
-                <div class="mb-2" v-for="(term, i) in phenolyzerTermsAdded" v-if="phenolyzerTermsAdded.length">
-                  <v-chip slot="activator" color="primary" text-color="white" close :key="i" @click:close="remove(term, i, 'phenolyzer')">
-                  {{ i+1 }} . {{ term.value }}
-                  </v-chip>
-                </div>
-                <div class="mb-2" v-if="phenolyzerTermsAdded.length===0">
-                  <v-chip ><v-icon left>error_outline</v-icon> No phenotypes</v-chip>
-                </div>
-                <!-- <div class="mb-2" v-for="(term, i) in phenolyzerTermsAdded" v-if="phenolyzerTermsAdded.length">
-                  <v-chip v-if="i>0" slot="activator" color="primary" text-color="white" close :key="i" @input="remove(term, i, 'phenolyzer')">
-                  {{ i }} . {{ term.value }}
-                  </v-chip>
-                </div>
-                <div class="mb-2" v-if="phenolyzerTermsAdded.length===1 || phenolyzerTermsAdded.length===0">
-                  <v-chip ><v-icon left>error_outline</v-icon> No phenotypes</v-chip>
-                </div> -->
-              </div>
-              <div class="col-md-3 mb-2">
-                <strong>HPO Terms: </strong>
-                <br>
-                <div class="mb-2" v-for="(term, i) in hpoTermsAdded" v-if="hpoTermsAdded.length">
-                  <v-chip color="primary" text-color="white" close :key="i" @click:close="remove(term, i, 'HPO')">
-                  {{ i+1 }} . {{ term.HPO_Data }}
-                  </v-chip>
-                </div>
-                <div class="mb-2" v-if="hpoTermsAdded.length===0">
-                  <v-chip ><v-icon left>error_outline</v-icon> No HPO terms</v-chip>
+              <div class="col-md-9">
+                <div class="row">
+                  <div class="col-md-12 mb-2">
+                    <strong style="float:left">GTR Terms: </strong>
+                    <br>
+                    <div class="mb-2" v-if="GtrTermsAdded.length">
+                      <v-chip-group
+                        multiple
+                      >
+                        <v-chip color="primary" v-for="(term, i) in GtrTermsAdded" text-color="white" close :key="i" @click:close="remove(term, i, 'GTR')">
+                          <span style="color:white" v-if="term.DiseaseName!==undefined">{{ i+1 }} . {{ term.DiseaseName }}</span>
+                          <span style="color:white" v-else> {{ i+1 }} . {{ term }}</span>
+                        </v-chip>
+                      </v-chip-group>
+                    </div>
+                    <span v-if="GtrTermsAdded.length===0">
+                      <v-chip style="float:left"><v-icon left>error_outline</v-icon> No conditions</v-chip>
+                    </span>
+                  </div>
+                  <div class="col-md-12 mb-2">
+                    <strong style="float:left">Phenolyzer Terms: </strong>
+                    <br>
+                    <div class="mb-2"  v-if="phenolyzerTermsAdded.length">
+                      <v-chip-group
+                        multiple
+                      >
+                        <v-chip color="primary" v-for="(term, i) in phenolyzerTermsAdded" text-color="white" close :key="i" @click:close="remove(term, i, 'phenolyzer')">
+                          <span style="color:white"> {{ i+1 }} . {{ term.value }}</span>
+                        </v-chip>
+                      </v-chip-group>
+                    </div>
+                    <div class="mb-2" v-if="phenolyzerTermsAdded.length===0">
+                      <v-chip style="float:left"><v-icon left>error_outline</v-icon> No phenotypes</v-chip>
+                    </div>
+                  </div>
+                  <div class="col-md-12 mb-2">
+                    <strong style="float:left">HPO Terms: </strong>
+                    <br>
+                    <div class="mb-2" v-if="hpoTermsAdded.length">
+                      <v-chip-group
+                        multiple
+                      >
+                        <v-chip color="primary" v-for="(term, i) in hpoTermsAdded" text-color="white" close :key="i" @click:close="remove(term, i, 'HPO')">
+                          <span style="color:white"> {{ i+1 }} . {{ term.HPO_Data }}</span>
+                        </v-chip>
+                      </v-chip-group>
+                    </div>
+                    <div class="mb-2" v-if="hpoTermsAdded.length===0">
+                      <v-chip style="float:left"><v-icon left>error_outline</v-icon> No HPO terms</v-chip>
+                    </div>
+                  </div>
                 </div>
               </div>
 
@@ -2062,4 +2070,7 @@ export default {
 
   .dropdown-menu>.active>a
     background-color: #45688e
+
+  .v-chip__close.v-icon.v-icon--right
+    color: white !important
 </style>
