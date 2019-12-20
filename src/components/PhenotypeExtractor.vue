@@ -1941,7 +1941,6 @@ export default {
     remove(item, idx, component){
 
         if(component === 'GTR'){
-
           if(this.has_saved_state){ //Ensures that genes of other tools are passed to the summary to built the list
             if(!this.phenolyzerSavedState && !this.hpoSavedState){
               this.sendPhenolyzerGenesToSummary(this.phenolyzerItems);
@@ -1954,7 +1953,6 @@ export default {
               }, 1500)
             }
           }
-
           bus.$emit('pass_filteredDiseasesItems', this.diseasesProps)
           bus.$emit("removeGtrTerm", item.DiseaseName)
           this.multipleSearchTerms.splice(this.multipleSearchTerms.indexOf(item.DiseaseName), 1)
@@ -1970,7 +1968,6 @@ export default {
         }
 
         else if(component === 'phenolyzer'){
-
           if(this.has_saved_state){ //Ensures that genes of other tools are passed to the summary to built the list
             if(!this.gtrSavedState && !this.hpoSavedState){
               this.addDiseases(this.filteredDiseasesItemsArray);
@@ -1983,7 +1980,6 @@ export default {
               }, 1500)
             }
           }
-
           bus.$emit("removePhenolyzerTerm", item.value)
           this.multipleSearchTerms.splice(this.multipleSearchTerms.indexOf(item.value), 1)
           this.multipleSearchTerms = [...this.multipleSearchTerms];
@@ -1996,19 +1992,36 @@ export default {
           this.Phenolyzer_idx = this.Phenolyzer_idx - 1;
           this.phenolyzer_push_idx = this.phenolyzer_push_idx - 1;
         }
-        else if(component === 'HPO'){
-          // bus.$emit("removeHpoTerm", item)
-          // this.multipleSearchTerms.splice(this.multipleSearchTerms.indexOf(item.HPO_Data), 1)
-          // this.multipleSearchTerms = [...this.multipleSearchTerms];
 
+        else if(component === 'HPO'){
+          if(this.has_saved_state){ //Ensures that genes of other tools are passed to the summary to built the list
+            if(!this.gtrSavedState && !this.phenolyzerSavedState){
+              this.addDiseases(this.filteredDiseasesItemsArray);
+              this.sendPhenolyzerGenesToSummary(this.phenolyzerItems);
+              this.has_saved_state = null; //data from saved state is built in background and no need to check this condition again
+            }
+            else{
+              setTimeout(()=>{
+                this.remove(item, idx, component); //Test this condition
+              }, 1500)
+            }
+          }
+          bus.$emit("removeHpoTerm", item)
+          this.multipleSearchTerms.splice(this.multipleSearchTerms.indexOf(item.HPO_Data), 1)
+          this.multipleSearchTerms = [...this.multipleSearchTerms];
           this.hpoTermsAdded.splice(idx, 1)
           this.hpoTermsAdded = [...this.hpoTermsAdded];
+          this.Hpo_searchTermsObj.splice(idx, 1);
+          this.Hpo_searchTermsObj = [...this.Hpo_searchTermsObj];
+          this.Hpo_searchTermArray.splice(idx, 1);
+          this.Hpo_searchTermArray = [...this.Hpo_searchTermArray];
+          this.Hpo_idx = this.Hpo_idx - 1;
         }
 
         var allPhenotypes = [this.GtrTermsAdded, this.phenolyzerTermsAdded, this.hpoTermsAdded];
         this.$emit('saveSearchedPhenotypes', allPhenotypes)
 
-      },
+      }, //end remove() method
 
   }
 };
