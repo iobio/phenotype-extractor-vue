@@ -393,7 +393,7 @@ export default {
       self.$emit("NoOfGenesSelectedFromPhenolyzer", self.selected.length);
       self.$emit("SelectedPhenolyzerGenesToCopy", self.selected);
       this.$emit("PhenolyzerFullGeneList", this.items);
-      console.log("PhenolyzerFullGeneList", this.items);
+      // console.log("PhenolyzerFullGeneList", this.items);
 
     },
     sortScores(){

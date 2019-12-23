@@ -1361,9 +1361,6 @@ export default {
       }
     },
     Gtr_performSearchEvent(){
-      console.log("performing GTR search")
-      console.log("this.Gtr_idx", this.Gtr_idx);
-      console.log("this.Gtr_searchTermsObj", this.Gtr_searchTermsObj)
       this.gtrFetchCompleted = false;
       // this.Gtr_searchTermsObj.forEach((term, i) => {
       //   ((ind) =>{
@@ -1577,9 +1574,9 @@ export default {
         this.items = data;
       }
       this.noOfSourcesSvg();
-      console.log("this.GtrGenesForSummary", this.items);
+      // console.log("this.GtrGenesForSummary", this.items);
       this.GtrGenesForSummary = this.items;
-      // this.$emit("GtrGeneList", this.items);
+      this.$emit("GtrGeneList", this.GtrGenesForSummary);
 
     },
 
@@ -1828,6 +1825,7 @@ export default {
 
     sendPhenolyzerGenesToSummary(genes){
       this.PhenolyzerGenesForSummary = genes;
+      this.$emit('PhenolyzerGeneList', this.PhenolyzerGenesForSummary)
     },
 
     Hpo_performSearchEvent(){
@@ -1873,6 +1871,7 @@ export default {
 
     sendHpoGenesToSummary(genes){
       this.clinPhenSelectedGenes = genes;
+      this.$emit("HpoGeneList", this.clinPhenSelectedGenes)
     },
 
     hpoIndividualGenes(obj){

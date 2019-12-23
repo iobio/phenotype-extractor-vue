@@ -16,7 +16,10 @@
         :summaryFullGeneList="analysis.payload.summaryGeneList"
         @summaryGenes="summaryGenes($event)"
         @saveSearchedPhenotypes="saveSearchedPhenotypes($event)"
-        :VennDiagramData="analysis.payload.VennDiagramData">
+        :VennDiagramData="analysis.payload.VennDiagramData"
+        @GtrGeneList="GtrGeneList($event)"
+        @PhenolyzerGeneList="PhenolyzerGeneList($event)"
+        @HpoGeneList="HpoGeneList($event)">
       </PhenotypeExtractor>
 
       <br>
@@ -100,6 +103,10 @@ export default {
     },
     saveSearchedPhenotypes(phenotypes){
       this.analysis.payload.phenotypes = phenotypes;
+    },
+    PhenolyzerGeneList(genes){
+    },
+    HpoGeneList(genes){
     }
   }
 };

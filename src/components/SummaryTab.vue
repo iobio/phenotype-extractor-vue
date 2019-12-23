@@ -727,7 +727,7 @@ import d3 from 'd3'
           }
         })
 
-        console.log("gtrGenes", this.gtrFullGeneList)
+        // console.log("gtrGenes", this.gtrFullGeneList)
         //Check if the gene is in GTR
         uniqueGenes.map((x,i)=>{
           if(gtrGenes.includes(x)){
