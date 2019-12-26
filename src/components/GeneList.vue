@@ -21,6 +21,7 @@
             :headers="headers"
             :items="summaryGeneList"
             :search="search"
+            :items-per-page="15"
           >
           <template v-slot:item.name="{ item }">
             <v-chip @click="showGeneInfo(item.name)" dark>{{ item.name }}</v-chip>
