@@ -57,34 +57,38 @@
           </v-card-title>
           <v-data-table
             :headers="headers"
-            :items="summaryGeneList"
+            :items="summaryGenes"
             :search="search"
             :items-per-page="15"
           >
-          <template v-slot:item.name="{ item }">
-            <v-chip @click="showGeneInfo(item.name)" dark>{{ item.name }}</v-chip>
-          </template>
-          <template v-slot:item.searchTermsPhenolyzer="{ item }">
-    				<div v-for="(x, i) in item.searchTermsPhenolyzer">
-    					<v-chip class="mb-1 mt-2"> # {{ x.rank}}. {{ x.searchTerm }}</v-chip>
-    				</div>
-          </template>
-          <template v-slot:item.searchTermsGtr="{ item }">
-            <div v-for="(x, i) in item.searchTermsGtr">
-              <v-chip class="mb-1 mt-2"> # {{ x.rank}}. {{ x.searchTerm }}</v-chip>
-            </div>
-          </template>
-          <template v-slot:item.searchTermHpo="{ item }">
-            <div v-for="(x, i) in item.searchTermHpo">
-              <v-chip class="mb-1 mt-2"> {{ x.searchTerm }}</v-chip>
-            </div>
-          </template>
-          <template v-slot:item.isImportedGenes="{ item }">
-            <span v-if="item.isImportedGenes">
-              <v-icon style="color:#455A64">check_circle_outline</v-icon>
-            </span>
-
-          </template>
+            <template v-slot:item.name="{ item }">
+              <v-chip @click="showGeneInfo(item.name)" dark>{{ item.name }}</v-chip>
+            </template>
+            <template v-slot:item.searchTermsPhenolyzer="{ item }">
+      				<div v-for="(x, i) in item.searchTermsPhenolyzer">
+      					<v-chip class="mb-1 mt-2"> # {{ x.rank}}. {{ x.searchTerm }}</v-chip>
+      				</div>
+            </template>
+            <template v-slot:item.searchTermsGtr="{ item }">
+              <div v-for="(x, i) in item.searchTermsGtr">
+                <v-chip class="mb-1 mt-2"> # {{ x.rank}}. {{ x.searchTerm }}</v-chip>
+              </div>
+            </template>
+            <template v-slot:item.searchTermHpo="{ item }">
+              <div v-for="(x, i) in item.searchTermHpo">
+                <v-chip class="mb-1 mt-2"> {{ x.searchTerm }}</v-chip>
+              </div>
+            </template>
+            <template v-slot:item.isImportedGenes="{ item }">
+              <span v-if="item.isImportedGenes">
+                <v-icon style="color:#455A64">check_circle_outline</v-icon>
+              </span>
+            </template>
+            <template v-slot:item.action="{ item }">
+              <v-icon small @click="checkBeforeDeleteGene(item)">
+                delete
+              </v-icon>
+            </template>
           </v-data-table>
         </v-card>
       </v-flex>
@@ -109,6 +113,24 @@
           </v-card-actions>
         </v-card>
       </v-dialog>
+      <!--End Bypassed genes dialog -->
+
+      <!-- Modal to confirm gene deletion  -->
+      <v-dialog v-model="deleteGeneDialog" max-width="400">
+        <v-card>
+          <v-card-title class="headline"></v-card-title>
+          <v-card-text>
+            {{deleteGeneConfirmationText}}
+          </v-card-text>
+          <v-card-actions>
+            <v-spacer></v-spacer>
+            <v-btn color="primary" text @click="cancelDeleteGene">Cancel</v-btn>
+            <v-btn color="primary" text @click="deleteGene">Agree</v-btn>
+
+          </v-card-actions>
+        </v-card>
+      </v-dialog>
+      <!--End Modal to confirm gene deletion -->
 
     </v-layout>
   </v-container>
@@ -131,19 +153,20 @@ export default {
   },
   watch:{
     summaryGeneList(){
-      this.GtrGeneList = this.summaryGeneList;
+      this.summaryGenes = this.summaryGeneList;
     }
   },
   data () {
     return {
       search: '',
-      GtrGeneList: [],
+      summaryGenes: [],
       headers: [
         { text: 'Gene Name', align: 'left', value: 'name', sortable: false, },
-        { text: 'Added', value: 'isImportedGenes', sortable: false, },
         { text: 'GTR', value: 'searchTermsGtr', sortable: false, },
         { text: 'Phenolyzer', value: 'searchTermsPhenolyzer', sortable: false, },
         { text: 'HPO', value: 'searchTermHpo', sortable: false, },
+        { text: 'Added', value: 'isImportedGenes', sortable: false, },
+        { text: 'Action', value: 'action', sortable: false, },
       ],
       clickedGene: {},
       ncbiSummary: null,
@@ -155,11 +178,16 @@ export default {
       byPassedGenes: "",
       dupGenes: "",
       byPassedGenesDialog: false,
+      deleteGeneDialog: false,
+      deleteGeneConfirmationText: "",
+      geneToDelete: null,
     }
   },
 
   mounted(){
     this.knownGenesData = knownGenes;
+    this.summaryGenes = this.summaryGeneList;
+
   },
 
   methods: {
@@ -195,20 +223,35 @@ export default {
       })
 
       if(byPassedGenesArr.length>0){
-        console.log("" + byPassedGenesArr.join(" , ") + "  ");
         this.byPassedGenes = "" + byPassedGenesArr.join(" , ") + "  ";
       }
       if(duplicateGenes.length>0){
-        console.log("" + duplicateGenes.join(" , ") + "  ");
         this.dupGenes = "" + duplicateGenes.join(" , ") + "  ";
       }
 
       if(byPassedGenesArr.length>0 || duplicateGenes.length>0){
         this.byPassedGenesDialog = true;
       }
-      console.log("this.genes", this.genes)
       this.$emit("importedGenes", this.genes);
       this.genesToApply = null;
+    },
+
+    checkBeforeDeleteGene(gene){
+      this.deleteGeneConfirmationText = `Are you sure you want to delete the gene ${gene.name}?`;
+      this.deleteGeneDialog = true;
+      this.geneToDelete = gene;
+    },
+
+    cancelDeleteGene(){
+      this.geneToDelete = null;
+      this.deleteGeneDialog = false;
+    },
+
+    deleteGene(){
+      let idx = this.summaryGenes.findIndex(x => x.name === this.geneToDelete.name);
+      this.summaryGenes.splice(idx, 1)
+      this.deleteGeneDialog = false;
+      this.$emit("UpdateListOnDelete", this.summaryGenes)
     },
 
   }

@@ -30,7 +30,8 @@
       </GeneList> -->
       <GeneList
         :summaryGeneList="analysis.payload.genesReport"
-        @importedGenes="importedGenes($event)">
+        @importedGenes="importedGenes($event)"
+        @UpdateListOnDelete="UpdateListOnDelete($event)">
       </GeneList>
     </v-layout>
   </v-container>
@@ -116,6 +117,10 @@ export default {
     },
     GtrGeneList(genes){
     },
+    UpdateListOnDelete(genes){
+      this.summaryGeneList = genes;
+      this.analysis.payload.genesReport = genes;
+    }
   }
 };
 </script>
