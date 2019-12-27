@@ -48,7 +48,7 @@
 
       </v-flex>
 
-
+      <SkeletonLoadersSearchTerms/>
       <v-flex xs12 mt-5>
         <!-- Start searched terms view -->
           <v-card-text>
@@ -775,6 +775,7 @@ import SummaryTab from './SummaryTab.vue';
 import { Typeahead } from 'uiv';
 import PhenolyzerSearch from './PhenolyzerSearch.vue';
 import HpoSearch from './HpoSearch.vue';
+import SkeletonLoadersSearchTerms from './SkeletonLoadersSearchTerms.vue';
 
 import Model from '../models/Model';
 var model = new Model();
@@ -786,7 +787,8 @@ export default {
     GtrSearch,
     SummaryTab,
     PhenolyzerSearch,
-    HpoSearch
+    HpoSearch,
+    SkeletonLoadersSearchTerms
   },
   props: {
     phenotypes: {
@@ -1013,6 +1015,14 @@ export default {
     //Check if there is saved state
     if(this.phenotypes.length){
       this.has_saved_state = true;
+      bus.$emit("show-gene-table-skeleton-loaders");
+
+      if(this.phenotypes[0].length){
+        var time_to_show_skeleton_loader = this.phenotypes[0].length * 3500;
+        setTimeout(()=>{
+          bus.$emit("hide-gene-table-skeleton-loaders")
+        }, time_to_show_skeleton_loader)
+      }
     }
 
     if(this.phenotypes.length && this.phenotypes[0].length){

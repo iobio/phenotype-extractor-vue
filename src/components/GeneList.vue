@@ -6,90 +6,102 @@
     >
       <v-flex xs12 sm12 md12 lg12>
         <v-card>
-          <v-card-title>
-            Gene list
-            <v-divider
-              class="mx-4"
-              inset
-              vertical
-            ></v-divider>
-            <v-spacer></v-spacer>
+          <div id="gene-data-table" v-if="!geneTableLoading">
+            <v-card-title>
+              Gene list
+              <v-divider
+                class="mx-4"
+                inset
+                vertical
+              ></v-divider>
+              <v-spacer></v-spacer>
 
-            <v-text-field
-              v-model="search"
-              append-icon="search"
-              label="Search"
-              single-line
-              hide-details
-            ></v-text-field>
+              <v-text-field
+                v-model="search"
+                append-icon="search"
+                label="Search"
+                single-line
+                hide-details
+              ></v-text-field>
 
-            <v-dialog v-model="copyPasteGenes" max-width="500px">
-              <template v-slot:activator="{ on }">
-                <v-btn color="primary" outlined dark class="mr-3 ml-3 mt-2" v-on="on">Add Genes</v-btn>
+              <v-dialog v-model="copyPasteGenes" max-width="500px">
+                <template v-slot:activator="{ on }">
+                  <v-btn color="primary" outlined dark class="mr-3 ml-3 mt-2" v-on="on">Add Genes</v-btn>
+                </template>
+                <v-card>
+                  <v-card-title primary-title>
+                  </v-card-title>
+                  <v-card-text>
+                    <div id="enter-genes-input">
+                      <v-textarea
+                        id="copy-paste-genes"
+                        multi-line
+                        rows="12"
+                        label="Enter gene names"
+                        v-model="genesToApply"
+                      >
+                      </v-textarea>
+                    </div>
+                  </v-card-text>
+                  <v-card-actions>
+                    <v-spacer></v-spacer>
+                    <v-btn style="float:right" @click.native="onApplyGenes">
+                      Apply
+                    </v-btn>
+                    <v-btn style="float:right" @click.native="copyPasteGenes = false">
+                      Cancel
+                    </v-btn>
+                  </v-card-actions>
+                </v-card>
+              </v-dialog>
+
+            </v-card-title>
+            <v-data-table
+              :headers="headers"
+              :items="summaryGenes"
+              :search="search"
+              :items-per-page="15"
+            >
+              <template v-slot:item.name="{ item }">
+                <v-chip @click="showGeneInfo(item.name)" dark>{{ item.name }}</v-chip>
               </template>
-              <v-card>
-                <v-card-title primary-title>
-                </v-card-title>
-                <v-card-text>
-                  <div id="enter-genes-input">
-                    <v-textarea
-                      id="copy-paste-genes"
-                      multi-line
-                      rows="12"
-                      label="Enter gene names"
-                      v-model="genesToApply"
-                    >
-                    </v-textarea>
-                  </div>
-                </v-card-text>
-                <v-card-actions>
-                  <v-spacer></v-spacer>
-                  <v-btn style="float:right" @click.native="onApplyGenes">
-                    Apply
-                  </v-btn>
-                  <v-btn style="float:right" @click.native="copyPasteGenes = false">
-                    Cancel
-                  </v-btn>
-                </v-card-actions>
-              </v-card>
-            </v-dialog>
+              <template v-slot:item.searchTermsPhenolyzer="{ item }">
+        				<div v-for="(x, i) in item.searchTermsPhenolyzer">
+        					<v-chip class="mb-1 mt-2"> # {{ x.rank}}. {{ x.searchTerm }}</v-chip>
+        				</div>
+              </template>
+              <template v-slot:item.searchTermsGtr="{ item }">
+                <div v-for="(x, i) in item.searchTermsGtr">
+                  <v-chip class="mb-1 mt-2"> # {{ x.rank}}. {{ x.searchTerm }}</v-chip>
+                </div>
+              </template>
+              <template v-slot:item.searchTermHpo="{ item }">
+                <div v-for="(x, i) in item.searchTermHpo">
+                  <v-chip class="mb-1 mt-2"> {{ x.searchTerm }}</v-chip>
+                </div>
+              </template>
+              <template v-slot:item.isImportedGenes="{ item }">
+                <span v-if="item.isImportedGenes">
+                  <v-icon style="color:#455A64">check_circle_outline</v-icon>
+                </span>
+              </template>
+              <template v-slot:item.action="{ item }">
+                <v-icon small @click="checkBeforeDeleteGene(item)">
+                  delete
+                </v-icon>
+              </template>
+            </v-data-table>
+          </div>
 
-          </v-card-title>
-          <v-data-table
-            :headers="headers"
-            :items="summaryGenes"
-            :search="search"
-            :items-per-page="15"
+          <v-skeleton-loader
+            :loading="geneTableLoading"
+            :transition="transition"
+            type="table"
+            v-if="geneTableLoading"
           >
-            <template v-slot:item.name="{ item }">
-              <v-chip @click="showGeneInfo(item.name)" dark>{{ item.name }}</v-chip>
-            </template>
-            <template v-slot:item.searchTermsPhenolyzer="{ item }">
-      				<div v-for="(x, i) in item.searchTermsPhenolyzer">
-      					<v-chip class="mb-1 mt-2"> # {{ x.rank}}. {{ x.searchTerm }}</v-chip>
-      				</div>
-            </template>
-            <template v-slot:item.searchTermsGtr="{ item }">
-              <div v-for="(x, i) in item.searchTermsGtr">
-                <v-chip class="mb-1 mt-2"> # {{ x.rank}}. {{ x.searchTerm }}</v-chip>
-              </div>
-            </template>
-            <template v-slot:item.searchTermHpo="{ item }">
-              <div v-for="(x, i) in item.searchTermHpo">
-                <v-chip class="mb-1 mt-2"> {{ x.searchTerm }}</v-chip>
-              </div>
-            </template>
-            <template v-slot:item.isImportedGenes="{ item }">
-              <span v-if="item.isImportedGenes">
-                <v-icon style="color:#455A64">check_circle_outline</v-icon>
-              </span>
-            </template>
-            <template v-slot:item.action="{ item }">
-              <v-icon small @click="checkBeforeDeleteGene(item)">
-                delete
-              </v-icon>
-            </template>
-          </v-data-table>
+
+          </v-skeleton-loader>
+
         </v-card>
       </v-flex>
 
@@ -141,6 +153,7 @@
 import knownGenes from '../data/knownGenes';
 import GeneModel from '../models/GeneModel';
 var geneModel = new GeneModel();
+import { bus } from '../main';
 
 export default {
   name: 'GeneList',
@@ -181,12 +194,24 @@ export default {
       deleteGeneDialog: false,
       deleteGeneConfirmationText: "",
       geneToDelete: null,
+      geneTableLoading:false,
+      transition: 'scale-transition',
     }
   },
 
   mounted(){
     this.knownGenesData = knownGenes;
     this.summaryGenes = this.summaryGeneList;
+  },
+
+  created(){
+    bus.$on("show-gene-table-skeleton-loaders", ()=>{
+      this.geneTableLoading = true;
+    });
+
+    bus.$on("hide-gene-table-skeleton-loaders", ()=>{
+      this.geneTableLoading = false;
+    });
 
   },
 
