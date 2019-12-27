@@ -74,6 +74,9 @@ import d3 from 'd3'
       },
       VennDiagramData: {
         type: Object
+      },
+      manuallyAddedGenes: {
+        type: Array
       }
     },
     data: () => ({
@@ -122,6 +125,7 @@ import d3 from 'd3'
       GtrGenesArrFullList: [],
       PhenolyzerFullGeneList: [],
       PhenolyzerGenesArrFullList: [],
+      AddedGenes: [],
     }),
     watch: {
       multipleSearchTerms: function(){
@@ -155,6 +159,7 @@ import d3 from 'd3'
         this.AddedGenes = this.manuallyAddedGenes;
         // this.resetUniqueGtrPhenoData();
         this.performSetOperations();
+        this.performSetOperationsFullList();
       },
       clinPhenSelectedGenes: function(){
         this.PhenolyzerGenes = [];
@@ -606,7 +611,7 @@ import d3 from 'd3'
           ...uniqueGTR, ...uniqueClinPhen, ...uniquePheno
         ]
         this.summaryTableArray = tableGenes;
-        console.log("this.summaryTableArray", this.summaryTableArray)
+        // console.log("this.summaryTableArray", this.summaryTableArray)
         // this.$emit('summaryGenesFullList', this.summaryTableArrayFullList);
 
         // this.generateVennDiagramData(summaryObj);
@@ -643,7 +648,7 @@ import d3 from 'd3'
 
       },
       generateVennDiagramData(summaryObj){
-        console.log("summaryObj", summaryObj)
+        // console.log("summaryObj", summaryObj)
         this.vennData = {
           "data": [
             {"sets" : [0], "label" : "GTR", "size" : summaryObj.gtr.count, "isGtr":true, "isImportedGenes":false, "isPheno": false, "isClinPhen": false},

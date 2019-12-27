@@ -651,6 +651,9 @@ export default {
     },
     VennDiagramData: {
       type: Object
+    },
+    AddedGenes: {
+      type: Array
     }
   },
   data: () => ({
@@ -792,6 +795,14 @@ export default {
         },10)
       }
     },
+    AddedGenes(){
+      console.log("AddedGenes", this.AddedGenes);
+      this.manuallyAddedGenes = this.AddedGenes;
+      this.addDiseases(this.filteredDiseasesItemsArray);
+      this.sendPhenolyzerGenesToSummary(this.phenolyzerItems);
+      this.sendHpoGenesToSummary(this.hpoItems);
+
+    }
 
   },
   mounted(){

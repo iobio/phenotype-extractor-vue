@@ -8,7 +8,13 @@
         <v-card>
           <v-card-title>
             Gene list
+            <v-divider
+              class="mx-4"
+              inset
+              vertical
+            ></v-divider>
             <v-spacer></v-spacer>
+
             <v-text-field
               v-model="search"
               append-icon="search"
@@ -16,6 +22,38 @@
               single-line
               hide-details
             ></v-text-field>
+
+            <v-dialog v-model="copyPasteGenes" max-width="500px">
+              <template v-slot:activator="{ on }">
+                <v-btn color="primary" outlined dark class="mr-3 ml-3 mt-2" v-on="on">Add Genes</v-btn>
+              </template>
+              <v-card>
+                <v-card-title primary-title>
+                </v-card-title>
+                <v-card-text>
+                  <div id="enter-genes-input">
+                    <v-textarea
+                      id="copy-paste-genes"
+                      multi-line
+                      rows="12"
+                      label="Enter gene names"
+                      v-model="genesToApply"
+                    >
+                    </v-textarea>
+                  </div>
+                </v-card-text>
+                <v-card-actions>
+                  <v-spacer></v-spacer>
+                  <v-btn style="float:right" @click.native="onApplyGenes">
+                    Apply
+                  </v-btn>
+                  <v-btn style="float:right" @click.native="copyPasteGenes = false">
+                    Cancel
+                  </v-btn>
+                </v-card-actions>
+              </v-card>
+            </v-dialog>
+
           </v-card-title>
           <v-data-table
             :headers="headers"
@@ -44,12 +82,35 @@
           </v-data-table>
         </v-card>
       </v-flex>
+
+      <!-- Bypassed genes dialog -->
+      <v-dialog v-model="byPassedGenesDialog" max-width="400">
+        <v-card>
+          <v-card-title class="headline">Warning</v-card-title>
+          <v-card-text>
+            <p v-if="byPassedGenes.length>2">
+              Bypassing unknown genes: {{ byPassedGenes }}
+            </p>
+            <p v-if="dupGenes.length>2">
+              Bypassing duplicate genes: {{ dupGenes }}
+            </p>
+          </v-card-text>
+          <v-card-actions>
+            <v-spacer></v-spacer>
+            <v-btn style="float:right" @click.native="byPassedGenesDialog = false">
+              OK
+            </v-btn>
+          </v-card-actions>
+        </v-card>
+      </v-dialog>
+
     </v-layout>
   </v-container>
 </template>
 
 <script>
 
+import knownGenes from '../data/knownGenes';
 import GeneModel from '../models/GeneModel';
 var geneModel = new GeneModel();
 
@@ -80,7 +141,18 @@ export default {
       clickedGene: {},
       ncbiSummary: null,
       dialog: false,
+      genes:[],
+      copyPasteGenes: false,
+      knownGenesData: null,
+      genesToApply: null,
+      byPassedGenes: "",
+      dupGenes: "",
+      byPassedGenesDialog: false,
     }
+  },
+
+  mounted(){
+    this.knownGenesData = knownGenes;
   },
 
   methods: {
@@ -92,6 +164,46 @@ export default {
       })
       this.dialog = true;
     },
+
+    onApplyGenes(){
+      this.copyPasteGenes = false;
+      this.dupGenes= "",
+      this.byPassedGenes = "";
+      this.genesToApply = this.genesToApply.trim().replace(/\n/g, " ").replace(/,/g, " ").replace(/\s+/g, " ");
+      var arr = this.genesToApply.split(" ");
+      var byPassedGenes = "";
+      var byPassedGenesArr = [];
+      var duplicateGenes = [];
+
+      arr.map(x=>{
+        if(this.knownGenesData.includes(x.toUpperCase()) && !this.genes.includes(x.toUpperCase()) ){
+          this.genes.push(x.toUpperCase());
+        }
+        else if(this.genes.includes(x.toUpperCase()) && !duplicateGenes.includes()){
+          duplicateGenes.push(x.toUpperCase())
+        }
+        else {
+          byPassedGenesArr.push(x.toUpperCase());
+        }
+      })
+
+      if(byPassedGenesArr.length>0){
+        console.log("" + byPassedGenesArr.join(" , ") + "  ");
+        this.byPassedGenes = "" + byPassedGenesArr.join(" , ") + "  ";
+      }
+      if(duplicateGenes.length>0){
+        console.log("" + duplicateGenes.join(" , ") + "  ");
+        this.dupGenes = "" + duplicateGenes.join(" , ") + "  ";
+      }
+
+      if(byPassedGenesArr.length>0 || duplicateGenes.length>0){
+        this.byPassedGenesDialog = true;
+      }
+      console.log("this.genes", this.genes)
+      this.$emit("importedGenes", this.genes);
+      this.genesToApply = null;
+    },
+
   }
 
 }

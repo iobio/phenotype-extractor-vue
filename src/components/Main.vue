@@ -19,7 +19,8 @@
         :VennDiagramData="analysis.payload.VennDiagramData"
         @GtrGeneList="GtrGeneList($event)"
         @PhenolyzerGeneList="PhenolyzerGeneList($event)"
-        @HpoGeneList="HpoGeneList($event)">
+        @HpoGeneList="HpoGeneList($event)"
+        :AddedGenes="AddedGenes">
       </PhenotypeExtractor>
 
       <br>
@@ -28,7 +29,8 @@
         :summaryGeneList="summaryGeneList">
       </GeneList> -->
       <GeneList
-        :summaryGeneList="analysis.payload.genesReport">
+        :summaryGeneList="analysis.payload.genesReport"
+        @importedGenes="importedGenes($event)">
       </GeneList>
     </v-layout>
   </v-container>
@@ -65,6 +67,7 @@ export default {
     phenotypes: [],
     analysis: null,
     PhenotypistState: null,
+    AddedGenes:[],
     // phenotypes: [
     //   [
     //     {
@@ -104,10 +107,15 @@ export default {
     saveSearchedPhenotypes(phenotypes){
       this.analysis.payload.phenotypes = phenotypes;
     },
+    importedGenes(genes){
+      this.AddedGenes = genes;
+    },
     PhenolyzerGeneList(genes){
     },
     HpoGeneList(genes){
-    }
+    },
+    GtrGeneList(genes){
+    },
   }
 };
 </script>

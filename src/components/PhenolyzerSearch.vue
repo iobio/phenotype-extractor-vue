@@ -209,7 +209,7 @@ export default {
                 })
               }
               this.$emit("individualGenesObjPhenolyzer", self.genesSearchTermObj)
-              console.log("individualGenesObjPhenolyzer", self.genesSearchTermObj)
+              // console.log("individualGenesObjPhenolyzer", self.genesSearchTermObj)
               self.scoreBasedSort? self.sortScores() : self.sortSources();
               // bus.$emit("completeFetchRequest", "Phenolyzer")
               bus.$emit("completePhenolyzerFetchRequest", searchTerm)
@@ -436,7 +436,7 @@ export default {
       self.$emit("NoOfGenesSelectedFromPhenolyzer", self.selected.length);
       self.$emit("SelectedPhenolyzerGenesToCopy", self.selected);
       this.$emit("PhenolyzerFullGeneList", this.items);
-      console.log("PhenolyzerFullGeneList", this.items);
+      // console.log("PhenolyzerFullGeneList", this.items);
       //event that all genes are added
     },
     getRankForEachTerm: function(geneName){
