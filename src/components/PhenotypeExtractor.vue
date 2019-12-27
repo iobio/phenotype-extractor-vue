@@ -39,6 +39,13 @@
               item-key="DiseaseName"/>
         </div>
         <v-btn :disabled="textNotes.length<4" @click="extract" color="primary">Submit</v-btn>
+        <br><br>
+        <div mt-3 v-if="multipleSearchTerms.length && !searchStatusDialog">
+          <v-btn style="text-transform:none" rounded color="primary" small outlined dark @click="DuplicateSearchStatusDialog=true">
+            <i>Show search status</i>
+          </v-btn>
+        </div>
+
       </v-flex>
 
 
@@ -591,6 +598,145 @@
         </v-card>
         <!-- End search status dialog -->
 
+
+        <!-- Duplicate Search status dialog -->
+        <v-card>
+          <v-dialog
+            v-model="DuplicateSearchStatusDialog"
+            scrollable
+            :overlay="false"
+            max-width="1000px"
+            transition="dialog-transition"
+          >
+            <v-card>
+              <v-card-title class="headline">
+                Search Status
+                <v-spacer></v-spacer>
+                <span>
+                  <v-btn flat icon @click="DuplicateSearchStatusDialog=false"><v-icon>close</v-icon></v-btn>
+                </span>
+              </v-card-title>
+              <v-divider></v-divider>
+              <v-card-text>
+                <div class="container">
+                  <div class="row">
+                    <div class="col-md-4">
+                      <table class="table">
+                        <thead>
+                          <tr> <strong>GTR Search status</strong></tr>
+                        </thead>
+                        <tbody>
+                          <tr v-if="Gtr_searchTermsObj.length" v-for="(term, i) in Gtr_searchTermsObj" :key="i">
+                            <td>{{ term.DiseaseName }}</td>
+                            <td >
+                              <span v-if="term.gtrSearchStatus==='Searching'">
+                                <v-progress-circular
+                                  :width="2"
+                                  :size="20"
+                                  indeterminate
+                                  color="primary"
+                                ></v-progress-circular>
+                              </span>
+                              <span v-else-if="term.gtrSearchStatus==='Completed'">
+                                <v-icon color="green">done</v-icon>
+                              </span>
+                              <span v-else-if="term.gtrSearchStatus==='NoGenes'"><v-icon color="red">error</v-icon></span>
+                              <span v-else-if="term.gtrSearchStatus==='NotAvailable'"><v-icon>indeterminate_check_box</v-icon></span>
+                              <span v-else> <v-icon color="gray lighten-4">error</v-icon>  </span>
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table>
+                      <div v-if="Gtr_searchTermsObj.length<1">
+                        <span><i>Not Selected...</i></span>
+                      </div>
+                    </div>
+
+                    <div class="col-md-4">
+                      <table class="table">
+                        <thead>
+                          <tr>
+                            <strong>Phenolyzer Search status</strong>
+                            <div v-if="Phenolyzer_searchTermsObj.length>0">
+                            </div>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr v-for="(term, i) in Phenolyzer_searchTermsObj" :key="i">
+                            <td>{{ term.value }}</td>
+                            <td>
+                              <span v-if="term.phenolyzerSearchStatus==='Searching'">
+                                <v-progress-circular
+                                  :width="2"
+                                  :size="20"
+                                  indeterminate
+                                  color="primary"
+                                ></v-progress-circular>
+                              </span>
+                              <span v-else-if="term.phenolyzerSearchStatus==='running'">
+                                <v-progress-circular
+                                  :width="2"
+                                  :size="20"
+                                  indeterminate
+                                  color="primary"
+                                ></v-progress-circular>
+                                Running
+                                <br>
+                                <span @click="stopPhenolyzerSearch(term.value)">close</span>
+                              </span>
+                              <span v-else-if="term.phenolyzerSearchStatus==='Completed'"><v-icon color="green">done</v-icon></span>
+                              <span v-else-if="term.phenolyzerSearchStatus==='NoGenes'"><v-icon color="red">error</v-icon></span>
+                              <span v-else-if="term.phenolyzerSearchStatus==='NotAvailable'"><v-icon>indeterminate_check_box</v-icon></span>
+                              <span v-else-if="term.phenolyzerSearchStatus==='Cancelled'"><v-icon color="gray lighten-4">cancel_schedule_send</v-icon></span>
+                              <span v-else> <v-icon color="gray lighten-4">error</v-icon>  </span>
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table>
+                      <!-- <div v-if="Phenolyzer_searchTermsObj.length<2"> -->
+                      <div v-if="Phenolyzer_searchTermsObj.length<1">
+                        <span><i>Not Selected...</i></span>
+                      </div>
+                    </div>
+
+                    <div class="col-md-4">
+                      <table class="table">
+                        <thead>
+                          <tr> <strong>HPO Search status</strong></tr>
+                        </thead>
+                        <tbody>
+                          <tr v-for="(term, i) in Hpo_searchTermsObj" :key="i">
+                            <td>{{ term.HPO_Data }}</td>
+                            <td >
+                              <span v-if="term.hpoSearchStatus==='Searching'">
+                                <v-progress-circular
+                                  :width="2"
+                                  :size="20"
+                                  indeterminate
+                                  color="primary"
+                                ></v-progress-circular>
+                              </span>
+                              <span v-else-if="term.hpoSearchStatus==='Completed'"><v-icon color="green">done</v-icon></span>
+                              <span v-else-if="term.hpoSearchStatus==='NoGenes'"><v-icon color="red">error</v-icon></span>
+                              <span v-else-if="term.hpoSearchStatus==='NotAvailable'"><v-icon>indeterminate_check_box</v-icon></span>
+                              <span v-else> <v-icon color="gray lighten-4">error</v-icon>  </span>
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table>
+                      <div v-if="Hpo_searchTermsObj.length<1">
+                        <span><i>Not Selected...</i></span>
+                      </div>
+                    </div>
+
+                  </div>
+                </div>
+              </v-card-text>
+            </v-card>
+          </v-dialog>
+        </v-card>
+        <!-- End Duplicate Search status dialog -->
+
         <GtrSearch
           v-on:filteredDiseasesItems="filteredDiseasesItems"
           v-on:filteredDiseasesItems_removeItem="filteredDiseasesItems_removeItem"
@@ -781,6 +927,7 @@ export default {
     hpo_saved_idx: 0,
     has_saved_state: null,
     hpoItems: [],
+    DuplicateSearchStatusDialog: false,
   }),
   watch: {
     textNotes(){
@@ -876,6 +1023,7 @@ export default {
         this.gtr_push_idx = this.gtr_push_idx + 1;
         this.Gtr_searchTermsObj.push(term);
         this.Gtr_searchTermArray.push(term.DiseaseName);
+        this.multipleSearchTerms.push(term.DiseaseName)
       })
       this.Gtr_performSearchEvent_saved()
     }
@@ -888,6 +1036,7 @@ export default {
         this.phenolyzer_push_idx = this.phenolyzer_push_idx + 1;
         this.Phenolyzer_searchTermsObj.push(term);
         this.Phenolyzer_searchTermArray.push(term.value);
+        this.multipleSearchTerms.push(term.value);
       })
       this.Phenolyzer_performSearchEvent_saved()
     }
@@ -899,6 +1048,7 @@ export default {
       this.hpoTermsAdded.map(term => {
         this.Hpo_searchTermsObj.push(term);
         this.Hpo_searchTermArray.push(term.hpoNumber);
+        this.multipleSearchTerms.push(term.HPO_Data);
       })
       this.Hpo_performSearchEvent_saved()
     }
