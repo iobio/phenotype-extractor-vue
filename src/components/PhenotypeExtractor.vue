@@ -933,7 +933,8 @@ export default {
             searchTermsPhenolyzer: this.setSearchTermsPhenolyzer(gene.searchTermPheno, gene.name),
             searchTermsGtr: this.setSearchTermsGTR(gene.searchTermArrayGTR, gene.name),
             geneRankGtr: gene.geneRankGtr,
-            geneRankPhenolyzer: gene.geneRankPhenolyzer
+            geneRankPhenolyzer: gene.geneRankPhenolyzer,
+            isImportedGenes: gene.isImportedGenes
           }
         })
         // console.log("clinData", clinData)

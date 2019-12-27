@@ -79,6 +79,12 @@
               <v-chip class="mb-1 mt-2"> {{ x.searchTerm }}</v-chip>
             </div>
           </template>
+          <template v-slot:item.isImportedGenes="{ item }">
+            <span v-if="item.isImportedGenes">
+              <v-icon style="color:#455A64">check_circle_outline</v-icon>
+            </span>
+
+          </template>
           </v-data-table>
         </v-card>
       </v-flex>
@@ -134,6 +140,7 @@ export default {
       GtrGeneList: [],
       headers: [
         { text: 'Gene Name', align: 'left', value: 'name', sortable: false, },
+        { text: 'Added', value: 'isImportedGenes', sortable: false, },
         { text: 'GTR', value: 'searchTermsGtr', sortable: false, },
         { text: 'Phenolyzer', value: 'searchTermsPhenolyzer', sortable: false, },
         { text: 'HPO', value: 'searchTermHpo', sortable: false, },
