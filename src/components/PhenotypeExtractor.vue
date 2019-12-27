@@ -952,7 +952,14 @@ export default {
       this.addDiseases(this.filteredDiseasesItemsArray);
       this.sendPhenolyzerGenesToSummary(this.phenolyzerItems);
       this.sendHpoGenesToSummary(this.hpoItems);
-
+    },
+    searchStatusDialog(){
+      if(this.searchStatusDialog){
+        bus.$emit("show-gene-table-skeleton-loaders");
+      }
+      else {
+        bus.$emit("hide-gene-table-skeleton-loaders")
+      }
     }
 
   },
