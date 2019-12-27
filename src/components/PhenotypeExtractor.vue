@@ -40,7 +40,7 @@
         </div>
         <v-btn :disabled="textNotes.length<4" @click="extract" color="primary">Submit</v-btn>
         <br><br>
-        <div mt-3 v-if="multipleSearchTerms.length && !searchStatusDialog">
+        <div mt-3 v-if="multipleSearchTerms.length && !searchStatusDialog && !showSearchTermsLoader">
           <v-btn style="text-transform:none" rounded color="primary" small outlined dark @click="DuplicateSearchStatusDialog=true">
             <i>Show search status</i>
           </v-btn>
@@ -48,11 +48,12 @@
 
       </v-flex>
 
-      <SkeletonLoadersSearchTerms/>
       <v-flex xs12 mt-5>
         <!-- Start searched terms view -->
           <v-card-text>
-            <div class="row">
+          <SkeletonLoadersSearchTerms v-if="showSearchTermsLoader"/>
+
+            <div class="row" v-if="!showSearchTermsLoader">
               <div class="col-md-9">
                 <div class="row">
                   <div class="col-md-12 mb-2">
@@ -930,6 +931,7 @@ export default {
     has_saved_state: null,
     hpoItems: [],
     DuplicateSearchStatusDialog: false,
+    showSearchTermsLoader: false,
   }),
   watch: {
     textNotes(){
@@ -1015,6 +1017,7 @@ export default {
     //Check if there is saved state
     if(this.phenotypes.length){
       this.has_saved_state = true;
+      this.showSearchTermsLoader = true;
       bus.$emit("show-gene-table-skeleton-loaders");
 
       if(this.phenotypes[0].length){
@@ -1022,6 +1025,17 @@ export default {
         setTimeout(()=>{
           bus.$emit("hide-gene-table-skeleton-loaders")
         }, time_to_show_skeleton_loader)
+
+        var time_to_show_chips_loaders = this.phenotypes[0].length * 2500;
+        setTimeout(()=>{
+          this.showSearchTermsLoader = false;
+        }, time_to_show_chips_loaders)
+      }
+      else {
+        setTimeout(()=>{
+          this.showSearchTermsLoader = false;
+          bus.$emit("hide-gene-table-skeleton-loaders")
+        }, 2500)
       }
     }
 
