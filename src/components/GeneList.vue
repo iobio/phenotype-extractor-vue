@@ -67,17 +67,18 @@
               </template>
               <template v-slot:item.searchTermsPhenolyzer="{ item }">
         				<div v-for="(x, i) in item.searchTermsPhenolyzer">
-        					<v-chip class="mb-1 mt-2"> # {{ x.rank}}. {{ x.searchTerm }}</v-chip>
+        					<v-chip outlined class="mb-1 mt-2"> # {{ x.rank}}. {{ x.searchTerm }}</v-chip>
         				</div>
               </template>
               <template v-slot:item.searchTermsGtr="{ item }">
                 <div v-for="(x, i) in item.searchTermsGtr">
-                  <v-chip class="mb-1 mt-2"> # {{ x.rank}}. {{ x.searchTerm }}</v-chip>
+                  <v-chip outlined class="mb-1 mt-2"> # {{ x.rank}}. {{ x.searchTerm }}</v-chip>
                 </div>
               </template>
               <template v-slot:item.searchTermHpo="{ item }">
                 <div v-for="(x, i) in item.searchTermHpo">
-                  <v-chip class="mb-1 mt-2"> {{ x.searchTerm }}</v-chip>
+                  <v-chip outlined class="mb-1 mt-2"> {{ getPhenotypFromHPO_id(x.searchTerm) }}</v-chip>
+                  <!-- <v-chip outlined class="mb-1 mt-2"> {{ x.searchTerm }}</v-chip> -->
                 </div>
               </template>
               <template v-slot:item.isImportedGenes="{ item }">
@@ -154,6 +155,11 @@ import knownGenes from '../data/knownGenes';
 import GeneModel from '../models/GeneModel';
 var geneModel = new GeneModel();
 import { bus } from '../main';
+import HPO_Phenotypes from '../data/HPO_Phenotypes';
+import HPO_Terms from '../data/HPO_Terms';
+import HpoTermsData from '../data/HpoTermsData.json';
+import hpo_genes from '../data/hpo_genes.json';
+
 
 export default {
   name: 'GeneList',
@@ -196,12 +202,22 @@ export default {
       geneToDelete: null,
       geneTableLoading:false,
       transition: 'scale-transition',
+      HpoGenesData: null,
+      HpoTermsTypeaheadData: null,
+      HPO_Phenotypes_data: null,
+      HPO_Terms_data: null,
+
     }
   },
 
   mounted(){
     this.knownGenesData = knownGenes;
     this.summaryGenes = this.summaryGeneList;
+    this.HpoGenesData = hpo_genes;
+    this.HpoTermsTypeaheadData  = HpoTermsData.data;
+    this.HPO_Terms_data = HPO_Terms;
+    this.HPO_Phenotypes_data = HPO_Phenotypes;
+
   },
 
   created(){
@@ -278,6 +294,12 @@ export default {
       this.deleteGeneDialog = false;
       this.$emit("UpdateListOnDelete", this.summaryGenes)
     },
+
+    getPhenotypFromHPO_id(id){
+      var idx = this.HPO_Terms_data.indexOf(id);
+      var phenotype = this.HPO_Phenotypes_data[idx];
+      return `${phenotype} [ ${id} ]`
+    }
 
   }
 
