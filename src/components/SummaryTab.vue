@@ -1029,10 +1029,10 @@ import d3 from 'd3'
         }
         // var tableGenes = [...allSourcesGenes, ...threeSourcesGenes, ...twoSourcesGenes, ...uniqueAddedGenes, ...uniqueGTR, ...uniqueClinPhen, ...uniquePheno];
         var tableGenes = [
-          ...this.sortGenes(allSourcesGenes,"phenolyzer_score"),
+          ...this.sortGenes(allSourcesGenes,"gtr_value"),
           ...this.sortGenes(GtrPhenoAdded,"gtr_value"), ...this.sortGenes(GtrAddedClinPhenGenes,"gtr_value"), ...this.sortGenes(PhenoAddedClinPhenGenes, "phenolyzer_score"),
           ...this.sortGenes(gtrAddedGenes,"gtr_value"), ...this.sortGenes(phenoAddedGenes,"phenolyzer_score"), ...AddedClinPhenGenes,
-          ...uniqueAddedGenes,...this.sortGenes(GtrPhenoClinPhenGenes, "phenolyzer_score"),
+          ...uniqueAddedGenes,...this.sortGenes(GtrPhenoClinPhenGenes, "gtr_value"),
           ...this.sortGenes(gtrPhenoGenes, "gtr_value"), ...gtrClinPhenGenes,
           ...this.sortGenes(phenoClinPhenGenes, "phenolyzer_score"),
           ...uniqueGTR, ...uniqueClinPhen, ...uniquePheno
