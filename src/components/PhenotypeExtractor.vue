@@ -210,7 +210,7 @@
                     <div >
                       <v-expansion-panels multiple popout focusable>
                         <v-expansion-panel v-model="gtrExpansionPanel" v-for="(item, i) in GtrReviewTerms" :key="i">
-                          <v-expansion-panel-header><div><strong>{{ item.DiseaseName }}</strong> <i style="ml-3"> ({{item.reviewTerms_gtr.length}} options)</i></div></v-expansion-panel-header>
+                          <v-expansion-panel-header><div><strong>{{ item.DiseaseName }}</strong> <i style="ml-3"> ({{item.reviewTerms_gtr.length}} option)</i></div></v-expansion-panel-header>
                           <v-expansion-panel-content>
                             <div class="reviewCard">
                               <v-card-text>
@@ -289,7 +289,7 @@
                     <div >
                       <v-expansion-panels popout focusable>
                         <v-expansion-panel v-model="phenolyzerExpansionPanel" v-for="(item, i) in phenolyzerReviewTerms" :key="i">
-                          <v-expansion-panel-header><div><strong>{{ item.DiseaseName }}</strong> <i style="ml-3"> ({{item.reviewTerms_phenolyzer.length}} options)</i></div></v-expansion-panel-header>
+                          <v-expansion-panel-header><div><strong>{{ item.DiseaseName }}</strong> <i style="ml-3"> ({{item.reviewTerms_phenolyzer.length}} option)</i></div></v-expansion-panel-header>
                             <div class="reviewCard">
                               <v-card-text>
                                 <div v-for="sub in item.reviewTerms_phenolyzer" class="row">
