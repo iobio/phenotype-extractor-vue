@@ -68,7 +68,7 @@
               </template>
               <template v-slot:item.searchTermsPhenolyzer="{ item }">
         				<div v-for="(x, i) in item.searchTermsPhenolyzer">
-        					<v-chip outlined class="mb-1 mt-2"> # {{ x.rank}}. {{ x.searchTerm }}</v-chip>
+        					<v-chip outlined class="mb-1 mt-2"> # {{ x.rank}}. {{ x.searchTerm | to-firstCharacterUppercase }}</v-chip>
         				</div>
               </template>
               <template v-slot:item.searchTermsGtr="{ item }">
