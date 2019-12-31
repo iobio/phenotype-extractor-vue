@@ -64,6 +64,7 @@
             >
               <template v-slot:item.name="{ item }">
                 <v-chip @click="showGeneInfo(item.name)" dark>{{ item.name }}</v-chip>
+                <span v-if="item.isAssociatedGene!==undefined && item.isAssociatedGene===true"> <v-icon class="ml-1" style="font-size:20px" color="primary">verified_user</v-icon></span>
               </template>
               <template v-slot:item.searchTermsPhenolyzer="{ item }">
         				<div v-for="(x, i) in item.searchTermsPhenolyzer">
@@ -172,7 +173,8 @@ export default {
   },
   watch:{
     summaryGeneList(){
-      this.summaryGenes = this.summaryGeneList;
+      // this.summaryGenes = this.summaryGeneList;
+      this.organizeGeneList();
     }
   },
   data () {
@@ -212,7 +214,9 @@ export default {
 
   mounted(){
     this.knownGenesData = knownGenes;
-    this.summaryGenes = this.summaryGeneList;
+    // this.summaryGenes = this.summaryGeneList;
+    this.organizeGeneList();
+
     this.HpoGenesData = hpo_genes;
     this.HpoTermsTypeaheadData  = HpoTermsData.data;
     this.HPO_Terms_data = HPO_Terms;
@@ -299,6 +303,27 @@ export default {
       var idx = this.HPO_Terms_data.indexOf(id);
       var phenotype = this.HPO_Phenotypes_data[idx];
       return `${phenotype} [ ${id} ]`
+    },
+
+    organizeGeneList(){
+      var associatedGenes = [];
+      var nonAssociatedGenes = [];
+
+      this.summaryGeneList.map(x=>{
+        if(x.isAssociatedGene===true){
+          associatedGenes.push(x);
+        }
+        else{
+          nonAssociatedGenes.push(x);
+        }
+      })
+
+      if(associatedGenes.length){
+        this.summaryGenes = [...associatedGenes, ...nonAssociatedGenes];
+      }
+      else {
+        this.summaryGenes = this.summaryGeneList;
+      }
     }
 
   }

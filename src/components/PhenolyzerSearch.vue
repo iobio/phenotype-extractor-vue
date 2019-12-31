@@ -71,8 +71,8 @@ export default {
       openSearchBox: false,
       openEditBoxPhenolyzer: false,
       genesSearchTermObj: {},
-      scoreBasedSort: true,
-      sourceBasedSort: false,
+      scoreBasedSort: false,
+      sourceBasedSort: true,
     }
   },
   mounted(){
@@ -372,19 +372,19 @@ export default {
         x.individualRank = self.getRankForEachTerm(x.geneName)
       })
 
-      if(self.includeClinPhenolyzerGenes && self.clinGenes.length>0){
-        self.selected = [];
-      // if(self.launchedFromClin && self.clinGenes.length>0){
-        self.items.map(x=>{
-          if(self.clinGenes.includes(x.geneName)){
-            self.selected.push(x);
-          }
-        })
-      }
-      else {
-        self.selected = self.items.slice(0, self.genesTop);
-
-      }
+      // if(self.includeClinPhenolyzerGenes && self.clinGenes.length>0){
+      //   self.selected = [];
+      // // if(self.launchedFromClin && self.clinGenes.length>0){
+      //   self.items.map(x=>{
+      //     if(self.clinGenes.includes(x.geneName)){
+      //       self.selected.push(x);
+      //     }
+      //   })
+      // }
+      // else {
+      //   self.selected = self.items.slice(0, self.genesTop);
+      //
+      // }
       // self.selected = self.items.slice(0,50);
       self.phenolyzerStatus = null;
       // self.updatePhenolyzerStatusGlobal(null);

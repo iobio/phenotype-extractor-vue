@@ -431,8 +431,8 @@
                         <v-chip outlined color="primary">
                           {{ term.HPO_Data }}
                         </v-chip>
-                        <a @click="termsReviewDialogPage=3"><small><i>Update</i></small></a>
                       </p>
+                      <a @click="termsReviewDialogPage=3"><small><i>Update</i></small></a>
                     </v-card-text>
                     <v-card v-else>
                       <v-card-text>
@@ -622,7 +622,7 @@
                 Search Status
                 <v-spacer></v-spacer>
                 <span>
-                  <v-btn flat icon @click="DuplicateSearchStatusDialog=false"><v-icon>close</v-icon></v-btn>
+                  <v-btn text icon @click="DuplicateSearchStatusDialog=false"><v-icon>close</v-icon></v-btn>
                 </span>
               </v-card-title>
               <v-divider></v-divider>
@@ -1124,7 +1124,8 @@ export default {
             searchTermsGtr: this.setSearchTermsGTR(gene.searchTermArrayGTR, gene.name),
             geneRankGtr: gene.geneRankGtr,
             geneRankPhenolyzer: gene.geneRankPhenolyzer,
-            isImportedGenes: gene.isImportedGenes
+            isImportedGenes: gene.isImportedGenes,
+            isAssociatedGene: gene.isAssociatedGene
           }
         })
         // console.log("clinData", clinData)
