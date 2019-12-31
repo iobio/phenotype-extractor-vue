@@ -1136,6 +1136,7 @@ import d3 from 'd3'
     border: 0px
     border-radius: 8px
     opacity: 0
+    z-index: 10
 
 
 
