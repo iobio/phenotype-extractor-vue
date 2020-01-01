@@ -296,7 +296,6 @@ export default {
       let idx = this.summaryGenes.findIndex(x => x.name === this.geneToDelete.name);
       this.summaryGenes.splice(idx, 1)
       this.deleteGeneDialog = false;
-      this.$emit("importedGenes", this.genes);
       this.$emit("UpdateListOnDelete", this.summaryGenes)
     },
 
