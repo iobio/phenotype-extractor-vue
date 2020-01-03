@@ -1030,6 +1030,11 @@ export default {
       }
     })
 
+    bus.$on("removePhenotype", (details) => {
+      let { term, idx, component } = details;
+      this.remove(term, idx, component)
+    })
+
     //Check if there is saved state
     if(this.phenotypes.length){
       this.has_saved_state = true;
@@ -1448,6 +1453,8 @@ export default {
         return o1.DiseaseName !== o2.DiseaseName
       }));
       this.GtrTermsAdded = [...this.GtrTermsAdded, ...this.GtrTermsAdded_temp];
+      // this.$emit("GtrTerms", this.GtrTermsAdded); //Pass back which can be used in phenotypes component .
+
       this.phenolyzerTermsAdded = [...this.phenolyzerTermsAdded, ...this.phenolyzerTermsAdded_temp];
       this.hpoTermsAdded = [...this.hpoTermsAdded, ...this.hpoTermsAdded_temp];
 

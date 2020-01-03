@@ -20,9 +20,14 @@
         @GtrGeneList="GtrGeneList($event)"
         @PhenolyzerGeneList="PhenolyzerGeneList($event)"
         @HpoGeneList="HpoGeneList($event)"
-        :AddedGenes="AddedGenes">
+        :AddedGenes="AddedGenes"
+        @GtrTerms="GtrTerms($event)">
       </PhenotypeExtractor>
 
+      <br>
+      <Phenotypes
+        :phenotypes="analysis.payload.phenotypes">
+      </Phenotypes>
       <br>
       Gene list
       <!-- <GeneList
@@ -53,6 +58,8 @@ import analysisData from '../data/analysis.json';
 import PhenotypistData from '../data/PhenotypistState.json';
 import Model from '../models/Model';
 var model = new Model();
+import Phenotypes from './Phenotypes.vue';
+
 
 
 export default {
@@ -60,7 +67,8 @@ export default {
   components: {
     GtrSearch,
     PhenotypeExtractor,
-    GeneList
+    GeneList,
+    Phenotypes
   },
   data: () => ({
     gtrGenes: [],
@@ -69,6 +77,7 @@ export default {
     analysis: null,
     PhenotypistState: null,
     AddedGenes:[],
+    GtrPhenotypes: [],
     // phenotypes: [
     //   [
     //     {
@@ -106,6 +115,7 @@ export default {
       this.analysis.payload.genesReport = this.summaryGeneList;
     },
     saveSearchedPhenotypes(phenotypes){
+      console.log("phenotypes", phenotypes)
       this.analysis.payload.phenotypes = phenotypes;
     },
     importedGenes(genes){
@@ -120,6 +130,10 @@ export default {
     UpdateListOnDelete(genes){
       this.summaryGeneList = genes;
       this.analysis.payload.genesReport = genes;
+    },
+    GtrTerms(terms){
+      console.log("gtr terms", terms)
+      this.GtrPhenotypes = terms;
     }
   }
 };
