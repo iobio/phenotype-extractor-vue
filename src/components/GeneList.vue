@@ -1,10 +1,8 @@
 <template>
   <v-container>
-    <v-layout
-      text-center
-      row wrap
-    >
-      <v-flex xs12 sm12 md12 lg12>
+
+    <div class="row">
+      <div class="col-md-9">
         <v-card>
           <div id="gene-data-table" v-if="!geneTableLoading">
             <v-card-title>
@@ -105,6 +103,24 @@
           </v-skeleton-loader>
 
         </v-card>
+      </div>
+      <div class="col-md-3">
+        <Phenotypes
+          :phenotypes="phenotypes">
+        </Phenotypes>
+      </div>
+    </div>
+
+    <v-layout
+      text-center
+      row wrap
+    >
+      <v-flex xs9 sm9 md9 lg9>
+
+      </v-flex>
+
+      <v-flex class="ml-2">
+
       </v-flex>
 
       <!-- Bypassed genes dialog -->
@@ -160,14 +176,19 @@ import HPO_Phenotypes from '../data/HPO_Phenotypes';
 import HPO_Terms from '../data/HPO_Terms';
 import HpoTermsData from '../data/HpoTermsData.json';
 import hpo_genes from '../data/hpo_genes.json';
+import Phenotypes from './Phenotypes.vue';
 
 
 export default {
   name: 'GeneList',
   components: {
+    Phenotypes
   },
   props: {
     summaryGeneList: {
+      type: Array
+    },
+    phenotypeTerms: {
       type: Array
     }
   },
@@ -175,6 +196,9 @@ export default {
     summaryGeneList(){
       // this.summaryGenes = this.summaryGeneList;
       this.organizeGeneList();
+    },
+    phenotypeTerms(){
+      this.phenotypes = this.phenotypeTerms
     }
   },
   data () {
@@ -208,6 +232,7 @@ export default {
       HpoTermsTypeaheadData: null,
       HPO_Phenotypes_data: null,
       HPO_Terms_data: null,
+      phenotypes: [],
 
     }
   },
@@ -232,6 +257,8 @@ export default {
     bus.$on("hide-gene-table-skeleton-loaders", ()=>{
       this.geneTableLoading = false;
     });
+
+    this.phenotypes = this.phenotypeTerms
 
   },
 
@@ -332,7 +359,7 @@ export default {
 
 </script>
 
-<style lang="sass">
+<style lang="sass" scoped>
   body, .v-application
     font-family: 'Poppins', sans-serif
 

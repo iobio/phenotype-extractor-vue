@@ -24,11 +24,9 @@
         @GtrTerms="GtrTerms($event)">
       </PhenotypeExtractor>
 
-      <br>
-      <Phenotypes
+      <!-- <Phenotypes
         :phenotypes="analysis.payload.phenotypes">
-      </Phenotypes>
-      <br>
+      </Phenotypes> -->
       Gene list
       <!-- <GeneList
         :summaryGeneList="summaryGeneList">
@@ -36,7 +34,8 @@
       <GeneList
         :summaryGeneList="analysis.payload.genesReport"
         @importedGenes="importedGenes($event)"
-        @UpdateListOnDelete="UpdateListOnDelete($event)">
+        @UpdateListOnDelete="UpdateListOnDelete($event)"
+        :phenotypeTerms="analysis.payload.phenotypes">
       </GeneList>
     </v-layout>
   </v-container>
@@ -157,4 +156,9 @@ export default {
   .reviewCard
     height: 250px
     overflow-y: auto
+
+  @media (min-width: 1500px)
+    .container
+      max-width: 1500px
+
 </style>

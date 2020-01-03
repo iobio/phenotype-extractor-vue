@@ -1,11 +1,11 @@
 <template>
   <div>
     <!-- <v-card> -->
-      Genes Overview
+      <!-- Genes Overview
       <v-divider></v-divider>
       <center class="pl-2 pr-2">
         <div id="venn" style="margin-top:-40px; margin-bottom:-10px"></div>
-      </center>
+      </center> -->
     <!-- </v-card> -->
   </div>
 </template>
@@ -668,7 +668,7 @@ import d3 from 'd3'
             {"sets" : [0,1,2,3],  "size":summaryObj.gtr_phenolyzer_ImportedGenes_ClinPhen.count, "isGtr":true, "isImportedGenes":true, "isPheno": true, "isClinPhen": true}
           ]
         }
-        this.drawVennDiagram();
+        // this.drawVennDiagram();
         // if((this.GtrGenesArr.length>0 && this.PhenolyzerGenesArr.length>0) ||
         //       (this.GtrGenesArr.length>0 && this.clinPhenSelectedGenes.length>0) ||
         //       (this.PhenolyzerGenesArr.length>0 && this.clinPhenSelectedGenes.length>0) ||

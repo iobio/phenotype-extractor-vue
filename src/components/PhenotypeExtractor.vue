@@ -48,8 +48,7 @@
 
       </v-flex>
 
-      <v-flex xs12 mt-5>
-        <!-- Start searched terms view -->
+      <!-- <v-flex xs12 mt-5>
           <v-card-text>
             <v-expansion-panels focusable v-model="searchterms_expansion_panel" multiple>
               <v-expansion-panel>
@@ -136,10 +135,7 @@
             </v-expansion-panels>
 
           </v-card-text>
-        <!-- End searched terms view  -->
-
-
-      </v-flex>
+      </v-flex> -->
 
       <!-- Loading dialog box -->
         <v-dialog
@@ -764,6 +760,22 @@
           @HpoFullGeneList="HpoFullGeneList($event)"
           @individualGenesObjHpo="individualGenesObjHpo($event)">
         </HpoSearch>
+
+        <SummaryTab
+          v-bind:GtrGenesForSummary="GtrGenesForSummary"
+          v-bind:PhenolyzerGenesForSummary="PhenolyzerGenesForSummary"
+          v-bind:manuallyAddedGenes="manuallyAddedGenes"
+          v-bind:clinPhenSelectedGenes="clinPhenSelectedGenes"
+          v-bind:gtrCompleteGeneList="GtrGenesForSummary"
+          v-bind:phenolyzerCompleteGeneList="PhenolyzerGenesForSummary"
+          :GtrTermsLength="GtrTermsAdded.length"
+          :PhenolyzerTermsLength="phenolyzerTermsAdded.length"
+          :HpoTermsLength="hpoTermsAdded.length"
+          :multipleSearchTerms="multipleSearchTerms"
+          :summaryFullGeneList="summaryFullGeneList"
+          @summaryGenesFullList="summaryGenesFullList($event)"
+          :VennDiagramData="VennDiagramData">
+        </SummaryTab>
 
 
     </v-layout>
