@@ -9,9 +9,22 @@
           Genes Overview
         </v-expansion-panel-header>
         <v-expansion-panel-content>
-          <center class="pl-2 pr-2 pb-2">
-            <div id="venn" style="margin-top:-20px; margin-bottom:-20px"></div>
-          </center>
+          <div v-show="!vennDiagramLoading">
+            <center class="pl-2 pr-2 pb-2">
+              <div id="venn" style="margin-top:-20px; margin-bottom:-20px"></div>
+            </center>
+          </div>
+          <div v-if="vennDiagramLoading">
+            <center class="pl-2 pr-2 pb-2">
+              <v-skeleton-loader
+                :loading="loading"
+                :transition="transition"
+                type="image"
+                height="150"
+              >
+              </v-skeleton-loader>
+            </center>
+          </div>
         </v-expansion-panel-content>
       </v-expansion-panel>
     </v-expansion-panels>
@@ -32,7 +45,10 @@ import { bus } from '../main';
     },
 
     data: () => ({
-      venn_diagram_expansion_panel: [0]
+      venn_diagram_expansion_panel: [0],
+      vennDiagramLoading: false,
+      loading: true,
+      transition: 'scale-transition',
     }),
 
     watch: {
@@ -42,6 +58,14 @@ import { bus } from '../main';
     },
 
     created(){
+      bus.$on("show-gene-table-skeleton-loaders", ()=>{
+        this.vennDiagramLoading = true;
+      });
+
+      bus.$on("hide-gene-table-skeleton-loaders", ()=>{
+        this.vennDiagramLoading = false;
+      });
+
     },
 
     methods: {
