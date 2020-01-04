@@ -48,95 +48,6 @@
 
       </v-flex>
 
-      <!-- <v-flex xs12 mt-5>
-          <v-card-text>
-            <v-expansion-panels focusable v-model="searchterms_expansion_panel" multiple>
-              <v-expansion-panel>
-                <v-expansion-panel-header>Search terms & Genes Overview</v-expansion-panel-header>
-                <v-expansion-panel-content>
-                  <SkeletonLoadersSearchTerms v-if="showSearchTermsLoader"/>
-
-                    <div class="row" v-if="!showSearchTermsLoader">
-                      <div class="col-md-8">
-                        <div class="row">
-                          <div class="col-md-12 mb-2">
-                            <strong style="float:left">GTR Terms: </strong>
-                            <br>
-                            <div class="mb-2" v-if="GtrTermsAdded.length">
-                              <v-chip-group
-                                multiple
-                              >
-                                <v-chip color="primary" v-for="(term, i) in GtrTermsAdded" text-color="white" close :key="i" @click:close="remove(term, i, 'GTR')">
-                                  <span style="color:white" v-if="term.DiseaseName!==undefined">{{ i+1 }} . {{ term.DiseaseName }}</span>
-                                  <span style="color:white" v-else> {{ i+1 }} . {{ term }}</span>
-                                </v-chip>
-                              </v-chip-group>
-                            </div>
-                            <span v-if="GtrTermsAdded.length===0">
-                              <v-chip style="float:left"><v-icon left>error_outline</v-icon> No conditions</v-chip>
-                            </span>
-                          </div>
-                          <div class="col-md-12 mb-2">
-                            <strong style="float:left">Phenolyzer Terms: </strong>
-                            <br>
-                            <div class="mb-2"  v-if="phenolyzerTermsAdded.length">
-                              <v-chip-group
-                                multiple
-                              >
-                                <v-chip color="primary" v-for="(term, i) in phenolyzerTermsAdded" text-color="white" close :key="i" @click:close="remove(term, i, 'phenolyzer')">
-                                  <span style="color:white"> {{ i+1 }} . {{ term.value }}</span>
-                                </v-chip>
-                              </v-chip-group>
-                            </div>
-                            <div class="mb-2" v-if="phenolyzerTermsAdded.length===0">
-                              <v-chip style="float:left"><v-icon left>error_outline</v-icon> No phenotypes</v-chip>
-                            </div>
-                          </div>
-                          <div class="col-md-12 mb-2">
-                            <strong style="float:left">HPO Terms: </strong>
-                            <br>
-                            <div class="mb-2" v-if="hpoTermsAdded.length">
-                              <v-chip-group
-                                multiple
-                              >
-                                <v-chip color="primary" v-for="(term, i) in hpoTermsAdded" text-color="white" close :key="i" @click:close="remove(term, i, 'HPO')">
-                                  <span style="color:white"> {{ i+1 }} . {{ term.HPO_Data }}</span>
-                                </v-chip>
-                              </v-chip-group>
-                            </div>
-                            <div class="mb-2" v-if="hpoTermsAdded.length===0">
-                              <v-chip style="float:left"><v-icon left>error_outline</v-icon> No HPO terms</v-chip>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-
-                      <div class="col-md-4">
-                        <SummaryTab
-                          v-bind:GtrGenesForSummary="GtrGenesForSummary"
-                          v-bind:PhenolyzerGenesForSummary="PhenolyzerGenesForSummary"
-                          v-bind:manuallyAddedGenes="manuallyAddedGenes"
-                          v-bind:clinPhenSelectedGenes="clinPhenSelectedGenes"
-                          v-bind:gtrCompleteGeneList="GtrGenesForSummary"
-                          v-bind:phenolyzerCompleteGeneList="PhenolyzerGenesForSummary"
-                          :GtrTermsLength="GtrTermsAdded.length"
-                          :PhenolyzerTermsLength="phenolyzerTermsAdded.length"
-                          :HpoTermsLength="hpoTermsAdded.length"
-                          :multipleSearchTerms="multipleSearchTerms"
-                          :summaryFullGeneList="summaryFullGeneList"
-                          @summaryGenesFullList="summaryGenesFullList($event)"
-                          :VennDiagramData="VennDiagramData">
-                        </SummaryTab>
-                      </div>
-
-                    </div>
-                </v-expansion-panel-content>
-              </v-expansion-panel>
-            </v-expansion-panels>
-
-          </v-card-text>
-      </v-flex> -->
-
       <!-- Loading dialog box -->
         <v-dialog
           v-model="loadingDialog"
@@ -969,7 +880,7 @@ export default {
       }
     },
     AddedGenes(){
-      console.log("AddedGenes", this.AddedGenes);
+      // console.log("AddedGenes", this.AddedGenes);
       this.manuallyAddedGenes = this.AddedGenes;
       this.addDiseases(this.filteredDiseasesItemsArray);
       this.sendPhenolyzerGenesToSummary(this.phenolyzerItems);
@@ -1474,7 +1385,7 @@ export default {
       this.GtrTermsAdded_temp = [];
       this.phenolyzerTermsAdded_temp = [];
       this.hpoTermsAdded_temp = [];
-      console.log("this.GtrTermsAdded", this.GtrTermsAdded)
+      // console.log("this.GtrTermsAdded", this.GtrTermsAdded)
       var allPhenotypes = [this.GtrTermsAdded, this.phenolyzerTermsAdded, this.hpoTermsAdded];
       this.$emit('saveSearchedPhenotypes', allPhenotypes)
 
@@ -1885,7 +1796,7 @@ export default {
     searchTermDiseases:function(diseases){
       this.individualDiseases = diseases;
       this.diseasesPropsIndividual = diseases.filteredDiseases;
-      console.log("diseases", diseases)
+      // console.log("diseases", diseases)
       this.checkForAssociatedGenesIndividual();
       this.AddGenePanelDataIndividual(this.diseasesPropsIndividual, diseases.searchTerm)
     },
@@ -2067,7 +1978,7 @@ export default {
 
     Hpo_performSearchEvent_saved(){
       // this.hpoFetchCompleted = false;
-      console.log("performing saved search")
+      // console.log("performing saved search")
       let startVal = this.Hpo_idx;
       for(let i=startVal; i<this.Hpo_searchTermsObj.length; i++){
         ((ind) =>{

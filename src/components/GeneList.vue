@@ -211,7 +211,6 @@ export default {
       this.phenotypes = this.phenotypeTerms
     },
     venn_diag_data(){
-      console.log("venn data is updating", this.venn_diag_data)
       this.vennData = this.venn_diag_data;
     }
   },
@@ -261,7 +260,6 @@ export default {
     this.HpoTermsTypeaheadData  = HpoTermsData.data;
     this.HPO_Terms_data = HPO_Terms;
     this.HPO_Phenotypes_data = HPO_Phenotypes;
-    console.log("venn_diag_data", this.venn_diag_data)
     this.vennData = this.venn_diag_data
   },
 
