@@ -21,7 +21,7 @@
         @PhenolyzerGeneList="PhenolyzerGeneList($event)"
         @HpoGeneList="HpoGeneList($event)"
         :AddedGenes="AddedGenes"
-        @GtrTerms="GtrTerms($event)">
+        @vennData="vennData($event)">
       </PhenotypeExtractor>
 
       <!-- <Phenotypes
@@ -35,7 +35,8 @@
         :summaryGeneList="analysis.payload.genesReport"
         @importedGenes="importedGenes($event)"
         @UpdateListOnDelete="UpdateListOnDelete($event)"
-        :phenotypeTerms="analysis.payload.phenotypes">
+        :phenotypeTerms="analysis.payload.phenotypes"
+        :venn_diag_data="venn_diag_data">
       </GeneList>
     </v-layout>
   </v-container>
@@ -77,6 +78,7 @@ export default {
     PhenotypistState: null,
     AddedGenes:[],
     GtrPhenotypes: [],
+    venn_diag_data: {}
     // phenotypes: [
     //   [
     //     {
@@ -130,9 +132,9 @@ export default {
       this.summaryGeneList = genes;
       this.analysis.payload.genesReport = genes;
     },
-    GtrTerms(terms){
-      console.log("gtr terms", terms)
-      this.GtrPhenotypes = terms;
+    vennData(data){
+      console.log("vennData", data)
+      this.venn_diag_data = data;
     }
   }
 };

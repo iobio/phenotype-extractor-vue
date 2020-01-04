@@ -108,6 +108,9 @@
         <Phenotypes
           :phenotypes="phenotypes">
         </Phenotypes>
+        <VennDiagram
+          :vennData="vennData">
+        </VennDiagram>
       </div>
     </div>
 
@@ -177,12 +180,13 @@ import HPO_Terms from '../data/HPO_Terms';
 import HpoTermsData from '../data/HpoTermsData.json';
 import hpo_genes from '../data/hpo_genes.json';
 import Phenotypes from './Phenotypes.vue';
-
+import VennDiagram from './VennDiagram.vue'
 
 export default {
   name: 'GeneList',
   components: {
-    Phenotypes
+    Phenotypes,
+    VennDiagram
   },
   props: {
     summaryGeneList: {
@@ -190,6 +194,9 @@ export default {
     },
     phenotypeTerms: {
       type: Array
+    },
+    venn_diag_data: {
+      type: Object
     }
   },
   watch:{
@@ -199,6 +206,10 @@ export default {
     },
     phenotypeTerms(){
       this.phenotypes = this.phenotypeTerms
+    },
+    venn_diag_data(){
+      console.log("venn data is updating", this.venn_diag_data)
+      this.vennData = this.venn_diag_data;
     }
   },
   data () {
@@ -233,6 +244,7 @@ export default {
       HPO_Phenotypes_data: null,
       HPO_Terms_data: null,
       phenotypes: [],
+      vennData: {},
 
     }
   },
@@ -246,7 +258,8 @@ export default {
     this.HpoTermsTypeaheadData  = HpoTermsData.data;
     this.HPO_Terms_data = HPO_Terms;
     this.HPO_Phenotypes_data = HPO_Phenotypes;
-
+    console.log("venn_diag_data", this.venn_diag_data)
+    this.vennData = this.venn_diag_data
   },
 
   created(){
@@ -258,7 +271,7 @@ export default {
       this.geneTableLoading = false;
     });
 
-    this.phenotypes = this.phenotypeTerms
+    this.phenotypes = this.phenotypeTerms;
 
   },
 

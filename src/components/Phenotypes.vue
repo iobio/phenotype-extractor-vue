@@ -1,7 +1,6 @@
 <template>
   <div>
     <v-expansion-panels
-
       v-model="searchterms_expansion_panel"
       multiple>
       <v-expansion-panel>

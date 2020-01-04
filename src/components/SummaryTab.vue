@@ -668,6 +668,8 @@ import d3 from 'd3'
             {"sets" : [0,1,2,3],  "size":summaryObj.gtr_phenolyzer_ImportedGenes_ClinPhen.count, "isGtr":true, "isImportedGenes":true, "isPheno": true, "isClinPhen": true}
           ]
         }
+
+        this.$emit("emit_venn_data", this.vennData)
         // this.drawVennDiagram();
         // if((this.GtrGenesArr.length>0 && this.PhenolyzerGenesArr.length>0) ||
         //       (this.GtrGenesArr.length>0 && this.clinPhenSelectedGenes.length>0) ||

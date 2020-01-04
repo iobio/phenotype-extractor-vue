@@ -774,7 +774,8 @@
           :multipleSearchTerms="multipleSearchTerms"
           :summaryFullGeneList="summaryFullGeneList"
           @summaryGenesFullList="summaryGenesFullList($event)"
-          :VennDiagramData="VennDiagramData">
+          :VennDiagramData="VennDiagramData"
+          @emit_venn_data="emit_venn_data($event)">
         </SummaryTab>
 
 
@@ -2251,6 +2252,10 @@ export default {
         this.$emit('saveSearchedPhenotypes', allPhenotypes)
 
       }, //end remove() method
+
+      emit_venn_data(data){
+        this.$emit("vennData", data)
+      }
 
   }
 };
