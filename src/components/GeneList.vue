@@ -24,7 +24,10 @@
 
               <v-dialog v-model="copyPasteGenes" max-width="500px">
                 <template v-slot:activator="{ on }">
-                  <v-btn color="primary" outlined dark class="mr-3 ml-3 mt-2" v-on="on">Add Genes</v-btn>
+                  <v-btn color="primary" class="mr-3 ml-4 mt-3" v-on="on">
+                    <v-icon class="mr-1">add</v-icon>
+                    Add genes
+                  </v-btn>
                 </template>
                 <v-card>
                   <v-card-title primary-title>
@@ -381,5 +384,6 @@ export default {
 
   .v-btn
     text-transform: none
+    letter-spacing: normal
 
 </style>

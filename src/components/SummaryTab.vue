@@ -1127,18 +1127,6 @@ import d3 from 'd3'
 </script>
 
 <style lang="sass">
-  .venntooltip
-    position: absolute
-    text-align: center
-    width: 128px
-    height: 26px
-    background: #333
-    color: #ddd
-    padding: 2px
-    border: 0px
-    border-radius: 8px
-    opacity: 0
-    z-index: 10
 
 
 

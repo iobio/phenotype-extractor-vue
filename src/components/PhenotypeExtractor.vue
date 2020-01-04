@@ -41,8 +41,8 @@
         <v-btn :disabled="textNotes.length<4" @click="extract" color="primary">Submit</v-btn>
         <br><br>
         <div mt-3 v-if="multipleSearchTerms.length && !searchStatusDialog && !showSearchTermsLoader">
-          <v-btn style="text-transform:none" rounded color="primary" small outlined dark @click="DuplicateSearchStatusDialog=true">
-            <i>Show search status</i>
+          <v-btn style="text-transform:none" small @click="DuplicateSearchStatusDialog=true">
+           Show search status
           </v-btn>
         </div>
 
