@@ -366,7 +366,6 @@ export default {
       // let data = self.drawSvgBars(sortedPhenotypeData);
       let data = self.drawSvgBars(rankedList);
       self.items = data;
-
       self.noOfSourcesSvg();
       self.items.map(x=>{
         x.individualRank = self.getRankForEachTerm(x.geneName)
