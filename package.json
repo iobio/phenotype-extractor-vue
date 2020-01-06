@@ -1,6 +1,6 @@
 {
   "name": "iobio-phenotype-extractor-vue",
-  "version": "0.1.31",
+  "version": "0.1.33",
   "private": false,
   "main": "./dist/iobio.common.js",
   "files": [
@@ -12,7 +12,7 @@
     "plugins/*"
   ],
   "scripts": {
-    "serve": "vue-cli-service serve",
+    "serve": "vue-cli-service serve --host localhost",
     "build": "vue-cli-service build",
     "test:e2e": "vue-cli-service test:e2e",
     "test:unit": "vue-cli-service test:unit",

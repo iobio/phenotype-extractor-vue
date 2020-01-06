@@ -686,7 +686,8 @@
           :summaryFullGeneList="summaryFullGeneList"
           @summaryGenesFullList="summaryGenesFullList($event)"
           :VennDiagramData="VennDiagramData"
-          @emit_venn_data="emit_venn_data($event)">
+          @emit_venn_data="emit_venn_data($event)"
+          @venn_diag_summaryObj="venn_diag_summaryObj($event)">
         </SummaryTab>
 
 
@@ -2166,6 +2167,10 @@ export default {
 
       emit_venn_data(data){
         this.$emit("vennData", data)
+      },
+
+      venn_diag_summaryObj(obj){
+        this.$emit("VennDiagramData", obj)
       }
 
   }

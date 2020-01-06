@@ -122,7 +122,7 @@ import { bus } from '../main';
       this.GtrTermsAdded = this.phenotypes[0];
       this.phenolyzerTermsAdded = this.phenotypes[1];
       if(this.phenotypes.length && this.phenotypes[2].length){
-        this.hpoTermsAdded = this.phenotypes[1];
+        this.hpoTermsAdded = this.phenotypes[2];
       }
 
       bus.$on("show-gene-table-skeleton-loaders", ()=>{

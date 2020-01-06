@@ -21,7 +21,8 @@
         @PhenolyzerGeneList="PhenolyzerGeneList($event)"
         @HpoGeneList="HpoGeneList($event)"
         :AddedGenes="AddedGenes"
-        @vennData="vennData($event)">
+        @vennData="vennData($event)"
+        @VennDiagramData="VennDiagramData($event)">
       </PhenotypeExtractor>
 
       <!-- <Phenotypes
@@ -133,8 +134,10 @@ export default {
       this.analysis.payload.genesReport = genes;
     },
     vennData(data){
-      console.log("vennData", data)
       this.venn_diag_data = data;
+    },
+    VennDiagramData(obj){
+      this.analysis.payload.VennDiagramData = obj
     }
   }
 };

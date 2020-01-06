@@ -1037,6 +1037,7 @@ import d3 from 'd3'
         this.$emit('summaryGenesFullList', this.summaryTableArrayFullList);
         // this.addSummaryGenesFullList(this.summaryTableArrayFullList);
         this.generateVennDiagramData(summaryObj);
+        this.$emit("venn_diag_summaryObj", summaryObj)
       },
       setPieChartData(){
         this.pieChartdataArr = [

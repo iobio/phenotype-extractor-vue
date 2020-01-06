@@ -371,20 +371,6 @@ export default {
         x.individualRank = self.getRankForEachTerm(x.geneName)
       })
 
-      // if(self.includeClinPhenolyzerGenes && self.clinGenes.length>0){
-      //   self.selected = [];
-      // // if(self.launchedFromClin && self.clinGenes.length>0){
-      //   self.items.map(x=>{
-      //     if(self.clinGenes.includes(x.geneName)){
-      //       self.selected.push(x);
-      //     }
-      //   })
-      // }
-      // else {
-      //   self.selected = self.items.slice(0, self.genesTop);
-      //
-      // }
-      // self.selected = self.items.slice(0,50);
       self.phenolyzerStatus = null;
       // self.updatePhenolyzerStatusGlobal(null);
       self.selectedGenesText= ""+ self.selected.length + " of " + self.items.length + " genes selected";
@@ -393,7 +379,6 @@ export default {
       self.$emit("SelectedPhenolyzerGenesToCopy", self.selected);
       this.$emit("PhenolyzerFullGeneList", this.items);
       // console.log("PhenolyzerFullGeneList", this.items);
-
     },
     sortScores(){
       let self = this;
