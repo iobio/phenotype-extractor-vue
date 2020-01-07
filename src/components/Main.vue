@@ -162,8 +162,8 @@ export default {
     height: 250px
     overflow-y: auto
 
-  @media (min-width: 1500px)
+  @media (min-width: 1550px)
     .container
-      max-width: 1500px
+      max-width: 1550px
 
 </style>
