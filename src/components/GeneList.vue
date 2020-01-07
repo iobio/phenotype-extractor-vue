@@ -2,7 +2,7 @@
   <v-container>
 
     <div class="row">
-      <div class="col-md-9">
+      <div class="col-md-12">
         <v-card>
           <div id="gene-data-table" v-if="!geneTableLoading">
             <v-card-title>
@@ -17,7 +17,7 @@
               <v-text-field
                 v-model="search"
                 append-icon="search"
-                label="Search"
+                label="Find gene"
                 single-line
                 hide-details
               ></v-text-field>
@@ -107,14 +107,14 @@
 
         </v-card>
       </div>
-      <div class="col-md-3">
+      <!-- <div class="col-md-3">
         <Phenotypes
           :phenotypes="phenotypes">
         </Phenotypes>
         <VennDiagram
           :vennData="vennData">
         </VennDiagram>
-      </div>
+      </div> -->
     </div>
 
     <v-layout

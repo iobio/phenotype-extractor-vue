@@ -4,49 +4,52 @@
       text-center
       wrap
     >
-      <v-flex xs12 mt-5 mb-6>
-        <h1 class="display-2 font-weight-bold mb-3">
-        </h1>
-        <div class="ml-2 mr-4" id="SingleEntryInput" style="display:inline-block; padding-top:5px;">
-          <input
-            id="single_entry_input"
-            ref="single_entry_input"
-            class="pl-4 pr=4"
-            type="text"
-            v-model="textNotes"
-            v-show="textNotes.length<45"
-            autocomplete="off"
-            placeholder="Enter Phenotypes or Type (paste) Clinical Note">
-            <v-textarea
-              v-show="textNotes.length>=45"
+      <div class="row">
+        <div class="col-md-7">
+          <div class="ml-1 mr-2" id="SingleEntryInput" style="display:inline-block; padding-top:5px;">
+            <input
+              id="single_entry_input"
+              ref="single_entry_input"
+              class="pl-4 pr=4"
+              type="text"
               v-model="textNotes"
-              ref="single_entry_input_textarea"
-              id="single_entry_input_textarea"
-              name="input-7-4"
-              rows="2"
-              outlined
-              style="padding-top:5px"
-            ></v-textarea>
-            <typeahead
-              v-model="search"
-              hide-details="false"
-              target="#single_entry_input"
-              force-select :force-clear="true"
-              :data="DiseaseNames"
-              :limit="parseInt(100)"
-              v-on:keydown="EnterForSearch"
-              v-on:input="mouseSelect"
-              item-key="DiseaseName"/>
+              v-show="textNotes.length<45"
+              autocomplete="off"
+              placeholder="Enter Phenotypes or Type (paste) Clinical Note">
+              <v-textarea
+                v-show="textNotes.length>=45"
+                v-model="textNotes"
+                ref="single_entry_input_textarea"
+                id="single_entry_input_textarea"
+                name="input-7-4"
+                rows="2"
+                outlined
+                style="padding-top:5px"
+              ></v-textarea>
+              <typeahead
+                v-model="search"
+                hide-details="false"
+                target="#single_entry_input"
+                force-select :force-clear="true"
+                :data="DiseaseNames"
+                :limit="parseInt(100)"
+                v-on:keydown="EnterForSearch"
+                v-on:input="mouseSelect"
+                item-key="DiseaseName"/>
+          </div>
+          <v-btn :disabled="textNotes.length<4" @click="extract" color="primary">Submit</v-btn>
+          <br><br>
+          <div mt-3 v-if="multipleSearchTerms.length && !searchStatusDialog && !showSearchTermsLoader">
+            <v-btn style="text-transform:none" small @click="DuplicateSearchStatusDialog=true">
+             Show search status
+            </v-btn>
+          </div>
         </div>
-        <v-btn :disabled="textNotes.length<4" @click="extract" color="primary">Submit</v-btn>
-        <br><br>
-        <div mt-3 v-if="multipleSearchTerms.length && !searchStatusDialog && !showSearchTermsLoader">
-          <v-btn style="text-transform:none" small @click="DuplicateSearchStatusDialog=true">
-           Show search status
-          </v-btn>
-        </div>
+        <div class="col-md-5">
 
-      </v-flex>
+        </div>
+      </div>
+
 
       <!-- Loading dialog box -->
         <v-dialog
