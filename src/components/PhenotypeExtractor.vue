@@ -240,9 +240,38 @@
                   <br><br>
                   <div v-if="GtrReviewTerms.length===1">
                     <div >
-                      <v-expansion-panels multiple popout focusable>
-                        <v-expansion-panel v-model="gtrExpansionPanel" v-for="(item, i) in GtrReviewTerms" :key="i">
-                          <v-expansion-panel-header><div><strong>{{ item.DiseaseName }}</strong> <i style="ml-3"> ({{item.reviewTerms_gtr.length}} option)</i></div></v-expansion-panel-header>
+                      <v-expansion-panels v-model="gtr_terms_expansion_panel" multiple popout focusable :readonly="readonly">
+                        <v-expansion-panel v-for="(item, i) in GtrReviewTerms" :key="i">
+                          <v-expansion-panel-header expand-icon="none">
+                            <div v-if="item.reviewTerms_gtr[0].general">
+                              <div class="row">
+                                <div class="col-md-1">
+                                  <v-checkbox color="primary" style="margin-top:-6px; margin-bottom:-35px;" v-model="GtrTermsAdded_temp" :value="item.reviewTerms_gtr[0]"></v-checkbox>
+                                </div>
+                                <div class="col-md-8">
+                                  <strong> {{ item.reviewTerms_gtr[0].DiseaseName}}</strong>
+                                </div>
+                                <div class="col-md-3" @click="toggle_expansion_panel(i, 'GTR')">
+                                  <span><small>{{item.reviewTerms_gtr.length}} more options</small></span>
+                                  <span><v-icon>unfold_more</v-icon></span>
+                                </div>
+                              </div>
+                            </div>
+                            <div v-else>
+                              <div class="row">
+                                <div class="col-md-1">
+                                </div>
+                                <div class="col-md-8">
+                                  <strong> {{ item.DiseaseName }} </strong>
+                                </div>
+                                <div class="col-md-3" @click="toggle_expansion_panel(i, 'GTR')">
+                                  <span><small>{{item.reviewTerms_gtr.length}} more options</small></span>
+                                  <span><v-icon>unfold_more</v-icon></span>
+                                </div>
+                              </div>
+                            </div>
+                          </v-expansion-panel-header>
+                          <!-- <v-expansion-panel-header><div><strong>{{ item.DiseaseName }}</strong> <i style="ml-3"> ({{item.reviewTerms_gtr.length}} option)</i></div></v-expansion-panel-header> -->
                           <v-expansion-panel-content>
                             <div class="reviewCard">
                               <v-card-text>
@@ -297,7 +326,6 @@
                                   <span><v-icon>unfold_more</v-icon></span>
                                 </div>
                               </div>
-                              <!-- <strong>{{ item.DiseaseName }}</strong> <i style="ml-3"> ({{item.reviewTerms_gtr.length}} options)</i> -->
                             </div>
                           </v-expansion-panel-header>
                           <v-expansion-panel-content>
@@ -348,20 +376,52 @@
                   <br><br>
                   <div v-if="phenolyzerReviewTerms.length===1">
                     <div >
-                      <v-expansion-panels popout focusable>
-                        <v-expansion-panel v-model="phenolyzerExpansionPanel" v-for="(item, i) in phenolyzerReviewTerms" :key="i">
-                          <v-expansion-panel-header><div><strong>{{ item.DiseaseName }}</strong> <i style="ml-3"> ({{item.reviewTerms_phenolyzer.length}} option)</i></div></v-expansion-panel-header>
+                      <v-expansion-panels v-model="phenolyzer_terms_expansion_panel" multiple popout focusable :readonly="readonly">
+                        <v-expansion-panel v-for="(item, i) in phenolyzerReviewTerms" :key="i">
+                          <!-- <v-expansion-panel-header><div><strong>{{ item.DiseaseName }}</strong> <i style="ml-3"> ({{item.reviewTerms_phenolyzer.length}} option)</i></div></v-expansion-panel-header> -->
+                          <v-expansion-panel-header expand-icon="none">
+                            <div v-if="item.reviewTerms_phenolyzer[0].general">
+                              <div class="row">
+                                <div class="col-md-1">
+                                  <v-checkbox color="primary" style="margin-top:-6px; margin-bottom:-35px;" v-model="phenolyzerTermsAdded_temp" :value="item.reviewTerms_phenolyzer[0]"></v-checkbox>
+                                </div>
+                                <div class="col-md-8">
+                                  <strong> {{ item.reviewTerms_phenolyzer[0].value | to-firstCharacterUppercase}}</strong>
+                                </div>
+                                <div class="col-md-3" @click="toggle_expansion_panel(i, 'Phenolyzer')">
+                                  <span><small>{{item.reviewTerms_phenolyzer.length}} more options</small></span>
+                                  <span><v-icon>unfold_more</v-icon></span>
+                                </div>
+                              </div>
+                            </div>
+                            <div v-else>
+                              <div class="row">
+                                <div class="col-md-1">
+                                </div>
+                                <div class="col-md-8">
+                                  <strong> {{ item.DiseaseName }} </strong>
+                                </div>
+                                <div class="col-md-3" @click="toggle_expansion_panel(i, 'Phenolyzer')">
+                                  <span><small>{{item.reviewTerms_gtr.length}} more options</small></span>
+                                  <span><v-icon>unfold_more</v-icon></span>
+                                </div>
+                              </div>
+                            </div>
+                          </v-expansion-panel-header>
+                          <v-expansion-panel-content>
                             <div class="reviewCard">
-                              <v-card-text>
-                                <div v-for="sub in item.reviewTerms_phenolyzer" class="row">
-                                  <div class="col-md-2">
-                                    <v-checkbox color="primary" style="margin-top:-2px; margin-bottom:-12px;" v-model="phenolyzerTermsAdded_temp" :value="sub"></v-checkbox>
-                                  </div>
-                                  <div class="col-md-10">
-                                    <span v-if="sub.general">
-                                      <span class="highlighted_condition">{{ sub.value | to-firstCharacterUppercase }}</span>
-                                    </span>
-                                    <span v-else>{{ sub.value | to-firstCharacterUppercase }}</span>
+                              <v-card-text >
+                                <div v-for="sub in item.reviewTerms_phenolyzer" >
+                                  <div class="row">
+                                    <div class="col-md-2">
+                                      <v-checkbox color="primary" style="margin-top:-2px; margin-bottom:-12px;" v-model="phenolyzerTermsAdded_temp" :value="sub"></v-checkbox>
+                                    </div>
+                                    <div class="col-md-10">
+                                      <span v-if="sub.general">
+                                        <span class="highlighted_condition">{{ sub.value | to-firstCharacterUppercase }}</span>
+                                      </span>
+                                      <span v-else>{{ sub.value | to-firstCharacterUppercase }}</span>
+                                    </div>
                                   </div>
                                 </div>
                               </v-card-text>
@@ -374,9 +434,38 @@
                   </div>
                   <div v-if="phenolyzerReviewTerms.length>1">
                     <div>
-                      <v-expansion-panels multiple popout focusable>
-                        <v-expansion-panel v-model="phenolyzerExpansionPanelMultiple" v-for="(item, i) in phenolyzerReviewTerms" :key="i">
-                          <v-expansion-panel-header><div><strong>{{ item.DiseaseName }}</strong><i style="ml-3"> ({{item.reviewTerms_phenolyzer.length}} options) </i></div></v-expansion-panel-header>
+                      <v-expansion-panels v-model="phenolyzer_terms_expansion_panel" multiple popout focusable :readonly="readonly">
+                        <v-expansion-panel v-for="(item, i) in phenolyzerReviewTerms" :key="i">
+                          <!-- <v-expansion-panel-header><div><strong>{{ item.DiseaseName }}</strong><i style="ml-3"> ({{item.reviewTerms_phenolyzer.length}} options) </i></div></v-expansion-panel-header> -->
+                          <v-expansion-panel-header expand-icon="none">
+                            <div v-if="item.reviewTerms_phenolyzer[0].general">
+                              <div class="row">
+                                <div class="col-md-1">
+                                  <v-checkbox color="primary" style="margin-top:-6px; margin-bottom:-35px;" v-model="phenolyzerTermsAdded_temp" :value="item.reviewTerms_phenolyzer[0]"></v-checkbox>
+                                </div>
+                                <div class="col-md-8">
+                                  <strong> {{ item.reviewTerms_phenolyzer[0].value | to-firstCharacterUppercase}}</strong>
+                                </div>
+                                <div class="col-md-3" @click="toggle_expansion_panel(i, 'Phenolyzer')">
+                                  <span><small>{{item.reviewTerms_phenolyzer.length}} more options</small></span>
+                                  <span><v-icon>unfold_more</v-icon></span>
+                                </div>
+                              </div>
+                            </div>
+                            <div v-else>
+                              <div class="row">
+                                <div class="col-md-1">
+                                </div>
+                                <div class="col-md-8">
+                                  <strong> {{ item.DiseaseName }} </strong>
+                                </div>
+                                <div class="col-md-3" @click="toggle_expansion_panel(i, 'Phenolyzer')">
+                                  <span><small>{{item.reviewTerms_gtr.length}} more options</small></span>
+                                  <span><v-icon>unfold_more</v-icon></span>
+                                </div>
+                              </div>
+                            </div>
+                          </v-expansion-panel-header>
                           <v-expansion-panel-content>
                             <div class="reviewCard">
                               <v-card-text >
@@ -2340,6 +2429,20 @@ export default {
           else {
             let idx = this.gtr_terms_expansion_panel.indexOf(i);
             this.gtr_terms_expansion_panel.splice(idx, 1);
+          }
+        }
+        else if(component === 'Phenolyzer'){
+          if(!this.phenolyzer_terms_expansion_panel.includes(i)){
+            console.log("here", i)
+
+            this.phenolyzer_terms_expansion_panel.push(i);
+            console.log("this.phenolyzer_terms_expansion_panel", this.phenolyzer_terms_expansion_panel)
+          }
+          else {
+            let idx = this.phenolyzer_terms_expansion_panel.indexOf(i);
+            console.log("there")
+
+            this.phenolyzer_terms_expansion_panel.splice(idx, 1);
           }
         }
       },
