@@ -512,24 +512,22 @@
                   </span>
                   <br><br>
 
-                  <v-card class="elevation-4">
-                    <v-card-text>
-                      <table class="table table-hover">
-                        <thead>
-                          <tr>
-                          </tr>
-                        </thead>
-                        <tbody>
-                          <tr v-for="(term, i) in HpoReviewTerms" :key="i">
-                            <th scope="row">
-                              <v-checkbox color="primary" style="margin-top:8px; margin-bottom:-12px;" v-model="hpoTermsAdded_temp" :value="term"></v-checkbox>
-                            </th>
-                            <td class="pt-5">{{ term.HPO_Data }}</td>
-                          </tr>
-                        </tbody>
-                      </table>
-                    </v-card-text>
-                  </v-card>
+                  <v-expansion-panels multiple popout focusable :readonly="readonly">
+                    <v-expansion-panel v-for="(term, i) in HpoReviewTerms" :key="i">
+                      <v-expansion-panel-header expand-icon="none">
+                        <div>
+                          <div class="row">
+                            <div class="col-md-1">
+                              <v-checkbox color="primary" style="margin-top:-6px; margin-bottom:-35px;" v-model="hpoTermsAdded_temp" :value="term"></v-checkbox>
+                            </div>
+                            <div class="col-md-11">
+                              <strong> {{ term.HPO_Data }}</strong>
+                            </div>
+                          </div>
+                        </div>
+                      </v-expansion-panel-header>
+                    </v-expansion-panel>
+                  </v-expansion-panels>
                 </div>
                 <div v-if="!HpoReviewTerms.length && termsReviewDialogPage===3">
                   Currently unavailable.
