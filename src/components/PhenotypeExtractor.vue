@@ -270,6 +270,38 @@
                   </div>
                 </div>
 
+                <div class="mt-1 mb-1" v-if="phenolyzerReviewTerms.length && termsReviewDialogPage===2">
+                  <div v-if="phenolyzerTermsAdded_temp.length>0">
+                    <small  style="color: rgba(0, 0, 0, 0.6); font-size: 0.875rem" class="font-weight-thin">Terms Selected: </small>
+                    <!-- <span v-for="(term, i) in phenolyzerTermsAdded" v-if="phenolyzerTermsAdded.length">
+                      <v-chip class="mr-2" small outlined color="primary">
+                        {{ term.value }}
+                      </v-chip>
+                    </span> -->
+                    <span v-for="(term, i) in phenolyzerTermsAdded_temp" v-if="phenolyzerTermsAdded_temp.length">
+                      <v-chip class="mr-2" small outlined color="primary">
+                        {{ term.value }}
+                      </v-chip>
+                    </span>
+                  </div>
+                </div>
+
+                <div class="mt-1 mb-1" v-if="HpoReviewTerms.length && termsReviewDialogPage===3">
+                  <div v-if="hpoTermsAdded_temp.length>0">
+                    <small  style="color: rgba(0, 0, 0, 0.6); font-size: 0.875rem" class="font-weight-thin">Terms Selected: </small>
+                    <!-- <span v-for="(term, i) in hpoTermsAdded" v-if="hpoTermsAdded.length">
+                      <v-chip class="mr-2" small outlined color="primary">
+                        {{ term.HPO_Data }}
+                      </v-chip>
+                    </span> -->
+                    <span v-for="(term, i) in hpoTermsAdded_temp" v-if="hpoTermsAdded_temp.length">
+                      <v-chip class="mr-2" small outlined color="primary">
+                        {{ term.HPO_Data }}
+                      </v-chip>
+                    </span>
+                  </div>
+                </div>
+
               </v-card-title>
               <v-card-text style="height: 430px;">
 
@@ -399,18 +431,6 @@
 
                 <!-- Phenolyzer review terms table -->
                 <div v-if="phenolyzerReviewTerms.length && termsReviewDialogPage===2">
-                  Terms Selected:
-                  <span v-for="(term, i) in phenolyzerTermsAdded" v-if="phenolyzerTermsAdded.length">
-                    <v-chip class="mr-2" small outlined color="primary">
-                      {{ term.value }}
-                    </v-chip>
-                  </span>
-                  <span v-for="(term, i) in phenolyzerTermsAdded_temp" v-if="phenolyzerTermsAdded_temp.length">
-                    <v-chip class="mr-2" small outlined color="primary">
-                      {{ term.value }}
-                    </v-chip>
-                  </span>
-                  <br><br>
                   <div v-if="phenolyzerReviewTerms.length===1">
                     <div >
                       <v-expansion-panels v-model="phenolyzer_terms_expansion_panel" multiple popout focusable :readonly="readonly">
@@ -536,19 +556,6 @@
 
                 <!-- HPO review terms table -->
                 <div v-if="HpoReviewTerms.length && termsReviewDialogPage===3">
-                  Terms Selected:
-                  <span v-for="(term, i) in hpoTermsAdded" v-if="hpoTermsAdded.length">
-                    <v-chip class="mr-2" small outlined color="primary">
-                      {{ term.HPO_Data }}
-                    </v-chip>
-                  </span>
-                  <span v-for="(term, i) in hpoTermsAdded_temp" v-if="hpoTermsAdded_temp.length">
-                    <v-chip class="mr-2" small outlined color="primary">
-                      {{ term.HPO_Data }}
-                    </v-chip>
-                  </span>
-                  <br><br>
-
                   <v-expansion-panels multiple popout focusable :readonly="readonly">
                     <v-expansion-panel v-for="(term, i) in HpoReviewTerms" :key="i">
                       <v-expansion-panel-header expand-icon="none">
