@@ -207,37 +207,74 @@
             transition="dialog-transition"
           >
             <v-card>
-              <v-card-title class="headline">
-                <!-- <span>Review Terms</span> -->
+              <v-card-title class="grey lighten-2">
+                <div v-if="termsReviewDialogPage===1">
+                  <div class="pa-2">
+                    <v-icon color="primary darken-1">sort</v-icon> GTR (Genetic Testing Registry)
+                  </div>
+                </div>
+                <div v-if="termsReviewDialogPage===2">
+                  <div class="pa-2">
+                    <img src="../assets/phenolyzer1.svg" alt="" height="28px" width="28px" > Phenolyzer
+                  </div>
+                </div>
+                <div v-if="termsReviewDialogPage===3">
+                  <div class="pa-2">
+                    <v-icon color="primary darken-1">speaker_notes</v-icon> HPO (Human Phenotype Ontology)
+                  </div>
+                </div>
+                <div v-if="termsReviewDialogPage===4">
+                  <div class="pa-2">
+                    Review selected terms:
+                  </div>
+                </div>
+
+
                 <v-spacer></v-spacer>
                 <span>
                   <v-btn text icon @click="closeReviewDialog"><v-icon>close</v-icon></v-btn>
                 </span>
-              </v-card-title>
-              <v-card-title v-if="termsReviewDialogPage===1">Select the terms to be searched in GTR:  </v-card-title>
-              <div  v-if="termsReviewDialogPage===1">
-                <!-- <center><i>Please limit to 5 terms in GTR </i></center> -->
-              </div>
-              <v-card-title v-if="termsReviewDialogPage===2">Select the terms to be searched in Phenolyzer:</v-card-title>
-              <v-card-title v-if="termsReviewDialogPage===3">Select the terms to be searched in HPO:</v-card-title>
-              <v-card-title v-if="termsReviewDialogPage===4">Review selected terms:</v-card-title>
 
+              </v-card-title>
+
+              <v-card-title>
+                <div  class="mt-1 mb-1" v-if="GtrReviewTerms.length && termsReviewDialogPage===1">
+                  <div v-if="GtrTermsAdded_temp.length>0">
+                    <small  style="color: rgba(0, 0, 0, 0.6); font-size: 0.875rem" class="font-weight-thin">Terms Selected: </small>
+                    <span v-for="(term, i) in GtrTermsAdded" v-if="GtrTermsAdded.length">
+                      <!-- <v-chip class="mr-2" small outlined color="primary">
+                        {{ term.DiseaseName }}
+                      </v-chip> -->
+                    </span>
+                    <span v-for="(term, i) in GtrTermsAdded_temp" v-if="GtrTermsAdded_temp.length">
+                      <v-chip class="mr-2" small outlined color="primary">
+                        {{ term.DiseaseName }}
+                      </v-chip>
+                    </span>
+                  </div>
+                  <div v-else>
+                    <center>
+                      <v-alert
+                        v-model="expansion_hint_alert"
+                        dismissible
+                        color="cyan"
+                        border="left"
+                        elevation="2"
+                        colored-border
+                        icon="rate_review"
+                        class="ml-10 mb-2"
+                      >
+                        <small> Review and select terms to be searched in each of the following tools: GTR, Phenolyzer, HPO.</small>
+                      </v-alert>
+                    </center>
+                  </div>
+                </div>
+
+              </v-card-title>
               <v-card-text style="height: 430px;">
 
                 <!-- GTR review terms table -->
                 <div v-if="GtrReviewTerms.length && termsReviewDialogPage===1">
-                  Terms Selected:
-                  <span v-for="(term, i) in GtrTermsAdded" v-if="GtrTermsAdded.length">
-                    <v-chip class="mr-2" small outlined color="primary">
-                      {{ term.DiseaseName }}
-                    </v-chip>
-                  </span>
-                  <span v-for="(term, i) in GtrTermsAdded_temp" v-if="GtrTermsAdded_temp.length">
-                    <v-chip class="mr-2" small outlined color="primary">
-                      {{ term.DiseaseName }}
-                    </v-chip>
-                  </span>
-                  <br><br>
                   <div v-if="GtrReviewTerms.length===1">
                     <div >
                       <v-expansion-panels v-model="gtr_terms_expansion_panel" multiple popout focusable :readonly="readonly">
