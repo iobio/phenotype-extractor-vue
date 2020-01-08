@@ -39,10 +39,10 @@
           </div>
           <v-btn :disabled="textNotes.length<4" @click="extract" color="primary">Submit</v-btn>
           <br><br>
-          <div mt-3 v-if="multipleSearchTerms.length && !searchStatusDialog && !showSearchTermsLoader">
-            <v-btn style="text-transform:none" small @click="DuplicateSearchStatusDialog=true">
+          <div mt-0 v-if="multipleSearchTerms.length && !searchStatusDialog && !showSearchTermsLoader">
+            <!-- <v-btn style="text-transform:none" small @click="DuplicateSearchStatusDialog=true">
              Show search status
-            </v-btn>
+            </v-btn> -->
           </div>
         </div>
         <div class="col-md-6">
@@ -203,7 +203,7 @@
             v-model="termsReviewDialog"
             scrollable
             persistent :overlay="false"
-            max-width="900px"
+            max-width="1000px"
             transition="dialog-transition"
           >
             <v-card>
@@ -340,7 +340,6 @@
                               </div>
                             </div>
                           </v-expansion-panel-header>
-                          <!-- <v-expansion-panel-header><div><strong>{{ item.DiseaseName }}</strong> <i style="ml-3"> ({{item.reviewTerms_gtr.length}} option)</i></div></v-expansion-panel-header> -->
                           <v-expansion-panel-content>
                             <div class="reviewCard">
                               <v-card-text>
@@ -435,7 +434,6 @@
                     <div >
                       <v-expansion-panels v-model="phenolyzer_terms_expansion_panel" multiple popout focusable :readonly="readonly">
                         <v-expansion-panel v-for="(item, i) in phenolyzerReviewTerms" :key="i">
-                          <!-- <v-expansion-panel-header><div><strong>{{ item.DiseaseName }}</strong> <i style="ml-3"> ({{item.reviewTerms_phenolyzer.length}} option)</i></div></v-expansion-panel-header> -->
                           <v-expansion-panel-header expand-icon="none">
                             <div v-if="item.reviewTerms_phenolyzer[0].general">
                               <div class="row">
@@ -493,7 +491,6 @@
                     <div>
                       <v-expansion-panels v-model="phenolyzer_terms_expansion_panel" multiple popout focusable :readonly="readonly">
                         <v-expansion-panel v-for="(item, i) in phenolyzerReviewTerms" :key="i">
-                          <!-- <v-expansion-panel-header><div><strong>{{ item.DiseaseName }}</strong><i style="ml-3"> ({{item.reviewTerms_phenolyzer.length}} options) </i></div></v-expansion-panel-header> -->
                           <v-expansion-panel-header expand-icon="none">
                             <div v-if="item.reviewTerms_phenolyzer[0].general">
                               <div class="row">
@@ -581,59 +578,78 @@
                 <!-- All terms review page -->
                 <div v-if="termsReviewDialogPage===4">
                   <v-card>
-                    <v-card-text v-if="GtrTermsAdded_temp.length">
-                      <h4>GTR: </h4>
-                      <p v-for="(term, i) in GtrTermsAdded_temp" v-if="GtrTermsAdded_temp.length">
-                        <v-chip outlined color="primary">
-                          {{ term.DiseaseName }}
-                        </v-chip>
-                      </p>
-                      <a @click="termsReviewDialogPage=1"><small><i>Update</i></small></a>
-                    </v-card-text>
-                    <v-card v-else>
-                      <v-card-text>
-                        <p>GTR Terms not selected</p>
-                      </v-card-text>
-                    </v-card>
-                  </v-card>
-                  <br>
+                    <v-card-text>
+                      <div class="container">
+                        <div class="row">
+                          <!-- GTR -->
+                          <div class="col-md-4">
+                            <table class="table">
+                              <thead>
+                                <tr>
+                                  <strong>GTR Terms</strong>
+                                </tr>
+                              </thead>
+                              <tbody>
+                                <tr v-for="(term, i) in GtrTermsAdded_temp" v-if="GtrTermsAdded_temp.length">
+                                  <td> {{ term.DiseaseName }} </td>
+                                  <td style="display:none"><v-icon>check</v-icon></td>
+                                </tr>
+                              </tbody>
+                            </table>
+                            <div v-if="GtrTermsAdded_temp.length<1">
+                              <span><i>Not Selected...</i></span>
+                            </div>
+                            <v-btn @click="termsReviewDialogPage=1" text small color="primary"><v-icon class="mr-2">refresh</v-icon> Update</v-btn>
+                          </div>
 
-                  <v-card>
-                    <v-card-text v-if="phenolyzerTermsAdded_temp.length">
-                      <h4>Phenolyzer: </h4>
-                      <p v-for="(term, i) in phenolyzerTermsAdded_temp" v-if="phenolyzerTermsAdded_temp.length">
-                        <v-chip outlined color="primary">
-                          {{ term.value }}
-                        </v-chip>
-                      </p>
-                      <a @click="termsReviewDialogPage=2"><small><i>Update</i></small></a>
-                    </v-card-text>
-                    <v-card v-else>
-                      <v-card-text>
-                        <p>Phenolyzer Terms not selected</p>
-                      </v-card-text>
-                    </v-card>
-                  </v-card>
-                  <br>
+                          <!-- Phenolyzer -->
+                          <div class="col-md-4">
+                            <table class="table">
+                              <thead>
+                                <tr>
+                                  <strong>Phenolyzer Terms</strong>
+                                </tr>
+                              </thead>
+                              <tbody>
+                                <tr v-for="(term, i) in phenolyzerTermsAdded_temp" v-if="phenolyzerTermsAdded_temp.length">
+                                  <td> {{ term.value }} </td>
+                                  <td style="display:none"><v-icon>check</v-icon></td>
+                                </tr>
+                              </tbody>
+                            </table>
+                            <div v-if="phenolyzerTermsAdded_temp.length<1">
+                              <span><i>Not Selected...</i></span>
+                            </div>
+                            <v-btn @click="termsReviewDialogPage=2" text small color="primary"><v-icon class="mr-2">refresh</v-icon> Update</v-btn>
 
-                  <v-card>
-                    <v-card-text v-if="hpoTermsAdded_temp.length">
-                      <h4>HPO: </h4>
-                      <p v-for="(term, i) in hpoTermsAdded_temp" v-if="hpoTermsAdded_temp.length">
-                        <v-chip outlined color="primary">
-                          {{ term.HPO_Data }}
-                        </v-chip>
-                      </p>
-                      <a @click="termsReviewDialogPage=3"><small><i>Update</i></small></a>
-                    </v-card-text>
-                    <v-card v-else>
-                      <v-card-text>
-                        <p>HPO Terms not selected</p>
-                      </v-card-text>
-                    </v-card>
-                  </v-card>
-                  <br>
+                          </div>
 
+                          <div class="col-md-4">
+                            <table class="table">
+                              <thead>
+                                <tr>
+                                  <strong>HPO Terms</strong>
+                                </tr>
+                              </thead>
+                              <tbody>
+                                <tr v-for="(term, i) in hpoTermsAdded_temp" v-if="hpoTermsAdded_temp.length">
+                                  <td> {{ term.HPO_Data }} </td>
+                                  <td style="display:none"><v-icon>check</v-icon></td>
+                                </tr>
+                              </tbody>
+                            </table>
+                            <div v-if="hpoTermsAdded_temp.length<1">
+                              <span><i>Not Selected...</i></span>
+                            </div>
+                            <v-btn @click="termsReviewDialogPage=3" text small color="primary"><v-icon class="mr-2">refresh</v-icon> Update</v-btn>
+
+                          </div>
+
+
+                        </div>
+                      </div>
+                    </v-card-text>
+                  </v-card>
                 </div>
 
 
