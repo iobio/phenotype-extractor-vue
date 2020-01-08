@@ -268,9 +268,38 @@
                   </div>
                   <div v-if="GtrReviewTerms.length>1">
                     <div>
-                      <v-expansion-panels multiple popout focusable>
-                        <v-expansion-panel v-model="gtrExpansionPanelMultiple" v-for="(item, i) in GtrReviewTerms" :key="i">
-                          <v-expansion-panel-header><div><strong>{{ item.DiseaseName }}</strong> <i style="ml-3"> ({{item.reviewTerms_gtr.length}} options)</i></div></v-expansion-panel-header>
+                      <v-expansion-panels v-model="gtr_terms_expansion_panel" multiple popout focusable :readonly="readonly">
+                        <v-expansion-panel v-for="(item, i) in GtrReviewTerms" :key="i">
+                          <v-expansion-panel-header expand-icon="none">
+                            <div v-if="item.reviewTerms_gtr[0].general">
+                              <div class="row">
+                                <div class="col-md-1">
+                                  <v-checkbox color="primary" style="margin-top:-6px; margin-bottom:-35px;" v-model="GtrTermsAdded_temp" :value="item.reviewTerms_gtr[0]"></v-checkbox>
+                                </div>
+                                <div class="col-md-8">
+                                  <strong> {{ item.reviewTerms_gtr[0].DiseaseName}}</strong>
+                                </div>
+                                <div class="col-md-3" @click="toggle_expansion_panel(i, 'GTR')">
+                                  <span><small>{{item.reviewTerms_gtr.length}} more options</small></span>
+                                  <span><v-icon>unfold_more</v-icon></span>
+                                </div>
+                              </div>
+                            </div>
+                            <div v-else>
+                              <div class="row">
+                                <div class="col-md-1">
+                                </div>
+                                <div class="col-md-8">
+                                  <strong> {{ item.DiseaseName }} </strong>
+                                </div>
+                                <div class="col-md-3" @click="toggle_expansion_panel(i, 'GTR')">
+                                  <span><small>{{item.reviewTerms_gtr.length}} more options</small></span>
+                                  <span><v-icon>unfold_more</v-icon></span>
+                                </div>
+                              </div>
+                              <!-- <strong>{{ item.DiseaseName }}</strong> <i style="ml-3"> ({{item.reviewTerms_gtr.length}} options)</i> -->
+                            </div>
+                          </v-expansion-panel-header>
                           <v-expansion-panel-content>
                             <div class="reviewCard">
                               <v-card-text >
@@ -990,7 +1019,10 @@ export default {
     hpoItems: [],
     DuplicateSearchStatusDialog: false,
     showSearchTermsLoader: false,
-    searchterms_expansion_panel: [0]
+    searchterms_expansion_panel: [0],
+    readonly: true,
+    gtr_terms_expansion_panel: [],
+    phenolyzer_terms_expansion_panel: [],
   }),
   watch: {
     textNotes(){
@@ -1264,6 +1296,8 @@ export default {
     },
 
     extract(){
+      this.gtr_terms_expansion_panel = [];
+      this.phenolyzer_terms_expansion_panel = [];
       this.WorkflowStepsflag = false;
       this.LevenshteinResults = [];
       this.loadingDialog = true;
@@ -2296,7 +2330,19 @@ export default {
 
       venn_diag_summaryObj(obj){
         this.$emit("VennDiagramData", obj)
-      }
+      },
+
+      toggle_expansion_panel(i, component){
+        if(component === 'GTR'){
+          if(!this.gtr_terms_expansion_panel.includes(i)){
+            this.gtr_terms_expansion_panel.push(i);
+          }
+          else {
+            let idx = this.gtr_terms_expansion_panel.indexOf(i);
+            this.gtr_terms_expansion_panel.splice(idx, 1);
+          }
+        }
+      },
 
   }
 };
