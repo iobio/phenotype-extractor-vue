@@ -225,7 +225,7 @@
                 </div>
                 <div v-if="termsReviewDialogPage===4">
                   <div class="pa-2">
-                    Review selected terms:
+                    <v-icon color="primary darken-1">rate_review</v-icon> Review selected terms:
                   </div>
                 </div>
 
@@ -679,8 +679,10 @@
             transition="dialog-transition"
           >
             <v-card>
-              <v-card-title class="headline">Search Status</v-card-title>
-              <v-divider></v-divider>
+              <v-card-title class="grey lighten-2">
+                <v-icon class="mr-2" color="primary darken-1">youtube_searched_for</v-icon> Search Status
+              </v-card-title>
+              <!-- <v-divider></v-divider> -->
               <v-card-text>
                 <div class="container">
                   <div class="row">
