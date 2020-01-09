@@ -247,7 +247,7 @@
                       </v-chip> -->
                     </span>
                     <span v-for="(term, i) in GtrTermsAdded_temp" v-if="GtrTermsAdded_temp.length">
-                      <v-chip class="mr-2" small outlined color="primary">
+                      <v-chip class="mr-2" small outlined color="primary" close :key="i" @click:close="removeReviewTerms(term, i, 'GTR')">
                         {{ term.DiseaseName }}
                       </v-chip>
                     </span>
@@ -279,7 +279,7 @@
                       </v-chip>
                     </span> -->
                     <span v-for="(term, i) in phenolyzerTermsAdded_temp" v-if="phenolyzerTermsAdded_temp.length">
-                      <v-chip class="mr-2" small outlined color="primary">
+                      <v-chip class="mr-2" small outlined color="primary" close :key="i" @click:close="removeReviewTerms(term, i, 'Phenolyzer')">
                         {{ term.value }}
                       </v-chip>
                     </span>
@@ -295,7 +295,7 @@
                       </v-chip>
                     </span> -->
                     <span v-for="(term, i) in hpoTermsAdded_temp" v-if="hpoTermsAdded_temp.length">
-                      <v-chip class="mr-2" small outlined color="primary">
+                      <v-chip class="mr-2" small outlined color="primary" close :key="i" @click:close="removeReviewTerms(term, i, 'HPO')">
                         {{ term.HPO_Data }}
                       </v-chip>
                     </span>
@@ -1170,6 +1170,7 @@ export default {
     readonly: true,
     gtr_terms_expansion_panel: [],
     phenolyzer_terms_expansion_panel: [],
+    expansion_hint_alert: true
   }),
   watch: {
     textNotes(){
@@ -2471,6 +2472,21 @@ export default {
 
       }, //end remove() method
 
+      removeReviewTerms(item, idx, component){
+        if(component === 'GTR'){
+          this.GtrTermsAdded_temp.splice(idx,1);
+          this.GtrTermsAdded_temp = [...this.GtrTermsAdded_temp];
+        }
+        else if(component === 'Phenolyzer'){
+          this.phenolyzerTermsAdded_temp.splice(idx,1);
+          this.phenolyzerTermsAdded_temp = [...this.phenolyzerTermsAdded_temp];
+        }
+        else if(component === 'HPO'){
+          this.hpoTermsAdded_temp.splice(idx,1);
+          this.hpoTermsAdded_temp = [...this.hpoTermsAdded_temp];
+        }
+      },
+
       emit_venn_data(data){
         this.$emit("vennData", data)
       },
@@ -2549,8 +2565,8 @@ export default {
   .dropdown-menu>.active>a
     background-color: #45688e
 
-  .v-chip__close.v-icon.v-icon--right
-    color: white !important
+  // .v-chip__close.v-icon.v-icon--right
+  //   color: white !important
 
   .terms_delete_btn
     font-size: 18px !important
