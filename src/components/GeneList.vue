@@ -64,8 +64,15 @@
               :items-per-page="15"
             >
               <template v-slot:item.name="{ item }">
-                <v-chip @click="showGeneInfo(item.name)" dark>{{ item.name }}</v-chip>
-                <span v-if="item.isAssociatedGene!==undefined && item.isAssociatedGene===true"> <v-icon class="ml-1" style="font-size:20px" color="primary">verified_user</v-icon></span>
+                <div  @mouseover="mouseOverGeneName(item.name)" @mouseleave="mouseLeaveGeneName">
+                  <v-chip @click="showGeneInfo(item.name)"  dark>{{ item.name }}</v-chip>
+                  <span v-if="item.isAssociatedGene!==undefined && item.isAssociatedGene===true"> <v-icon class="ml-1" style="font-size:20px" color="primary">verified_user</v-icon></span>
+                  <span v-if="hoveredGeneName===item.name" class="ml-1" >
+                    <v-icon color="red lighten-2" small @click="checkBeforeDeleteGene(item)" style="font-size:18px">
+                    cancel
+                  </v-icon>
+                </span>
+                </div>
               </template>
               <template v-slot:item.searchTermsPhenolyzer="{ item }">
         				<div v-for="(x, i) in item.searchTermsPhenolyzer">
@@ -87,11 +94,6 @@
                 <span v-if="item.isImportedGenes">
                   <v-icon style="color:#455A64">check_circle_outline</v-icon>
                 </span>
-              </template>
-              <template v-slot:item.action="{ item }">
-                <v-icon small @click="checkBeforeDeleteGene(item)">
-                  delete
-                </v-icon>
               </template>
             </v-data-table>
           </div>
@@ -224,7 +226,6 @@ export default {
         { text: 'Phenolyzer', value: 'searchTermsPhenolyzer', sortable: false, },
         { text: 'HPO', value: 'searchTermHpo', sortable: false, },
         { text: 'Added', value: 'isImportedGenes', sortable: false, },
-        { text: 'Action', value: 'action', sortable: false, },
       ],
       clickedGene: {},
       ncbiSummary: null,
@@ -247,7 +248,7 @@ export default {
       HPO_Terms_data: null,
       phenotypes: [],
       vennData: {},
-
+      hoveredGeneName: '',
     }
   },
 
@@ -365,6 +366,14 @@ export default {
       else {
         this.summaryGenes = this.summaryGeneList;
       }
+    },
+
+    mouseOverGeneName(gene){
+      this.hoveredGeneName = gene;
+    },
+
+    mouseLeaveGeneName(){
+      this.hoveredGeneName = '';
     }
 
   }
