@@ -39,6 +39,20 @@
           </div>
           <v-btn :disabled="textNotes.length<4" @click="extract" color="primary">Submit</v-btn>
           <br><br>
+          <blockquote class="blockquote search_status_tbody" style="font-size: 14px; text-align: left">
+            MPPH; Megalencephaly-Polymicrogyria-Polydactyly-Hydrocephalus syndrome; multiple congenital anomalies; tetralogy of fallot; brain anomalies consisting of bilateral polymicrogyria and cortical dysplasia; post axial polysyndactyly of hand and feet; macrosomia affecting head and length; hypotonic with global developmental delays
+          </blockquote>
+
+          <!-- <div style="text-align:left; ">
+            <v-alert
+              border="top"
+              colored-border
+              color="primary"
+              elevation="2"
+            >
+          </v-alert>
+        </div> -->
+
           <div mt-0 v-if="multipleSearchTerms.length && !searchStatusDialog && !showSearchTermsLoader">
             <!-- <v-btn style="text-transform:none" small @click="DuplicateSearchStatusDialog=true">
              Show search status
@@ -48,6 +62,7 @@
         <div class="col-md-6">
           <v-card>
             <v-card-text>
+
               <div class="container">
                 <div class="row">
                   <div class="col-md-4">
@@ -55,7 +70,7 @@
                       <thead>
                         <tr> <strong>GTR</strong></tr>
                       </thead>
-                      <tbody class="reviewCard">
+                      <tbody class="search_status_tbody">
                         <tr v-if="Gtr_searchTermsObj.length" v-for="(term, i) in Gtr_searchTermsObj" :key="i">
                           <td>{{ term.DiseaseName }}
                               <v-icon class="ml-1 terms_delete_btn" color="primary lighten-2" @click="remove(term, i, 'GTR')">cancel</v-icon>
@@ -93,7 +108,7 @@
                           </div>
                         </tr>
                       </thead>
-                      <tbody class="reviewCard">
+                      <tbody class="search_status_tbody">
                         <tr v-for="(term, i) in Phenolyzer_searchTermsObj" :key="i">
                           <td>{{ term.value }}
                             <v-icon class="ml-1 terms_delete_btn" color="primary lighten-2" @click="remove(term, i, 'phenolyzer')">cancel</v-icon>
@@ -138,7 +153,7 @@
                       <thead>
                         <tr> <strong>HPO</strong></tr>
                       </thead>
-                      <tbody class="reviewCard">
+                      <tbody class="search_status_tbody">
                         <tr v-for="(term, i) in Hpo_searchTermsObj" :key="i">
                           <td>{{ term.HPO_Data }}
                             <v-icon class="ml-1 terms_delete_btn" color="primary lighten-2" @click="remove(term, i, 'HPO')">cancel</v-icon>
@@ -2576,7 +2591,7 @@ export default {
 
   .search_status_tbody
     display: block
-    max-height: 175px
+    max-height: 80px
     overflow-y: scroll
 
 </style>

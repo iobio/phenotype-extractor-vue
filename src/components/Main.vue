@@ -4,6 +4,9 @@
       text-center
       wrap
     >
+    <div style="height: 180px">
+
+    </div>
       Phenotype Extractor
       <!-- <PhenotypeExtractor
         :phenotypes="phenotypes"
@@ -28,7 +31,7 @@
       <!-- <Phenotypes
         :phenotypes="analysis.payload.phenotypes">
       </Phenotypes> -->
-      Gene list
+      <!-- Gene list -->
       <!-- <GeneList
         :summaryGeneList="summaryGeneList">
       </GeneList> -->
