@@ -2,7 +2,6 @@
   <div>
     <v-expansion-panels
       v-model="venn_diagram_expansion_panel"
-      class="mt-4"
       multiple>
       <v-expansion-panel>
         <v-expansion-panel-header>
@@ -10,7 +9,7 @@
         </v-expansion-panel-header>
         <v-expansion-panel-content>
           <div v-show="!vennDiagramLoading">
-            <center class="pl-2 pr-2 pb-2">
+            <center class="pr-2 pb-2">
               <div id="venn" style="margin-top:-20px; margin-bottom:-20px"></div>
             </center>
           </div>
@@ -73,8 +72,8 @@ import { bus } from '../main';
         d3.select("#venn").select("svg").remove();
         var x = require('venn.js')
         var chart = x.VennDiagram()
-                 .width(280)
-                 .height(280);
+                 .width(200)
+                 .height(200);
       var div = d3.select("#venn")
       div.datum(this.vennData.data).call(chart);
       var tooltip = d3.select("body").append("div")
@@ -120,7 +119,7 @@ import { bus } from '../main';
 
 </script>
 
-<style lang="sass" scoped>
+<style lang="sass">
   .venntooltip
     position: absolute
     text-align: center
