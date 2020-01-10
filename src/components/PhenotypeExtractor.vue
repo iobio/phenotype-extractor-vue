@@ -55,7 +55,7 @@
                       <thead>
                         <tr> <strong>GTR</strong></tr>
                       </thead>
-                      <tbody>
+                      <tbody class="reviewCard">
                         <tr v-if="Gtr_searchTermsObj.length" v-for="(term, i) in Gtr_searchTermsObj" :key="i">
                           <td>{{ term.DiseaseName }}
                               <v-icon class="ml-1 terms_delete_btn" color="primary lighten-2" @click="remove(term, i, 'GTR')">cancel</v-icon>
@@ -93,7 +93,7 @@
                           </div>
                         </tr>
                       </thead>
-                      <tbody>
+                      <tbody class="reviewCard">
                         <tr v-for="(term, i) in Phenolyzer_searchTermsObj" :key="i">
                           <td>{{ term.value }}
                             <v-icon class="ml-1 terms_delete_btn" color="primary lighten-2" @click="remove(term, i, 'phenolyzer')">cancel</v-icon>
@@ -138,7 +138,7 @@
                       <thead>
                         <tr> <strong>HPO</strong></tr>
                       </thead>
-                      <tbody>
+                      <tbody class="reviewCard">
                         <tr v-for="(term, i) in Hpo_searchTermsObj" :key="i">
                           <td>{{ term.HPO_Data }}
                             <v-icon class="ml-1 terms_delete_btn" color="primary lighten-2" @click="remove(term, i, 'HPO')">cancel</v-icon>
@@ -2573,4 +2573,10 @@ export default {
   .terms_delete_btn
     font-size: 18px !important
     cursor: pointer
+
+  .search_status_tbody
+    display: block
+    max-height: 175px
+    overflow-y: scroll
+
 </style>
