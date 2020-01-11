@@ -101,7 +101,7 @@ export default {
       // this.$emit("clinphenTerms", this.HpoTerms);
       this.getGenesForHpoTerms();
     },
-    
+
     searchForTheInputTerm(){
       // bus.$emit("clearSearchInput");
       this.checked = true;
@@ -228,7 +228,7 @@ export default {
       this.items.sort((a,b)=> b.hpoSource - a.hpoSource );
       this.noOfSourcesSvg();
       // this.selectGenes();
-      console.log("items in hpo", this.items)
+      // console.log("items in hpo", this.items)
       this.$emit("HpoFullGeneList", this.items)
       bus.$emit("completeFetchRequest", "hpo");
     },

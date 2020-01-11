@@ -1502,9 +1502,12 @@ export default {
       this.extractedTerms = [];
       this.extractedTermsObj = [];
       this.demoTermsFlag = false;
-      fetch(`http://nv-dev-new.iobio.io/phenotype-extractor/?notes=${this.textNotes}`)
-        .then(res => res.json())
-        .then(data => {
+      // fetch(`http://nv-dev-new.iobio.io/phenotype-extractor/?notes=${this.textNotes}`)
+      fetch(`https://backend.iobio.io/phenotypeExtractor?notes=${this.textNotes}`)
+        .then(res => res.text())
+        .then(text => {
+          var res = text.replace('JaroWinkler', '"JaroWinkler"').replace('fuzzyResults', '"fuzzyResults"').replace('LevenshteinResults', '"LevenshteinResults"').replace(/'/g, '"');
+          var data = JSON.parse(res);
           this.LevenshteinResults = data.LevenshteinResults;
           data.LevenshteinResults.map(x=>{
             x = x.trim()
