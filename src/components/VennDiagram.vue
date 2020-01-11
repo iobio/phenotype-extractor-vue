@@ -72,8 +72,8 @@ import { bus } from '../main';
         d3.select("#venn").select("svg").remove();
         var x = require('venn.js')
         var chart = x.VennDiagram()
-                 .width(200)
-                 .height(200);
+                 .width(280)
+                 .height(280);
       var div = d3.select("#venn")
       div.datum(this.vennData.data).call(chart);
       var tooltip = d3.select("body").append("div")

@@ -39,9 +39,9 @@
           </div>
           <v-btn :disabled="textNotes.length<4" @click="extract" color="primary">Submit</v-btn>
           <br><br>
-          <blockquote class="blockquote search_status_tbody" style="font-size: 14px; text-align: left">
+          <!-- <blockquote class="blockquote search_status_tbody i-text--left" style="font-size: 14px;">
             MPPH; Megalencephaly-Polymicrogyria-Polydactyly-Hydrocephalus syndrome; multiple congenital anomalies; tetralogy of fallot; brain anomalies consisting of bilateral polymicrogyria and cortical dysplasia; post axial polysyndactyly of hand and feet; macrosomia affecting head and length; hypotonic with global developmental delays
-          </blockquote>
+          </blockquote> -->
 
           <!-- <div style="text-align:left; ">
             <v-alert
@@ -61,18 +61,27 @@
         </div>
         <div class="col-md-6">
           <v-card>
-            <v-card-text>
+            <v-card-text style="padding:8px">
 
-              <div class="container">
+              <div class="container" style="padding-bottom: 0px; margin-bottom:-20px">
                 <div class="row">
                   <div class="col-md-4">
                     <table class="table">
                       <thead>
-                        <tr> <strong>GTR</strong></tr>
+                        <tr class="i-text--left"> <strong>GTR</strong></tr>
                       </thead>
                       <tbody class="search_status_tbody">
-                        <tr v-if="Gtr_searchTermsObj.length" v-for="(term, i) in Gtr_searchTermsObj" :key="i">
-                          <td>{{ term.DiseaseName }}
+                        <tr v-if="showSearchTermsLoader">
+                          <v-skeleton-loader
+                            :loading="loading"
+                            :transition="transition"
+                            type="chip"
+                            class="mt-2"
+                          >
+                          </v-skeleton-loader>
+                        </tr>
+                        <tr v-if="!showSearchTermsLoader && Gtr_searchTermsObj.length" v-for="(term, i) in Gtr_searchTermsObj" :key="i">
+                          <td class="i-text--left">{{ term.DiseaseName }}
                               <v-icon class="ml-1 terms_delete_btn" color="primary lighten-2" @click="remove(term, i, 'GTR')">cancel</v-icon>
                           </td>
                           <td >
@@ -94,23 +103,32 @@
                         </tr>
                       </tbody>
                     </table>
-                    <div v-if="Gtr_searchTermsObj.length<1">
-                      <span><i>Not Selected...</i></span>
+                    <div class="i-text--left" v-if="Gtr_searchTermsObj.length<1">
+                      <span v-if="!showSearchTermsLoader"><i>Not Selected...</i></span>
                     </div>
                   </div>
 
                   <div class="col-md-4">
                     <table class="table">
                       <thead>
-                        <tr>
+                        <tr class="i-text--left">
                           <strong>Phenolyzer</strong>
                           <div v-if="Phenolyzer_searchTermsObj.length>0">
                           </div>
                         </tr>
                       </thead>
                       <tbody class="search_status_tbody">
-                        <tr v-for="(term, i) in Phenolyzer_searchTermsObj" :key="i">
-                          <td>{{ term.value }}
+                        <tr v-if="showSearchTermsLoader">
+                          <v-skeleton-loader
+                            :loading="loading"
+                            :transition="transition"
+                            type="chip"
+                            class="mt-2"
+                          >
+                          </v-skeleton-loader>
+                        </tr>
+                        <tr v-if="!showSearchTermsLoader" v-for="(term, i) in Phenolyzer_searchTermsObj" :key="i">
+                          <td class="i-text--left">{{ term.value }}
                             <v-icon class="ml-1 terms_delete_btn" color="primary lighten-2" @click="remove(term, i, 'phenolyzer')">cancel</v-icon>
                           </td>
                           <td>
@@ -143,19 +161,28 @@
                       </tbody>
                     </table>
                     <!-- <div v-if="Phenolyzer_searchTermsObj.length<2"> -->
-                    <div v-if="Phenolyzer_searchTermsObj.length<1">
-                      <span><i>Not Selected...</i></span>
+                    <div class="i-text--left" v-if="Phenolyzer_searchTermsObj.length<1">
+                      <span v-if="!showSearchTermsLoader"><i>Not Selected...</i></span>
                     </div>
                   </div>
 
                   <div class="col-md-4">
                     <table class="table">
                       <thead>
-                        <tr> <strong>HPO</strong></tr>
+                        <tr class="i-text--left"> <strong>HPO</strong></tr>
                       </thead>
                       <tbody class="search_status_tbody">
-                        <tr v-for="(term, i) in Hpo_searchTermsObj" :key="i">
-                          <td>{{ term.HPO_Data }}
+                        <tr v-if="showSearchTermsLoader">
+                          <v-skeleton-loader
+                            :loading="loading"
+                            :transition="transition"
+                            type="chip"
+                            class="mt-2"
+                          >
+                          </v-skeleton-loader>
+                        </tr>
+                        <tr v-if="!showSearchTermsLoader" v-for="(term, i) in Hpo_searchTermsObj" :key="i">
+                          <td class="i-text--left">{{ term.HPO_Data }}
                             <v-icon class="ml-1 terms_delete_btn" color="primary lighten-2" @click="remove(term, i, 'HPO')">cancel</v-icon>
                           </td>
                           <td >
@@ -175,8 +202,8 @@
                         </tr>
                       </tbody>
                     </table>
-                    <div v-if="Hpo_searchTermsObj.length<1">
-                      <span><i>Not Selected...</i></span>
+                    <div class="i-text--left" v-if="Hpo_searchTermsObj.length<1">
+                      <span v-if="!showSearchTermsLoader"><i>Not Selected...</i></span>
                     </div>
                   </div>
 
@@ -692,6 +719,7 @@
             :overlay="false"
             max-width="1000px"
             transition="dialog-transition"
+            persistent
           >
             <v-card>
               <v-card-title class="grey lighten-2">
@@ -1061,9 +1089,9 @@ export default {
     multipleSearchTerms: [],
     searchTermsObj: [],
     idx: 0,
-    gtrFetchCompleted: false,
-    phenolyzerFetchCompleted: false,
-    hpoFetchCompleted: false,
+    gtrFetchCompleted: true,
+    phenolyzerFetchCompleted: true,
+    hpoFetchCompleted: true,
     searchTermsObjHeaders: [
       {text: 'Search Term', sortable: false, value: 'DiseaseName'},
       {text: 'GTR Search status', sortable: false, value: 'gtrSearchStatus'},
@@ -1187,7 +1215,10 @@ export default {
     readonly: true,
     gtr_terms_expansion_panel: [],
     phenolyzer_terms_expansion_panel: [],
-    expansion_hint_alert: true
+    expansion_hint_alert: true,
+    loading: true,
+    transition: 'scale-transition',
+
   }),
   watch: {
     textNotes(){
@@ -1211,9 +1242,11 @@ export default {
     },
     searchStatusDialog(){
       if(this.searchStatusDialog){
+        this.showSearchTermsLoader = true;
         bus.$emit("show-gene-table-skeleton-loaders");
       }
       else {
+        this.showSearchTermsLoader = false;
         bus.$emit("hide-gene-table-skeleton-loaders")
       }
     }
@@ -1820,7 +1853,11 @@ export default {
       }
     },
     Gtr_performSearchEvent(){
-      this.gtrFetchCompleted = false;
+      if(this.Gtr_idx<this.Gtr_searchTermsObj.length){
+        this.gtrFetchCompleted = false;
+      }
+
+      // this.gtrFetchCompleted = false;
       // this.Gtr_searchTermsObj.forEach((term, i) => {
       //   ((ind) =>{
       //     setTimeout(() =>{
@@ -2238,7 +2275,11 @@ export default {
     },
 
     Phenolyzer_performSearchEvent(){
-      this.phenolyzerFetchCompleted = false;
+      if(this.Phenolyzer_idx<this.Phenolyzer_searchTermsObj.length){
+        this.phenolyzerFetchCompleted = false;
+      }
+
+      // this.phenolyzerFetchCompleted = false;
       let startVal = this.Phenolyzer_idx;
       for(let i=startVal; i<this.Phenolyzer_searchTermsObj.length; i++){
         ((ind) =>{
@@ -2288,7 +2329,10 @@ export default {
     },
 
     Hpo_performSearchEvent(){
-      this.hpoFetchCompleted = false;
+      if(this.Hpo_idx<this.Hpo_searchTermsObj.length){
+        this.hpoFetchCompleted = false;
+      }
+      // this.hpoFetchCompleted = false;
       let startVal = this.Hpo_idx;
       for(let i=startVal; i<this.Hpo_searchTermsObj.length; i++){
         ((ind) =>{
@@ -2343,21 +2387,21 @@ export default {
           this.searchStatusDialog = false;
         }, 3000)
       }
-      else if(this.gtrFetchCompleted && !this.phenolyzerFetchCompleted && !this.hpoFetchCompleted){
-        setTimeout(()=>{
-          this.searchStatusDialog = false;
-        }, 3000)
-      }
-      else if(this.phenolyzerFetchCompleted && !this.gtrFetchCompleted && !this.hpoFetchCompleted){
-        setTimeout(()=>{
-          this.searchStatusDialog = false;
-        }, 3000)
-      }
-      else if(this.hpoFetchCompleted && !this.gtrFetchCompleted && !this.phenolyzerFetchCompleted){
-        setTimeout(()=>{
-          this.searchStatusDialog = false;
-        }, 3000)
-      }
+      // else if(this.gtrFetchCompleted && !this.phenolyzerFetchCompleted && !this.hpoFetchCompleted){
+      //   setTimeout(()=>{
+      //     this.searchStatusDialog = false;
+      //   }, 3000)
+      // }
+      // else if(this.phenolyzerFetchCompleted && !this.gtrFetchCompleted && !this.hpoFetchCompleted){
+      //   setTimeout(()=>{
+      //     this.searchStatusDialog = false;
+      //   }, 3000)
+      // }
+      // else if(this.hpoFetchCompleted && !this.gtrFetchCompleted && !this.phenolyzerFetchCompleted){
+      //   setTimeout(()=>{
+      //     this.searchStatusDialog = false;
+      //   }, 3000)
+      // }
     },
 
     individualGenesObjPhenolyzer:function(obj){
@@ -2591,7 +2635,10 @@ export default {
 
   .search_status_tbody
     display: block
-    max-height: 80px
+    max-height: 170px
     overflow-y: scroll
+
+  .i-text--left
+    text-align: left
 
 </style>
