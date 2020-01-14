@@ -39,9 +39,54 @@
           </div>
           <v-btn :disabled="textNotes.length<4" @click="extract" color="primary">Submit</v-btn>
           <br><br>
-          <!-- <blockquote class="blockquote search_status_tbody i-text--left" style="font-size: 14px;">
-            MPPH; Megalencephaly-Polymicrogyria-Polydactyly-Hydrocephalus syndrome; multiple congenital anomalies; tetralogy of fallot; brain anomalies consisting of bilateral polymicrogyria and cortical dysplasia; post axial polysyndactyly of hand and feet; macrosomia affecting head and length; hypotonic with global developmental delays
-          </blockquote> -->
+          <v-expansion-panels
+            v-model="clinical_note_text_expansion_panel"
+            class="ml-4"
+            style="width:95%"
+            multiple>
+            <v-expansion-panel>
+              <v-expansion-panel-header>
+                Notes added<span class="ml-2" v-if="clinical_note_text.length">:  ( <strong>{{ clinical_note_text.length }}</strong> )</span>
+              </v-expansion-panel-header>
+              <v-expansion-panel-content class="i-clinical_note_text_div">
+                <div v-if="showSearchTermsLoader">
+                  <blockquote class="blockquote">
+                    <v-skeleton-loader
+                      :loading="loading"
+                      :transition="transition"
+                      type="paragraph"
+                      class="mt-2"
+                    >
+                    </v-skeleton-loader>
+                  </blockquote>
+                </div>
+                <div v-if="!showSearchTermsLoader">
+                  <div v-if="clinical_note_text.length">
+                    <blockquote v-for="(note, i) in clinical_note_text" :key="i" class="blockquote i-text--left" style="font-size: 13px;">
+                      {{ note }}
+                    </blockquote>
+                  </div>
+                  <div v-else>
+                    <blockquote class="blockquote i-text--left" style="font-size: 14px;">
+                      No clinical is note added.
+                    </blockquote>
+                  </div>
+                </div>
+                <!-- <div v-if="vennDiagramLoading">
+                  <center class="pl-2 pr-2 pb-2">
+                    <v-skeleton-loader
+                      :loading="loading"
+                      :transition="transition"
+                      type="image"
+                      height="150"
+                    >
+                    </v-skeleton-loader>
+                  </center>
+                </div> -->
+              </v-expansion-panel-content>
+            </v-expansion-panel>
+          </v-expansion-panels>
+
 
           <!-- <div style="text-align:left; ">
             <v-alert
@@ -1226,6 +1271,8 @@ export default {
     loading: true,
     transition: 'scale-transition',
     venn_diagram_data: null,
+    clinical_note_text: [],
+    clinical_note_text_expansion_panel: [0],
 
   }),
   watch: {
@@ -1389,6 +1436,10 @@ export default {
         this.multipleSearchTerms.push(term.HPO_Data);
       })
       this.Hpo_performSearchEvent_saved()
+    }
+
+    if(this.phenotypes.length && this.phenotypes[3].length){
+      this.clinical_note_text = this.phenotypes[3];
     }
 
   },
@@ -1573,6 +1624,12 @@ export default {
           // console.log("this.phenolyzerReviewTerms", this.phenolyzerReviewTerms)
 
           this.loadingDialog = false;
+          this.clinical_note_text.unshift(this.textNotes);
+
+          //check this for saving phenotype data
+          var allPhenotypes = [this.GtrTermsAdded, this.phenolyzerTermsAdded, this.hpoTermsAdded, this.clinical_note_text];
+          this.$emit('saveSearchedPhenotypes', allPhenotypes)
+
           this.openReviewDialogForExtractedTerms();
         })
     },
@@ -1767,7 +1824,7 @@ export default {
       this.phenolyzerTermsAdded_temp = [];
       this.hpoTermsAdded_temp = [];
       // console.log("this.GtrTermsAdded", this.GtrTermsAdded)
-      var allPhenotypes = [this.GtrTermsAdded, this.phenolyzerTermsAdded, this.hpoTermsAdded];
+      var allPhenotypes = [this.GtrTermsAdded, this.phenolyzerTermsAdded, this.hpoTermsAdded, this.clinical_note_text];
       this.$emit('saveSearchedPhenotypes', allPhenotypes)
 
       //Add GTR selected terms from review
@@ -2663,5 +2720,10 @@ export default {
 
   .i-text--left
     text-align: left
+
+  .i-clinical_note_text_div
+    display: block
+    max-height: 100px
+    overflow-y: scroll
 
 </style>
