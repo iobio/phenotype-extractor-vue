@@ -86,7 +86,7 @@
           <v-card>
             <v-card-text style="padding:8px">
 
-              <div class="container" style="padding-bottom: 0px; margin-bottom:-20px">
+              <div class="container" style="padding-bottom: 0px; margin-bottom:-10px">
                 <div class="row">
                   <div class="col-md-4">
                     <table class="table">
@@ -104,8 +104,11 @@
                           </v-skeleton-loader>
                         </tr>
                         <tr v-if="!showSearchTermsLoader && Gtr_searchTermsObj.length" v-for="(term, i) in Gtr_searchTermsObj" :key="i">
-                          <td class="i-text--left">{{ term.DiseaseName }}
-                              <v-icon class="ml-1 terms_delete_btn" color="primary lighten-2" @click="remove(term, i, 'GTR')">cancel</v-icon>
+                          <td class="i-text--left">
+                            <div @mouseover="mouseOverGtrTerm(term.DiseaseName)" @mouseleave="hovered_gtr_term=''">
+                              <span>{{ term.DiseaseName }}</span>
+                              <span v-if="hovered_gtr_term === term.DiseaseName"><v-icon class="ml-1 terms_delete_btn" color="red lighten-2" @click="remove(term, i, 'GTR')">cancel</v-icon></span>
+                            </div>
                           </td>
                           <td >
                             <span v-if="term.gtrSearchStatus==='Searching'">
@@ -151,8 +154,11 @@
                           </v-skeleton-loader>
                         </tr>
                         <tr v-if="!showSearchTermsLoader" v-for="(term, i) in Phenolyzer_searchTermsObj" :key="i">
-                          <td class="i-text--left">{{ term.value | to-firstCharacterUppercase }}
-                            <v-icon class="ml-1 terms_delete_btn" color="primary lighten-2" @click="remove(term, i, 'phenolyzer')">cancel</v-icon>
+                          <td class="i-text--left" @mouseover="mouseOverPhenolyzerTerm(term.value)" @mouseleave="hovered_phenolyzer_term=''">
+                            <span>{{ term.value | to-firstCharacterUppercase }}</span>
+                            <span v-if="hovered_phenolyzer_term === term.value">
+                              <v-icon class="ml-1 terms_delete_btn" color="red lighten-2" @click="remove(term, i, 'phenolyzer')">cancel</v-icon>
+                            </span>
                           </td>
                           <td>
                             <span v-if="term.phenolyzerSearchStatus==='Searching'">
@@ -205,8 +211,11 @@
                           </v-skeleton-loader>
                         </tr>
                         <tr v-if="!showSearchTermsLoader" v-for="(term, i) in Hpo_searchTermsObj" :key="i">
-                          <td class="i-text--left">{{ term.HPO_Data }}
-                            <v-icon class="ml-1 terms_delete_btn" color="primary lighten-2" @click="remove(term, i, 'HPO')">cancel</v-icon>
+                          <td class="i-text--left" @mouseover="mouseOverHpoTerm(term.HPO_Data)" @mouseleave="hovered_hpo_term=''">
+                            <span>{{ term.HPO_Data }}</span>
+                            <span v-if="hovered_hpo_term === term.HPO_Data">
+                              <v-icon class="ml-1 terms_delete_btn" color="red lighten-2" @click="remove(term, i, 'HPO')">cancel</v-icon>
+                            </span>
                           </td>
                           <td >
                             <span v-if="term.hpoSearchStatus==='Searching'">
@@ -1251,6 +1260,9 @@ export default {
     venn_diagram_data: null,
     clinical_note_text: [],
     clinical_note_text_expansion_panel: [0],
+    hovered_gtr_term: '',
+    hovered_phenolyzer_term: '',
+    hovered_hpo_term: '',
 
   }),
   watch: {
@@ -2626,19 +2638,27 @@ export default {
         }
         else if(component === 'Phenolyzer'){
           if(!this.phenolyzer_terms_expansion_panel.includes(i)){
-            console.log("here", i)
-
             this.phenolyzer_terms_expansion_panel.push(i);
-            console.log("this.phenolyzer_terms_expansion_panel", this.phenolyzer_terms_expansion_panel)
           }
           else {
             let idx = this.phenolyzer_terms_expansion_panel.indexOf(i);
-            console.log("there")
-
             this.phenolyzer_terms_expansion_panel.splice(idx, 1);
           }
         }
       },
+
+      mouseOverGtrTerm(term){
+        this.hovered_gtr_term = term;
+      },
+
+      mouseOverPhenolyzerTerm(term){
+        this.hovered_phenolyzer_term = term;
+      },
+
+      mouseOverHpoTerm(term){
+        this.hovered_hpo_term = term;
+      },
+
 
   }
 };
