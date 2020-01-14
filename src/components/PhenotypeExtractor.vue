@@ -91,7 +91,7 @@
               <v-expansion-panel-header>
                 Search status
               </v-expansion-panel-header>
-              <v-expansion-panel-content class="i-clinical_note_text_div">
+              <v-expansion-panel-content class="">
                 <div class="" style="padding-bottom: 0px; ">
                   <div class="row">
                     <div class="col-md-4">
