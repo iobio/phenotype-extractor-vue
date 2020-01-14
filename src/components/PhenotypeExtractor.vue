@@ -72,31 +72,9 @@
                     </blockquote>
                   </div>
                 </div>
-                <!-- <div v-if="vennDiagramLoading">
-                  <center class="pl-2 pr-2 pb-2">
-                    <v-skeleton-loader
-                      :loading="loading"
-                      :transition="transition"
-                      type="image"
-                      height="150"
-                    >
-                    </v-skeleton-loader>
-                  </center>
-                </div> -->
               </v-expansion-panel-content>
             </v-expansion-panel>
           </v-expansion-panels>
-
-
-          <!-- <div style="text-align:left; ">
-            <v-alert
-              border="top"
-              colored-border
-              color="primary"
-              elevation="2"
-            >
-          </v-alert>
-        </div> -->
 
           <div mt-0 v-if="multipleSearchTerms.length && !searchStatusDialog && !showSearchTermsLoader">
             <!-- <v-btn style="text-transform:none" small @click="DuplicateSearchStatusDialog=true">
@@ -173,7 +151,7 @@
                           </v-skeleton-loader>
                         </tr>
                         <tr v-if="!showSearchTermsLoader" v-for="(term, i) in Phenolyzer_searchTermsObj" :key="i">
-                          <td class="i-text--left">{{ term.value }}
+                          <td class="i-text--left">{{ term.value | to-firstCharacterUppercase }}
                             <v-icon class="ml-1 terms_delete_btn" color="primary lighten-2" @click="remove(term, i, 'phenolyzer')">cancel</v-icon>
                           </td>
                           <td>
