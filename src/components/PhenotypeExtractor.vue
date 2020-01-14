@@ -1734,10 +1734,17 @@ export default {
             else if(x.DiseaseName === item.DiseaseName){
               item.reviewTerms_gtr.unshift(x);
               item.reviewTerms_gtr[0].general = true;
-
             }
           }
         })
+
+        // filter duplicate gtr search term suggestions in review dialog
+        item.reviewTerms_gtr = item.reviewTerms_gtr.filter((gtr_term, index, self) =>
+          index === self.findIndex((t) => (
+            t.DiseaseName === gtr_term.DiseaseName
+          ))
+        )
+
       })
       setTimeout(()=>{
           this.termsReviewDialog = true;
