@@ -1666,6 +1666,10 @@ export default {
 
     },
     selectReviewTerms(){
+      if(!this.GtrTermsAdded_temp.length && !this.phenolyzerTermsAdded_temp.leng && !this.hpoTermsAdded_temp.leng){
+        this.checkToCloseSearchStatusDialog();
+      }
+
       this.GtrTermsAdded_temp = this.GtrTermsAdded_temp.filter(o1 => this.GtrTermsAdded.every(o2 => {
         return o1.DiseaseName !== o2.DiseaseName
       }));
@@ -2312,21 +2316,6 @@ export default {
           this.searchStatusDialog = false;
         }, 3000)
       }
-      // else if(this.gtrFetchCompleted && !this.phenolyzerFetchCompleted && !this.hpoFetchCompleted){
-      //   setTimeout(()=>{
-      //     this.searchStatusDialog = false;
-      //   }, 3000)
-      // }
-      // else if(this.phenolyzerFetchCompleted && !this.gtrFetchCompleted && !this.hpoFetchCompleted){
-      //   setTimeout(()=>{
-      //     this.searchStatusDialog = false;
-      //   }, 3000)
-      // }
-      // else if(this.hpoFetchCompleted && !this.gtrFetchCompleted && !this.phenolyzerFetchCompleted){
-      //   setTimeout(()=>{
-      //     this.searchStatusDialog = false;
-      //   }, 3000)
-      // }
     },
 
     individualGenesObjPhenolyzer:function(obj){
