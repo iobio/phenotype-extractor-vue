@@ -828,4 +828,49 @@ mergeGenesAcrossPanels(genePanels) {
     return string.charAt(0).toUpperCase() + string.slice(1);
   }
 
+  countNumberOfTerms(arr, sources){
+    arr.map(gene => {
+      if(sources === "allSourcesGenes" || sources === "GtrPhenoClinPhenGenes"){
+        gene.totalTermsSearched = gene.searchTermArrayGTR.length + gene.searchTermPheno.length + gene.hpoTerm.length
+      }
+      else if(sources === "GtrPhenoAdded" || sources === "gtrPhenoGenes"){
+        gene.totalTermsSearched = gene.searchTermArrayGTR.length + gene.searchTermPheno.length
+      }
+      else if(sources === "GtrAddedClinPhenGenes" || sources === "gtrClinPhenGenes"){
+        gene.totalTermsSearched = gene.searchTermArrayGTR.length + gene.hpoTerm.length
+      }
+      else if(sources === "PhenoAddedClinPhenGenes" || sources === "phenoClinPhenGenes"){
+        gene.totalTermsSearched = gene.searchTermPheno.length + gene.hpoTerm.length
+      }
+      else if(sources === "gtrAddedGenes" || sources === "uniqueGTR"){
+        gene.totalTermsSearched = gene.searchTermArrayGTR.length
+      }
+      else if(sources === "phenoAddedGenes" || sources === "uniquePheno"){
+        gene.totalTermsSearched = gene.searchTermPheno.length
+      }
+      else if(sources === "AddedClinPhenGenes" || sources === "uniqueClinPhen"){
+        gene.totalTermsSearched = gene.hpoTerm.length
+      }
+      else if(sources === "PhenoAddedClinPhenGenes"){
+        gene.totalTermsSearched = gene.searchTermPheno.length + gene.hpoTerm.length
+      }
+      else if(sources === "PhenoAddedClinPhenGenes"){
+        gene.totalTermsSearched = gene.searchTermPheno.length + gene.hpoTerm.length
+      }
+      else if(sources === "PhenoAddedClinPhenGenes"){
+        gene.totalTermsSearched = gene.searchTermPheno.length + gene.hpoTerm.length
+      }
+      else if(sources === "PhenoAddedClinPhenGenes"){
+        gene.totalTermsSearched = gene.searchTermPheno.length + gene.hpoTerm.length
+      }
+      else if(sources === "PhenoAddedClinPhenGenes"){
+        gene.totalTermsSearched = gene.searchTermPheno.length + gene.hpoTerm.length
+      }
+      else if(sources === "PhenoAddedClinPhenGenes"){
+        gene.totalTermsSearched = gene.searchTermPheno.length + gene.hpoTerm.length
+      }
+    })
+    return arr;
+  }
+
 }

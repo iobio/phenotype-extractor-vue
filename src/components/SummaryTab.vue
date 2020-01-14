@@ -396,6 +396,18 @@ import d3 from 'd3'
         }
         return genes;
       },
+      sortGenesBasedOnNumberOfTerms(genes){
+        genes.sort(function(a,b){
+          if (a.totalTermsSearched===b.totalTermsSearched){
+             return (b.totalTermsSearched.totalTermsSearched);
+          } else if(a.totalTermsSearched<b.totalTermsSearched){
+             return 1;
+          } else if(a.totalTermsSearched>b.totalTermsSearched){
+             return -1;
+          }
+        })
+        return genes;
+      },
       createSummaryTableData(summaryGenes){
         var allSourcesGenes = [];
         var threeSourcesGenes = [];
@@ -1022,22 +1034,49 @@ import d3 from 'd3'
                 i--;
           }
         }
+
+        allSourcesGenes           = model.countNumberOfTerms(allSourcesGenes, "allSourcesGenes");
+        GtrPhenoAdded             = model.countNumberOfTerms(GtrPhenoAdded, "GtrPhenoAdded");
+        GtrAddedClinPhenGenes     = model.countNumberOfTerms(GtrAddedClinPhenGenes, "GtrAddedClinPhenGenes");
+        PhenoAddedClinPhenGenes   = model.countNumberOfTerms(PhenoAddedClinPhenGenes, "PhenoAddedClinPhenGenes");
+        gtrAddedGenes             = model.countNumberOfTerms(gtrAddedGenes, "gtrAddedGenes");
+        phenoAddedGenes           = model.countNumberOfTerms(phenoAddedGenes, "phenoAddedGenes");
+        AddedClinPhenGenes        = model.countNumberOfTerms(AddedClinPhenGenes, "AddedClinPhenGenes");
+        GtrPhenoClinPhenGenes     = model.countNumberOfTerms(GtrPhenoClinPhenGenes, "GtrPhenoClinPhenGenes")
+        gtrPhenoGenes             = model.countNumberOfTerms(gtrPhenoGenes, "gtrPhenoGenes");
+        gtrClinPhenGenes          = model.countNumberOfTerms(gtrClinPhenGenes, "gtrClinPhenGenes");
+        phenoClinPhenGenes        = model.countNumberOfTerms(phenoClinPhenGenes, "phenoClinPhenGenes");
+        uniqueGTR                 = model.countNumberOfTerms(uniqueGTR, "uniqueGTR");
+        uniqueClinPhen            = model.countNumberOfTerms(uniqueClinPhen, "uniqueClinPhen");
+        uniquePheno               = model.countNumberOfTerms(uniquePheno, "uniquePheno");
         // var tableGenes = [...allSourcesGenes, ...threeSourcesGenes, ...twoSourcesGenes, ...uniqueAddedGenes, ...uniqueGTR, ...uniqueClinPhen, ...uniquePheno];
+        // var tableGenes = [
+        //   ...this.sortGenes(allSourcesGenes,"gtr_value"),
+        //   ...this.sortGenes(GtrPhenoAdded,"gtr_value"), ...this.sortGenes(GtrAddedClinPhenGenes,"gtr_value"), ...this.sortGenes(PhenoAddedClinPhenGenes, "phenolyzer_score"),
+        //   ...this.sortGenes(gtrAddedGenes,"gtr_value"), ...this.sortGenes(phenoAddedGenes,"phenolyzer_score"), ...AddedClinPhenGenes,
+        //   ...uniqueAddedGenes,...this.sortGenes(GtrPhenoClinPhenGenes, "gtr_value"),
+        //   ...this.sortGenes(gtrPhenoGenes, "gtr_value"), ...gtrClinPhenGenes,
+        //   ...this.sortGenes(phenoClinPhenGenes, "phenolyzer_score"),
+        //   ...uniqueGTR, ...uniqueClinPhen, ...uniquePheno
+        // ]
+        // console.log("GtrPhenoClinPhenGenes", ...this.sortGenes(GtrPhenoClinPhenGenes))
         var tableGenes = [
-          ...this.sortGenes(allSourcesGenes,"gtr_value"),
-          ...this.sortGenes(GtrPhenoAdded,"gtr_value"), ...this.sortGenes(GtrAddedClinPhenGenes,"gtr_value"), ...this.sortGenes(PhenoAddedClinPhenGenes, "phenolyzer_score"),
-          ...this.sortGenes(gtrAddedGenes,"gtr_value"), ...this.sortGenes(phenoAddedGenes,"phenolyzer_score"), ...AddedClinPhenGenes,
-          ...uniqueAddedGenes,...this.sortGenes(GtrPhenoClinPhenGenes, "gtr_value"),
-          ...this.sortGenes(gtrPhenoGenes, "gtr_value"), ...gtrClinPhenGenes,
-          ...this.sortGenes(phenoClinPhenGenes, "phenolyzer_score"),
+          ...this.sortGenesBasedOnNumberOfTerms(allSourcesGenes,"gtr_value"),
+          ...this.sortGenesBasedOnNumberOfTerms(GtrPhenoAdded,"gtr_value"), ...this.sortGenesBasedOnNumberOfTerms(GtrAddedClinPhenGenes,"gtr_value"), ...this.sortGenesBasedOnNumberOfTerms(PhenoAddedClinPhenGenes, "phenolyzer_score"),
+          ...this.sortGenesBasedOnNumberOfTerms(gtrAddedGenes,"gtr_value"), ...this.sortGenesBasedOnNumberOfTerms(phenoAddedGenes,"phenolyzer_score"), ...AddedClinPhenGenes,
+          ...uniqueAddedGenes,...this.sortGenesBasedOnNumberOfTerms(GtrPhenoClinPhenGenes),
+          ...this.sortGenesBasedOnNumberOfTerms(gtrPhenoGenes, "gtr_value"), ...gtrClinPhenGenes,
+          ...this.sortGenesBasedOnNumberOfTerms(phenoClinPhenGenes, "phenolyzer_score"),
           ...uniqueGTR, ...uniqueClinPhen, ...uniquePheno
         ]
         this.summaryTableArrayFullList = tableGenes;
-        // console.log("this.summaryTableArrayFullList", this.summaryTableArrayFullList)
+        console.log("this.summaryTableArrayFullList", this.summaryTableArrayFullList)
         this.$emit('summaryGenesFullList', this.summaryTableArrayFullList);
         // this.addSummaryGenesFullList(this.summaryTableArrayFullList);
         this.generateVennDiagramData(summaryObj);
         this.$emit("venn_diag_summaryObj", summaryObj)
+        // console.log("GtrPhenoClinPhenGenes", ...this.sortGenesBasedOnNumberOfTerms(GtrPhenoClinPhenGenes))
+
       },
       setPieChartData(){
         this.pieChartdataArr = [
