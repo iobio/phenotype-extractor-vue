@@ -85,185 +85,210 @@
           </div>
         </div>
         <div class="col-md-6">
-          <v-expansion-panels
+          <!-- <v-expansion-panels
             v-model="search_status_expansion_panel"
-            multiple>
+            multiple :readonly="readonly">
             <v-expansion-panel>
-              <v-expansion-panel-header>
-                Search status
-              </v-expansion-panel-header>
-              <v-expansion-panel-content class="">
-                <div class="" style="padding-bottom: 0px; ">
-                  <div class="row">
-                    <div class="col-md-4">
-                      <table class="table">
-                        <thead>
-                          <tr class="i-text--left">
-                            <strong>GTR</strong>
-                            <span class="ml-2" v-if="Gtr_searchTermsObj.length && !showSearchTermsLoader">  ( <strong>{{ Gtr_searchTermsObj.length }}</strong> )</span>
-                          </tr>
-                        </thead>
-                        <tbody class="search_status_tbody">
-                          <tr v-if="showSearchTermsLoader">
-                            <v-skeleton-loader
-                              :loading="loading"
-                              :transition="transition"
-                              type="chip"
-                              class="mt-2"
-                            >
-                            </v-skeleton-loader>
-                          </tr>
-                          <tr v-if="!showSearchTermsLoader && Gtr_searchTermsObj.length" v-for="(term, i) in Gtr_searchTermsObj" :key="i">
-                            <td class="i-text--left">
-                              <div @mouseover="mouseOverGtrTerm(term.DiseaseName)" @mouseleave="hovered_gtr_term=''">
-                                <span>{{ term.DiseaseName }}</span>
-                                <span v-if="hovered_gtr_term === term.DiseaseName"><v-icon class="ml-1 terms_delete_btn" color="red lighten-2" @click="remove(term, i, 'GTR')">cancel</v-icon></span>
-                              </div>
-                            </td>
-                            <td >
-                              <span v-if="term.gtrSearchStatus==='Searching'">
-                                <v-progress-circular
-                                  :width="2"
-                                  :size="20"
-                                  indeterminate
-                                  color="primary"
-                                ></v-progress-circular>
-                              </span>
-                              <span v-else-if="term.gtrSearchStatus==='Completed'">
-                                <v-icon color="green">done</v-icon>
-                              </span>
-                              <span v-else-if="term.gtrSearchStatus==='NoGenes'"><v-icon color="red">error</v-icon></span>
-                              <span v-else-if="term.gtrSearchStatus==='NotAvailable'"><v-icon>indeterminate_check_box</v-icon></span>
-                              <span v-else> <v-icon color="gray lighten-4">error</v-icon>  </span>
-                            </td>
-                          </tr>
-                        </tbody>
-                      </table>
-                      <div class="i-text--left" v-if="Gtr_searchTermsObj.length<1">
-                        <span v-if="!showSearchTermsLoader"><i>Not Selected...</i></span>
-                      </div>
-                    </div>
-
-                    <div class="col-md-4">
-                      <table class="table">
-                        <thead>
-                          <tr class="i-text--left">
-                            <strong>Phenolyzer</strong>
-                            <span class="ml-2" v-if="Phenolyzer_searchTermsObj.length && !showSearchTermsLoader">  ( <strong>{{ Phenolyzer_searchTermsObj.length }}</strong> )</span>
-                            <div v-if="Phenolyzer_searchTermsObj.length>0">
-                            </div>
-                          </tr>
-                        </thead>
-                        <tbody class="search_status_tbody">
-                          <tr v-if="showSearchTermsLoader">
-                            <v-skeleton-loader
-                              :loading="loading"
-                              :transition="transition"
-                              type="chip"
-                              class="mt-2"
-                            >
-                            </v-skeleton-loader>
-                          </tr>
-                          <tr v-if="!showSearchTermsLoader" v-for="(term, i) in Phenolyzer_searchTermsObj" :key="i">
-                            <td class="i-text--left" @mouseover="mouseOverPhenolyzerTerm(term.value)" @mouseleave="hovered_phenolyzer_term=''">
-                              <span>{{ term.value | to-firstCharacterUppercase }}</span>
-                              <span v-if="hovered_phenolyzer_term === term.value">
-                                <v-icon class="ml-1 terms_delete_btn" color="red lighten-2" @click="remove(term, i, 'phenolyzer')">cancel</v-icon>
-                              </span>
-                            </td>
-                            <td>
-                              <span v-if="term.phenolyzerSearchStatus==='Searching'">
-                                <v-progress-circular
-                                  :width="2"
-                                  :size="20"
-                                  indeterminate
-                                  color="primary"
-                                ></v-progress-circular>
-                              </span>
-                              <span v-else-if="term.phenolyzerSearchStatus==='running'">
-                                <v-progress-circular
-                                  :width="2"
-                                  :size="20"
-                                  indeterminate
-                                  color="primary"
-                                ></v-progress-circular>
-                                Running
-                                <br>
-                                <span @click="stopPhenolyzerSearch(term.value)">close</span>
-                              </span>
-                              <span v-else-if="term.phenolyzerSearchStatus==='Completed'"><v-icon color="green">done</v-icon></span>
-                              <span v-else-if="term.phenolyzerSearchStatus==='NoGenes'"><v-icon color="red">error</v-icon></span>
-                              <span v-else-if="term.phenolyzerSearchStatus==='NotAvailable'"><v-icon>indeterminate_check_box</v-icon></span>
-                              <span v-else-if="term.phenolyzerSearchStatus==='Cancelled'"><v-icon color="gray lighten-4">cancel_schedule_send</v-icon></span>
-                              <span v-else> <v-icon color="gray lighten-4">error</v-icon>  </span>
-                            </td>
-                          </tr>
-                        </tbody>
-                      </table>
-                      <!-- <div v-if="Phenolyzer_searchTermsObj.length<2"> -->
-                      <div class="i-text--left" v-if="Phenolyzer_searchTermsObj.length<1">
-                        <span v-if="!showSearchTermsLoader"><i>Not Selected...</i></span>
-                      </div>
-                    </div>
-
-                    <div class="col-md-4">
-                      <table class="table">
-                        <thead>
-                          <tr class="i-text--left">
-                            <strong>HPO</strong>
-                            <span class="ml-2" v-if="Hpo_searchTermsObj.length && !showSearchTermsLoader">  ( <strong>{{ Hpo_searchTermsObj.length }}</strong> )</span>
-
-                          </tr>
-                        </thead>
-                        <tbody class="search_status_tbody">
-                          <tr v-if="showSearchTermsLoader">
-                            <v-skeleton-loader
-                              :loading="loading"
-                              :transition="transition"
-                              type="chip"
-                              class="mt-2"
-                            >
-                            </v-skeleton-loader>
-                          </tr>
-                          <tr v-if="!showSearchTermsLoader" v-for="(term, i) in Hpo_searchTermsObj" :key="i">
-                            <td class="i-text--left" @mouseover="mouseOverHpoTerm(term.HPO_Data)" @mouseleave="hovered_hpo_term=''">
-                              <span>{{ term.HPO_Data }}</span>
-                              <span v-if="hovered_hpo_term === term.HPO_Data">
-                                <v-icon class="ml-1 terms_delete_btn" color="red lighten-2" @click="remove(term, i, 'HPO')">cancel</v-icon>
-                              </span>
-                            </td>
-                            <td >
-                              <span v-if="term.hpoSearchStatus==='Searching'">
-                                <v-progress-circular
-                                  :width="2"
-                                  :size="20"
-                                  indeterminate
-                                  color="primary"
-                                ></v-progress-circular>
-                              </span>
-                              <span v-else-if="term.hpoSearchStatus==='Completed'"><v-icon color="green">done</v-icon></span>
-                              <span v-else-if="term.hpoSearchStatus==='NoGenes'"><v-icon color="red">error</v-icon></span>
-                              <span v-else-if="term.hpoSearchStatus==='NotAvailable'"><v-icon>indeterminate_check_box</v-icon></span>
-                              <span v-else> <v-icon color="gray lighten-4">error</v-icon>  </span>
-                            </td>
-                          </tr>
-                        </tbody>
-                      </table>
-                      <div class="i-text--left" v-if="Hpo_searchTermsObj.length<1">
-                        <span v-if="!showSearchTermsLoader"><i>Not Selected...</i></span>
-                      </div>
-                    </div>
-
+              <v-expansion-panel-header expand-icon="none">
+                <div class="row">
+                  <div class="col-md-9">
+                    Search status
+                  </div>
+                  <div class="col-md-3">
+                    <v-btn small >Gene overlap</v-btn>
                   </div>
                 </div>
-              </v-expansion-panel-content>
+              </v-expansion-panel-header>
+              <v-expansion-panel-content class=""> -->
+              <v-card>
+                <v-card-title primary-title>
+                  <span style="font-size:16px">Search status</span>
+                  <v-spacer></v-spacer>
+                    <v-btn small @click="toggle_gene_overlap_button">
+                      Genes overlap
+                      <v-icon v-if="!genesOverlap">expand_more</v-icon>
+                      <v-icon v-if="genesOverlap">expand_less</v-icon>
+                    </v-btn>
+                </v-card-title>
+                <v-card-text>
+                  <div class="" style="padding-bottom: 0px; ">
+                    <div class="row">
+                      <div class="col-md-4">
+                        <table class="table">
+                          <thead>
+                            <tr class="i-text--left">
+                              <strong>GTR</strong>
+                              <span class="ml-2" v-if="Gtr_searchTermsObj.length && !showSearchTermsLoader">  ( <strong>{{ Gtr_searchTermsObj.length }}</strong> )</span>
+                            </tr>
+                          </thead>
+                          <tbody class="search_status_tbody">
+                            <tr v-if="showSearchTermsLoader">
+                              <v-skeleton-loader
+                                :loading="loading"
+                                :transition="transition"
+                                type="chip"
+                                class="mt-2"
+                              >
+                              </v-skeleton-loader>
+                            </tr>
+                            <tr v-if="!showSearchTermsLoader && Gtr_searchTermsObj.length" v-for="(term, i) in Gtr_searchTermsObj" :key="i">
+                              <td class="i-text--left">
+                                <div @mouseover="mouseOverGtrTerm(term.DiseaseName)" @mouseleave="hovered_gtr_term=''">
+                                  <span>{{ term.DiseaseName }}</span>
+                                  <span v-if="hovered_gtr_term === term.DiseaseName"><v-icon class="ml-1 terms_delete_btn" color="red lighten-2" @click="remove(term, i, 'GTR')">cancel</v-icon></span>
+                                </div>
+                              </td>
+                              <td >
+                                <span v-if="term.gtrSearchStatus==='Searching'">
+                                  <v-progress-circular
+                                    :width="2"
+                                    :size="20"
+                                    indeterminate
+                                    color="primary"
+                                  ></v-progress-circular>
+                                </span>
+                                <span v-else-if="term.gtrSearchStatus==='Completed'">
+                                  <v-icon color="green">done</v-icon>
+                                </span>
+                                <span v-else-if="term.gtrSearchStatus==='NoGenes'"><v-icon color="red">error</v-icon></span>
+                                <span v-else-if="term.gtrSearchStatus==='NotAvailable'"><v-icon>indeterminate_check_box</v-icon></span>
+                                <span v-else> <v-icon color="gray lighten-4">error</v-icon>  </span>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                        <div class="i-text--left" v-if="Gtr_searchTermsObj.length<1">
+                          <span v-if="!showSearchTermsLoader"><i>Not Selected...</i></span>
+                        </div>
+                      </div>
+
+                      <div class="col-md-4">
+                        <table class="table">
+                          <thead>
+                            <tr class="i-text--left">
+                              <strong>Phenolyzer</strong>
+                              <span class="ml-2" v-if="Phenolyzer_searchTermsObj.length && !showSearchTermsLoader">  ( <strong>{{ Phenolyzer_searchTermsObj.length }}</strong> )</span>
+                              <div v-if="Phenolyzer_searchTermsObj.length>0">
+                              </div>
+                            </tr>
+                          </thead>
+                          <tbody class="search_status_tbody">
+                            <tr v-if="showSearchTermsLoader">
+                              <v-skeleton-loader
+                                :loading="loading"
+                                :transition="transition"
+                                type="chip"
+                                class="mt-2"
+                              >
+                              </v-skeleton-loader>
+                            </tr>
+                            <tr v-if="!showSearchTermsLoader" v-for="(term, i) in Phenolyzer_searchTermsObj" :key="i">
+                              <td class="i-text--left" @mouseover="mouseOverPhenolyzerTerm(term.value)" @mouseleave="hovered_phenolyzer_term=''">
+                                <span>{{ term.value | to-firstCharacterUppercase }}</span>
+                                <span v-if="hovered_phenolyzer_term === term.value">
+                                  <v-icon class="ml-1 terms_delete_btn" color="red lighten-2" @click="remove(term, i, 'phenolyzer')">cancel</v-icon>
+                                </span>
+                              </td>
+                              <td>
+                                <span v-if="term.phenolyzerSearchStatus==='Searching'">
+                                  <v-progress-circular
+                                    :width="2"
+                                    :size="20"
+                                    indeterminate
+                                    color="primary"
+                                  ></v-progress-circular>
+                                </span>
+                                <span v-else-if="term.phenolyzerSearchStatus==='running'">
+                                  <v-progress-circular
+                                    :width="2"
+                                    :size="20"
+                                    indeterminate
+                                    color="primary"
+                                  ></v-progress-circular>
+                                  Running
+                                  <br>
+                                  <span @click="stopPhenolyzerSearch(term.value)">close</span>
+                                </span>
+                                <span v-else-if="term.phenolyzerSearchStatus==='Completed'"><v-icon color="green">done</v-icon></span>
+                                <span v-else-if="term.phenolyzerSearchStatus==='NoGenes'"><v-icon color="red">error</v-icon></span>
+                                <span v-else-if="term.phenolyzerSearchStatus==='NotAvailable'"><v-icon>indeterminate_check_box</v-icon></span>
+                                <span v-else-if="term.phenolyzerSearchStatus==='Cancelled'"><v-icon color="gray lighten-4">cancel_schedule_send</v-icon></span>
+                                <span v-else> <v-icon color="gray lighten-4">error</v-icon>  </span>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                        <!-- <div v-if="Phenolyzer_searchTermsObj.length<2"> -->
+                        <div class="i-text--left" v-if="Phenolyzer_searchTermsObj.length<1">
+                          <span v-if="!showSearchTermsLoader"><i>Not Selected...</i></span>
+                        </div>
+                      </div>
+
+                      <div class="col-md-4">
+                        <table class="table">
+                          <thead>
+                            <tr class="i-text--left">
+                              <strong>HPO</strong>
+                              <span class="ml-2" v-if="Hpo_searchTermsObj.length && !showSearchTermsLoader">  ( <strong>{{ Hpo_searchTermsObj.length }}</strong> )</span>
+
+                            </tr>
+                          </thead>
+                          <tbody class="search_status_tbody">
+                            <tr v-if="showSearchTermsLoader">
+                              <v-skeleton-loader
+                                :loading="loading"
+                                :transition="transition"
+                                type="chip"
+                                class="mt-2"
+                              >
+                              </v-skeleton-loader>
+                            </tr>
+                            <tr v-if="!showSearchTermsLoader" v-for="(term, i) in Hpo_searchTermsObj" :key="i">
+                              <td class="i-text--left" @mouseover="mouseOverHpoTerm(term.HPO_Data)" @mouseleave="hovered_hpo_term=''">
+                                <span>{{ term.HPO_Data }}</span>
+                                <span v-if="hovered_hpo_term === term.HPO_Data">
+                                  <v-icon class="ml-1 terms_delete_btn" color="red lighten-2" @click="remove(term, i, 'HPO')">cancel</v-icon>
+                                </span>
+                              </td>
+                              <td >
+                                <span v-if="term.hpoSearchStatus==='Searching'">
+                                  <v-progress-circular
+                                    :width="2"
+                                    :size="20"
+                                    indeterminate
+                                    color="primary"
+                                  ></v-progress-circular>
+                                </span>
+                                <span v-else-if="term.hpoSearchStatus==='Completed'"><v-icon color="green">done</v-icon></span>
+                                <span v-else-if="term.hpoSearchStatus==='NoGenes'"><v-icon color="red">error</v-icon></span>
+                                <span v-else-if="term.hpoSearchStatus==='NotAvailable'"><v-icon>indeterminate_check_box</v-icon></span>
+                                <span v-else> <v-icon color="gray lighten-4">error</v-icon>  </span>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                        <div class="i-text--left" v-if="Hpo_searchTermsObj.length<1">
+                          <span v-if="!showSearchTermsLoader"><i>Not Selected...</i></span>
+                        </div>
+                      </div>
+
+                    </div>
+                  </div>
+                </v-card-text>
+              </v-card>
+
+              <!-- </v-expansion-panel-content>
             </v-expansion-panel>
-          </v-expansion-panels>
+          </v-expansion-panels> -->
 
           <!-- venn diagram -->
           <VennDiagram
             class="mt-2"
-            :vennData="venn_diagram_data">
+            :vennData="venn_diagram_data"
+            ref="genesOverlap"
+            id="genesOverlap"
+            style="height:0; visibility: hidden"
+            >
           </VennDiagram>
         </div>
       </div>
@@ -1127,7 +1152,8 @@ export default {
     hovered_gtr_term: '',
     hovered_phenolyzer_term: '',
     hovered_hpo_term: '',
-    search_status_expansion_panel: [0]
+    search_status_expansion_panel: [0],
+    genesOverlap: false
 
   }),
   watch: {
@@ -1228,6 +1254,10 @@ export default {
     bus.$on("removePhenotype", (details) => {
       let { term, idx, component } = details;
       this.remove(term, idx, component)
+    })
+
+    bus.$on("closeVennDiagramPanel", ()=>{
+      this.toggle_gene_overlap_button();
     })
 
     //Check if there is saved state
@@ -2502,6 +2532,21 @@ export default {
       mouseOverHpoTerm(term){
         this.hovered_hpo_term = term;
       },
+
+      toggle_gene_overlap_button(){
+        let ref_genesoverlap = document.getElementById('genesOverlap');
+        if(this.genesOverlap){
+          this.genesOverlap = false;
+          ref_genesoverlap.style.height="0";
+          ref_genesoverlap.style.visibility="hidden";
+        }
+        else {
+          this.genesOverlap = true;
+          ref_genesoverlap.style.height="300px";
+          // ref_genesoverlap.style.display="block";
+          ref_genesoverlap.style.visibility="";
+        }
+      }
 
 
   }

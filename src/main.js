@@ -17,6 +17,7 @@ import Clipboard from 'v-clipboard';
 Vue.use(Clipboard)
 
 import 'material-design-icons-iconfont/dist/material-design-icons.css'
+import '@fortawesome/fontawesome-free/css/all.css'
 
 //Filters
 Vue.filter('to-firstCharacterUppercase', function(value){

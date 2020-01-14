@@ -1,6 +1,33 @@
 <template>
   <div>
-    <v-expansion-panels
+    <v-card>
+      <v-card-title primary-title>
+        <span style="font-size:16px">Genes Overlap</span>
+        <v-spacer></v-spacer>
+        <!-- <v-icon @click="close">close</v-icon> -->
+
+      </v-card-title>
+      <v-card-text>
+        <div v-show="!vennDiagramLoading">
+          <center class="pr-2 pb-2">
+            <div id="venn" style="margin-top:-20px; margin-bottom:-20px"></div>
+          </center>
+        </div>
+        <div v-if="vennDiagramLoading">
+          <center class="pl-2 pr-2 pb-2">
+            <v-skeleton-loader
+              :loading="loading"
+              :transition="transition"
+              type="image"
+              height="150"
+            >
+            </v-skeleton-loader>
+          </center>
+        </div>
+
+      </v-card-text>
+    </v-card>
+    <!-- <v-expansion-panels
       v-model="venn_diagram_expansion_panel"
       multiple>
       <v-expansion-panel>
@@ -8,25 +35,9 @@
           Genes Overview
         </v-expansion-panel-header>
         <v-expansion-panel-content>
-          <div v-show="!vennDiagramLoading">
-            <center class="pr-2 pb-2">
-              <div id="venn" style="margin-top:-20px; margin-bottom:-20px"></div>
-            </center>
-          </div>
-          <div v-if="vennDiagramLoading">
-            <center class="pl-2 pr-2 pb-2">
-              <v-skeleton-loader
-                :loading="loading"
-                :transition="transition"
-                type="image"
-                height="150"
-              >
-              </v-skeleton-loader>
-            </center>
-          </div>
         </v-expansion-panel-content>
       </v-expansion-panel>
-    </v-expansion-panels>
+    </v-expansion-panels> -->
   </div>
 </template>
 
@@ -75,6 +86,11 @@ import { bus } from '../main';
     },
 
     methods: {
+
+      close(){
+        bus.$emit("closeVennDiagramPanel")
+      },
+
       drawVennDiagram(){
         d3.select("#venn").select("svg").remove();
         var x = require('venn.js')
