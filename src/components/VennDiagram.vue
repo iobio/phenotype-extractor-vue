@@ -63,8 +63,15 @@ import { bus } from '../main';
 
       bus.$on("hide-gene-table-skeleton-loaders", ()=>{
         this.vennDiagramLoading = false;
+        this.venn_diagram_expansion_panel = [];
       });
 
+    },
+
+    mounted(){
+    },
+
+    updated(){
     },
 
     methods: {

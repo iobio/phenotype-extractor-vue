@@ -211,6 +211,11 @@
               </div>
             </v-card-text>
           </v-card>
+
+          <!-- venn diagram -->
+          <VennDiagram
+            :vennData="venn_diagram_data">
+          </VennDiagram>
         </div>
       </div>
 
@@ -1056,6 +1061,7 @@ import { Typeahead } from 'uiv';
 import PhenolyzerSearch from './PhenolyzerSearch.vue';
 import HpoSearch from './HpoSearch.vue';
 import SkeletonLoadersSearchTerms from './SkeletonLoadersSearchTerms.vue';
+import VennDiagram from './VennDiagram.vue'
 
 import Model from '../models/Model';
 var model = new Model();
@@ -1068,7 +1074,8 @@ export default {
     SummaryTab,
     PhenolyzerSearch,
     HpoSearch,
-    SkeletonLoadersSearchTerms
+    SkeletonLoadersSearchTerms,
+    VennDiagram
   },
   props: {
     phenotypes: {
@@ -1218,6 +1225,7 @@ export default {
     expansion_hint_alert: true,
     loading: true,
     transition: 'scale-transition',
+    venn_diagram_data: null,
 
   }),
   watch: {
@@ -1252,6 +1260,11 @@ export default {
     }
 
   },
+
+  created(){
+    this.venn_diagram_data = this.VennDiagramData;
+  },
+
   mounted(){
     this.HPO_Terms_data = HPO_Terms;
     this.HPO_Phenotypes_data = HPO_Phenotypes;

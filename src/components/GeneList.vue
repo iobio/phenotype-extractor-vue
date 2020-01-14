@@ -2,7 +2,7 @@
   <v-container>
 
     <div class="row">
-      <div class="col-md-9">
+      <div class="col-md-12">
         <v-card>
           <div id="gene-data-table" v-if="!geneTableLoading">
             <v-card-title>
@@ -114,6 +114,7 @@
           :phenotypes="phenotypes">
         </Phenotypes> -->
         <VennDiagram
+          style="visibility:hidden; height:1px"
           :vennData="vennData">
         </VennDiagram>
       </div>
