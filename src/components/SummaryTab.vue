@@ -1070,7 +1070,7 @@ import d3 from 'd3'
           ...uniqueGTR, ...uniqueClinPhen, ...uniquePheno
         ]
         this.summaryTableArrayFullList = tableGenes;
-        console.log("this.summaryTableArrayFullList", this.summaryTableArrayFullList)
+        // console.log("this.summaryTableArrayFullList", this.summaryTableArrayFullList)
         this.$emit('summaryGenesFullList', this.summaryTableArrayFullList);
         // this.addSummaryGenesFullList(this.summaryTableArrayFullList);
         this.generateVennDiagramData(summaryObj);

@@ -64,14 +64,14 @@
               :items-per-page="15"
             >
               <template v-slot:item.name="{ item }">
-                <div  @mouseover="mouseOverGeneName(item.name)" @mouseleave="mouseLeaveGeneName">
+                <div style="width:140px" @mouseover="mouseOverGeneName(item.name)" @mouseleave="mouseLeaveGeneName">
                   <v-chip @click="showGeneInfo(item.name)"  dark>{{ item.name }}</v-chip>
                   <span v-if="item.isAssociatedGene!==undefined && item.isAssociatedGene===true"> <v-icon class="ml-1" style="font-size:20px" color="primary">verified_user</v-icon></span>
                   <span v-if="hoveredGeneName===item.name" class="ml-1" >
                     <v-icon color="red lighten-2" small @click="checkBeforeDeleteGene(item)" style="font-size:18px">
-                    cancel
-                  </v-icon>
-                </span>
+                      cancel
+                    </v-icon>
+                  </span>
                 </div>
               </template>
               <template v-slot:item.searchTermsPhenolyzer="{ item }">
