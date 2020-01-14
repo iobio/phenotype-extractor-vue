@@ -47,7 +47,8 @@
             multiple>
             <v-expansion-panel>
               <v-expansion-panel-header>
-                Notes added<span class="ml-2" v-if="clinical_note_text.length">  ( <strong>{{ clinical_note_text.length }}</strong> )</span>
+                Notes added
+                <span class="ml-2" v-if="clinical_note_text.length">  ( <strong>{{ clinical_note_text.length }}</strong> )</span>
               </v-expansion-panel-header>
               <v-expansion-panel-content class="i-clinical_note_text_div">
                 <div v-if="showSearchTermsLoader">
@@ -687,7 +688,7 @@
                               <tbody>
                                 <tr v-for="(term, i) in GtrTermsAdded_temp" v-if="GtrTermsAdded_temp.length">
                                   <td> {{ term.DiseaseName }} </td>
-                                  <td style="display:none"><v-icon>check</v-icon></td>
+                                  <td><v-icon class="terms_delete_btn" @click="removeReviewTerms(term, i, 'GTR')" style="font-size:18px" color="red lighten-2">cancel</v-icon></td>
                                 </tr>
                               </tbody>
                             </table>
@@ -708,7 +709,7 @@
                               <tbody>
                                 <tr v-for="(term, i) in phenolyzerTermsAdded_temp" v-if="phenolyzerTermsAdded_temp.length">
                                   <td> {{ term.value }} </td>
-                                  <td style="display:none"><v-icon>check</v-icon></td>
+                                  <td ><v-icon class="terms_delete_btn" @click="removeReviewTerms(term, i, 'Phenolyzer')" style="font-size:18px" color="red lighten-2">cancel</v-icon></td>
                                 </tr>
                               </tbody>
                             </table>
@@ -729,7 +730,7 @@
                               <tbody>
                                 <tr v-for="(term, i) in hpoTermsAdded_temp" v-if="hpoTermsAdded_temp.length">
                                   <td> {{ term.HPO_Data }} </td>
-                                  <td style="display:none"><v-icon>check</v-icon></td>
+                                  <td ><v-icon class="terms_delete_btn" @click="removeReviewTerms(term, i, 'HPO')" style="font-size:18px" color="red lighten-2">cancel</v-icon></td>
                                 </tr>
                               </tbody>
                             </table>
@@ -819,26 +820,12 @@
                         <thead>
                           <tr>
                             <strong>Phenolyzer Search status</strong>
-                            <!-- <div v-if="Phenolyzer_searchTermsObj.length>1"> -->
                             <div v-if="Phenolyzer_searchTermsObj.length>0">
-                              <!-- <div v-if="phenolyzerRunningStatus!==null" class="row">
-                                <div class="col-md-3">
-                                  <i>{{ phenolyzerRunningStatus | to-firstCharacterUppercase }} </i>
-                                </div>
-                                <div class="col-md-7">
-                                  <span><v-progress-linear :indeterminate="true" height="5"></v-progress-linear></span>
-                                </div>
-                                <div class="col-md-2">
-                                  <v-btn flat icon @click="stopPhenolyzerSearch"><v-icon>close</v-icon></v-btn>
-                                </div>
-                              </div> -->
                             </div>
                           </tr>
                         </thead>
                         <tbody>
                           <tr v-for="(term, i) in Phenolyzer_searchTermsObj" :key="i">
-                            <!-- <td v-if="i>0">{{ term.value }}</td>
-                            <td v-if="i>0" > -->
                             <td>{{ term.value }}</td>
                             <td>
                               <span v-if="term.phenolyzerSearchStatus==='Searching'">
@@ -912,145 +899,6 @@
           </v-dialog>
         </v-card>
         <!-- End search status dialog -->
-
-
-        <!-- Duplicate Search status dialog -->
-        <v-card>
-          <v-dialog
-            v-model="DuplicateSearchStatusDialog"
-            scrollable
-            :overlay="false"
-            max-width="1000px"
-            transition="dialog-transition"
-          >
-            <v-card>
-              <v-card-title class="headline">
-                Search Status
-                <v-spacer></v-spacer>
-                <span>
-                  <v-btn text icon @click="DuplicateSearchStatusDialog=false"><v-icon>close</v-icon></v-btn>
-                </span>
-              </v-card-title>
-              <v-divider></v-divider>
-              <v-card-text>
-                <div class="container">
-                  <div class="row">
-                    <div class="col-md-4">
-                      <table class="table">
-                        <thead>
-                          <tr> <strong>GTR Search status</strong></tr>
-                        </thead>
-                        <tbody>
-                          <tr v-if="Gtr_searchTermsObj.length" v-for="(term, i) in Gtr_searchTermsObj" :key="i">
-                            <td>{{ term.DiseaseName }}</td>
-                            <td >
-                              <span v-if="term.gtrSearchStatus==='Searching'">
-                                <v-progress-circular
-                                  :width="2"
-                                  :size="20"
-                                  indeterminate
-                                  color="primary"
-                                ></v-progress-circular>
-                              </span>
-                              <span v-else-if="term.gtrSearchStatus==='Completed'">
-                                <v-icon color="green">done</v-icon>
-                              </span>
-                              <span v-else-if="term.gtrSearchStatus==='NoGenes'"><v-icon color="red">error</v-icon></span>
-                              <span v-else-if="term.gtrSearchStatus==='NotAvailable'"><v-icon>indeterminate_check_box</v-icon></span>
-                              <span v-else> <v-icon color="gray lighten-4">error</v-icon>  </span>
-                            </td>
-                          </tr>
-                        </tbody>
-                      </table>
-                      <div v-if="Gtr_searchTermsObj.length<1">
-                        <span><i>Not Selected...</i></span>
-                      </div>
-                    </div>
-
-                    <div class="col-md-4">
-                      <table class="table">
-                        <thead>
-                          <tr>
-                            <strong>Phenolyzer Search status</strong>
-                            <div v-if="Phenolyzer_searchTermsObj.length>0">
-                            </div>
-                          </tr>
-                        </thead>
-                        <tbody>
-                          <tr v-for="(term, i) in Phenolyzer_searchTermsObj" :key="i">
-                            <td>{{ term.value }}</td>
-                            <td>
-                              <span v-if="term.phenolyzerSearchStatus==='Searching'">
-                                <v-progress-circular
-                                  :width="2"
-                                  :size="20"
-                                  indeterminate
-                                  color="primary"
-                                ></v-progress-circular>
-                              </span>
-                              <span v-else-if="term.phenolyzerSearchStatus==='running'">
-                                <v-progress-circular
-                                  :width="2"
-                                  :size="20"
-                                  indeterminate
-                                  color="primary"
-                                ></v-progress-circular>
-                                Running
-                                <br>
-                                <span @click="stopPhenolyzerSearch(term.value)">close</span>
-                              </span>
-                              <span v-else-if="term.phenolyzerSearchStatus==='Completed'"><v-icon color="green">done</v-icon></span>
-                              <span v-else-if="term.phenolyzerSearchStatus==='NoGenes'"><v-icon color="red">error</v-icon></span>
-                              <span v-else-if="term.phenolyzerSearchStatus==='NotAvailable'"><v-icon>indeterminate_check_box</v-icon></span>
-                              <span v-else-if="term.phenolyzerSearchStatus==='Cancelled'"><v-icon color="gray lighten-4">cancel_schedule_send</v-icon></span>
-                              <span v-else> <v-icon color="gray lighten-4">error</v-icon>  </span>
-                            </td>
-                          </tr>
-                        </tbody>
-                      </table>
-                      <!-- <div v-if="Phenolyzer_searchTermsObj.length<2"> -->
-                      <div v-if="Phenolyzer_searchTermsObj.length<1">
-                        <span><i>Not Selected...</i></span>
-                      </div>
-                    </div>
-
-                    <div class="col-md-4">
-                      <table class="table">
-                        <thead>
-                          <tr> <strong>HPO Search status</strong></tr>
-                        </thead>
-                        <tbody>
-                          <tr v-for="(term, i) in Hpo_searchTermsObj" :key="i">
-                            <td>{{ term.HPO_Data }}</td>
-                            <td >
-                              <span v-if="term.hpoSearchStatus==='Searching'">
-                                <v-progress-circular
-                                  :width="2"
-                                  :size="20"
-                                  indeterminate
-                                  color="primary"
-                                ></v-progress-circular>
-                              </span>
-                              <span v-else-if="term.hpoSearchStatus==='Completed'"><v-icon color="green">done</v-icon></span>
-                              <span v-else-if="term.hpoSearchStatus==='NoGenes'"><v-icon color="red">error</v-icon></span>
-                              <span v-else-if="term.hpoSearchStatus==='NotAvailable'"><v-icon>indeterminate_check_box</v-icon></span>
-                              <span v-else> <v-icon color="gray lighten-4">error</v-icon>  </span>
-                            </td>
-                          </tr>
-                        </tbody>
-                      </table>
-                      <div v-if="Hpo_searchTermsObj.length<1">
-                        <span><i>Not Selected...</i></span>
-                      </div>
-                    </div>
-
-                  </div>
-                </div>
-              </v-card-text>
-            </v-card>
-          </v-dialog>
-        </v-card>
-        <!-- End Duplicate Search status dialog -->
 
         <GtrSearch
           v-on:filteredDiseasesItems="filteredDiseasesItems"
@@ -1944,16 +1792,6 @@ export default {
         this.gtrFetchCompleted = false;
       }
 
-      // this.gtrFetchCompleted = false;
-      // this.Gtr_searchTermsObj.forEach((term, i) => {
-      //   ((ind) =>{
-      //     setTimeout(() =>{
-      //       console.log("term", term)
-      //       this.$set(term, 'gtrSearchStatus', "Searching");
-      //       bus.$emit("singleTermSearchGTR", term);
-      //     }, 200 + (2000 * ind));
-      //   })(i);
-      // })
       let startVal = this.Gtr_idx;
       for(let i=startVal; i<this.Gtr_searchTermsObj.length; i++){
         ((ind) =>{
