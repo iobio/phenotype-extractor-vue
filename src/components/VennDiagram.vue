@@ -2,10 +2,9 @@
   <div>
     <v-card>
       <v-card-title primary-title>
-        <span style="font-size:16px">Genes Overlap</span>
+        <span style="font-size:16px; text-transform:none">Genes Overlap</span>
         <v-spacer></v-spacer>
-        <!-- <v-icon @click="close">close</v-icon> -->
-
+        <v-icon id="close_icon" @click="close">close</v-icon>
       </v-card-title>
       <v-card-text>
         <div v-show="!vennDiagramLoading">
@@ -59,6 +58,7 @@ import { bus } from '../main';
       vennDiagramLoading: false,
       loading: true,
       transition: 'scale-transition',
+      closeIcon: true,
     }),
 
     watch: {
@@ -77,6 +77,15 @@ import { bus } from '../main';
         this.venn_diagram_expansion_panel = [];
       });
 
+      bus.$on("open_genes_overlap_panel", ()=>{
+        this.closeIcon = true;
+        document.getElementById('close_icon').style.zIndex = "2"
+      })
+
+      bus.$on("close_genes_overlap_panel", ()=>{
+        this.close();
+      })
+
     },
 
     mounted(){
@@ -88,7 +97,9 @@ import { bus } from '../main';
     methods: {
 
       close(){
+        this.closeIcon = false;
         bus.$emit("closeVennDiagramPanel")
+        document.getElementById('close_icon').style.zIndex = "-10"
       },
 
       drawVennDiagram(){

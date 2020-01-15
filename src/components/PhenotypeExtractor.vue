@@ -48,7 +48,16 @@
             <v-expansion-panel>
               <v-expansion-panel-header>
                 Notes added
-                <span class="ml-2" v-if="clinical_note_text.length">  ( <strong>{{ clinical_note_text.length }}</strong> )</span>
+                <v-badge
+                  :value="clinical_note_text.length"
+                  color="primary"
+                  left
+                  class="ml-7"
+                >
+                  <span slot="badge">{{ clinical_note_text.length }}</span>
+                </v-badge>
+                <!-- <span class="ml-2" v-if="clinical_note_text.length">  ( <strong>{{ clinical_note_text.length }}</strong> )</span> -->
+
               </v-expansion-panel-header>
               <v-expansion-panel-content class="i-clinical_note_text_div">
                 <div v-if="showSearchTermsLoader">
@@ -104,8 +113,8 @@
                 <v-card-title primary-title>
                   <span style="font-size:16px">Search status</span>
                   <v-spacer></v-spacer>
-                    <v-btn small @click="toggle_gene_overlap_button">
-                      Genes overlap
+                    <v-btn small @click="toggle_gene_overlap_button" style="text-transform:none">
+                      <span style="text-transform:none">Genes overlap</span>
                       <v-icon v-if="!genesOverlap">expand_more</v-icon>
                       <v-icon v-if="genesOverlap">expand_less</v-icon>
                     </v-btn>
@@ -118,7 +127,16 @@
                           <thead>
                             <tr class="i-text--left">
                               <strong>GTR</strong>
-                              <span class="ml-2" v-if="Gtr_searchTermsObj.length && !showSearchTermsLoader">  ( <strong>{{ Gtr_searchTermsObj.length }}</strong> )</span>
+                              <span v-if="Gtr_searchTermsObj.length && !showSearchTermsLoader">
+                                <v-badge
+                                  :value="Gtr_searchTermsObj.length"
+                                  color="primary"
+                                  left
+                                  class="ml-8 mb-2"
+                                >
+                                  <span slot="badge">{{ Gtr_searchTermsObj.length }}</span>
+                                </v-badge>
+                              </span>
                             </tr>
                           </thead>
                           <tbody class="search_status_tbody">
@@ -167,7 +185,16 @@
                           <thead>
                             <tr class="i-text--left">
                               <strong>Phenolyzer</strong>
-                              <span class="ml-2" v-if="Phenolyzer_searchTermsObj.length && !showSearchTermsLoader">  ( <strong>{{ Phenolyzer_searchTermsObj.length }}</strong> )</span>
+                              <span class="ml-2" v-if="Phenolyzer_searchTermsObj.length && !showSearchTermsLoader">
+                                <v-badge
+                                  :value="Phenolyzer_searchTermsObj.length"
+                                  color="primary"
+                                  left
+                                  class="ml-6 mb-2"
+                                >
+                                  <span slot="badge">{{ Phenolyzer_searchTermsObj.length }}</span>
+                                </v-badge>
+                              </span>
                               <div v-if="Phenolyzer_searchTermsObj.length>0">
                               </div>
                             </tr>
@@ -229,8 +256,16 @@
                           <thead>
                             <tr class="i-text--left">
                               <strong>HPO</strong>
-                              <span class="ml-2" v-if="Hpo_searchTermsObj.length && !showSearchTermsLoader">  ( <strong>{{ Hpo_searchTermsObj.length }}</strong> )</span>
-
+                              <span class="ml-2" v-if="Hpo_searchTermsObj.length && !showSearchTermsLoader">
+                                <v-badge
+                                  :value="Phenolyzer_searchTermsObj.length"
+                                  color="primary"
+                                  left
+                                  class="ml-6 mb-2"
+                                >
+                                  <span slot="badge">{{ Phenolyzer_searchTermsObj.length }}</span>
+                                </v-badge>
+                              </span>
                             </tr>
                           </thead>
                           <tbody class="search_status_tbody">
@@ -2539,12 +2574,14 @@ export default {
           this.genesOverlap = false;
           ref_genesoverlap.style.height="0";
           ref_genesoverlap.style.visibility="hidden";
+          bus.$emit("close_genes_overlap_panel");
         }
         else {
           this.genesOverlap = true;
           ref_genesoverlap.style.height="300px";
           // ref_genesoverlap.style.display="block";
           ref_genesoverlap.style.visibility="";
+          bus.$emit("open_genes_overlap_panel");
         }
       }
 
@@ -2564,7 +2601,7 @@ export default {
     font-family: 'Poppins', sans-serif
 
   .v-btn
-    text-transform: none
+    text-transform: none !important
 
   #single_entry_input
     width: 600px
