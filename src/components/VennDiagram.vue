@@ -83,7 +83,8 @@ import { bus } from '../main';
       })
 
       bus.$on("close_genes_overlap_panel", ()=>{
-        this.close();
+        this.closeIcon = false;
+        document.getElementById('close_icon').style.zIndex = "-10"
       })
 
     },

@@ -2579,7 +2579,6 @@ export default {
         else {
           this.genesOverlap = true;
           ref_genesoverlap.style.height="300px";
-          // ref_genesoverlap.style.display="block";
           ref_genesoverlap.style.visibility="";
           bus.$emit("open_genes_overlap_panel");
         }
