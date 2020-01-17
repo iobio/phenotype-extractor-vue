@@ -387,7 +387,7 @@
                 </div>
                 <div v-if="termsReviewDialogPage===2">
                   <div class="pa-2">
-                    <img src="../assets/phenolyzer1.svg" alt="" height="28px" width="28px" > Phenolyzer
+                    <img src="https://raw.githubusercontent.com/iobio/genepanel.iobio/master/client/app/components/assets/images/phenolyzer1.svg" alt="" height="28px" width="28px" > Phenolyzer
                   </div>
                 </div>
                 <div v-if="termsReviewDialogPage===3">
