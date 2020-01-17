@@ -68,7 +68,7 @@ import { bus } from '../main';
     },
 
     created(){
-      console.log("created");
+      // console.log("created");
 
       bus.$on("show-gene-table-skeleton-loaders", ()=>{
         this.vennDiagramLoading = true;
@@ -92,11 +92,11 @@ import { bus } from '../main';
     },
 
     mounted(){
-      console.log("mounted");
+      // console.log("mounted");
     },
 
     updated(){
-      console.log("updated");
+      // console.log("updated");
     },
 
     methods: {

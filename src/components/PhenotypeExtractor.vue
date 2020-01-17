@@ -153,6 +153,9 @@
                                   <span slot="badge">{{ Gtr_searchTermsObj.length }}</span>
                                 </v-badge>
                               </span>
+                              <span v-if="Gtr_searchTermsObj.length>4" style="float:right; margin-right:20px">
+                                <v-icon color="grey lighten-1">unfold_more</v-icon>
+                              </span>
                             </tr>
                           </thead>
                           <tbody class="search_status_tbody">
@@ -211,8 +214,11 @@
                                   <span slot="badge">{{ Phenolyzer_searchTermsObj.length }}</span>
                                 </v-badge>
                               </span>
-                              <div v-if="Phenolyzer_searchTermsObj.length>0">
-                              </div>
+                              <span v-if="Phenolyzer_searchTermsObj.length>4" style="float:right; margin-right:20px">
+                                <v-icon color="grey lighten-1">unfold_more</v-icon>
+                              </span>
+                              <!-- <div v-if="Phenolyzer_searchTermsObj.length>0">
+                              </div> -->
                             </tr>
                           </thead>
                           <tbody class="search_status_tbody">
@@ -255,7 +261,7 @@
                                 <span v-else-if="term.phenolyzerSearchStatus==='Completed'"><v-icon color="green">done</v-icon></span>
                                 <span v-else-if="term.phenolyzerSearchStatus==='NoGenes'"><v-icon color="red">error</v-icon></span>
                                 <span v-else-if="term.phenolyzerSearchStatus==='NotAvailable'"><v-icon>indeterminate_check_box</v-icon></span>
-                                <span v-else-if="term.phenolyzerSearchStatus==='Cancelled'"><v-icon color="gray lighten-4">cancel_schedule_send</v-icon></span>
+                                <span v-else-if="term.phenolyzerSearchStatus==='Cancelled'"><v-icon color="gray lighten-4">cancel_presentation</v-icon></span>
                                 <span v-else> <v-icon color="gray lighten-4">error</v-icon>  </span>
                               </td>
                             </tr>
@@ -279,8 +285,11 @@
                                   left
                                   class="ml-6 mb-2"
                                 >
-                                  <span slot="badge">{{ Phenolyzer_searchTermsObj.length }}</span>
+                                  <span slot="badge">{{ Hpo_searchTermsObj.length }}</span>
                                 </v-badge>
+                              </span>
+                              <span v-if="Hpo_searchTermsObj.length>3" style="float:right; margin-right:20px">
+                                <v-icon color="grey lighten-1">unfold_more</v-icon>
                               </span>
                             </tr>
                           </thead>
@@ -944,7 +953,7 @@
                               <span v-else-if="term.phenolyzerSearchStatus==='Completed'"><v-icon color="green">done</v-icon></span>
                               <span v-else-if="term.phenolyzerSearchStatus==='NoGenes'"><v-icon color="red">error</v-icon></span>
                               <span v-else-if="term.phenolyzerSearchStatus==='NotAvailable'"><v-icon>indeterminate_check_box</v-icon></span>
-                              <span v-else-if="term.phenolyzerSearchStatus==='Cancelled'"><v-icon color="gray lighten-4">cancel_schedule_send</v-icon></span>
+                              <span v-else-if="term.phenolyzerSearchStatus==='Cancelled'"><v-icon color="gray lighten-4">cancel_presentation</v-icon></span>
                               <span v-else> <v-icon color="gray lighten-4">error</v-icon>  </span>
                             </td>
                           </tr>
@@ -1309,6 +1318,18 @@ export default {
       if(this.Phenolyzer_search_complete_idx === this.Phenolyzer_searchTermArray.length){
         this.phenolyzerFetchCompleted = true;
         if(!this.phenolyzerSavedState){
+          this.checkToCloseSearchStatusDialog();
+        }
+      }
+    })
+
+    bus.$on("failedGtrFetchRequest", searchTerm => {
+      var idx = this.Gtr_searchTermArray.indexOf(searchTerm);
+      this.$set(this.Gtr_searchTermsObj[idx], 'gtrSearchStatus', "failed");
+      this.Gtr_search_complete_idx = this.Gtr_search_complete_idx+1;
+      if(this.Gtr_search_complete_idx === this.Gtr_searchTermArray.length){
+        this.gtrFetchCompleted = true;
+        if(!this.gtrSavedState){
           this.checkToCloseSearchStatusDialog();
         }
       }
@@ -1912,7 +1933,7 @@ export default {
             this.$set(this.Gtr_searchTermsObj[i], 'gtrSearchStatus', "Searching");
             bus.$emit("singleTermSearchGTR", this.Gtr_searchTermsObj[i]);
             this.Gtr_idx = this.Gtr_idx + 1;
-          }, 200 + (2000 * ind));
+          }, 200 + (2500 * ind));
         })(i);
       }
     },
@@ -1926,7 +1947,7 @@ export default {
             this.$set(this.Gtr_searchTermsObj[i], 'gtrSearchStatus', "Completed");
             bus.$emit("singleTermSearchGTR", this.Gtr_searchTermsObj[i]);
             this.Gtr_idx = this.Gtr_idx + 1;
-          }, 200 + (2000 * ind));
+          }, 200 + (2500 * ind));
         })(i);
       }
     },

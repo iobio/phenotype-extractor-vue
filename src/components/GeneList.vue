@@ -257,7 +257,7 @@ export default {
   },
 
   mounted(){
-    console.log("genelist mounted");
+    // console.log("genelist mounted");
     this.knownGenesData = knownGenes;
     // this.summaryGenes = this.summaryGeneList;
     this.organizeGeneList();
@@ -270,7 +270,7 @@ export default {
   },
 
   created(){
-    console.log("genelist created");
+    // console.log("genelist created");
     bus.$on("show-gene-table-skeleton-loaders", ()=>{
       this.geneTableLoading = true;
     });
@@ -284,7 +284,7 @@ export default {
   },
 
   updated(){
-    console.log("genelist updated");
+    // console.log("genelist updated");
   },
 
   methods: {

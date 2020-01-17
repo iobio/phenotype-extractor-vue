@@ -210,6 +210,10 @@ export default {
               })
             }
           })
+          .catch(function(err){
+            bus.$emit("failedGtrFetchRequest", searchTerm)
+            console.log("error thrown for the term: ", searchTerm)
+          })
 
           var callAfunction = (promises)=>{
             var filteredDiseases;
