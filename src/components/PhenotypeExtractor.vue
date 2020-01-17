@@ -826,13 +826,13 @@
 
 
               </v-card-text>
-              <v-card-actions>
+              <v-card-actions class="mb-3">
                 <div class="flex-grow-1"></div>
                 <!-- <v-btn small color="blue darken-1" round outlined dark text @click="termsReviewDialog=false">Skip</v-btn> -->
-                <v-btn :disabled="termsReviewDialogPage===1" small color="primary" text @click="--termsReviewDialogPage">Back</v-btn>
-                <v-btn :disabled="termsReviewDialogPage>3" small color="primary" text @click="++termsReviewDialogPage">Next</v-btn>
+                <v-btn :disabled="termsReviewDialogPage===1" small color="primary" @click="--termsReviewDialogPage"><v-icon>arrow_left</v-icon> Back</v-btn>
+                <v-btn :disabled="termsReviewDialogPage>3" small color="primary" @click="++termsReviewDialogPage"> Next <v-icon>arrow_right</v-icon></v-btn>
                 <v-spacer></v-spacer>
-                <v-btn :disabled="termsReviewDialogPage!==4" small color="primary" text @click="selectReviewTerms">Done</v-btn>
+                <v-btn :disabled="termsReviewDialogPage!==4" small color="primary" @click="selectReviewTerms">Done</v-btn>
               </v-card-actions>
             </v-card>
           </v-dialog>

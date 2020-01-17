@@ -80,17 +80,17 @@
               </template>
               <template v-slot:item.searchTermsPhenolyzer="{ item }">
         				<div v-for="(x, i) in item.searchTermsPhenolyzer">
-        					<v-chip outlined class="mb-1 mt-2"> # {{ x.rank}}. {{ x.searchTerm | to-firstCharacterUppercase }}</v-chip>
+        					<v-chip outlined class="mb-1 mt-1 i-chips--terms"> # {{ x.rank}}. {{ x.searchTerm | to-firstCharacterUppercase }}</v-chip>
         				</div>
               </template>
               <template v-slot:item.searchTermsGtr="{ item }">
                 <div v-for="(x, i) in item.searchTermsGtr">
-                  <v-chip outlined class="mb-1 mt-2"> # {{ x.rank}}. {{ x.searchTerm }}</v-chip>
+                  <v-chip outlined class="mb-1 mt-1 i-chips--terms"> # {{ x.rank}}. {{ x.searchTerm }}</v-chip>
                 </div>
               </template>
               <template v-slot:item.searchTermHpo="{ item }">
                 <div v-for="(x, i) in item.searchTermHpo">
-                  <v-chip outlined class="mb-1 mt-2"> {{ getPhenotypFromHPO_id(x.searchTerm) }}</v-chip>
+                  <v-chip outlined class="mb-1 mt-1 i-chips--terms"> {{ getPhenotypFromHPO_id(x.searchTerm) }}</v-chip>
                   <!-- <v-chip outlined class="mb-1 mt-2"> {{ x.searchTerm }}</v-chip> -->
                 </div>
               </template>
@@ -402,5 +402,8 @@ export default {
   .v-btn
     text-transform: none
     letter-spacing: normal
+
+  .i-chips--terms
+    font-size: 12px !important
 
 </style>
