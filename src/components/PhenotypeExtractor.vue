@@ -5,8 +5,8 @@
       wrap
     >
       <div class="row">
-        <div class="col-md-6">
-          <div class="ml-1 mr-2" id="SingleEntryInput" style="display:inline-block; padding-top:5px;">
+        <div class="col-md-12">
+          <div class="mr-2" id="SingleEntryInput" style="display:inline-block; padding-top:5px; margin-bottom:-30px">
             <input
               id="single_entry_input"
               ref="single_entry_input"
@@ -38,12 +38,56 @@
                 item-key="DiseaseName"/>
           </div>
           <v-btn :disabled="textNotes.length<4" @click="extract" color="primary">Submit</v-btn>
-          <br><br>
-
-          <v-expansion-panels
+          <div mt-0 v-if="multipleSearchTerms.length && !searchStatusDialog && !showSearchTermsLoader">
+            <!-- <v-btn style="text-transform:none" small @click="DuplicateSearchStatusDialog=true">
+             Show search status
+            </v-btn> -->
+          </div>
+        </div>
+        <div class="col-md-5">
+          <v-card>
+            <v-card-title primary-title>
+              <span style="font-size:16px">
+                Notes added
+                <v-badge
+                  :value="clinical_note_text.length"
+                  color="primary"
+                  left
+                  class="ml-7 mb-2"
+                >
+                  <span slot="badge">{{ clinical_note_text.length }}</span>
+                </v-badge>
+              </span>
+              <v-spacer></v-spacer>
+            </v-card-title>
+            <v-card-text class="i-clinical_note_text_div">
+              <div v-if="showSearchTermsLoader">
+                <blockquote class="blockquote">
+                  <v-skeleton-loader
+                    :loading="loading"
+                    :transition="transition"
+                    type="paragraph"
+                  >
+                  </v-skeleton-loader>
+                </blockquote>
+              </div>
+              <div v-if="!showSearchTermsLoader">
+                <div v-if="clinical_note_text.length">
+                  <blockquote v-for="(note, i) in clinical_note_text" :key="i" class="blockquote i-text--left" style="font-size: 13px;">
+                    {{ note }}
+                  </blockquote>
+                </div>
+                <div v-else>
+                  <blockquote class="blockquote i-text--left" style="font-size: 14px;">
+                    No clinical is note added.
+                  </blockquote>
+                </div>
+              </div>
+            </v-card-text>
+          </v-card>
+          <!-- <v-expansion-panels
             v-model="clinical_note_text_expansion_panel"
-            class="ml-4"
-            style="width:95%"
+            class=""
             multiple>
             <v-expansion-panel>
               <v-expansion-panel-header>
@@ -56,44 +100,16 @@
                 >
                   <span slot="badge">{{ clinical_note_text.length }}</span>
                 </v-badge>
-                <!-- <span class="ml-2" v-if="clinical_note_text.length">  ( <strong>{{ clinical_note_text.length }}</strong> )</span> -->
 
               </v-expansion-panel-header>
               <v-expansion-panel-content class="i-clinical_note_text_div">
-                <div v-if="showSearchTermsLoader">
-                  <blockquote class="blockquote">
-                    <v-skeleton-loader
-                      :loading="loading"
-                      :transition="transition"
-                      type="paragraph"
-                      class="mt-2"
-                    >
-                    </v-skeleton-loader>
-                  </blockquote>
-                </div>
-                <div v-if="!showSearchTermsLoader">
-                  <div v-if="clinical_note_text.length">
-                    <blockquote v-for="(note, i) in clinical_note_text" :key="i" class="blockquote i-text--left" style="font-size: 13px;">
-                      {{ note }}
-                    </blockquote>
-                  </div>
-                  <div v-else>
-                    <blockquote class="blockquote i-text--left" style="font-size: 14px;">
-                      No clinical is note added.
-                    </blockquote>
-                  </div>
-                </div>
+
               </v-expansion-panel-content>
             </v-expansion-panel>
-          </v-expansion-panels>
+          </v-expansion-panels> -->
 
-          <div mt-0 v-if="multipleSearchTerms.length && !searchStatusDialog && !showSearchTermsLoader">
-            <!-- <v-btn style="text-transform:none" small @click="DuplicateSearchStatusDialog=true">
-             Show search status
-            </v-btn> -->
-          </div>
         </div>
-        <div class="col-md-6">
+        <div class="col-md-7">
           <!-- <v-expansion-panels
             v-model="search_status_expansion_panel"
             multiple :readonly="readonly">
@@ -2603,7 +2619,7 @@ export default {
     text-transform: none !important
 
   #single_entry_input
-    width: 600px
+    width: 1400px
     height: 49px
     margin-top: 7px
     // border: 0
@@ -2616,7 +2632,7 @@ export default {
     outline: 1px solid #45688E
 
   #single_entry_input_textarea
-    width: 600px
+    width: 1390px
     margin-top: 7px
 
   .reviewCard
@@ -2646,7 +2662,8 @@ export default {
 
   .i-clinical_note_text_div
     display: block
-    max-height: 100px
+    max-height: 252px
+    min-height: 104px
     overflow-y: scroll
 
 </style>
