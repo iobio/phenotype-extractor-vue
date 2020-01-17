@@ -1622,6 +1622,12 @@ export default {
     },
     openReviewDialog(){
       this.textNotes = this.search.DiseaseName;
+      this.clinical_note_text.unshift(this.textNotes);
+
+      //check this for saving phenotype data
+      var allPhenotypes = [this.GtrTermsAdded, this.phenolyzerTermsAdded, this.hpoTermsAdded, this.clinical_note_text];
+      this.$emit('saveSearchedPhenotypes', allPhenotypes)
+
       this.GtrReviewTerms = [];
       this.termsExpansionPanel = ['true'];
       this.demoTermsFlag = false;
