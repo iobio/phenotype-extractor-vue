@@ -759,6 +759,9 @@
                               <thead>
                                 <tr>
                                   <strong>GTR Terms</strong>
+                                  <span style="float: right">
+                                    <v-btn @click="termsReviewDialogPage=2" text small color="primary">edit</v-btn>
+                                  </span>
                                 </tr>
                               </thead>
                               <tbody>
@@ -771,7 +774,6 @@
                             <div v-if="GtrTermsAdded_temp.length<1">
                               <span><i>Not Selected...</i></span>
                             </div>
-                            <v-btn @click="termsReviewDialogPage=1" text small color="primary"><v-icon class="mr-2">refresh</v-icon> Update</v-btn>
                           </div>
 
                           <!-- Phenolyzer -->
@@ -780,6 +782,9 @@
                               <thead>
                                 <tr>
                                   <strong>Phenolyzer Terms</strong>
+                                  <span style="float: right">
+                                    <v-btn @click="termsReviewDialogPage=1" text small color="primary">edit</v-btn>
+                                  </span>
                                 </tr>
                               </thead>
                               <tbody>
@@ -792,8 +797,6 @@
                             <div v-if="phenolyzerTermsAdded_temp.length<1">
                               <span><i>Not Selected...</i></span>
                             </div>
-                            <v-btn @click="termsReviewDialogPage=2" text small color="primary"><v-icon class="mr-2">refresh</v-icon> Update</v-btn>
-
                           </div>
 
                           <div class="col-md-4">
@@ -801,6 +804,9 @@
                               <thead>
                                 <tr>
                                   <strong>HPO Terms</strong>
+                                  <span style="float: right">
+                                    <v-btn @click="termsReviewDialogPage=3" text small color="primary">edit</v-btn>
+                                  </span>
                                 </tr>
                               </thead>
                               <tbody>
@@ -813,8 +819,6 @@
                             <div v-if="hpoTermsAdded_temp.length<1">
                               <span><i>Not Selected...</i></span>
                             </div>
-                            <v-btn @click="termsReviewDialogPage=3" text small color="primary"><v-icon class="mr-2">refresh</v-icon> Update</v-btn>
-
                           </div>
 
 
