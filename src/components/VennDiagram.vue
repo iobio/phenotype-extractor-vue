@@ -1,18 +1,18 @@
 <template>
   <div>
-    <v-card>
+    <!-- <v-card>
       <v-card-title primary-title>
         <span style="font-size:16px; text-transform:none">Genes Overlap</span>
         <v-spacer></v-spacer>
         <v-icon id="close_icon" @click="close">close</v-icon>
-      </v-card-title>
+      </v-card-title> -->
       <v-card-text>
         <div v-show="!vennDiagramLoading">
-          <center class="pr-2 pb-2">
-            <div id="venn" style="margin-top:-20px; margin-bottom:-20px"></div>
+          <center class="">
+            <div id="venn" style="margin-top:-40px; margin-bottom:-60px"></div>
           </center>
         </div>
-        <div v-if="vennDiagramLoading">
+        <!-- <div v-if="vennDiagramLoading">
           <center class="pl-2 pr-2 pb-2">
             <v-skeleton-loader
               :loading="loading"
@@ -22,10 +22,10 @@
             >
             </v-skeleton-loader>
           </center>
-        </div>
+        </div> -->
 
       </v-card-text>
-    </v-card>
+    <!-- </v-card> -->
     <!-- <v-expansion-panels
       v-model="venn_diagram_expansion_panel"
       multiple>
@@ -68,6 +68,8 @@ import { bus } from '../main';
     },
 
     created(){
+      console.log("created");
+
       bus.$on("show-gene-table-skeleton-loaders", ()=>{
         this.vennDiagramLoading = true;
       });
@@ -77,38 +79,40 @@ import { bus } from '../main';
         this.venn_diagram_expansion_panel = [];
       });
 
-      bus.$on("open_genes_overlap_panel", ()=>{
-        this.closeIcon = true;
-        document.getElementById('close_icon').style.zIndex = "2"
-      })
-
-      bus.$on("close_genes_overlap_panel", ()=>{
-        this.closeIcon = false;
-        document.getElementById('close_icon').style.zIndex = "-10"
-      })
+      // bus.$on("open_genes_overlap_panel", ()=>{
+      //   this.closeIcon = true;
+      //   document.getElementById('close_icon').style.zIndex = "2"
+      // })
+      //
+      // bus.$on("close_genes_overlap_panel", ()=>{
+      //   this.closeIcon = false;
+      //   document.getElementById('close_icon').style.zIndex = "-10"
+      // })
 
     },
 
     mounted(){
+      console.log("mounted");
     },
 
     updated(){
+      console.log("updated");
     },
 
     methods: {
 
-      close(){
-        this.closeIcon = false;
-        bus.$emit("closeVennDiagramPanel")
-        document.getElementById('close_icon').style.zIndex = "-10"
-      },
+      // close(){
+      //   this.closeIcon = false;
+      //   bus.$emit("closeVennDiagramPanel")
+      //   document.getElementById('close_icon').style.zIndex = "-10"
+      // },
 
       drawVennDiagram(){
         d3.select("#venn").select("svg").remove();
         var x = require('venn.js')
         var chart = x.VennDiagram()
-                 .width(280)
-                 .height(280);
+                 .width(165)
+                 .height(165);
       var div = d3.select("#venn")
       div.datum(this.vennData.data).call(chart);
       var tooltip = d3.select("body").append("div")

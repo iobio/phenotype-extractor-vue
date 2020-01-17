@@ -4,14 +4,18 @@
     <div class="row">
       <div class="col-md-12">
         <v-card>
-          <div id="gene-data-table" v-if="!geneTableLoading">
+          <div id="gene-data-table" >
             <v-card-title>
-              Gene list
+              <strong>Gene list</strong>
               <v-divider
-                class="mx-4"
+                class="ml-4"
                 inset
                 vertical
               ></v-divider>
+              <VennDiagram
+                :vennData="vennData">
+              </VennDiagram>
+
               <v-spacer></v-spacer>
               <v-text-field
                 v-model="search"
@@ -57,6 +61,7 @@
 
             </v-card-title>
             <v-data-table
+              v-if="!geneTableLoading"
               :headers="headers"
               :items="summaryGenes"
               :search="search"
@@ -112,10 +117,9 @@
         <!-- <Phenotypes
           :phenotypes="phenotypes">
         </Phenotypes> -->
-        <VennDiagram
-          style="visibility:hidden; height:1px"
+        <!-- <VennDiagram
           :vennData="vennData">
-        </VennDiagram>
+        </VennDiagram> -->
       </div>
     </div>
 
@@ -253,6 +257,7 @@ export default {
   },
 
   mounted(){
+    console.log("genelist mounted");
     this.knownGenesData = knownGenes;
     // this.summaryGenes = this.summaryGeneList;
     this.organizeGeneList();
@@ -265,6 +270,7 @@ export default {
   },
 
   created(){
+    console.log("genelist created");
     bus.$on("show-gene-table-skeleton-loaders", ()=>{
       this.geneTableLoading = true;
     });
@@ -275,6 +281,10 @@ export default {
 
     this.phenotypes = this.phenotypeTerms;
 
+  },
+
+  updated(){
+    console.log("genelist updated");
   },
 
   methods: {

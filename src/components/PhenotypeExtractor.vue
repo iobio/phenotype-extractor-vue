@@ -113,11 +113,11 @@
                 <v-card-title primary-title>
                   <span style="font-size:16px">Search status</span>
                   <v-spacer></v-spacer>
-                    <v-btn small @click="toggle_gene_overlap_button" style="text-transform:none">
+                    <!-- <v-btn small @click="toggle_gene_overlap_button" style="text-transform:none">
                       <span style="text-transform:none">Genes overlap</span>
                       <v-icon v-if="!genesOverlap">expand_more</v-icon>
                       <v-icon v-if="genesOverlap">expand_less</v-icon>
-                    </v-btn>
+                    </v-btn> -->
                 </v-card-title>
                 <v-card-text>
                   <div class="" style="padding-bottom: 0px; ">
@@ -317,14 +317,14 @@
           </v-expansion-panels> -->
 
           <!-- venn diagram -->
-          <VennDiagram
+          <!-- <VennDiagram
             class="mt-2"
             :vennData="venn_diagram_data"
             ref="genesOverlap"
             id="genesOverlap"
             style="height:0; visibility: hidden"
             >
-          </VennDiagram>
+          </VennDiagram> -->
         </div>
       </div>
 
