@@ -760,14 +760,18 @@
                                 <tr>
                                   <strong>GTR Terms</strong>
                                   <span style="float: right">
-                                    <v-btn @click="termsReviewDialogPage=2" text small color="primary">edit</v-btn>
+                                    <v-btn @click="termsReviewDialogPage=1" text small color="primary">edit</v-btn>
                                   </span>
                                 </tr>
                               </thead>
                               <tbody>
                                 <tr v-for="(term, i) in GtrTermsAdded_temp" v-if="GtrTermsAdded_temp.length">
-                                  <td> {{ term.DiseaseName }} </td>
-                                  <td><v-icon class="terms_delete_btn" @click="removeReviewTerms(term, i, 'GTR')" style="font-size:18px" color="red lighten-2">cancel</v-icon></td>
+                                  <td class="i-text--left">
+                                    <div @mouseover="mouseOverGtrTerm_review(term.DiseaseName)" @mouseleave="hovered_gtr_term_review=''">
+                                      <span> {{ term.DiseaseName }} </span>
+                                      <span v-if="hovered_gtr_term_review===term.DiseaseName"><v-icon class="terms_delete_btn" @click="removeReviewTerms(term, i, 'GTR')" style="font-size:18px" color="red lighten-2">cancel</v-icon></span>
+                                    </div>
+                                  </td>
                                 </tr>
                               </tbody>
                             </table>
@@ -783,14 +787,18 @@
                                 <tr>
                                   <strong>Phenolyzer Terms</strong>
                                   <span style="float: right">
-                                    <v-btn @click="termsReviewDialogPage=1" text small color="primary">edit</v-btn>
+                                    <v-btn @click="termsReviewDialogPage=2" text small color="primary">edit</v-btn>
                                   </span>
                                 </tr>
                               </thead>
                               <tbody>
                                 <tr v-for="(term, i) in phenolyzerTermsAdded_temp" v-if="phenolyzerTermsAdded_temp.length">
-                                  <td> {{ term.value }} </td>
-                                  <td ><v-icon class="terms_delete_btn" @click="removeReviewTerms(term, i, 'Phenolyzer')" style="font-size:18px" color="red lighten-2">cancel</v-icon></td>
+                                  <td>
+                                    <div @mouseover="mouseOverPhenolyzerTerm_review(term.value)" @mouseleave="hovered_phenolyzer_term_review=''">
+                                      <span>{{ term.value }} </span>
+                                      <span v-if="hovered_phenolyzer_term_review===term.value"><v-icon class="terms_delete_btn" @click="removeReviewTerms(term, i, 'Phenolyzer')" style="font-size:18px" color="red lighten-2">cancel</v-icon></span>
+                                    </div>
+                                  </td>
                                 </tr>
                               </tbody>
                             </table>
@@ -811,8 +819,15 @@
                               </thead>
                               <tbody>
                                 <tr v-for="(term, i) in hpoTermsAdded_temp" v-if="hpoTermsAdded_temp.length">
-                                  <td> {{ term.HPO_Data }} </td>
-                                  <td ><v-icon class="terms_delete_btn" @click="removeReviewTerms(term, i, 'HPO')" style="font-size:18px" color="red lighten-2">cancel</v-icon></td>
+                                  <td>
+                                    <div @mouseover="mouseOverHpoTerm_review(term.HPO_Data)" @mouseleave="hovered_hpo_term_review=''">
+                                      <span>{{ term.HPO_Data }} </span>
+                                      <span v-if="hovered_hpo_term_review===term.HPO_Data"><v-icon class="terms_delete_btn" @click="removeReviewTerms(term, i, 'HPO')" style="font-size:18px" color="red lighten-2">cancel</v-icon></span>
+                                    </div>
+                                  </td>
+
+                                  <!-- <td> {{ term.HPO_Data }} </td>
+                                  <td ><v-icon class="terms_delete_btn" @click="removeReviewTerms(term, i, 'HPO')" style="font-size:18px" color="red lighten-2">cancel</v-icon></td> -->
                                 </tr>
                               </tbody>
                             </table>
@@ -1208,7 +1223,11 @@ export default {
     hovered_phenolyzer_term: '',
     hovered_hpo_term: '',
     search_status_expansion_panel: [0],
-    genesOverlap: false
+    genesOverlap: false,
+    hovered_gtr_term_review: '',
+    hovered_phenolyzer_term_review: '',
+    hovered_hpo_term_review: '',
+
 
   }),
   watch: {
@@ -2592,6 +2611,18 @@ export default {
 
       mouseOverHpoTerm(term){
         this.hovered_hpo_term = term;
+      },
+
+      mouseOverGtrTerm_review(term){
+        this.hovered_gtr_term_review = term;
+      },
+
+      mouseOverPhenolyzerTerm_review(term){
+        this.hovered_phenolyzer_term_review = term;
+      },
+
+      mouseOverHpoTerm_review(term){
+        this.hovered_hpo_term_review = term;
       },
 
       toggle_gene_overlap_button(){
