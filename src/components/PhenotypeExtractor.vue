@@ -214,7 +214,7 @@
                                   <span slot="badge">{{ Phenolyzer_searchTermsObj.length }}</span>
                                 </v-badge>
                               </span>
-                              <span v-if="Phenolyzer_searchTermsObj.length>4" style="float:right; margin-right:20px">
+                              <span v-if="Phenolyzer_searchTermsObj.length>4" style="float:right; margin-right:7px">
                                 <v-icon color="grey lighten-1">unfold_more</v-icon>
                               </span>
                               <!-- <div v-if="Phenolyzer_searchTermsObj.length>0">
@@ -1550,7 +1550,15 @@ export default {
         .then(res => res.text())
         .then(text => {
           var res = text.replace('JaroWinkler', '"JaroWinkler"').replace('fuzzyResults', '"fuzzyResults"').replace('LevenshteinResults', '"LevenshteinResults"').replace(/'/g, '"');
-          var data = JSON.parse(res);
+          var data;
+          try {
+            data = JSON.parse(res);
+          }
+          catch(e) {
+            alert("Sorry. The fetch for this input currently failed. Please try a different term")
+            this.loadingDialog = false;
+          }
+          // var data = JSON.parse(res);
           this.LevenshteinResults = data.LevenshteinResults;
           data.LevenshteinResults.map(x=>{
             x = x.trim()
