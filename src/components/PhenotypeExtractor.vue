@@ -346,10 +346,10 @@
 
 
       <!-- Loading dialog box -->
+      <!-- TODO: persistent is removed temp -->
         <v-dialog
           v-model="loadingDialog"
           hide-overlay
-          persistent
           width="300"
         >
           <v-card
@@ -397,7 +397,7 @@
                 </div>
                 <div v-if="termsReviewDialogPage===4">
                   <div class="pa-2">
-                    <v-icon color="primary darken-1">rate_review</v-icon> Review selected terms:
+                    <v-icon color="primary darken-1">rate_review</v-icon> Review selected terms
                   </div>
                 </div>
 
@@ -868,7 +868,6 @@
             :overlay="false"
             max-width="1000px"
             transition="dialog-transition"
-            persistent
           >
             <v-card>
               <v-card-title class="grey lighten-2">
