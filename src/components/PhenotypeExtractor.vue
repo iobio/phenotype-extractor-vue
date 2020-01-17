@@ -2626,7 +2626,8 @@ export default {
     border: 1px solid #bab3b3
     // box-shadow: 0 3px 1px -2px rgba(0,0,0,.2), 0 2px 2px 0 rgba(0,0,0,.14), 0 1px 5px 0 rgba(0,0,0,.12)
     border-radius: 4px
-    font-size: 16px
+    font-size: 14px
+    color: rgba(0, 0, 0, 0.6)
 
   #single_entry_input:focus
     outline: 1px solid #45688E
@@ -2634,6 +2635,8 @@ export default {
   #single_entry_input_textarea
     width: 1390px
     margin-top: 7px
+    font-size: 14px
+    color: rgba(0, 0, 0, 0.6)
 
   .reviewCard
     height: 250px
