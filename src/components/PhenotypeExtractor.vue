@@ -74,7 +74,7 @@
               <div v-if="!showSearchTermsLoader">
                 <div v-if="clinical_note_text.length">
                   <blockquote v-for="(note, i) in clinical_note_text" :key="i" class="blockquote i-text--left" style="font-size: 13px;">
-                    {{ note }}
+                    {{ note.note }}
                   </blockquote>
                 </div>
                 <div v-else>
