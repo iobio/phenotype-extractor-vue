@@ -374,7 +374,7 @@
                       </v-chip> -->
                     </span>
                     <span v-for="(term, i) in GtrTermsAdded_temp" v-if="GtrTermsAdded_temp.length">
-                      <v-chip class="mr-2" small outlined color="primary" close :key="i" @click:close="removeReviewTerms(term, i, 'GTR')">
+                      <v-chip :disabled="reReviewClinicalNote && note_reselect_gtrTerms_Array.includes(term.DiseaseName)" class="mr-2" small outlined color="primary" close :key="i" @click:close="removeReviewTerms(term, i, 'GTR')">
                         {{ term.DiseaseName }}
                       </v-chip>
                     </span>
@@ -498,7 +498,7 @@
                             <div v-if="item.reviewTerms_gtr[0].general">
                               <div class="row">
                                 <div class="col-md-1">
-                                  <v-checkbox color="primary" style="margin-top:-6px; margin-bottom:-35px;" :disabled="reReviewClinicalNote"   v-model="GtrTermsAdded_temp" :value="item.reviewTerms_gtr[0]"></v-checkbox>
+                                  <v-checkbox color="primary" style="margin-top:-6px; margin-bottom:-35px;" :disabled="reReviewClinicalNote && note_reselect_gtrTerms_Array.includes(item.reviewTerms_gtr[0].DiseaseName)"   v-model="GtrTermsAdded_temp" :value="item.reviewTerms_gtr[0]"></v-checkbox>
                                 </div>
                                 <div class="col-md-8">
                                   <strong> {{ item.reviewTerms_gtr[0].DiseaseName}}</strong>
@@ -529,7 +529,7 @@
                                 <div v-for="sub in item.reviewTerms_gtr" >
                                   <div class="row">
                                     <div class="col-md-2">
-                                      <v-checkbox color="primary" style="margin-top:-2px; margin-bottom:-12px;" v-model="GtrTermsAdded_temp" :value="sub"></v-checkbox>
+                                      <v-checkbox color="primary" style="margin-top:-2px; margin-bottom:-12px;" :disabled="reReviewClinicalNote && note_reselect_gtrTerms_Array.includes(sub.DiseaseName)" v-model="GtrTermsAdded_temp" :value="sub"></v-checkbox>
                                     </div>
                                     <div class="col-md-10">
                                       <span v-if="sub.general">
@@ -1182,7 +1182,9 @@ export default {
     hovered_phenolyzer_term_review: '',
     hovered_hpo_term_review: '',
     reReviewClinicalNote: false,
-
+    note_reselect_gtrTerms_Array: [],
+    note_reselect_phenolyzerTerms_Array: [],
+    note_reselect_hpoTerms_Array: [],
   }),
   watch: {
     GtrTermsAdded_temp(){
@@ -1491,12 +1493,14 @@ export default {
       console.log("clinical_note_text", this.clinical_note_text[idx])
       let note_details = this.clinical_note_text[idx];
       let gtr_terms_to_be_added = [];
+
       note_details.gtr_terms.map(x => {
         gtr_terms_to_be_added.push({
           DiseaseName: x.DiseaseName,
           ConceptID: x.ConceptID,
           general: x.general
         })
+        this.note_reselect_gtrTerms_Array.push(x.DiseaseName);
       })
       this.GtrTermsAdded_temp = gtr_terms_to_be_added;
       // this.GtrTermsAdded_temp = note_details.gtr_terms;
@@ -1782,7 +1786,10 @@ export default {
           "phenolyzer_terms": this.phenolyzerTermsAdded_temp,
           "hpo_terms": this.hpoTermsAdded_temp
         });
+      }
+      else { //If it is a rereview
         this.reReviewClinicalNote = false;
+        this.note_reselect_gtrTerms_Array = [];
       }
     },
 
