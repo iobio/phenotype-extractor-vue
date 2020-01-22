@@ -787,7 +787,7 @@
                                   <td class="i-text--left">
                                     <div @mouseover="mouseOverGtrTerm_review(term.DiseaseName)" @mouseleave="hovered_gtr_term_review=''">
                                       <span> {{ term.DiseaseName }} </span>
-                                      <span v-if="hovered_gtr_term_review===term.DiseaseName"><v-icon class="terms_delete_btn" @click="removeReviewTerms(term, i, 'GTR')" style="font-size:18px" color="red lighten-2">cancel</v-icon></span>
+                                      <span v-if="hovered_gtr_term_review===term.DiseaseName && !note_reselect_gtrTerms_Array.includes(term.DiseaseName)"><v-icon class="terms_delete_btn" @click="removeReviewTerms(term, i, 'GTR')" style="font-size:18px" color="red lighten-2">cancel</v-icon></span>
                                     </div>
                                   </td>
                                 </tr>
@@ -814,7 +814,7 @@
                                   <td>
                                     <div @mouseover="mouseOverPhenolyzerTerm_review(term.value)" @mouseleave="hovered_phenolyzer_term_review=''">
                                       <span>{{ term.value }} </span>
-                                      <span v-if="hovered_phenolyzer_term_review===term.value"><v-icon class="terms_delete_btn" @click="removeReviewTerms(term, i, 'Phenolyzer')" style="font-size:18px" color="red lighten-2">cancel</v-icon></span>
+                                      <span v-if="hovered_phenolyzer_term_review===term.value && !note_reselect_phenolyzerTerms_Array.includes(term.value)"><v-icon class="terms_delete_btn" @click="removeReviewTerms(term, i, 'Phenolyzer')" style="font-size:18px" color="red lighten-2">cancel</v-icon></span>
                                     </div>
                                   </td>
                                 </tr>
@@ -840,7 +840,7 @@
                                   <td>
                                     <div @mouseover="mouseOverHpoTerm_review(term.HPO_Data)" @mouseleave="hovered_hpo_term_review=''">
                                       <span>{{ term.HPO_Data }} </span>
-                                      <span v-if="hovered_hpo_term_review===term.HPO_Data"><v-icon class="terms_delete_btn" @click="removeReviewTerms(term, i, 'HPO')" style="font-size:18px" color="red lighten-2">cancel</v-icon></span>
+                                      <span v-if="hovered_hpo_term_review===term.HPO_Data && !note_reselect_hpoTerms_Array.includes(term.HPO_Data)"><v-icon class="terms_delete_btn" @click="removeReviewTerms(term, i, 'HPO')" style="font-size:18px" color="red lighten-2">cancel</v-icon></span>
                                     </div>
                                   </td>
 
@@ -1867,6 +1867,8 @@ export default {
 
         this.reReviewClinicalNote = false;
         this.note_reselect_gtrTerms_Array = [];
+        this.note_reselect_phenolyzerTerms_Array = [];
+        this.note_reselect_hpoTerms_Array = [];
         this.note_rereview_idx = null;
       }
     },
