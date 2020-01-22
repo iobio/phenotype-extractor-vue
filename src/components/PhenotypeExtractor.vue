@@ -422,7 +422,7 @@
                       </v-chip>
                     </span> -->
                     <span v-for="(term, i) in hpoTermsAdded_temp" v-if="hpoTermsAdded_temp.length">
-                      <v-chip class="mr-2" small outlined color="primary" close :key="i" @click:close="removeReviewTerms(term, i, 'HPO')">
+                      <v-chip :disabled="reReviewClinicalNote && note_reselect_hpoTerms_Array.includes(term.HPO_Data)" class="mr-2" small outlined color="primary" close :key="i" @click:close="removeReviewTerms(term, i, 'HPO')">
                         {{ term.HPO_Data }}
                       </v-chip>
                     </span>
@@ -741,7 +741,15 @@
                         <div>
                           <div class="row">
                             <div class="col-md-1">
-                              <v-checkbox color="primary" style="margin-top:-6px; margin-bottom:-35px;" v-model="hpoTermsAdded_temp" :value="term"></v-checkbox>
+
+                              <div v-if="reReviewClinicalNote && note_reselect_hpoTerms_Array.includes(term.HPO_Data)">
+                                <v-checkbox color="primary" style="margin-top:-6px; margin-bottom:-35px;" :disabled="reReviewClinicalNote && note_reselect_hpoTerms_Array.includes(term.HPO_Data)"   v-model="true_checkboxVal"></v-checkbox>
+                              </div>
+                              <div v-else>
+                                <v-checkbox color="primary" style="margin-top:-6px; margin-bottom:-35px;" v-model="hpoTermsAdded_temp" :value="term"></v-checkbox>
+                              </div>
+
+                              <!-- <v-checkbox color="primary" style="margin-top:-6px; margin-bottom:-35px;" v-model="hpoTermsAdded_temp" :value="term"></v-checkbox> -->
                             </div>
                             <div class="col-md-11">
                               <strong> {{ term.HPO_Data }}</strong>
@@ -1550,9 +1558,6 @@ export default {
       this.note_rereview_idx = idx;
       console.log("clinical_note_text", this.clinical_note_text[idx])
       let note_details = this.clinical_note_text[idx];
-      // let gtr_terms_to_be_added = [];
-      // let phenolyzer_terms_toBe_added = [];
-      // let hpo_terms_toBe_added = [];
 
       note_details.gtr_terms.map(x => {
         this.note_reselect_gtrTerms_Array.push(x.DiseaseName);
@@ -1564,12 +1569,12 @@ export default {
       })
       this.phenolyzerTermsAdded_temp = note_details.phenolyzer_terms;
 
-      // note_details.gtr_terms.map(x => {
-      //   this.note_reselect_gtrTerms_Array.push(x.DiseaseName);
-      // })
-      this.GtrTermsAdded_temp = note_details.gtr_terms;
+      note_details.hpo_terms.map(x => {
+        this.note_reselect_hpoTerms_Array.push(x.HPO_Data);
+      })
+      this.hpoTermsAdded_temp = note_details.hpo_terms;
       // this.GtrTermsAdded_temp = note_details.gtr_terms;
-      console.log("this.GtrTermsAdded_temp", this.GtrTermsAdded_temp)
+      // console.log("this.GtrTermsAdded_temp", this.GtrTermsAdded_temp)
       this.extract();
     },
 
