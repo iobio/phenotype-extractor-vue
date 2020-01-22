@@ -498,7 +498,12 @@
                             <div v-if="item.reviewTerms_gtr[0].general">
                               <div class="row">
                                 <div class="col-md-1">
-                                  <v-checkbox color="primary" style="margin-top:-6px; margin-bottom:-35px;" :disabled="reReviewClinicalNote && note_reselect_gtrTerms_Array.includes(item.reviewTerms_gtr[0].DiseaseName)"   v-model="GtrTermsAdded_temp" :value="item.reviewTerms_gtr[0]"></v-checkbox>
+                                  <div v-if="reReviewClinicalNote && note_reselect_gtrTerms_Array.includes(item.reviewTerms_gtr[0].DiseaseName)">
+                                    <v-checkbox color="primary" style="margin-top:-6px; margin-bottom:-35px;" :disabled="reReviewClinicalNote && note_reselect_gtrTerms_Array.includes(item.reviewTerms_gtr[0].DiseaseName)"   v-model="true_checkboxVal"></v-checkbox>
+                                  </div>
+                                  <div v-else>
+                                    <v-checkbox color="primary" style="margin-top:-6px; margin-bottom:-35px;" :disabled="reReviewClinicalNote && note_reselect_gtrTerms_Array.includes(item.reviewTerms_gtr[0].DiseaseName)"   v-model="GtrTermsAdded_temp" :value="item.reviewTerms_gtr[0]"></v-checkbox>
+                                  </div>
                                 </div>
                                 <div class="col-md-8">
                                   <strong> {{ item.reviewTerms_gtr[0].DiseaseName}}</strong>
@@ -1185,6 +1190,8 @@ export default {
     note_reselect_gtrTerms_Array: [],
     note_reselect_phenolyzerTerms_Array: [],
     note_reselect_hpoTerms_Array: [],
+    note_rereview_idx: null,
+    true_checkboxVal: true
   }),
   watch: {
     GtrTermsAdded_temp(){
@@ -1490,19 +1497,21 @@ export default {
     reSelectClinicalNote(note, idx){
       this.reReviewClinicalNote = true;
       this.textNotes = note;
+      this.note_rereview_idx = idx;
       console.log("clinical_note_text", this.clinical_note_text[idx])
       let note_details = this.clinical_note_text[idx];
       let gtr_terms_to_be_added = [];
 
       note_details.gtr_terms.map(x => {
-        gtr_terms_to_be_added.push({
-          DiseaseName: x.DiseaseName,
-          ConceptID: x.ConceptID,
-          general: x.general
-        })
+        // gtr_terms_to_be_added.push({
+        //   DiseaseName: x.DiseaseName,
+        //   ConceptID: x.ConceptID,
+        //   general: x.general,
+        //   gtrSearchStatus: x.gtrSearchStatus
+        // })
         this.note_reselect_gtrTerms_Array.push(x.DiseaseName);
       })
-      this.GtrTermsAdded_temp = gtr_terms_to_be_added;
+      this.GtrTermsAdded_temp = note_details.gtr_terms;
       // this.GtrTermsAdded_temp = note_details.gtr_terms;
       console.log("this.GtrTermsAdded_temp", this.GtrTermsAdded_temp)
       this.extract();
@@ -1784,12 +1793,20 @@ export default {
           "note": this.textNotes,
           "gtr_terms": this.GtrTermsAdded_temp,
           "phenolyzer_terms": this.phenolyzerTermsAdded_temp,
-          "hpo_terms": this.hpoTermsAdded_temp
+          "hpo_terms": this.hpoTermsAdded_temp,
+          // "gtrSearchStatus": this.gtrSearchStatus
         });
       }
       else { //If it is a rereview
+        console.log("this.clinical_note_text[this.note_rereview_idx]", this.clinical_note_text[this.note_rereview_idx])
+        this.clinical_note_text[this.note_rereview_idx].gtr_terms = this.GtrTermsAdded_temp;
+        this.clinical_note_text[this.note_rereview_idx].phenolyzer_terms = this.phenolyzerTermsAdded_temp;
+        this.clinical_note_text[this.note_rereview_idx].hpo_terms = this.hpoTermsAdded_temp;
+        // this.clinical_note_text[this.note_rereview_idx].gtrSearchStatus = this.gtrSearchStatus;
+
         this.reReviewClinicalNote = false;
         this.note_reselect_gtrTerms_Array = [];
+        this.note_rereview_idx = null;
       }
     },
 
