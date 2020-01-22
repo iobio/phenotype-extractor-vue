@@ -48,7 +48,7 @@
           <v-card>
             <v-card-title primary-title>
               <span style="font-size:16px">
-                Notes added
+                Inputs
                 <v-badge
                   :value="clinical_note_text.length"
                   color="primary"
@@ -92,7 +92,7 @@
         <div class="col-md-7">
           <v-card>
             <v-card-title primary-title>
-              <span style="font-size:16px">Search status</span>
+              <span style="font-size:16px">Terms</span>
               <v-spacer></v-spacer>
             </v-card-title>
             <v-card-text>
@@ -352,7 +352,7 @@
                 </div>
                 <div v-if="termsReviewDialogPage===4">
                   <div class="pa-2">
-                    <v-icon color="primary darken-1">rate_review</v-icon> Review selected terms
+                    <v-icon color="primary darken-1">rate_review</v-icon> Review
                   </div>
                 </div>
 
@@ -889,7 +889,7 @@
           >
             <v-card>
               <v-card-title class="grey lighten-2">
-                <v-icon class="mr-2" color="primary darken-1">youtube_searched_for</v-icon> Search Status
+                <v-icon class="mr-2" color="primary darken-1">youtube_searched_for</v-icon> Status
               </v-card-title>
               <!-- <v-divider></v-divider> -->
               <v-card-text>

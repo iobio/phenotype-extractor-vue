@@ -6,12 +6,7 @@
         <v-card>
           <div id="gene-data-table" >
             <v-card-title>
-              <strong>Gene list</strong>
-              <v-divider
-                class="ml-4"
-                inset
-                vertical
-              ></v-divider>
+              <strong>Genes</strong>
               <VennDiagram
                 :vennData="vennData">
               </VennDiagram>
@@ -29,7 +24,7 @@
                 <template v-slot:activator="{ on }">
                   <v-btn color="primary" class="mr-3 ml-4 mt-3" v-on="on">
                     <v-icon class="mr-1">add</v-icon>
-                    Add genes
+                    Add
                   </v-btn>
                 </template>
                 <v-card>
@@ -225,7 +220,7 @@ export default {
       search: '',
       summaryGenes: [],
       headers: [
-        { text: 'Gene Name', align: 'left', value: 'name', sortable: false, },
+        { text: 'Gene', align: 'left', value: 'name', sortable: false, },
         { text: 'GTR', value: 'searchTermsGtr', sortable: false, },
         { text: 'Phenolyzer', value: 'searchTermsPhenolyzer', sortable: false, },
         { text: 'HPO', value: 'searchTermHpo', sortable: false, },
