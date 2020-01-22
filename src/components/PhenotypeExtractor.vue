@@ -1573,9 +1573,69 @@ export default {
         this.note_reselect_hpoTerms_Array.push(x.HPO_Data);
       })
       this.hpoTermsAdded_temp = note_details.hpo_terms;
-      // this.GtrTermsAdded_temp = note_details.gtr_terms;
-      // console.log("this.GtrTermsAdded_temp", this.GtrTermsAdded_temp)
-      this.extract();
+
+      this.WorkflowStepsflag = false;
+      this.LevenshteinResults = [];
+      this.loadingDialog = true;
+      this.extractedTerms = [];
+      this.extractedTermsObj = [];
+      this.demoTermsFlag = false;
+
+      this.LevenshteinResults = note_details.LevenshteinResults;
+      this.LevenshteinResults.map(x=>{
+        x = x.trim()
+        if(!this.extractedTerms.includes(x)){
+          this.extractedTerms.push(x);
+        }
+      })
+
+      this.HpoReviewTerms = [];
+      this.fetchHpoTerm();
+
+      this.extractedTerms.map(x=>{
+        this.extractedTermsObj.push({
+          DiseaseName: x,
+        })
+      })
+
+      this.phenolyzerReviewTerms = this.extractedTermsObj;
+      this.phenolyzerReviewTerms.map((item, i) => {
+        item.reviewTerms_phenolyzer = [];
+
+        var str = item.DiseaseName.replace(/-/g, " ").replace(/\s\s+/g, ' ').toLowerCase();
+        str = str.replace("disease", "");
+        str = str.replace("syndrome", "");
+        str = str.trim();
+
+        var data = this.setPhenolyzerTerms(str);
+        data.then(res => {
+          if(res.length<1){
+            var phenotype = item.DiseaseName.replace(/-/g, " ").replace(/\s\s+/g, ' ').toLowerCase().trim()
+            item.reviewTerms_phenolyzer.push({
+              id: phenotype,
+              label: phenotype,
+              value: phenotype,
+            })
+          }
+          res.forEach(x => {
+            if(x.value.toLowerCase().trim() !== item.DiseaseName.replace(/-/g, " ").replace(/\s\s+/g, ' ').toLowerCase().trim()) {
+              item.reviewTerms_phenolyzer.push(x);
+            }
+            else if(x.value.toLowerCase().trim() === item.DiseaseName.replace(/-/g, " ").replace(/\s\s+/g, ' ').toLowerCase().trim()) {
+              item.reviewTerms_phenolyzer.unshift(x);
+              item.reviewTerms_phenolyzer[0].general = true;
+            }
+          })
+        })
+
+      })
+
+      setTimeout(()=>{
+        this.loadingDialog = false;
+        this.openReviewDialogForExtractedTerms();
+      }, 1000)
+
+      // this.extract();
     },
 
     extract(){
@@ -1855,6 +1915,7 @@ export default {
           "gtr_terms": this.GtrTermsAdded_temp,
           "phenolyzer_terms": this.phenolyzerTermsAdded_temp,
           "hpo_terms": this.hpoTermsAdded_temp,
+          "LevenshteinResults": this.LevenshteinResults,
           // "gtrSearchStatus": this.gtrSearchStatus
         });
       }
@@ -1863,6 +1924,7 @@ export default {
         this.clinical_note_text[this.note_rereview_idx].gtr_terms = this.GtrTermsAdded_temp;
         this.clinical_note_text[this.note_rereview_idx].phenolyzer_terms = this.phenolyzerTermsAdded_temp;
         this.clinical_note_text[this.note_rereview_idx].hpo_terms = this.hpoTermsAdded_temp;
+        this.clinical_note_text[this.note_rereview_idx].LevenshteinResults = this.LevenshteinResults;
         // this.clinical_note_text[this.note_rereview_idx].gtrSearchStatus = this.gtrSearchStatus;
 
         this.reReviewClinicalNote = false;

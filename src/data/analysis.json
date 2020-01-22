@@ -1155,6 +1155,15 @@
           ],
           "hpo_terms": [
 
+          ],
+          "LevenshteinResults": [
+            "Dejerine-Sottas disease",
+            "Hammertoe",
+            "Distal muscle weakness",
+            "Late-onset distal muscle weakness",
+            "Muscle weakness",
+            "Progressive distal muscle weakness",
+            "Pes cavus"
           ]
         }
       ]
