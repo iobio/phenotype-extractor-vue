@@ -863,12 +863,13 @@
 
 
               </v-card-text>
-              <v-card-text v-if="reReviewClinicalNote" class="mt-2">
+              <v-card-text v-if="reReviewClinicalNote && disabledItems_alert" class="mt-2">
                 <span><hr></span>
                 <center>
                   <small>
                     <v-icon>warning</v-icon>
                     The disabled items indicate that the search term is already reviewed and searched. You can delete it from the "Terms" panel.
+                    <v-icon @click="disabledItems_alert=false" style="font-size:14px">close</v-icon>
                   </small>
                 </center>
               </v-card-text>
@@ -1258,7 +1259,8 @@ export default {
     note_reselect_phenolyzerTerms_Array: [],
     note_reselect_hpoTerms_Array: [],
     note_rereview_idx: null,
-    true_checkboxVal: true
+    true_checkboxVal: true,
+    disabledItems_alert: true,
   }),
   watch: {
     GtrTermsAdded_temp(){
@@ -1782,6 +1784,7 @@ export default {
     },
     openReviewDialog(){
       this.textNotes = this.search.DiseaseName;
+      this.LevenshteinResults.push(this.search.DiseaseName) //when input is selected from typeahead
       // this.clinical_note_text.unshift(this.textNotes);
 
       //check this for saving phenotype data
