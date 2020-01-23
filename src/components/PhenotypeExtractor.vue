@@ -1858,6 +1858,17 @@ export default {
       this.GtrTermsAdded_temp = [];
       this.phenolyzerTermsAdded_temp = [];
       this.hpoTermsAdded_temp = [];
+      if(!this.reReviewClinicalNote){ //Closing the review dialog without selecting any terms still adds the note
+        this.clinical_note_text.unshift({
+          "note": this.textNotes,
+          "gtr_terms": [],
+          "phenolyzer_terms": [],
+          "hpo_terms": [],
+          "LevenshteinResults": this.LevenshteinResults,
+        });
+        var allPhenotypes = [this.GtrTermsAdded, this.phenolyzerTermsAdded, this.hpoTermsAdded, this.clinical_note_text];
+        this.$emit('saveSearchedPhenotypes', allPhenotypes)
+      }
       this.reReviewClinicalNote = false;
     },
     mouseSelect(){
