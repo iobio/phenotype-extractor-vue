@@ -76,7 +76,11 @@
                   <blockquote v-for="(note, i) in clinical_note_text" :key="i" class="blockquote i-text--left" style="font-size: 13px;">
                     {{ note.note }}
                     <span @click="reSelectClinicalNote(note.note, i)">
-                      <v-btn text color="primary" small><span style="font-size:11px"><v-icon style="font-size:11px">edit</v-icon> Reselect</span></v-btn>
+                      <v-btn text color="primary" small>
+                      <span style="font-size:11px">
+                        <!-- <v-icon style="font-size:11px">edit</v-icon> -->
+                        Edit
+                       </span></v-btn>
                     </span>
                   </blockquote>
                 </div>
@@ -877,9 +881,10 @@
                 <div class="flex-grow-1"></div>
                 <!-- <v-btn small color="blue darken-1" round outlined dark text @click="termsReviewDialog=false">Skip</v-btn> -->
                 <v-btn :disabled="termsReviewDialogPage===1" small color="primary" @click="--termsReviewDialogPage"><v-icon>arrow_left</v-icon> Back</v-btn>
-                <v-btn :disabled="termsReviewDialogPage>3" small color="primary" @click="++termsReviewDialogPage"> Next <v-icon>arrow_right</v-icon></v-btn>
+                <v-btn v-if="termsReviewDialogPage!==4" :disabled="termsReviewDialogPage>3" small color="primary" @click="++termsReviewDialogPage"> Next <v-icon>arrow_right</v-icon></v-btn>
+                <v-btn v-if="termsReviewDialogPage===4" small color="primary" @click="selectReviewTerms"> Next <v-icon>arrow_right</v-icon></v-btn>
                 <v-spacer></v-spacer>
-                <v-btn :disabled="termsReviewDialogPage!==4" small color="primary" @click="selectReviewTerms">Done</v-btn>
+                <!-- <v-btn :disabled="termsReviewDialogPage!==4" small color="primary" @click="selectReviewTerms">Done</v-btn> -->
               </v-card-actions>
             </v-card>
           </v-dialog>
