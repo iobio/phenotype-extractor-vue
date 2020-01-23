@@ -12,17 +12,22 @@
               </VennDiagram>
 
               <v-spacer></v-spacer>
-              <v-text-field
-                v-model="search"
-                append-icon="search"
-                label="Find gene"
-                single-line
-                hide-details
-              ></v-text-field>
-
+              <div class="row">
+                <div class="col-md-7"></div>
+                <div class="col-md-4">
+                  <v-text-field
+                    v-model="search"
+                    append-icon="search"
+                    label="Find gene"
+                    single-line
+                    hide-details
+                  ></v-text-field>
+                </div>
+                <div class="col-md-1 "></div>
+              </div>
               <v-dialog v-model="copyPasteGenes" max-width="500px">
                 <template v-slot:activator="{ on }">
-                  <v-btn color="primary" class="mr-3 ml-4 mt-3" v-on="on">
+                  <v-btn color="primary" class="mr-3 mt-3" v-on="on">
                     <v-icon class="mr-1">add</v-icon>
                     Add
                   </v-btn>
