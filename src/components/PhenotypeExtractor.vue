@@ -2735,7 +2735,7 @@ export default {
           this.Hpo_idx = this.Hpo_idx - 1;
         }
 
-        var allPhenotypes = [this.GtrTermsAdded, this.phenolyzerTermsAdded, this.hpoTermsAdded];
+        var allPhenotypes = [this.GtrTermsAdded, this.phenolyzerTermsAdded, this.hpoTermsAdded, this.clinical_note_text];
         this.$emit('saveSearchedPhenotypes', allPhenotypes)
 
       }, //end remove() method
