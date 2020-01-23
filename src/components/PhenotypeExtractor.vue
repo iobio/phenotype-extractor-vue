@@ -1270,9 +1270,6 @@ export default {
     disabledItems_alert: true,
   }),
   watch: {
-    GtrTermsAdded_temp(){
-      console.log("GtrTermsAdded_temp", this.GtrTermsAdded_temp)
-    },
     textNotes(){
       if(this.textNotes.length===45){
         setTimeout(()=>{
@@ -1574,7 +1571,6 @@ export default {
       this.reReviewClinicalNote = true;
       this.textNotes = note;
       this.note_rereview_idx = idx;
-      console.log("clinical_note_text", this.clinical_note_text[idx])
       let note_details = this.clinical_note_text[idx];
 
       note_details.gtr_terms.map(x => {
@@ -1791,7 +1787,8 @@ export default {
     },
     openReviewDialog(){
       this.textNotes = this.search.DiseaseName;
-      this.LevenshteinResults.push(this.search.DiseaseName) //when input is selected from typeahead
+      // this.LevenshteinResults.push(this.search.DiseaseName)
+      this.LevenshteinResults = [this.search.DiseaseName]; //when input is selected from typeahead
       // this.clinical_note_text.unshift(this.textNotes);
 
       //check this for saving phenotype data
@@ -1951,7 +1948,6 @@ export default {
         });
       }
       else { //If it is a rereview
-        console.log("this.clinical_note_text[this.note_rereview_idx]", this.clinical_note_text[this.note_rereview_idx])
         this.clinical_note_text[this.note_rereview_idx].gtr_terms = this.GtrTermsAdded_temp;
         this.clinical_note_text[this.note_rereview_idx].phenolyzer_terms = this.phenolyzerTermsAdded_temp;
         this.clinical_note_text[this.note_rereview_idx].hpo_terms = this.hpoTermsAdded_temp;
