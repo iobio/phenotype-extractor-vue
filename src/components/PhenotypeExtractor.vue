@@ -1,98 +1,46 @@
 <template>
   <v-container>
-    <!-- <v-layout
-      text-center
-      wrap
-    > -->
-    <!-- <v-btn :disabled="textNotes.length<4" @click="extract" color="primary">Submit</v-btn> -->
 
       <div class="row">
         <div class="col-md-12">
           <v-text-field
-              outlined
-              type="text"
-              id="single_entry_input"
-              ref="single_entry_input"
-              v-model="textNotes"
-              v-show="textNotes.length<45"
-              placeholder="Enter Phenotypes or Type (paste) Clinical Note"
-            >
-              <template v-slot:append-outer>
-								<!-- <v-btn large >
-									<v-icon left>mdi-menu</v-icon>
-									Menu
-								</v-btn> -->
-                <v-btn style="margin-top:-10px" large :disabled="textNotes.length<4" @click="extract" color="primary">Submit</v-btn>
-              </template>
-            </v-text-field>
-            <typeahead
-              v-model="search"
-              hide-details="false"
-              target="#single_entry_input"
-              force-select :force-clear="true"
-              :data="DiseaseNames"
-              :limit="parseInt(100)"
-              v-on:keydown="EnterForSearch"
-              v-on:input="mouseSelect"
-              item-key="DiseaseName"/>
-              <v-textarea
-                v-show="textNotes.length>=45"
-                v-model="textNotes"
-                ref="single_entry_input_textarea"
-                id="single_entry_input_textarea"
-                name="input-7-4"
-                rows="2"
-                outlined
-              >
-              <template v-slot:append-outer>
-                <!-- <v-btn large >
-                  <v-icon left>mdi-menu</v-icon>
-                  Menu
-                </v-btn> -->
-                <v-btn style="margin-top:-10px" large :disabled="textNotes.length<4" @click="extract" color="primary">Submit</v-btn>
-
-              </template>
-            </v-textarea>
-
-          <!-- <div class="mr-2" id="SingleEntryInput" style="display:inline-block; padding-top:5px; margin-bottom:-30px">
-            <input
-              id="single_entry_input"
-              ref="single_entry_input"
-              class="pl-4 pr=4"
-              type="text"
-              v-model="textNotes"
-              v-show="textNotes.length<45"
-              autocomplete="off"
-              placeholder="Enter Phenotypes or Type (paste) Clinical Note">
-              <v-textarea
-                v-show="textNotes.length>=45"
-                v-model="textNotes"
-                ref="single_entry_input_textarea"
-                id="single_entry_input_textarea"
-                name="input-7-4"
-                rows="2"
-                outlined
-                style="padding-top:5px"
-              ></v-textarea>
-              <typeahead
-                v-model="search"
-                hide-details="false"
-                target="#single_entry_input"
-                force-select :force-clear="true"
-                :data="DiseaseNames"
-                :limit="parseInt(100)"
-                v-on:keydown="EnterForSearch"
-                v-on:input="mouseSelect"
-                item-key="DiseaseName"/>
-          </div> -->
-          <!-- <v-btn :disabled="textNotes.length<4" @click="extract" color="primary">Submit</v-btn> -->
-          <div mt-0 v-if="multipleSearchTerms.length && !searchStatusDialog && !showSearchTermsLoader">
-            <!-- <v-btn style="text-transform:none" small @click="DuplicateSearchStatusDialog=true">
-             Show search status
-            </v-btn> -->
-          </div>
+            outlined
+            type="text"
+            id="single_entry_input"
+            ref="single_entry_input"
+            v-model="textNotes"
+            v-show="textNotes.length<45"
+            placeholder="Enter Phenotypes or Type (paste) Clinical Note"
+          >
+            <template v-slot:append-outer>
+              <v-btn style="margin-top:-10px" large :disabled="textNotes.length<4" @click="extract" color="primary">Submit</v-btn>
+            </template>
+          </v-text-field>
+          <typeahead
+            v-model="search"
+            hide-details="false"
+            target="#single_entry_input"
+            force-select :force-clear="true"
+            :data="DiseaseNames"
+            :limit="parseInt(100)"
+            v-on:keydown="EnterForSearch"
+            v-on:input="mouseSelect"
+            item-key="DiseaseName"/>
+          <v-textarea
+            v-show="textNotes.length>=45"
+            v-model="textNotes"
+            ref="single_entry_input_textarea"
+            id="single_entry_input_textarea"
+            name="input-7-4"
+            rows="2"
+            outlined
+          >
+          <template v-slot:append-outer>
+            <v-btn style="margin-top:-10px" large :disabled="textNotes.length<4" @click="extract" color="primary">Submit</v-btn>
+          </template>
+        </v-textarea>
         </div>
-        <div class="col-md-5">
+        <div style="margin-top:-40px" class="col-md-5">
           <v-card>
             <v-card-title primary-title>
               <span style="font-size:16px">
@@ -141,7 +89,7 @@
             </v-card-text>
           </v-card>
         </div>
-        <div class="col-md-7">
+        <div style="margin-top:-40px" class="col-md-7">
           <v-card>
             <v-card-title primary-title>
               <span style="font-size:16px">Terms</span>
