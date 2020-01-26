@@ -1,12 +1,60 @@
 <template>
   <v-container>
-    <v-layout
+    <!-- <v-layout
       text-center
       wrap
-    >
+    > -->
+    <!-- <v-btn :disabled="textNotes.length<4" @click="extract" color="primary">Submit</v-btn> -->
+
       <div class="row">
         <div class="col-md-12">
-          <div class="mr-2" id="SingleEntryInput" style="display:inline-block; padding-top:5px; margin-bottom:-30px">
+          <v-text-field
+              outlined
+              type="text"
+              id="single_entry_input"
+              ref="single_entry_input"
+              v-model="textNotes"
+              v-show="textNotes.length<45"
+              placeholder="Enter Phenotypes or Type (paste) Clinical Note"
+            >
+              <template v-slot:append-outer>
+								<!-- <v-btn large >
+									<v-icon left>mdi-menu</v-icon>
+									Menu
+								</v-btn> -->
+                <v-btn style="margin-top:-10px" large :disabled="textNotes.length<4" @click="extract" color="primary">Submit</v-btn>
+              </template>
+            </v-text-field>
+            <typeahead
+              v-model="search"
+              hide-details="false"
+              target="#single_entry_input"
+              force-select :force-clear="true"
+              :data="DiseaseNames"
+              :limit="parseInt(100)"
+              v-on:keydown="EnterForSearch"
+              v-on:input="mouseSelect"
+              item-key="DiseaseName"/>
+              <v-textarea
+                v-show="textNotes.length>=45"
+                v-model="textNotes"
+                ref="single_entry_input_textarea"
+                id="single_entry_input_textarea"
+                name="input-7-4"
+                rows="2"
+                outlined
+              >
+              <template v-slot:append-outer>
+                <!-- <v-btn large >
+                  <v-icon left>mdi-menu</v-icon>
+                  Menu
+                </v-btn> -->
+                <v-btn style="margin-top:-10px" large :disabled="textNotes.length<4" @click="extract" color="primary">Submit</v-btn>
+
+              </template>
+            </v-textarea>
+
+          <!-- <div class="mr-2" id="SingleEntryInput" style="display:inline-block; padding-top:5px; margin-bottom:-30px">
             <input
               id="single_entry_input"
               ref="single_entry_input"
@@ -36,8 +84,8 @@
                 v-on:keydown="EnterForSearch"
                 v-on:input="mouseSelect"
                 item-key="DiseaseName"/>
-          </div>
-          <v-btn :disabled="textNotes.length<4" @click="extract" color="primary">Submit</v-btn>
+          </div> -->
+          <!-- <v-btn :disabled="textNotes.length<4" @click="extract" color="primary">Submit</v-btn> -->
           <div mt-0 v-if="multipleSearchTerms.length && !searchStatusDialog && !showSearchTermsLoader">
             <!-- <v-btn style="text-transform:none" small @click="DuplicateSearchStatusDialog=true">
              Show search status
@@ -1067,7 +1115,7 @@
         </SummaryTab>
 
 
-    </v-layout>
+    <!-- </v-layout> -->
   </v-container>
 </template>
 
@@ -2848,25 +2896,25 @@ export default {
   .v-btn
     text-transform: none !important
 
-  #single_entry_input
-    width: 1400px
-    height: 49px
-    margin-top: 7px
-    // border: 0
-    border: 1px solid #bab3b3
-    // box-shadow: 0 3px 1px -2px rgba(0,0,0,.2), 0 2px 2px 0 rgba(0,0,0,.14), 0 1px 5px 0 rgba(0,0,0,.12)
-    border-radius: 4px
-    font-size: 14px
-    color: rgba(0, 0, 0, 0.6)
+  // #single_entry_input
+  //   width: 1400px
+  //   height: 49px
+  //   margin-top: 7px
+  //   // border: 0
+  //   border: 1px solid #bab3b3
+  //   // box-shadow: 0 3px 1px -2px rgba(0,0,0,.2), 0 2px 2px 0 rgba(0,0,0,.14), 0 1px 5px 0 rgba(0,0,0,.12)
+  //   border-radius: 4px
+  //   font-size: 14px
+  //   color: rgba(0, 0, 0, 0.6)
+  //
+  // #single_entry_input:focus
+  //   outline: 1px solid #45688E
 
-  #single_entry_input:focus
-    outline: 1px solid #45688E
-
-  #single_entry_input_textarea
-    width: 1390px
-    margin-top: 7px
-    font-size: 14px
-    color: rgba(0, 0, 0, 0.6)
+  // #single_entry_input_textarea
+  //   width: 1390px
+  //   margin-top: 7px
+  //   font-size: 14px
+  //   color: rgba(0, 0, 0, 0.6)
 
   .reviewCard
     height: 250px
@@ -2874,6 +2922,7 @@ export default {
 
   .open>.dropdown-menu
     padding-left: 0px !important
+    margin-top: -30px !important
 
   .dropdown-menu>.active>a
     background-color: #45688e
