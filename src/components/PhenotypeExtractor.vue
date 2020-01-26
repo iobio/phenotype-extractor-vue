@@ -1083,7 +1083,6 @@ import PhenolyzerSearch from './PhenolyzerSearch.vue';
 import HpoSearch from './HpoSearch.vue';
 import SkeletonLoadersSearchTerms from './SkeletonLoadersSearchTerms.vue';
 import VennDiagram from './VennDiagram.vue'
-
 import Model from '../models/Model';
 var model = new Model();
 
@@ -1434,8 +1433,8 @@ export default {
 
     if(this.phenotypes.length && this.phenotypes[2].length){
       this.hpoSavedState= true;
-      this.hpoSavedTermsLength = this.phenotypes[1].length;
-      this.hpoTermsAdded = this.phenotypes[1];
+      this.hpoSavedTermsLength = this.phenotypes[2].length;
+      this.hpoTermsAdded = this.phenotypes[2];
       this.hpoTermsAdded.map(term => {
         this.Hpo_searchTermsObj.push(term);
         this.Hpo_searchTermArray.push(term.hpoNumber);
