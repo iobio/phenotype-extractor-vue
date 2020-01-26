@@ -165,8 +165,36 @@ export default {
     height: 250px
     overflow-y: auto
 
+
+  @media (min-width: 960px)
+    .container
+      max-width: 960px
+
+  @media (min-width: 1050px)
+    .container
+      max-width: 1050px
+
+  @media (min-width: 1175px)
+    .container
+      max-width: 1175px
+
+  @media (min-width: 1264px)
+    .container
+      max-width: 1264px
+
+  @media (min-width: 1330px)
+    .container
+      max-width: 1330px
+
+  @media (min-width: 1440px)
+    .container
+      max-width: 1440px
+
   @media (min-width: 1550px)
     .container
       max-width: 1550px
 
+  @media (min-width: 1635px)
+    .container
+      max-width: 1635px      
 </style>
