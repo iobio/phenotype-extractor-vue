@@ -1567,11 +1567,15 @@ export default {
       this.textNotes = note;
       this.note_rereview_idx = idx;
       let note_details = this.clinical_note_text[idx];
-
+      let gtr_terms_for_temp = [];
+      console.log("Gtr_searchTermArray", this.Gtr_searchTermArray)
       note_details.gtr_terms.map(x => {
-        this.note_reselect_gtrTerms_Array.push(x.DiseaseName);
+        if(this.Gtr_searchTermArray.includes(x.DiseaseName)){
+          this.note_reselect_gtrTerms_Array.push(x.DiseaseName);
+          gtr_terms_for_temp.push(x);
+        }
       })
-      this.GtrTermsAdded_temp = note_details.gtr_terms;
+      this.GtrTermsAdded_temp = gtr_terms_for_temp;
 
       note_details.phenolyzer_terms.map(x => {
         this.note_reselect_phenolyzerTerms_Array.push(x.value);
@@ -2478,7 +2482,7 @@ export default {
         this.$set(this.Gtr_searchTermsObj[idx], 'gtrSearchStatus', "Completed");
         this.Gtr_search_complete_idx = this.Gtr_search_complete_idx+1;
       }
-
+      console.log("Gtr_search_complete_idx: ", this.Gtr_search_complete_idx, "Gtr_searchTermArray.length: ", this.Gtr_searchTermArray.length)
       if(this.Gtr_search_complete_idx === this.Gtr_searchTermArray.length){
         this.gtrFetchCompleted = true;
         this.checkToCloseSearchStatusDialog();
@@ -2683,6 +2687,7 @@ export default {
           this.Gtr_searchTermArray = [...this.Gtr_searchTermArray];
           this.Gtr_idx = this.Gtr_idx - 1;
           this.gtr_push_idx = this.gtr_push_idx - 1;
+          this.Gtr_search_complete_idx = this.Gtr_search_complete_idx -1;
         }
 
         else if(component === 'phenolyzer'){
