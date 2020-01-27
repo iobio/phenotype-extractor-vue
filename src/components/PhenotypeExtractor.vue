@@ -1567,8 +1567,13 @@ export default {
       this.textNotes = note;
       this.note_rereview_idx = idx;
       let note_details = this.clinical_note_text[idx];
+      this.note_reselect_gtrTerms_Array = [];
+      this.note_reselect_phenolyzerTerms_Array = [];
+      this.note_reselect_hpoTerms_Array = [];
       let gtr_terms_for_temp = [];
-      console.log("Gtr_searchTermArray", this.Gtr_searchTermArray)
+      let phenolyzer_terms_for_temp = [];
+      let hpo_terms_for_temp = [];
+
       note_details.gtr_terms.map(x => {
         if(this.Gtr_searchTermArray.includes(x.DiseaseName)){
           this.note_reselect_gtrTerms_Array.push(x.DiseaseName);
@@ -1578,14 +1583,20 @@ export default {
       this.GtrTermsAdded_temp = gtr_terms_for_temp;
 
       note_details.phenolyzer_terms.map(x => {
-        this.note_reselect_phenolyzerTerms_Array.push(x.value);
+        if(this.Phenolyzer_searchTermArray.includes(x.value)){
+          this.note_reselect_phenolyzerTerms_Array.push(x.value);
+          phenolyzer_terms_for_temp.push(x);
+        }
       })
-      this.phenolyzerTermsAdded_temp = note_details.phenolyzer_terms;
+      this.phenolyzerTermsAdded_temp = phenolyzer_terms_for_temp;
 
       note_details.hpo_terms.map(x => {
-        this.note_reselect_hpoTerms_Array.push(x.HPO_Data);
+        if(this.Hpo_searchTermArray.includes(x.HPO_Data)){
+          this.note_reselect_hpoTerms_Array.push(x.HPO_Data);
+          hpo_terms_for_temp.push(x);
+        }
       })
-      this.hpoTermsAdded_temp = note_details.hpo_terms;
+      this.hpoTermsAdded_temp = hpo_terms_for_temp;
 
       this.WorkflowStepsflag = false;
       this.LevenshteinResults = [];
@@ -2482,7 +2493,7 @@ export default {
         this.$set(this.Gtr_searchTermsObj[idx], 'gtrSearchStatus', "Completed");
         this.Gtr_search_complete_idx = this.Gtr_search_complete_idx+1;
       }
-      console.log("Gtr_search_complete_idx: ", this.Gtr_search_complete_idx, "Gtr_searchTermArray.length: ", this.Gtr_searchTermArray.length)
+
       if(this.Gtr_search_complete_idx === this.Gtr_searchTermArray.length){
         this.gtrFetchCompleted = true;
         this.checkToCloseSearchStatusDialog();
