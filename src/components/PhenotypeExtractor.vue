@@ -2725,6 +2725,7 @@ export default {
           this.Phenolyzer_searchTermArray = [...this.Phenolyzer_searchTermArray];
           this.Phenolyzer_idx = this.Phenolyzer_idx - 1;
           this.phenolyzer_push_idx = this.phenolyzer_push_idx - 1;
+          this.Phenolyzer_search_complete_idx = this.Phenolyzer_search_complete_idx - 1;
         }
 
         else if(component === 'HPO'){
@@ -2750,6 +2751,7 @@ export default {
           this.Hpo_searchTermArray.splice(idx, 1);
           this.Hpo_searchTermArray = [...this.Hpo_searchTermArray];
           this.Hpo_idx = this.Hpo_idx - 1;
+          this.Hpo_search_complete_idx = this.Hpo_search_complete_idx - 1;
         }
 
         var allPhenotypes = [this.GtrTermsAdded, this.phenolyzerTermsAdded, this.hpoTermsAdded, this.clinical_note_text];
