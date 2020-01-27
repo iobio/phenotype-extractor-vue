@@ -2699,6 +2699,7 @@ export default {
           this.Gtr_idx = this.Gtr_idx - 1;
           this.gtr_push_idx = this.gtr_push_idx - 1;
           this.Gtr_search_complete_idx = this.Gtr_search_complete_idx -1;
+          this.hovered_gtr_term='';
         }
 
         else if(component === 'phenolyzer'){
@@ -2726,6 +2727,7 @@ export default {
           this.Phenolyzer_idx = this.Phenolyzer_idx - 1;
           this.phenolyzer_push_idx = this.phenolyzer_push_idx - 1;
           this.Phenolyzer_search_complete_idx = this.Phenolyzer_search_complete_idx - 1;
+          this.hovered_phenolyzer_term='';
         }
 
         else if(component === 'HPO'){
@@ -2752,6 +2754,7 @@ export default {
           this.Hpo_searchTermArray = [...this.Hpo_searchTermArray];
           this.Hpo_idx = this.Hpo_idx - 1;
           this.Hpo_search_complete_idx = this.Hpo_search_complete_idx - 1;
+          this.hovered_hpo_term='';
         }
 
         var allPhenotypes = [this.GtrTermsAdded, this.phenolyzerTermsAdded, this.hpoTermsAdded, this.clinical_note_text];
