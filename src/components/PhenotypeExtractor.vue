@@ -349,7 +349,7 @@
                 </div>
                 <div v-if="termsReviewDialogPage===3">
                   <div class="pa-2">
-                    <v-icon color="primary darken-1">speaker_notes</v-icon> HPO (Human Phenotype Ontology)
+                    <v-icon color="primary darken-1">speaker_notes</v-icon> HPO (Human Phenotype Ontology) powered by <a href="http://bejerano.stanford.edu/clinphen/">ClinPhen</a>
                   </div>
                 </div>
                 <div v-if="termsReviewDialogPage===4">
@@ -578,7 +578,9 @@
 
                 </div>
                 <div v-if="!GtrReviewTerms.length && termsReviewDialogPage===1">
-                  Currently unavailable.
+                  <v-card-text>
+                    <p><v-icon>error_outline</v-icon> No matching terms from this resource</p>
+                  </v-card-text>
                 </div>
 
 
@@ -731,7 +733,9 @@
                   </div>
                 </div>
                 <div v-if="!phenolyzerReviewTerms.length && termsReviewDialogPage===2">
-                  Currently unavailable.
+                  <v-card-text>
+                    <p><v-icon>error_outline</v-icon> No matching terms from this resource</p>
+                  </v-card-text>
                 </div>
 
 
@@ -763,7 +767,22 @@
                   </v-expansion-panels>
                 </div>
                 <div v-if="!HpoReviewTerms.length && termsReviewDialogPage===3">
-                  Currently unavailable.
+                  <div v-if="HpoloadingProgressBar">
+                    <v-card-text>
+                        <p>Fetching the HPO terms...</p>
+                      <v-progress-linear
+                        indeterminate
+                        color="primary"
+                        class="mb-0"
+                        height="8"
+                      ></v-progress-linear>
+                    </v-card-text>
+                  </div>
+                  <div v-else>
+                    <v-card-text>
+                      <p><v-icon>error_outline</v-icon> No matching terms from this resource</p>
+                    </v-card-text>
+                  </div>
                 </div>
 
 
@@ -1263,6 +1282,7 @@ export default {
     note_rereview_idx: null,
     true_checkboxVal: true,
     disabledItems_alert: true,
+    HpoloadingProgressBar: false,
   }),
   watch: {
     textNotes(){
@@ -1749,6 +1769,7 @@ export default {
         })
     },
     fetchHpoTerm(){
+      this.HpoloadingProgressBar = true;
       const cmd = api.clinphen({ notes: `${this.textNotes}`});
       cmd.then((data) => {
         this.parseTerms(data);
@@ -1781,6 +1802,7 @@ export default {
       })
       hpoTermArr.shift();
       terms.shift();
+      this.HpoloadingProgressBar = false;
       hpoTermArr.forEach(x => {
         var found = this.HpoReviewTerms.some(el => el.HPO_Data === x.HPO_Data);
         if(!found){ this.HpoReviewTerms.push(x)}
