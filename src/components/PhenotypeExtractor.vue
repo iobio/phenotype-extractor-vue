@@ -2003,11 +2003,18 @@ export default {
 
       this.GtrTermsAdded_temp = this.GtrTermsAdded_temp.filter(o1 => this.GtrTermsAdded.every(o2 => {
         return o1.DiseaseName !== o2.DiseaseName
-      }));
+      })); //Delets duplicate entries
       this.GtrTermsAdded = [...this.GtrTermsAdded, ...this.GtrTermsAdded_temp];
       // this.$emit("GtrTerms", this.GtrTermsAdded); //Pass back which can be used in phenotypes component .
 
+      this.phenolyzerTermsAdded_temp = this.phenolyzerTermsAdded_temp.filter(o1 => this.phenolyzerTermsAdded.every(o2 => {
+        return o1.value !== o2.value
+      }));
       this.phenolyzerTermsAdded = [...this.phenolyzerTermsAdded, ...this.phenolyzerTermsAdded_temp];
+
+      this.hpoTermsAdded_temp = this.hpoTermsAdded_temp.filter(o1 => this.hpoTermsAdded.every(o2 => {
+        return o1.HPO_Data !== o2.HPO_Data
+      }));
       this.hpoTermsAdded = [...this.hpoTermsAdded, ...this.hpoTermsAdded_temp];
 
       this.GtrTermsAdded_temp = [];
