@@ -365,72 +365,82 @@
                 </span>
 
               </v-card-title>
-
+              <v-card-title style="margin-bottom:-60px">
+                <v-card-text>
+                  <div>
+                    <blockquote class="blockquote i-text--left" style="font-size: 13px;">
+                      {{ textNotes }}
+                    </blockquote>
+                  </div>
+                </v-card-text>
+              </v-card-title>
               <v-card-title>
-                <div  class="mt-1 mb-1" v-if="GtrReviewTerms.length && termsReviewDialogPage===1">
-                  <div v-if="GtrTermsAdded_temp.length>0">
-                    <small  style="color: rgba(0, 0, 0, 0.6); font-size: 0.875rem" class="font-weight-thin">Terms Selected: </small>
-                    <span v-for="(term, i) in GtrTermsAdded" v-if="GtrTermsAdded.length">
-                      <!-- <v-chip class="mr-2" small outlined color="primary">
-                        {{ term.DiseaseName }}
-                      </v-chip> -->
-                    </span>
-                    <span v-for="(term, i) in GtrTermsAdded_temp" v-if="GtrTermsAdded_temp.length">
-                      <v-chip :disabled="reReviewClinicalNote && note_reselect_gtrTerms_Array.includes(term.DiseaseName)" class="mr-2" small outlined color="primary" close :key="i" @click:close="removeReviewTerms(term, i, 'GTR')">
-                        {{ term.DiseaseName }}
-                      </v-chip>
-                    </span>
+                <v-card-text>
+                  <div  class="mt-1 mb-1" v-if="GtrReviewTerms.length && termsReviewDialogPage===1">
+                    <div v-if="GtrTermsAdded_temp.length>0">
+                      <small  style="color: rgba(0, 0, 0, 0.6); font-size: 0.875rem" class="font-weight-thin">Terms Selected: </small>
+                      <span v-for="(term, i) in GtrTermsAdded" v-if="GtrTermsAdded.length">
+                        <!-- <v-chip class="mr-2" small outlined color="primary">
+                          {{ term.DiseaseName }}
+                        </v-chip> -->
+                      </span>
+                      <span v-for="(term, i) in GtrTermsAdded_temp" v-if="GtrTermsAdded_temp.length">
+                        <v-chip :disabled="reReviewClinicalNote && note_reselect_gtrTerms_Array.includes(term.DiseaseName)" class="mr-2" small outlined color="primary" close :key="i" @click:close="removeReviewTerms(term, i, 'GTR')">
+                          {{ term.DiseaseName }}
+                        </v-chip>
+                      </span>
+                    </div>
+                    <!-- <div v-else>
+                      <center>
+                        <v-alert
+                          v-model="expansion_hint_alert"
+                          dismissible
+                          color="cyan"
+                          border="left"
+                          elevation="2"
+                          colored-border
+                          icon="rate_review"
+                          class="ml-10 mb-2"
+                        >
+                          <small> Review and select terms to be searched in each of the following tools: GTR, Phenolyzer, HPO.</small>
+                        </v-alert>
+                      </center>
+                    </div> -->
                   </div>
-                  <div v-else>
-                    <center>
-                      <v-alert
-                        v-model="expansion_hint_alert"
-                        dismissible
-                        color="cyan"
-                        border="left"
-                        elevation="2"
-                        colored-border
-                        icon="rate_review"
-                        class="ml-10 mb-2"
-                      >
-                        <small> Review and select terms to be searched in each of the following tools: GTR, Phenolyzer, HPO.</small>
-                      </v-alert>
-                    </center>
-                  </div>
-                </div>
 
-                <div class="mt-1 mb-1" v-if="phenolyzerReviewTerms.length && termsReviewDialogPage===2">
-                  <div v-if="phenolyzerTermsAdded_temp.length>0">
-                    <small  style="color: rgba(0, 0, 0, 0.6); font-size: 0.875rem" class="font-weight-thin">Terms Selected: </small>
-                    <!-- <span v-for="(term, i) in phenolyzerTermsAdded" v-if="phenolyzerTermsAdded.length">
-                      <v-chip class="mr-2" small outlined color="primary">
-                        {{ term.value }}
-                      </v-chip>
-                    </span> -->
-                    <span v-for="(term, i) in phenolyzerTermsAdded_temp" v-if="phenolyzerTermsAdded_temp.length">
-                      <v-chip :disabled="reReviewClinicalNote && note_reselect_phenolyzerTerms_Array.includes(term.value)" class="mr-2" small outlined color="primary" close :key="i" @click:close="removeReviewTerms(term, i, 'Phenolyzer')">
-                        {{ term.value }}
-                      </v-chip>
-                    </span>
+                  <div class="mt-1 mb-1" v-if="phenolyzerReviewTerms.length && termsReviewDialogPage===2">
+                    <div v-if="phenolyzerTermsAdded_temp.length>0">
+                      <small  style="color: rgba(0, 0, 0, 0.6); font-size: 0.875rem" class="font-weight-thin">Terms Selected: </small>
+                      <!-- <span v-for="(term, i) in phenolyzerTermsAdded" v-if="phenolyzerTermsAdded.length">
+                        <v-chip class="mr-2" small outlined color="primary">
+                          {{ term.value }}
+                        </v-chip>
+                      </span> -->
+                      <span v-for="(term, i) in phenolyzerTermsAdded_temp" v-if="phenolyzerTermsAdded_temp.length">
+                        <v-chip :disabled="reReviewClinicalNote && note_reselect_phenolyzerTerms_Array.includes(term.value)" class="mr-2" small outlined color="primary" close :key="i" @click:close="removeReviewTerms(term, i, 'Phenolyzer')">
+                          {{ term.value }}
+                        </v-chip>
+                      </span>
+                    </div>
                   </div>
-                </div>
 
-                <div class="mt-1 mb-1" v-if="HpoReviewTerms.length && termsReviewDialogPage===3">
-                  <div v-if="hpoTermsAdded_temp.length>0">
-                    <small  style="color: rgba(0, 0, 0, 0.6); font-size: 0.875rem" class="font-weight-thin">Terms Selected: </small>
-                    <!-- <span v-for="(term, i) in hpoTermsAdded" v-if="hpoTermsAdded.length">
-                      <v-chip class="mr-2" small outlined color="primary">
-                        {{ term.HPO_Data }}
-                      </v-chip>
-                    </span> -->
-                    <span v-for="(term, i) in hpoTermsAdded_temp" v-if="hpoTermsAdded_temp.length">
-                      <v-chip :disabled="reReviewClinicalNote && note_reselect_hpoTerms_Array.includes(term.HPO_Data)" class="mr-2" small outlined color="primary" close :key="i" @click:close="removeReviewTerms(term, i, 'HPO')">
-                        {{ term.HPO_Data }}
-                      </v-chip>
-                    </span>
+                  <div class="mt-1 mb-1" v-if="HpoReviewTerms.length && termsReviewDialogPage===3">
+                    <div v-if="hpoTermsAdded_temp.length>0">
+                      <small  style="color: rgba(0, 0, 0, 0.6); font-size: 0.875rem" class="font-weight-thin">Terms Selected: </small>
+                      <!-- <span v-for="(term, i) in hpoTermsAdded" v-if="hpoTermsAdded.length">
+                        <v-chip class="mr-2" small outlined color="primary">
+                          {{ term.HPO_Data }}
+                        </v-chip>
+                      </span> -->
+                      <span v-for="(term, i) in hpoTermsAdded_temp" v-if="hpoTermsAdded_temp.length">
+                        <v-chip :disabled="reReviewClinicalNote && note_reselect_hpoTerms_Array.includes(term.HPO_Data)" class="mr-2" small outlined color="primary" close :key="i" @click:close="removeReviewTerms(term, i, 'HPO')">
+                          {{ term.HPO_Data }}
+                        </v-chip>
+                      </span>
+                    </div>
                   </div>
-                </div>
 
+                </v-card-text>
               </v-card-title>
               <v-card-text style="height: 430px;">
 
