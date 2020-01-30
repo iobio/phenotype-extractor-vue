@@ -133,7 +133,6 @@ import { bus } from '../main';
               selection.select("path")
                   .style("fill-opacity", d.sets.length == 1 ? .4 : .1)
                   .style("stroke-opacity", 1)
-                  .style("cursor", "pointer");
           })
           .on("mousemove", function() {
               tooltip.style("left", (d3.event.pageX) + "px")
