@@ -52,7 +52,7 @@
                     <v-btn style="float:right" @click.native="onApplyGenes">
                       Apply
                     </v-btn>
-                    <v-btn style="float:right" @click.native="copyPasteGenes = false">
+                    <v-btn style="float:right" @click.native="copyPasteGenes = false, genesToApply = null">
                       Cancel
                     </v-btn>
                   </v-card-actions>
