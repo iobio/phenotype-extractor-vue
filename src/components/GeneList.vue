@@ -40,7 +40,8 @@
                       <v-textarea
                         id="copy-paste-genes"
                         multi-line
-                        rows="12"
+                        rows="7"
+                        outlined
                         label="Enter gene names"
                         v-model="genesToApply"
                       >
