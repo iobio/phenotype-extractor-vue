@@ -362,20 +362,25 @@ export default {
       var associatedGenes = [];
       var nonAssociatedGenes = [];
 
-      this.summaryGeneList.map(x=>{
-        if(x.isAssociatedGene===true){
-          associatedGenes.push(x);
-        }
-        else{
-          nonAssociatedGenes.push(x);
-        }
-      })
+      if(this.summaryGeneList!==undefined){
+        this.summaryGeneList.map(x=>{
+          if(x.isAssociatedGene===true){
+            associatedGenes.push(x);
+          }
+          else{
+            nonAssociatedGenes.push(x);
+          }
+        })
 
-      if(associatedGenes.length){
-        this.summaryGenes = [...associatedGenes, ...nonAssociatedGenes];
+        if(associatedGenes.length){
+          this.summaryGenes = [...associatedGenes, ...nonAssociatedGenes];
+        }
+        else {
+          this.summaryGenes = this.summaryGeneList;
+        }
       }
       else {
-        this.summaryGenes = this.summaryGeneList;
+        this.summaryGenes = []; 
       }
     },
 
