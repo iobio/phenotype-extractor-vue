@@ -25,6 +25,7 @@
         @HpoGeneList="HpoGeneList($event)"
         :AddedGenes="AddedGenes"
         @vennData="vennData($event)"
+        :demoTextNote="analysis.payload.demoTextNote"
         @VennDiagramData="VennDiagramData($event)">
       </PhenotypeExtractor>
 

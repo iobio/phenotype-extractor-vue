@@ -1140,6 +1140,9 @@ export default {
     },
     AddedGenes: {
       type: Array
+    },
+    demoTextNote: {
+      type: String
     }
   },
   data: () => ({
@@ -1184,7 +1187,7 @@ export default {
     phenolyzerTermsAdded: [],
     loadingDialog: false,
     inputVal: '',
-    textNotes: 'Charcot-Marie-Tooth disease; demyelination; Dejerine sottas disease possibly; sensory neuropathy; hammertoes; difficulty walking',
+    textNotes: '',
     JaroWinkler: [],
     fuzzyResults: [],
     HPO_Phenotypes_data: null,
@@ -1334,6 +1337,7 @@ export default {
   },
 
   mounted(){
+    this.textNotes =this.demoTextNote;
     this.HPO_Terms_data = HPO_Terms;
     this.HPO_Phenotypes_data = HPO_Phenotypes;
     this.HpoTermsTypeaheadData  = HpoTermsData.data;
