@@ -1184,7 +1184,7 @@ export default {
     phenolyzerTermsAdded: [],
     loadingDialog: false,
     inputVal: '',
-    textNotes: '',
+    textNotes: 'Charcot-Marie-Tooth disease; demyelination; Dejerine sottas disease possibly; sensory neuropathy; hammertoes; difficulty walking',
     JaroWinkler: [],
     fuzzyResults: [],
     HPO_Phenotypes_data: null,
