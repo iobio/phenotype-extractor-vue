@@ -2010,6 +2010,7 @@ export default {
       this.checkIf_newNote_or_reReview();
 
       if(!this.GtrTermsAdded_temp.length && !this.phenolyzerTermsAdded_temp.leng && !this.hpoTermsAdded_temp.leng){
+        console.log("am i checking here?")
         this.checkToCloseSearchStatusDialog();
       }
 
@@ -2142,6 +2143,7 @@ export default {
       }
     },
     Gtr_performSearchEvent(){
+      console.log("i should bbe heere")
       if(this.Gtr_idx<this.Gtr_searchTermsObj.length){
         this.gtrFetchCompleted = false;
       }
@@ -2174,6 +2176,7 @@ export default {
 
     filteredDiseasesItems(items){
       // this.filteredDiseasesItemsArray.push(items);
+      console.log("am i receeiving new items?")
       this.filteredDiseasesItemsArray = [...this.filteredDiseasesItemsArray, ...items];
       this.gtr_saved_idx = this.gtr_saved_idx+1;
       // if(this.gtr_saved_idx>this.gtrSavedTermsLength){
@@ -2534,7 +2537,8 @@ export default {
         this.$set(this.Gtr_searchTermsObj[idx], 'gtrSearchStatus', "Completed");
         this.Gtr_search_complete_idx = this.Gtr_search_complete_idx+1;
       }
-
+      console.log("have i completed the search?")
+      console.log("this.Gtr_searchTermArray.length: ", this.Gtr_searchTermArray.length, "this.Gtr_search_complete_idx: ", this.Gtr_search_complete_idx)
       if(this.Gtr_search_complete_idx === this.Gtr_searchTermArray.length){
         this.gtrFetchCompleted = true;
         this.checkToCloseSearchStatusDialog();
@@ -2719,6 +2723,7 @@ export default {
             if(!this.phenolyzerSavedState && !this.hpoSavedState){
               this.sendPhenolyzerGenesToSummary(this.phenolyzerItems);
               this.sendHpoGenesToSummary(this.hpoItems);
+              this.addDiseases(this.filteredDiseasesItemsArray);
               this.has_saved_state = null; //data from saved state is built in background and no need to check this condition again
             }
             else{
