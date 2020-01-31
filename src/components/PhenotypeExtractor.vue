@@ -368,8 +368,10 @@
               <v-card-title style="margin-bottom:-60px">
                 <v-card-text>
                   <div>
-                    <blockquote class="blockquote i-text--left" style="font-size: 13px;">
-                      {{ textNotes }}
+                    <blockquote class="blockquote i-text--left" style="font-size: 13px; word-break: break-word; padding: 16px 24px 16px 24px">
+                      <div style="word-wrap: break-word">
+                        {{ textNotes }}
+                      </div>
                     </blockquote>
                   </div>
                 </v-card-text>
