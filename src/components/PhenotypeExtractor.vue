@@ -45,11 +45,11 @@
     <div class="col-container row" style="margin-top:-40px">
         <v-card class="col-flex-note" >
           <v-card-title primary-title>
-            <span style="font-size:16px">
+            <span class="terms-heading">
               Inputs
               <v-badge
                 :value="clinical_note_text.length"
-                color="primary"
+                color="#888"
                 left
                 class="ml-7 mb-2"
               >
@@ -92,7 +92,7 @@
 
         <v-card class="col-flex-terms" >
           <v-card-title primary-title>
-            <span style="font-size:16px">Terms</span>
+            <span class="terms-heading">Terms</span>
             <v-spacer></v-spacer>
           </v-card-title>
           <v-card-text>
@@ -102,11 +102,11 @@
                   <table class="table">
                     <thead>
                       <tr class="i-text--left">
-                        <strong>GTR</strong>
+                        <span class="badge-label">GTR</span>
                         <span v-if="Gtr_searchTermsObj.length && !showSearchTermsLoader">
                           <v-badge
                             :value="Gtr_searchTermsObj.length"
-                            color="primary"
+                            color="#888"
                             left
                             class="ml-8 mb-2"
                           >
@@ -163,11 +163,11 @@
                   <table class="table">
                     <thead>
                       <tr class="i-text--left">
-                        <strong>Phenolyzer</strong>
+                        <span class="badge-label">Phenolyzer</span>
                         <span class="ml-2" v-if="Phenolyzer_searchTermsObj.length && !showSearchTermsLoader">
                           <v-badge
                             :value="Phenolyzer_searchTermsObj.length"
-                            color="primary"
+                            color="#888"
                             left
                             class="ml-6 mb-2"
                           >
@@ -237,11 +237,11 @@
                   <table class="table">
                     <thead>
                       <tr class="i-text--left">
-                        <strong>HPO</strong>
+                        <span class="badge-label">HPO</span>
                         <span class="ml-2" v-if="Hpo_searchTermsObj.length && !showSearchTermsLoader">
                           <v-badge
                             :value="Phenolyzer_searchTermsObj.length"
-                            color="primary"
+                            color="#888"
                             left
                             class="ml-6 mb-2"
                           >
@@ -2349,7 +2349,6 @@ export default {
         this.items = data;
       }
       this.noOfSourcesSvg();
-      // console.log("this.GtrGenesForSummary", this.items);
       this.GtrGenesForSummary = this.items;
       this.$emit("GtrGeneList", this.GtrGenesForSummary);
 
@@ -2991,6 +2990,24 @@ export default {
 
   .col-container
     display: flex
+
+  .badge-label
+    font-size: 16px
+    color: #434343
+    font-weight: 400
+
+  .terms-heading
+    color: #434343
+    font-size: 16px
+    display: flex
+    padding-left: 0px
+    margin-left: 0px
+    min-width: 170px
+    justify-content: flex-start
+    padding-top: 5px
+    padding-bottom: 5px
+    align-items: center
+
 
 
 </style>
