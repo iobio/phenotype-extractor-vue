@@ -9,6 +9,7 @@
           id="single_entry_input"
           ref="single_entry_input"
           v-model="textNotes"
+          autocomplete="off"
           v-show="textNotes.length<45"
           placeholder="Enter Phenotypes or Type (paste) Clinical Note"
         >
@@ -2759,7 +2760,7 @@ export default {
 
 
     remove(item, idx, component){
-
+      bus.$emit("show-gene-table-skeleton-loaders");
         if(component === 'GTR'){
           if(this.has_saved_state){ //Ensures that genes of other tools are passed to the summary to built the list
             if(!this.phenolyzerSavedState && !this.hpoSavedState){
@@ -2847,7 +2848,9 @@ export default {
 
         var allPhenotypes = [this.GtrTermsAdded, this.phenolyzerTermsAdded, this.hpoTermsAdded, this.clinical_note_text];
         this.$emit('saveSearchedPhenotypes', allPhenotypes)
-
+        setTimeout(()=>{
+          bus.$emit("hide-gene-table-skeleton-loaders")
+        }, 2000)
       }, //end remove() method
 
       removeReviewTerms(item, idx, component){
