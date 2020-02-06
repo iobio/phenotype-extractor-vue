@@ -1423,12 +1423,12 @@ export default {
       bus.$emit("show-gene-table-skeleton-loaders");
 
       if(this.phenotypes[0].length){
-        var time_to_show_skeleton_loader = this.phenotypes[0].length * 3500;
+        var time_to_show_skeleton_loader = this.phenotypes[0].length * 4500;
         setTimeout(()=>{
           bus.$emit("hide-gene-table-skeleton-loaders")
         }, time_to_show_skeleton_loader)
 
-        var time_to_show_chips_loaders = this.phenotypes[0].length * 2500;
+        var time_to_show_chips_loaders = this.phenotypes[0].length * 4500;
         setTimeout(()=>{
           this.showSearchTermsLoader = false;
         }, time_to_show_chips_loaders)
@@ -2765,6 +2765,7 @@ export default {
             if(!this.phenolyzerSavedState && !this.hpoSavedState){
               this.sendPhenolyzerGenesToSummary(this.phenolyzerItems);
               this.sendHpoGenesToSummary(this.hpoItems);
+              this.addDiseases(this.filteredDiseasesItemsArray);
               this.has_saved_state = null; //data from saved state is built in background and no need to check this condition again
             }
             else{
