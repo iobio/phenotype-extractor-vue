@@ -1986,11 +1986,54 @@ export default {
 
     checkIf_newNote_or_reReview(){
       if(!this.reReviewClinicalNote){
+        var hpo_terms = [];
+        this.hpoTermsAdded_temp.map(x => {
+          var temp = {
+            hpoNumber: x.hpoNumber,
+            phenotype: x.phenotype,
+            HPO_Data: x.HPO_Data,
+            hpoSearchStatus: x.hpoSearchStatus,
+            DiseaseName: x.DiseaseName,
+            occurrences: x.occurrences,
+            earliness: x.earliness,
+            sentence: x.sentence
+          }
+          hpo_terms.push(temp);
+        })
+
+        var gtr_terms = [];
+        this.GtrTermsAdded_temp.map(x => {
+          var temp = {
+            DiseaseName: x.DiseaseName,
+            ConceptID: x.ConceptID,
+            gtrSearchStatus: x.gtrSearchStatus,
+            general: x.general,
+          }
+          gtr_terms.push(temp);
+        })
+
+        var phenolyzer_terms = [];
+        this.phenolyzerTermsAdded_temp.map(x=>{
+          var temp = {
+            id: x.id,
+            label: x.label,
+            phenolyzerSearchStatus: x.phenolyzerSearchStatus,
+            general: x.general,
+            value: x.value
+          }
+          phenolyzer_terms.push(temp);
+        })
+
+        // var gtr_terms = Array.from(this.GtrTermsAdded_temp);
+        // var phenolyzer_terms = [...this.phenolyzerTermsAdded_temp];
+        // var hpio1_terms = this.hpoTermsAdded_temp.slice();
         this.clinical_note_text.unshift({
           "note": this.textNotes,
-          "gtr_terms": this.GtrTermsAdded_temp,
-          "phenolyzer_terms": this.phenolyzerTermsAdded_temp,
-          "hpo_terms": this.hpoTermsAdded_temp,
+          // "gtr_terms": this.GtrTermsAdded_temp,
+          // "phenolyzer_terms": [{id:"hydrocephalus", value:"hydrocephalus", labbel:"hydrocephalus", genral:true, phenolyzerSearchStatus: "Completed" }],
+          "gtr_terms": gtr_terms,
+          "hpo_terms": hpo_terms,
+          "phenolyzer_terms": phenolyzer_terms,
           "LevenshteinResults": this.LevenshteinResults,
           // "gtrSearchStatus": this.gtrSearchStatus
         });
