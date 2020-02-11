@@ -133,7 +133,7 @@
                         <td class="i-text--left">
                           <div @mouseover="mouseOverGtrTerm(term.DiseaseName)" @mouseleave="hovered_gtr_term=''">
                             <span>{{ term.DiseaseName }}</span>
-                            <span v-if="hovered_gtr_term === term.DiseaseName"><v-icon class="ml-1 terms_delete_btn" color="red lighten-2" @click="remove(term, i, 'GTR')">cancel</v-icon></span>
+                            <span v-if="hovered_gtr_term === term.DiseaseName"><v-icon class="ml-1 terms_delete_btn" color="red lighten-2" @click="removePhenotypeShowDialog(term, i, 'GTR')">cancel</v-icon></span>
                           </div>
                         </td>
                         <td >
@@ -196,7 +196,7 @@
                         <td class="i-text--left" @mouseover="mouseOverPhenolyzerTerm(term.value)" @mouseleave="hovered_phenolyzer_term=''">
                           <span>{{ term.value | to-firstCharacterUppercase }}</span>
                           <span v-if="hovered_phenolyzer_term === term.value">
-                            <v-icon class="ml-1 terms_delete_btn" color="red lighten-2" @click="remove(term, i, 'phenolyzer')">cancel</v-icon>
+                            <v-icon class="ml-1 terms_delete_btn" color="red lighten-2" @click="removePhenotypeShowDialog(term, i, 'phenolyzer')">cancel</v-icon>
                           </span>
                         </td>
                         <td>
@@ -268,7 +268,7 @@
                         <td class="i-text--left" @mouseover="mouseOverHpoTerm(term.HPO_Data)" @mouseleave="hovered_hpo_term=''">
                           <span>{{ term.HPO_Data }}</span>
                           <span v-if="hovered_hpo_term === term.HPO_Data">
-                            <v-icon class="ml-1 terms_delete_btn" color="red lighten-2" @click="remove(term, i, 'HPO')">cancel</v-icon>
+                            <v-icon class="ml-1 terms_delete_btn" color="red lighten-2" @click="removePhenotypeShowDialog(term, i, 'HPO')">cancel</v-icon>
                           </span>
                         </td>
                         <td >
@@ -1056,6 +1056,24 @@
           </v-dialog>
         </v-card>
         <!-- End search status dialog -->
+        
+        <!-- Modal to confirm phenotype deletion  -->
+        <v-dialog v-model="removePhenotypeDialog" max-width="650">
+          <v-card>
+            <v-card-title class="headline"></v-card-title>
+            <v-card-text>
+              <span v-html="deletePhenotypeConfirmationText"></span>
+            </v-card-text>
+            <v-card-actions>
+              <v-spacer></v-spacer>
+              <v-btn color="primary" text @click="cancelRemovePhenotype">Cancel</v-btn>
+              <v-btn color="primary" text @click="remove(toDeletePhenotype.item, toDeletePhenotype.idx, toDeletePhenotype.component)">Agree</v-btn>
+
+            </v-card-actions>
+          </v-card>
+        </v-dialog>
+        <!--End Modal to confirm phenotype deletion -->
+
 
         <GtrSearch
           v-on:filteredDiseasesItems="filteredDiseasesItems"
@@ -1299,6 +1317,9 @@ export default {
     true_checkboxVal: true,
     disabledItems_alert: true,
     HpoloadingProgressBar: false,
+    removePhenotypeDialog: false, 
+    deletePhenotypeConfirmationText: '', 
+    toDeletePhenotype: {}, 
   }),
   watch: {
     textNotes(){
@@ -2757,10 +2778,35 @@ export default {
     stopPhenolyzerSearch(term){
       bus.$emit('stopPhenolyzerQueued', term);
     },
+    
+    removePhenotypeShowDialog(item, idx, component){
+      this.removePhenotypeDialog = true; 
+      this.toDeletePhenotype = {
+        item, 
+        idx, 
+        component
+      }
+      if(component === 'GTR'){
+        this.deletePhenotypeConfirmationText = `Are you sure you want to delete the condition <strong>${item.DiseaseName}</strong>?`
+      }
+      else if(component === 'phenolyzer'){
+        this.deletePhenotypeConfirmationText = `Are you sure you want to delete the phenotype <strong>${item.value}</strong>?`
+      }
+      else if(component === 'HPO'){
+        this.deletePhenotypeConfirmationText = `Are you sure you want to delete the HPO term <strong>${item.HPO_Data}</strong>?`
+      }
+    }, 
+    
+    cancelRemovePhenotype(){
+      this.removePhenotypeDialog = false; 
+      this.deletePhenotypeConfirmationText = '', 
+      this.toDeletePhenotype = {}; 
+    }, 
 
 
     remove(item, idx, component){
       bus.$emit("show-gene-table-skeleton-loaders");
+      this.removePhenotypeDialog = false; 
         if(component === 'GTR'){
           if(this.has_saved_state){ //Ensures that genes of other tools are passed to the summary to built the list
             if(!this.phenolyzerSavedState && !this.hpoSavedState){
@@ -2851,6 +2897,9 @@ export default {
         setTimeout(()=>{
           bus.$emit("hide-gene-table-skeleton-loaders")
         }, 2000)
+        
+        this.toDeletePhenotype = {}; 
+        this.deletePhenotypeConfirmationText = ''; 
       }, //end remove() method
 
       removeReviewTerms(item, idx, component){
