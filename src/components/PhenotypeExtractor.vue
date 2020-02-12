@@ -935,6 +935,10 @@
             <v-card>
               <v-card-title class="grey lighten-2">
                 <v-icon class="mr-2" color="primary darken-1">youtube_searched_for</v-icon> Status
+                <v-spacer></v-spacer>
+                <span>
+                  <v-btn text icon @click="searchStatusDialog=false"><v-icon>close</v-icon></v-btn>
+                </span>
               </v-card-title>
               <!-- <v-divider></v-divider> -->
               <v-card-text>
@@ -2177,12 +2181,10 @@ export default {
       }
     },
     performSearchEvent(){
-      console.log("this is definitley called even when no addiitonal terms are added!")
       //Check if all saved state is built
       // if built then fire functions to send to summary page and meanwhile start performing search
       if(this.has_saved_state===null){
         //check if all the data from saved state is built in the background or if there is no saved state
-        console.log("this should be called as all the state must have been set true")
         this.Gtr_performSearchEvent();
         this.Phenolyzer_performSearchEvent();
         this.Hpo_performSearchEvent();
@@ -2214,7 +2216,7 @@ export default {
       }
     },
     Gtr_performSearchEvent(){
-      if(this.Gtr_idx === this.Gtr_searchTermsObj.length){
+      if(this.Gtr_idx === this.Gtr_searchTermsObj.length){ //Checks if there are no new items are added even when the terms review dialog was opened. 
         setTimeout(() => {
           this.checkToCloseSearchStatusDialog(); 
         }, 500)
