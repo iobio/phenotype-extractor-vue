@@ -1319,7 +1319,8 @@ export default {
     HpoloadingProgressBar: false,
     removePhenotypeDialog: false, 
     deletePhenotypeConfirmationText: '', 
-    toDeletePhenotype: {}, 
+    toDeletePhenotype: {},
+    searchStatusDialogTimeoutCheck: null,  
   }),
   watch: {
     textNotes(){
@@ -2176,10 +2177,12 @@ export default {
       }
     },
     performSearchEvent(){
+      console.log("this is definitley called even when no addiitonal terms are added!")
       //Check if all saved state is built
       // if built then fire functions to send to summary page and meanwhile start performing search
       if(this.has_saved_state===null){
         //check if all the data from saved state is built in the background or if there is no saved state
+        console.log("this should be called as all the state must have been set true")
         this.Gtr_performSearchEvent();
         this.Phenolyzer_performSearchEvent();
         this.Hpo_performSearchEvent();
@@ -2211,19 +2214,26 @@ export default {
       }
     },
     Gtr_performSearchEvent(){
-      if(this.Gtr_idx<this.Gtr_searchTermsObj.length){
-        this.gtrFetchCompleted = false;
+      if(this.Gtr_idx === this.Gtr_searchTermsObj.length){
+        setTimeout(() => {
+          this.checkToCloseSearchStatusDialog(); 
+        }, 500)
       }
+      else {
+        if(this.Gtr_idx<this.Gtr_searchTermsObj.length){
+          this.gtrFetchCompleted = false;
+        }
 
-      let startVal = this.Gtr_idx;
-      for(let i=startVal; i<this.Gtr_searchTermsObj.length; i++){
-        ((ind) =>{
-          setTimeout(() =>{
-            this.$set(this.Gtr_searchTermsObj[i], 'gtrSearchStatus', "Searching");
-            bus.$emit("singleTermSearchGTR", this.Gtr_searchTermsObj[i]);
-            this.Gtr_idx = this.Gtr_idx + 1;
-          }, 200 + (2500 * ind));
-        })(i);
+        let startVal = this.Gtr_idx;
+        for(let i=startVal; i<this.Gtr_searchTermsObj.length; i++){
+          ((ind) =>{
+            setTimeout(() =>{
+              this.$set(this.Gtr_searchTermsObj[i], 'gtrSearchStatus', "Searching");
+              bus.$emit("singleTermSearchGTR", this.Gtr_searchTermsObj[i]);
+              this.Gtr_idx = this.Gtr_idx + 1;
+            }, 200 + (2500 * ind));
+          })(i);
+        }
       }
     },
 
@@ -2622,21 +2632,28 @@ export default {
     },
 
     Phenolyzer_performSearchEvent(){
-      if(this.Phenolyzer_idx<this.Phenolyzer_searchTermsObj.length){
-        this.phenolyzerFetchCompleted = false;
+      if(this.Phenolyzer_idx === this.Phenolyzer_searchTermsObj.length){
+        setTimeout(() => {
+          this.checkToCloseSearchStatusDialog(); 
+        }, 500)
       }
+      else {
+        if(this.Phenolyzer_idx<this.Phenolyzer_searchTermsObj.length){
+          this.phenolyzerFetchCompleted = false;
+        }
 
-      // this.phenolyzerFetchCompleted = false;
-      let startVal = this.Phenolyzer_idx;
-      for(let i=startVal; i<this.Phenolyzer_searchTermsObj.length; i++){
-        ((ind) =>{
-          setTimeout(() =>{
-            var term = this.Phenolyzer_searchTermsObj[i];
-            var str = term.value.replace("-", " ").replace(/\s\s+/g, ' ').toLowerCase();
-            bus.$emit("singleTermSearchPhenolyzer", str);
-            this.Phenolyzer_idx = this.Phenolyzer_idx + 1;
-          }, 200 + (2000 * ind));
-        })(i);
+        // this.phenolyzerFetchCompleted = false;
+        let startVal = this.Phenolyzer_idx;
+        for(let i=startVal; i<this.Phenolyzer_searchTermsObj.length; i++){
+          ((ind) =>{
+            setTimeout(() =>{
+              var term = this.Phenolyzer_searchTermsObj[i];
+              var str = term.value.replace("-", " ").replace(/\s\s+/g, ' ').toLowerCase();
+              bus.$emit("singleTermSearchPhenolyzer", str);
+              this.Phenolyzer_idx = this.Phenolyzer_idx + 1;
+            }, 200 + (2000 * ind));
+          })(i);
+        }
       }
     },
 
@@ -2676,19 +2693,26 @@ export default {
     },
 
     Hpo_performSearchEvent(){
-      if(this.Hpo_idx<this.Hpo_searchTermsObj.length){
-        this.hpoFetchCompleted = false;
+      if(this.Hpo_idx === this.Hpo_searchTermsObj.length){
+        setTimeout(() => {
+          this.checkToCloseSearchStatusDialog(); 
+        }, 500)
       }
-      // this.hpoFetchCompleted = false;
-      let startVal = this.Hpo_idx;
-      for(let i=startVal; i<this.Hpo_searchTermsObj.length; i++){
-        ((ind) =>{
-          setTimeout(() =>{
-            var term = this.Hpo_searchTermsObj[i];
-            bus.$emit("singleTermSearchHPO", term);
-            this.Hpo_idx = this.Hpo_idx + 1;
-          }, 200 + (2000 * ind));
-        })(i);
+      else {
+        if(this.Hpo_idx<this.Hpo_searchTermsObj.length){
+          this.hpoFetchCompleted = false;
+        }
+        // this.hpoFetchCompleted = false;
+        let startVal = this.Hpo_idx;
+        for(let i=startVal; i<this.Hpo_searchTermsObj.length; i++){
+          ((ind) =>{
+            setTimeout(() =>{
+              var term = this.Hpo_searchTermsObj[i];
+              bus.$emit("singleTermSearchHPO", term);
+              this.Hpo_idx = this.Hpo_idx + 1;
+            }, 200 + (2000 * ind));
+          })(i);
+        }
       }
     },
 
@@ -2730,9 +2754,12 @@ export default {
 
     checkToCloseSearchStatusDialog(){
       if(this.gtrFetchCompleted && this.phenolyzerFetchCompleted && this.hpoFetchCompleted){
-        setTimeout(()=>{
+        this.searchStatusDialogTimeoutCheck = setTimeout(()=>{
           this.searchStatusDialog = false;
         }, 3000)
+      }
+      else{
+        clearTimeout(this.searchStatusDialogTimeoutCheck); 
       }
     },
 
