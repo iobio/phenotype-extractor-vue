@@ -298,6 +298,25 @@
           </v-card-text>
         </v-card>
       </div>
+      
+      <div v-if="showInfoThatStepIsComplete">
+        <!-- the following alert shows that the step is completed -->
+        <v-alert
+          border="left"
+          colored-border
+          color="primary"
+          elevation="4"
+          style="font-size:14px"
+          dismissible
+          v-model="showInfoThatStepIsComplete"
+        >
+          A list of genes associated with the phenotypes and conditions from the clinical note is generated and shown below.  
+          It will be used in the next step of the workflow <i>(Review Variants)</i>. 
+          <br>
+          You can now mark this step as complete by clicking the checkbox in the navigation panel above 
+          or update the gene list by adding or deleting the search terms. 
+        </v-alert>
+      </div>
 
 
 
@@ -1335,6 +1354,8 @@ export default {
     GtrTermsAdded_temp_editMode: [], 
     phenolyzerTermsAdded_temp_editMode: [],
     hpoTermsAdded_temp_editMode: [],
+    countGeneListUpdated: 0, 
+    showInfoThatStepIsComplete: false, 
   }),
   watch: {
     textNotes(){
@@ -2768,6 +2789,13 @@ export default {
       if(this.gtrFetchCompleted && this.phenolyzerFetchCompleted && this.hpoFetchCompleted){
         this.searchStatusDialogTimeoutCheck = setTimeout(()=>{
           this.searchStatusDialog = false;
+          this.countGeneListUpdated = this.countGeneListUpdated+1; 
+          if(this.countGeneListUpdated === 1){ //to show an alert when the gene list is generated for the first time
+            this.showInfoThatStepIsComplete = true; 
+            setTimeout(() => {
+              this.showInfoThatStepIsComplete = false; 
+            }, 40000)
+          }
         }, 3000)
       }
       else{
