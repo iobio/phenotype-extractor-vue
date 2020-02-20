@@ -812,7 +812,7 @@
                                 <tr>
                                   <strong>GTR Terms</strong>
                                   <span style="float: right">
-                                    <v-btn @click="termsReviewDialogPage=1" text small color="primary">edit</v-btn>
+                                    <v-btn @click="openTermsReviewDialogPage(1)" text small color="primary">edit</v-btn>
                                   </span>
                                 </tr>
                               </thead>
@@ -839,7 +839,7 @@
                                 <tr>
                                   <strong>Phenolyzer Terms</strong>
                                   <span style="float: right">
-                                    <v-btn @click="termsReviewDialogPage=2" text small color="primary">edit</v-btn>
+                                    <v-btn @click="openTermsReviewDialogPage(2)" text small color="primary">edit</v-btn>
                                   </span>
                                 </tr>
                               </thead>
@@ -865,7 +865,7 @@
                                 <tr>
                                   <strong>HPO Terms</strong>
                                   <span style="float: right">
-                                    <v-btn @click="termsReviewDialogPage=3" text small color="primary">edit</v-btn>
+                                    <v-btn @click="openTermsReviewDialogPage(3)" text small color="primary">edit</v-btn>
                                   </span>
                                 </tr>
                               </thead>
@@ -910,9 +910,15 @@
               <v-card-actions class="mb-3">
                 <div class="flex-grow-1"></div>
                 <!-- <v-btn small color="blue darken-1" round outlined dark text @click="termsReviewDialog=false">Skip</v-btn> -->
-                <v-btn :disabled="termsReviewDialogPage===1" small color="primary" @click="--termsReviewDialogPage"><v-icon>arrow_left</v-icon> Back</v-btn>
-                <v-btn v-if="termsReviewDialogPage!==4" :disabled="termsReviewDialogPage>3" small color="primary" @click="++termsReviewDialogPage"> Next <v-icon>arrow_right</v-icon></v-btn>
-                <v-btn v-if="termsReviewDialogPage===4" small color="primary" @click="selectReviewTerms"> Next <v-icon>arrow_right</v-icon></v-btn>
+                <div v-if="editReviewSelectedTerms">
+                  <v-btn small color="blue-grey lighten-5" @click="clearEditMode('cancel')"> Cancel</v-btn>
+                  <v-btn small color="primary" @click="clearEditMode('save')"> Save </v-btn>
+                </div>
+                <div v-else-if="!editReviewSelectedTerms">
+                  <v-btn :disabled="termsReviewDialogPage===1" small color="primary" @click="--termsReviewDialogPage"><v-icon>arrow_left</v-icon> Back</v-btn>
+                  <v-btn v-if="termsReviewDialogPage!==4" :disabled="termsReviewDialogPage>3" small color="primary" @click="++termsReviewDialogPage"> Next <v-icon>arrow_right</v-icon></v-btn>
+                  <v-btn v-if="termsReviewDialogPage===4" small color="primary" @click="selectReviewTerms"> Next <v-icon>arrow_right</v-icon></v-btn>
+                </div>
                 <v-spacer></v-spacer>
                 <!-- <v-btn :disabled="termsReviewDialogPage!==4" small color="primary" @click="selectReviewTerms">Done</v-btn> -->
               </v-card-actions>
@@ -1325,6 +1331,10 @@ export default {
     deletePhenotypeConfirmationText: '', 
     toDeletePhenotype: {},
     searchStatusDialogTimeoutCheck: null,  
+    editReviewSelectedTerms: false, 
+    GtrTermsAdded_temp_editMode: [], 
+    phenolyzerTermsAdded_temp_editMode: [],
+    hpoTermsAdded_temp_editMode: [],
   }),
   watch: {
     textNotes(){
@@ -3013,7 +3023,39 @@ export default {
           ref_genesoverlap.style.visibility="";
           bus.$emit("open_genes_overlap_panel");
         }
-      }
+      }, 
+      
+      openTermsReviewDialogPage(pageNumber){
+        this.editReviewSelectedTerms = true; 
+        this.GtrTermsAdded_temp_editMode = this.GtrTermsAdded_temp; 
+        this.phenolyzerTermsAdded_temp_editMode = this.phenolyzerTermsAdded_temp; 
+        this.hpoTermsAdded_temp_editMode = this.hpoTermsAdded_temp; 
+        if(pageNumber===1){
+          this.termsReviewDialogPage=1;
+        }
+        else if(pageNumber===2){
+          this.termsReviewDialogPage=2;
+        }
+        else if(pageNumber===3){
+          this.termsReviewDialogPage=3;
+        }
+      }, 
+      
+      clearEditMode(optionsSelected){
+        this.editReviewSelectedTerms = false; 
+        if(optionsSelected==="save"){
+          this.termsReviewDialogPage=4;
+        }
+        else{
+          this.GtrTermsAdded_temp = this.GtrTermsAdded_temp_editMode
+          this.phenolyzerTermsAdded_temp = this.phenolyzerTermsAdded_temp_editMode; 
+          this.hpoTermsAdded_temp = this.hpoTermsAdded_temp_editMode; 
+          this.termsReviewDialogPage=4;
+        }
+        this.GtrTermsAdded_temp_editMode =[]; 
+        this.phenolyzerTermsAdded_temp_editMode = []; 
+        this.hpoTermsAdded_temp_editMode = []; 
+      }, 
 
 
   }
