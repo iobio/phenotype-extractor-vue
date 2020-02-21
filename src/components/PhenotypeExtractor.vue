@@ -1140,6 +1140,20 @@
           @emit_venn_data="emit_venn_data($event)"
           @venn_diag_summaryObj="venn_diag_summaryObj($event)">
         </SummaryTab>
+        
+        <v-snackbar
+          v-model="showGeneListReadySnackbar"
+          timeout="4000"
+        >
+          Gene list is ready 
+          <v-btn
+            color="blue"
+            text
+            @click="snackbar = false"
+          >
+            Close
+          </v-btn>
+        </v-snackbar>
 
 
     <!-- </v-layout> -->
@@ -1356,6 +1370,7 @@ export default {
     hpoTermsAdded_temp_editMode: [],
     countGeneListUpdated: 0, 
     showInfoThatStepIsComplete: false, 
+    showGeneListReadySnackbar: false
   }),
   watch: {
     textNotes(){
@@ -2789,12 +2804,17 @@ export default {
       if(this.gtrFetchCompleted && this.phenolyzerFetchCompleted && this.hpoFetchCompleted){
         this.searchStatusDialogTimeoutCheck = setTimeout(()=>{
           this.searchStatusDialog = false;
-          this.countGeneListUpdated = this.countGeneListUpdated+1; 
+          if(this.summaryAllGenes.length){
+            this.countGeneListUpdated = this.countGeneListUpdated+1; 
+          }
           if(this.countGeneListUpdated === 1){ //to show an alert when the gene list is generated for the first time
             this.showInfoThatStepIsComplete = true; 
             setTimeout(() => {
               this.showInfoThatStepIsComplete = false; 
             }, 40000)
+          }
+          else if(this.countGeneListUpdated > 1){
+            this.showGeneListReadySnackbar = true; 
           }
         }, 3000)
       }
