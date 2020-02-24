@@ -298,7 +298,6 @@
           </v-card-text>
         </v-card>
       </div>
-      
       <div v-if="showInfoThatStepIsComplete">
         <!-- the following alert shows that the step is completed -->
         <v-alert
@@ -310,13 +309,17 @@
           dismissible
           v-model="showInfoThatStepIsComplete"
         >
-          <span class="ml-4">
-            A list of genes associated with the phenotypes and conditions from the clinical note is generated and shown below.  
-            It will be used in the next step of the workflow <i>(Review Variants)</i>. 
-            <br>
-            You can now mark this step as complete by clicking the checkbox in the navigation panel above 
-            or update the gene list by adding or deleting the search terms. 
-          </span>
+          <center>
+            <span class="ml-4">
+              A list of genes associated with the phenotypes and conditions from the clinical note is generated and shown below.  
+              It will be used in the next step of the workflow <i>(Review Variants)</i>. 
+              <br>
+            </span>
+            <span class="ml-4">  
+              You can now mark this step as complete by clicking the checkbox in the navigation panel above 
+              or update the gene list by adding or deleting the search terms. 
+            </span>
+          </center>
         </v-alert>
       </div>
 
