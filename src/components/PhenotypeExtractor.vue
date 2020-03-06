@@ -1304,6 +1304,7 @@ export default {
     individualDiseases: [],
     diseasesPropsIndividual: [],
     associatedGenesIndividual: [],
+    associatedGenesIndividualObject: {}, 
     genePropsIndividual: [],
     panelsSearchTermObj: {},
     currentSearchedTerm: "",
@@ -1596,7 +1597,6 @@ export default {
             isAssociatedGene: gene.isAssociatedGene
           }
         })
-        // console.log("clinData", clinData)
         this.$emit('summaryGenes', clinData);
 
     },
@@ -1604,8 +1604,43 @@ export default {
     getIndividualGeneList(){
       for(const prop in this.selectedObj){
         var mergedGenes = model.mergeGenesAcrossPanels(this.selectedObj[prop]);
-        let data = model.getIndividualGenes(mergedGenes );
-        this.createSeperateGenesObj(data, prop);
+        let data = model.getIndividualGenes(mergedGenes ); //Gets the genes 
+        
+        //Add associated genes to the data 
+        let associated_GenesIndividual = this.associatedGenesIndividualObject[prop]; 
+        if(associated_GenesIndividual.length){
+          associated_GenesIndividual.map(x => {
+            x.value = 0; 
+          })
+        }
+        
+        if(associated_GenesIndividual.length){
+          associated_GenesIndividual.map(x=>{
+            var checkIfAssociatedGeneExist = obj => obj.name === x.name;
+            if(data.some(checkIfAssociatedGeneExist)){
+              var genes = [];
+              data.map(y=>{
+                genes.push(y.name);
+              });
+              var i = genes.indexOf(x.name);
+              x.value = data[i].value;
+              
+              data.splice(i, 1);
+              data = [...data];
+            }
+          })
+        }
+        
+        let genes_data = []; 
+        if(associated_GenesIndividual.length){
+          associated_GenesIndividual.sort((a,b) => (a.value < b.value) ? 1 : ((b.value < a.value) ? -1 : 0));
+          genes_data = [...associated_GenesIndividual, ...data];
+        }
+        else{
+          genes_data = data;
+        }
+        
+        this.createSeperateGenesObj(genes_data, prop);
       }
     },
     createSeperateGenesObj(genes, term){
@@ -2569,10 +2604,10 @@ export default {
       this.individualDiseases = diseases;
       this.diseasesPropsIndividual = diseases.filteredDiseases;
       // console.log("diseases", diseases)
-      this.checkForAssociatedGenesIndividual();
+      this.checkForAssociatedGenesIndividual(diseases.searchTerm);
       this.AddGenePanelDataIndividual(this.diseasesPropsIndividual, diseases.searchTerm)
     },
-    checkForAssociatedGenesIndividual: function(){
+    checkForAssociatedGenesIndividual: function(searchTerm){
       var temp = [];
       this.diseasesPropsIndividual.map(x=>{
         if(x.ConceptMeta.AssociatedGenes!==undefined && x.ConceptMeta.AssociatedGenes!=="" && x.ConceptMeta.AssociatedGenes!=="EMPTY_STRING"){
@@ -2595,6 +2630,9 @@ export default {
         }
       })
       this.associatedGenesIndividual = temp;
+      if(this.associatedGenesIndividualObject[searchTerm] === undefined){
+        this.associatedGenesIndividualObject[searchTerm] = this.associatedGenesIndividual; 
+      }
     },
     AddGenePanelDataIndividual: function(data, searchTerm){
       //new code
