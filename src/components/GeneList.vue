@@ -168,7 +168,7 @@
           <v-card-actions>
             <v-spacer></v-spacer>
             <v-btn color="primary" text @click="cancelDeleteGene">Cancel</v-btn>
-            <v-btn color="primary" text @click="deleteGene">Agree</v-btn>
+            <v-btn color="primary" text @click="deleteGene">Yes</v-btn>
 
           </v-card-actions>
         </v-card>
