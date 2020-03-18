@@ -469,7 +469,7 @@
 
                 </v-card-text>
               </v-card-title>
-              <v-card-text style="height: 430px;">
+              <v-card-text style="height: 430px;" id="termsReviewDialogContainer-target">
 
                 <!-- GTR review terms table -->
                 <div v-if="GtrReviewTerms.length && termsReviewDialogPage===1">
@@ -939,8 +939,8 @@
                   <v-btn small color="primary" @click="clearEditMode('save')"> Save </v-btn>
                 </div>
                 <div v-else-if="!editReviewSelectedTerms">
-                  <v-btn :disabled="termsReviewDialogPage===1" small color="primary" @click="--termsReviewDialogPage"><v-icon>arrow_left</v-icon> Back</v-btn>
-                  <v-btn v-if="termsReviewDialogPage!==4" :disabled="termsReviewDialogPage>3" small color="primary" @click="++termsReviewDialogPage"> Next <v-icon>arrow_right</v-icon></v-btn>
+                  <v-btn :disabled="termsReviewDialogPage===1" small color="primary" @click="navigateTermsReviewDialog('back', '#termsReviewDialogContainer-target')"><v-icon>arrow_left</v-icon> Back</v-btn>
+                  <v-btn v-if="termsReviewDialogPage!==4" :disabled="termsReviewDialogPage>3" small color="primary" @click="navigateTermsReviewDialog('next', 'termsReviewDialogContainer-target')"> Next <v-icon>arrow_right</v-icon></v-btn>
                   <v-btn v-if="termsReviewDialogPage===4" small color="primary" @click="selectReviewTerms"> Next <v-icon>arrow_right</v-icon></v-btn>
                 </div>
                 <v-spacer></v-spacer>
@@ -2167,6 +2167,9 @@ export default {
     },
 
     selectReviewTerms(){
+      let container = document.querySelector("#termsReviewDialogContainer-target"); 
+      container.scrollTop = 0
+
       this.checkIf_newNote_or_reReview();
 
       if(!this.GtrTermsAdded_temp.length && !this.phenolyzerTermsAdded_temp.leng && !this.hpoTermsAdded_temp.leng){
@@ -3147,7 +3150,17 @@ export default {
         this.phenolyzerTermsAdded_temp_editMode = []; 
         this.hpoTermsAdded_temp_editMode = []; 
       }, 
-
+      
+      navigateTermsReviewDialog(navigation, selector){
+        if(navigation==='back'){
+          this.termsReviewDialogPage = this.termsReviewDialogPage - 1; 
+        }
+        else if(navigation==='next'){
+          this.termsReviewDialogPage = this.termsReviewDialogPage + 1; 
+        }
+        let container = document.querySelector("#termsReviewDialogContainer-target"); 
+        container.scrollTop = 0
+      }
 
   }
 };
