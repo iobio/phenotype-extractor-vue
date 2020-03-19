@@ -363,18 +363,41 @@
                 <div v-if="termsReviewDialogPage===1">
                   <div class="pa-2">
                     <v-icon color="primary darken-1">sort</v-icon> GTR (Genetic Testing Registry)
+                    <v-badge
+                      :value="GtrTermsAdded.length +  GtrTermsAdded_temp.length"
+                      color="#888"
+                      left
+                      class="ml-7 mb-2"
+                    >
+                      <span slot="badge">{{ GtrTermsAdded.length +  GtrTermsAdded_temp.length }}</span>
+                    </v-badge>
                   </div>
                 </div>
                 <div v-if="termsReviewDialogPage===2">
                   <div class="pa-2">
-                    <!-- <img src="../assets/phenolyzer1.svg" alt="" height="28px" width="28px" >  -->
                     <svg height="28px" width="28px" style="margin-bottom:-8px" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 9.78 16.42"><defs></defs><title>Asset 7</title><g id="Layer_2" data-name="Layer 2"><g id="Layer_1-2" data-name="Layer 1"><polygon class="cls-1" points="0.5 14.57 9.28 15.84 9.28 0.58 0.5 1.85 0.5 14.57"/><text class="cls-2" transform="translate(2.04 11.92) scale(0.83 1)">P</text></g></g></svg>
                     Phenolyzer
+                    <v-badge
+                      :value="phenolyzerTermsAdded.length +  phenolyzerTermsAdded_temp.length"
+                      color="#888"
+                      left
+                      class="ml-7 mb-2"
+                    >
+                      <span slot="badge">{{ phenolyzerTermsAdded.length +  phenolyzerTermsAdded_temp.length }}</span>
+                    </v-badge>
                   </div>
                 </div>
                 <div v-if="termsReviewDialogPage===3">
                   <div class="pa-2">
                     <v-icon color="primary darken-1">speaker_notes</v-icon> HPO (Human Phenotype Ontology) powered by <a href="http://bejerano.stanford.edu/clinphen/">ClinPhen</a>
+                    <v-badge
+                      :value="hpoTermsAdded.length +  hpoTermsAdded_temp.length"
+                      color="#888"
+                      left
+                      class="ml-7 mb-2"
+                    >
+                      <span slot="badge">{{ hpoTermsAdded.length +  hpoTermsAdded_temp.length }}</span>
+                    </v-badge>
                   </div>
                 </div>
                 <div v-if="termsReviewDialogPage===4">
@@ -412,8 +435,19 @@
                         </v-chip> -->
                       </span>
                       <span v-for="(term, i) in GtrTermsAdded_temp" v-if="GtrTermsAdded_temp.length">
-                        <v-chip :disabled="reReviewClinicalNote && note_reselect_gtrTerms_Array.includes(term.DiseaseName)" class="mr-2" small outlined color="primary" close :key="i" @click:close="removeReviewTerms(term, i, 'GTR')">
+                        <v-chip :disabled="reReviewClinicalNote && note_reselect_gtrTerms_Array.includes(term.DiseaseName)" class="mr-2 mb-1" small outlined color="primary" close :key="i" @click:close="removeReviewTerms(term, i, 'GTR')">
                           {{ term.DiseaseName }}
+                        </v-chip>
+                      </span>
+                      <br>
+                      <span v-if="GtrTermsAdded.length +  GtrTermsAdded_temp.length >= 5"> 
+                        <v-chip
+                          class="ma-2"
+                          color="#ffeb3bbd"
+                          label
+                  				small
+                        >
+                          Select upto 5 conditions for optimal performance in GTR 
                         </v-chip>
                       </span>
                     </div>
@@ -444,7 +478,7 @@
                         </v-chip>
                       </span> -->
                       <span v-for="(term, i) in phenolyzerTermsAdded_temp" v-if="phenolyzerTermsAdded_temp.length">
-                        <v-chip :disabled="reReviewClinicalNote && note_reselect_phenolyzerTerms_Array.includes(term.value)" class="mr-2" small outlined color="primary" close :key="i" @click:close="removeReviewTerms(term, i, 'Phenolyzer')">
+                        <v-chip :disabled="reReviewClinicalNote && note_reselect_phenolyzerTerms_Array.includes(term.value)" class="mr-2 mb-1" small outlined color="primary" close :key="i" @click:close="removeReviewTerms(term, i, 'Phenolyzer')">
                           {{ term.value }}
                         </v-chip>
                       </span>
@@ -460,7 +494,7 @@
                         </v-chip>
                       </span> -->
                       <span v-for="(term, i) in hpoTermsAdded_temp" v-if="hpoTermsAdded_temp.length">
-                        <v-chip :disabled="reReviewClinicalNote && note_reselect_hpoTerms_Array.includes(term.HPO_Data)" class="mr-2" small outlined color="primary" close :key="i" @click:close="removeReviewTerms(term, i, 'HPO')">
+                        <v-chip :disabled="reReviewClinicalNote && note_reselect_hpoTerms_Array.includes(term.HPO_Data)" class="mr-2 mb-1" small outlined color="primary" close :key="i" @click:close="removeReviewTerms(term, i, 'HPO')">
                           {{ term.HPO_Data }}
                         </v-chip>
                       </span>
@@ -475,12 +509,12 @@
                 <div v-if="GtrReviewTerms.length && termsReviewDialogPage===1">
                   <div v-if="GtrReviewTerms.length===1">
                     <div >
-                      <v-expansion-panels v-model="gtr_terms_expansion_panel" multiple popout focusable :readonly="readonly">
+                      <v-expansion-panels v-model="gtr_terms_expansion_panel" multiple popout focusable>
                         <v-expansion-panel v-for="(item, i) in GtrReviewTerms" :key="i">
                           <v-expansion-panel-header expand-icon="none">
                             <div v-if="item.reviewTerms_gtr[0].general">
                               <div class="row">
-                                <div class="col-md-1">
+                                <!-- <div class="col-md-1">
 
                                   <div v-if="reReviewClinicalNote && note_reselect_gtrTerms_Array.includes(item.reviewTerms_gtr[0].DiseaseName)">
                                     <v-checkbox color="primary" style="margin-top:-6px; margin-bottom:-35px;" :disabled="reReviewClinicalNote && note_reselect_gtrTerms_Array.includes(item.reviewTerms_gtr[0].DiseaseName)"   v-model="true_checkboxVal"></v-checkbox>
@@ -489,9 +523,8 @@
                                     <v-checkbox color="primary" style="margin-top:-6px; margin-bottom:-35px;" :disabled="reReviewClinicalNote && note_reselect_gtrTerms_Array.includes(item.reviewTerms_gtr[0].DiseaseName)"   v-model="GtrTermsAdded_temp" :value="item.reviewTerms_gtr[0]"></v-checkbox>
                                   </div>
 
-                                  <!-- <v-checkbox color="primary" style="margin-top:-6px; margin-bottom:-35px;" v-model="GtrTermsAdded_temp" :value="item.reviewTerms_gtr[0]"></v-checkbox> -->
-                                </div>
-                                <div class="col-md-8">
+                                </div> -->
+                                <div class="col-md-9">
                                   <strong> {{ item.reviewTerms_gtr[0].DiseaseName}}</strong>
                                 </div>
                                 <div class="col-md-3" @click="toggle_expansion_panel(i, 'GTR')">
@@ -502,9 +535,9 @@
                             </div>
                             <div v-else>
                               <div class="row">
-                                <div class="col-md-1">
-                                </div>
-                                <div class="col-md-8">
+                                <!-- <div class="col-md-1">
+                                </div> -->
+                                <div class="col-md-9">
                                   <strong> {{ item.DiseaseName }} </strong>
                                 </div>
                                 <div class="col-md-3" @click="toggle_expansion_panel(i, 'GTR')">
@@ -549,15 +582,15 @@
                           <v-expansion-panel-header expand-icon="none">
                             <div v-if="item.reviewTerms_gtr[0].general">
                               <div class="row">
-                                <div class="col-md-1">
+                                <!-- <div class="col-md-1">
                                   <div v-if="reReviewClinicalNote && note_reselect_gtrTerms_Array.includes(item.reviewTerms_gtr[0].DiseaseName)">
                                     <v-checkbox color="primary" style="margin-top:-6px; margin-bottom:-35px;" :disabled="reReviewClinicalNote && note_reselect_gtrTerms_Array.includes(item.reviewTerms_gtr[0].DiseaseName)"   v-model="true_checkboxVal"></v-checkbox>
                                   </div>
                                   <div v-else>
                                     <v-checkbox color="primary" style="margin-top:-6px; margin-bottom:-35px;" :disabled="reReviewClinicalNote && note_reselect_gtrTerms_Array.includes(item.reviewTerms_gtr[0].DiseaseName)"   v-model="GtrTermsAdded_temp" :value="item.reviewTerms_gtr[0]"></v-checkbox>
                                   </div>
-                                </div>
-                                <div class="col-md-8">
+                                </div> -->
+                                <div class="col-md-9">
                                   <strong> {{ item.reviewTerms_gtr[0].DiseaseName}}</strong>
                                 </div>
                                 <div class="col-md-3" @click="toggle_expansion_panel(i, 'GTR')">
@@ -568,9 +601,9 @@
                             </div>
                             <div v-else>
                               <div class="row">
-                                <div class="col-md-1">
-                                </div>
-                                <div class="col-md-8">
+                                <!-- <div class="col-md-1">
+                                </div> -->
+                                <div class="col-md-9">
                                   <strong> {{ item.DiseaseName }} </strong>
                                 </div>
                                 <div class="col-md-3" @click="toggle_expansion_panel(i, 'GTR')">
@@ -631,7 +664,7 @@
                           <v-expansion-panel-header expand-icon="none">
                             <div v-if="item.reviewTerms_phenolyzer[0].general">
                               <div class="row">
-                                <div class="col-md-1">
+                                <!-- <div class="col-md-1">
 
                                   <div v-if="reReviewClinicalNote && note_reselect_phenolyzerTerms_Array.includes(item.reviewTerms_phenolyzer[0].value)">
                                     <v-checkbox color="primary" style="margin-top:-6px; margin-bottom:-35px;" :disabled="reReviewClinicalNote && note_reselect_phenolyzerTerms_Array.includes(item.reviewTerms_phenolyzer[0].value)"   v-model="true_checkboxVal"></v-checkbox>
@@ -640,9 +673,8 @@
                                     <v-checkbox color="primary" style="margin-top:-6px; margin-bottom:-35px;" :disabled="reReviewClinicalNote && note_reselect_phenolyzerTerms_Array.includes(item.reviewTerms_phenolyzer[0].value)"  v-model="phenolyzerTermsAdded_temp" :value="item.reviewTerms_phenolyzer[0]"></v-checkbox>
                                   </div>
 
-                                  <!-- <v-checkbox color="primary" style="margin-top:-6px; margin-bottom:-35px;" v-model="phenolyzerTermsAdded_temp" :value="item.reviewTerms_phenolyzer[0]"></v-checkbox> -->
-                                </div>
-                                <div class="col-md-8">
+                                </div> -->
+                                <div class="col-md-9">
                                   <strong> {{ item.reviewTerms_phenolyzer[0].value | to-firstCharacterUppercase}}</strong>
                                 </div>
                                 <div class="col-md-3" @click="toggle_expansion_panel(i, 'Phenolyzer')">
@@ -653,9 +685,9 @@
                             </div>
                             <div v-else>
                               <div class="row">
-                                <div class="col-md-1">
-                                </div>
-                                <div class="col-md-8">
+                                <!-- <div class="col-md-1">
+                                </div> -->
+                                <div class="col-md-9">
                                   <strong> {{ item.DiseaseName }} </strong>
                                 </div>
                                 <div class="col-md-3" @click="toggle_expansion_panel(i, 'Phenolyzer')">
@@ -703,16 +735,15 @@
                           <v-expansion-panel-header expand-icon="none">
                             <div v-if="item.reviewTerms_phenolyzer[0].general">
                               <div class="row">
-                                <div class="col-md-1">
+                                <!-- <div class="col-md-1">
                                   <div v-if="reReviewClinicalNote && note_reselect_phenolyzerTerms_Array.includes(item.reviewTerms_phenolyzer[0].value)">
                                     <v-checkbox color="primary" style="margin-top:-6px; margin-bottom:-35px;" :disabled="reReviewClinicalNote && note_reselect_phenolyzerTerms_Array.includes(item.reviewTerms_phenolyzer[0].value)"   v-model="true_checkboxVal"></v-checkbox>
                                   </div>
                                   <div v-else>
                                     <v-checkbox color="primary" style="margin-top:-6px; margin-bottom:-35px;" :disabled="reReviewClinicalNote && note_reselect_phenolyzerTerms_Array.includes(item.reviewTerms_phenolyzer[0].value)"  v-model="phenolyzerTermsAdded_temp" :value="item.reviewTerms_phenolyzer[0]"></v-checkbox>
                                   </div>
-                                  <!-- <v-checkbox color="primary" style="margin-top:-6px; margin-bottom:-35px;" v-model="phenolyzerTermsAdded_temp" :value="item.reviewTerms_phenolyzer[0]"></v-checkbox> -->
-                                </div>
-                                <div class="col-md-8">
+                                </div> -->
+                                <div class="col-md-9">
                                   <strong> {{ item.reviewTerms_phenolyzer[0].value | to-firstCharacterUppercase}}</strong>
                                 </div>
                                 <div class="col-md-3" @click="toggle_expansion_panel(i, 'Phenolyzer')">
@@ -723,9 +754,9 @@
                             </div>
                             <div v-else>
                               <div class="row">
-                                <div class="col-md-1">
-                                </div>
-                                <div class="col-md-8">
+                                <!-- <div class="col-md-1">
+                                </div> -->
+                                <div class="col-md-9">
                                   <strong> {{ item.DiseaseName }} </strong>
                                 </div>
                                 <div class="col-md-3" @click="toggle_expansion_panel(i, 'Phenolyzer')">
