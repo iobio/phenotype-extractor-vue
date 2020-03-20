@@ -443,9 +443,10 @@
                       <span v-if="GtrTermsAdded.length +  GtrTermsAdded_temp.length >= 5"> 
                         <v-chip
                           class="ma-2"
-                          color="#ffeb3bbd"
+                          color="#FAF4CA"
                           label
                   				small
+                          style="border-color: rgb(250, 244, 202);"
                         >
                           Select upto 5 conditions for optimal performance in GTR 
                         </v-chip>
@@ -2198,6 +2199,9 @@ export default {
     },
 
     selectReviewTerms(){
+      this.gtr_terms_expansion_panel = []; //ensures that all expansion panels are closed when opened for edit 
+      this.phenolyzer_terms_expansion_panel = []; 
+      
       let container = document.querySelector("#termsReviewDialogContainer-target"); 
       container.scrollTop = 0
 
@@ -3189,6 +3193,9 @@ export default {
         else if(navigation==='next'){
           this.termsReviewDialogPage = this.termsReviewDialogPage + 1; 
         }
+        this.gtr_terms_expansion_panel = []; //ensures that all expansion panels are closed when opened for edit 
+        this.phenolyzer_terms_expansion_panel = []; 
+
         let container = document.querySelector("#termsReviewDialogContainer-target"); 
         container.scrollTop = 0
       }
