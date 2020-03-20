@@ -391,12 +391,12 @@
                   <div class="pa-2">
                     <v-icon color="primary darken-1">speaker_notes</v-icon> HPO (Human Phenotype Ontology) powered by <a href="http://bejerano.stanford.edu/clinphen/">ClinPhen</a>
                     <v-badge
-                      :value="hpoTermsAdded.length +  hpoTermsAdded_temp.length"
+                      :value="hpoTermsAdded_temp.length"
                       color="#888"
                       left
                       class="ml-7 mb-2"
                     >
-                      <span slot="badge">{{ hpoTermsAdded.length +  hpoTermsAdded_temp.length }}</span>
+                      <span slot="badge">{{ hpoTermsAdded_temp.length }}</span>
                     </v-badge>
                   </div>
                 </div>
@@ -528,7 +528,8 @@
                                 <div class="col-md-9">
                                   <strong> {{ item.reviewTerms_gtr[0].DiseaseName}}</strong>
                                 </div>
-                                <div class="col-md-3" @click="toggle_expansion_panel(i, 'GTR')">
+                                <!-- @click="toggle_expansion_panel(i, 'GTR')" is removed which was opening the respective expansion panel  -->
+                                <div class="col-md-3"> 
                                   <span><small>{{item.reviewTerms_gtr.length}} more options</small></span>
                                   <span><v-icon>unfold_more</v-icon></span>
                                 </div>
@@ -541,7 +542,7 @@
                                 <div class="col-md-9">
                                   <strong> {{ item.DiseaseName }} </strong>
                                 </div>
-                                <div class="col-md-3" @click="toggle_expansion_panel(i, 'GTR')">
+                                <div class="col-md-3">
                                   <span><small>{{item.reviewTerms_gtr.length}} more options</small></span>
                                   <span><v-icon>unfold_more</v-icon></span>
                                 </div>
@@ -578,7 +579,8 @@
                   </div>
                   <div v-if="GtrReviewTerms.length>1">
                     <div>
-                      <v-expansion-panels v-model="gtr_terms_expansion_panel" multiple popout focusable :readonly="readonly">
+                      <!-- :readonly="readonly" is removed which was disabling the opening of expansion panel by clicking anywhere -->
+                      <v-expansion-panels v-model="gtr_terms_expansion_panel" multiple popout focusable>
                         <v-expansion-panel v-for="(item, i) in GtrReviewTerms" :key="i">
                           <v-expansion-panel-header expand-icon="none">
                             <div v-if="item.reviewTerms_gtr[0].general">
@@ -594,7 +596,7 @@
                                 <div class="col-md-9">
                                   <strong> {{ item.reviewTerms_gtr[0].DiseaseName}}</strong>
                                 </div>
-                                <div class="col-md-3" @click="toggle_expansion_panel(i, 'GTR')">
+                                <div class="col-md-3">
                                   <span><small>{{item.reviewTerms_gtr.length}} more options</small></span>
                                   <span><v-icon>unfold_more</v-icon></span>
                                 </div>
@@ -607,7 +609,7 @@
                                 <div class="col-md-9">
                                   <strong> {{ item.DiseaseName }} </strong>
                                 </div>
-                                <div class="col-md-3" @click="toggle_expansion_panel(i, 'GTR')">
+                                <div class="col-md-3">
                                   <span><small>{{item.reviewTerms_gtr.length}} more options</small></span>
                                   <span><v-icon>unfold_more</v-icon></span>
                                 </div>
@@ -660,7 +662,7 @@
                 <div v-if="phenolyzerReviewTerms.length && termsReviewDialogPage===2">
                   <div v-if="phenolyzerReviewTerms.length===1">
                     <div >
-                      <v-expansion-panels v-model="phenolyzer_terms_expansion_panel" multiple popout focusable :readonly="readonly">
+                      <v-expansion-panels v-model="phenolyzer_terms_expansion_panel" multiple popout focusable>
                         <v-expansion-panel v-for="(item, i) in phenolyzerReviewTerms" :key="i">
                           <v-expansion-panel-header expand-icon="none">
                             <div v-if="item.reviewTerms_phenolyzer[0].general">
@@ -678,7 +680,7 @@
                                 <div class="col-md-9">
                                   <strong> {{ item.reviewTerms_phenolyzer[0].value | to-firstCharacterUppercase}}</strong>
                                 </div>
-                                <div class="col-md-3" @click="toggle_expansion_panel(i, 'Phenolyzer')">
+                                <div class="col-md-3">
                                   <span><small>{{item.reviewTerms_phenolyzer.length}} more options</small></span>
                                   <span><v-icon>unfold_more</v-icon></span>
                                 </div>
@@ -691,7 +693,7 @@
                                 <div class="col-md-9">
                                   <strong> {{ item.DiseaseName }} </strong>
                                 </div>
-                                <div class="col-md-3" @click="toggle_expansion_panel(i, 'Phenolyzer')">
+                                <div class="col-md-3">
                                   <span><small>{{item.reviewTerms_gtr.length}} more options</small></span>
                                   <span><v-icon>unfold_more</v-icon></span>
                                 </div>
@@ -731,7 +733,7 @@
                   </div>
                   <div v-if="phenolyzerReviewTerms.length>1">
                     <div>
-                      <v-expansion-panels v-model="phenolyzer_terms_expansion_panel" multiple popout focusable :readonly="readonly">
+                      <v-expansion-panels v-model="phenolyzer_terms_expansion_panel" multiple popout focusable>
                         <v-expansion-panel v-for="(item, i) in phenolyzerReviewTerms" :key="i">
                           <v-expansion-panel-header expand-icon="none">
                             <div v-if="item.reviewTerms_phenolyzer[0].general">
@@ -747,7 +749,7 @@
                                 <div class="col-md-9">
                                   <strong> {{ item.reviewTerms_phenolyzer[0].value | to-firstCharacterUppercase}}</strong>
                                 </div>
-                                <div class="col-md-3" @click="toggle_expansion_panel(i, 'Phenolyzer')">
+                                <div class="col-md-3">
                                   <span><small>{{item.reviewTerms_phenolyzer.length}} more options</small></span>
                                   <span><v-icon>unfold_more</v-icon></span>
                                 </div>
@@ -760,7 +762,7 @@
                                 <div class="col-md-9">
                                   <strong> {{ item.DiseaseName }} </strong>
                                 </div>
-                                <div class="col-md-3" @click="toggle_expansion_panel(i, 'Phenolyzer')">
+                                <div class="col-md-3">
                                   <span><small>{{item.reviewTerms_gtr.length}} more options</small></span>
                                   <span><v-icon>unfold_more</v-icon></span>
                                 </div>
