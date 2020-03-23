@@ -50,11 +50,11 @@
                   </v-card-text>
                   <v-card-actions>
                     <v-spacer></v-spacer>
-                    <v-btn style="float:right" @click.native="onApplyGenes">
-                      Apply
-                    </v-btn>
                     <v-btn style="float:right" @click.native="copyPasteGenes = false, genesToApply = null">
                       Cancel
+                    </v-btn>
+                    <v-btn style="float:right" @click.native="onApplyGenes">
+                      Apply
                     </v-btn>
                   </v-card-actions>
                 </v-card>
@@ -167,7 +167,7 @@
           </v-card-text>
           <v-card-actions>
             <v-spacer></v-spacer>
-            <v-btn color="primary" text @click="cancelDeleteGene">Cancel</v-btn>
+            <v-btn color="primary" text @click="cancelDeleteGene">No</v-btn>
             <v-btn color="primary" text @click="deleteGene">Yes</v-btn>
 
           </v-card-actions>
