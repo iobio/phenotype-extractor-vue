@@ -72,9 +72,10 @@
                 <div style="width:140px" @mouseover="mouseOverGeneName(item.name)" @mouseleave="mouseLeaveGeneName">
                   <v-chip @click="showGeneInfo(item.name)"  dark>{{ item.name }}</v-chip>
                   <span v-if="item.isAssociatedGene!==undefined && item.isAssociatedGene===true"> <v-icon class="ml-1" style="font-size:20px" color="primary">verified_user</v-icon></span>
-                  <span v-if="hoveredGeneName===item.name" class="ml-1" >
+                  <!-- <span v-if="hoveredGeneName===item.name" class="ml-1" > -->
+                  <span class="ml-2" >
                     <v-icon color="red lighten-2" small @click="checkBeforeDeleteGene(item)" style="font-size:18px">
-                      cancel
+                      far fa-times-circle
                     </v-icon>
                   </span>
                 </div>
