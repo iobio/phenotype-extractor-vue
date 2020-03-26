@@ -126,7 +126,6 @@ import d3 from 'd3'
     }),
     watch: {
       geneToDelete: function(){
-        console.log("geneToDelete in summary", this.geneToDelete)
         this.deleteSelectedGene(); 
       }, 
       multipleSearchTerms: function(){
@@ -836,12 +835,10 @@ import d3 from 'd3'
             summaryGenes[i].sourceHPO = [];
           }
         })
-        // this.summaryGenes_temp = summaryGenes
         summaryGenes.map(x => {
           this.summaryGenes_temp.push(x); 
         })
-        console.log("this.summaryGenes_temp", this.summaryGenes_temp)
-        //todo: probably create a temp for summary genes so deleted gene can be removed from here. 
+        // create a temp for summary genes so deleted gene can be removed from here. 
         this.createSummaryTableDataFullList(summaryGenes);
       },
       createSummaryTableDataFullList(summaryGenes){
@@ -1084,7 +1081,7 @@ import d3 from 'd3'
           ...uniqueGTR, ...uniqueClinPhen, ...uniquePheno
         ]
         this.summaryTableArrayFullList = tableGenes;
-        console.log("this.summaryTableArrayFullList", this.summaryTableArrayFullList)
+        // console.log("this.summaryTableArrayFullList", this.summaryTableArrayFullList)
         this.$emit('summaryGenesFullList', this.summaryTableArrayFullList);
         // this.addSummaryGenesFullList(this.summaryTableArrayFullList);
         this.generateVennDiagramData(summaryObj);

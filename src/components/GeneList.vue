@@ -348,12 +348,13 @@ export default {
     },
 
     deleteGene(){
-      console.log("geneToDelete.name", this.geneToDelete.name)
-      let idx = this.summaryGenes.findIndex(x => x.name === this.geneToDelete.name);
       this.$emit("gene_to_delete", this.geneToDelete.name)
-      // this.summaryGenes.splice(idx, 1)
+      let idx = this.genes.findIndex(x => x === this.geneToDelete.name);
+      this.genes.splice(idx, 1)
       this.deleteGeneDialog = false;
       // this.$emit("UpdateListOnDelete", this.summaryGenes)
+      // let idx = this.summaryGenes.findIndex(x => x.name === this.geneToDelete.name);
+      // this.summaryGenes.splice(idx, 1)
     },
 
     getPhenotypFromHPO_id(id){
