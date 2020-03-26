@@ -26,7 +26,8 @@
         :AddedGenes="AddedGenes"
         @vennData="vennData($event)"
         :demoTextNote="analysis.payload.demoTextNote"
-        @VennDiagramData="VennDiagramData($event)">
+        @VennDiagramData="VennDiagramData($event)"
+        :geneToDelete="geneToDelete">
       </PhenotypeExtractor>
 
       <!-- <Phenotypes
@@ -41,7 +42,8 @@
         @importedGenes="importedGenes($event)"
         @UpdateListOnDelete="UpdateListOnDelete($event)"
         :phenotypeTerms="analysis.payload.phenotypes"
-        :venn_diag_data="venn_diag_data">
+        :venn_diag_data="venn_diag_data"
+        @gene_to_delete=gene_to_delete($event)>
       </GeneList>
     </v-layout>
   </v-container>
@@ -83,7 +85,8 @@ export default {
     PhenotypistState: null,
     AddedGenes:[],
     GtrPhenotypes: [],
-    venn_diag_data: {}
+    venn_diag_data: {},
+    geneToDelete: '', 
     // phenotypes: [
     //   [
     //     {
@@ -142,6 +145,9 @@ export default {
     },
     VennDiagramData(obj){
       this.analysis.payload.VennDiagramData = obj
+    }, 
+    gene_to_delete(gene){
+      this.geneToDelete = gene; 
     }
   }
 };

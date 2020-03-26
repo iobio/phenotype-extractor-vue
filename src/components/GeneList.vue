@@ -8,6 +8,7 @@
             <v-card-title>
               <strong>Genes</strong>
               <VennDiagram
+                v-show="summaryGenes.length"
                 :vennData="vennData">
               </VennDiagram>
 
@@ -347,10 +348,12 @@ export default {
     },
 
     deleteGene(){
+      console.log("geneToDelete.name", this.geneToDelete.name)
       let idx = this.summaryGenes.findIndex(x => x.name === this.geneToDelete.name);
-      this.summaryGenes.splice(idx, 1)
+      this.$emit("gene_to_delete", this.geneToDelete.name)
+      // this.summaryGenes.splice(idx, 1)
       this.deleteGeneDialog = false;
-      this.$emit("UpdateListOnDelete", this.summaryGenes)
+      // this.$emit("UpdateListOnDelete", this.summaryGenes)
     },
 
     getPhenotypFromHPO_id(id){

@@ -1177,7 +1177,8 @@
           @summaryGenesFullList="summaryGenesFullList($event)"
           :VennDiagramData="VennDiagramData"
           @emit_venn_data="emit_venn_data($event)"
-          @venn_diag_summaryObj="venn_diag_summaryObj($event)">
+          @venn_diag_summaryObj="venn_diag_summaryObj($event)"
+          :geneToDelete="geneToDelete">
         </SummaryTab>
         
         <!-- <v-snackbar
@@ -1243,6 +1244,9 @@ export default {
       type: Array
     },
     demoTextNote: {
+      type: String
+    }, 
+    geneToDelete: {
       type: String
     }
   },

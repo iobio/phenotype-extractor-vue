@@ -63,6 +63,7 @@ import { bus } from '../main';
 
     watch: {
       vennData(){
+        console.log("vennData", this.vennData)
         this.drawVennDiagram();
       }
     },
@@ -92,7 +93,7 @@ import { bus } from '../main';
     },
 
     mounted(){
-      // console.log("mounted");
+      console.log("mounted", this.vennData);
     },
 
     updated(){

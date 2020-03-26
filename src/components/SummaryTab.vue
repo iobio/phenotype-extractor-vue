@@ -70,6 +70,9 @@ import d3 from 'd3'
       },
       manuallyAddedGenes: {
         type: Array
+      }, 
+      geneToDelete: {
+        type: String
       }
     },
     data: () => ({
@@ -119,8 +122,13 @@ import d3 from 'd3'
       PhenolyzerFullGeneList: [],
       PhenolyzerGenesArrFullList: [],
       AddedGenes: [],
+      summaryGenes_temp: [],
     }),
     watch: {
+      geneToDelete: function(){
+        console.log("geneToDelete in summary", this.geneToDelete)
+        this.deleteSelectedGene(); 
+      }, 
       multipleSearchTerms: function(){
         // console.log("multipleSearchTerms", this.multipleSearchTerms)
       },
@@ -687,6 +695,7 @@ import d3 from 'd3'
         // }
       },
       performSetOperationsFullList: function(){
+        this.summaryGenes_temp = []; 
         //Create an array of GTR Gene Names
         var gtrGenes = this.gtrFullGeneList.map(gene => {
           return gene.name
@@ -827,7 +836,12 @@ import d3 from 'd3'
             summaryGenes[i].sourceHPO = [];
           }
         })
-
+        // this.summaryGenes_temp = summaryGenes
+        summaryGenes.map(x => {
+          this.summaryGenes_temp.push(x); 
+        })
+        console.log("this.summaryGenes_temp", this.summaryGenes_temp)
+        //todo: probably create a temp for summary genes so deleted gene can be removed from here. 
         this.createSummaryTableDataFullList(summaryGenes);
       },
       createSummaryTableDataFullList(summaryGenes){
@@ -1070,7 +1084,7 @@ import d3 from 'd3'
           ...uniqueGTR, ...uniqueClinPhen, ...uniquePheno
         ]
         this.summaryTableArrayFullList = tableGenes;
-        // console.log("this.summaryTableArrayFullList", this.summaryTableArrayFullList)
+        console.log("this.summaryTableArrayFullList", this.summaryTableArrayFullList)
         this.$emit('summaryGenesFullList', this.summaryTableArrayFullList);
         // this.addSummaryGenesFullList(this.summaryTableArrayFullList);
         this.generateVennDiagramData(summaryObj);
@@ -1110,6 +1124,11 @@ import d3 from 'd3'
           }
         ]
       },
+      deleteSelectedGene(){
+        let idx = this.summaryGenes_temp.findIndex(x => x.name === this.geneToDelete);
+        this.summaryGenes_temp.splice(idx, 1); 
+        this.createSummaryTableDataFullList(this.summaryGenes_temp)
+      }
     }
   }
 </script>
