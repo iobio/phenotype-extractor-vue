@@ -75,9 +75,11 @@
                   <span v-if="item.isAssociatedGene!==undefined && item.isAssociatedGene===true"> <v-icon class="ml-1" style="font-size:20px" color="primary">verified_user</v-icon></span>
                   <!-- <span v-if="hoveredGeneName===item.name" class="ml-1" > -->
                   <span class="ml-2" >
-                    <v-icon color="red lighten-2" small @click="checkBeforeDeleteGene(item)" style="font-size:18px">
-                      far fa-times-circle
-                    </v-icon>
+                    <v-btn icon color="red lighten-2 " @click="checkBeforeDeleteGene(item)">
+                      <v-icon small style="font-size:18px; opacity: 0.8">
+                        far fa-times-circle
+                      </v-icon>
+                    </v-btn>
                   </span>
                 </div>
               </template>
