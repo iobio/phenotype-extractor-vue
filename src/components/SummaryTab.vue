@@ -123,11 +123,12 @@ import d3 from 'd3'
       PhenolyzerGenesArrFullList: [],
       AddedGenes: [],
       summaryGenes_temp: [],
+      gene_to_be_deleted: ""
     }),
     watch: {
-      geneToDelete: function(){
-        this.deleteSelectedGene(); 
-      }, 
+      // geneToDelete: function(){
+      //   this.deleteSelectedGene(); 
+      // }, 
       multipleSearchTerms: function(){
         // console.log("multipleSearchTerms", this.multipleSearchTerms)
       },
@@ -215,6 +216,10 @@ import d3 from 'd3'
         this.HpoTerms = [];
         this.geneSearch = '';
       });
+      bus.$on("delete_gene", gene => {
+        this.gene_to_be_deleted = gene; 
+        this.deleteSelectedGene();
+      })
     },
     methods: {
       // ...mapActions(['addSummaryGenesFullList']),
@@ -1122,9 +1127,14 @@ import d3 from 'd3'
         ]
       },
       deleteSelectedGene(){
-        let idx = this.summaryGenes_temp.findIndex(x => x.name === this.geneToDelete);
+        let idx = this.summaryGenes_temp.findIndex(x => x.name === this.gene_to_be_deleted);
         this.summaryGenes_temp.splice(idx, 1); 
-        this.createSummaryTableDataFullList(this.summaryGenes_temp)
+        this.summaryGenes_temp = [...this.summaryGenes_temp];
+        var summaryGenes_list = []; 
+        this.summaryGenes_temp.map(x => {
+          summaryGenes_list.push(x); 
+        })
+        this.createSummaryTableDataFullList(summaryGenes_list)
       }
     }
   }

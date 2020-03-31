@@ -353,7 +353,8 @@ export default {
     },
 
     deleteGene(){
-      this.$emit("gene_to_delete", this.geneToDelete.name)
+      // this.$emit("gene_to_delete", this.geneToDelete.name)
+      bus.$emit("delete_gene", this.geneToDelete.name)
       let idx = this.genes.findIndex(x => x === this.geneToDelete.name);
       this.genes.splice(idx, 1)
       this.deleteGeneDialog = false;
