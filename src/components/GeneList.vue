@@ -74,14 +74,16 @@
                   <v-chip @click="showGeneInfo(item.name)"  dark>{{ item.name }}</v-chip>
                   <span v-if="item.isAssociatedGene!==undefined && item.isAssociatedGene===true"> <v-icon class="ml-1" style="font-size:20px" color="primary">verified_user</v-icon></span>
                   <!-- <span v-if="hoveredGeneName===item.name" class="ml-1" > -->
-                  <span class="ml-2" >
-                    <v-btn icon color="red lighten-2 " @click="checkBeforeDeleteGene(item)">
-                      <v-icon small style="font-size:18px; opacity: 0.8">
-                        far fa-times-circle
-                      </v-icon>
-                    </v-btn>
-                  </span>
                 </div>
+              </template>
+              <template v-slot:item.actions="{ item }">
+                <span>
+                  <v-btn icon color="red lighten-2 " @click="checkBeforeDeleteGene(item)">
+                    <v-icon small style="font-size:18px; opacity: 0.8">
+                      far fa-times-circle
+                    </v-icon>
+                  </v-btn>
+                </span>
               </template>
               <template v-slot:item.searchTermsPhenolyzer="{ item }">
         				<div v-for="(x, i) in item.searchTermsPhenolyzer">
@@ -171,8 +173,8 @@
           </v-card-text>
           <v-card-actions>
             <v-spacer></v-spacer>
-            <v-btn color="primary" text @click="cancelDeleteGene">No</v-btn>
             <v-btn color="primary" text @click="deleteGene">Yes</v-btn>
+            <v-btn color="primary" text @click="cancelDeleteGene">No</v-btn>
 
           </v-card-actions>
         </v-card>
@@ -235,6 +237,7 @@ export default {
         { text: 'Phenolyzer', value: 'searchTermsPhenolyzer', sortable: false, },
         { text: 'HPO', value: 'searchTermHpo', sortable: false, },
         { text: 'Added', value: 'isImportedGenes', sortable: false, },
+        { text: '', value: 'actions', sortable: false, },
       ],
       clickedGene: {},
       ncbiSummary: null,
