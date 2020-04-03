@@ -86,7 +86,12 @@
               </template>
               <template v-slot:item.actions="{ item }">
                 <span>
-                  <v-btn icon color="red lighten-2 " @click="checkBeforeDeleteGene(item)">
+                  <!-- <v-btn icon color="red lighten-2 " @click="checkBeforeDeleteGene(item)">
+                    <v-icon small style="font-size:18px; opacity: 0.8">
+                      far fa-times-circle
+                    </v-icon>
+                  </v-btn> -->
+                  <v-btn icon  @click="checkBeforeDeleteGene(item)">
                     <v-icon small style="font-size:18px; opacity: 0.8">
                       far fa-times-circle
                     </v-icon>
