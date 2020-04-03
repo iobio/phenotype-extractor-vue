@@ -553,15 +553,15 @@
                             <div class="reviewCard">
                               <v-card-text>
                                 <div v-for="sub in item.reviewTerms_gtr" class="row">
-                                  <div class="col-md-2">
+                                  <div class="col-md-1">
                                     <div v-if="reReviewClinicalNote && note_reselect_gtrTerms_Array.includes(sub.DiseaseName)">
-                                      <v-checkbox color="primary" style="margin-top:-2px; margin-bottom:-12px;" :disabled="reReviewClinicalNote && note_reselect_gtrTerms_Array.includes(sub.DiseaseName)"   v-model="true_checkboxVal"></v-checkbox>
+                                      <v-checkbox color="primary" style="margin-top:-5px; margin-bottom:-12px;" :disabled="reReviewClinicalNote && note_reselect_gtrTerms_Array.includes(sub.DiseaseName)"   v-model="true_checkboxVal"></v-checkbox>
                                     </div>
                                     <div v-else>
-                                      <v-checkbox color="primary" style="margin-top:-2px; margin-bottom:-12px;" v-model="GtrTermsAdded_temp" :value="sub"></v-checkbox>
+                                      <v-checkbox color="primary" style="margin-top:-5px; margin-bottom:-12px;" v-model="GtrTermsAdded_temp" :value="sub"></v-checkbox>
                                     </div>
                                   </div>
-                                  <div class="col-md-10">
+                                  <div class="col-md-11 close-margin-left-40">
                                     <span v-if="sub.general">
                                       <span class="highlighted_condition">{{ sub.DiseaseName }}</span>
                                     </span>
@@ -621,18 +621,18 @@
                               <v-card-text >
                                 <div v-for="sub in item.reviewTerms_gtr" >
                                   <div class="row">
-                                    <div class="col-md-2">
+                                    <div class="col-md-1">
 
                                       <div v-if="reReviewClinicalNote && note_reselect_gtrTerms_Array.includes(sub.DiseaseName)">
-                                        <v-checkbox color="primary" style="margin-top:-2px; margin-bottom:-12px;" :disabled="reReviewClinicalNote && note_reselect_gtrTerms_Array.includes(sub.DiseaseName)"   v-model="true_checkboxVal"></v-checkbox>
+                                        <v-checkbox color="primary" style="margin-top:-5px; margin-bottom:-12px;" :disabled="reReviewClinicalNote && note_reselect_gtrTerms_Array.includes(sub.DiseaseName)"   v-model="true_checkboxVal"></v-checkbox>
                                       </div>
                                       <div v-else>
-                                        <v-checkbox color="primary" style="margin-top:-2px; margin-bottom:-12px;" v-model="GtrTermsAdded_temp" :value="sub"></v-checkbox>
+                                        <v-checkbox color="primary" style="margin-top:-5px; margin-bottom:-12px;" v-model="GtrTermsAdded_temp" :value="sub"></v-checkbox>
                                       </div>
 
-                                      <!-- <v-checkbox color="primary" style="margin-top:-2px; margin-bottom:-12px;" :disabled="reReviewClinicalNote && note_reselect_gtrTerms_Array.includes(sub.DiseaseName)" v-model="GtrTermsAdded_temp" :value="sub"></v-checkbox> -->
+                                      <!-- <v-checkbox color="primary" style="margin-top:-5px; margin-bottom:-12px;" :disabled="reReviewClinicalNote && note_reselect_gtrTerms_Array.includes(sub.DiseaseName)" v-model="GtrTermsAdded_temp" :value="sub"></v-checkbox> -->
                                     </div>
-                                    <div class="col-md-10">
+                                    <div class="col-md-11 close-margin-left-40">
                                       <span v-if="sub.general">
                                         <span class="highlighted_condition">{{ sub.DiseaseName }}</span>
                                       </span>
@@ -705,17 +705,17 @@
                               <v-card-text >
                                 <div v-for="sub in item.reviewTerms_phenolyzer" >
                                   <div class="row">
-                                    <div class="col-md-2">
+                                    <div class="col-md-1">
                                       <div v-if="reReviewClinicalNote && note_reselect_phenolyzerTerms_Array.includes(sub.value)">
-                                        <v-checkbox color="primary" style="margin-top:-2px; margin-bottom:-12px;" :disabled="note_reselect_phenolyzerTerms_Array.includes(sub.value)"   v-model="true_checkboxVal"></v-checkbox>
+                                        <v-checkbox color="primary" style="margin-top:-5px; margin-bottom:-12px;" :disabled="note_reselect_phenolyzerTerms_Array.includes(sub.value)"   v-model="true_checkboxVal"></v-checkbox>
                                       </div>
                                       <div v-else>
-                                        <v-checkbox color="primary" style="margin-top:-2px; margin-bottom:-12px;" v-model="phenolyzerTermsAdded_temp" :value="sub"></v-checkbox>
+                                        <v-checkbox color="primary" style="margin-top:-5px; margin-bottom:-12px;" v-model="phenolyzerTermsAdded_temp" :value="sub"></v-checkbox>
                                       </div>
 
-                                      <!-- <v-checkbox color="primary" style="margin-top:-2px; margin-bottom:-12px;" v-model="phenolyzerTermsAdded_temp" :value="sub"></v-checkbox> -->
+                                      <!-- <v-checkbox color="primary" style="margin-top:-5px; margin-bottom:-12px;" v-model="phenolyzerTermsAdded_temp" :value="sub"></v-checkbox> -->
                                     </div>
-                                    <div class="col-md-10">
+                                    <div class="col-md-11 close-margin-left-40">
                                       <span v-if="sub.general">
                                         <span class="highlighted_condition">{{ sub.value | to-firstCharacterUppercase }}</span>
                                       </span>
@@ -775,18 +775,18 @@
                                 <!-- <div v-for="sub in searchFilter(item.reviewTerms_phenolyzer)" > -->
                                 <div v-for="sub in item.reviewTerms_phenolyzer" >
                                   <div class="row">
-                                    <div class="col-md-2">
+                                    <div class="col-md-1">
 
                                       <div v-if="reReviewClinicalNote && note_reselect_phenolyzerTerms_Array.includes(sub.value)">
-                                        <v-checkbox color="primary" style="margin-top:-2px; margin-bottom:-12px;" :disabled="note_reselect_phenolyzerTerms_Array.includes(sub.value)"   v-model="true_checkboxVal"></v-checkbox>
+                                        <v-checkbox color="primary" style="margin-top:-5px; margin-bottom:-12px;" :disabled="note_reselect_phenolyzerTerms_Array.includes(sub.value)"   v-model="true_checkboxVal"></v-checkbox>
                                       </div>
                                       <div v-else>
-                                        <v-checkbox color="primary" style="margin-top:-2px; margin-bottom:-12px;" v-model="phenolyzerTermsAdded_temp" :value="sub"></v-checkbox>
+                                        <v-checkbox color="primary" style="margin-top:-5px; margin-bottom:-12px;" v-model="phenolyzerTermsAdded_temp" :value="sub"></v-checkbox>
                                       </div>
 
-                                      <!-- <v-checkbox color="primary" style="margin-top:-2px; margin-bottom:-12px;" v-model="phenolyzerTermsAdded_temp" :value="sub"></v-checkbox> -->
+                                      <!-- <v-checkbox color="primary" style="margin-top:-5px; margin-bottom:-12px;" v-model="phenolyzerTermsAdded_temp" :value="sub"></v-checkbox> -->
                                     </div>
-                                    <div class="col-md-10">
+                                    <div class="col-md-11 close-margin-left-40">
                                       <span v-if="sub.general">
                                         <span class="highlighted_condition">{{ sub.value | to-firstCharacterUppercase }}</span>
                                       </span>
@@ -828,7 +828,7 @@
 
                               <!-- <v-checkbox color="primary" style="margin-top:-6px; margin-bottom:-35px;" v-model="hpoTermsAdded_temp" :value="term"></v-checkbox> -->
                             </div>
-                            <div class="col-md-11">
+                            <div class="col-md-11 close-margin-left-20">
                               <strong> {{ term.HPO_Data }}</strong>
                             </div>
                           </div>
@@ -3327,7 +3327,11 @@ export default {
     padding-bottom: 5px
     align-items: center
 
-
+.close-margin-left-40
+  margin-left: -40px
+  
+.close-margin-left-20
+  margin-left: -20px  
 
 </style>
 
