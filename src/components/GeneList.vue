@@ -70,15 +70,16 @@
               :items-per-page="15"
             >
               <template v-slot:item.name="{ item }">
+                <!-- <span v-if="hoveredGeneName===item.name" class="ml-1" > -->
+
                 <div class="row">
-                  <div class="col-xs-11 col-sm-11 col-md-6 col-lg-5">
+                  <div class="col-xs-11 col-sm-11 col-md-8 col-lg-6 col-xl-5">
                     <span style="width:240px" @mouseover="mouseOverGeneName(item.name)" @mouseleave="mouseLeaveGeneName">
                       <v-chip @click="showGeneInfo(item.name)"  dark>{{ item.name }}</v-chip>
-                      <!-- <span v-if="hoveredGeneName===item.name" class="ml-1" > -->
                     </span>
                   </div>
-                  <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1" style="margin-left:-20px">
-                    <span v-if="item.isAssociatedGene!==undefined && item.isAssociatedGene===true"> <v-icon class="ml-1" style="font-size:20px" color="primary">verified_user</v-icon></span>
+                  <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1 col-xl-1" style="margin-left:-20%">
+                    <span v-if="item.isAssociatedGene!==undefined && item.isAssociatedGene===true"> <v-icon class="ml-1 hidden-sm-and-down" style="font-size:20px" color="primary">verified_user</v-icon></span>
                   </div>
                 </div>
 
