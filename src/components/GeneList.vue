@@ -68,23 +68,20 @@
               :items="summaryGenes"
               :search="search"
               :items-per-page="15"
+              class="gene-list-table"
             >
               <template v-slot:item.name="{ item }">
                 <!-- <span v-if="hoveredGeneName===item.name" class="ml-1" > -->
-
-                <div class="row">
-                  <div class="col-xs-11 col-sm-11 col-md-8 col-lg-6 col-xl-5">
-                    <span style="width:240px" @mouseover="mouseOverGeneName(item.name)" @mouseleave="mouseLeaveGeneName">
-                      <v-chip @click="showGeneInfo(item.name)"  dark>{{ item.name }}</v-chip>
-                    </span>
-                  </div>
-                  <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1 col-xl-1" style="margin-left:-10%">
-                    <span v-if="item.isAssociatedGene!==undefined && item.isAssociatedGene===true"> <v-icon class="ml-1 hidden-sm-and-down" style="font-size:20px" color="primary">verified_user</v-icon></span>
-                  </div>
-                </div>
-
+                <span style="width:240px" @mouseover="mouseOverGeneName(item.name)" @mouseleave="mouseLeaveGeneName">
+                  <v-chip @click="showGeneInfo(item.name)"  dark>{{ item.name }}</v-chip>
+                </span>
               </template>
-              <template v-slot:item.actions="{ item }">
+              
+              <template v-slot:item.associatedGenesBadge="{ item }" style="width:10px !important">
+                <span v-if="item.isAssociatedGene!==undefined && item.isAssociatedGene===true"> <v-icon style="font-size:20px" color="primary">verified_user</v-icon></span>
+              </template>
+              
+              <template v-slot:item.actions="{ item }" style="width:10px !important">
                 <span>
                   <!-- <v-btn icon color="red lighten-2 " @click="checkBeforeDeleteGene(item)">
                     <v-icon small style="font-size:18px; opacity: 0.8">
@@ -94,7 +91,7 @@
                   <v-tooltip top>
                     <template v-slot:activator="{ on }">
                       <v-btn icon  @click="checkBeforeDeleteGene(item)" v-on="on">
-                        <v-icon small style="font-size:18px; opacity: 0.8">
+                        <v-icon small style="font-size:16px; opacity: 0.8">
                           delete
                         </v-icon>
                       </v-btn>
@@ -250,12 +247,14 @@ export default {
       search: '',
       summaryGenes: [],
       headers: [
-        { text: 'Gene', align: 'left', value: 'name', sortable: false, },
-        { text: 'GTR', value: 'searchTermsGtr', sortable: false, },
-        { text: 'Phenolyzer', value: 'searchTermsPhenolyzer', sortable: false, },
-        { text: 'HPO', value: 'searchTermHpo', sortable: false, },
-        { text: 'Added', value: 'isImportedGenes', sortable: false, },
-        { text: '', value: 'actions', sortable: false, },
+        // { text: '', align: 'left', value: 'padding_space', sortable: false, width: '1%'},
+        { text: 'Gene', align: 'left', value: 'name', sortable: false, width: '1%'},
+        { text: '', align: 'left', value: 'associatedGenesBadge', sortable: false, width: '7%'},
+        { text: 'GTR', value: 'searchTermsGtr', sortable: false, width: '18%'},
+        { text: 'Phenolyzer', value: 'searchTermsPhenolyzer', sortable: false, width: '18%'},
+        { text: 'HPO', value: 'searchTermHpo', sortable: false, width: '18%'},
+        { text: 'Added', value: 'isImportedGenes', sortable: false, width: '8%'},
+        { text: '', value: 'actions', sortable: false, width: '2%'},
       ],
       clickedGene: {},
       ncbiSummary: null,
@@ -440,5 +439,7 @@ export default {
 
   .i-chips--terms
     font-size: 12px !important
-
+  
+  .gene-list-table
+    table-layout : fixed
 </style>
