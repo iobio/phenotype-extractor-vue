@@ -78,7 +78,7 @@
               </template>
               
               <template v-slot:item.associatedGenesBadge="{ item }" style="width:10px !important">
-                <span v-if="item.isAssociatedGene!==undefined && item.isAssociatedGene===true"> <v-icon style="font-size:20px" color="primary">verified_user</v-icon></span>
+                <span v-if="item.isAssociatedGene!==undefined && item.isAssociatedGene===true"> <v-icon style="font-size:20px; margin-left: -18px" color="primary">verified_user</v-icon></span>
               </template>
               
               <template v-slot:item.actions="{ item }" style="width:10px !important">
