@@ -78,7 +78,7 @@
                       <v-chip @click="showGeneInfo(item.name)"  dark>{{ item.name }}</v-chip>
                     </span>
                   </div>
-                  <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1 col-xl-1" style="margin-left:-20%">
+                  <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1 col-xl-1" style="margin-left:-10%">
                     <span v-if="item.isAssociatedGene!==undefined && item.isAssociatedGene===true"> <v-icon class="ml-1 hidden-sm-and-down" style="font-size:20px" color="primary">verified_user</v-icon></span>
                   </div>
                 </div>
@@ -91,11 +91,16 @@
                       far fa-times-circle
                     </v-icon>
                   </v-btn> -->
-                  <v-btn icon  @click="checkBeforeDeleteGene(item)">
-                    <v-icon small style="font-size:18px; opacity: 0.8">
-                      far fa-times-circle
-                    </v-icon>
-                  </v-btn>
+                  <v-tooltip top>
+                    <template v-slot:activator="{ on }">
+                      <v-btn icon  @click="checkBeforeDeleteGene(item)" v-on="on">
+                        <v-icon small style="font-size:18px; opacity: 0.8">
+                          delete
+                        </v-icon>
+                      </v-btn>
+                    </template>
+                    <span>Delete gene</span>
+                  </v-tooltip>
                 </span>
               </template>
               <template v-slot:item.searchTermsPhenolyzer="{ item }">
