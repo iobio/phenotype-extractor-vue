@@ -364,12 +364,12 @@
                   <div class="pa-2">
                     <v-icon color="primary darken-1">sort</v-icon> GTR (Genetic Testing Registry)
                     <v-badge
-                      :value="GtrTermsAdded.length +  GtrTermsAdded_temp.length"
+                      :value="GtrTermsAdded_temp.length"
                       color="#888"
                       left
                       class="ml-7 mb-2"
                     >
-                      <span slot="badge">{{ GtrTermsAdded.length +  GtrTermsAdded_temp.length }}</span>
+                      <span slot="badge">{{ GtrTermsAdded_temp.length }}</span>
                     </v-badge>
                   </div>
                 </div>
@@ -378,12 +378,12 @@
                     <svg height="28px" width="28px" style="margin-bottom:-8px" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 9.78 16.42"><defs></defs><title>Asset 7</title><g id="Layer_2" data-name="Layer 2"><g id="Layer_1-2" data-name="Layer 1"><polygon class="cls-1" points="0.5 14.57 9.28 15.84 9.28 0.58 0.5 1.85 0.5 14.57"/><text class="cls-2" transform="translate(2.04 11.92) scale(0.83 1)">P</text></g></g></svg>
                     Phenolyzer
                     <v-badge
-                      :value="phenolyzerTermsAdded.length +  phenolyzerTermsAdded_temp.length"
+                      :value="phenolyzerTermsAdded_temp.length"
                       color="#888"
                       left
                       class="ml-7 mb-2"
                     >
-                      <span slot="badge">{{ phenolyzerTermsAdded.length +  phenolyzerTermsAdded_temp.length }}</span>
+                      <span slot="badge">{{ phenolyzerTermsAdded_temp.length }}</span>
                     </v-badge>
                   </div>
                 </div>
