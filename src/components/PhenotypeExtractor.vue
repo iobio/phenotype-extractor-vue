@@ -1985,7 +1985,7 @@ export default {
           })
     },
     openReviewDialog(){
-      this.textNotes = this.search.DiseaseName;
+      this.textNotes = this.search.DiseaseName.toLowerCase();
       // this.LevenshteinResults.push(this.search.DiseaseName)
       this.LevenshteinResults = [this.search.DiseaseName]; //when input is selected from typeahead
       // this.clinical_note_text.unshift(this.textNotes);
