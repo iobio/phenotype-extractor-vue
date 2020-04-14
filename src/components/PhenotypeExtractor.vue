@@ -1778,7 +1778,7 @@ export default {
       this.phenolyzerTermsAdded_temp = phenolyzer_terms_for_temp;
 
       note_details.hpo_terms.map(x => {
-        if(this.Hpo_searchTermArray.includes(x.HPO_Data)){
+        if(this.Hpo_searchTermArray.includes(x.hpoNumber)){
           this.note_reselect_hpoTerms_Array.push(x.HPO_Data);
           hpo_terms_for_temp.push(x);
         }
