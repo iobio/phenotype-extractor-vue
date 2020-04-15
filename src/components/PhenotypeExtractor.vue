@@ -430,12 +430,12 @@
                     <div v-if="GtrTermsAdded_temp.length>0">
                       <small  style="color: rgba(0, 0, 0, 0.6); font-size: 0.875rem" class="font-weight-thin">Terms Selected: </small>
                       <span v-for="(term, i) in GtrTermsAdded" v-if="GtrTermsAdded.length">
-                        <!-- <v-chip class="mr-2" small outlined color="primary">
-                          {{ term.DiseaseName }}
-                        </v-chip> -->
                       </span>
                       <span v-for="(term, i) in GtrTermsAdded_temp" v-if="GtrTermsAdded_temp.length">
-                        <v-chip :disabled="reReviewClinicalNote && note_reselect_gtrTerms_Array.includes(term.DiseaseName)" class="mr-2 mb-1" small outlined color="primary" close :key="i" @click:close="removeReviewTerms(term, i, 'GTR')">
+                        <v-chip v-if="reReviewClinicalNote && note_reselect_gtrTerms_Array.includes(term.DiseaseName)" class="mr-2 mb-1" small outlined color="primary" close :key="i" @click:close="removeSelectedTermFromReview(term, i, 'GTR')">
+                          {{ term.DiseaseName }}
+                        </v-chip>
+                        <v-chip v-else class="mr-2 mb-1" small outlined color="primary" close :key="i" @click:close="removeReviewTerms(term, i, 'GTR')">
                           {{ term.DiseaseName }}
                         </v-chip>
                       </span>
@@ -473,22 +473,13 @@
                   <div class="mt-1 mb-1" v-if="phenolyzerReviewTerms.length && termsReviewDialogPage===2">
                     <div v-if="phenolyzerTermsAdded_temp.length>0">
                       <small  style="color: rgba(0, 0, 0, 0.6); font-size: 0.875rem" class="font-weight-thin">Terms Selected: </small>
-                      <!-- <span v-for="(term, i) in phenolyzerTermsAdded" v-if="phenolyzerTermsAdded.length">
-                        <v-chip class="mr-2" small outlined color="primary">
-                          {{ term.value }}
-                        </v-chip>
-                      </span> -->
                       <span v-for="(term, i) in phenolyzerTermsAdded_temp" v-if="phenolyzerTermsAdded_temp.length">
-                        <v-chip v-if="reReviewClinicalNote && note_reselect_phenolyzerTerms_Array.includes(term.value)" class="mr-2 mb-1" small color="primary" close :key="i" @click:close="removeSelectedTermFromReview(term, i, 'phenolyzer')">
+                        <v-chip v-if="reReviewClinicalNote && note_reselect_phenolyzerTerms_Array.includes(term.value)" class="mr-2 mb-1" small outlined color="primary" close :key="i" @click:close="removeSelectedTermFromReview(term, i, 'phenolyzer')">
                           {{ term.value }}
                         </v-chip>
                         <v-chip v-else class="mr-2 mb-1" small outlined color="primary" close :key="i" @click:close="removeReviewTerms(term, i, 'phenolyzer')">
                           {{ term.value }}
                         </v-chip>
-                        <!-- <v-chip :disabled="reReviewClinicalNote && note_reselect_phenolyzerTerms_Array.includes(term.value)" class="mr-2 mb-1" small outlined color="primary" close :key="i" @click:close="removeReviewTerms(term, i, 'Phenolyzer')">
-                          {{ term.value }}
-                        </v-chip> -->
-
                       </span>
                     </div>
                   </div>
@@ -496,19 +487,16 @@
                   <div class="mt-1 mb-1" v-if="HpoReviewTerms.length && termsReviewDialogPage===3">
                     <div v-if="hpoTermsAdded_temp.length>0">
                       <small  style="color: rgba(0, 0, 0, 0.6); font-size: 0.875rem" class="font-weight-thin">Terms Selected: </small>
-                      <!-- <span v-for="(term, i) in hpoTermsAdded" v-if="hpoTermsAdded.length">
-                        <v-chip class="mr-2" small outlined color="primary">
+                      <span v-for="(term, i) in hpoTermsAdded_temp" v-if="hpoTermsAdded_temp.length">
+                        <v-chip v-if="reReviewClinicalNote && note_reselect_hpoTerms_Array.includes(term.HPO_Data)" class="mr-2 mb-1" small outlined color="primary" close :key="i" @click:close="removeSelectedTermFromReview(term, i, 'HPO')">
                           {{ term.HPO_Data }}
                         </v-chip>
-                      </span> -->
-                      <span v-for="(term, i) in hpoTermsAdded_temp" v-if="hpoTermsAdded_temp.length">
-                        <v-chip :disabled="reReviewClinicalNote && note_reselect_hpoTerms_Array.includes(term.HPO_Data)" class="mr-2 mb-1" small outlined color="primary" close :key="i" @click:close="removeReviewTerms(term, i, 'HPO')">
+                        <v-chip v-else class="mr-2 mb-1" small outlined color="primary" close :key="i" @click:close="removeReviewTerms(term, i, 'HPO')">
                           {{ term.HPO_Data }}
                         </v-chip>
                       </span>
                     </div>
                   </div>
-
                 </v-card-text>
               </v-card-title>
               <v-card-text style="height: 430px;" id="termsReviewDialogContainer-target">
@@ -2999,12 +2987,6 @@ export default {
         }
 
         else if(component === 'phenolyzer'){
-          console.log("am i eveen here?")
-          console.log("item", item)
-          console.log("this.phenolyzerTermsAdded: ", this.phenolyzerTermsAdded); 
-          console.log("this.Phenolyzer_searchTermsObj:", this.Phenolyzer_searchTermsObj); 
-          console.log("this.Phenolyzer_searchTermArray:", this.Phenolyzer_searchTermArray);
-
           if(this.has_saved_state){ //Ensures that genes of other tools are passed to the summary to built the list
             if(!this.gtrSavedState && !this.hpoSavedState){
               this.addDiseases(this.filteredDiseasesItemsArray);
@@ -3070,14 +3052,27 @@ export default {
       }, //end remove() method
       
       removeSelectedTermFromReview(term, i, component){
-        console.log("note_reselect_phenolyzerTerms_Array", this.note_reselect_phenolyzerTerms_Array)
-        console.log("term", term)
-        this.note_reselect_phenolyzerTerms_Array.splice(this.note_reselect_phenolyzerTerms_Array.indexOf(term.value), 1);
-        this.note_reselect_phenolyzerTerms_Array = [...this.note_reselect_phenolyzerTerms_Array];
-
-        var indx = this.Phenolyzer_searchTermArray.indexOf(term.value);
-        this.remove(term, indx, component)
-        this.removeReviewTerms(term, i, component)
+        if (component === 'GTR') {
+          this.note_reselect_gtrTerms_Array.splice(this.note_reselect_gtrTerms_Array.indexOf(term.DiseaseName), 1);
+          this.note_reselect_gtrTerms_Array = [...this.note_reselect_gtrTerms_Array];
+          var indx = this.Gtr_searchTermArray.indexOf(term.DiseaseName);
+          this.remove(term, indx, component);
+          this.removeReviewTerms(term, i, component);
+        }
+        else if (component === 'phenolyzer') {
+          this.note_reselect_phenolyzerTerms_Array.splice(this.note_reselect_phenolyzerTerms_Array.indexOf(term.value), 1);
+          this.note_reselect_phenolyzerTerms_Array = [...this.note_reselect_phenolyzerTerms_Array];
+          var indx = this.Phenolyzer_searchTermArray.indexOf(term.value);
+          this.remove(term, indx, component);
+          this.removeReviewTerms(term, i, component);
+        }
+        else if (component === 'HPO') {
+          this.note_reselect_hpoTerms_Array.splice(this.note_reselect_hpoTerms_Array.indexOf(term.HPO_Data), 1);
+          this.note_reselect_hpoTerms_Array = [...this.note_reselect_hpoTerms_Array];
+          var indx = this.Hpo_searchTermArray.indexOf(term.hpoNumber);
+          this.remove(term, indx, component);
+          this.removeReviewTerms(term, i, component);
+        }
       },
 
       removeReviewTerms(item, idx, component){
