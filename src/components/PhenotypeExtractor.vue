@@ -479,9 +479,16 @@
                         </v-chip>
                       </span> -->
                       <span v-for="(term, i) in phenolyzerTermsAdded_temp" v-if="phenolyzerTermsAdded_temp.length">
-                        <v-chip :disabled="reReviewClinicalNote && note_reselect_phenolyzerTerms_Array.includes(term.value)" class="mr-2 mb-1" small outlined color="primary" close :key="i" @click:close="removeReviewTerms(term, i, 'Phenolyzer')">
+                        <v-chip v-if="reReviewClinicalNote && note_reselect_phenolyzerTerms_Array.includes(term.value)" class="mr-2 mb-1" small color="primary" close :key="i" @click:close="removeSelectedTermFromReview(term, i, 'phenolyzer')">
                           {{ term.value }}
                         </v-chip>
+                        <v-chip v-else class="mr-2 mb-1" small outlined color="primary" close :key="i" @click:close="removeReviewTerms(term, i, 'phenolyzer')">
+                          {{ term.value }}
+                        </v-chip>
+                        <!-- <v-chip :disabled="reReviewClinicalNote && note_reselect_phenolyzerTerms_Array.includes(term.value)" class="mr-2 mb-1" small outlined color="primary" close :key="i" @click:close="removeReviewTerms(term, i, 'Phenolyzer')">
+                          {{ term.value }}
+                        </v-chip> -->
+
                       </span>
                     </div>
                   </div>
@@ -691,10 +698,10 @@
                                 <!-- <div class="col-md-1">
                                 </div> -->
                                 <div class="col-md-9">
-                                  <strong> {{ item.DiseaseName }} </strong>
+                                  <strong> {{ item.reviewTerms_phenolyzer[0].value | to-firstCharacterUppercase }} </strong>
                                 </div>
                                 <div class="col-md-3">
-                                  <span><small>{{item.reviewTerms_gtr.length}} more options</small></span>
+                                  <span><small>{{item.reviewTerms_phenolyzer.length}} more options</small></span>
                                   <span><v-icon>unfold_more</v-icon></span>
                                 </div>
                               </div>
@@ -705,9 +712,12 @@
                               <v-card-text >
                                 <div v-for="sub in item.reviewTerms_phenolyzer" >
                                   <div class="row">
-                                    <div class="col-md-1">
+                                    <!-- shows checkbox -->
+                                    <div class="col-md-1"> 
                                       <div v-if="reReviewClinicalNote && note_reselect_phenolyzerTerms_Array.includes(sub.value)">
-                                        <v-checkbox color="primary" style="margin-top:-5px; margin-bottom:-12px;" :disabled="note_reselect_phenolyzerTerms_Array.includes(sub.value)"   v-model="true_checkboxVal"></v-checkbox>
+                                        {{ sub.value }}
+                                        <!-- <v-checkbox color="primary" style="margin-top:-5px; margin-bottom:-12px;" :disabled="note_reselect_phenolyzerTerms_Array.includes(sub.value)"   v-model="true_checkboxVal"></v-checkbox> -->
+                                        <v-checkbox color="primary" style="margin-top:-5px; margin-bottom:-12px;" v-model="true_checkboxVal"></v-checkbox>
                                       </div>
                                       <div v-else>
                                         <v-checkbox color="primary" style="margin-top:-5px; margin-bottom:-12px;" v-model="phenolyzerTermsAdded_temp" :value="sub"></v-checkbox>
@@ -715,12 +725,15 @@
 
                                       <!-- <v-checkbox color="primary" style="margin-top:-5px; margin-bottom:-12px;" v-model="phenolyzerTermsAdded_temp" :value="sub"></v-checkbox> -->
                                     </div>
+                                    <!-- end show checkbox -->
+                                    <!-- show options -->
                                     <div class="col-md-11 close-margin-left-40">
                                       <span v-if="sub.general">
                                         <span class="highlighted_condition">{{ sub.value | to-firstCharacterUppercase }}</span>
                                       </span>
                                       <span v-else>{{ sub.value | to-firstCharacterUppercase }}</span>
                                     </div>
+                                    <!-- end show options -->
                                   </div>
                                 </div>
                               </v-card-text>
@@ -3012,6 +3025,12 @@ export default {
         }
 
         else if(component === 'phenolyzer'){
+          console.log("am i eveen here?")
+          console.log("item", item)
+          console.log("this.phenolyzerTermsAdded: ", this.phenolyzerTermsAdded); 
+          console.log("this.Phenolyzer_searchTermsObj:", this.Phenolyzer_searchTermsObj); 
+          console.log("this.Phenolyzer_searchTermArray:", this.Phenolyzer_searchTermArray);
+
           if(this.has_saved_state){ //Ensures that genes of other tools are passed to the summary to built the list
             if(!this.gtrSavedState && !this.hpoSavedState){
               this.addDiseases(this.filteredDiseasesItemsArray);
@@ -3075,13 +3094,24 @@ export default {
         this.toDeletePhenotype = {}; 
         this.deletePhenotypeConfirmationText = ''; 
       }, //end remove() method
+      
+      removeSelectedTermFromReview(term, i, component){
+        console.log("note_reselect_phenolyzerTerms_Array", this.note_reselect_phenolyzerTerms_Array)
+        console.log("term", term)
+        this.note_reselect_phenolyzerTerms_Array.splice(this.note_reselect_phenolyzerTerms_Array.indexOf(term.value), 1);
+        this.note_reselect_phenolyzerTerms_Array = [...this.note_reselect_phenolyzerTerms_Array];
+
+        var indx = this.Phenolyzer_searchTermArray.indexOf(term.value);
+        this.remove(term, indx, component)
+        this.removeReviewTerms(term, i, component)
+      },
 
       removeReviewTerms(item, idx, component){
         if(component === 'GTR'){
           this.GtrTermsAdded_temp.splice(idx,1);
           this.GtrTermsAdded_temp = [...this.GtrTermsAdded_temp];
         }
-        else if(component === 'Phenolyzer'){
+        else if(component === 'phenolyzer'){
           this.phenolyzerTermsAdded_temp.splice(idx,1);
           this.phenolyzerTermsAdded_temp = [...this.phenolyzerTermsAdded_temp];
         }
