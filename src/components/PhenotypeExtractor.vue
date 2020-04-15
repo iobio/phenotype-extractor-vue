@@ -710,14 +710,13 @@
                           <v-expansion-panel-content>
                             <div class="reviewCard">
                               <v-card-text >
-                                <div v-for="sub in item.reviewTerms_phenolyzer" >
+                                <div v-for="(sub, i) in item.reviewTerms_phenolyzer" >
                                   <div class="row">
                                     <!-- shows checkbox -->
                                     <div class="col-md-1"> 
                                       <div v-if="reReviewClinicalNote && note_reselect_phenolyzerTerms_Array.includes(sub.value)">
-                                        {{ sub.value }}
                                         <!-- <v-checkbox color="primary" style="margin-top:-5px; margin-bottom:-12px;" :disabled="note_reselect_phenolyzerTerms_Array.includes(sub.value)"   v-model="true_checkboxVal"></v-checkbox> -->
-                                        <v-checkbox color="primary" style="margin-top:-5px; margin-bottom:-12px;" v-model="true_checkboxVal"></v-checkbox>
+                                        <v-checkbox @click="removeSelectedTermFromReview(sub, i, 'phenolyzer')" color="primary" style="margin-top:-5px; margin-bottom:-12px;" v-model="true_checkboxVal"></v-checkbox>
                                       </div>
                                       <div v-else>
                                         <v-checkbox color="primary" style="margin-top:-5px; margin-bottom:-12px;" v-model="phenolyzerTermsAdded_temp" :value="sub"></v-checkbox>
@@ -3094,7 +3093,10 @@ export default {
         this.toDeletePhenotype = {}; 
         this.deletePhenotypeConfirmationText = ''; 
       }, //end remove() method
-      
+      checkIfWorking(term, value){
+        console.log("term", term)
+        console.log("value", value)
+      },
       removeSelectedTermFromReview(term, i, component){
         console.log("note_reselect_phenolyzerTerms_Array", this.note_reselect_phenolyzerTerms_Array)
         console.log("term", term)
