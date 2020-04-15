@@ -674,16 +674,6 @@
                           <v-expansion-panel-header expand-icon="none">
                             <div v-if="item.reviewTerms_phenolyzer[0].general">
                               <div class="row">
-                                <!-- <div class="col-md-1">
-
-                                  <div v-if="reReviewClinicalNote && note_reselect_phenolyzerTerms_Array.includes(item.reviewTerms_phenolyzer[0].value)">
-                                    <v-checkbox color="primary" style="margin-top:-6px; margin-bottom:-35px;" :disabled="reReviewClinicalNote && note_reselect_phenolyzerTerms_Array.includes(item.reviewTerms_phenolyzer[0].value)"   v-model="true_checkboxVal"></v-checkbox>
-                                  </div>
-                                  <div v-else>
-                                    <v-checkbox color="primary" style="margin-top:-6px; margin-bottom:-35px;" :disabled="reReviewClinicalNote && note_reselect_phenolyzerTerms_Array.includes(item.reviewTerms_phenolyzer[0].value)"  v-model="phenolyzerTermsAdded_temp" :value="item.reviewTerms_phenolyzer[0]"></v-checkbox>
-                                  </div>
-
-                                </div> -->
                                 <div class="col-md-9">
                                   <strong> {{ item.reviewTerms_phenolyzer[0].value | to-firstCharacterUppercase}}</strong>
                                 </div>
@@ -695,8 +685,6 @@
                             </div>
                             <div v-else>
                               <div class="row">
-                                <!-- <div class="col-md-1">
-                                </div> -->
                                 <div class="col-md-9">
                                   <strong> {{ item.reviewTerms_phenolyzer[0].value | to-firstCharacterUppercase }} </strong>
                                 </div>
@@ -715,16 +703,13 @@
                                     <!-- shows checkbox -->
                                     <div class="col-md-1"> 
                                       <div v-if="reReviewClinicalNote && note_reselect_phenolyzerTerms_Array.includes(sub.value)">
-                                        <!-- <v-checkbox color="primary" style="margin-top:-5px; margin-bottom:-12px;" :disabled="note_reselect_phenolyzerTerms_Array.includes(sub.value)"   v-model="true_checkboxVal"></v-checkbox> -->
                                         <v-checkbox @click="removeSelectedTermFromReview(sub, i, 'phenolyzer')" color="primary" style="margin-top:-5px; margin-bottom:-12px;" v-model="true_checkboxVal"></v-checkbox>
                                       </div>
                                       <div v-else>
                                         <v-checkbox color="primary" style="margin-top:-5px; margin-bottom:-12px;" v-model="phenolyzerTermsAdded_temp" :value="sub"></v-checkbox>
                                       </div>
-
-                                      <!-- <v-checkbox color="primary" style="margin-top:-5px; margin-bottom:-12px;" v-model="phenolyzerTermsAdded_temp" :value="sub"></v-checkbox> -->
+                                      <!-- end show checkbox -->
                                     </div>
-                                    <!-- end show checkbox -->
                                     <!-- show options -->
                                     <div class="col-md-11 close-margin-left-40">
                                       <span v-if="sub.general">
@@ -750,14 +735,6 @@
                           <v-expansion-panel-header expand-icon="none">
                             <div v-if="item.reviewTerms_phenolyzer[0].general">
                               <div class="row">
-                                <!-- <div class="col-md-1">
-                                  <div v-if="reReviewClinicalNote && note_reselect_phenolyzerTerms_Array.includes(item.reviewTerms_phenolyzer[0].value)">
-                                    <v-checkbox color="primary" style="margin-top:-6px; margin-bottom:-35px;" :disabled="reReviewClinicalNote && note_reselect_phenolyzerTerms_Array.includes(item.reviewTerms_phenolyzer[0].value)"   v-model="true_checkboxVal"></v-checkbox>
-                                  </div>
-                                  <div v-else>
-                                    <v-checkbox color="primary" style="margin-top:-6px; margin-bottom:-35px;" :disabled="reReviewClinicalNote && note_reselect_phenolyzerTerms_Array.includes(item.reviewTerms_phenolyzer[0].value)"  v-model="phenolyzerTermsAdded_temp" :value="item.reviewTerms_phenolyzer[0]"></v-checkbox>
-                                  </div>
-                                </div> -->
                                 <div class="col-md-9">
                                   <strong> {{ item.reviewTerms_phenolyzer[0].value | to-firstCharacterUppercase}}</strong>
                                 </div>
@@ -769,13 +746,11 @@
                             </div>
                             <div v-else>
                               <div class="row">
-                                <!-- <div class="col-md-1">
-                                </div> -->
                                 <div class="col-md-9">
-                                  <strong> {{ item.DiseaseName }} </strong>
+                                  <strong> {{ item.reviewTerms_phenolyzer[0].value | to-firstCharacterUppercase }} </strong>
                                 </div>
                                 <div class="col-md-3">
-                                  <span><small>{{item.reviewTerms_gtr.length}} more options</small></span>
+                                  <span><small>{{ item.reviewTerms_phenolyzer.length }} more options</small></span>
                                   <span><v-icon>unfold_more</v-icon></span>
                                 </div>
                               </div>
@@ -784,26 +759,26 @@
                           <v-expansion-panel-content>
                             <div class="reviewCard">
                               <v-card-text >
-                                <!-- <div v-for="sub in searchFilter(item.reviewTerms_phenolyzer)" > -->
-                                <div v-for="sub in item.reviewTerms_phenolyzer" >
+                                <div v-for="(sub, i) in item.reviewTerms_phenolyzer" >
                                   <div class="row">
                                     <div class="col-md-1">
-
+                                      <!-- shows checkbox -->
                                       <div v-if="reReviewClinicalNote && note_reselect_phenolyzerTerms_Array.includes(sub.value)">
-                                        <v-checkbox color="primary" style="margin-top:-5px; margin-bottom:-12px;" :disabled="note_reselect_phenolyzerTerms_Array.includes(sub.value)"   v-model="true_checkboxVal"></v-checkbox>
+                                        <v-checkbox @click="removeSelectedTermFromReview(sub, i, 'phenolyzer')" color="primary" style="margin-top:-5px; margin-bottom:-12px;" v-model="true_checkboxVal"></v-checkbox>
                                       </div>
                                       <div v-else>
                                         <v-checkbox color="primary" style="margin-top:-5px; margin-bottom:-12px;" v-model="phenolyzerTermsAdded_temp" :value="sub"></v-checkbox>
                                       </div>
-
-                                      <!-- <v-checkbox color="primary" style="margin-top:-5px; margin-bottom:-12px;" v-model="phenolyzerTermsAdded_temp" :value="sub"></v-checkbox> -->
+                                      <!-- end show checkbox -->
                                     </div>
+                                    <!-- show options -->
                                     <div class="col-md-11 close-margin-left-40">
                                       <span v-if="sub.general">
                                         <span class="highlighted_condition">{{ sub.value | to-firstCharacterUppercase }}</span>
                                       </span>
                                       <span v-else>{{ sub.value | to-firstCharacterUppercase }}</span>
                                     </div>
+                                    <!-- end show options -->
                                   </div>
                                 </div>
                               </v-card-text>
@@ -3093,10 +3068,7 @@ export default {
         this.toDeletePhenotype = {}; 
         this.deletePhenotypeConfirmationText = ''; 
       }, //end remove() method
-      checkIfWorking(term, value){
-        console.log("term", term)
-        console.log("value", value)
-      },
+      
       removeSelectedTermFromReview(term, i, component){
         console.log("note_reselect_phenolyzerTerms_Array", this.note_reselect_phenolyzerTerms_Array)
         console.log("term", term)
