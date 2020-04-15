@@ -510,16 +510,6 @@
                           <v-expansion-panel-header expand-icon="none">
                             <div v-if="item.reviewTerms_gtr[0].general">
                               <div class="row">
-                                <!-- <div class="col-md-1">
-
-                                  <div v-if="reReviewClinicalNote && note_reselect_gtrTerms_Array.includes(item.reviewTerms_gtr[0].DiseaseName)">
-                                    <v-checkbox color="primary" style="margin-top:-6px; margin-bottom:-35px;" :disabled="reReviewClinicalNote && note_reselect_gtrTerms_Array.includes(item.reviewTerms_gtr[0].DiseaseName)"   v-model="true_checkboxVal"></v-checkbox>
-                                  </div>
-                                  <div v-else>
-                                    <v-checkbox color="primary" style="margin-top:-6px; margin-bottom:-35px;" :disabled="reReviewClinicalNote && note_reselect_gtrTerms_Array.includes(item.reviewTerms_gtr[0].DiseaseName)"   v-model="GtrTermsAdded_temp" :value="item.reviewTerms_gtr[0]"></v-checkbox>
-                                  </div>
-
-                                </div> -->
                                 <div class="col-md-9">
                                   <strong> {{ item.reviewTerms_gtr[0].DiseaseName}}</strong>
                                 </div>
@@ -532,8 +522,6 @@
                             </div>
                             <div v-else>
                               <div class="row">
-                                <!-- <div class="col-md-1">
-                                </div> -->
                                 <div class="col-md-9">
                                   <strong> {{ item.DiseaseName }} </strong>
                                 </div>
@@ -547,10 +535,10 @@
                           <v-expansion-panel-content>
                             <div class="reviewCard">
                               <v-card-text>
-                                <div v-for="sub in item.reviewTerms_gtr" class="row">
+                                <div v-for="(sub, i) in item.reviewTerms_gtr" class="row">
                                   <div class="col-md-1">
                                     <div v-if="reReviewClinicalNote && note_reselect_gtrTerms_Array.includes(sub.DiseaseName)">
-                                      <v-checkbox color="primary" style="margin-top:-5px; margin-bottom:-12px;" :disabled="reReviewClinicalNote && note_reselect_gtrTerms_Array.includes(sub.DiseaseName)"   v-model="true_checkboxVal"></v-checkbox>
+                                      <v-checkbox @click="removeSelectedTermFromReview(sub, i, 'GTR')" color="primary" style="margin-top:-5px; margin-bottom:-12px;" v-model="true_checkboxVal"></v-checkbox>
                                     </div>
                                     <div v-else>
                                       <v-checkbox color="primary" style="margin-top:-5px; margin-bottom:-12px;" v-model="GtrTermsAdded_temp" :value="sub"></v-checkbox>
@@ -614,12 +602,13 @@
                           <v-expansion-panel-content>
                             <div class="reviewCard">
                               <v-card-text >
-                                <div v-for="sub in item.reviewTerms_gtr" >
+                                <div v-for="(sub, i) in item.reviewTerms_gtr" >
                                   <div class="row">
                                     <div class="col-md-1">
 
                                       <div v-if="reReviewClinicalNote && note_reselect_gtrTerms_Array.includes(sub.DiseaseName)">
-                                        <v-checkbox color="primary" style="margin-top:-5px; margin-bottom:-12px;" :disabled="reReviewClinicalNote && note_reselect_gtrTerms_Array.includes(sub.DiseaseName)"   v-model="true_checkboxVal"></v-checkbox>
+                                        <!-- <v-checkbox color="primary" style="margin-top:-5px; margin-bottom:-12px;" :disabled="reReviewClinicalNote && note_reselect_gtrTerms_Array.includes(sub.DiseaseName)"   v-model="true_checkboxVal"></v-checkbox> -->
+                                        <v-checkbox @click="removeSelectedTermFromReview(sub, i, 'GTR')" color="primary" style="margin-top:-5px; margin-bottom:-12px;" v-model="true_checkboxVal"></v-checkbox>
                                       </div>
                                       <div v-else>
                                         <v-checkbox color="primary" style="margin-top:-5px; margin-bottom:-12px;" v-model="GtrTermsAdded_temp" :value="sub"></v-checkbox>
@@ -795,7 +784,7 @@
                             <div class="col-md-1">
 
                               <div v-if="reReviewClinicalNote && note_reselect_hpoTerms_Array.includes(term.HPO_Data)">
-                                <v-checkbox color="primary" style="margin-top:-6px; margin-bottom:-35px;" :disabled="reReviewClinicalNote && note_reselect_hpoTerms_Array.includes(term.HPO_Data)"   v-model="true_checkboxVal"></v-checkbox>
+                                <v-checkbox color="primary" @click="removeSelectedTermFromReview(term, i, 'HPO')" style="margin-top:-6px; margin-bottom:-35px;" v-model="true_checkboxVal"></v-checkbox>
                               </div>
                               <div v-else>
                                 <v-checkbox color="primary" style="margin-top:-6px; margin-bottom:-35px;" v-model="hpoTermsAdded_temp" :value="term"></v-checkbox>
@@ -3057,21 +3046,21 @@ export default {
           this.note_reselect_gtrTerms_Array = [...this.note_reselect_gtrTerms_Array];
           var indx = this.Gtr_searchTermArray.indexOf(term.DiseaseName);
           this.remove(term, indx, component);
-          this.removeReviewTerms(term, i, component);
+          this.removeReviewTerms(term, indx, component);
         }
         else if (component === 'phenolyzer') {
           this.note_reselect_phenolyzerTerms_Array.splice(this.note_reselect_phenolyzerTerms_Array.indexOf(term.value), 1);
           this.note_reselect_phenolyzerTerms_Array = [...this.note_reselect_phenolyzerTerms_Array];
           var indx = this.Phenolyzer_searchTermArray.indexOf(term.value);
           this.remove(term, indx, component);
-          this.removeReviewTerms(term, i, component);
+          this.removeReviewTerms(term, indx, component);
         }
         else if (component === 'HPO') {
           this.note_reselect_hpoTerms_Array.splice(this.note_reselect_hpoTerms_Array.indexOf(term.HPO_Data), 1);
           this.note_reselect_hpoTerms_Array = [...this.note_reselect_hpoTerms_Array];
           var indx = this.Hpo_searchTermArray.indexOf(term.hpoNumber);
           this.remove(term, indx, component);
-          this.removeReviewTerms(term, i, component);
+          this.removeReviewTerms(term, indx, component);
         }
       },
 
