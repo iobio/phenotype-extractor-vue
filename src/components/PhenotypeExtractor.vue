@@ -919,16 +919,6 @@
 
 
               </v-card-text>
-              <v-card-text v-if="reReviewClinicalNote && disabledItems_alert" class="mt-2">
-                <span><hr></span>
-                <center>
-                  <small>
-                    <v-icon>warning</v-icon>
-                    The disabled items indicate that the search term is already reviewed and searched. You can delete it from the "Terms" panel.
-                    <v-icon @click="disabledItems_alert=false" style="font-size:14px">close</v-icon>
-                  </small>
-                </center>
-              </v-card-text>
               <v-card-actions class="mb-3">
                 <div class="flex-grow-1"></div>
                 <!-- <v-btn small color="blue darken-1" round outlined dark text @click="termsReviewDialog=false">Skip</v-btn> -->
