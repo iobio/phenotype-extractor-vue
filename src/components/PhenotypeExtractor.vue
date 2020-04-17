@@ -114,7 +114,7 @@
                             <span slot="badge">{{ Gtr_searchTermsObj.length }}</span>
                           </v-badge>
                         </span>
-                        <span v-if="Gtr_searchTermsObj.length>4" style="float:right; margin-right:20px">
+                        <span v-if="Gtr_searchTermsObj.length>3" style="float:right; margin-right:20px">
                           <v-icon color="grey lighten-1">unfold_more</v-icon>
                         </span>
                       </tr>
@@ -130,11 +130,15 @@
                         </v-skeleton-loader>
                       </tr>
                       <tr v-if="!showSearchTermsLoader && Gtr_searchTermsObj.length" v-for="(term, i) in Gtr_searchTermsObj" :key="i">
-                        <td class="i-text--left">
-                          <div @mouseover="mouseOverGtrTerm(term.DiseaseName)" @mouseleave="hovered_gtr_term=''">
+                        <td class="i-text--left i-terms-spacing" @mouseover="mouseOverGtrTerm(term.DiseaseName)" @mouseleave="hovered_gtr_term=''">
+                          <div >
                             <span>{{ term.DiseaseName }}</span>
-                            <span v-if="hovered_gtr_term === term.DiseaseName"><v-icon class="ml-1 terms_delete_btn" color="red lighten-2" @click="removePhenotypeShowDialog(term, i, 'GTR')">cancel</v-icon></span>
                           </div>
+                        </td>
+                        <td class="i-icon--spacing" @mouseover="mouseOverGtrTerm(term.DiseaseName)" @mouseleave="hovered_gtr_term=''">
+                          <span v-if="hovered_gtr_term === term.DiseaseName">
+                            <v-icon class="ml-1 terms_delete_btn" @click="removePhenotypeShowDialog(term, i, 'GTR')">delete</v-icon>
+                          </span>
                         </td>
                         <td >
                           <span v-if="term.gtrSearchStatus==='Searching'">
@@ -175,7 +179,7 @@
                             <span slot="badge">{{ Phenolyzer_searchTermsObj.length }}</span>
                           </v-badge>
                         </span>
-                        <span v-if="Phenolyzer_searchTermsObj.length>4" style="float:right; margin-right:7px">
+                        <span v-if="Phenolyzer_searchTermsObj.length>3" style="float:right; margin-right:7px">
                           <v-icon color="grey lighten-1">unfold_more</v-icon>
                         </span>
                         <!-- <div v-if="Phenolyzer_searchTermsObj.length>0">
@@ -193,10 +197,13 @@
                         </v-skeleton-loader>
                       </tr>
                       <tr v-if="!showSearchTermsLoader" v-for="(term, i) in Phenolyzer_searchTermsObj" :key="i">
-                        <td class="i-text--left" @mouseover="mouseOverPhenolyzerTerm(term.value)" @mouseleave="hovered_phenolyzer_term=''">
+                        <td class="i-text--left i-terms-spacing" @mouseover="mouseOverPhenolyzerTerm(term.value)" @mouseleave="hovered_phenolyzer_term=''">
                           <span>{{ term.value | to-firstCharacterUppercase }}</span>
-                          <span v-if="hovered_phenolyzer_term === term.value">
-                            <v-icon class="ml-1 terms_delete_btn" color="red lighten-2" @click="removePhenotypeShowDialog(term, i, 'phenolyzer')">cancel</v-icon>
+                        </td>
+                        <td class="i-icon--spacing" @mouseover="mouseOverPhenolyzerTerm(term.value)" @mouseleave="hovered_phenolyzer_term=''">
+                          <span v-show="hovered_phenolyzer_term === term.value">
+                            <!-- <v-icon class="ml-1 terms_delete_btn" color="red lighten-2" @click="removePhenotypeShowDialog(term, i, 'phenolyzer')">cancel</v-icon> -->
+                            <v-icon class="ml-1 terms_delete_btn" @click="removePhenotypeShowDialog(term, i, 'phenolyzer')">delete</v-icon>
                           </span>
                         </td>
                         <td>
@@ -265,10 +272,12 @@
                         </v-skeleton-loader>
                       </tr>
                       <tr v-if="!showSearchTermsLoader" v-for="(term, i) in Hpo_searchTermsObj" :key="i">
-                        <td class="i-text--left" @mouseover="mouseOverHpoTerm(term.HPO_Data)" @mouseleave="hovered_hpo_term=''">
+                        <td class="i-text--left i-terms-spacing"  @mouseover="mouseOverHpoTerm(term.HPO_Data)" @mouseleave="hovered_hpo_term=''">
                           <span>{{ term.HPO_Data }}</span>
+                        </td>
+                        <td class="i-icon--spacing" @mouseover="mouseOverHpoTerm(term.HPO_Data)" @mouseleave="hovered_hpo_term=''">
                           <span v-if="hovered_hpo_term === term.HPO_Data">
-                            <v-icon class="ml-1 terms_delete_btn" color="red lighten-2" @click="removePhenotypeShowDialog(term, i, 'HPO')">cancel</v-icon>
+                            <v-icon class="ml-1 terms_delete_btn" @click="removePhenotypeShowDialog(term, i, 'HPO')">delete</v-icon>
                           </span>
                         </td>
                         <td >
@@ -3244,8 +3253,9 @@ export default {
   //   color: white !important
 
   .terms_delete_btn
-    font-size: 18px !important
+    font-size: 16px !important
     cursor: pointer
+    opacity: 0.8
 
   .search_status_tbody
     display: block
@@ -3254,6 +3264,12 @@ export default {
 
   .i-text--left
     text-align: left
+  
+  .i-terms-spacing
+    width: 200px !important  
+    
+  .i-icon--spacing
+    width: 40px !important
 
   .i-clinical_note_text_div
     display: block
