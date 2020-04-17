@@ -849,11 +849,15 @@
                               </thead>
                               <tbody>
                                 <tr v-for="(term, i) in GtrTermsAdded_temp" v-if="GtrTermsAdded_temp.length">
-                                  <td class="i-text--left">
-                                    <div @mouseover="mouseOverGtrTerm_review(term.DiseaseName)" @mouseleave="hovered_gtr_term_review=''">
+                                  <td class="i-text--left i-terms-spacing" @mouseover="mouseOverGtrTerm_review(term.DiseaseName)" @mouseleave="hovered_gtr_term_review=''">
+                                    <div>
                                       <span> {{ term.DiseaseName }} </span>
-                                      <span v-if="hovered_gtr_term_review===term.DiseaseName && !note_reselect_gtrTerms_Array.includes(term.DiseaseName)"><v-icon class="terms_delete_btn" @click="removeReviewTerms(term, i, 'GTR')" style="font-size:18px" color="red lighten-2">cancel</v-icon></span>
                                     </div>
+                                  </td>
+                                  <td class="i-icon--spacing" @mouseover="mouseOverGtrTerm_review(term.DiseaseName)" @mouseleave="hovered_gtr_term_review=''">
+                                    <span v-if="hovered_gtr_term_review===term.DiseaseName && !note_reselect_gtrTerms_Array.includes(term.DiseaseName)">
+                                      <v-icon class="terms_delete_btn" @click="removeReviewTerms(term, i, 'GTR')">delete</v-icon>
+                                    </span>
                                   </td>
                                 </tr>
                               </tbody>
@@ -876,11 +880,14 @@
                               </thead>
                               <tbody>
                                 <tr v-for="(term, i) in phenolyzerTermsAdded_temp" v-if="phenolyzerTermsAdded_temp.length">
-                                  <td>
-                                    <div @mouseover="mouseOverPhenolyzerTerm_review(term.value)" @mouseleave="hovered_phenolyzer_term_review=''">
+                                  <td class="i-terms-spacing" @mouseover="mouseOverPhenolyzerTerm_review(term.value)" @mouseleave="hovered_phenolyzer_term_review=''">
+                                    <div >
                                       <span>{{ term.value }} </span>
-                                      <span v-if="hovered_phenolyzer_term_review===term.value && !note_reselect_phenolyzerTerms_Array.includes(term.value)"><v-icon class="terms_delete_btn" @click="removeReviewTerms(term, i, 'Phenolyzer')" style="font-size:18px" color="red lighten-2">cancel</v-icon></span>
                                     </div>
+                                  </td>
+                                  <td class="i-icon--spacing" @mouseover="mouseOverPhenolyzerTerm_review(term.value)" @mouseleave="hovered_phenolyzer_term_review=''">
+                                    <span v-if="hovered_phenolyzer_term_review===term.value && !note_reselect_phenolyzerTerms_Array.includes(term.value)">
+                                      <v-icon class="terms_delete_btn" @click="removeReviewTerms(term, i, 'phenolyzer')">delete</v-icon></span>
                                   </td>
                                 </tr>
                               </tbody>
@@ -902,15 +909,16 @@
                               </thead>
                               <tbody>
                                 <tr v-for="(term, i) in hpoTermsAdded_temp" v-if="hpoTermsAdded_temp.length">
-                                  <td>
-                                    <div @mouseover="mouseOverHpoTerm_review(term.HPO_Data)" @mouseleave="hovered_hpo_term_review=''">
+                                  <td class="i-terms-spacing" @mouseover="mouseOverHpoTerm_review(term.HPO_Data)" @mouseleave="hovered_hpo_term_review=''">
+                                    <div>
                                       <span>{{ term.HPO_Data }} </span>
-                                      <span v-if="hovered_hpo_term_review===term.HPO_Data && !note_reselect_hpoTerms_Array.includes(term.HPO_Data)"><v-icon class="terms_delete_btn" @click="removeReviewTerms(term, i, 'HPO')" style="font-size:18px" color="red lighten-2">cancel</v-icon></span>
                                     </div>
                                   </td>
-
-                                  <!-- <td> {{ term.HPO_Data }} </td>
-                                  <td ><v-icon class="terms_delete_btn" @click="removeReviewTerms(term, i, 'HPO')" style="font-size:18px" color="red lighten-2">cancel</v-icon></td> -->
+                                  <td class="i-icon--spacing" @mouseover="mouseOverHpoTerm_review(term.HPO_Data)" @mouseleave="hovered_hpo_term_review=''">
+                                    <span v-if="hovered_hpo_term_review===term.HPO_Data && !note_reselect_hpoTerms_Array.includes(term.HPO_Data)">
+                                      <v-icon class="terms_delete_btn" @click="removeReviewTerms(term, i, 'HPO')">delete</v-icon>
+                                    </span>
+                                  </td>
                                 </tr>
                               </tbody>
                             </table>
