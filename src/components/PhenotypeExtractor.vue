@@ -1105,9 +1105,8 @@
             </v-card-text>
             <v-card-actions>
               <v-spacer></v-spacer>
-              <v-btn color="primary" text @click="cancelRemovePhenotype">Cancel</v-btn>
-              <v-btn color="primary" text @click="remove(toDeletePhenotype.item, toDeletePhenotype.idx, toDeletePhenotype.component)">Agree</v-btn>
-
+              <v-btn color="primary" text @click="remove(toDeletePhenotype.item, toDeletePhenotype.idx, toDeletePhenotype.component)">Yes</v-btn>
+              <v-btn color="primary" text @click="cancelRemovePhenotype">No</v-btn>
             </v-card-actions>
           </v-card>
         </v-dialog>

@@ -73,7 +73,7 @@
               <template v-slot:item.name="{ item }">
                 <!-- <span v-if="hoveredGeneName===item.name" class="ml-1" > -->
                 <span style="width:240px" @mouseover="mouseOverGeneName(item.name)" @mouseleave="mouseLeaveGeneName">
-                  <v-chip @click="showGeneInfo(item.name)"  dark>{{ item.name }}</v-chip>
+                  <v-chip @click="showGeneInfo(item)"  dark>{{ item.name }}</v-chip>
                 </span>
               </template>
               
