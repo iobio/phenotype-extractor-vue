@@ -81,6 +81,21 @@
                 <span v-if="item.isAssociatedGene!==undefined && item.isAssociatedGene===true"> <v-icon style="font-size:20px; margin-left: -18px" color="primary">verified_user</v-icon></span>
               </template>
               
+              <template v-slot:item.info="{ item }" style="width:10px !important">
+                <span>
+                  <v-tooltip top>
+                    <template v-slot:activator="{ on }">
+                      <v-btn icon  @click="showGeneInfo(item)" v-on="on">
+                        <v-icon small style="font-size:16px; opacity: 0.8">
+                          open_in_new
+                        </v-icon>
+                      </v-btn>
+                    </template>
+                    <span>Gene info</span>
+                  </v-tooltip>                  
+                </span>
+              </template>
+              
               <template v-slot:item.actions="{ item }" style="width:10px !important">
                 <span>
                   <!-- <v-btn icon color="red lighten-2 " @click="checkBeforeDeleteGene(item)">
@@ -195,7 +210,31 @@
         </v-card>
       </v-dialog>
       <!--End Modal to confirm gene deletion -->
+      
+      <!-- Modal to show gene info -->
+      <v-dialog v-model="geneInfoDialog" scrollable max-width="800px">
+       <v-card>
+         <v-card-title>
+           <span class="headline">{{ clickedGene.name }}</span>
+         </v-card-title>
+         <v-divider></v-divider>
+         <v-card-text v-if="ncbiSummary!==null ">
+          <GeneCard
+            :gene="clickedGene.name"
+            :ncbiSummary="ncbiSummary"
+            :geneData="clickedGene"
+            >
+          </GeneCard>
+         </v-card-text>
+         <v-divider></v-divider>
+         <v-card-actions>
+           <v-spacer></v-spacer>
+           <v-btn color="primary" text @click="geneInfoDialog = false">Close</v-btn>
+         </v-card-actions>
+       </v-card>
+     </v-dialog>
 
+      <!-- End modal to show gene info -->
     </v-layout>
   </v-container>
 </template>
@@ -211,13 +250,15 @@ import HPO_Terms from '../data/HPO_Terms';
 import HpoTermsData from '../data/HpoTermsData.json';
 import hpo_genes from '../data/hpo_genes.json';
 import Phenotypes from './Phenotypes.vue';
-import VennDiagram from './VennDiagram.vue'
+import VennDiagram from './VennDiagram.vue'; 
+import GeneCard from './GeneCard.vue'
 
 export default {
   name: 'GeneList',
   components: {
     Phenotypes,
-    VennDiagram
+    VennDiagram, 
+    GeneCard
   },
   props: {
     summaryGeneList: {
@@ -254,7 +295,8 @@ export default {
         { text: 'Phenolyzer', value: 'searchTermsPhenolyzer', sortable: false, width: '18%'},
         { text: 'HPO', value: 'searchTermHpo', sortable: false, width: '18%'},
         { text: 'Added', value: 'isImportedGenes', sortable: false, width: '8%'},
-        { text: '', value: 'actions', sortable: false, width: '2%'},
+        { text: '', align: 'right', value: 'info', sortable: false, width: '1%'},
+        { text: '', align: 'left', value: 'actions', sortable: false, width: '1%'},
       ],
       clickedGene: {},
       ncbiSummary: null,
@@ -278,6 +320,7 @@ export default {
       phenotypes: [],
       vennData: {},
       hoveredGeneName: '',
+      geneInfoDialog: false, 
     }
   },
 
@@ -318,8 +361,8 @@ export default {
       geneModel.promiseGetNCBIGeneSummary(gene.name)
       .then((data)=>{
         this.ncbiSummary = data;
+        this.geneInfoDialog = true;
       })
-      this.dialog = true;
     },
 
     onApplyGenes(){

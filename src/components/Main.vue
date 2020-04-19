@@ -4,6 +4,7 @@
       text-center
       wrap
     >
+
     <div style="height: 180px">
 
     </div>
@@ -68,14 +69,13 @@ var model = new Model();
 import Phenotypes from './Phenotypes.vue';
 
 
-
 export default {
   name: 'Main',
   components: {
     GtrSearch,
     PhenotypeExtractor,
     GeneList,
-    Phenotypes
+    Phenotypes,
   },
   data: () => ({
     gtrGenes: [],

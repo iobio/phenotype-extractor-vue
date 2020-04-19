@@ -22,6 +22,7 @@
     "core-js": "^3.3.2",
     "d3": "^3.5.17",
     "file-system": "^2.2.2",
+    "ideogram": "^1.18.0",
     "iobio-api-client": "^0.6.0",
     "jquery": "^3.2.1",
     "material-design-icons-iconfont": "^5.0.1",
