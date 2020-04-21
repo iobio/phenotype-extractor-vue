@@ -1710,8 +1710,11 @@ export default {
           var idx = this.individualGenesSearchTermHpo[x].findIndex(obj=>obj.name === geneName);
           if(this.individualGenesSearchTermHpo.hasOwnProperty(x)){
             // var y = this.individualGenesSearchTermHpo[x];
+            var hpoPhenotype = this.getHpoPhenotype(x); 
+            this.getHpoPhenotype(x);
             arr.push({
               searchTerm: x,
+              hpoPhenotype: hpoPhenotype
             })
           }
         })
@@ -1719,6 +1722,12 @@ export default {
       return arr;
     },
 
+    getHpoPhenotype(id){
+      var idx = this.HPO_Terms_data.indexOf(id);
+      var phenotype = this.HPO_Phenotypes_data[idx];
+      return phenotype; 
+    }, 
+    
     reSelectClinicalNote(note, idx){
       this.reReviewClinicalNote = true;
       this.textNotes = note;

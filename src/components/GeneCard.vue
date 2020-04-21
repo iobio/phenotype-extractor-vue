@@ -55,7 +55,6 @@
     },
     methods:{
       drawChromosome: function(){
-        console.log("geneData", this.geneData)
 
         var config = {
           organism: 'human',
