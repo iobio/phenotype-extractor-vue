@@ -78,7 +78,14 @@
               </template>
               
               <template v-slot:item.associatedGenesBadge="{ item }" style="width:10px !important">
-                <span v-if="item.isAssociatedGene!==undefined && item.isAssociatedGene===true"> <v-icon style="font-size:20px; margin-left: -18px" color="primary">verified_user</v-icon></span>
+                <span v-if="item.isAssociatedGene!==undefined && item.isAssociatedGene===true"> 
+                  <v-tooltip top>
+                    <template v-slot:activator="{ on }">
+                      <v-icon style="font-size:20px; margin-left: -18px" color="primary" v-on="on">verified_user</v-icon>
+                    </template>
+                    <span>This gene is reported to be associated with the selected condition in GTR.</span>
+                  </v-tooltip>
+                </span>
               </template>
               
               <template v-slot:item.info="{ item }" style="width:10px !important">
