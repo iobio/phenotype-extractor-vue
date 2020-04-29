@@ -184,7 +184,8 @@ export default {
                 bus.$emit("NoGenesPhenolyzerRequest", searchTerm);
               }
             } else {
-              self.tempItems = geneModel.phenolyzerGenes;
+              // self.tempItems = geneModel.phenolyzerGenes;
+              self.tempItems = geneModel.phenolyzerGenes.slice(0,100); //limit to 100 genes returned for each term. 
               // console.log("phenolyzer self.tempItems", self.tempItems)
               this.$emit("phenolyzerIndividualGenes", self.tempItems)
               self.multipleSearchTerms.push(searchTerm);
