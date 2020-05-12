@@ -1,6 +1,6 @@
 {
   "name": "iobio-phenotype-extractor-vue",
-  "version": "1.0.31",
+  "version": "2.1.1",
   "private": false,
   "main": "./dist/iobio.common.js",
   "files": [

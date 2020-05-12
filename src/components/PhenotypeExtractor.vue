@@ -3255,7 +3255,9 @@ export default {
   //   color: rgba(0, 0, 0, 0.6)
 
   .reviewCard
-    height: 250px
+    min-height: 80px
+    max-height: 250px
+    margin-bottom: -15px
     overflow-y: auto
 
   .open>.dropdown-menu
