@@ -202,7 +202,6 @@
                         </td>
                         <td class="i-icon--spacing" @mouseover="mouseOverPhenolyzerTerm(term.value)" @mouseleave="hovered_phenolyzer_term=''">
                           <span v-show="hovered_phenolyzer_term === term.value">
-                            <!-- <v-icon class="ml-1 terms_delete_btn" color="red lighten-2" @click="removePhenotypeShowDialog(term, i, 'phenolyzer')">cancel</v-icon> -->
                             <v-icon class="ml-1 terms_delete_btn" @click="removePhenotypeShowDialog(term, i, 'phenolyzer')">delete</v-icon>
                           </span>
                         </td>
@@ -461,22 +460,6 @@
                         </v-chip>
                       </span>
                     </div>
-                    <!-- <div v-else>
-                      <center>
-                        <v-alert
-                          v-model="expansion_hint_alert"
-                          dismissible
-                          color="cyan"
-                          border="left"
-                          elevation="2"
-                          colored-border
-                          icon="rate_review"
-                          class="ml-10 mb-2"
-                        >
-                          <small> Review and select terms to be searched in each of the following tools: GTR, Phenolyzer, HPO.</small>
-                        </v-alert>
-                      </center>
-                    </div> -->
                   </div>
 
                   <div class="mt-1 mb-1" v-if="phenolyzerReviewTerms.length && termsReviewDialogPage===2">
@@ -1151,20 +1134,6 @@
           :geneToDelete="geneToDelete">
         </SummaryTab>
         
-        <!-- <v-snackbar
-          v-model="showGeneListReadySnackbar"
-          timeout="4000"
-        >
-          Gene list is ready 
-          <v-btn
-            color="blue"
-            text
-            @click="snackbar = false"
-          >
-            Close
-          </v-btn>
-        </v-snackbar>
- -->
 
     <!-- </v-layout> -->
   </v-container>
