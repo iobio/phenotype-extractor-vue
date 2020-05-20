@@ -1226,7 +1226,7 @@ export default {
     NewOptionFromGeneralTerm: '',
     GtrReviewTerms: [],
     phenolyzerReviewTerms: [],
-    hpoLookupUrl:  "https://nv-prod.iobio.io/hpo/hot/lookup/?term=",
+    hpoLookupUrl:  "https://backend.iobio.io/hpo/hot/lookup/?term=",
     GtrTermsAdded: [],
     phenolyzerTermsAdded: [],
     loadingDialog: false,
@@ -1925,7 +1925,7 @@ export default {
       // this.HpoReviewTerms = hpoTermArr;
     },
     setPhenolyzerTerms(str){
-      return fetch(`https://nv-prod.iobio.io/hpo/hot/lookup/?term=${str}`)
+      return fetch(`https://backend.iobio.io/hpo/hot/lookup/?term=${str}`)
           .then(response => response.json())
           .then(data => {
             // console.log(data);
