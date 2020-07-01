@@ -500,7 +500,7 @@
                       <v-expansion-panels v-model="gtr_terms_expansion_panel" multiple popout focusable>
                         <v-expansion-panel v-for="(item, i) in GtrReviewTerms" :key="i">
                           <v-expansion-panel-header expand-icon="none">
-                            <div v-if="item.reviewTerms_gtr[0].general">
+                            <div v-if="item.reviewTerms_gtr.length && item.reviewTerms_gtr[0].general!==undefined && item.reviewTerms_gtr[0].general">
                               <div class="row">
                                 <div class="col-md-9">
                                   <strong> {{ item.reviewTerms_gtr[0].DiseaseName}}</strong>
@@ -558,7 +558,7 @@
                       <v-expansion-panels v-model="gtr_terms_expansion_panel" multiple popout focusable>
                         <v-expansion-panel v-for="(item, i) in GtrReviewTerms" :key="i">
                           <v-expansion-panel-header expand-icon="none">
-                            <div v-if="item.reviewTerms_gtr[0].general">
+                            <div v-if="item.reviewTerms_gtr.length && item.reviewTerms_gtr[0].general!==undefined && item.reviewTerms_gtr[0].general">
                               <div class="row">
                                 <!-- <div class="col-md-1">
                                   <div v-if="reReviewClinicalNote && note_reselect_gtrTerms_Array.includes(item.reviewTerms_gtr[0].DiseaseName)">
@@ -641,7 +641,7 @@
                       <v-expansion-panels v-model="phenolyzer_terms_expansion_panel" multiple popout focusable>
                         <v-expansion-panel v-for="(item, i) in phenolyzerReviewTerms" :key="i">
                           <v-expansion-panel-header expand-icon="none">
-                            <div v-if="item.reviewTerms_phenolyzer[0].general">
+                            <div v-if="item.reviewTerms_phenolyzer.length && item.reviewTerms_phenolyzer[0].general!==undefined && item.reviewTerms_phenolyzer[0].general">
                               <div class="row">
                                 <div class="col-md-9">
                                   <strong> {{ item.reviewTerms_phenolyzer[0].value | to-firstCharacterUppercase}}</strong>
@@ -702,7 +702,7 @@
                       <v-expansion-panels v-model="phenolyzer_terms_expansion_panel" multiple popout focusable>
                         <v-expansion-panel v-for="(item, i) in phenolyzerReviewTerms" :key="i">
                           <v-expansion-panel-header expand-icon="none">
-                            <div v-if="item.reviewTerms_phenolyzer[0].general">
+                            <div v-if="item.reviewTerms_phenolyzer.length && item.reviewTerms_phenolyzer[0].general!==undefined && item.reviewTerms_phenolyzer[0].general">
                               <div class="row">
                                 <div class="col-md-9">
                                   <strong> {{ item.reviewTerms_phenolyzer[0].value | to-firstCharacterUppercase}}</strong>

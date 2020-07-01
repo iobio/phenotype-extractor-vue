@@ -305,10 +305,6 @@
    "ConceptID": "C0000734"
  },
  {
-   "DiseaseName": "Abdominal obesity",
-   "ConceptID": "CN185447"
- },
- {
    "DiseaseName": "Abdominal pain",
    "ConceptID": "C0000737"
  },
@@ -2813,10 +2809,6 @@
    "ConceptID": "C4073258"
  },
  {
-   "DiseaseName": "Abnormality of olfactory lobe morphology",
-   "ConceptID": "C4476573"
- },
- {
    "DiseaseName": "Abnormality of ophthalmic artery",
    "ConceptID": "C4073185"
  },
@@ -4769,18 +4761,6 @@
    "ConceptID": "C4025873"
  },
  {
-   "DiseaseName": "Abnormality of the parathyroid gland",
-   "ConceptID": "C0030517"
- },
- {
-   "DiseaseName": "Abnormality of the parathyroid morphology",
-   "ConceptID": "C4023199"
- },
- {
-   "DiseaseName": "Abnormality of the parathyroid physiology",
-   "ConceptID": "C4023198"
- },
- {
    "DiseaseName": "Abnormality of the parietal bone",
    "ConceptID": "C4021834"
  },
@@ -6127,10 +6107,6 @@
  {
    "DiseaseName": "Abnormal morphology of the ocular adnexa",
    "ConceptID": "C4073120"
- },
- {
-   "DiseaseName": "Abnormal morphology of the olfactory bulb",
-   "ConceptID": "C4477050"
  },
  {
    "DiseaseName": "Abnormal morphology of the radius",
@@ -8661,14 +8637,6 @@
    "ConceptID": "C0346037"
  },
  {
-   "DiseaseName": "Acral ulceration and osteomyelitis leading to autoamputation of digits",
-   "ConceptID": "C1837603"
- },
- {
-   "DiseaseName": "Acral ulceration and osteomyelitis leading to autoamputation of the digits (feet)",
-   "ConceptID": "C4025742"
- },
- {
    "DiseaseName": "Acral ulceration leading to autoamputation of digits",
    "ConceptID": "C1860099"
  },
@@ -9035,10 +9003,6 @@
  {
    "DiseaseName": "Acute neuronopathic Gaucher's disease",
    "ConceptID": "C0268250"
- },
- {
-   "DiseaseName": "Acute otitis media",
-   "ConceptID": "C0271429"
  },
  {
    "DiseaseName": "Acute pancreatitis",
@@ -13569,14 +13533,6 @@
    "ConceptID": "CN221565"
  },
  {
-   "DiseaseName": "Arrhythmogenic right ventricular dysplasia, familial, 11, and mild palmoplantar keratoderma with or without woolly hair",
-   "ConceptID": "CN236735"
- },
- {
-   "DiseaseName": "Arrhythmogenic right ventricular dysplasia, familial, 11, with mild palmoplantar keratoderma and woolly hair",
-   "ConceptID": "CN128708"
- },
- {
    "DiseaseName": "Arrhythmogenic right ventricular dysplasia, familial, 13",
    "ConceptID": "C3810138"
  },
@@ -15105,10 +15061,6 @@
    "ConceptID": "C0002880"
  },
  {
-   "DiseaseName": "Autoimmune hypoparathyroidism",
-   "ConceptID": "C0271865"
- },
- {
    "DiseaseName": "Autoimmune interstitial lung, joint, and kidney disease",
    "ConceptID": "C4225334"
  },
@@ -15277,36 +15229,12 @@
    "ConceptID": "C1852267"
  },
  {
-   "DiseaseName": "Autosomal dominant progressive external ophthalmoplegia with mitochondrial DNA deletions 1",
-   "ConceptID": "C1834846"
- },
- {
-   "DiseaseName": "Autosomal dominant progressive external ophthalmoplegia with mitochondrial DNA deletions 2",
-   "ConceptID": "C1836460"
- },
- {
-   "DiseaseName": "Autosomal dominant progressive external ophthalmoplegia with mitochondrial DNA deletions 3",
-   "ConceptID": "C1836439"
- },
- {
-   "DiseaseName": "Autosomal dominant progressive external ophthalmoplegia with mitochondrial DNA deletions 4",
-   "ConceptID": "C1864668"
- },
- {
-   "DiseaseName": "Autosomal dominant progressive external ophthalmoplegia with mitochondrial DNA deletions 5",
-   "ConceptID": "C2751319"
- },
- {
    "DiseaseName": "Autosomal dominant retinitis pigmentosa",
    "ConceptID": "C0339525"
  },
  {
    "DiseaseName": "Autosomal dominant striatal neurodegeneration",
    "ConceptID": "C1836694"
- },
- {
-   "DiseaseName": "Autosomal dominant torsion dystonia 4",
-   "ConceptID": "C1851943"
  },
  {
    "DiseaseName": "Autosomal hypohidrotic ectodermal dysplasia",
@@ -15473,10 +15401,6 @@
    "ConceptID": "C2678503"
  },
  {
-   "DiseaseName": "Axial dystonia",
-   "ConceptID": "C1836149"
- },
- {
    "DiseaseName": "Axial malrotation of the kidney",
    "ConceptID": "C4025300"
  },
@@ -15499,10 +15423,6 @@
  {
    "DiseaseName": "Axial osteomalacia",
    "ConceptID": "C1862372"
- },
- {
-   "DiseaseName": "Axial osteosclerosis",
-   "ConceptID": "C0432264"
  },
  {
    "DiseaseName": "Axillary and groin hyperpigmentation and hypopigmentation",
@@ -16179,10 +16099,6 @@
  {
    "DiseaseName": "Benign genitourinary tract neoplasm",
    "ConceptID": "C3804991"
- },
- {
-   "DiseaseName": "Benign hereditary chorea",
-   "ConceptID": "C0393584"
  },
  {
    "DiseaseName": "Benign hyperproreninemia",
@@ -18089,14 +18005,6 @@
    "ConceptID": "C1858433"
  },
  {
-   "DiseaseName": "Breast and/or ovarian cancer",
-   "ConceptID": "CN221562"
- },
- {
-   "DiseaseName": "Breast and Ovarian Cancer Susceptibility",
-   "ConceptID": "CN239207"
- },
- {
    "DiseaseName": "Breast aplasia",
    "ConceptID": "C0266009"
  },
@@ -18129,20 +18037,8 @@
    "ConceptID": "CN236627"
  },
  {
-   "DiseaseName": "Breast-ovarian cancer, familial 1",
-   "ConceptID": "C2676676"
- },
- {
-   "DiseaseName": "Breast-ovarian cancer, familial 2",
-   "ConceptID": "C2675520"
- },
- {
-   "DiseaseName": "Breast-ovarian cancer, familial 3",
-   "ConceptID": "C3150659"
- },
- {
-   "DiseaseName": "Breast-ovarian cancer, familial 4",
-   "ConceptID": "C3280345"
+   "DiseaseName": "Breast-ovarian cancer",
+   "ConceptID": ""
  },
  {
    "DiseaseName": "Breasts and/or nipples, aplasia or hypoplasia of, 2",
@@ -19323,10 +19219,6 @@
  {
    "DiseaseName": "Calvarial hyperostosis",
    "ConceptID": "C1863351"
- },
- {
-   "DiseaseName": "Calvarial osteosclerosis",
-   "ConceptID": "C1855657"
  },
  {
    "DiseaseName": "Calvarial skull defect",
@@ -21077,10 +20969,6 @@
    "ConceptID": "C0154671"
  },
  {
-   "DiseaseName": "Cerebral dysgenesis, neuropathy, ichthyosis, and palmoplantar keratoderma syndrome",
-   "ConceptID": "C1836033"
- },
- {
    "DiseaseName": "Cerebral dysmyelination",
    "ConceptID": "C1854885"
  },
@@ -21685,10 +21573,6 @@
    "ConceptID": "C4023340"
  },
  {
-   "DiseaseName": "Childhood-onset truncal obesity",
-   "ConceptID": "C1859846"
- },
- {
    "DiseaseName": "Children homozygous for the pathogenic variant c.395A&gt",
    "ConceptID": "CN219582"
  },
@@ -21981,40 +21865,16 @@
    "ConceptID": "C0008487"
  },
  {
-   "DiseaseName": "Chorea, benign familial",
-   "ConceptID": "C1859098"
- },
- {
    "DiseaseName": "Chorea",
    "ConceptID": "C0008489"
- },
- {
-   "DiseaseName": "Chorea, childhood-onset, with psychomotor retardation",
-   "ConceptID": "C4310787"
  },
  {
    "DiseaseName": "Choreoacanthocytosis",
    "ConceptID": "C0393576"
  },
  {
-   "DiseaseName": "Choreoathetosis and congenital hypothyroidism",
-   "ConceptID": "C1970270"
- },
- {
    "DiseaseName": "Choreoathetosis",
    "ConceptID": "C0085583"
- },
- {
-   "DiseaseName": "Choreoathetosis",
-   "ConceptID": "C0234967"
- },
- {
-   "DiseaseName": "Choreoathetosis, familial inverted",
-   "ConceptID": "C1861569"
- },
- {
-   "DiseaseName": "Choreoathetosis, hypothyroidism, and neonatal respiratory distress",
-   "ConceptID": "C1970269"
  },
  {
    "DiseaseName": "Choriocapillaris atrophy",
@@ -22025,48 +21885,8 @@
    "ConceptID": "C0008497"
  },
  {
-   "DiseaseName": "Chorioretinal abnormality",
-   "ConceptID": "C4025844"
- },
- {
-   "DiseaseName": "Chorioretinal atrophy",
-   "ConceptID": "C0521683"
- },
- {
-   "DiseaseName": "Chorioretinal atrophy, progressive bifocal",
-   "ConceptID": "C1833321"
- },
- {
-   "DiseaseName": "Chorioretinal coloboma",
-   "ConceptID": "C0239054"
- },
- {
-   "DiseaseName": "Chorioretinal degeneration",
-   "ConceptID": "C4072869"
- },
- {
-   "DiseaseName": "Chorioretinal dysplasia",
-   "ConceptID": "C4024809"
- },
- {
-   "DiseaseName": "Chorioretinal dystrophy",
-   "ConceptID": "C1857627"
- },
- {
-   "DiseaseName": "Chorioretinal hyperpigmentation",
-   "ConceptID": "C4022482"
- },
- {
-   "DiseaseName": "Chorioretinal hypopigmentation",
-   "ConceptID": "C4022483"
- },
- {
-   "DiseaseName": "Chorioretinal lacunae",
-   "ConceptID": "C1844751"
- },
- {
-   "DiseaseName": "Chorioretinal scar",
-   "ConceptID": "C0008512"
+   "DiseaseName": "Chorioretinal",
+   "ConceptID": ""
  },
  {
    "DiseaseName": "Chorioretinitis",
@@ -22077,68 +21897,20 @@
    "ConceptID": "C0730291"
  },
  {
-   "DiseaseName": "Choroidal dystrophy, central areolar 2",
-   "ConceptID": "C2751290"
- },
- {
-   "DiseaseName": "Choroidal dystrophy, central areolar 3",
-   "ConceptID": "C2751055"
- },
- {
-   "DiseaseName": "Choroidal hemangioma",
-   "ConceptID": "C0346390"
- },
- {
-   "DiseaseName": "Choroidal melanoma",
-   "ConceptID": "C0346388"
- },
- {
-   "DiseaseName": "Choroidal neovascularization",
-   "ConceptID": "C0600518"
- },
- {
-   "DiseaseName": "Choroidal nevus",
-   "ConceptID": "C0346392"
- },
- {
-   "DiseaseName": "Choroidal osteoma, bilateral",
-   "ConceptID": "C1861558"
- },
- {
-   "DiseaseName": "Choroidal sclerosis",
-   "ConceptID": "C0344297"
+   "DiseaseName": "Choroidal",
+   "ConceptID": ""
  },
  {
    "DiseaseName": "Choroideremia",
    "ConceptID": "C0008525"
  },
  {
-   "DiseaseName": "Choroideremia, Salla type",
-   "ConceptID": "C4016478"
- },
- {
    "DiseaseName": "Choroid hemorrhage",
    "ConceptID": "C0008522"
  },
  {
-   "DiseaseName": "Choroid plexus calcification",
-   "ConceptID": "C1863184"
- },
- {
-   "DiseaseName": "Choroid plexus calcification with mental retardation",
-   "ConceptID": "C1859092"
- },
- {
-   "DiseaseName": "Choroid plexus carcinoma",
-   "ConceptID": "C0431109"
- },
- {
-   "DiseaseName": "Choroid plexus cyst",
-   "ConceptID": "C0338597"
- },
- {
-   "DiseaseName": "Choroid plexus papilloma",
-   "ConceptID": "C0205770"
+   "DiseaseName": "Choroid plexus",
+   "ConceptID": ""
  },
  {
    "DiseaseName": "Christianson syndrome",
@@ -22153,16 +21925,8 @@
    "ConceptID": "C1266042"
  },
  {
-   "DiseaseName": "Chromosomal breakage induced by crosslinking agents",
-   "ConceptID": "C4021737"
- },
- {
-   "DiseaseName": "Chromosomal breakage induced by ionizing radiation",
-   "ConceptID": "C4021206"
- },
- {
-   "DiseaseName": "Chromosomal instability with tissue-specific radiosensitivity",
-   "ConceptID": "C1859091"
+   "DiseaseName": "Chromosomal breakage",
+   "ConceptID": ""
  },
  {
    "DiseaseName": "Chromosome 10, distal trisomy 10q",
@@ -23233,10 +22997,6 @@
    "ConceptID": "C0006845"
  },
  {
-   "DiseaseName": "Chronic multifocal osteomyelitis",
-   "ConceptID": "C0410422"
- },
- {
    "DiseaseName": "Chronic myelogenous leukemia",
    "ConceptID": "C0023473"
  },
@@ -23263,14 +23023,6 @@
  {
    "DiseaseName": "Chronic oral candidiasis",
    "ConceptID": "C4024599"
- },
- {
-   "DiseaseName": "Chronic osteomyelitis",
-   "ConceptID": "C0008707"
- },
- {
-   "DiseaseName": "Chronic otitis media",
-   "ConceptID": "C0271441"
  },
  {
    "DiseaseName": "Chronic pain",
@@ -23369,138 +23121,6 @@
    "ConceptID": "C0008780"
  },
  {
-   "DiseaseName": "Ciliary dyskinesia, primary, 10",
-   "ConceptID": "C2675867"
- },
- {
-   "DiseaseName": "Ciliary dyskinesia, primary, 11",
-   "ConceptID": "C2675229"
- },
- {
-   "DiseaseName": "Ciliary dyskinesia, primary, 12",
-   "ConceptID": "C2675228"
- },
- {
-   "DiseaseName": "Ciliary dyskinesia, primary, 13",
-   "ConceptID": "C2750790"
- },
- {
-   "DiseaseName": "Ciliary dyskinesia, primary, 14",
-   "ConceptID": "C3151136"
- },
- {
-   "DiseaseName": "Ciliary dyskinesia, primary, 15",
-   "ConceptID": "C3151137"
- },
- {
-   "DiseaseName": "Ciliary dyskinesia, primary, 16",
-   "ConceptID": "C3151460"
- },
- {
-   "DiseaseName": "Ciliary dyskinesia, primary, 17",
-   "ConceptID": "C3542550"
- },
- {
-   "DiseaseName": "Ciliary dyskinesia, primary, 18",
-   "ConceptID": "C3543825"
- },
- {
-   "DiseaseName": "Ciliary dyskinesia, primary, 19",
-   "ConceptID": "C3543826"
- },
- {
-   "DiseaseName": "Ciliary dyskinesia, primary, 20",
-   "ConceptID": "C3540844"
- },
- {
-   "DiseaseName": "Ciliary dyskinesia, primary, 21",
-   "ConceptID": "C3809087"
- },
- {
-   "DiseaseName": "Ciliary dyskinesia, primary, 22",
-   "ConceptID": "C3809543"
- },
- {
-   "DiseaseName": "Ciliary dyskinesia, primary, 26",
-   "ConceptID": "C3809684"
- },
- {
-   "DiseaseName": "Ciliary dyskinesia, primary, 27",
-   "ConceptID": "C3809701"
- },
- {
-   "DiseaseName": "Ciliary dyskinesia, primary, 28",
-   "ConceptID": "C3809706"
- },
- {
-   "DiseaseName": "Ciliary dyskinesia, primary, 29",
-   "ConceptID": "C4014534"
- },
- {
-   "DiseaseName": "Ciliary dyskinesia, primary, 2",
-   "ConceptID": "C1847554"
- },
- {
-   "DiseaseName": "Ciliary dyskinesia, primary, 30",
-   "ConceptID": "C4015016"
- },
- {
-   "DiseaseName": "Ciliary dyskinesia, primary, 32",
-   "ConceptID": "C4225311"
- },
- {
-   "DiseaseName": "Ciliary dyskinesia, primary, 33",
-   "ConceptID": "C4225230"
- },
- {
-   "DiseaseName": "Ciliary dyskinesia, primary, 34",
-   "ConceptID": "C4310722"
- },
- {
-   "DiseaseName": "Ciliary dyskinesia, primary, 35",
-   "ConceptID": "C4310721"
- },
- {
-   "DiseaseName": "Ciliary dyskinesia, primary, 36, X-linked",
-   "ConceptID": "C4478372"
- },
- {
-   "DiseaseName": "CILIARY DYSKINESIA, PRIMARY, 37",
-   "ConceptID": "C4539798"
- },
- {
-   "DiseaseName": "Ciliary dyskinesia, primary, 3",
-   "ConceptID": "C1837618"
- },
- {
-   "DiseaseName": "Ciliary dyskinesia, primary, 4",
-   "ConceptID": "C1837616"
- },
- {
-   "DiseaseName": "Ciliary dyskinesia, primary, 5",
-   "ConceptID": "C1837615"
- },
- {
-   "DiseaseName": "Ciliary dyskinesia, primary, 6",
-   "ConceptID": "C1970506"
- },
- {
-   "DiseaseName": "Ciliary dyskinesia, primary, 7",
-   "ConceptID": "C2678473"
- },
- {
-   "DiseaseName": "Ciliary dyskinesia, primary, 8",
-   "ConceptID": "C2677085"
- },
- {
-   "DiseaseName": "Ciliary dyskinesia, primary, 9",
-   "ConceptID": "C2676235"
- },
- {
-   "DiseaseName": "Ciliary dyskinesia with transposition of ciliary microtubules",
-   "ConceptID": "C2673817"
- },
- {
    "DiseaseName": "Ciliopathies",
    "ConceptID": "CN580792"
  },
@@ -23509,7 +23129,7 @@
    "ConceptID": "CN234683"
  },
  {
-   "DiseaseName": "Cinnamon odor, pleasantness of",
+   "DiseaseName": "Cinnamon odor",
    "ConceptID": "C1970178"
  },
  {
@@ -23561,16 +23181,8 @@
    "ConceptID": "C1997910"
  },
  {
-   "DiseaseName": "Citrullinemia, mild",
-   "ConceptID": "C4016834"
- },
- {
-   "DiseaseName": "Citrullinemia type I",
-   "ConceptID": "C0175683"
- },
- {
-   "DiseaseName": "Citrullinemia type II",
-   "ConceptID": "C1863844"
+   "DiseaseName": "Citrullinemia",
+   "ConceptID": ""
  },
  {
    "DiseaseName": "Citrulline transport defect",
@@ -23595,18 +23207,6 @@
  {
    "DiseaseName": "Classic congenital adrenal hyperplasia due to 21-hydroxylase deficiency",
    "ConceptID": "C4273964"
- },
- {
-   "DiseaseName": "Class III obesity",
-   "ConceptID": "C1556381"
- },
- {
-   "DiseaseName": "Class II obesity",
-   "ConceptID": "C1556380"
- },
- {
-   "DiseaseName": "Class I obesity",
-   "ConceptID": "C4476813"
  },
  {
    "DiseaseName": "Claustrophobia",
@@ -24295,10 +23895,6 @@
  {
    "DiseaseName": "Coloboma, Congenital Heart Disease, Ichthyosiform Dermatosis, Intellectual Disability, and Ear Anomalies (CHIME) Syndrome",
    "ConceptID": "CN239148"
- },
- {
-   "DiseaseName": "Coloboma-obesity-hypogenitalism-mental retardation syndrome",
-   "ConceptID": "C1866256"
  },
  {
    "DiseaseName": "Coloboma, ocular, with or without hearing impairment, cleft lip/palate, and/or mental retardation",
@@ -25993,10 +25589,6 @@
    "ConceptID": "C0393818"
  },
  {
-   "DiseaseName": "Congenital hypoparathyroidism",
-   "ConceptID": "C1455734"
- },
- {
    "DiseaseName": "Congenital hypothyroidism",
    "ConceptID": "C0010308"
  },
@@ -27437,10 +27029,6 @@
    "ConceptID": "C1857511"
  },
  {
-   "DiseaseName": "Craniofacial dystonia",
-   "ConceptID": "C1851915"
- },
- {
    "DiseaseName": "Craniofacial hyperostosis",
    "ConceptID": "C1868085"
  },
@@ -27451,10 +27039,6 @@
  {
    "DiseaseName": "Craniofacial microsomia",
    "ConceptID": "C0432130"
- },
- {
-   "DiseaseName": "Craniofacial osteosclerosis",
-   "ConceptID": "C1845805"
  },
  {
    "DiseaseName": "Craniofacial-skeletal-dermatologic dysplasia",
@@ -28491,10 +28075,6 @@
  {
    "DiseaseName": "Cystic medial necrosis of the aorta",
    "ConceptID": "C0392775"
- },
- {
-   "DiseaseName": "Cystic parathyroid adenoma",
-   "ConceptID": "C4017087"
  },
  {
    "DiseaseName": "Cystic pattern on pulmonary HRCT",
@@ -31365,14 +30945,6 @@
    "ConceptID": "C4021575"
  },
  {
-   "DiseaseName": "Diffuse palmoplantar keratoderma, Bothnian type",
-   "ConceptID": "C1838359"
- },
- {
-   "DiseaseName": "Diffuse palmoplantar keratoderma",
-   "ConceptID": "C0022584"
- },
- {
    "DiseaseName": "Diffuse panbronchiolitis",
    "ConceptID": "C0878555"
  },
@@ -31999,10 +31571,6 @@
  {
    "DiseaseName": "Distal myopathy with rimmed vacuoles",
    "ConceptID": "CN239822"
- },
- {
-   "DiseaseName": "Distal osteosclerosis",
-   "ConceptID": "C1852063"
  },
  {
    "DiseaseName": "Distal peripheral sensory neuropathy",
@@ -33341,136 +32909,8 @@
    "ConceptID": "C1851955"
  },
  {
-   "DiseaseName": "Dystonia 10",
-   "ConceptID": "C1868682"
- },
- {
-   "DiseaseName": "Dystonia 12",
-   "ConceptID": "C1868681"
- },
- {
-   "DiseaseName": "Dystonia 13",
-   "ConceptID": "C1843264"
- },
- {
-   "DiseaseName": "Dystonia 15, myoclonic",
-   "ConceptID": "C1843786"
- },
- {
-   "DiseaseName": "Dystonia 16",
-   "ConceptID": "C2677567"
- },
- {
-   "DiseaseName": "Dystonia 17",
-   "ConceptID": "C2676281"
- },
- {
-   "DiseaseName": "Dystonia 19",
-   "ConceptID": "C1970238"
- },
- {
-   "DiseaseName": "Dystonia 1",
-   "ConceptID": "C1851945"
- },
- {
-   "DiseaseName": "Dystonia 1, torsion, late-onset",
-   "ConceptID": "C4016920"
- },
- {
-   "DiseaseName": "Dystonia 21",
-   "ConceptID": "C3281236"
- },
- {
-   "DiseaseName": "Dystonia 23",
-   "ConceptID": "C3538999"
- },
- {
-   "DiseaseName": "Dystonia 24",
-   "ConceptID": "C3554374"
- },
- {
-   "DiseaseName": "Dystonia 25",
-   "ConceptID": "C3554447"
- },
- {
-   "DiseaseName": "Dystonia 26, myoclonic",
-   "ConceptID": "C4225341"
- },
- {
-   "DiseaseName": "Dystonia 27",
-   "ConceptID": "C4225336"
- },
- {
-   "DiseaseName": "Dystonia 28, childhood-onset",
-   "ConceptID": "C4310633"
- },
- {
-   "DiseaseName": "Dystonia 2, torsion, autosomal recessive",
-   "ConceptID": "C1857093"
- },
- {
-   "DiseaseName": "Dystonia 3, torsion, X-linked",
-   "ConceptID": "C1839130"
- },
- {
-   "DiseaseName": "Dystonia 5, Dopa-responsive type",
-   "ConceptID": "C1851920"
- },
- {
-   "DiseaseName": "Dystonia 6, torsion",
-   "ConceptID": "C1414216"
- },
- {
-   "DiseaseName": "Dystonia 7, torsion",
-   "ConceptID": "C1865818"
- },
- {
-   "DiseaseName": "Dystonia 9",
-   "ConceptID": "C1832855"
- },
- {
-   "DiseaseName": "Dystonia, adult-onset",
-   "ConceptID": "C0752197"
- },
- {
    "DiseaseName": "Dystonia",
    "ConceptID": "C0013421"
- },
- {
-   "DiseaseName": "Dystonia",
-   "ConceptID": "C0393593"
- },
- {
-   "DiseaseName": "Dystonia, childhood-onset, with optic atrophy and basal ganglia abnormalities",
-   "ConceptID": "C4310634"
- },
- {
-   "DiseaseName": "Dystonia, dopa-responsive",
-   "ConceptID": "CN221588"
- },
- {
-   "DiseaseName": "Dystonia, dopa-responsive, with or without hyperphenylalaninemia, autosomal recessive",
-   "ConceptID": "C2673535"
- },
- {
-   "DiseaseName": "Dystonia, intellectual disability and language impairment",
-   "ConceptID": "CN239093"
- },
- {
-   "DiseaseName": "Dystonia, mitochondrial",
-   "ConceptID": "C4016607"
- },
- {
-   "DiseaseName": "Dystonia, primary cervical",
-   "ConceptID": "C1865819"
- },
- {
-   "DiseaseName": "Dystonia with cerebellar atrophy",
-   "ConceptID": "C2673697"
- },
- {
-   "DiseaseName": "Dystonia with ringbinden",
-   "ConceptID": "C1857089"
  },
  {
    "DiseaseName": "Dystonic posturing",
@@ -33737,10 +33177,6 @@
    "ConceptID": "C1857068"
  },
  {
-   "DiseaseName": "Ectodermal dysplasia, anhidrotic, with immunodeficiency, osteopetrosis, and lymphedema",
-   "ConceptID": "C1845919"
- },
- {
    "DiseaseName": "Ectodermal dysplasia, anhidrotic, with T-cell immunodeficiency, autosomal dominant",
    "ConceptID": "C2677481"
  },
@@ -33883,10 +33319,6 @@
  {
    "DiseaseName": "Ectopic pancreatic tissue",
    "ConceptID": "C0994638"
- },
- {
-   "DiseaseName": "Ectopic parathyroid",
-   "ConceptID": "C4023196"
  },
  {
    "DiseaseName": "Ectopic posterior pituitary",
@@ -34587,10 +34019,6 @@
  {
    "DiseaseName": "Elevated circulating luteinizing hormone level",
    "ConceptID": "C4023101"
- },
- {
-   "DiseaseName": "Elevated circulating parathyroid hormone level",
-   "ConceptID": "C0857973"
  },
  {
    "DiseaseName": "Elevated circulating ribitol concentration",
@@ -35437,10 +34865,6 @@
    "ConceptID": "C0392039"
  },
  {
-   "DiseaseName": "Enlarged parietal foramina",
-   "ConceptID": "CN236382"
- },
- {
    "DiseaseName": "Enlarged peripheral nerve",
    "ConceptID": "C2675074"
  },
@@ -35763,10 +35187,6 @@
  {
    "DiseaseName": "Epidermolysis bullosa simplex, Cockayne-Touraine type",
    "ConceptID": "C0080333"
- },
- {
-   "DiseaseName": "Epidermolysis bullosa simplex, Dowling-Meara type, with severe palmoplantar keratoderma",
-   "ConceptID": "C4016235"
  },
  {
    "DiseaseName": "Epidermolysis bullosa simplex, generalized, with scarring and hair loss",
@@ -36107,10 +35527,6 @@
  {
    "DiseaseName": "Epilepsy, progressive myoclonic, with sensory ataxic neuropathy",
    "ConceptID": "CN235674"
- },
- {
-   "DiseaseName": "Epilepsy, rolandic with paroxysmal exercise-induced dystonia and writer's cramp",
-   "ConceptID": "C1842531"
  },
  {
    "DiseaseName": "Epilepsy telangiectasia",
@@ -36495,10 +35911,6 @@
  {
    "DiseaseName": "Erythroderma",
    "ConceptID": "C0011606"
- },
- {
-   "DiseaseName": "Erythroderma, congenital, with palmoplantar keratoderma, hypotrichosis, and hyper-ige",
-   "ConceptID": "C3809719"
  },
  {
    "DiseaseName": "Erythroderma, ichthyosiform, congenital reticular",
@@ -37077,10 +36489,6 @@
    "ConceptID": "C1846339"
  },
  {
-   "DiseaseName": "External ophthalmoplegia",
-   "ConceptID": "C0162292"
- },
- {
    "DiseaseName": "Extraadrenal pheochromocytoma",
    "ConceptID": "C1257877"
  },
@@ -37151,10 +36559,6 @@
  {
    "DiseaseName": "Extremely elevated creatine phosphokinase",
    "ConceptID": "C4022564"
- },
- {
-   "DiseaseName": "Extreme obesity with alveolar hypoventilation",
-   "ConceptID": "C0031880"
  },
  {
    "DiseaseName": "Exudative pleural effusion",
@@ -39465,14 +38869,6 @@
    "ConceptID": "C0016395"
  },
  {
-   "DiseaseName": "Focal dystonia",
-   "ConceptID": "C0743332"
- },
- {
-   "DiseaseName": "Focal dystonia",
-   "ConceptID": "C1969807"
- },
- {
    "DiseaseName": "Focal EEG discharges with propagation to ipsilateral hemisphere",
    "ConceptID": "C4023487"
  },
@@ -39671,10 +39067,6 @@
  {
    "DiseaseName": "Foot oligodactyly",
    "ConceptID": "C0426934"
- },
- {
-   "DiseaseName": "Foot osteomyelitis",
-   "ConceptID": "C4049342"
  },
  {
    "DiseaseName": "Foot pain",
@@ -41029,10 +40421,6 @@
    "ConceptID": "C0432322"
  },
  {
-   "DiseaseName": "Generalized dystonia",
-   "ConceptID": "C1848954"
- },
- {
    "DiseaseName": "Generalized edema",
    "ConceptID": "C1850534"
  },
@@ -41179,10 +40567,6 @@
  {
    "DiseaseName": "Generalized opacification of the cornea",
    "ConceptID": "C4021147"
- },
- {
-   "DiseaseName": "Generalized osteosclerosis",
-   "ConceptID": "C1843331"
  },
  {
    "DiseaseName": "Generalized papillary lesions",
@@ -43929,12 +43313,8 @@
    "ConceptID": "C0406502"
  },
  {
-   "DiseaseName": "Hereditary breast and ovarian cancer syndrome",
-   "ConceptID": "C0677776"
- },
- {
-   "DiseaseName": "Hereditary breast and ovarian cancer syndrome (HBOC)",
-   "ConceptID": "CN237786"
+   "DiseaseName": "breast and ovarian cancer",
+   "ConceptID": ""
  },
  {
    "DiseaseName": "Hereditary C1 esterase inhibitor deficiency - dysfunctional factor",
@@ -44171,10 +43551,6 @@
  {
    "DiseaseName": "Hereditary ovarian carcinoma",
    "ConceptID": "C1333992"
- },
- {
-   "DiseaseName": "Hereditary palmoplantar keratoderma",
-   "ConceptID": "C0022596"
  },
  {
    "DiseaseName": "Hereditary pancreatitis",
@@ -44825,10 +44201,6 @@
    "ConceptID": "C0241984"
  },
  {
-   "DiseaseName": "Honeycomb palmoplantar keratoderma",
-   "ConceptID": "C1866032"
- },
- {
    "DiseaseName": "Hooded eyelid",
    "ConceptID": "C3277348"
  },
@@ -45047,10 +44419,6 @@
  {
    "DiseaseName": "Huntington disease-like 3",
    "ConceptID": "C1858114"
- },
- {
-   "DiseaseName": "Huntington's chorea",
-   "ConceptID": "C0020179"
  },
  {
    "DiseaseName": "Hurthle cell carcinoma of thyroid",
@@ -45845,14 +45213,6 @@
    "ConceptID": "C2673443"
  },
  {
-   "DiseaseName": "Hypermanganesemia with dystonia 2",
-   "ConceptID": "C4310765"
- },
- {
-   "DiseaseName": "Hypermanganesemia with dystonia",
-   "ConceptID": "C2750442"
- },
- {
    "DiseaseName": "Hypermelanotic macule",
    "ConceptID": "C1842774"
  },
@@ -45949,32 +45309,8 @@
    "ConceptID": "C1265968"
  },
  {
-   "DiseaseName": "Hyperparathyroidism 1",
-   "ConceptID": "C1840402"
- },
- {
-   "DiseaseName": "Hyperparathyroidism 2",
-   "ConceptID": "C1704981"
- },
- {
-   "DiseaseName": "Hyperparathyroidism 3",
-   "ConceptID": "C1864729"
- },
- {
-   "DiseaseName": "Hyperparathyroidism 4",
-   "ConceptID": "C4479229"
- },
- {
    "DiseaseName": "Hyperparathyroidism",
    "ConceptID": "C0020502"
- },
- {
-   "DiseaseName": "Hyperparathyroidism, neonatal self-limited primary, with hypercalciuria",
-   "ConceptID": "C1855924"
- },
- {
-   "DiseaseName": "Hyperparathyroidism, primary, caused by water clear cell hyperplasia",
-   "ConceptID": "C1838501"
  },
  {
    "DiseaseName": "Hyperpepsinogenemia I",
@@ -46769,24 +46105,8 @@
    "ConceptID": "C4022824"
  },
  {
-   "DiseaseName": "Hypoparathyroidism, autosomal recessive",
-   "ConceptID": "C1840334"
- },
- {
    "DiseaseName": "Hypoparathyroidism",
    "ConceptID": "C0020626"
- },
- {
-   "DiseaseName": "Hypoparathyroidism familial isolated",
-   "ConceptID": "C1832648"
- },
- {
-   "DiseaseName": "Hypoparathyroidism retardation dysmorphism syndrome",
-   "ConceptID": "C1855840"
- },
- {
-   "DiseaseName": "Hypoparathyroidism - X-linked",
-   "ConceptID": "C0342344"
  },
  {
    "DiseaseName": "Hypoperistalsis",
@@ -46879,10 +46199,6 @@
  {
    "DiseaseName": "Hypoplasia of lymphatic vessels",
    "ConceptID": "C4025570"
- },
- {
-   "DiseaseName": "Hypoplasia of olfactory tract",
-   "ConceptID": "C1856655"
  },
  {
    "DiseaseName": "Hypoplasia of penis",
@@ -47035,10 +46351,6 @@
  {
    "DiseaseName": "Hypoplasia of the odontoid process",
    "ConceptID": "C1846439"
- },
- {
-   "DiseaseName": "Hypoplasia of the olfactory bulb",
-   "ConceptID": "C4477049"
  },
  {
    "DiseaseName": "Hypoplasia of the optic tract",
@@ -47319,10 +46631,6 @@
  {
    "DiseaseName": "Hypoplastic nipples",
    "ConceptID": "C0432355"
- },
- {
-   "DiseaseName": "Hypoplastic olfactory lobes",
-   "ConceptID": "C1859231"
  },
  {
    "DiseaseName": "Hypoplastic pelvis",
@@ -49477,10 +48785,6 @@
    "ConceptID": "C1848924"
  },
  {
-   "DiseaseName": "Infantile Parkinsonism-dystonia",
-   "ConceptID": "C2751067"
- },
- {
    "DiseaseName": "Infantile Refsum's disease",
    "ConceptID": "C0282527"
  },
@@ -50143,14 +49447,6 @@
  {
    "DiseaseName": "Internal notch of the femoral head",
    "ConceptID": "C3276320"
- },
- {
-   "DiseaseName": "Internal ophthalmoplegia",
-   "ConceptID": "C0339693"
- },
- {
-   "DiseaseName": "Internuclear ophthalmoplegia",
-   "ConceptID": "C0152134"
  },
  {
    "DiseaseName": "Interosseus muscle atrophy",
@@ -51125,10 +50421,6 @@
    "ConceptID": "CN231075"
  },
  {
-   "DiseaseName": "Isolated Hyperparathyroidism",
-   "ConceptID": "CN239442"
- },
- {
    "DiseaseName": "Isolated lutropin deficiency",
    "ConceptID": "C0271582"
  },
@@ -51819,10 +51111,6 @@
  {
    "DiseaseName": "Juvenile onset",
    "ConceptID": "C3149653"
- },
- {
-   "DiseaseName": "Juvenile-onset dystonia",
-   "ConceptID": "C1846331"
  },
  {
    "DiseaseName": "Juvenile onset Huntington's disease",
@@ -52917,10 +52205,6 @@
    "ConceptID": "C0339880"
  },
  {
-   "DiseaseName": "Laryngeal dystonia",
-   "ConceptID": "C1963946"
- },
- {
    "DiseaseName": "Laryngeal edema",
    "ConceptID": "C0023052"
  },
@@ -53211,10 +52495,6 @@
  {
    "DiseaseName": "LEBER CONGENITAL AMAUROSIS WITH EARLY-ONSET DEAFNESS",
    "ConceptID": "CN807950"
- },
- {
-   "DiseaseName": "Leber hereditary optic neuropathy with dystonia",
-   "ConceptID": "C1839040"
  },
  {
    "DiseaseName": "Leber optic atrophy, susceptibility to",
@@ -54085,10 +53365,6 @@
    "ConceptID": "C1854489"
  },
  {
-   "DiseaseName": "Limb dystonia",
-   "ConceptID": "C0751093"
- },
- {
    "DiseaseName": "Limb fasciculations",
    "ConceptID": "C1854657"
  },
@@ -54259,10 +53535,6 @@
  {
    "DiseaseName": "Linear nevus sebaceous",
    "ConceptID": "CN116551"
- },
- {
-   "DiseaseName": "Lingual dystonia",
-   "ConceptID": "C2242579"
  },
  {
    "DiseaseName": "Lingual thyroid",
@@ -56437,10 +55709,6 @@
    "ConceptID": "C3715192"
  },
  {
-   "DiseaseName": "Mandibular osteomyelitis",
-   "ConceptID": "C1290708"
- },
- {
    "DiseaseName": "Mandibular pain",
    "ConceptID": "C0236000"
  },
@@ -56655,10 +55923,6 @@
  {
    "DiseaseName": "Maternal hypertension",
    "ConceptID": "C0565599"
- },
- {
-   "DiseaseName": "Maternally-inherited progressive external ophthalmoplegia",
-   "ConceptID": "CN924917"
  },
  {
    "DiseaseName": "Maternal phenylketonuria",
@@ -57303,10 +56567,6 @@
  {
    "DiseaseName": "Mental retardation non-syndromic",
    "ConceptID": "CN240380"
- },
- {
-   "DiseaseName": "Mental retardation, obesity, mandibular prognathism, and eye and skin anomalies",
-   "ConceptID": "C1847522"
  },
  {
    "DiseaseName": "Mental retardation, severe, with spasticity and pigmentary tapetoretinal degeneration",
@@ -58713,10 +57973,6 @@
    "ConceptID": "C2678416"
  },
  {
-   "DiseaseName": "Mild obesity",
-   "ConceptID": "CN228310"
- },
- {
    "DiseaseName": "Mild pectus carinatum",
    "ConceptID": "CN240361"
  },
@@ -59293,14 +58549,6 @@
    "ConceptID": "C3888631"
  },
  {
-   "DiseaseName": "Monogenic Non-Syndromic Obesity, Autosomal Recessive",
-   "ConceptID": "CN043636"
- },
- {
-   "DiseaseName": "Monogenic Non-Syndromic Obesity",
-   "ConceptID": "CN239457"
- },
- {
    "DiseaseName": "Monomelic amyotrophy",
    "ConceptID": "C1865384"
  },
@@ -59363,14 +58611,6 @@
  {
    "DiseaseName": "Moore-Federman syndrome",
    "ConceptID": "C0265349"
- },
- {
-   "DiseaseName": "Morbid obesity and spermatogenic failure",
-   "ConceptID": "C3810324"
- },
- {
-   "DiseaseName": "Morbid obesity",
-   "ConceptID": "C0028756"
  },
  {
    "DiseaseName": "Morbilliform rash",
@@ -59543,10 +58783,6 @@
  {
    "DiseaseName": "Motor neuron disease",
    "ConceptID": "C0085084"
- },
- {
-   "DiseaseName": "Motor neuron disease with dementia and ophthalmoplegia",
-   "ConceptID": "C1838253"
  },
  {
    "DiseaseName": "Motor neuropathy peripheral with dysautonomia",
@@ -60617,10 +59853,6 @@
    "ConceptID": "C0393702"
  },
  {
-   "DiseaseName": "Myoclonic dystonia",
-   "ConceptID": "C1834570"
- },
- {
    "DiseaseName": "Myoclonic encephalopathy",
    "ConceptID": "C0438414"
  },
@@ -61685,10 +60917,6 @@
    "ConceptID": "C0456103"
  },
  {
-   "DiseaseName": "Neonatal severe hyperparathyroidism",
-   "ConceptID": "C1832615"
- },
- {
    "DiseaseName": "Neonatal unconjugated hyperbilirubinemia",
    "ConceptID": "C0559506"
  },
@@ -61867,10 +61095,6 @@
  {
    "DiseaseName": "Neoplasm of the pancreas",
    "ConceptID": "C1842408"
- },
- {
-   "DiseaseName": "Neoplasm of the parathyroid gland",
-   "ConceptID": "C0030521"
  },
  {
    "DiseaseName": "Neoplasm of the penis",
@@ -62133,10 +61357,6 @@
    "ConceptID": "C1838875"
  },
  {
-   "DiseaseName": "Nephropathy deafness hyperparathyroidism",
-   "ConceptID": "C1850553"
- },
- {
    "DiseaseName": "Nephropathy, progressive, with deafness",
    "ConceptID": "C1836119"
  },
@@ -62363,10 +61583,6 @@
  {
    "DiseaseName": "Neurodegeneration with brain iron accumulation",
    "ConceptID": "CN230734"
- },
- {
-   "DiseaseName": "Neurodegenerative illness progressing to crippling dystonia and death with relentless cerebral atrophy",
-   "ConceptID": "CN228274"
  },
  {
    "DiseaseName": "Neurodegeration",
@@ -63109,10 +62325,6 @@
    "ConceptID": "C1834741"
  },
  {
-   "DiseaseName": "Nonepidermolytic palmoplantar keratoderma",
-   "ConceptID": "C1833030"
- },
- {
    "DiseaseName": "none provided",
    "ConceptID": "CN235283"
  },
@@ -63205,10 +62417,6 @@
    "ConceptID": "C4024611"
  },
  {
-   "DiseaseName": "Nonprogressive restrictive external ophthalmoplegia",
-   "ConceptID": "C4024789"
- },
- {
    "DiseaseName": "Nonprogressive visual loss",
    "ConceptID": "C3553696"
  },
@@ -63275,10 +62483,6 @@
  {
    "DiseaseName": "Non-syndromic oligodontia",
    "ConceptID": "CN233186"
- },
- {
-   "DiseaseName": "Nonsyndromic otitis media",
-   "ConceptID": "CN233179"
  },
  {
    "DiseaseName": "Non-syndromic pontocerebellar hypoplasia",
@@ -63629,40 +62833,8 @@
    "ConceptID": "C0028738"
  },
  {
-   "DiseaseName": "Obesity, age at onset of",
-   "ConceptID": "C4016925"
- },
- {
-   "DiseaseName": "Obesity, association with",
-   "ConceptID": "C4016383"
- },
- {
-   "DiseaseName": "Obesity, autosomal dominant",
-   "ConceptID": "CN233047"
- },
- {
    "DiseaseName": "Obesity",
    "ConceptID": "C0028754"
- },
- {
-   "DiseaseName": "Obesity",
-   "ConceptID": "C1963185"
- },
- {
-   "DiseaseName": "Obesity, late-onset",
-   "ConceptID": "C4016782"
- },
- {
-   "DiseaseName": "Obesity, mild, early-onset",
-   "ConceptID": "C4016893"
- },
- {
-   "DiseaseName": "Obesity, severe, and type II diabetes",
-   "ConceptID": "C4016768"
- },
- {
-   "DiseaseName": "Obesity, variation in",
-   "ConceptID": "C4017174"
  },
  {
    "DiseaseName": "Obligate",
@@ -63685,8 +62857,8 @@
    "ConceptID": "C0028768"
  },
  {
-   "DiseaseName": "Obsessive-compulsive disorder, protection against",
-   "ConceptID": "C1862076"
+   "DiseaseName": "OCD",
+   "ConceptID": "C0028768"
  },
  {
    "DiseaseName": "Obsessive-compulsive trait",
@@ -63729,10 +62901,6 @@
    "ConceptID": "C0521114"
  },
  {
-   "DiseaseName": "Occasional neurofibromas",
-   "ConceptID": "C3810474"
- },
- {
    "DiseaseName": "Occipital cortical atrophy",
    "ConceptID": "C4023040"
  },
@@ -63741,7 +62909,7 @@
    "ConceptID": "C0014067"
  },
  {
-   "DiseaseName": "Occipital hair, white lock of",
+   "DiseaseName": "Occipital hair",
    "ConceptID": "C1839578"
  },
  {
@@ -63771,14 +62939,6 @@
  {
    "DiseaseName": "Ocular albinism",
    "ConceptID": "C0078917"
- },
- {
-   "DiseaseName": "Ocular albinism, type I",
-   "ConceptID": "C0342684"
- },
- {
-   "DiseaseName": "Ocular albinism, type II",
-   "ConceptID": "C0268505"
  },
  {
    "DiseaseName": "Ocular cicatricial pemphigoid",
@@ -63831,34 +62991,6 @@
  {
    "DiseaseName": "Oculocutaneous albinism",
    "ConceptID": "C0078918"
- },
- {
-   "DiseaseName": "Oculocutaneous albinism type 1B",
-   "ConceptID": "C1847024"
- },
- {
-   "DiseaseName": "Oculocutaneous albinism type 1",
-   "ConceptID": "CN119529"
- },
- {
-   "DiseaseName": "Oculocutaneous albinism type 1, temperature sensitive",
-   "ConceptID": "C1847132"
- },
- {
-   "DiseaseName": "Oculocutaneous albinism type 3",
-   "ConceptID": "C1859932"
- },
- {
-   "DiseaseName": "Oculocutaneous albinism type 4",
-   "ConceptID": "C1847836"
- },
- {
-   "DiseaseName": "Oculocutaneous Albinism Type 8",
-   "ConceptID": "CN230079"
- },
- {
-   "DiseaseName": "Oculocutaneous Albinism Type 9",
-   "ConceptID": "CN230080"
  },
  {
    "DiseaseName": "Oculodentodigital dysplasia, autosomal recessive",
@@ -63957,11 +63089,7 @@
    "ConceptID": "C1847745"
  },
  {
-   "DiseaseName": "Oguchi disease 2",
-   "ConceptID": "C3150678"
- },
- {
-   "DiseaseName": "Oguchi's disease",
+   "DiseaseName": "Oguchi disease",
    "ConceptID": "C1306122"
  },
  {
@@ -63985,10 +63113,6 @@
    "ConceptID": "CN077985"
  },
  {
-   "DiseaseName": "olanzapine response - Toxicity/ADR",
-   "ConceptID": "CN236611"
- },
- {
    "DiseaseName": "Olaparib response",
    "ConceptID": "CN224080"
  },
@@ -63997,16 +63121,8 @@
    "ConceptID": "C0033074"
  },
  {
-   "DiseaseName": "Olfactory auras",
-   "ConceptID": "C4023504"
- },
- {
-   "DiseaseName": "Olfactory esthesioneuroblastoma",
-   "ConceptID": "C0206717"
- },
- {
-   "DiseaseName": "Olfactory lobe agenesis",
-   "ConceptID": "C1855331"
+   "DiseaseName": "Olfactory",
+   "ConceptID": ""
  },
  {
    "DiseaseName": "Oligoarthritis",
@@ -64073,12 +63189,8 @@
    "ConceptID": "C1850320"
  },
  {
-   "DiseaseName": "Olivopontocerebellar atrophy II, autosomal recessive",
-   "ConceptID": "C1850319"
- },
- {
-   "DiseaseName": "Olivopontocerebellar atrophy v",
-   "ConceptID": "C1833995"
+   "DiseaseName": "Olivopontocerebellar atrophy",
+   "ConceptID": ""
  },
  {
    "DiseaseName": "Olivopontocerebellar degeneration",
@@ -64091,14 +63203,6 @@
  {
    "DiseaseName": "Omeprazole response",
    "ConceptID": "CN158357"
- },
- {
-   "DiseaseName": "Omodysplasia 1",
-   "ConceptID": "C1850318"
- },
- {
-   "DiseaseName": "Omodysplasia 2",
-   "ConceptID": "C2750355"
  },
  {
    "DiseaseName": "Omodysplasia",
@@ -64193,22 +63297,6 @@
    "ConceptID": "C4227845"
  },
  {
-   "DiseaseName": "Oocyte maturation defect 1",
-   "ConceptID": "C4014291"
- },
- {
-   "DiseaseName": "Oocyte maturation defect 2",
-   "ConceptID": "C4225210"
- },
- {
-   "DiseaseName": "OOCYTE MATURATION DEFECT 3",
-   "ConceptID": "C4540205"
- },
- {
-   "DiseaseName": "OOCYTE MATURATION DEFECT 4",
-   "ConceptID": "C4540284"
- },
- {
    "DiseaseName": "Oocyte maturation defect",
    "ConceptID": "CN238505"
  },
@@ -64217,12 +63305,8 @@
    "ConceptID": "C0029051"
  },
  {
-   "DiseaseName": "Opacification of the corneal epithelium",
-   "ConceptID": "C1849198"
- },
- {
-   "DiseaseName": "Opacification of the corneal stroma",
-   "ConceptID": "C1856661"
+   "DiseaseName": "Opacification of the corneal",
+   "ConceptID": ""
  },
  {
    "DiseaseName": "Open bite",
@@ -64257,44 +63341,12 @@
    "ConceptID": "C0029089"
  },
  {
-   "DiseaseName": "Ophthalmoplegia, familial static",
-   "ConceptID": "C1833839"
- },
- {
-   "DiseaseName": "Ophthalmoplegia, familial total, with iris transillumination",
-   "ConceptID": "C1833836"
- },
- {
-   "DiseaseName": "Ophthalmoplegia, isolated",
-   "ConceptID": "C4016605"
- },
- {
-   "DiseaseName": "Ophthalmoplegia, progressive, with scrotal tongue and mental deficiency",
-   "ConceptID": "C1833835"
- },
- {
-   "DiseaseName": "Ophthalmoplegia totalis with ptosis and miosis",
-   "ConceptID": "C1850314"
- },
- {
    "DiseaseName": "Ophthalmoplegic neuromuscular disorder with abnormal mitochondria",
    "ConceptID": "C1850302"
  },
  {
-   "DiseaseName": "Opioid dependence 1",
-   "ConceptID": "C1864733"
- },
- {
-   "DiseaseName": "Opioid-Related Disorders",
+   "DiseaseName": "Opioid Disorders",
    "ConceptID": "CN236652"
- },
- {
-   "DiseaseName": "opioids response - Dosage",
-   "ConceptID": "CN236539"
- },
- {
-   "DiseaseName": "opioids response - Metabolism/PK",
-   "ConceptID": "CN236604"
  },
  {
    "DiseaseName": "Opisthotonus",
@@ -64337,132 +63389,20 @@
    "ConceptID": "C4073118"
  },
  {
-   "DiseaseName": "Optic atrophy 11",
-   "ConceptID": "C4310628"
- },
- {
-   "DiseaseName": "Optic atrophy 2",
-   "ConceptID": "C1839576"
- },
- {
-   "DiseaseName": "Optic atrophy 4",
-   "ConceptID": "C1854430"
- },
- {
-   "DiseaseName": "Optic atrophy 5",
-   "ConceptID": "C1853139"
- },
- {
-   "DiseaseName": "Optic atrophy 6",
-   "ConceptID": "C1850281"
- },
- {
-   "DiseaseName": "Optic atrophy 7",
-   "ConceptID": "C2751812"
- },
- {
-   "DiseaseName": "Optic atrophy 8",
-   "ConceptID": "C4085249"
- },
- {
-   "DiseaseName": "Optic atrophy 9",
-   "ConceptID": "C4225384"
- },
- {
-   "DiseaseName": "Optic atrophy and cataract, autosomal dominant",
-   "ConceptID": "C1833809"
- },
- {
    "DiseaseName": "Optic atrophy",
    "ConceptID": "C0029124"
  },
  {
-   "DiseaseName": "Optic Atrophy, Dominant",
-   "ConceptID": "CN239213"
- },
- {
-   "DiseaseName": "Optic atrophy from cranial nerve compression",
-   "ConceptID": "C4024763"
- },
- {
-   "DiseaseName": "Optic atrophy polyneuropathy deafness",
-   "ConceptID": "C1850270"
- },
- {
-   "DiseaseName": "Optic Atrophy, Recessive",
-   "ConceptID": "CN239221"
- },
- {
-   "DiseaseName": "Optic atrophy--spastic paraplegia syndrome",
-   "ConceptID": "C1839565"
- },
- {
-   "DiseaseName": "Optic Atrophy Type 11",
-   "ConceptID": "CN230145"
- },
- {
-   "DiseaseName": "Optic Atrophy Type 12",
-   "ConceptID": "CN230146"
- },
- {
-   "DiseaseName": "Optic atrophy with demyelinating disease of CNS",
-   "ConceptID": "C1833830"
- },
- {
-   "DiseaseName": "Optic atrophy with negative electroretinograms",
-   "ConceptID": "C1833799"
- },
- {
-   "DiseaseName": "Optic disc drusen",
-   "ConceptID": "C0029128"
- },
- {
-   "DiseaseName": "Optic disc hypoplasia",
-   "ConceptID": "C1298695"
- },
- {
-   "DiseaseName": "Optic disc pallor",
-   "ConceptID": "C0554970"
- },
- {
-   "DiseaseName": "Optic nerve aplasia, bilateral",
-   "ConceptID": "C1833798"
+   "DiseaseName": "Optic disc",
+   "ConceptID": ""
  },
  {
    "DiseaseName": "Optic nerve aplasia",
    "ConceptID": "C4021084"
  },
  {
-   "DiseaseName": "Optic nerve arteriovenous malformation",
-   "ConceptID": "C4531243"
- },
- {
-   "DiseaseName": "Optic nerve compression",
-   "ConceptID": "C0271344"
- },
- {
-   "DiseaseName": "Optic nerve dysplasia",
-   "ConceptID": "C2676026"
- },
- {
-   "DiseaseName": "Optic nerve glioma",
-   "ConceptID": "C0346326"
- },
- {
-   "DiseaseName": "Optic nerve hypoplasia and abnormalities of the central nervous system",
-   "ConceptID": "C1859774"
- },
- {
-   "DiseaseName": "Optic nerve hypoplasia, bilateral",
-   "ConceptID": "C1833797"
- },
- {
-   "DiseaseName": "Optic nerve hypoplasia",
-   "ConceptID": "C0338502"
- },
- {
-   "DiseaseName": "Optic nerve misrouting",
-   "ConceptID": "C4531296"
+   "DiseaseName": "Optic nerve",
+   "ConceptID": ""
  },
  {
    "DiseaseName": "Optic neuritis",
@@ -64601,160 +63541,24 @@
    "ConceptID": "C1863879"
  },
  {
-   "DiseaseName": "Orofacial action-specific dystonia induced by speech",
-   "ConceptID": "C4476907"
- },
- {
-   "DiseaseName": "Orofacial cleft 10",
-   "ConceptID": "C1866070"
- },
- {
-   "DiseaseName": "Orofacial cleft 11",
-   "ConceptID": "C2677434"
- },
- {
-   "DiseaseName": "Orofacial cleft 12",
-   "ConceptID": "C2748505"
- },
- {
-   "DiseaseName": "Orofacial cleft 13",
-   "ConceptID": "C3151222"
- },
- {
-   "DiseaseName": "Orofacial cleft 14",
-   "ConceptID": "C4014596"
- },
- {
-   "DiseaseName": "Orofacial cleft 15",
-   "ConceptID": "C4225209"
- },
- {
-   "DiseaseName": "Orofacial cleft 1",
-   "ConceptID": "C1861537"
- },
- {
-   "DiseaseName": "Orofacial cleft 2",
-   "ConceptID": "C1864323"
- },
- {
-   "DiseaseName": "Orofacial cleft 3",
-   "ConceptID": "C1833369"
- },
- {
-   "DiseaseName": "Orofacial cleft 4",
-   "ConceptID": "C1842143"
- },
- {
-   "DiseaseName": "Orofacial cleft 5",
-   "ConceptID": "C1837210"
- },
- {
-   "DiseaseName": "Orofacial cleft 6, susceptibility to",
-   "ConceptID": "C1837213"
- },
- {
-   "DiseaseName": "Orofacial cleft 7",
-   "ConceptID": "C1833538"
- },
- {
-   "DiseaseName": "Orofacial cleft 8",
-   "ConceptID": "C1851878"
- },
- {
-   "DiseaseName": "Orofacial cleft 9",
-   "ConceptID": "C1835894"
- },
- {
    "DiseaseName": "Orofacial cleft",
    "ConceptID": "C3266076"
  },
  {
-   "DiseaseName": "Orofacial clefting",
-   "ConceptID": "CN221583"
- },
- {
-   "DiseaseName": "Orofacial clefting",
-   "ConceptID": "CN236317"
- },
- {
-   "DiseaseName": "Orofacial-digital syndrome III",
-   "ConceptID": "C0406726"
- },
- {
-   "DiseaseName": "Orofacial-digital syndrome IV",
-   "ConceptID": "C0406727"
+   "DiseaseName": "Orofacial-digital syndrome",
+   "ConceptID": ""
  },
  {
    "DiseaseName": "Orofacial dyskinesia",
    "ConceptID": "C0152115"
  },
  {
-   "DiseaseName": "Orofaciodigital syndrome 10",
-   "ConceptID": "C1833796"
- },
- {
-   "DiseaseName": "Orofaciodigital syndrome 11",
-   "ConceptID": "C2752048"
- },
- {
-   "DiseaseName": "Orofaciodigital syndrome 12",
-   "ConceptID": "C2932679"
- },
- {
-   "DiseaseName": "Orofaciodigital syndrome 13",
-   "ConceptID": "C2932680"
- },
- {
-   "DiseaseName": "Orofaciodigital syndrome 5",
-   "ConceptID": "C1868118"
- },
- {
-   "DiseaseName": "Orofaciodigital syndrome 6",
-   "ConceptID": "C2745997"
- },
- {
-   "DiseaseName": "Orofaciodigital syndrome 8",
-   "ConceptID": "C0796101"
- },
- {
-   "DiseaseName": "Orofaciodigital syndrome 9",
-   "ConceptID": "C0796102"
- },
- {
-   "DiseaseName": "Orofaciodigital syndromes",
+   "DiseaseName": "Orofaciodigital syndrome",
    "ConceptID": "C0029294"
  },
  {
-   "DiseaseName": "Orofaciodigital syndrome VII",
-   "ConceptID": "C0796100"
- },
- {
-   "DiseaseName": "Orofaciodigital syndrome xiv",
-   "ConceptID": "C4014780"
- },
- {
-   "DiseaseName": "Orofaciodigital syndrome XV",
-   "ConceptID": "C4310701"
- },
- {
-   "DiseaseName": "OROFACIODIGITAL SYNDROME XVI",
-   "ConceptID": "C4539729"
- },
- {
-   "DiseaseName": "OROFACIODIGITAL SYNDROME XVII",
-   "ConceptID": "CN902091"
- },
- {
-   "DiseaseName": "OROFACIODIGITAL SYNDROME XVIII",
-   "ConceptID": "CN244546"
- },
- {
-   "DiseaseName": "Orolaryngeal cancer, multiple",
+   "DiseaseName": "Orolaryngeal cancer",
    "ConceptID": "C1838548"
- },
- {
-   "DiseaseName": "Oromandibular dystonia",
-   "ConceptID": "C2242577"
  },
  {
    "DiseaseName": "Oromandibular-limb hypogenesis spectrum",
@@ -64765,12 +63569,8 @@
    "ConceptID": "C4021845"
  },
  {
-   "DiseaseName": "Oropharyngeal squamous cell carcinoma",
-   "ConceptID": "C0280313"
- },
- {
-   "DiseaseName": "Oropharyngeal squamous papilloma",
-   "ConceptID": "C1335141"
+   "DiseaseName": "Oropharyngeal squamous",
+   "ConceptID": ""
  },
  {
    "DiseaseName": "Orotic acid crystalluria",
@@ -64801,11 +63601,7 @@
    "ConceptID": "C0020651"
  },
  {
-   "DiseaseName": "Orthostatic hypotension due to autonomic dysfunction",
-   "ConceptID": "C1868528"
- },
- {
-   "DiseaseName": "Orthostatic hypotensive disorder, streeten type",
+   "DiseaseName": "Orthostatic hypotensive",
    "ConceptID": "C1840438"
  },
  {
@@ -64877,42 +63673,6 @@
    "ConceptID": "C0029408"
  },
  {
-   "DiseaseName": "Osteoarthritis of distal interphalangeal joint",
-   "ConceptID": "C0409957"
- },
- {
-   "DiseaseName": "Osteoarthritis of hip",
-   "ConceptID": "C0029410"
- },
- {
-   "DiseaseName": "Osteoarthritis of knee",
-   "ConceptID": "C0409959"
- },
- {
-   "DiseaseName": "Osteoarthritis of the elbow",
-   "ConceptID": "C0409954"
- },
- {
-   "DiseaseName": "Osteoarthritis of the first carpometacarpal joint",
-   "ConceptID": "C0409956"
- },
- {
-   "DiseaseName": "Osteoarthritis of the small joints of the hand",
-   "ConceptID": "C4025381"
- },
- {
-   "DiseaseName": "Osteoarthritis susceptibility 3",
-   "ConceptID": "C2675609"
- },
- {
-   "DiseaseName": "Osteoarthritis susceptibility 4",
-   "ConceptID": "C1835815"
- },
- {
-   "DiseaseName": "Osteoarthritis with mild chondrodysplasia",
-   "ConceptID": "C1858079"
- },
- {
    "DiseaseName": "Osteoblastoma",
    "ConceptID": "C0029417"
  },
@@ -64927,10 +63687,6 @@
  {
    "DiseaseName": "Osteochondrodysplasia",
    "ConceptID": "C0029422"
- },
- {
-   "DiseaseName": "Osteochondrodysplasia, complex lethal, symoens-barnes-gistelinck type",
-   "ConceptID": "C4225162"
  },
  {
    "DiseaseName": "Osteochondroma",
@@ -64961,110 +63717,6 @@
    "ConceptID": "C0029434"
  },
  {
-   "DiseaseName": "Osteogenesis imperfecta, CREB3L1 related",
-   "ConceptID": "CN231481"
- },
- {
-   "DiseaseName": "Osteogenesis Imperfecta, Dominant",
-   "ConceptID": "CN239427"
- },
- {
-   "DiseaseName": "Osteogenesis imperfecta, mild",
-   "ConceptID": "C4015953"
- },
- {
-   "DiseaseName": "Osteogenesis Imperfecta, Recessive",
-   "ConceptID": "CN239451"
- },
- {
-   "DiseaseName": "Osteogenesis imperfecta, recessive perinatal lethal",
-   "ConceptID": "C0268360"
- },
- {
-   "DiseaseName": "Osteogenesis imperfecta type 10",
-   "ConceptID": "C3151211"
- },
- {
-   "DiseaseName": "Osteogenesis imperfecta type 12",
-   "ConceptID": "C3151433"
- },
- {
-   "DiseaseName": "Osteogenesis imperfecta type 1, mild",
-   "ConceptID": "C4015950"
- },
- {
-   "DiseaseName": "Osteogenesis imperfecta type 2, thin-bone",
-   "ConceptID": "CN071440"
- },
- {
-   "DiseaseName": "Osteogenesis imperfecta type 5",
-   "ConceptID": "C1970414"
- },
- {
-   "DiseaseName": "Osteogenesis imperfecta type 7",
-   "ConceptID": "C1853162"
- },
- {
-   "DiseaseName": "Osteogenesis imperfecta type 8",
-   "ConceptID": "C1970458"
- },
- {
-   "DiseaseName": "Osteogenesis imperfecta type 9",
-   "ConceptID": "C1850169"
- },
- {
-   "DiseaseName": "Osteogenesis imperfecta type I",
-   "ConceptID": "C0023931"
- },
- {
-   "DiseaseName": "Osteogenesis imperfecta type III",
-   "ConceptID": "C0268362"
- },
- {
-   "DiseaseName": "Osteogenesis imperfecta, type III/iv",
-   "ConceptID": "C4015948"
- },
- {
-   "DiseaseName": "Osteogenesis imperfecta, type VI",
-   "ConceptID": "C3279564"
- },
- {
-   "DiseaseName": "Osteogenesis imperfecta, type XI",
-   "ConceptID": "C3151218"
- },
- {
-   "DiseaseName": "Osteogenesis imperfecta, type xiii",
-   "ConceptID": "C3553887"
- },
- {
-   "DiseaseName": "Osteogenesis imperfecta, type xiv",
-   "ConceptID": "C3554428"
- },
- {
-   "DiseaseName": "Osteogenesis imperfecta, type xv",
-   "ConceptID": "C3808844"
- },
- {
-   "DiseaseName": "Osteogenesis imperfecta, type xvi",
-   "ConceptID": "C4015610"
- },
- {
-   "DiseaseName": "Osteogenesis imperfecta, type xvii",
-   "ConceptID": "C4225301"
- },
- {
-   "DiseaseName": "OSTEOGENESIS IMPERFECTA, TYPE XVIII",
-   "ConceptID": "CN244563"
- },
- {
-   "DiseaseName": "Osteogenesis imperfecta with normal sclerae, dominant form",
-   "ConceptID": "C0268363"
- },
- {
-   "DiseaseName": "Osteogenesis imperfecta with opalescent teeth, blue sclerae and wormian bones, but without fractures",
-   "ConceptID": "C1833748"
- },
- {
    "DiseaseName": "Osteoglophonic dysplasia",
    "ConceptID": "C0432283"
  },
@@ -65077,196 +63729,8 @@
    "ConceptID": "C0221204"
  },
  {
-   "DiseaseName": "Osteolytic defect of the distal phalanx of the thumb",
-   "ConceptID": "C4021417"
- },
- {
-   "DiseaseName": "Osteolytic defect of the proximal phalanx of the thumb",
-   "ConceptID": "C4021420"
- },
- {
-   "DiseaseName": "Osteolytic defect of the proximal toe phalanx",
-   "ConceptID": "C4021314"
- },
- {
-   "DiseaseName": "Osteolytic defect of thumb phalanx",
-   "ConceptID": "C4020905"
- },
- {
-   "DiseaseName": "Osteolytic defects of the 1st metacarpal",
-   "ConceptID": "C4024094"
- },
- {
-   "DiseaseName": "Osteolytic defects of the 1st metatarsal",
-   "ConceptID": "C4024073"
- },
- {
-   "DiseaseName": "Osteolytic defects of the distal phalanges of the hand",
-   "ConceptID": "C1849547"
- },
- {
-   "DiseaseName": "Osteolytic defects of the distal phalanges of the toes",
-   "ConceptID": "C4023979"
- },
- {
-   "DiseaseName": "Osteolytic defects of the distal phalanx of the 2nd finger",
-   "ConceptID": "C4021441"
- },
- {
-   "DiseaseName": "Osteolytic defects of the distal phalanx of the 2nd toe",
-   "ConceptID": "C4023839"
- },
- {
-   "DiseaseName": "Osteolytic defects of the distal phalanx of the 3rd finger",
-   "ConceptID": "C4021478"
- },
- {
-   "DiseaseName": "Osteolytic defects of the distal phalanx of the 3rd toe",
-   "ConceptID": "C4022069"
- },
- {
-   "DiseaseName": "Osteolytic defects of the distal phalanx of the 4th finger",
-   "ConceptID": "C4024457"
- },
- {
-   "DiseaseName": "Osteolytic defects of the distal phalanx of the 4th toe",
-   "ConceptID": "C4022068"
- },
- {
-   "DiseaseName": "Osteolytic defects of the distal phalanx of the 5th finger",
-   "ConceptID": "C4024504"
- },
- {
-   "DiseaseName": "Osteolytic defects of the distal phalanx of the 5th toe",
-   "ConceptID": "C4022067"
- },
- {
-   "DiseaseName": "Osteolytic defects of the distal phalanx of the hallux",
-   "ConceptID": "C4024065"
- },
- {
-   "DiseaseName": "Osteolytic defects of the hand bones",
-   "ConceptID": "C4021400"
- },
- {
-   "DiseaseName": "Osteolytic defects of the middle phalanges of the hand",
-   "ConceptID": "C4024185"
- },
- {
-   "DiseaseName": "Osteolytic defects of the middle phalanges of the toes",
-   "ConceptID": "C4023974"
- },
- {
-   "DiseaseName": "Osteolytic defects of the middle phalanx of the 2nd finger",
-   "ConceptID": "C4021437"
- },
- {
-   "DiseaseName": "Osteolytic defects of the middle phalanx of the 2nd toe",
-   "ConceptID": "C4023847"
- },
- {
-   "DiseaseName": "Osteolytic defects of the middle phalanx of the 3rd finger",
-   "ConceptID": "C4024365"
- },
- {
-   "DiseaseName": "Osteolytic defects of the middle phalanx of the 3rd toe",
-   "ConceptID": "C4022075"
- },
- {
-   "DiseaseName": "Osteolytic defects of the middle phalanx of the 4th finger",
-   "ConceptID": "C4024461"
- },
- {
-   "DiseaseName": "Osteolytic defects of the middle phalanx of the 4th toe",
-   "ConceptID": "C4022074"
- },
- {
-   "DiseaseName": "Osteolytic defects of the middle phalanx of the 5th finger",
-   "ConceptID": "C4024559"
- },
- {
-   "DiseaseName": "Osteolytic defects of the middle phalanx of the 5th toe",
-   "ConceptID": "C4022073"
- },
- {
-   "DiseaseName": "Osteolytic defects of the phalanges of the 2nd finger",
-   "ConceptID": "C4021443"
- },
- {
-   "DiseaseName": "Osteolytic defects of the phalanges of the 2nd toe",
-   "ConceptID": "C4023888"
- },
- {
-   "DiseaseName": "Osteolytic defects of the phalanges of the 3rd finger",
-   "ConceptID": "C4021472"
- },
- {
-   "DiseaseName": "Osteolytic defects of the phalanges of the 3rd toe",
-   "ConceptID": "C4021825"
- },
- {
-   "DiseaseName": "Osteolytic defects of the phalanges of the 4th finger",
-   "ConceptID": "C4020832"
- },
- {
-   "DiseaseName": "Osteolytic defects of the phalanges of the 4th toe",
-   "ConceptID": "C4023873"
- },
- {
-   "DiseaseName": "Osteolytic defects of the phalanges of the 5th finger",
-   "ConceptID": "C4021677"
- },
- {
-   "DiseaseName": "Osteolytic defects of the phalanges of the 5th toe",
-   "ConceptID": "C4023865"
- },
- {
-   "DiseaseName": "Osteolytic defects of the phalanges of the hallux",
-   "ConceptID": "C4024078"
- },
- {
-   "DiseaseName": "Osteolytic defects of the phalanges of the toes",
-   "ConceptID": "C4023985"
- },
- {
-   "DiseaseName": "Osteolytic defects of the proximal phalanges of the hand",
-   "ConceptID": "C1850148"
- },
- {
-   "DiseaseName": "Osteolytic defects of the proximal phalanx of the 2nd finger",
-   "ConceptID": "C4021433"
- },
- {
-   "DiseaseName": "Osteolytic defects of the proximal phalanx of the 2nd toe",
-   "ConceptID": "C4023855"
- },
- {
-   "DiseaseName": "Osteolytic defects of the proximal phalanx of the 3rd finger",
-   "ConceptID": "C4024352"
- },
- {
-   "DiseaseName": "Osteolytic defects of the proximal phalanx of the 3rd toe",
-   "ConceptID": "C4022072"
- },
- {
-   "DiseaseName": "Osteolytic defects of the proximal phalanx of the 4th finger",
-   "ConceptID": "C4024450"
- },
- {
-   "DiseaseName": "Osteolytic defects of the proximal phalanx of the 4th toe",
-   "ConceptID": "C4022071"
- },
- {
-   "DiseaseName": "Osteolytic defects of the proximal phalanx of the 5th finger",
-   "ConceptID": "C4024514"
- },
- {
-   "DiseaseName": "Osteolytic defects of the proximal phalanx of the 5th toe",
-   "ConceptID": "C4022070"
- },
- {
-   "DiseaseName": "Osteolytic defects of the proximal phalanx of the hallux",
-   "ConceptID": "C4024058"
+   "DiseaseName": "Osteolytic defect",
+   "ConceptID": ""
  },
  {
    "DiseaseName": "Osteoma",
@@ -65301,20 +63765,8 @@
    "ConceptID": "C0029443"
  },
  {
-   "DiseaseName": "Osteomyelitis leading to amputation due to slow healing fractures",
-   "ConceptID": "C1864975"
- },
- {
-   "DiseaseName": "Osteomyelitis, sterile multifocal, with periostitis and pustulosis",
-   "ConceptID": "C2748507"
- },
- {
    "DiseaseName": "Osteopathia striata",
    "ConceptID": "C0265513"
- },
- {
-   "DiseaseName": "Osteopathia striata with cranial sclerosis",
-   "ConceptID": "C0432268"
  },
  {
    "DiseaseName": "Osteopenia",
@@ -65325,68 +63777,12 @@
    "ConceptID": "C2674706"
  },
  {
-   "DiseaseName": "Osteopetrosis and infantile neuroaxonal dystrophy",
-   "ConceptID": "C1838258"
- },
- {
-   "DiseaseName": "Osteopetrosis, autosomal dominant",
-   "ConceptID": "CN643617"
- },
- {
-   "DiseaseName": "Osteopetrosis autosomal dominant type 1",
-   "ConceptID": "C1843330"
- },
- {
-   "DiseaseName": "Osteopetrosis autosomal dominant type 2",
-   "ConceptID": "C3179239"
- },
- {
-   "DiseaseName": "Osteopetrosis autosomal recessive 1",
-   "ConceptID": "C1850127"
- },
- {
-   "DiseaseName": "Osteopetrosis autosomal recessive 2",
-   "ConceptID": "C1850126"
- },
- {
-   "DiseaseName": "Osteopetrosis autosomal recessive 4",
-   "ConceptID": "C1969106"
- },
- {
-   "DiseaseName": "Osteopetrosis, autosomal recessive 5",
-   "ConceptID": "C1968603"
- },
- {
-   "DiseaseName": "Osteopetrosis autosomal recessive 6",
-   "ConceptID": "C1969093"
- },
- {
-   "DiseaseName": "Osteopetrosis autosomal recessive 7",
-   "ConceptID": "C2676766"
- },
- {
-   "DiseaseName": "Osteopetrosis, autosomal recessive 8",
-   "ConceptID": "C3554478"
- },
- {
    "DiseaseName": "Osteopetrosis",
    "ConceptID": "C0029454"
  },
  {
-   "DiseaseName": "Osteopetrosis with renal tubular acidosis",
-   "ConceptID": "C0345407"
- },
- {
-   "DiseaseName": "Osteopoikilosis and dacryocystitis",
-   "ConceptID": "C1833698"
- },
- {
    "DiseaseName": "Osteopoikilosis",
    "ConceptID": "C0029455"
- },
- {
-   "DiseaseName": "Osteopoikilosis with melorheostosis",
-   "ConceptID": "C3149695"
  },
  {
    "DiseaseName": "Osteoporosis",
@@ -65413,40 +63809,12 @@
    "ConceptID": "C0029463"
  },
  {
-   "DiseaseName": "Osteosclerosis of ribs",
-   "ConceptID": "C4025013"
+   "DiseaseName": "Osteosclerosis",
+   "ConceptID": ""
  },
  {
-   "DiseaseName": "Osteosclerosis of the base of the skull",
-   "ConceptID": "C4021624"
- },
- {
-   "DiseaseName": "Osteosclerosis of the radius",
-   "ConceptID": "C4022460"
- },
- {
-   "DiseaseName": "Osteosclerosis of the ulna",
-   "ConceptID": "C4021697"
- },
- {
-   "DiseaseName": "Osteosclerosis - Stanescu type",
-   "ConceptID": "C0432263"
- },
- {
-   "DiseaseName": "Osteosclerosis with ichthyosis and fractures",
-   "ConceptID": "C1833697"
- },
- {
-   "DiseaseName": "Osteosclerosis with ichthyosis and premature ovarian failure",
-   "ConceptID": "C1864942"
- },
- {
-   "DiseaseName": "Osteosclerotic chondrodysplasia, lethal, with intracellular inclusions",
-   "ConceptID": "C1863920"
- },
- {
-   "DiseaseName": "Osteosclerotic metaphyseal dysplasia",
-   "ConceptID": "C3554665"
+   "DiseaseName": "Osteosclerotic",
+   "ConceptID": ""
  },
  {
    "DiseaseName": "other cancer",
@@ -65457,32 +63825,8 @@
    "ConceptID": "C0029877"
  },
  {
-   "DiseaseName": "Otitis externa",
-   "ConceptID": "C0029878"
- },
- {
-   "DiseaseName": "Otitis media",
-   "ConceptID": "C0029882"
- },
- {
-   "DiseaseName": "Otitis media, susceptibility to",
-   "ConceptID": "C1833692"
- },
- {
-   "DiseaseName": "Otitis media with effusion",
-   "ConceptID": "C0456498"
- },
- {
    "DiseaseName": "Otodental dysplasia",
    "ConceptID": "C1833693"
- },
- {
-   "DiseaseName": "Otofaciocervical syndrome 1",
-   "ConceptID": "C3714941"
- },
- {
-   "DiseaseName": "Otofaciocervical syndrome 2",
-   "ConceptID": "C3714942"
  },
  {
    "DiseaseName": "Otofaciocervical syndrome",
@@ -65501,48 +63845,8 @@
    "ConceptID": "C2748918"
  },
  {
-   "DiseaseName": "Otopalatodigital Spectrum Disorders",
-   "ConceptID": "CN043653"
- },
- {
-   "DiseaseName": "Oto-palato-digital syndrome, type I",
-   "ConceptID": "C0265251"
- },
- {
-   "DiseaseName": "Oto-palato-digital syndrome, type II",
-   "ConceptID": "C1844696"
- },
- {
-   "DiseaseName": "Otosclerosis 10",
-   "ConceptID": "C3888339"
- },
- {
-   "DiseaseName": "Otosclerosis 1",
-   "ConceptID": "CN032031"
- },
- {
-   "DiseaseName": "Otosclerosis 2",
-   "ConceptID": "C1854022"
- },
- {
-   "DiseaseName": "Otosclerosis 3",
-   "ConceptID": "C1842353"
- },
- {
-   "DiseaseName": "Otosclerosis 4",
-   "ConceptID": "C1969046"
- },
- {
-   "DiseaseName": "Otosclerosis 5",
-   "ConceptID": "C1837422"
- },
- {
-   "DiseaseName": "Otosclerosis 7",
-   "ConceptID": "C1969044"
- },
- {
-   "DiseaseName": "Otosclerosis 8",
-   "ConceptID": "C2677515"
+   "DiseaseName": "Oto-palato-digital syndrome",
+   "ConceptID": ""
  },
  {
    "DiseaseName": "Otosclerosis",
@@ -65569,16 +63873,8 @@
    "ConceptID": "C1849025"
  },
  {
-   "DiseaseName": "Ovalocytosis, hereditary hemolytic, with defective erythropoiesis",
-   "ConceptID": "C1833689"
- },
- {
-   "DiseaseName": "Ovalocytosis, Malaysian-Melanesian-Filipino type",
-   "ConceptID": "C1862322"
- },
- {
-   "DiseaseName": "Ovalocytosis, southeast asian",
-   "ConceptID": "C1833690"
+   "DiseaseName": "Ovalocytosis",
+   "ConceptID": ""
  },
  {
    "DiseaseName": "Oval pupil",
@@ -65593,16 +63889,8 @@
    "ConceptID": "C0948216"
  },
  {
-   "DiseaseName": "Ovarian cancer 1",
-   "ConceptID": "C2675601"
- },
- {
    "DiseaseName": "Ovarian cancer",
    "ConceptID": "C1140680"
- },
- {
-   "DiseaseName": "ovarian cancer",
-   "ConceptID": "CN235601"
  },
  {
    "DiseaseName": "Ovarian carcinoma",
@@ -65615,26 +63903,6 @@
  {
    "DiseaseName": "Ovarian dermoid cyst",
    "ConceptID": "C0237020"
- },
- {
-   "DiseaseName": "Ovarian dysgenesis 1",
-   "ConceptID": "C0949595"
- },
- {
-   "DiseaseName": "Ovarian dysgenesis 2",
-   "ConceptID": "C1845294"
- },
- {
-   "DiseaseName": "Ovarian dysgenesis 3",
-   "ConceptID": "C3280471"
- },
- {
-   "DiseaseName": "Ovarian dysgenesis 4",
-   "ConceptID": "C4015409"
- },
- {
-   "DiseaseName": "OVARIAN DYSGENESIS 5",
-   "ConceptID": "C4540141"
  },
  {
    "DiseaseName": "Ovarian Dysgenesis",
@@ -65761,10 +64029,6 @@
    "ConceptID": "C0497406"
  },
  {
-   "DiseaseName": "Overweight",
-   "ConceptID": "C2712048"
- },
- {
    "DiseaseName": "Ovoid thoracolumbar vertebrae",
    "ConceptID": "C1868556"
  },
@@ -65833,28 +64097,8 @@
    "ConceptID": "C1838491"
  },
  {
-   "DiseaseName": "Pachyonychia congenita 1",
-   "ConceptID": "C1706595"
- },
- {
-   "DiseaseName": "Pachyonychia congenita 2",
-   "ConceptID": "C1721007"
- },
- {
-   "DiseaseName": "Pachyonychia congenita 3",
-   "ConceptID": "C3714948"
- },
- {
-   "DiseaseName": "Pachyonychia congenita 4",
-   "ConceptID": "C3714949"
- },
- {
-   "DiseaseName": "Pachyonychia congenita, autosomal recessive",
-   "ConceptID": "C1850103"
- },
- {
-   "DiseaseName": "Pachyonychia congenita syndrome",
-   "ConceptID": "C0265334"
+   "DiseaseName": "Pachyonychia congenita",
+   "ConceptID": ""
  },
  {
    "DiseaseName": "paclitaxel response - Efficacy",
@@ -65877,24 +64121,8 @@
    "ConceptID": "C0030186"
  },
  {
-   "DiseaseName": "Paget disease of bone 2, early-onset",
-   "ConceptID": "C4085251"
- },
- {
-   "DiseaseName": "Paget disease of bone 4",
-   "ConceptID": "C1853473"
- },
- {
-   "DiseaseName": "Paget disease of bone 6",
-   "ConceptID": "C4085250"
- },
- {
    "DiseaseName": "Paget disease of bone",
    "ConceptID": "C0029401"
- },
- {
-   "DiseaseName": "Paget disease of bone, familial",
-   "ConceptID": "C4085252"
  },
  {
    "DiseaseName": "PAGOD syndrome",
@@ -65907,10 +64135,6 @@
  {
    "DiseaseName": "Pain",
    "ConceptID": "C0030193"
- },
- {
-   "DiseaseName": "Pain",
-   "ConceptID": "CN236637"
  },
  {
    "DiseaseName": "Paine syndrome",
@@ -65927,10 +64151,6 @@
  {
    "DiseaseName": "Painless fractures due to injury",
    "ConceptID": "C1837602"
- },
- {
-   "DiseaseName": "Pain, Postoperative",
-   "ConceptID": "CN236653"
  },
  {
    "DiseaseName": "Palant cleft palate syndrome",
@@ -65977,10 +64197,6 @@
    "ConceptID": "C0393577"
  },
  {
-   "DiseaseName": "Pallidal degeneration, progressive, with retinitis pigmentosa",
-   "ConceptID": "C1850101"
- },
- {
    "DiseaseName": "Pallister-Hall syndrome",
    "ConceptID": "C0265220"
  },
@@ -65995,10 +64211,6 @@
  {
    "DiseaseName": "Pallor",
    "ConceptID": "C0030232"
- },
- {
-   "DiseaseName": "Pallor of dorsal columns of the spinal cord",
-   "ConceptID": "C1865416"
  },
  {
    "DiseaseName": "Palmar edema",
@@ -66045,7 +64257,7 @@
    "ConceptID": "C4024876"
  },
  {
-   "DiseaseName": "Palmoplantar carcinoma, multiple self-healing",
+   "DiseaseName": "Palmoplantar carcinoma",
    "ConceptID": "C3808876"
  },
  {
@@ -66073,44 +64285,8 @@
    "ConceptID": "C3149931"
  },
  {
-   "DiseaseName": "Palmoplantar keratoderma and woolly hair",
-   "ConceptID": "C4015202"
- },
- {
    "DiseaseName": "Palmoplantar keratoderma",
    "ConceptID": "C1862859"
- },
- {
-   "DiseaseName": "Palmoplantar keratoderma, epidermolytic, with knuckle pads",
-   "ConceptID": "C1840427"
- },
- {
-   "DiseaseName": "Palmoplantar keratoderma, mutilating, with periorificial keratotic plaques",
-   "ConceptID": "C2609071"
- },
- {
-   "DiseaseName": "Palmoplantar keratoderma, mutilating, with periorificial keratotic plaques, X-linked",
-   "ConceptID": "C3806745"
- },
- {
-   "DiseaseName": "Palmoplantar keratoderma, nagashima type",
-   "ConceptID": "C3810072"
- },
- {
-   "DiseaseName": "Palmoplantar keratoderma, nonepidermolytic, focal 2",
-   "ConceptID": "C4225339"
- },
- {
-   "DiseaseName": "Palmoplantar keratoderma, nonepidermolytic, focal",
-   "ConceptID": "C2931923"
- },
- {
-   "DiseaseName": "Palmoplantar keratoderma, nonepidermolytic, focal or diffuse",
-   "ConceptID": "C3810394"
- },
- {
-   "DiseaseName": "PALMOPLANTAR KERATODERMA, PUNCTATE TYPE IB",
-   "ConceptID": "C3554145"
  },
  {
    "DiseaseName": "Palmoplantar keratosis with erythema and scale",
@@ -66161,16 +64337,8 @@
    "ConceptID": "C0281361"
  },
  {
-   "DiseaseName": "Pancreatic agenesis 2",
-   "ConceptID": "C4014737"
- },
- {
-   "DiseaseName": "Pancreatic agenesis and congenital heart disease",
-   "ConceptID": "C1838780"
- },
- {
-   "DiseaseName": "Pancreatic agenesis, congenital",
-   "ConceptID": "C1850096"
+   "DiseaseName": "Pancreatic agenesis",
+   "ConceptID": ""
  },
  {
    "DiseaseName": "Pancreatic aplasia",
@@ -66185,24 +64353,8 @@
    "ConceptID": "C1842406"
  },
  {
-   "DiseaseName": "Pancreatic cancer 1",
-   "ConceptID": "C1847351"
- },
- {
-   "DiseaseName": "Pancreatic cancer 2",
-   "ConceptID": "C3150546"
- },
- {
-   "DiseaseName": "Pancreatic cancer 3",
-   "ConceptID": "C3150547"
- },
- {
-   "DiseaseName": "Pancreatic cancer 4",
-   "ConceptID": "C3280442"
- },
- {
-   "DiseaseName": "Pancreatic Cancer Susceptibility 4",
-   "ConceptID": "CN229775"
+   "DiseaseName": "Pancreatic cancer",
+   "ConceptID": ""
  },
  {
    "DiseaseName": "Pancreatic cysts",
@@ -66233,10 +64385,6 @@
    "ConceptID": "C0266267"
  },
  {
-   "DiseaseName": "Pancreatic hypoplasia, intestinal atresia, and gallbladder aplasia or hypoplasia, with or without tracheoesophageal fistula",
-   "ConceptID": "C1832443"
- },
- {
    "DiseaseName": "Pancreatic insufficiency, combined exocrine",
    "ConceptID": "C1850081"
  },
@@ -66257,8 +64405,8 @@
    "ConceptID": "C1856162"
  },
  {
-   "DiseaseName": "Pancreatic lymphoma, familial",
-   "ConceptID": "C1865139"
+   "DiseaseName": "Pancreatic lymphoma",
+   "ConceptID": ""
  },
  {
    "DiseaseName": "Pancreatic Neoplasms",
@@ -66293,10 +64441,6 @@
    "ConceptID": "C0334489"
  },
  {
-   "DiseaseName": "Pancytopenia and occlusive vascular disease",
-   "ConceptID": "C1868652"
- },
- {
    "DiseaseName": "Pancytopenia",
    "ConceptID": "C0030312"
  },
@@ -66313,28 +64457,12 @@
    "ConceptID": "C0086769"
  },
  {
-   "DiseaseName": "Panic disorder 1",
-   "ConceptID": "C1868649"
- },
- {
-   "DiseaseName": "Panic disorder 2",
-   "ConceptID": "C1842922"
- },
- {
-   "DiseaseName": "Panic disorder 3",
-   "ConceptID": "C1864946"
- },
- {
    "DiseaseName": "Panic Disorder",
    "ConceptID": "CN240645"
  },
  {
    "DiseaseName": "Panitumumab response",
    "ConceptID": "CN077999"
- },
- {
-   "DiseaseName": "panitumumab response - Dosage",
-   "ConceptID": "CN240599"
  },
  {
    "DiseaseName": "Panniculitis",
@@ -66361,24 +64489,8 @@
    "ConceptID": "C1306837"
  },
  {
-   "DiseaseName": "Papillary renal cell carcinoma, sporadic",
-   "ConceptID": "C1336078"
- },
- {
-   "DiseaseName": "Papillary renal cell carcinoma type 1",
-   "ConceptID": "C1336839"
- },
- {
-   "DiseaseName": "Papillary renal cell carcinoma type 2",
-   "ConceptID": "C1336840"
- },
- {
    "DiseaseName": "Papillary thyroid carcinoma",
    "ConceptID": "C0238463"
- },
- {
-   "DiseaseName": "Papillary thyroid microcarcinoma",
-   "ConceptID": "C1709457"
  },
  {
    "DiseaseName": "Papilledema",
@@ -66389,12 +64501,8 @@
    "ConceptID": "C0030354"
  },
  {
-   "DiseaseName": "Papillomatosis, confluent and reticulated",
-   "ConceptID": "C0263385"
- },
- {
-   "DiseaseName": "Papillomatosis papules",
-   "ConceptID": "CN244046"
+   "DiseaseName": "Papillomatosis",
+   "ConceptID": ""
  },
  {
    "DiseaseName": "Papillon-Lefèvre syndrome",
@@ -66449,24 +64557,8 @@
    "ConceptID": "C1333944"
  },
  {
-   "DiseaseName": "Paragangliomas 1",
-   "ConceptID": "C1868633"
- },
- {
-   "DiseaseName": "Paragangliomas 2",
-   "ConceptID": "C1866552"
- },
- {
-   "DiseaseName": "Paragangliomas 3",
-   "ConceptID": "C1854336"
- },
- {
-   "DiseaseName": "Paragangliomas 4",
-   "ConceptID": "C1861848"
- },
- {
-   "DiseaseName": "Paragangliomas 5",
-   "ConceptID": "C3279992"
+   "DiseaseName": "Paragangliomas",
+   "ConceptID": ""
  },
  {
    "DiseaseName": "Parageusia",
@@ -66569,32 +64661,8 @@
    "ConceptID": "C4025604"
  },
  {
-   "DiseaseName": "Parathyroid adenoma",
-   "ConceptID": "C0262587"
- },
- {
-   "DiseaseName": "Parathyroid adenoma, somatic",
-   "ConceptID": "C2675664"
- },
- {
-   "DiseaseName": "Parathyroid agenesis",
-   "ConceptID": "C1321907"
- },
- {
-   "DiseaseName": "Parathyroid carcinoma",
-   "ConceptID": "C0687150"
- },
- {
-   "DiseaseName": "Parathyroid dysgenesis",
-   "ConceptID": "C4023197"
- },
- {
-   "DiseaseName": "Parathyroid hyperplasia",
-   "ConceptID": "C0271844"
- },
- {
-   "DiseaseName": "Parathyroid hypoplasia",
-   "ConceptID": "C1389851"
+   "DiseaseName": "Parathyroid",
+   "ConceptID": ""
  },
  {
    "DiseaseName": "Paravenous chorioretinal atrophy",
@@ -66625,24 +64693,8 @@
    "ConceptID": "C0431294"
  },
  {
-   "DiseaseName": "Parietal foramina 1",
-   "ConceptID": "C1868599"
- },
- {
-   "DiseaseName": "Parietal foramina 2",
-   "ConceptID": "C1865044"
- },
- {
-   "DiseaseName": "Parietal foramina 3",
-   "ConceptID": "C1835980"
- },
- {
    "DiseaseName": "Parietal foramina",
    "ConceptID": "C0222706"
- },
- {
-   "DiseaseName": "Parietal foramina with cleidocranial dysplasia",
-   "ConceptID": "C1868597"
  },
  {
    "DiseaseName": "Parietal hypometabolism in FDG PET",
@@ -66665,148 +64717,12 @@
    "ConceptID": "C1850077"
  },
  {
-   "DiseaseName": "Parkinson disease 10",
-   "ConceptID": "C1847360"
- },
- {
-   "DiseaseName": "Parkinson disease 11",
-   "ConceptID": "C1843211"
- },
- {
-   "DiseaseName": "Parkinson disease 12",
-   "ConceptID": "C1845165"
- },
- {
-   "DiseaseName": "Parkinson disease 13",
-   "ConceptID": "C1853202"
- },
- {
-   "DiseaseName": "Parkinson disease 14",
-   "ConceptID": "C2751842"
- },
- {
-   "DiseaseName": "Parkinson disease 15",
-   "ConceptID": "C1850100"
- },
- {
-   "DiseaseName": "Parkinson disease 16",
-   "ConceptID": "C2751012"
- },
- {
-   "DiseaseName": "Parkinson disease 17",
-   "ConceptID": "C3280133"
- },
- {
-   "DiseaseName": "Parkinson disease 18",
-   "ConceptID": "C3280271"
- },
- {
-   "DiseaseName": "Parkinson disease 19a, juvenile-onset",
-   "ConceptID": "C3809811"
- },
- {
-   "DiseaseName": "Parkinson disease 19b, early-onset",
-   "ConceptID": "CN237819"
- },
- {
-   "DiseaseName": "Parkinson disease 1",
-   "ConceptID": "C1868595"
- },
- {
-   "DiseaseName": "Parkinson disease 20, early-onset",
-   "ConceptID": "C3809824"
- },
- {
-   "DiseaseName": "Parkinson disease 21",
-   "ConceptID": "C4225353"
- },
- {
-   "DiseaseName": "Parkinson disease 22, autosomal dominant",
-   "ConceptID": "C4225238"
- },
- {
-   "DiseaseName": "Parkinson disease 23, autosomal recessive early-onset",
-   "ConceptID": "C4225186"
- },
- {
-   "DiseaseName": "Parkinson disease 2",
-   "ConceptID": "C1868675"
- },
- {
-   "DiseaseName": "Parkinson disease 3",
-   "ConceptID": "C1865581"
- },
- {
-   "DiseaseName": "Parkinson disease 4",
-   "ConceptID": "C1854182"
- },
- {
-   "DiseaseName": "Parkinson disease 5",
-   "ConceptID": "C3150899"
- },
- {
-   "DiseaseName": "Parkinson disease 6, autosomal recessive early-onset",
-   "ConceptID": "C1853833"
- },
- {
-   "DiseaseName": "Parkinson disease 6",
-   "ConceptID": "C1970035"
- },
- {
-   "DiseaseName": "Parkinson disease 7",
-   "ConceptID": "C1853445"
- },
- {
-   "DiseaseName": "Parkinson disease 8, autosomal dominant",
-   "ConceptID": "C1846862"
- },
- {
-   "DiseaseName": "Parkinson disease 9",
-   "ConceptID": "C1847640"
- },
- {
-   "DiseaseName": "Parkinson disease, autosomal recessive early-onset, digenic, PINK1/DJ1",
-   "ConceptID": "C2751533"
- },
- {
    "DiseaseName": "Parkinson disease",
    "ConceptID": "C0030567"
  },
  {
-   "DiseaseName": "Parkinson Disease, Dominant",
-   "ConceptID": "CN239359"
- },
- {
-   "DiseaseName": "Parkinson Disease, Dominant/Recessive",
-   "ConceptID": "CN239308"
- },
- {
-   "DiseaseName": "Parkinson Disease, Juvenile",
-   "ConceptID": "C0752105"
- },
- {
-   "DiseaseName": "Parkinson disease, late-onset",
-   "ConceptID": "C3160718"
- },
- {
-   "DiseaseName": "Parkinson disease, mitochondrial",
-   "ConceptID": "C1838867"
- },
- {
-   "DiseaseName": "Parkinson Disease, Recessive",
-   "ConceptID": "CN239372"
- },
- {
-   "DiseaseName": "Parkinson disease, resistance to",
-   "ConceptID": "C4016597"
- },
- {
    "DiseaseName": "Parkinsonism",
    "ConceptID": "C0242422"
- },
- {
-   "DiseaseName": "PARKINSONISM-DYSTONIA, INFANTILE, 2",
-   "ConceptID": "CN248785"
  },
  {
    "DiseaseName": "Parkinsonism, early onset with mental retardation",
@@ -66843,10 +64759,6 @@
  {
    "DiseaseName": "Parotitis",
    "ConceptID": "C0030583"
- },
- {
-   "DiseaseName": "Parotitis, juvenile recurrent",
-   "ConceptID": "C1863691"
  },
  {
    "DiseaseName": "Paroxetine response",
@@ -66889,10 +64801,6 @@
    "ConceptID": "C0013405"
  },
  {
-   "DiseaseName": "Paroxysmal dystonia",
-   "ConceptID": "C0393588"
- },
- {
    "DiseaseName": "Paroxysmal episodes",
    "ConceptID": "CN234400"
  },
@@ -66919,14 +64827,6 @@
  {
    "DiseaseName": "Paroxysmal lethargy",
    "ConceptID": "C1847507"
- },
- {
-   "DiseaseName": "Paroxysmal nocturnal hemoglobinuria 1",
-   "ConceptID": "C3806670"
- },
- {
-   "DiseaseName": "Paroxysmal nocturnal hemoglobinuria 2",
-   "ConceptID": "C3809369"
  },
  {
    "DiseaseName": "Paroxysmal nocturnal hemoglobinuria",
@@ -67085,96 +64985,20 @@
    "ConceptID": "C4021348"
  },
  {
-   "DiseaseName": "Partial duplication of the distal phalanx of the 2nd finger",
-   "ConceptID": "C4021365"
- },
- {
-   "DiseaseName": "Partial duplication of the distal phalanx of the 2nd toe",
-   "ConceptID": "C4023834"
- },
- {
-   "DiseaseName": "Partial duplication of the distal phalanx of the 3rd finger",
-   "ConceptID": "C4021360"
- },
- {
-   "DiseaseName": "Partial duplication of the distal phalanx of the 3rd toe",
-   "ConceptID": "C4020983"
- },
- {
-   "DiseaseName": "Partial duplication of the distal phalanx of the 4th finger",
-   "ConceptID": "C4021355"
- },
- {
-   "DiseaseName": "Partial duplication of the distal phalanx of the 4th toe",
-   "ConceptID": "C4020982"
- },
- {
-   "DiseaseName": "Partial duplication of the distal phalanx of the 5th finger",
-   "ConceptID": "C4021350"
- },
- {
-   "DiseaseName": "Partial duplication of the distal phalanx of the 5th toe",
-   "ConceptID": "C4020981"
- },
- {
-   "DiseaseName": "Partial duplication of the distal phalanx of the hallux",
-   "ConceptID": "C4021337"
+   "DiseaseName": "Partial duplication of the distal phalanx",
+   "ConceptID": ""
  },
  {
    "DiseaseName": "Partial duplication of the middle phalanges of the hand",
    "ConceptID": "C4024115"
  },
  {
-   "DiseaseName": "Partial duplication of the middle phalanx of the 2nd finger",
-   "ConceptID": "C4024149"
+   "DiseaseName": "Partial duplication of the middle phalanx",
+   "ConceptID": ""
  },
  {
-   "DiseaseName": "Partial duplication of the middle phalanx of the 2nd toe",
-   "ConceptID": "C4023832"
- },
- {
-   "DiseaseName": "Partial duplication of the middle phalanx of the 3rd finger",
-   "ConceptID": "C4024138"
- },
- {
-   "DiseaseName": "Partial duplication of the middle phalanx of the 3rd toe",
-   "ConceptID": "C4020980"
- },
- {
-   "DiseaseName": "Partial duplication of the middle phalanx of the 4th finger",
-   "ConceptID": "C4024130"
- },
- {
-   "DiseaseName": "Partial duplication of the middle phalanx of the 4th toe",
-   "ConceptID": "C4020979"
- },
- {
-   "DiseaseName": "Partial duplication of the middle phalanx of the 5th finger",
-   "ConceptID": "C4024123"
- },
- {
-   "DiseaseName": "Partial duplication of the middle phalanx of the 5th toe",
-   "ConceptID": "C4020978"
- },
- {
-   "DiseaseName": "Partial duplication of the phalanges of the 2nd finger",
-   "ConceptID": "C4024146"
- },
- {
-   "DiseaseName": "Partial duplication of the phalanges of the 3rd finger",
-   "ConceptID": "C4024142"
- },
- {
-   "DiseaseName": "Partial duplication of the phalanges of the 4th finger",
-   "ConceptID": "C4024134"
- },
- {
-   "DiseaseName": "Partial duplication of the phalanges of the 5th finger",
-   "ConceptID": "C4024127"
- },
- {
-   "DiseaseName": "Partial duplication of the phalanges of the hallux",
-   "ConceptID": "C1855005"
+   "DiseaseName": "Partial duplication of the phalanges",
+   "ConceptID": ""
  },
  {
    "DiseaseName": "Partial duplication of the phalanx of hand",
@@ -67185,40 +65009,8 @@
    "ConceptID": "C4024116"
  },
  {
-   "DiseaseName": "Partial duplication of the proximal phalanx of the 2nd finger",
-   "ConceptID": "C4024147"
- },
- {
-   "DiseaseName": "Partial duplication of the proximal phalanx of the 2nd toe",
-   "ConceptID": "C4021270"
- },
- {
-   "DiseaseName": "Partial duplication of the proximal phalanx of the 3rd finger",
-   "ConceptID": "C4024137"
- },
- {
-   "DiseaseName": "Partial duplication of the proximal phalanx of the 3rd toe",
-   "ConceptID": "C4020977"
- },
- {
-   "DiseaseName": "Partial duplication of the proximal phalanx of the 4th finger",
-   "ConceptID": "C4024129"
- },
- {
-   "DiseaseName": "Partial duplication of the proximal phalanx of the 4th toe",
-   "ConceptID": "C4022103"
- },
- {
-   "DiseaseName": "Partial duplication of the proximal phalanx of the 5th finger",
-   "ConceptID": "C4024122"
- },
- {
-   "DiseaseName": "Partial duplication of the proximal phalanx of the 5th toe",
-   "ConceptID": "C4020976"
- },
- {
-   "DiseaseName": "Partial duplication of the proximal phalanx of the hallux",
-   "ConceptID": "C4024052"
+   "DiseaseName": "Partial duplication of the proximal phalanx",
+   "ConceptID": ""
  },
  {
    "DiseaseName": "Partial duplication of thumb phalanx",
@@ -67337,14 +65129,6 @@
    "ConceptID": "C4023395"
  },
  {
-   "DiseaseName": "Patchy osteosclerosis",
-   "ConceptID": "C1855845"
- },
- {
-   "DiseaseName": "Patchy palmoplantar keratoderma",
-   "ConceptID": "C4021633"
- },
- {
    "DiseaseName": "Patchy reduction of bone mineral density",
    "ConceptID": "C4023755"
  },
@@ -67429,116 +65213,16 @@
    "ConceptID": "C4024072"
  },
  {
-   "DiseaseName": "Patchy sclerosis of the distal phalanx of the 2nd finger",
-   "ConceptID": "C4024290"
+   "DiseaseName": "Patchy sclerosis of the distal phalanx",
+   "ConceptID": ""
  },
  {
-   "DiseaseName": "Patchy sclerosis of the distal phalanx of the 2nd toe",
-   "ConceptID": "C4023838"
+   "DiseaseName": "Patchy sclerosis of the middle phalanx",
+   "ConceptID": ""
  },
  {
-   "DiseaseName": "Patchy sclerosis of the distal phalanx of the 3rd finger",
-   "ConceptID": "C4024371"
- },
- {
-   "DiseaseName": "Patchy sclerosis of the distal phalanx of the 3rd toe",
-   "ConceptID": "C4022060"
- },
- {
-   "DiseaseName": "Patchy sclerosis of the distal phalanx of the 4th finger",
-   "ConceptID": "C4024456"
- },
- {
-   "DiseaseName": "Patchy sclerosis of the distal phalanx of the 4th toe",
-   "ConceptID": "C4022059"
- },
- {
-   "DiseaseName": "Patchy sclerosis of the distal phalanx of the 5th finger",
-   "ConceptID": "C4024503"
- },
- {
-   "DiseaseName": "Patchy sclerosis of the distal phalanx of the 5th toe",
-   "ConceptID": "C4022058"
- },
- {
-   "DiseaseName": "Patchy sclerosis of the distal phalanx of the hallux",
-   "ConceptID": "C4024064"
- },
- {
-   "DiseaseName": "Patchy sclerosis of the distal phalanx of the thumb",
-   "ConceptID": "C4024258"
- },
- {
-   "DiseaseName": "Patchy sclerosis of the middle phalanx of the 2nd finger",
-   "ConceptID": "C4024285"
- },
- {
-   "DiseaseName": "Patchy sclerosis of the middle phalanx of the 2nd toe",
-   "ConceptID": "C4023846"
- },
- {
-   "DiseaseName": "Patchy sclerosis of the middle phalanx of the 3rd finger",
-   "ConceptID": "C4024364"
- },
- {
-   "DiseaseName": "Patchy sclerosis of the middle phalanx of the 3rd toe",
-   "ConceptID": "C4022066"
- },
- {
-   "DiseaseName": "Patchy sclerosis of the middle phalanx of the 4th finger",
-   "ConceptID": "C4024454"
- },
- {
-   "DiseaseName": "Patchy sclerosis of the middle phalanx of the 4th toe",
-   "ConceptID": "C4022065"
- },
- {
-   "DiseaseName": "Patchy sclerosis of the middle phalanx of the 5th finger",
-   "ConceptID": "C4024555"
- },
- {
-   "DiseaseName": "Patchy sclerosis of the middle phalanx of the 5th toe",
-   "ConceptID": "C4022064"
- },
- {
-   "DiseaseName": "Patchy sclerosis of the proximal phalanx of the 2nd finger",
-   "ConceptID": "C4024278"
- },
- {
-   "DiseaseName": "Patchy sclerosis of the proximal phalanx of the 2nd toe",
-   "ConceptID": "C4023854"
- },
- {
-   "DiseaseName": "Patchy sclerosis of the proximal phalanx of the 3rd finger",
-   "ConceptID": "C4024351"
- },
- {
-   "DiseaseName": "Patchy sclerosis of the proximal phalanx of the 3rd toe",
-   "ConceptID": "C4022063"
- },
- {
-   "DiseaseName": "Patchy sclerosis of the proximal phalanx of the 4th finger",
-   "ConceptID": "C4024449"
- },
- {
-   "DiseaseName": "Patchy sclerosis of the proximal phalanx of the 4th toe",
-   "ConceptID": "C4022062"
- },
- {
-   "DiseaseName": "Patchy sclerosis of the proximal phalanx of the 5th finger",
-   "ConceptID": "C4024513"
- },
- {
-   "DiseaseName": "Patchy sclerosis of the proximal phalanx of the 5th toe",
-   "ConceptID": "C4022061"
- },
- {
-   "DiseaseName": "Patchy sclerosis of the proximal phalanx of the hallux",
-   "ConceptID": "C4024057"
- },
- {
-   "DiseaseName": "Patchy sclerosis of the proximal phalanx of the thumb",
-   "ConceptID": "C4024264"
+   "DiseaseName": "Patchy sclerosis of the proximal phalanx",
+   "ConceptID": ""
  },
  {
    "DiseaseName": "Patchy sclerosis of thumb phalanx",
@@ -68421,18 +66105,6 @@
    "ConceptID": "C0023529"
  },
  {
-   "DiseaseName": "Periventricular nodular heterotopia 1",
-   "ConceptID": "C1848213"
- },
- {
-   "DiseaseName": "Periventricular nodular heterotopia 6",
-   "ConceptID": "C3809872"
- },
- {
-   "DiseaseName": "Periventricular nodular heterotopia 7",
-   "ConceptID": "C4310669"
- },
- {
    "DiseaseName": "Periventricular nodular heterotopia",
    "ConceptID": "C1868720"
  },
@@ -68489,172 +66161,12 @@
    "ConceptID": "C4015344"
  },
  {
-   "DiseaseName": "Peroxisome biogenesis disorder 10A",
-   "ConceptID": "C3553999"
- },
- {
-   "DiseaseName": "Peroxisome biogenesis disorder 10b",
-   "ConceptID": "C4479254"
- },
- {
-   "DiseaseName": "Peroxisome biogenesis disorder 11A",
-   "ConceptID": "C3554000"
- },
- {
-   "DiseaseName": "Peroxisome biogenesis disorder 11B",
-   "ConceptID": "C3554001"
- },
- {
-   "DiseaseName": "Peroxisome biogenesis disorder 12A",
-   "ConceptID": "C3554002"
- },
- {
-   "DiseaseName": "Peroxisome biogenesis disorder 13A",
-   "ConceptID": "C3554004"
- },
- {
-   "DiseaseName": "Peroxisome biogenesis disorder 14B",
-   "ConceptID": "C3554055"
- },
- {
-   "DiseaseName": "Peroxisome biogenesis disorder 1B",
-   "ConceptID": "CN168921"
- },
- {
-   "DiseaseName": "Peroxisome biogenesis disorder 2a (zellweger)",
-   "ConceptID": "C1859228"
- },
- {
-   "DiseaseName": "Peroxisome biogenesis disorder 3A",
-   "ConceptID": "C3553929"
- },
- {
-   "DiseaseName": "Peroxisome biogenesis disorder 4a (zellweger)",
-   "ConceptID": "C3553936"
- },
- {
-   "DiseaseName": "Peroxisome biogenesis disorder 4B",
-   "ConceptID": "C3553937"
- },
- {
-   "DiseaseName": "Peroxisome biogenesis disorder 5a (zellweger)",
-   "ConceptID": "C3553940"
- },
- {
-   "DiseaseName": "Peroxisome biogenesis disorder 5B",
-   "ConceptID": "C3542026"
- },
- {
-   "DiseaseName": "Peroxisome biogenesis disorder 6A",
-   "ConceptID": "C3553947"
- },
- {
-   "DiseaseName": "Peroxisome biogenesis disorder 6B",
-   "ConceptID": "C3553948"
- },
- {
-   "DiseaseName": "Peroxisome biogenesis disorder 7A",
-   "ConceptID": "C3539168"
- },
- {
-   "DiseaseName": "Peroxisome biogenesis disorder 7B",
-   "ConceptID": "C3553951"
- },
- {
-   "DiseaseName": "Peroxisome biogenesis disorder 8A",
-   "ConceptID": "C3553959"
- },
- {
-   "DiseaseName": "Peroxisome biogenesis disorder 8B",
-   "ConceptID": "C3553960"
- },
- {
-   "DiseaseName": "Peroxisome biogenesis disorder 9B",
-   "ConceptID": "CN159238"
- },
- {
-   "DiseaseName": "Peroxisome biogenesis disorder, complementation group 10",
-   "ConceptID": "CN159246"
- },
- {
-   "DiseaseName": "Peroxisome biogenesis disorder, complementation group 12",
-   "ConceptID": "C1864171"
- },
- {
-   "DiseaseName": "Peroxisome biogenesis disorder, complementation group 13",
-   "ConceptID": "C1866259"
- },
- {
-   "DiseaseName": "Peroxisome biogenesis disorder, complementation group 14",
-   "ConceptID": "C1838300"
- },
- {
-   "DiseaseName": "Peroxisome biogenesis disorder, complementation group 1",
-   "ConceptID": "C1865804"
- },
- {
-   "DiseaseName": "Peroxisome biogenesis disorder, complementation group 2",
-   "ConceptID": "C3550274"
- },
- {
-   "DiseaseName": "Peroxisome biogenesis disorder, complementation group 3",
-   "ConceptID": "C1866340"
- },
- {
-   "DiseaseName": "Peroxisome biogenesis disorder, complementation group 5",
-   "ConceptID": "C3553941"
- },
- {
-   "DiseaseName": "Peroxisome biogenesis disorder, complementation group 6",
-   "ConceptID": "C1832231"
- },
- {
-   "DiseaseName": "Peroxisome biogenesis disorder, complementation group 7",
-   "ConceptID": "C1864399"
- },
- {
-   "DiseaseName": "Peroxisome biogenesis disorder, complementation group 9",
-   "ConceptID": "C1863998"
- },
- {
-   "DiseaseName": "Peroxisome biogenesis disorder, complementation group K",
-   "ConceptID": "C1866257"
- },
- {
-   "DiseaseName": "Peroxisome biogenesis disorder, complementation group R",
-   "ConceptID": "C1866351"
- },
- {
-   "DiseaseName": "Peroxisome biogenesis disorders",
+   "DiseaseName": "Peroxisome biogenesis disorder",
    "ConceptID": "CN168920"
- },
- {
-   "DiseaseName": "Peroxisome biogenesis disorders, Zellweger syndrome spectrum",
-   "ConceptID": "C1832200"
  },
  {
    "DiseaseName": "Perphenazine response",
    "ConceptID": "CN221261"
- },
- {
-   "DiseaseName": "Perrault syndrome 2",
-   "ConceptID": "C3554105"
- },
- {
-   "DiseaseName": "Perrault syndrome 3",
-   "ConceptID": "C2681413"
- },
- {
-   "DiseaseName": "Perrault syndrome 4",
-   "ConceptID": "C3809105"
- },
- {
-   "DiseaseName": "Perrault syndrome 5",
-   "ConceptID": "C4015307"
- },
- {
-   "DiseaseName": "Perrault syndrome 6",
-   "ConceptID": "C4479656"
  },
  {
    "DiseaseName": "Perrault syndrome",
@@ -68711,14 +66223,6 @@
  {
    "DiseaseName": "Persistent Mullerian duct syndrome",
    "ConceptID": "C1849930"
- },
- {
-   "DiseaseName": "Persistent mullerian duct syndrome, type I",
-   "ConceptID": "C3897939"
- },
- {
-   "DiseaseName": "Persistent mullerian duct syndrome, type II",
-   "ConceptID": "C3897940"
  },
  {
    "DiseaseName": "Persistent open anterior fontanelle",
@@ -71349,10 +68853,6 @@
    "ConceptID": "C3150878"
  },
  {
-   "DiseaseName": "Primary hyperparathyroidism",
-   "ConceptID": "C0221002"
- },
- {
    "DiseaseName": "Primary hypertrophic osteoarthropathy, autosomal recessive 2",
    "ConceptID": "C3280800"
  },
@@ -71577,38 +69077,6 @@
    "ConceptID": "C0162674"
  },
  {
-   "DiseaseName": "Progressive external ophthalmoplegia, proximal myopathy, and sudden death",
-   "ConceptID": "C4016616"
- },
- {
-   "DiseaseName": "Progressive external ophthalmoplegia with mitochondrial DNA deletions, autosomal dominant 6",
-   "ConceptID": "C3554599"
- },
- {
-   "DiseaseName": "Progressive external ophthalmoplegia with mitochondrial DNA deletions, autosomal recessive 2",
-   "ConceptID": "C4225312"
- },
- {
-   "DiseaseName": "Progressive external ophthalmoplegia with mitochondrial DNA deletions, autosomal recessive 3",
-   "ConceptID": "C4310734"
- },
- {
-   "DiseaseName": "Progressive external ophthalmoplegia with mitochondrial DNA deletions, autosomal recessive 4",
-   "ConceptID": "C4310733"
- },
- {
-   "DiseaseName": "Progressive External Ophthalmoplegia with Mitochondrial DNA Deletions",
-   "ConceptID": "CN239267"
- },
- {
-   "DiseaseName": "Progressive external ophthalmoplegia with mitochondrial DNA deletions, digenic",
-   "ConceptID": "C1868097"
- },
- {
-   "DiseaseName": "Progressive external ophthalmoplegia with myoclonus",
-   "ConceptID": "C4016622"
- },
- {
    "DiseaseName": "Progressive extrapyramidal movement disorder",
    "ConceptID": "C2748610"
  },
@@ -71651,10 +69119,6 @@
  {
    "DiseaseName": "progressive Gastrointestinal",
    "ConceptID": ""
- },
- {
-   "DiseaseName": "progressive-generalized dystonia",
-   "ConceptID": "CN232689"
  },
  {
    "DiseaseName": "progressive Genitourinary",
@@ -71833,10 +69297,6 @@
    "ConceptID": "C0917981"
  },
  {
-   "DiseaseName": "Progressive supranuclear ophthalmoplegia",
-   "ConceptID": "C0038868"
- },
- {
    "DiseaseName": "Progressive ventriculomegaly",
    "ConceptID": "C1865119"
  },
@@ -71863,10 +69323,6 @@
  {
    "DiseaseName": "Projection of scalp hair onto lateral cheek",
    "ConceptID": "C4024296"
- },
- {
-   "DiseaseName": "Prolactin deficiency with obesity and enlarged testes",
-   "ConceptID": "C1849698"
  },
  {
    "DiseaseName": "Prolactinoma",
@@ -73031,18 +70487,6 @@
  {
    "DiseaseName": "Pseudohypoparathyroidism",
    "ConceptID": "C0033806"
- },
- {
-   "DiseaseName": "Pseudohypoparathyroidism type 1B",
-   "ConceptID": "C1864100"
- },
- {
-   "DiseaseName": "Pseudohypoparathyroidism type 1C",
-   "ConceptID": "C2932716"
- },
- {
-   "DiseaseName": "Pseudohypoparathyroidism type II",
-   "ConceptID": "C2932717"
  },
  {
    "DiseaseName": "Pseudoinflammatory fundus dystrophy",
@@ -74313,10 +71757,6 @@
    "ConceptID": "C4025681"
  },
  {
-   "DiseaseName": "Recurrent external ophthalmoplegia",
-   "ConceptID": "C4024915"
- },
- {
    "DiseaseName": "Recurrent fractures",
    "ConceptID": "C0016655"
  },
@@ -74419,10 +71859,6 @@
  {
    "DiseaseName": "Recurrent opportunistic infections",
    "ConceptID": "C1832324"
- },
- {
-   "DiseaseName": "Recurrent otitis media",
-   "ConceptID": "CN208169"
  },
  {
    "DiseaseName": "Recurrent pancreatitis",
@@ -75161,10 +72597,6 @@
    "ConceptID": "CN518174"
  },
  {
-   "DiseaseName": "Regression of motor development with severe dystonia and corresponding basal ganglia lesions",
-   "ConceptID": "CN228275"
- },
- {
    "DiseaseName": "Reis-Bucklers' corneal dystrophy",
    "ConceptID": "C0339278"
  },
@@ -75673,16 +73105,8 @@
    "ConceptID": "C1609528"
  },
  {
-   "DiseaseName": "Restrictive external ophthalmoplegia",
-   "ConceptID": "C2675435"
- },
- {
    "DiseaseName": "Restrictive heart failure",
    "ConceptID": "C1832374"
- },
- {
-   "DiseaseName": "Restrictive partial external ophthalmoplegia",
-   "ConceptID": "C4024781"
  },
  {
    "DiseaseName": "Restrictive ventilatory defect",
@@ -75887,10 +73311,6 @@
  {
    "DiseaseName": "Retinal dystrophy and iris coloboma with or without congenital cataract",
    "ConceptID": "C4225233"
- },
- {
-   "DiseaseName": "Retinal dystrophy and obesity",
-   "ConceptID": "C4015424"
  },
  {
    "DiseaseName": "Retinal dystrophy",
@@ -77389,10 +74809,6 @@
    "ConceptID": "CN236580"
  },
  {
-   "DiseaseName": "Salmonella osteomyelitis",
-   "ConceptID": "C0152491"
- },
- {
    "DiseaseName": "Salt craving",
    "ConceptID": "C0240928"
  },
@@ -78381,10 +75797,6 @@
    "ConceptID": "C4020741"
  },
  {
-   "DiseaseName": "Secondary hyperparathyroidism",
-   "ConceptID": "C0020503"
- },
- {
    "DiseaseName": "Secondary hypothyroidism",
    "ConceptID": "C0271789"
  },
@@ -78821,10 +76233,6 @@
    "ConceptID": "CN228281"
  },
  {
-   "DiseaseName": "Severe, childhood onset obesity",
-   "ConceptID": "CN234580"
- },
- {
    "DiseaseName": "Severe Combined Immune Deficiency",
    "ConceptID": "CN239264"
  },
@@ -78851,10 +76259,6 @@
  {
    "DiseaseName": "severe developmental disability",
    "ConceptID": "CN232329"
- },
- {
-   "DiseaseName": "Severe dystonia",
-   "ConceptID": "CN228291"
  },
  {
    "DiseaseName": "Severe expressive language delay",
@@ -83277,10 +80681,6 @@
    "ConceptID": "C1720037"
  },
  {
-   "DiseaseName": "Supranuclear ophthalmoplegia",
-   "ConceptID": "C1408507"
- },
- {
    "DiseaseName": "Supranuclear palsy",
    "ConceptID": ""
  },
@@ -84155,10 +81555,6 @@
  {
    "DiseaseName": "Terminal osseous dysplasia",
    "ConceptID": "C1846129"
- },
- {
-   "DiseaseName": "Tertiary hyperparathyroidism",
-   "ConceptID": "C0271858"
  },
  {
    "DiseaseName": "Tessier number 0 facial cleft",
@@ -85373,14 +82769,6 @@
    "ConceptID": "C0040479"
  },
  {
-   "DiseaseName": "Torsion dystonia",
-   "ConceptID": "C0013423"
- },
- {
-   "DiseaseName": "Torsion dystonia with onset in infancy",
-   "ConceptID": "C1865205"
- },
- {
    "DiseaseName": "Torsion of the penis",
    "ConceptID": "C1407019"
  },
@@ -85455,10 +82843,6 @@
  {
    "DiseaseName": "Total intestinal aganglionosis",
    "ConceptID": "C0345240"
- },
- {
-   "DiseaseName": "Total ophthalmoplegia",
-   "ConceptID": "C0155338"
  },
  {
    "DiseaseName": "Total retinal detachment",
@@ -86359,10 +83743,6 @@
  {
    "DiseaseName": "True hermaphroditism",
    "ConceptID": "C0266361"
- },
- {
-   "DiseaseName": "Truncal obesity",
-   "ConceptID": "C0311277"
  },
  {
    "DiseaseName": "Truncal titubation",
@@ -88443,10 +85823,6 @@
  {
    "DiseaseName": "Visceral myopathy",
    "ConceptID": "C1835084"
- },
- {
-   "DiseaseName": "Visceral myopathy familial with external ophthalmoplegia",
-   "ConceptID": "C1848586"
  },
  {
    "DiseaseName": "Visceral neuropathy",
