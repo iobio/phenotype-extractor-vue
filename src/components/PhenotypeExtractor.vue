@@ -1807,9 +1807,11 @@ export default {
       this.extractedTermsObj = [];
       this.demoTermsFlag = false;
       // fetch(`http://nv-dev-new.iobio.io/phenotype-extractor/?notes=${this.textNotes}`)
+      // fetch(`http://dev.backend.iobio.io:9003/phenotypeExtractor?notes=${this.textNotes}`)
       fetch(`https://backend.iobio.io/phenotypeExtractor?notes=${this.textNotes}`)
         .then(res => res.text())
         .then(text => {
+          // console.log("text", text);
           var res = text.replace('JaroWinkler', '"JaroWinkler"').replace('fuzzyResults', '"fuzzyResults"').replace('LevenshteinResults', '"LevenshteinResults"').replace(/'/g, '"');
           var data;
           try {
