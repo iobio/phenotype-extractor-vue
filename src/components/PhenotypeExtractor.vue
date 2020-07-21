@@ -1919,12 +1919,43 @@ export default {
       })
       hpoTermArr.shift();
       terms.shift();
-      this.HpoloadingProgressBar = false;
       hpoTermArr.forEach(x => {
         var found = this.HpoReviewTerms.some(el => el.HPO_Data === x.HPO_Data);
         if(!found){ this.HpoReviewTerms.push(x)}
       })
+      console.log("this.extractedTerms", this.extractedTerms);
+      if(!this.HpoReviewTerms.length){
+        this.matchHpoTermsFromCustomDB();
+      }
+      this.HpoloadingProgressBar = false;
       // this.HpoReviewTerms = hpoTermArr;
+    },
+    matchHpoTermsFromCustomDB(){
+      var obj = {}; 
+      this.extractedTerms.map(term => {
+        if(obj[term.trim().toLowerCase()] === undefined){
+          obj[term.trim().toLowerCase()] = true;
+        }
+      })
+      let hpoTermArr = []; 
+      this.HPO_Phenotypes_data.map((term, indx) => {
+        if(obj.hasOwnProperty(term.trim().toLowerCase())){
+          let idx = indx;
+          let hpoNumber = this.HPO_Terms_data[idx];
+          hpoTermArr.push({
+            hpoNumber:hpoNumber,
+            phenotype:term,
+            occurrences:"",
+            earliness:"",
+            sentence:"",
+            HPO_Data: `${term} - [ ${hpoNumber} ] `
+          })
+        }
+      })
+      hpoTermArr.forEach(x => {
+        var found = this.HpoReviewTerms.some(el => el.HPO_Data === x.HPO_Data);
+        if(!found){ this.HpoReviewTerms.push(x)}
+      })
     },
     setPhenolyzerTerms(str){
       return fetch(`https://backend.iobio.io/hpo/hot/lookup/?term=${str}`)
