@@ -1923,7 +1923,6 @@ export default {
         var found = this.HpoReviewTerms.some(el => el.HPO_Data === x.HPO_Data);
         if(!found){ this.HpoReviewTerms.push(x)}
       })
-      console.log("this.extractedTerms", this.extractedTerms);
       if(!this.HpoReviewTerms.length){
         this.matchHpoTermsFromCustomDB();
       }
