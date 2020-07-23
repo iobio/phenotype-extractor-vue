@@ -133,15 +133,6 @@ export default {
       this.AddedGenes = genes;
     },
     PhenolyzerGeneList(genes){
-      console.log("PhenolyzerGeneList", genes.length);
-      var phenolyzerCompleteList = [];
-      genes.map(gene=>{
-        phenolyzerCompleteList.push({
-          name: gene.geneName,
-          phenolyzerRank: gene.indexVal
-        })
-      })
-      this.analysis.payload.phenolyzerFullList = phenolyzerCompleteList;
     },
     HpoGeneList(genes){
     },
@@ -162,7 +153,6 @@ export default {
     },
     bus_delete_gene(gene){
       this.deletedGenesList.push(gene);
-      // this.geneToDelete = gene;
       this.updateGeneListsOfEachTool();
     },
     updateGeneListsOfEachTool(){
