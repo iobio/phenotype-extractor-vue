@@ -152,7 +152,14 @@
                           <span v-else-if="term.gtrSearchStatus==='Completed'">
                             <v-icon color="green">done</v-icon>
                           </span>
-                          <span v-else-if="term.gtrSearchStatus==='NoGenes'"><v-icon color="red">error</v-icon></span>
+                          <span v-else-if="term.gtrSearchStatus==='NoGenes'">
+                            <v-tooltip bottom>
+                              <template v-slot:activator="{ on }">
+                                <v-icon color="red" v-on="on">error</v-icon>
+                              </template>
+                              <span>No genes were found for this term</span>
+                            </v-tooltip>
+                          </span>
                           <span v-else-if="term.gtrSearchStatus==='NotAvailable'"><v-icon>indeterminate_check_box</v-icon></span>
                           <span v-else> <v-icon color="gray lighten-4">error</v-icon>  </span>
                         </td>
@@ -221,14 +228,21 @@
                               indeterminate
                               color="primary"
                             ></v-progress-circular>
-                            Running
+                            <!-- Running
                             <br>
-                            <span @click="stopPhenolyzerSearch(term.value)">close</span>
+                            <span @click="stopPhenolyzerSearch(term.value)">close</span> -->
                           </span>
                           <span v-else-if="term.phenolyzerSearchStatus==='Completed'"><v-icon color="green">done</v-icon></span>
-                          <span v-else-if="term.phenolyzerSearchStatus==='NoGenes'"><v-icon color="red">error</v-icon></span>
+                          <span v-else-if="term.phenolyzerSearchStatus==='NoGenes'">
+                            <v-tooltip bottom>
+                              <template v-slot:activator="{ on }">
+                                <v-icon color="red" v-on="on">error</v-icon>
+                              </template>
+                              <span>No genes were found for this phenotype</span>
+                            </v-tooltip>
+                          </span>
                           <span v-else-if="term.phenolyzerSearchStatus==='NotAvailable'"><v-icon>indeterminate_check_box</v-icon></span>
-                          <span v-else-if="term.phenolyzerSearchStatus==='Cancelled'"><v-icon color="gray lighten-4">cancel_presentation</v-icon></span>
+                          <span v-else-if="term.phenolyzerSearchStatus==='Cancelled'"><v-icon color="gray lighten-4">cancel</v-icon></span>
                           <span v-else> <v-icon color="gray lighten-4">error</v-icon>  </span>
                         </td>
                       </tr>
@@ -289,7 +303,14 @@
                             ></v-progress-circular>
                           </span>
                           <span v-else-if="term.hpoSearchStatus==='Completed'"><v-icon color="green">done</v-icon></span>
-                          <span v-else-if="term.hpoSearchStatus==='NoGenes'"><v-icon color="red">error</v-icon></span>
+                          <span v-else-if="term.hpoSearchStatus==='NoGenes'">
+                            <v-tooltip bottom>
+                              <template v-slot:activator="{ on }">
+                                <v-icon color="red" v-on="on">error</v-icon>
+                              </template>
+                              <span>No genes were found for this term</span>
+                            </v-tooltip>
+                          </span>
                           <span v-else-if="term.hpoSearchStatus==='NotAvailable'"><v-icon>indeterminate_check_box</v-icon></span>
                           <span v-else> <v-icon color="gray lighten-4">error</v-icon>  </span>
                         </td>
@@ -982,7 +1003,14 @@
                               <span v-else-if="term.gtrSearchStatus==='Completed'">
                                 <v-icon color="green">done</v-icon>
                               </span>
-                              <span v-else-if="term.gtrSearchStatus==='NoGenes'"><v-icon color="red">error</v-icon></span>
+                              <span v-else-if="term.gtrSearchStatus==='NoGenes'">
+                                <v-tooltip bottom>
+                                  <template v-slot:activator="{ on }">
+                                    <v-icon color="red" v-on="on">error</v-icon>
+                                  </template>
+                                  <span>No genes were found for this term</span>
+                                </v-tooltip>
+                              </span>
                               <span v-else-if="term.gtrSearchStatus==='NotAvailable'"><v-icon>indeterminate_check_box</v-icon></span>
                               <span v-else> <v-icon color="gray lighten-4">error</v-icon>  </span>
                             </td>
@@ -1022,14 +1050,19 @@
                                   indeterminate
                                   color="primary"
                                 ></v-progress-circular>
-                                Running
-                                <br>
-                                <span @click="stopPhenolyzerSearch(term.value)">close</span>
+                                <!-- <span @click="stopPhenolyzerSearch(term.value)">close</span> -->
                               </span>
                               <span v-else-if="term.phenolyzerSearchStatus==='Completed'"><v-icon color="green">done</v-icon></span>
-                              <span v-else-if="term.phenolyzerSearchStatus==='NoGenes'"><v-icon color="red">error</v-icon></span>
+                              <span v-else-if="term.phenolyzerSearchStatus==='NoGenes'">
+                                <v-tooltip bottom>
+                                  <template v-slot:activator="{ on }">
+                                    <v-icon color="red" v-on="on">error</v-icon>
+                                  </template>
+                                  <span>No genes were found for this phenotype</span>
+                                </v-tooltip>
+                              </span>
                               <span v-else-if="term.phenolyzerSearchStatus==='NotAvailable'"><v-icon>indeterminate_check_box</v-icon></span>
-                              <span v-else-if="term.phenolyzerSearchStatus==='Cancelled'"><v-icon color="gray lighten-4">cancel_presentation</v-icon></span>
+                              <span v-else-if="term.phenolyzerSearchStatus==='Cancelled'"><v-icon color="gray lighten-4">cancel</v-icon></span>
                               <span v-else> <v-icon color="gray lighten-4">error</v-icon>  </span>
                             </td>
                           </tr>
@@ -1059,7 +1092,14 @@
                                 ></v-progress-circular>
                               </span>
                               <span v-else-if="term.hpoSearchStatus==='Completed'"><v-icon color="green">done</v-icon></span>
-                              <span v-else-if="term.hpoSearchStatus==='NoGenes'"><v-icon color="red">error</v-icon></span>
+                              <span v-else-if="term.hpoSearchStatus==='NoGenes'">
+                                <v-tooltip bottom>
+                                  <template v-slot:activator="{ on }">
+                                    <v-icon color="red" v-on="on">error</v-icon>
+                                  </template>
+                                  <span>No genes were found for this term</span>
+                                </v-tooltip>
+                              </span>
                               <span v-else-if="term.hpoSearchStatus==='NotAvailable'"><v-icon>indeterminate_check_box</v-icon></span>
                               <span v-else> <v-icon color="gray lighten-4">error</v-icon>  </span>
                             </td>
