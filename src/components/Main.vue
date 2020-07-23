@@ -44,7 +44,8 @@
         @UpdateListOnDelete="UpdateListOnDelete($event)"
         :phenotypeTerms="analysis.payload.phenotypes"
         :venn_diag_data="venn_diag_data"
-        @gene_to_delete=gene_to_delete($event)>
+        @bus_delete_gene="bus_delete_gene"
+        @gene_to_delete="gene_to_delete($event)">
       </GeneList>
     </v-layout>
   </v-container>
@@ -86,7 +87,8 @@ export default {
     AddedGenes:[],
     GtrPhenotypes: [],
     venn_diag_data: {},
-    geneToDelete: '', 
+    geneToDelete: '',
+    deletedGenesList: [],
     // phenotypes: [
     //   [
     //     {
@@ -131,6 +133,15 @@ export default {
       this.AddedGenes = genes;
     },
     PhenolyzerGeneList(genes){
+      console.log("PhenolyzerGeneList", genes.length);
+      var phenolyzerCompleteList = [];
+      genes.map(gene=>{
+        phenolyzerCompleteList.push({
+          name: gene.geneName,
+          phenolyzerRank: gene.indexVal
+        })
+      })
+      this.analysis.payload.phenolyzerFullList = phenolyzerCompleteList;
     },
     HpoGeneList(genes){
     },
@@ -148,7 +159,22 @@ export default {
     }, 
     gene_to_delete(gene){
       this.geneToDelete = gene; 
-    }
+    },
+    bus_delete_gene(gene){
+      this.deletedGenesList.push(gene);
+      // this.geneToDelete = gene;
+      this.updateGeneListsOfEachTool();
+    },
+    updateGeneListsOfEachTool(){
+      let phenolyzerCompleteList = this.analysis.payload.phenolyzerFullList;
+      let phenolyzer_res = []; 
+      phenolyzerCompleteList.map(gene => {
+        if(!this.deletedGenesList.includes(gene.name)){
+          phenolyzer_res.push(gene);
+        }
+      })
+      this.analysis.payload.phenolyzerFullList = phenolyzer_res;
+    },
   }
 };
 </script>
