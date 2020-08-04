@@ -161,7 +161,14 @@
                             </v-tooltip>
                           </span>
                           <span v-else-if="term.gtrSearchStatus==='NotAvailable'"><v-icon>indeterminate_check_box</v-icon></span>
-                          <span v-else> <v-icon color="gray lighten-4">error</v-icon>  </span>
+                          <span v-else>
+                            <v-tooltip bottom>
+                              <template v-slot:activator="{ on }">
+                                <v-icon color="gray lighten-4" v-on="on">error</v-icon>
+                              </template>
+                              <span>The network request for this term failed. Please delete this term and try again.</span>
+                            </v-tooltip>
+                          </span>
                         </td>
                       </tr>
                     </tbody>
@@ -243,7 +250,14 @@
                           </span>
                           <span v-else-if="term.phenolyzerSearchStatus==='NotAvailable'"><v-icon>indeterminate_check_box</v-icon></span>
                           <span v-else-if="term.phenolyzerSearchStatus==='Cancelled'"><v-icon color="gray lighten-4">cancel</v-icon></span>
-                          <span v-else> <v-icon color="gray lighten-4">error</v-icon>  </span>
+                          <span v-else>
+                            <v-tooltip bottom>
+                              <template v-slot:activator="{ on }">
+                                <v-icon color="gray lighten-4" v-on="on">error</v-icon>
+                              </template>
+                              <span>The network request for this term failed. Please delete this term and try again.</span>
+                            </v-tooltip>
+                          </span>
                         </td>
                       </tr>
                     </tbody>
@@ -312,7 +326,14 @@
                             </v-tooltip>
                           </span>
                           <span v-else-if="term.hpoSearchStatus==='NotAvailable'"><v-icon>indeterminate_check_box</v-icon></span>
-                          <span v-else> <v-icon color="gray lighten-4">error</v-icon>  </span>
+                          <span v-else>
+                            <v-tooltip bottom>
+                              <template v-slot:activator="{ on }">
+                                <v-icon color="gray lighten-4" v-on="on">error</v-icon>
+                              </template>
+                              <span>The network request for this term failed. Please delete this term and try again.</span>
+                            </v-tooltip>
+                          </span>
                         </td>
                       </tr>
                     </tbody>
@@ -1012,7 +1033,14 @@
                                 </v-tooltip>
                               </span>
                               <span v-else-if="term.gtrSearchStatus==='NotAvailable'"><v-icon>indeterminate_check_box</v-icon></span>
-                              <span v-else> <v-icon color="gray lighten-4">error</v-icon>  </span>
+                              <span v-else>
+                                <v-tooltip bottom>
+                                  <template v-slot:activator="{ on }">
+                                    <v-icon color="gray lighten-4" v-on="on">error</v-icon>
+                                  </template>
+                                  <span>The network request for this term failed. Please delete this term and try again.</span>
+                                </v-tooltip>
+                              </span>
                             </td>
                           </tr>
                         </tbody>
@@ -1063,7 +1091,14 @@
                               </span>
                               <span v-else-if="term.phenolyzerSearchStatus==='NotAvailable'"><v-icon>indeterminate_check_box</v-icon></span>
                               <span v-else-if="term.phenolyzerSearchStatus==='Cancelled'"><v-icon color="gray lighten-4">cancel</v-icon></span>
-                              <span v-else> <v-icon color="gray lighten-4">error</v-icon>  </span>
+                              <span v-else>
+                                <v-tooltip bottom>
+                                  <template v-slot:activator="{ on }">
+                                    <v-icon color="gray lighten-4" v-on="on">error</v-icon>
+                                  </template>
+                                  <span>The network request for this term failed. Please delete this term and try again.</span>
+                                </v-tooltip>
+                              </span>
                             </td>
                           </tr>
                         </tbody>
@@ -1101,7 +1136,14 @@
                                 </v-tooltip>
                               </span>
                               <span v-else-if="term.hpoSearchStatus==='NotAvailable'"><v-icon>indeterminate_check_box</v-icon></span>
-                              <span v-else> <v-icon color="gray lighten-4">error</v-icon>  </span>
+                              <span v-else>
+                                <v-tooltip bottom>
+                                  <template v-slot:activator="{ on }">
+                                    <v-icon color="gray lighten-4" v-on="on">error</v-icon>
+                                  </template>
+                                  <span>The network request for this term failed. Please delete this term and try again.</span>
+                                </v-tooltip>
+                              </span>
                             </td>
                           </tr>
                         </tbody>
