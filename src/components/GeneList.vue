@@ -255,7 +255,7 @@ import { bus } from '../main';
 import HPO_Phenotypes from '../data/HPO_Phenotypes';
 import HPO_Terms from '../data/HPO_Terms';
 import HpoTermsData from '../data/HpoTermsData.json';
-import hpo_genes from '../data/hpo_genes.json';
+// import hpo_genes from '../data/hpo_genes.json';
 import Phenotypes from './Phenotypes.vue';
 import VennDiagram from './VennDiagram.vue'; 
 import GeneCard from './GeneCard.vue'
@@ -337,7 +337,7 @@ export default {
     // this.summaryGenes = this.summaryGeneList;
     this.organizeGeneList();
 
-    this.HpoGenesData = hpo_genes;
+    // this.HpoGenesData = hpo_genes;
     this.HpoTermsTypeaheadData  = HpoTermsData.data;
     this.HPO_Terms_data = HPO_Terms;
     this.HPO_Phenotypes_data = HPO_Phenotypes;

@@ -20,7 +20,7 @@ var geneModel = new GeneModel();
 import HPO_Phenotypes from '../data/HPO_Phenotypes';
 import HPO_Terms from '../data/HPO_Terms';
 import HpoTermsData from '../data/HpoTermsData.json';
-import hpo_genes from '../data/hpo_genes.json';
+// import hpo_genes from '../data/hpo_genes.json';
 
 export default {
   components: {
@@ -72,7 +72,13 @@ export default {
   },
 
   mounted(){
-    this.HpoGenesData = hpo_genes;
+    // this.HpoGenesData = hpo_genes;
+    fetch('https://s3.amazonaws.com/ped.test.files/hpo_genes.json')
+      .then( res => res.json())
+        .then( data => {
+          this.HpoGenesData = data;
+          console.log("this.HpoGenesData", this.HpoGenesData);
+        })
     this.HpoTermsTypeaheadData  = HpoTermsData.data;
     this.HPO_Terms_data = HPO_Terms;
     this.HPO_Phenotypes_data = HPO_Phenotypes;
