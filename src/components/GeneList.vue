@@ -143,6 +143,10 @@
                   <v-icon style="color:#455A64">check_circle_outline</v-icon>
                 </span>
               </template>
+              <template v-slot:item.inGeneSet="{ item }">
+                <span v-model="item.inGeneSet" @click="selectItem(item)" >{{ item.inGeneSet }}</span>
+                <!-- <span  @click="selectItem(item)" ><v-simple-checkbox v-model="item.inGeneSet"></v-simple-checkbox></span> -->
+              </template>
             </v-data-table>
           </div>
 
@@ -304,6 +308,7 @@ export default {
         { text: 'Added', value: 'isImportedGenes', sortable: false, width: '8%'},
         { text: '', align: 'right', value: 'info', sortable: false, width: '1%'},
         { text: '', align: 'left', value: 'actions', sortable: false, width: '1%'},
+        { text: 'Gene Set', align: 'left', value: 'inGeneSet', sortable: false, width: '2%'},
       ],
       clickedGene: {},
       ncbiSummary: null,
@@ -328,6 +333,7 @@ export default {
       vennData: {},
       hoveredGeneName: '',
       geneInfoDialog: false, 
+      selected: [],
     }
   },
 
@@ -437,7 +443,7 @@ export default {
       return `${phenotype} [ ${id} ]`
     },
 
-    organizeGeneList(){
+    organizeGeneList(){      
       var associatedGenes = [];
       var nonAssociatedGenes = [];
 
@@ -454,9 +460,16 @@ export default {
         if(associatedGenes.length){
           this.summaryGenes = [...associatedGenes, ...nonAssociatedGenes];
         }
+        
         else {
           this.summaryGenes = this.summaryGeneList;
         }
+        
+        this.summaryGenes.forEach((gene, idx) => {
+          gene.idx = idx
+          this.$set(this.summaryGenes[idx], 'inGeneSet', false);
+        })
+
       }
       else {
         this.summaryGenes = [];
@@ -469,6 +482,17 @@ export default {
 
     mouseLeaveGeneName(){
       this.hoveredGeneName = '';
+    },
+    
+    selectItem(item){
+      if(!item.inGeneSet){
+        item.inGeneSet = true;
+        this.summaryGenes[item.idx].inGeneSet = true;
+      }
+      else {
+        item.inGeneSet = false;
+        this.summaryGenes[item.idx].inGeneSet = false;
+      }
     },
 
   }

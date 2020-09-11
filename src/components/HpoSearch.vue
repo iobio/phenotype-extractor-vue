@@ -77,7 +77,6 @@ export default {
       .then( res => res.json())
         .then( data => {
           this.HpoGenesData = data;
-          console.log("this.HpoGenesData", this.HpoGenesData);
         })
     this.HpoTermsTypeaheadData  = HpoTermsData.data;
     this.HPO_Terms_data = HPO_Terms;
