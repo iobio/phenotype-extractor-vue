@@ -143,10 +143,35 @@
                   <v-icon style="color:#455A64">check_circle_outline</v-icon>
                 </span>
               </template>
+              
               <template v-slot:item.inGeneSet="{ item }">
-                <span v-model="item.inGeneSet" @click="selectItem(item)" >{{ item.inGeneSet }}</span>
-                <!-- <span  @click="selectItem(item)" ><v-simple-checkbox v-model="item.inGeneSet"></v-simple-checkbox></span> -->
+                <span v-model="item.inGeneSet" @click="selectItem(item)" v-if="item.inGeneSet">
+                  <v-tooltip top>
+                    <template v-slot:activator="{ on }">
+                      <v-btn icon v-on="on">
+                        <v-icon style="opacity: 1">
+                          library_add_check
+                        </v-icon>
+                      </v-btn>
+                    </template>
+                    <span> <strong>{{item.name}}</strong> is added to gene set </span>
+                  </v-tooltip>                  
+                </span>
+                 
+                <span v-model="item.inGeneSet" @click="selectItem(item)" v-if="!item.inGeneSet">
+                  <v-tooltip top>
+                    <template v-slot:activator="{ on }">
+                      <v-btn icon v-on="on">
+                        <v-icon style="opacity: 0.6">
+                          library_add
+                        </v-icon>
+                      </v-btn>
+                    </template>
+                    <span> Add <strong>{{item.name}}</strong> to gene set </span>
+                  </v-tooltip>                  
+                </span>
               </template>
+              
             </v-data-table>
           </div>
 
@@ -300,6 +325,7 @@ export default {
       summaryGenes: [],
       headers: [
         // { text: '', align: 'left', value: 'padding_space', sortable: false, width: '1%'},
+        { text: '', align: 'left', value: 'inGeneSet', sortable: false, width: '2%'},
         { text: 'Gene', align: 'left', value: 'name', sortable: false, width: '1%'},
         { text: '', align: 'left', value: 'associatedGenesBadge', sortable: false, width: '7%'},
         { text: 'GTR', value: 'searchTermsGtr', sortable: false, width: '18%'},
@@ -308,7 +334,6 @@ export default {
         { text: 'Added', value: 'isImportedGenes', sortable: false, width: '8%'},
         { text: '', align: 'right', value: 'info', sortable: false, width: '1%'},
         { text: '', align: 'left', value: 'actions', sortable: false, width: '1%'},
-        { text: 'Gene Set', align: 'left', value: 'inGeneSet', sortable: false, width: '2%'},
       ],
       clickedGene: {},
       ncbiSummary: null,
