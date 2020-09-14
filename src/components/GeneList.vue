@@ -468,15 +468,20 @@ export default {
       return `${phenotype} [ ${id} ]`
     },
 
-    organizeGeneList(){      
+    organizeGeneList(){
       var associatedGenes = [];
       var nonAssociatedGenes = [];
 
       if(this.summaryGeneList!==undefined){
         
         this.summaryGeneList.forEach((gene, idx) => {
-          gene.idx = idx
-          this.$set(this.summaryGeneList[idx], 'inGeneSet', false);
+          gene.idx = idx;
+          if(this.selected.includes(gene.name)){
+            this.$set(this.summaryGeneList[idx], 'inGeneSet', true);
+          }
+          else {
+            this.$set(this.summaryGeneList[idx], 'inGeneSet', false);
+          }
         })
 
         this.summaryGeneList.map(x=>{
