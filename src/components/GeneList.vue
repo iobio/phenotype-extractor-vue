@@ -473,6 +473,12 @@ export default {
       var nonAssociatedGenes = [];
 
       if(this.summaryGeneList!==undefined){
+        
+        this.summaryGeneList.forEach((gene, idx) => {
+          gene.idx = idx
+          this.$set(this.summaryGeneList[idx], 'inGeneSet', false);
+        })
+
         this.summaryGeneList.map(x=>{
           if(x.isAssociatedGene===true){
             associatedGenes.push(x);
@@ -490,11 +496,6 @@ export default {
           this.summaryGenes = this.summaryGeneList;
         }
         
-        this.summaryGenes.forEach((gene, idx) => {
-          gene.idx = idx
-          this.$set(this.summaryGenes[idx], 'inGeneSet', false);
-        })
-
       }
       else {
         this.summaryGenes = [];
@@ -513,11 +514,15 @@ export default {
       if(!item.inGeneSet){
         item.inGeneSet = true;
         this.summaryGenes[item.idx].inGeneSet = true;
+        this.selected.push(this.summaryGenes[item.idx].name);
       }
       else {
         item.inGeneSet = false;
         this.summaryGenes[item.idx].inGeneSet = false;
+        this.selected.splice(this.selected.indexOf(item.name), 1)
+        this.selected = [...this.selected];
       }
+      this.$emit("add_to_gene_set", this.selected)
     },
 
   }

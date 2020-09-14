@@ -45,7 +45,8 @@
         :phenotypeTerms="analysis.payload.phenotypes"
         :venn_diag_data="venn_diag_data"
         @bus_delete_gene="bus_delete_gene"
-        @gene_to_delete="gene_to_delete($event)">
+        @gene_to_delete="gene_to_delete($event)"
+        @add_to_gene_set="add_to_gene_set($event)">
       </GeneList>
     </v-layout>
   </v-container>
@@ -165,6 +166,8 @@ export default {
       })
       this.analysis.payload.phenolyzerFullList = phenolyzer_res;
     },
+    add_to_gene_set(genes){
+    }
   }
 };
 </script>
