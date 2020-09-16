@@ -14,7 +14,45 @@
 
               <v-spacer></v-spacer>
               <div class="row">
-                <div class="col-md-7"></div>
+                <div class="col-md-2"></div>
+                <div class="col-md-5" style="margin-top:15px">
+                  <div v-if="summaryGenes.length">
+                    <span style="font-weight:200; font-size:14px;">
+                      Add top 
+                      <input
+                        class="form-control editTextInput"
+                        type="number"
+                        min="0"
+                        max="100"
+                        v-model="genesTop"
+                        autocomplete="off"
+                        style="display:inline"
+                        v-on:change="updateGenesTop"
+                        v-on:input="updateGenesTop"
+                        >
+                      genes for review
+                    </span>
+                    <span v-if="!selectedGenesFlag">
+                      <v-tooltip top>
+                        <template v-slot:activator="{ on }">
+                          <v-btn icon v-on="on" @click="EnableToSelectGenes">
+                            <v-icon style="opacity: 0.6">
+                              library_add
+                            </v-icon>
+                          </v-btn>
+                        </template>
+                        <span> Select upto 100 genes to be reviewed in "Review variants" step of the workflow.</span>
+                      </v-tooltip>
+                    </span>
+                    <span v-if="selectedGenesFlag">
+                      <v-btn icon>
+                        <v-icon style="opacity:1">
+                          library_add_check
+                        </v-icon>
+                      </v-btn>
+                    </span>
+                  </div>
+                </div>
                 <div class="col-md-4">
                   <v-text-field
                     v-model="search"
@@ -305,6 +343,9 @@ export default {
     },
     venn_diag_data: {
       type: Object
+    },
+    selectedGenesForGeneSet: {
+      type: Array
     }
   },
   watch:{
@@ -359,6 +400,8 @@ export default {
       hoveredGeneName: '',
       geneInfoDialog: false, 
       selected: [],
+      genesTop: 25,
+      selectedGenesFlag: false,
     }
   },
 
@@ -366,13 +409,17 @@ export default {
     // console.log("genelist mounted");
     this.knownGenesData = knownGenes;
     // this.summaryGenes = this.summaryGeneList;
+    this.selected = this.selectedGenesForGeneSet;
+    if(this.selectedGenesForGeneSet.length){
+      this.selectedGenesFlag = true;
+    }
     this.organizeGeneList();
 
     // this.HpoGenesData = hpo_genes;
     this.HpoTermsTypeaheadData  = HpoTermsData.data;
     this.HPO_Terms_data = HPO_Terms;
     this.HPO_Phenotypes_data = HPO_Phenotypes;
-    this.vennData = this.venn_diag_data
+    this.vennData = this.venn_diag_data;
   },
 
   created(){
@@ -529,6 +576,35 @@ export default {
       }
       this.$emit("add_to_gene_set", this.selected)
     },
+    
+    selectTopGenes(numberOfGenesToSelect){
+      this.selected = [];
+      for (var i = 0; i < this.summaryGenes.length; i++) {
+        if(i < numberOfGenesToSelect){
+          this.summaryGenes[i].inGeneSet = true;
+          if(!this.selected.includes(this.summaryGenes[i].name)){
+            this.selected.push(this.summaryGenes[i].name);
+          }
+        }
+        else {
+          this.summaryGenes[i].inGeneSet = false;
+        }
+      }
+      this.$emit("add_to_gene_set", this.selected)
+    },
+    updateGenesTop(e){
+      if(this.selectedGenesFlag){
+        if(this.genesTop>0 && this.genesTop<100){
+          this.selectTopGenes(this.genesTop)
+        }
+      }
+    },
+    EnableToSelectGenes(){
+      this.selectedGenesFlag = true;
+      if(this.genesTop>0 && this.genesTop<100){
+        this.selectTopGenes(this.genesTop)
+      }
+    }
 
   }
 
@@ -552,4 +628,16 @@ export default {
   
   .gene-list-table
     table-layout : fixed
+  
+  .editTextInput
+    margin-bottom: 12px
+    width: 75px
+    font-size: 16px !important
+    font-weight: bolder
+    box-sizing: border-box
+    border: none
+    border-bottom: 3px dashed rgb(66, 103, 178)
+    padding-bottom: 10px
+    padding-top: 10px
+    text-align: center  
 </style>
