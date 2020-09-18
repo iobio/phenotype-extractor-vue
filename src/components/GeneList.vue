@@ -35,27 +35,16 @@
                       </span>
                     </div>
                     <div class="col-md-2" style="margin-top:5px">
-                      <span style="display:inline"><v-switch style="display:inline" v-model="selectedGenesFlag"></v-switch></span>
+                      <span style="display:inline">
+                        <v-tooltip top>
+                          <template v-slot:activator="{ on }">
+                            <v-switch v-on="on" style="display:inline" v-model="selectedGenesFlag"></v-switch>
+                          </template>
+                          <span v-if="!selectedGenesFlag"> Toggle to select upto 50 genes from the below gene list to be reviewed in "Review variants" step of the workflow.</span>
+                          <span v-else> Top <strong>{{selected.length}}</strong>  genes are selected from the below gene list to be reviewed in "Review variants" step. </span>
+                        </v-tooltip>
+                      </span>
                     </div>
-                    <!-- <span v-if="!selectedGenesFlag">
-                      <v-tooltip top>
-                        <template v-slot:activator="{ on }">
-                          <v-btn icon v-on="on" @click="EnableToSelectGenes">
-                            <v-icon style="opacity: 0.6">
-                              library_add
-                            </v-icon>
-                          </v-btn>
-                        </template>
-                        <span> Select upto 50 genes to be reviewed in "Review variants" step of the workflow.</span>
-                      </v-tooltip>
-                    </span>
-                    <span v-if="selectedGenesFlag">
-                      <v-btn icon>
-                        <v-icon style="opacity:1">
-                          library_add_check
-                        </v-icon>
-                      </v-btn>
-                    </span> -->
                   </div>
                 </div>
                 <div class="col-md-1"></div>
@@ -335,7 +324,7 @@
             <v-icon small style="opacity: 0.6">close</v-icon>
           </v-btn>
         </v-card-title>
-          <v-card-text style="padding:30px">
+          <v-card-text style="padding-bottom:30px">
             <span class="mt-2 mb-2" style="font-size:16px">
               Please select upto 50 genes for review. 
             </span>
@@ -626,7 +615,6 @@ export default {
         this.summaryGenes[i].inGeneSet = false;
       }
       this.$emit("add_to_gene_set", this.selected)
-      console.log("this.selected", this.selected);
     },
     selectTopGenes(numberOfGenesToSelect){
       this.selected = [];
@@ -651,17 +639,18 @@ export default {
         else {
           this.deselectAllGenes();
           this.warningDialog = true;
+          setTimeout(() => (this.warningDialog = false), 4000);
         }
       }
     },
     EnableToSelectGenes(){
-      // this.selectedGenesFlag = true;
       if(this.genesTop>0 && this.genesTop<51){
         this.selectTopGenes(this.genesTop)
       }
       else {
         this.deselectAllGenes();
         this.warningDialog = true;
+        setTimeout(() => (this.warningDialog = false), 4000);
       }
     }
 
