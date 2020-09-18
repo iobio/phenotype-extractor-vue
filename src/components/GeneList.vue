@@ -14,25 +14,30 @@
 
               <v-spacer></v-spacer>
               <div class="row">
-                <div class="col-md-2"></div>
-                <div class="col-md-5" style="margin-top:15px">
+                <div class="col-md-1"></div>
+                <div class="col-md-5">
                   <div v-if="summaryGenes.length">
-                    <span style="font-weight:200; font-size:14px;">
-                      Add top 
-                      <input
-                        class="form-control editTextInput"
-                        type="number"
-                        min="0"
-                        max="100"
-                        v-model="genesTop"
-                        autocomplete="off"
-                        style="display:inline"
-                        v-on:change="updateGenesTop"
-                        v-on:input="updateGenesTop"
-                        >
-                      genes for review
-                    </span>
-                    <span v-if="!selectedGenesFlag">
+                    <div class="col-md-10">
+                      <span style="font-weight:200; font-size:14px;">
+                        Add top 
+                        <input
+                          class="form-control editTextInput"
+                          type="number"
+                          min="0"
+                          max="50"
+                          v-model="genesTop"
+                          autocomplete="off"
+                          style="display:inline"
+                          v-on:change="updateGenesTop"
+                          v-on:input="updateGenesTop"
+                          >
+                        genes for review
+                      </span>
+                    </div>
+                    <div class="col-md-2" style="margin-top:5px">
+                      <span style="display:inline"><v-switch style="display:inline" v-model="selectedGenesFlag"></v-switch></span>
+                    </div>
+                    <!-- <span v-if="!selectedGenesFlag">
                       <v-tooltip top>
                         <template v-slot:activator="{ on }">
                           <v-btn icon v-on="on" @click="EnableToSelectGenes">
@@ -41,7 +46,7 @@
                             </v-icon>
                           </v-btn>
                         </template>
-                        <span> Select upto 100 genes to be reviewed in "Review variants" step of the workflow.</span>
+                        <span> Select upto 50 genes to be reviewed in "Review variants" step of the workflow.</span>
                       </v-tooltip>
                     </span>
                     <span v-if="selectedGenesFlag">
@@ -50,9 +55,11 @@
                           library_add_check
                         </v-icon>
                       </v-btn>
-                    </span>
+                    </span> -->
                   </div>
                 </div>
+                <div class="col-md-1"></div>
+
                 <div class="col-md-4">
                   <v-text-field
                     v-model="search"
@@ -66,7 +73,7 @@
               </div>
               <v-dialog v-model="copyPasteGenes" max-width="500px">
                 <template v-slot:activator="{ on }">
-                  <v-btn color="primary" class="mr-3 mt-3" v-on="on">
+                  <v-btn color="primary" class="mr-3" :class="{'mt-3' : !summaryGenes.length }" v-on="on">
                     <v-icon class="mr-1">add</v-icon>
                     Add
                   </v-btn>
@@ -309,6 +316,34 @@
      </v-dialog>
 
       <!-- End modal to show gene info -->
+      
+      
+      <!-- Dialog to show warning to select upto 50 genes  -->
+      <v-dialog
+        v-model="warningDialog"
+        hide-overlay
+        persistent
+        width="400"
+      >
+        <v-card
+          color="primary"
+          dark
+        >
+        <v-card-title primary-title>
+          <v-spacer></v-spacer>
+          <v-btn small icon @click="warningDialog=false">
+            <v-icon small style="opacity: 0.6">close</v-icon>
+          </v-btn>
+        </v-card-title>
+          <v-card-text style="padding:30px">
+            <span class="mt-2 mb-2" style="font-size:16px">
+              Please select upto 50 genes for review. 
+            </span>
+          </v-card-text>
+        </v-card>
+      </v-dialog>
+    <!--End Dialog to show warning to select upto 50 genes  -->
+
     </v-layout>
   </v-container>
 </template>
@@ -349,6 +384,14 @@ export default {
     }
   },
   watch:{
+    selectedGenesFlag(){
+      if(this.selectedGenesFlag){
+        this.EnableToSelectGenes()
+      }
+      else {
+        this.deselectAllGenes();
+      }
+    },
     summaryGeneList(){
       // this.summaryGenes = this.summaryGeneList;
       this.organizeGeneList();
@@ -402,6 +445,7 @@ export default {
       selected: [],
       genesTop: 25,
       selectedGenesFlag: false,
+      warningDialog: false,
     }
   },
 
@@ -576,7 +620,14 @@ export default {
       }
       this.$emit("add_to_gene_set", this.selected)
     },
-    
+    deselectAllGenes(){
+      this.selected = [];
+      for (var i = 0; i < this.summaryGenes.length; i++) {
+        this.summaryGenes[i].inGeneSet = false;
+      }
+      this.$emit("add_to_gene_set", this.selected)
+      console.log("this.selected", this.selected);
+    },
     selectTopGenes(numberOfGenesToSelect){
       this.selected = [];
       for (var i = 0; i < this.summaryGenes.length; i++) {
@@ -594,15 +645,23 @@ export default {
     },
     updateGenesTop(e){
       if(this.selectedGenesFlag){
-        if(this.genesTop>0 && this.genesTop<100){
+        if(this.genesTop>0 && this.genesTop<51){
           this.selectTopGenes(this.genesTop)
+        }
+        else {
+          this.deselectAllGenes();
+          this.warningDialog = true;
         }
       }
     },
     EnableToSelectGenes(){
-      this.selectedGenesFlag = true;
-      if(this.genesTop>0 && this.genesTop<100){
+      // this.selectedGenesFlag = true;
+      if(this.genesTop>0 && this.genesTop<51){
         this.selectTopGenes(this.genesTop)
+      }
+      else {
+        this.deselectAllGenes();
+        this.warningDialog = true;
       }
     }
 
