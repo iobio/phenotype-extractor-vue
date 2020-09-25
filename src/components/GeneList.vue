@@ -19,7 +19,6 @@
                   <div v-if="summaryGenes.length">
                     <div class="col-md-10">
                       <span style="font-weight:200; font-size:14px;">
-                        Add top 
                         <input
                           class="form-control editTextInput"
                           type="number"
@@ -31,10 +30,10 @@
                           v-on:change="updateGenesTop"
                           v-on:input="updateGenesTop"
                           >
-                        genes for review
+                         genes selected for review
                       </span>
                     </div>
-                    <div class="col-md-2" style="margin-top:5px">
+                    <!-- <div class="col-md-2" style="margin-top:5px">
                       <span style="display:inline">
                         <v-tooltip top>
                           <template v-slot:activator="{ on }">
@@ -44,7 +43,7 @@
                           <span v-else> Top <strong>{{selected.length}}</strong>  genes are selected from the below gene list to be reviewed in "Review variants" step. </span>
                         </v-tooltip>
                       </span>
-                    </div>
+                    </div> -->
                   </div>
                 </div>
                 <div class="col-md-1"></div>
@@ -433,7 +432,7 @@ export default {
       geneInfoDialog: false, 
       selected: [],
       genesTop: 25,
-      selectedGenesFlag: false,
+      selectedGenesFlag: true,
       warningDialog: false,
     }
   },
@@ -580,6 +579,14 @@ export default {
         else {
           this.summaryGenes = this.summaryGeneList;
         }
+
+        if(this.summaryGenes.length < 25){
+          this.genesTop = this.summaryGenes.length;
+        }
+        else {
+          this.genesTop = 25;
+        }
+        this.selectTopGenes(this.genesTop);
         
       }
       else {
@@ -607,6 +614,7 @@ export default {
         this.selected.splice(this.selected.indexOf(item.name), 1)
         this.selected = [...this.selected];
       }
+      this.genesTop = this.selected.length;
       this.$emit("add_to_gene_set", this.selected)
     },
     deselectAllGenes(){
