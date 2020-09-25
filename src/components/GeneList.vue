@@ -15,10 +15,10 @@
               <v-spacer></v-spacer>
               <div class="row">
                 <!-- <div class="col-md-1"></div> -->
-                <div class="col-md-6">
+                <div class="col-md-7">
                   <div v-if="summaryGenes.length">
                     <div class="col-md-9">
-                      <span style="font-weight:200; font-size:14px;">
+                      <span style="font-weight:200; font-size:13px; margin-top:30px; position: absolute; width:100%; margin-left: -140px">
                         <input
                           class="form-control editTextInput"
                           type="number"
@@ -30,7 +30,7 @@
                           v-on:change="updateGenesTop"
                           v-on:input="updateGenesTop"
                           >
-                         genes selected for review
+                        <span>genes selected</span>
                       </span>
                     </div>
                     <div class="col-md-3">
@@ -59,14 +59,16 @@
                 </div>
                 <div class="col-md-1"></div>
 
-                <div class="col-md-4">
-                  <v-text-field
-                    v-model="search"
-                    append-icon="search"
-                    label="Find gene"
-                    single-line
-                    hide-details
-                  ></v-text-field>
+                <div class="col-md-3">
+                  <div :class="{'mt-6' : summaryGenes.length }">
+                    <v-text-field
+                      v-model="search"
+                      append-icon="search"
+                      label="Find gene"
+                      single-line
+                      hide-details
+                    ></v-text-field>
+                  </div>
                 </div>
                 <div class="col-md-1 "></div>
               </div>
@@ -698,7 +700,7 @@ export default {
   
   .editTextInput
     margin-bottom: 12px
-    width: 75px
+    width: 65px
     font-size: 16px !important
     font-weight: bolder
     box-sizing: border-box
