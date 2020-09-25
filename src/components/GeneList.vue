@@ -38,7 +38,7 @@
                         :rotate="-90"
                         :size="100"
                         :width="15"
-                        :value="selected.length"
+                        :value="Math.round((selected.length / summaryGenes.length) * 100)"
                         color="primary"
                       >
                         <span style="font-size:17px">{{ Math.round((selected.length / summaryGenes.length) * 100)}}%</span>
