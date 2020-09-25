@@ -14,10 +14,10 @@
 
               <v-spacer></v-spacer>
               <div class="row">
-                <div class="col-md-1"></div>
-                <div class="col-md-5">
+                <!-- <div class="col-md-1"></div> -->
+                <div class="col-md-6">
                   <div v-if="summaryGenes.length">
-                    <div class="col-md-10">
+                    <div class="col-md-9">
                       <span style="font-weight:200; font-size:14px;">
                         <input
                           class="form-control editTextInput"
@@ -32,6 +32,17 @@
                           >
                          genes selected for review
                       </span>
+                    </div>
+                    <div class="col-md-3">
+                      <v-progress-circular
+                        :rotate="-90"
+                        :size="100"
+                        :width="15"
+                        :value="selected.length"
+                        color="primary"
+                      >
+                        <span style="font-size:17px">{{ Math.round((selected.length / summaryGenes.length) * 100)}}%</span>
+                      </v-progress-circular>
                     </div>
                     <!-- <div class="col-md-2" style="margin-top:5px">
                       <span style="display:inline">
