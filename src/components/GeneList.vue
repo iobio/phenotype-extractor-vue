@@ -451,7 +451,6 @@ export default {
   },
 
   mounted(){
-    // console.log("genelist mounted");
     this.knownGenesData = knownGenes;
     // this.summaryGenes = this.summaryGeneList;
     this.selected = this.selectedGenesForGeneSet;
@@ -468,7 +467,6 @@ export default {
   },
 
   created(){
-    // console.log("genelist created");
     bus.$on("show-gene-table-skeleton-loaders", ()=>{
       this.geneTableLoading = true;
     });
@@ -482,7 +480,6 @@ export default {
   },
 
   updated(){
-    // console.log("genelist updated");
   },
 
   methods: {
@@ -566,15 +563,15 @@ export default {
 
       if(this.summaryGeneList!==undefined){
         
-        this.summaryGeneList.forEach((gene, idx) => {
-          gene.idx = idx;
-          if(this.selected.includes(gene.name)){
-            this.$set(this.summaryGeneList[idx], 'inGeneSet', true);
-          }
-          else {
-            this.$set(this.summaryGeneList[idx], 'inGeneSet', false);
-          }
-        })
+        // this.summaryGeneList.forEach((gene, idx) => {
+        //   gene.idx = idx;
+        //   if(this.selected.includes(gene.name)){
+        //     this.$set(this.summaryGeneList[idx], 'inGeneSet', true);
+        //   }
+        //   else {
+        //     this.$set(this.summaryGeneList[idx], 'inGeneSet', false);
+        //   }
+        // })
 
         this.summaryGeneList.map(x=>{
           if(x.isAssociatedGene===true){
@@ -588,10 +585,19 @@ export default {
         if(associatedGenes.length){
           this.summaryGenes = [...associatedGenes, ...nonAssociatedGenes];
         }
-        
         else {
           this.summaryGenes = this.summaryGeneList;
         }
+        
+        this.summaryGenes.forEach((gene, idx) => {
+          gene.idx = idx;
+          if(this.selected.includes(gene.name)){
+            this.$set(this.summaryGenes[idx], 'inGeneSet', true);
+          }
+          else {
+            this.$set(this.summaryGenes[idx], 'inGeneSet', false);
+          }
+        })
 
         if(this.summaryGenes.length < 25){
           this.genesTop = this.summaryGenes.length;
