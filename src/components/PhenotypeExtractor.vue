@@ -362,7 +362,7 @@
           <center>
             <span class="ml-4">
               A list of genes associated with the phenotypes and conditions from the clinical note is generated and shown below.  
-              It will be used in the next step of the workflow <i>(Review Variants)</i> to show association or you can select upto 50 genes from the compiled list to be reviewed. 
+              It will be used in the next step of the workflow <i>(Review Variants)</i> to show association. You can select upto 50 genes from the compiled list to be reviewed. Top 25 genes will be selected by default.
               <br>
             </span>
             <span class="ml-4">  

@@ -30,19 +30,25 @@
                           v-on:change="updateGenesTop"
                           v-on:input="updateGenesTop"
                           >
-                        <span>genes selected</span>
+                        <span class="ml-1">gene<span v-if="genesTop>1">s</span> selected</span>
                       </span>
                     </div>
                     <div class="col-md-3">
-                      <v-progress-circular
-                        :rotate="-90"
-                        :size="100"
-                        :width="15"
-                        :value="Math.round((selected.length / summaryGenes.length) * 100)"
-                        color="primary"
-                      >
-                        <span style="font-size:17px">{{ Math.round((selected.length / summaryGenes.length) * 100)}}%</span>
-                      </v-progress-circular>
+                      <v-tooltip top>
+                        <template v-slot:activator="{ on, attrs }">
+                          <v-progress-circular
+                            :rotate="-90"
+                            :size="100"
+                            :width="15"
+                            :value="Math.round((selected.length / summaryGenes.length) * 100)"
+                            color="primary"
+                            v-on="on"
+                          >
+                            <span style="font-size:17px">{{ Math.round((selected.length / summaryGenes.length) * 100)}}%</span>
+                          </v-progress-circular>
+                        </template>
+                        <span>Shows the percentage of genes selected from the generated list</span>
+                      </v-tooltip>
                     </div>
                     <!-- <div class="col-md-2" style="margin-top:5px">
                       <span style="display:inline">
