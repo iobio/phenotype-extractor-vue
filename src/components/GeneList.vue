@@ -450,7 +450,7 @@ export default {
       hoveredGeneName: '',
       geneInfoDialog: false, 
       selected: [],
-      genesTop: 25,
+      genesTop: 20,
       selectedGenesFlag: true,
       warningDialog: false,
     }
@@ -605,11 +605,11 @@ export default {
           }
         })
 
-        if(this.summaryGenes.length < 25){
+        if(this.summaryGenes.length < 20){
           this.genesTop = this.summaryGenes.length;
         }
         else {
-          this.genesTop = 25;
+          this.genesTop = 20;
         }
         this.selectTopGenes(this.genesTop);
         
