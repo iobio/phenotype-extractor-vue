@@ -17,8 +17,10 @@
                 <!-- <div class="col-md-1"></div> -->
                 <div class="col-md-7">
                   <div v-if="summaryGenes.length">
+                    <div class="col-md-3">
+                    </div>
                     <div class="col-md-9">
-                      <span style="font-weight:200; font-size:13px; margin-top:30px; position: absolute; width:100%; margin-left: -140px">
+                      <span style="font-weight:200; font-size:13px; position: absolute; width:100%; margin-left: -140px">
                         <input
                           class="form-control editTextInput"
                           type="number"
@@ -32,23 +34,6 @@
                           >
                         <span class="ml-1">gene<span v-if="genesTop>1">s</span> selected</span>
                       </span>
-                    </div>
-                    <div class="col-md-3">
-                      <v-tooltip top>
-                        <template v-slot:activator="{ on, attrs }">
-                          <v-progress-circular
-                            :rotate="-90"
-                            :size="100"
-                            :width="15"
-                            :value="Math.round((selected.length / summaryGenes.length) * 100)"
-                            color="primary"
-                            v-on="on"
-                          >
-                            <span style="font-size:17px">{{ Math.round((selected.length / summaryGenes.length) * 100)}}%</span>
-                          </v-progress-circular>
-                        </template>
-                        <span>Shows the percentage of genes selected from the generated list</span>
-                      </v-tooltip>
                     </div>
                     <!-- <div class="col-md-2" style="margin-top:5px">
                       <span style="display:inline">
@@ -66,7 +51,7 @@
                 <div class="col-md-1"></div>
 
                 <div class="col-md-3">
-                  <div :class="{'mt-6' : summaryGenes.length }">
+                  <div>
                     <v-text-field
                       v-model="search"
                       append-icon="search"
