@@ -200,7 +200,7 @@
                     <template v-slot:activator="{ on }">
                       <v-btn icon v-on="on">
                         <v-icon style="opacity: 0.6">
-                          library_add
+                          check_box_outline_blank
                         </v-icon>
                       </v-btn>
                     </template>
@@ -702,7 +702,7 @@ export default {
     font-weight: bolder
     box-sizing: border-box
     border: none
-    border-bottom: 3px dashed rgb(66, 103, 178)
+    border-bottom: 1px solid #f0f0f0
     padding-bottom: 10px
     padding-top: 10px
     text-align: center  
