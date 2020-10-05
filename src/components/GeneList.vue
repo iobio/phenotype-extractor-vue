@@ -32,7 +32,16 @@
                           v-on:change="updateGenesTop"
                           v-on:input="updateGenesTop"
                           >
-                        <span class="ml-1">gene<span v-if="genesTop>1">s</span> selected</span>
+                        <span class="ml-1">gene<span v-if="genesTop>1">s</span> selected
+                          <span>
+                            <v-tooltip top>
+                              <template v-slot:activator="{ on }">
+                                <v-icon v-on="on" style="font-size:18px; opacity: 0.8">info_outline</v-icon>
+                              </template>
+                              <span>Gene info</span>
+                            </v-tooltip>                  
+                          </span>
+                        </span>
                       </span>
                     </div>
                     <!-- <div class="col-md-2" style="margin-top:5px">
