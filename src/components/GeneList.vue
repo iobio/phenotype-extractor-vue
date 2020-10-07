@@ -6,7 +6,19 @@
         <v-card>
           <div id="gene-data-table" >
             <v-card-title>
-              <strong>Genes</strong>
+              <strong>
+                <span>
+                  <v-tooltip top>
+                    <template v-slot:activator="{ on }">
+                      <span v-on="on" style="cursor:help">Genes</span>
+                    </template>
+                    <span>
+                      The entered clinical note is used to generate the following list of genes that may be associated with the patient's phenotypes and/or disorder. 
+                      <br>
+                      These disease:gene associations are used in the Review Variants step.</span>
+                  </v-tooltip>
+                </span>
+              </strong>
               <VennDiagram
                 v-show="summaryGenes.length"
                 :vennData="vennData">
@@ -38,7 +50,10 @@
                               <template v-slot:activator="{ on }">
                                 <v-icon v-on="on" style="font-size:18px; opacity: 0.8">info_outline</v-icon>
                               </template>
-                              <span>Gene info</span>
+                              <span>
+                                All variants in the genes selected here will be analyzed in the Review Variants step.
+                                <br>
+                                You can manually add or remove genes from the list, or choose the top N genes (20 by default) to analyse.</span>
                             </v-tooltip>                  
                           </span>
                         </span>
