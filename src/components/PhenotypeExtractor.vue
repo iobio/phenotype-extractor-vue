@@ -348,8 +348,8 @@
           </v-card-text>
         </v-card>
       </div>
-      <div v-if="showInfoThatStepIsComplete">
-        <!-- the following alert shows that the step is completed -->
+      <!-- <div v-if="showInfoThatStepIsComplete">
+        the following alert shows that the step is completed
         <v-alert
           border="left"
           colored-border
@@ -371,7 +371,7 @@
             </span>
           </center>
         </v-alert>
-      </div>
+      </div> -->
 
 
 
