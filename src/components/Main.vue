@@ -47,7 +47,9 @@
         @bus_delete_gene="bus_delete_gene"
         @gene_to_delete="gene_to_delete($event)"
         @add_to_gene_set="add_to_gene_set($event)"
-        :selectedGenesForGeneSet="selectedGenesForGeneSet">
+        :selectedGenesForGeneSet="selectedGenesForGeneSet"
+        @update_genes_top="update_genes_top($event)"
+        :topGenesSelectedCount="genesTop">
       </GeneList>
     </v-layout>
   </v-container>
@@ -91,7 +93,8 @@ export default {
     venn_diag_data: {},
     geneToDelete: '',
     deletedGenesList: [],
-    selectedGenesForGeneSet: []
+    selectedGenesForGeneSet: [],
+    genesTop: 0,
     // phenotypes: [
     //   [
     //     {
@@ -170,6 +173,9 @@ export default {
     },
     add_to_gene_set(genes){
       this.selectedGenesForGeneSet = genes;
+    },
+    update_genes_top(number){
+      this.genesTop = number;
     }
   }
 };

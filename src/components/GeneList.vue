@@ -397,6 +397,9 @@ export default {
     },
     selectedGenesForGeneSet: {
       type: Array
+    },
+    topGenesSelectedCount: {
+      type: Number
     }
   },
   watch:{
@@ -471,6 +474,7 @@ export default {
     this.selected = this.selectedGenesForGeneSet;
     if(this.selectedGenesForGeneSet.length){
       this.selectedGenesFlag = true;
+      this.genesTop = this.topGenesSelectedCount;
     }
     this.organizeGeneList();
 
@@ -676,7 +680,8 @@ export default {
     updateGenesTop(e){
       if(this.selectedGenesFlag){
         if(this.genesTop>0 && this.genesTop<51){
-          this.selectTopGenes(this.genesTop)
+          this.selectTopGenes(this.genesTop);
+          this.$emit("update_genes_top", this.genesTop);
         }
         else {
           this.deselectAllGenes();
