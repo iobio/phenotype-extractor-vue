@@ -95,7 +95,7 @@ export default {
     geneToDelete: '',
     deletedGenesList: [],
     selectedGenesForGeneSet: [],
-    genesTop: 0,
+    genesTop: 20,
     // phenotypes: [
     //   [
     //     {

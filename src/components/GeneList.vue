@@ -418,6 +418,9 @@ export default {
     },
     venn_diag_data(){
       this.vennData = this.venn_diag_data;
+    },
+    genesTop(){
+      console.log("genesTop is changing", this.genesTop);
     }
   },
   data () {
@@ -467,6 +470,7 @@ export default {
   },
 
   mounted(){
+    console.log("mounted");
     this.knownGenesData = knownGenes;
     // this.summaryGenes = this.summaryGeneList;
     
@@ -478,7 +482,7 @@ export default {
           this.genesTop = parseInt(this.topGenesSelectedCount);
         }
         else {
-          this.genesTop = 0;
+          this.genesTop = 20;
         }
       }
       else {
@@ -514,6 +518,10 @@ export default {
   },
 
   updated(){
+    console.log("updated");
+    console.log("this.genesTop", this.genesTop);
+    console.log("selectedgenes", this.selected);
+    console.log("selectedGenesForGeneSet", this.selectedGenesForGeneSet);
   },
 
   methods: {
@@ -630,6 +638,7 @@ export default {
     },
 
     organizeGeneList(){
+      console.log("organizeGeneList called", this.genesTop);
       var associatedGenes = [];
       var nonAssociatedGenes = [];
 
@@ -671,12 +680,12 @@ export default {
           }
         })
 
-        if(this.summaryGenes.length < 20){
-          this.genesTop = this.summaryGenes.length;
-        }
-        else {
-          this.genesTop = 20;
-        }
+        // if(this.summaryGenes.length < 20){
+        //   this.genesTop = this.summaryGenes.length;
+        // }
+        // else {
+        //   this.genesTop = 20;
+        // }
         this.selectTopGenes(this.genesTop);
         
       }
