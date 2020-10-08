@@ -47,9 +47,9 @@
         @bus_delete_gene="bus_delete_gene"
         @gene_to_delete="gene_to_delete($event)"
         @add_to_gene_set="add_to_gene_set($event)"
-        :selectedGenesForGeneSet="selectedGenesForGeneSet"
+        :selectedGenesForGeneSet="analysis.payload.selectedGenesForGeneSet"
         @update_genes_top="update_genes_top($event)"
-        :topGenesSelectedCount="genesTop">
+        :topGenesSelectedCount="analysis.payload.genesTop">
       </GeneList>
     </v-layout>
   </v-container>
@@ -68,6 +68,7 @@ import GtrSearch from './GtrSearch.vue';
 import PhenotypeExtractor from './PhenotypeExtractor.vue'
 import GeneList from './GeneList.vue'
 import analysisData from '../data/analysis.json';
+// import analysisData from '../data/mosaic_analysis.json';
 import PhenotypistData from '../data/PhenotypistState.json';
 import Model from '../models/Model';
 var model = new Model();
@@ -125,6 +126,7 @@ export default {
     this.PhenotypistState = PhenotypistData;
   },
   mounted(){
+    console.log("mounted", this.analysis);
   },
   methods: {
     summaryGenes(genes){

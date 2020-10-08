@@ -1,0 +1,4264 @@
+{
+  "id": 526,
+  "project_id": 32,
+  "user_id": 19,
+  "client_application_id": 5,
+  "payload": {
+    "genes": [
+      "PRX"
+    ],
+    "steps": [
+      {
+        "key": "review-case",
+        "tasks": [
+          {
+            "key": "review-patient",
+            "badges": [
+              {
+                "label": "samples (family)",
+                "count": 4
+              }
+            ],
+            "passed": false,
+            "complete": false
+          }
+        ],
+        "number": 1,
+        "complete": false
+      },
+      {
+        "key": "phenotypes",
+        "tasks": [
+          {
+            "key": "review-phenotypes-genes",
+            "badges": [
+              {
+                "count": 1,
+                "label": "phenotype"
+              },
+              {
+                "count": 1,
+                "label": "note"
+              }
+            ],
+            "passed": false,
+            "complete": false
+          }
+        ],
+        "number": 2,
+        "complete": false
+      },
+      {
+        "key": "variants-full",
+        "tasks": [
+          {
+            "key": "review-full",
+            "passed": false,
+            "complete": false
+          }
+        ],
+        "number": 3,
+        "complete": false
+      },
+      {
+        "key": "review-findings",
+        "tasks": [
+          {
+            "key": "review-results",
+            "badges": [],
+            "passed": false,
+            "complete": false
+          }
+        ],
+        "number": 4,
+        "complete": false
+      }
+    ],
+    "genesGtr": [],
+    "genesTop": "4",
+    "variants": [],
+    "sample_id": "108",
+    "phenotypes": [
+      [
+        {
+          "general": true,
+          "ConceptID": "C0011195",
+          "DiseaseName": "Dejerine-Sottas disease",
+          "gtrSearchStatus": "Completed"
+        }
+      ],
+      [
+        {
+          "id": "dejerine sottas disease",
+          "label": "dejerine sottas disease",
+          "value": "dejerine sottas disease",
+          "general": true,
+          "phenolyzerSearchStatus": "Completed"
+        }
+      ],
+      [],
+      [
+        {
+          "note": "dejerine-sottas disease",
+          "gtr_terms": [
+            {
+              "general": true,
+              "ConceptID": "C0011195",
+              "DiseaseName": "Dejerine-Sottas disease"
+            }
+          ],
+          "hpo_terms": [],
+          "phenolyzer_terms": [
+            {
+              "id": "dejerine sottas disease",
+              "label": "dejerine sottas disease",
+              "value": "dejerine sottas disease",
+              "general": true
+            }
+          ],
+          "LevenshteinResults": [
+            "Dejerine-Sottas disease"
+          ]
+        }
+      ]
+    ],
+    "project_id": "32",
+    "genesManual": [],
+    "genesReport": [
+      {
+        "idx": 4,
+        "name": "TCOF1",
+        "score": "",
+        "geneId": "",
+        "source": [
+          "ImportedGenes"
+        ],
+        "inGeneSet": true,
+        "genePanels": "",
+        "geneRankGtr": -1,
+        "searchTermHpo": [],
+        "searchTermsGtr": [],
+        "isImportedGenes": true,
+        "isAssociatedGene": false,
+        "geneRankPhenolyzer": -1,
+        "searchTermsPhenolyzer": []
+      },
+      {
+        "idx": 0,
+        "name": "MPZ",
+        "score": 0.9035,
+        "geneId": 4359,
+        "source": [
+          "GTR",
+          "Pheno"
+        ],
+        "inGeneSet": true,
+        "genePanels": 32,
+        "geneRankGtr": 1,
+        "searchTermHpo": [],
+        "searchTermsGtr": [
+          {
+            "rank": 1,
+            "searchTerm": "Dejerine-Sottas disease",
+            "genePanelsCount": 32
+          }
+        ],
+        "isImportedGenes": false,
+        "isAssociatedGene": true,
+        "geneRankPhenolyzer": 3,
+        "searchTermsPhenolyzer": [
+          {
+            "rank": 3,
+            "score": 0.9035,
+            "searchTerm": "dejerine sottas disease"
+          }
+        ]
+      },
+      {
+        "idx": 1,
+        "name": "PMP22",
+        "score": 0.9178,
+        "geneId": 5376,
+        "source": [
+          "GTR",
+          "Pheno"
+        ],
+        "inGeneSet": true,
+        "genePanels": 30,
+        "geneRankGtr": 2,
+        "searchTermHpo": [],
+        "searchTermsGtr": [
+          {
+            "rank": 2,
+            "searchTerm": "Dejerine-Sottas disease",
+            "genePanelsCount": 30
+          }
+        ],
+        "isImportedGenes": false,
+        "isAssociatedGene": true,
+        "geneRankPhenolyzer": 2,
+        "searchTermsPhenolyzer": [
+          {
+            "rank": 2,
+            "score": 0.9178,
+            "searchTerm": "dejerine sottas disease"
+          }
+        ]
+      },
+      {
+        "idx": 2,
+        "name": "EGR2",
+        "score": 1,
+        "geneId": 1959,
+        "source": [
+          "GTR",
+          "Pheno"
+        ],
+        "inGeneSet": true,
+        "genePanels": 28,
+        "geneRankGtr": 3,
+        "searchTermHpo": [],
+        "searchTermsGtr": [
+          {
+            "rank": 3,
+            "searchTerm": "Dejerine-Sottas disease",
+            "genePanelsCount": 28
+          }
+        ],
+        "isImportedGenes": false,
+        "isAssociatedGene": true,
+        "geneRankPhenolyzer": 1,
+        "searchTermsPhenolyzer": [
+          {
+            "rank": 1,
+            "score": 1,
+            "searchTerm": "dejerine sottas disease"
+          }
+        ]
+      },
+      {
+        "idx": 3,
+        "name": "PRX",
+        "score": 0.3499,
+        "geneId": 57716,
+        "source": [
+          "GTR",
+          "Pheno"
+        ],
+        "inGeneSet": true,
+        "genePanels": 27,
+        "geneRankGtr": 4,
+        "searchTermHpo": [],
+        "searchTermsGtr": [
+          {
+            "rank": 4,
+            "searchTerm": "Dejerine-Sottas disease",
+            "genePanelsCount": 27
+          }
+        ],
+        "isImportedGenes": false,
+        "isAssociatedGene": true,
+        "geneRankPhenolyzer": 20,
+        "searchTermsPhenolyzer": [
+          {
+            "rank": 20,
+            "score": 0.3499,
+            "searchTerm": "dejerine sottas disease"
+          }
+        ]
+      },
+      {
+        "idx": 5,
+        "name": "GDAP1",
+        "score": 0.7046,
+        "geneId": 54332,
+        "source": [
+          "GTR",
+          "Pheno"
+        ],
+        "inGeneSet": false,
+        "genePanels": 15,
+        "geneRankGtr": 6,
+        "searchTermHpo": [],
+        "searchTermsGtr": [
+          {
+            "rank": 6,
+            "searchTerm": "Dejerine-Sottas disease",
+            "genePanelsCount": 15
+          }
+        ],
+        "isImportedGenes": false,
+        "isAssociatedGene": false,
+        "geneRankPhenolyzer": 5,
+        "searchTermsPhenolyzer": [
+          {
+            "rank": 5,
+            "score": 0.7046,
+            "searchTerm": "dejerine sottas disease"
+          }
+        ]
+      },
+      {
+        "idx": 6,
+        "name": "FIG4",
+        "score": 0.3731,
+        "geneId": 9896,
+        "source": [
+          "GTR",
+          "Pheno"
+        ],
+        "inGeneSet": false,
+        "genePanels": 14,
+        "geneRankGtr": 7,
+        "searchTermHpo": [],
+        "searchTermsGtr": [
+          {
+            "rank": 7,
+            "searchTerm": "Dejerine-Sottas disease",
+            "genePanelsCount": 14
+          }
+        ],
+        "isImportedGenes": false,
+        "isAssociatedGene": false,
+        "geneRankPhenolyzer": 15,
+        "searchTermsPhenolyzer": [
+          {
+            "rank": 15,
+            "score": 0.3731,
+            "searchTerm": "dejerine sottas disease"
+          }
+        ]
+      },
+      {
+        "idx": 7,
+        "name": "FGD4",
+        "score": 0.3657,
+        "geneId": 121512,
+        "source": [
+          "GTR",
+          "Pheno"
+        ],
+        "inGeneSet": false,
+        "genePanels": 14,
+        "geneRankGtr": 8,
+        "searchTermHpo": [],
+        "searchTermsGtr": [
+          {
+            "rank": 8,
+            "searchTerm": "Dejerine-Sottas disease",
+            "genePanelsCount": 14
+          }
+        ],
+        "isImportedGenes": false,
+        "isAssociatedGene": false,
+        "geneRankPhenolyzer": 17,
+        "searchTermsPhenolyzer": [
+          {
+            "rank": 17,
+            "score": 0.3657,
+            "searchTerm": "dejerine sottas disease"
+          }
+        ]
+      },
+      {
+        "idx": 8,
+        "name": "DNM2",
+        "score": 0.3023,
+        "geneId": 1785,
+        "source": [
+          "GTR",
+          "Pheno"
+        ],
+        "inGeneSet": false,
+        "genePanels": 13,
+        "geneRankGtr": 10,
+        "searchTermHpo": [],
+        "searchTermsGtr": [
+          {
+            "rank": 10,
+            "searchTerm": "Dejerine-Sottas disease",
+            "genePanelsCount": 13
+          }
+        ],
+        "isImportedGenes": false,
+        "isAssociatedGene": false,
+        "geneRankPhenolyzer": 24,
+        "searchTermsPhenolyzer": [
+          {
+            "rank": 24,
+            "score": 0.3023,
+            "searchTerm": "dejerine sottas disease"
+          }
+        ]
+      },
+      {
+        "idx": 9,
+        "name": "HSPB1",
+        "score": 0.2406,
+        "geneId": 3315,
+        "source": [
+          "GTR",
+          "Pheno"
+        ],
+        "inGeneSet": false,
+        "genePanels": 13,
+        "geneRankGtr": 12,
+        "searchTermHpo": [],
+        "searchTermsGtr": [
+          {
+            "rank": 12,
+            "searchTerm": "Dejerine-Sottas disease",
+            "genePanelsCount": 13
+          }
+        ],
+        "isImportedGenes": false,
+        "isAssociatedGene": false,
+        "geneRankPhenolyzer": 31,
+        "searchTermsPhenolyzer": [
+          {
+            "rank": 31,
+            "score": 0.2406,
+            "searchTerm": "dejerine sottas disease"
+          }
+        ]
+      },
+      {
+        "idx": 10,
+        "name": "DYNC1H1",
+        "score": 0.2167,
+        "geneId": 1778,
+        "source": [
+          "GTR",
+          "Pheno"
+        ],
+        "inGeneSet": false,
+        "genePanels": 12,
+        "geneRankGtr": 13,
+        "searchTermHpo": [],
+        "searchTermsGtr": [
+          {
+            "rank": 13,
+            "searchTerm": "Dejerine-Sottas disease",
+            "genePanelsCount": 12
+          }
+        ],
+        "isImportedGenes": false,
+        "isAssociatedGene": false,
+        "geneRankPhenolyzer": 47,
+        "searchTermsPhenolyzer": [
+          {
+            "rank": 47,
+            "score": 0.2167,
+            "searchTerm": "dejerine sottas disease"
+          }
+        ]
+      },
+      {
+        "idx": 11,
+        "name": "NEFL",
+        "score": 0.6387,
+        "geneId": 4747,
+        "source": [
+          "GTR",
+          "Pheno"
+        ],
+        "inGeneSet": false,
+        "genePanels": 12,
+        "geneRankGtr": 14,
+        "searchTermHpo": [],
+        "searchTermsGtr": [
+          {
+            "rank": 14,
+            "searchTerm": "Dejerine-Sottas disease",
+            "genePanelsCount": 12
+          }
+        ],
+        "isImportedGenes": false,
+        "isAssociatedGene": false,
+        "geneRankPhenolyzer": 6,
+        "searchTermsPhenolyzer": [
+          {
+            "rank": 6,
+            "score": 0.6387,
+            "searchTerm": "dejerine sottas disease"
+          }
+        ]
+      },
+      {
+        "idx": 12,
+        "name": "MTMR2",
+        "score": 0.4429,
+        "geneId": 8898,
+        "source": [
+          "GTR",
+          "Pheno"
+        ],
+        "inGeneSet": false,
+        "genePanels": 12,
+        "geneRankGtr": 15,
+        "searchTermHpo": [],
+        "searchTermsGtr": [
+          {
+            "rank": 15,
+            "searchTerm": "Dejerine-Sottas disease",
+            "genePanelsCount": 12
+          }
+        ],
+        "isImportedGenes": false,
+        "isAssociatedGene": false,
+        "geneRankPhenolyzer": 7,
+        "searchTermsPhenolyzer": [
+          {
+            "rank": 7,
+            "score": 0.4429,
+            "searchTerm": "dejerine sottas disease"
+          }
+        ]
+      },
+      {
+        "idx": 13,
+        "name": "SH3TC2",
+        "score": 0.3247,
+        "geneId": 79628,
+        "source": [
+          "GTR",
+          "Pheno"
+        ],
+        "inGeneSet": false,
+        "genePanels": 12,
+        "geneRankGtr": 16,
+        "searchTermHpo": [],
+        "searchTermsGtr": [
+          {
+            "rank": 16,
+            "searchTerm": "Dejerine-Sottas disease",
+            "genePanelsCount": 12
+          }
+        ],
+        "isImportedGenes": false,
+        "isAssociatedGene": false,
+        "geneRankPhenolyzer": 23,
+        "searchTermsPhenolyzer": [
+          {
+            "rank": 23,
+            "score": 0.3247,
+            "searchTerm": "dejerine sottas disease"
+          }
+        ]
+      },
+      {
+        "idx": 14,
+        "name": "SBF2",
+        "score": 0.3581,
+        "geneId": 81846,
+        "source": [
+          "GTR",
+          "Pheno"
+        ],
+        "inGeneSet": false,
+        "genePanels": 12,
+        "geneRankGtr": 17,
+        "searchTermHpo": [],
+        "searchTermsGtr": [
+          {
+            "rank": 17,
+            "searchTerm": "Dejerine-Sottas disease",
+            "genePanelsCount": 12
+          }
+        ],
+        "isImportedGenes": false,
+        "isAssociatedGene": false,
+        "geneRankPhenolyzer": 19,
+        "searchTermsPhenolyzer": [
+          {
+            "rank": 19,
+            "score": 0.3581,
+            "searchTerm": "dejerine sottas disease"
+          }
+        ]
+      },
+      {
+        "idx": 15,
+        "name": "MFN2",
+        "score": 0.1899,
+        "geneId": 9927,
+        "source": [
+          "GTR",
+          "Pheno"
+        ],
+        "inGeneSet": false,
+        "genePanels": 11,
+        "geneRankGtr": 18,
+        "searchTermHpo": [],
+        "searchTermsGtr": [
+          {
+            "rank": 18,
+            "searchTerm": "Dejerine-Sottas disease",
+            "genePanelsCount": 11
+          }
+        ],
+        "isImportedGenes": false,
+        "isAssociatedGene": false,
+        "geneRankPhenolyzer": 53,
+        "searchTermsPhenolyzer": [
+          {
+            "rank": 53,
+            "score": 0.1899,
+            "searchTerm": "dejerine sottas disease"
+          }
+        ]
+      },
+      {
+        "idx": 16,
+        "name": "NDRG1",
+        "score": 0.3491,
+        "geneId": 10397,
+        "source": [
+          "GTR",
+          "Pheno"
+        ],
+        "inGeneSet": false,
+        "genePanels": 11,
+        "geneRankGtr": 19,
+        "searchTermHpo": [],
+        "searchTermsGtr": [
+          {
+            "rank": 19,
+            "searchTerm": "Dejerine-Sottas disease",
+            "genePanelsCount": 11
+          }
+        ],
+        "isImportedGenes": false,
+        "isAssociatedGene": false,
+        "geneRankPhenolyzer": 21,
+        "searchTermsPhenolyzer": [
+          {
+            "rank": 21,
+            "score": 0.3491,
+            "searchTerm": "dejerine sottas disease"
+          }
+        ]
+      },
+      {
+        "idx": 17,
+        "name": "LMNA",
+        "score": 0.3881,
+        "geneId": 4000,
+        "source": [
+          "GTR",
+          "Pheno"
+        ],
+        "inGeneSet": false,
+        "genePanels": 10,
+        "geneRankGtr": 21,
+        "searchTermHpo": [],
+        "searchTermsGtr": [
+          {
+            "rank": 21,
+            "searchTerm": "Dejerine-Sottas disease",
+            "genePanelsCount": 10
+          }
+        ],
+        "isImportedGenes": false,
+        "isAssociatedGene": false,
+        "geneRankPhenolyzer": 13,
+        "searchTermsPhenolyzer": [
+          {
+            "rank": 13,
+            "score": 0.3881,
+            "searchTerm": "dejerine sottas disease"
+          }
+        ]
+      },
+      {
+        "idx": 18,
+        "name": "RAB7A",
+        "score": 0.2389,
+        "geneId": 7879,
+        "source": [
+          "GTR",
+          "Pheno"
+        ],
+        "inGeneSet": false,
+        "genePanels": 10,
+        "geneRankGtr": 23,
+        "searchTermHpo": [],
+        "searchTermsGtr": [
+          {
+            "rank": 23,
+            "searchTerm": "Dejerine-Sottas disease",
+            "genePanelsCount": 10
+          }
+        ],
+        "isImportedGenes": false,
+        "isAssociatedGene": false,
+        "geneRankPhenolyzer": 34,
+        "searchTermsPhenolyzer": [
+          {
+            "rank": 34,
+            "score": 0.2389,
+            "searchTerm": "dejerine sottas disease"
+          }
+        ]
+      },
+      {
+        "idx": 19,
+        "name": "LITAF",
+        "score": 0.3655,
+        "geneId": 9516,
+        "source": [
+          "GTR",
+          "Pheno"
+        ],
+        "inGeneSet": false,
+        "genePanels": 10,
+        "geneRankGtr": 25,
+        "searchTermHpo": [],
+        "searchTermsGtr": [
+          {
+            "rank": 25,
+            "searchTerm": "Dejerine-Sottas disease",
+            "genePanelsCount": 10
+          }
+        ],
+        "isImportedGenes": false,
+        "isAssociatedGene": false,
+        "geneRankPhenolyzer": 18,
+        "searchTermsPhenolyzer": [
+          {
+            "rank": 18,
+            "score": 0.3655,
+            "searchTerm": "dejerine sottas disease"
+          }
+        ]
+      },
+      {
+        "idx": 20,
+        "name": "HSPB8",
+        "score": 0.1836,
+        "geneId": 26353,
+        "source": [
+          "GTR",
+          "Pheno"
+        ],
+        "inGeneSet": false,
+        "genePanels": 10,
+        "geneRankGtr": 26,
+        "searchTermHpo": [],
+        "searchTermsGtr": [
+          {
+            "rank": 26,
+            "searchTerm": "Dejerine-Sottas disease",
+            "genePanelsCount": 10
+          }
+        ],
+        "isImportedGenes": false,
+        "isAssociatedGene": false,
+        "geneRankPhenolyzer": 55,
+        "searchTermsPhenolyzer": [
+          {
+            "rank": 55,
+            "score": 0.1836,
+            "searchTerm": "dejerine sottas disease"
+          }
+        ]
+      },
+      {
+        "idx": 21,
+        "name": "TRPV4",
+        "score": 0.1835,
+        "geneId": 59341,
+        "source": [
+          "GTR",
+          "Pheno"
+        ],
+        "inGeneSet": false,
+        "genePanels": 10,
+        "geneRankGtr": 27,
+        "searchTermHpo": [],
+        "searchTermsGtr": [
+          {
+            "rank": 27,
+            "searchTerm": "Dejerine-Sottas disease",
+            "genePanelsCount": 10
+          }
+        ],
+        "isImportedGenes": false,
+        "isAssociatedGene": false,
+        "geneRankPhenolyzer": 56,
+        "searchTermsPhenolyzer": [
+          {
+            "rank": 56,
+            "score": 0.1835,
+            "searchTerm": "dejerine sottas disease"
+          }
+        ]
+      },
+      {
+        "idx": 22,
+        "name": "MED25",
+        "score": 0.4232,
+        "geneId": 81857,
+        "source": [
+          "GTR",
+          "Pheno"
+        ],
+        "inGeneSet": false,
+        "genePanels": 9,
+        "geneRankGtr": 31,
+        "searchTermHpo": [],
+        "searchTermsGtr": [
+          {
+            "rank": 31,
+            "searchTerm": "Dejerine-Sottas disease",
+            "genePanelsCount": 9
+          }
+        ],
+        "isImportedGenes": false,
+        "isAssociatedGene": false,
+        "geneRankPhenolyzer": 9,
+        "searchTermsPhenolyzer": [
+          {
+            "rank": 9,
+            "score": 0.4232,
+            "searchTerm": "dejerine sottas disease"
+          }
+        ]
+      },
+      {
+        "idx": 23,
+        "name": "LRSAM1",
+        "score": 0.1916,
+        "geneId": 90678,
+        "source": [
+          "GTR",
+          "Pheno"
+        ],
+        "inGeneSet": false,
+        "genePanels": 9,
+        "geneRankGtr": 32,
+        "searchTermHpo": [],
+        "searchTermsGtr": [
+          {
+            "rank": 32,
+            "searchTerm": "Dejerine-Sottas disease",
+            "genePanelsCount": 9
+          }
+        ],
+        "isImportedGenes": false,
+        "isAssociatedGene": false,
+        "geneRankPhenolyzer": 52,
+        "searchTermsPhenolyzer": [
+          {
+            "rank": 52,
+            "score": 0.1916,
+            "searchTerm": "dejerine sottas disease"
+          }
+        ]
+      },
+      {
+        "idx": 24,
+        "name": "BSCL2",
+        "score": 0.132,
+        "geneId": 26580,
+        "source": [
+          "GTR",
+          "Pheno"
+        ],
+        "inGeneSet": false,
+        "genePanels": 8,
+        "geneRankGtr": 35,
+        "searchTermHpo": [],
+        "searchTermsGtr": [
+          {
+            "rank": 35,
+            "searchTerm": "Dejerine-Sottas disease",
+            "genePanelsCount": 8
+          }
+        ],
+        "isImportedGenes": false,
+        "isAssociatedGene": false,
+        "geneRankPhenolyzer": 68,
+        "searchTermsPhenolyzer": [
+          {
+            "rank": 68,
+            "score": 0.132,
+            "searchTerm": "dejerine sottas disease"
+          }
+        ]
+      },
+      {
+        "idx": 25,
+        "name": "SBF1",
+        "score": 0.234,
+        "geneId": 6305,
+        "source": [
+          "GTR",
+          "Pheno"
+        ],
+        "inGeneSet": false,
+        "genePanels": 7,
+        "geneRankGtr": 36,
+        "searchTermHpo": [],
+        "searchTermsGtr": [
+          {
+            "rank": 36,
+            "searchTerm": "Dejerine-Sottas disease",
+            "genePanelsCount": 7
+          }
+        ],
+        "isImportedGenes": false,
+        "isAssociatedGene": false,
+        "geneRankPhenolyzer": 36,
+        "searchTermsPhenolyzer": [
+          {
+            "rank": 36,
+            "score": 0.234,
+            "searchTerm": "dejerine sottas disease"
+          }
+        ]
+      },
+      {
+        "idx": 26,
+        "name": "HK1",
+        "score": 0.2145,
+        "geneId": 3098,
+        "source": [
+          "GTR",
+          "Pheno"
+        ],
+        "inGeneSet": false,
+        "genePanels": 2,
+        "geneRankGtr": 49,
+        "searchTermHpo": [],
+        "searchTermsGtr": [
+          {
+            "rank": 49,
+            "searchTerm": "Dejerine-Sottas disease",
+            "genePanelsCount": 2
+          }
+        ],
+        "isImportedGenes": false,
+        "isAssociatedGene": false,
+        "geneRankPhenolyzer": 48,
+        "searchTermsPhenolyzer": [
+          {
+            "rank": 48,
+            "score": 0.2145,
+            "searchTerm": "dejerine sottas disease"
+          }
+        ]
+      },
+      {
+        "idx": 27,
+        "name": "PEX7",
+        "score": 0.3786,
+        "geneId": 5191,
+        "source": [
+          "GTR",
+          "Pheno"
+        ],
+        "inGeneSet": false,
+        "genePanels": 1,
+        "geneRankGtr": 55,
+        "searchTermHpo": [],
+        "searchTermsGtr": [
+          {
+            "rank": 55,
+            "searchTerm": "Dejerine-Sottas disease",
+            "genePanelsCount": 1
+          }
+        ],
+        "isImportedGenes": false,
+        "isAssociatedGene": false,
+        "geneRankPhenolyzer": 14,
+        "searchTermsPhenolyzer": [
+          {
+            "rank": 14,
+            "score": 0.3786,
+            "searchTerm": "dejerine sottas disease"
+          }
+        ]
+      },
+      {
+        "idx": 28,
+        "name": "PHYH",
+        "score": 0.423,
+        "geneId": 5264,
+        "source": [
+          "GTR",
+          "Pheno"
+        ],
+        "inGeneSet": false,
+        "genePanels": 1,
+        "geneRankGtr": 56,
+        "searchTermHpo": [],
+        "searchTermsGtr": [
+          {
+            "rank": 56,
+            "searchTerm": "Dejerine-Sottas disease",
+            "genePanelsCount": 1
+          }
+        ],
+        "isImportedGenes": false,
+        "isAssociatedGene": false,
+        "geneRankPhenolyzer": 10,
+        "searchTermsPhenolyzer": [
+          {
+            "rank": 10,
+            "score": 0.423,
+            "searchTerm": "dejerine sottas disease"
+          }
+        ]
+      },
+      {
+        "idx": 29,
+        "name": "GAN",
+        "score": 0.4257,
+        "geneId": 8139,
+        "source": [
+          "GTR",
+          "Pheno"
+        ],
+        "inGeneSet": false,
+        "genePanels": 1,
+        "geneRankGtr": 58,
+        "searchTermHpo": [],
+        "searchTermsGtr": [
+          {
+            "rank": 58,
+            "searchTerm": "Dejerine-Sottas disease",
+            "genePanelsCount": 1
+          }
+        ],
+        "isImportedGenes": false,
+        "isAssociatedGene": false,
+        "geneRankPhenolyzer": 8,
+        "searchTermsPhenolyzer": [
+          {
+            "rank": 8,
+            "score": 0.4257,
+            "searchTerm": "dejerine sottas disease"
+          }
+        ]
+      },
+      {
+        "idx": 30,
+        "name": "GJB1",
+        "score": "",
+        "geneId": 2705,
+        "source": [
+          "GTR"
+        ],
+        "inGeneSet": false,
+        "genePanels": 17,
+        "geneRankGtr": 5,
+        "searchTermHpo": [],
+        "searchTermsGtr": [
+          {
+            "rank": 5,
+            "searchTerm": "Dejerine-Sottas disease",
+            "genePanelsCount": 17
+          }
+        ],
+        "isImportedGenes": false,
+        "isAssociatedGene": false,
+        "geneRankPhenolyzer": -1,
+        "searchTermsPhenolyzer": []
+      },
+      {
+        "idx": 31,
+        "name": "AARS1",
+        "score": "",
+        "geneId": 16,
+        "source": [
+          "GTR"
+        ],
+        "inGeneSet": false,
+        "genePanels": 13,
+        "geneRankGtr": 9,
+        "searchTermHpo": [],
+        "searchTermsGtr": [
+          {
+            "rank": 9,
+            "searchTerm": "Dejerine-Sottas disease",
+            "genePanelsCount": 13
+          }
+        ],
+        "isImportedGenes": false,
+        "isAssociatedGene": false,
+        "geneRankPhenolyzer": -1,
+        "searchTermsPhenolyzer": []
+      },
+      {
+        "idx": 32,
+        "name": "GARS1",
+        "score": "",
+        "geneId": 2617,
+        "source": [
+          "GTR"
+        ],
+        "inGeneSet": false,
+        "genePanels": 13,
+        "geneRankGtr": 11,
+        "searchTermHpo": [],
+        "searchTermsGtr": [
+          {
+            "rank": 11,
+            "searchTerm": "Dejerine-Sottas disease",
+            "genePanelsCount": 13
+          }
+        ],
+        "isImportedGenes": false,
+        "isAssociatedGene": false,
+        "geneRankPhenolyzer": -1,
+        "searchTermsPhenolyzer": []
+      },
+      {
+        "idx": 33,
+        "name": "COX6A1",
+        "score": "",
+        "geneId": 1337,
+        "source": [
+          "GTR"
+        ],
+        "inGeneSet": false,
+        "genePanels": 10,
+        "geneRankGtr": 20,
+        "searchTermHpo": [],
+        "searchTermsGtr": [
+          {
+            "rank": 20,
+            "searchTerm": "Dejerine-Sottas disease",
+            "genePanelsCount": 10
+          }
+        ],
+        "isImportedGenes": false,
+        "isAssociatedGene": false,
+        "geneRankPhenolyzer": -1,
+        "searchTermsPhenolyzer": []
+      },
+      {
+        "idx": 34,
+        "name": "PRPS1",
+        "score": "",
+        "geneId": 5631,
+        "source": [
+          "GTR"
+        ],
+        "inGeneSet": false,
+        "genePanels": 10,
+        "geneRankGtr": 22,
+        "searchTermHpo": [],
+        "searchTermsGtr": [
+          {
+            "rank": 22,
+            "searchTerm": "Dejerine-Sottas disease",
+            "genePanelsCount": 10
+          }
+        ],
+        "isImportedGenes": false,
+        "isAssociatedGene": false,
+        "geneRankPhenolyzer": -1,
+        "searchTermsPhenolyzer": []
+      },
+      {
+        "idx": 35,
+        "name": "AIFM1",
+        "score": "",
+        "geneId": 9131,
+        "source": [
+          "GTR"
+        ],
+        "inGeneSet": false,
+        "genePanels": 10,
+        "geneRankGtr": 24,
+        "searchTermHpo": [],
+        "searchTermsGtr": [
+          {
+            "rank": 24,
+            "searchTerm": "Dejerine-Sottas disease",
+            "genePanelsCount": 10
+          }
+        ],
+        "isImportedGenes": false,
+        "isAssociatedGene": false,
+        "geneRankPhenolyzer": -1,
+        "searchTermsPhenolyzer": []
+      },
+      {
+        "idx": 36,
+        "name": "GNB4",
+        "score": "",
+        "geneId": 59345,
+        "source": [
+          "GTR"
+        ],
+        "inGeneSet": false,
+        "genePanels": 10,
+        "geneRankGtr": 28,
+        "searchTermHpo": [],
+        "searchTermsGtr": [
+          {
+            "rank": 28,
+            "searchTerm": "Dejerine-Sottas disease",
+            "genePanelsCount": 10
+          }
+        ],
+        "isImportedGenes": false,
+        "isAssociatedGene": false,
+        "geneRankPhenolyzer": -1,
+        "searchTermsPhenolyzer": []
+      },
+      {
+        "idx": 37,
+        "name": "YARS1",
+        "score": "",
+        "geneId": 8565,
+        "source": [
+          "GTR"
+        ],
+        "inGeneSet": false,
+        "genePanels": 9,
+        "geneRankGtr": 29,
+        "searchTermHpo": [],
+        "searchTermsGtr": [
+          {
+            "rank": 29,
+            "searchTerm": "Dejerine-Sottas disease",
+            "genePanelsCount": 9
+          }
+        ],
+        "isImportedGenes": false,
+        "isAssociatedGene": false,
+        "geneRankPhenolyzer": -1,
+        "searchTermsPhenolyzer": []
+      },
+      {
+        "idx": 38,
+        "name": "DHTKD1",
+        "score": "",
+        "geneId": 55526,
+        "source": [
+          "GTR"
+        ],
+        "inGeneSet": false,
+        "genePanels": 9,
+        "geneRankGtr": 30,
+        "searchTermHpo": [],
+        "searchTermsGtr": [
+          {
+            "rank": 30,
+            "searchTerm": "Dejerine-Sottas disease",
+            "genePanelsCount": 9
+          }
+        ],
+        "isImportedGenes": false,
+        "isAssociatedGene": false,
+        "geneRankPhenolyzer": -1,
+        "searchTermsPhenolyzer": []
+      },
+      {
+        "idx": 39,
+        "name": "KARS1",
+        "score": "",
+        "geneId": 3735,
+        "source": [
+          "GTR"
+        ],
+        "inGeneSet": false,
+        "genePanels": 8,
+        "geneRankGtr": 33,
+        "searchTermHpo": [],
+        "searchTermsGtr": [
+          {
+            "rank": 33,
+            "searchTerm": "Dejerine-Sottas disease",
+            "genePanelsCount": 8
+          }
+        ],
+        "isImportedGenes": false,
+        "isAssociatedGene": false,
+        "geneRankPhenolyzer": -1,
+        "searchTermsPhenolyzer": []
+      },
+      {
+        "idx": 40,
+        "name": "PDK3",
+        "score": "",
+        "geneId": 5165,
+        "source": [
+          "GTR"
+        ],
+        "inGeneSet": false,
+        "genePanels": 8,
+        "geneRankGtr": 34,
+        "searchTermHpo": [],
+        "searchTermsGtr": [
+          {
+            "rank": 34,
+            "searchTerm": "Dejerine-Sottas disease",
+            "genePanelsCount": 8
+          }
+        ],
+        "isImportedGenes": false,
+        "isAssociatedGene": false,
+        "geneRankPhenolyzer": -1,
+        "searchTermsPhenolyzer": []
+      },
+      {
+        "idx": 41,
+        "name": "KIF1B",
+        "score": "",
+        "geneId": 23095,
+        "source": [
+          "GTR"
+        ],
+        "inGeneSet": false,
+        "genePanels": 7,
+        "geneRankGtr": 37,
+        "searchTermHpo": [],
+        "searchTermsGtr": [
+          {
+            "rank": 37,
+            "searchTerm": "Dejerine-Sottas disease",
+            "genePanelsCount": 7
+          }
+        ],
+        "isImportedGenes": false,
+        "isAssociatedGene": false,
+        "geneRankPhenolyzer": -1,
+        "searchTermsPhenolyzer": []
+      },
+      {
+        "idx": 42,
+        "name": "PLEKHG5",
+        "score": "",
+        "geneId": 57449,
+        "source": [
+          "GTR"
+        ],
+        "inGeneSet": false,
+        "genePanels": 7,
+        "geneRankGtr": 38,
+        "searchTermHpo": [],
+        "searchTermsGtr": [
+          {
+            "rank": 38,
+            "searchTerm": "Dejerine-Sottas disease",
+            "genePanelsCount": 7
+          }
+        ],
+        "isImportedGenes": false,
+        "isAssociatedGene": false,
+        "geneRankPhenolyzer": -1,
+        "searchTermsPhenolyzer": []
+      },
+      {
+        "idx": 43,
+        "name": "C12orf65",
+        "score": "",
+        "geneId": 91574,
+        "source": [
+          "GTR"
+        ],
+        "inGeneSet": false,
+        "genePanels": 7,
+        "geneRankGtr": 39,
+        "searchTermHpo": [],
+        "searchTermsGtr": [
+          {
+            "rank": 39,
+            "searchTerm": "Dejerine-Sottas disease",
+            "genePanelsCount": 7
+          }
+        ],
+        "isImportedGenes": false,
+        "isAssociatedGene": false,
+        "geneRankPhenolyzer": -1,
+        "searchTermsPhenolyzer": []
+      },
+      {
+        "idx": 44,
+        "name": "ATP1A1",
+        "score": "",
+        "geneId": 476,
+        "source": [
+          "GTR"
+        ],
+        "inGeneSet": false,
+        "genePanels": 6,
+        "geneRankGtr": 40,
+        "searchTermHpo": [],
+        "searchTermsGtr": [
+          {
+            "rank": 40,
+            "searchTerm": "Dejerine-Sottas disease",
+            "genePanelsCount": 6
+          }
+        ],
+        "isImportedGenes": false,
+        "isAssociatedGene": false,
+        "geneRankPhenolyzer": -1,
+        "searchTermsPhenolyzer": []
+      },
+      {
+        "idx": 45,
+        "name": "HADHB",
+        "score": "",
+        "geneId": 3032,
+        "source": [
+          "GTR"
+        ],
+        "inGeneSet": false,
+        "genePanels": 6,
+        "geneRankGtr": 41,
+        "searchTermHpo": [],
+        "searchTermsGtr": [
+          {
+            "rank": 41,
+            "searchTerm": "Dejerine-Sottas disease",
+            "genePanelsCount": 6
+          }
+        ],
+        "isImportedGenes": false,
+        "isAssociatedGene": false,
+        "geneRankPhenolyzer": -1,
+        "searchTermsPhenolyzer": []
+      },
+      {
+        "idx": 46,
+        "name": "TRIM2",
+        "score": "",
+        "geneId": 23321,
+        "source": [
+          "GTR"
+        ],
+        "inGeneSet": false,
+        "genePanels": 6,
+        "geneRankGtr": 42,
+        "searchTermHpo": [],
+        "searchTermsGtr": [
+          {
+            "rank": 42,
+            "searchTerm": "Dejerine-Sottas disease",
+            "genePanelsCount": 6
+          }
+        ],
+        "isImportedGenes": false,
+        "isAssociatedGene": false,
+        "geneRankPhenolyzer": -1,
+        "searchTermsPhenolyzer": []
+      },
+      {
+        "idx": 47,
+        "name": "INF2",
+        "score": "",
+        "geneId": 64423,
+        "source": [
+          "GTR"
+        ],
+        "inGeneSet": false,
+        "genePanels": 6,
+        "geneRankGtr": 43,
+        "searchTermHpo": [],
+        "searchTermsGtr": [
+          {
+            "rank": 43,
+            "searchTerm": "Dejerine-Sottas disease",
+            "genePanelsCount": 6
+          }
+        ],
+        "isImportedGenes": false,
+        "isAssociatedGene": false,
+        "geneRankPhenolyzer": -1,
+        "searchTermsPhenolyzer": []
+      },
+      {
+        "idx": 48,
+        "name": "IGHMBP2",
+        "score": "",
+        "geneId": 3508,
+        "source": [
+          "GTR"
+        ],
+        "inGeneSet": false,
+        "genePanels": 5,
+        "geneRankGtr": 44,
+        "searchTermHpo": [],
+        "searchTermsGtr": [
+          {
+            "rank": 44,
+            "searchTerm": "Dejerine-Sottas disease",
+            "genePanelsCount": 5
+          }
+        ],
+        "isImportedGenes": false,
+        "isAssociatedGene": false,
+        "geneRankPhenolyzer": -1,
+        "searchTermsPhenolyzer": []
+      },
+      {
+        "idx": 49,
+        "name": "GLA",
+        "score": "",
+        "geneId": 2717,
+        "source": [
+          "GTR"
+        ],
+        "inGeneSet": false,
+        "genePanels": 3,
+        "geneRankGtr": 45,
+        "searchTermHpo": [],
+        "searchTermsGtr": [
+          {
+            "rank": 45,
+            "searchTerm": "Dejerine-Sottas disease",
+            "genePanelsCount": 3
+          }
+        ],
+        "isImportedGenes": false,
+        "isAssociatedGene": false,
+        "geneRankPhenolyzer": -1,
+        "searchTermsPhenolyzer": []
+      },
+      {
+        "idx": 50,
+        "name": "MARS1",
+        "score": "",
+        "geneId": 4141,
+        "source": [
+          "GTR"
+        ],
+        "inGeneSet": false,
+        "genePanels": 3,
+        "geneRankGtr": 46,
+        "searchTermHpo": [],
+        "searchTermsGtr": [
+          {
+            "rank": 46,
+            "searchTerm": "Dejerine-Sottas disease",
+            "genePanelsCount": 3
+          }
+        ],
+        "isImportedGenes": false,
+        "isAssociatedGene": false,
+        "geneRankPhenolyzer": -1,
+        "searchTermsPhenolyzer": []
+      },
+      {
+        "idx": 51,
+        "name": "TFG",
+        "score": "",
+        "geneId": 10342,
+        "source": [
+          "GTR"
+        ],
+        "inGeneSet": false,
+        "genePanels": 3,
+        "geneRankGtr": 47,
+        "searchTermHpo": [],
+        "searchTermsGtr": [
+          {
+            "rank": 47,
+            "searchTerm": "Dejerine-Sottas disease",
+            "genePanelsCount": 3
+          }
+        ],
+        "isImportedGenes": false,
+        "isAssociatedGene": false,
+        "geneRankPhenolyzer": -1,
+        "searchTermsPhenolyzer": []
+      },
+      {
+        "idx": 52,
+        "name": "HINT1",
+        "score": "",
+        "geneId": 3094,
+        "source": [
+          "GTR"
+        ],
+        "inGeneSet": false,
+        "genePanels": 2,
+        "geneRankGtr": 48,
+        "searchTermHpo": [],
+        "searchTermsGtr": [
+          {
+            "rank": 48,
+            "searchTerm": "Dejerine-Sottas disease",
+            "genePanelsCount": 2
+          }
+        ],
+        "isImportedGenes": false,
+        "isAssociatedGene": false,
+        "geneRankPhenolyzer": -1,
+        "searchTermsPhenolyzer": []
+      },
+      {
+        "idx": 53,
+        "name": "KIF5A",
+        "score": "",
+        "geneId": 3798,
+        "source": [
+          "GTR"
+        ],
+        "inGeneSet": false,
+        "genePanels": 2,
+        "geneRankGtr": 50,
+        "searchTermHpo": [],
+        "searchTermsGtr": [
+          {
+            "rank": 50,
+            "searchTerm": "Dejerine-Sottas disease",
+            "genePanelsCount": 2
+          }
+        ],
+        "isImportedGenes": false,
+        "isAssociatedGene": false,
+        "geneRankPhenolyzer": -1,
+        "searchTermsPhenolyzer": []
+      },
+      {
+        "idx": 54,
+        "name": "CTDP1",
+        "score": "",
+        "geneId": 9150,
+        "source": [
+          "GTR"
+        ],
+        "inGeneSet": false,
+        "genePanels": 2,
+        "geneRankGtr": 51,
+        "searchTermHpo": [],
+        "searchTermsGtr": [
+          {
+            "rank": 51,
+            "searchTerm": "Dejerine-Sottas disease",
+            "genePanelsCount": 2
+          }
+        ],
+        "isImportedGenes": false,
+        "isAssociatedGene": false,
+        "geneRankPhenolyzer": -1,
+        "searchTermsPhenolyzer": []
+      },
+      {
+        "idx": 55,
+        "name": "FBLN5",
+        "score": "",
+        "geneId": 10516,
+        "source": [
+          "GTR"
+        ],
+        "inGeneSet": false,
+        "genePanels": 2,
+        "geneRankGtr": 52,
+        "searchTermHpo": [],
+        "searchTermsGtr": [
+          {
+            "rank": 52,
+            "searchTerm": "Dejerine-Sottas disease",
+            "genePanelsCount": 2
+          }
+        ],
+        "isImportedGenes": false,
+        "isAssociatedGene": false,
+        "geneRankPhenolyzer": -1,
+        "searchTermsPhenolyzer": []
+      },
+      {
+        "idx": 56,
+        "name": "HOXD10",
+        "score": "",
+        "geneId": 3236,
+        "source": [
+          "GTR"
+        ],
+        "inGeneSet": false,
+        "genePanels": 1,
+        "geneRankGtr": 53,
+        "searchTermHpo": [],
+        "searchTermsGtr": [
+          {
+            "rank": 53,
+            "searchTerm": "Dejerine-Sottas disease",
+            "genePanelsCount": 1
+          }
+        ],
+        "isImportedGenes": false,
+        "isAssociatedGene": false,
+        "geneRankPhenolyzer": -1,
+        "searchTermsPhenolyzer": []
+      },
+      {
+        "idx": 57,
+        "name": "DNAJB2",
+        "score": "",
+        "geneId": 3300,
+        "source": [
+          "GTR"
+        ],
+        "inGeneSet": false,
+        "genePanels": 1,
+        "geneRankGtr": 54,
+        "searchTermHpo": [],
+        "searchTermsGtr": [
+          {
+            "rank": 54,
+            "searchTerm": "Dejerine-Sottas disease",
+            "genePanelsCount": 1
+          }
+        ],
+        "isImportedGenes": false,
+        "isAssociatedGene": false,
+        "geneRankPhenolyzer": -1,
+        "searchTermsPhenolyzer": []
+      },
+      {
+        "idx": 58,
+        "name": "TTR",
+        "score": "",
+        "geneId": 7276,
+        "source": [
+          "GTR"
+        ],
+        "inGeneSet": false,
+        "genePanels": 1,
+        "geneRankGtr": 57,
+        "searchTermHpo": [],
+        "searchTermsGtr": [
+          {
+            "rank": 57,
+            "searchTerm": "Dejerine-Sottas disease",
+            "genePanelsCount": 1
+          }
+        ],
+        "isImportedGenes": false,
+        "isAssociatedGene": false,
+        "geneRankPhenolyzer": -1,
+        "searchTermsPhenolyzer": []
+      },
+      {
+        "idx": 59,
+        "name": "SLC12A6",
+        "score": "",
+        "geneId": 9990,
+        "source": [
+          "GTR"
+        ],
+        "inGeneSet": false,
+        "genePanels": 1,
+        "geneRankGtr": 59,
+        "searchTermHpo": [],
+        "searchTermsGtr": [
+          {
+            "rank": 59,
+            "searchTerm": "Dejerine-Sottas disease",
+            "genePanelsCount": 1
+          }
+        ],
+        "isImportedGenes": false,
+        "isAssociatedGene": false,
+        "geneRankPhenolyzer": -1,
+        "searchTermsPhenolyzer": []
+      },
+      {
+        "idx": 60,
+        "name": "SPTLC1",
+        "score": "",
+        "geneId": 10558,
+        "source": [
+          "GTR"
+        ],
+        "inGeneSet": false,
+        "genePanels": 1,
+        "geneRankGtr": 60,
+        "searchTermHpo": [],
+        "searchTermsGtr": [
+          {
+            "rank": 60,
+            "searchTerm": "Dejerine-Sottas disease",
+            "genePanelsCount": 1
+          }
+        ],
+        "isImportedGenes": false,
+        "isAssociatedGene": false,
+        "geneRankPhenolyzer": -1,
+        "searchTermsPhenolyzer": []
+      },
+      {
+        "idx": 61,
+        "name": "TSEN54",
+        "score": 0.8637,
+        "geneId": "283989",
+        "source": [
+          "Pheno"
+        ],
+        "inGeneSet": false,
+        "genePanels": "",
+        "geneRankGtr": -1,
+        "searchTermHpo": [],
+        "searchTermsGtr": [],
+        "isImportedGenes": false,
+        "isAssociatedGene": false,
+        "geneRankPhenolyzer": 4,
+        "searchTermsPhenolyzer": [
+          {
+            "rank": 4,
+            "score": 0.8637,
+            "searchTerm": "dejerine sottas disease"
+          }
+        ]
+      },
+      {
+        "idx": 62,
+        "name": "ALMS1",
+        "score": 0.4146,
+        "geneId": "7840",
+        "source": [
+          "Pheno"
+        ],
+        "inGeneSet": false,
+        "genePanels": "",
+        "geneRankGtr": -1,
+        "searchTermHpo": [],
+        "searchTermsGtr": [],
+        "isImportedGenes": false,
+        "isAssociatedGene": false,
+        "geneRankPhenolyzer": 11,
+        "searchTermsPhenolyzer": [
+          {
+            "rank": 11,
+            "score": 0.4146,
+            "searchTerm": "dejerine sottas disease"
+          }
+        ]
+      },
+      {
+        "idx": 63,
+        "name": "RARS2",
+        "score": 0.4002,
+        "geneId": "57038",
+        "source": [
+          "Pheno"
+        ],
+        "inGeneSet": false,
+        "genePanels": "",
+        "geneRankGtr": -1,
+        "searchTermHpo": [],
+        "searchTermsGtr": [],
+        "isImportedGenes": false,
+        "isAssociatedGene": false,
+        "geneRankPhenolyzer": 12,
+        "searchTermsPhenolyzer": [
+          {
+            "rank": 12,
+            "score": 0.4002,
+            "searchTerm": "dejerine sottas disease"
+          }
+        ]
+      },
+      {
+        "idx": 64,
+        "name": "FA2H",
+        "score": 0.3692,
+        "geneId": "79152",
+        "source": [
+          "Pheno"
+        ],
+        "inGeneSet": false,
+        "genePanels": "",
+        "geneRankGtr": -1,
+        "searchTermHpo": [],
+        "searchTermsGtr": [],
+        "isImportedGenes": false,
+        "isAssociatedGene": false,
+        "geneRankPhenolyzer": 16,
+        "searchTermsPhenolyzer": [
+          {
+            "rank": 16,
+            "score": 0.3692,
+            "searchTerm": "dejerine sottas disease"
+          }
+        ]
+      },
+      {
+        "idx": 65,
+        "name": "L1CAM",
+        "score": 0.3343,
+        "geneId": "3897",
+        "source": [
+          "Pheno"
+        ],
+        "inGeneSet": false,
+        "genePanels": "",
+        "geneRankGtr": -1,
+        "searchTermHpo": [],
+        "searchTermsGtr": [],
+        "isImportedGenes": false,
+        "isAssociatedGene": false,
+        "geneRankPhenolyzer": 22,
+        "searchTermsPhenolyzer": [
+          {
+            "rank": 22,
+            "score": 0.3343,
+            "searchTerm": "dejerine sottas disease"
+          }
+        ]
+      },
+      {
+        "idx": 66,
+        "name": "SEPT9",
+        "score": 0.2665,
+        "geneId": "10801",
+        "source": [
+          "Pheno"
+        ],
+        "inGeneSet": false,
+        "genePanels": "",
+        "geneRankGtr": -1,
+        "searchTermHpo": [],
+        "searchTermsGtr": [],
+        "isImportedGenes": false,
+        "isAssociatedGene": false,
+        "geneRankPhenolyzer": 25,
+        "searchTermsPhenolyzer": [
+          {
+            "rank": 25,
+            "score": 0.2665,
+            "searchTerm": "dejerine sottas disease"
+          }
+        ]
+      },
+      {
+        "idx": 67,
+        "name": "SMCHD1",
+        "score": 0.2625,
+        "geneId": "23347",
+        "source": [
+          "Pheno"
+        ],
+        "inGeneSet": false,
+        "genePanels": "",
+        "geneRankGtr": -1,
+        "searchTermHpo": [],
+        "searchTermsGtr": [],
+        "isImportedGenes": false,
+        "isAssociatedGene": false,
+        "geneRankPhenolyzer": 26,
+        "searchTermsPhenolyzer": [
+          {
+            "rank": 26,
+            "score": 0.2625,
+            "searchTerm": "dejerine sottas disease"
+          }
+        ]
+      },
+      {
+        "idx": 68,
+        "name": "PLP1",
+        "score": 0.2625,
+        "geneId": "5354",
+        "source": [
+          "Pheno"
+        ],
+        "inGeneSet": false,
+        "genePanels": "",
+        "geneRankGtr": -1,
+        "searchTermHpo": [],
+        "searchTermsGtr": [],
+        "isImportedGenes": false,
+        "isAssociatedGene": false,
+        "geneRankPhenolyzer": 27,
+        "searchTermsPhenolyzer": [
+          {
+            "rank": 27,
+            "score": 0.2625,
+            "searchTerm": "dejerine sottas disease"
+          }
+        ]
+      },
+      {
+        "idx": 69,
+        "name": "ALS2",
+        "score": 0.2553,
+        "geneId": "57679",
+        "source": [
+          "Pheno"
+        ],
+        "inGeneSet": false,
+        "genePanels": "",
+        "geneRankGtr": -1,
+        "searchTermHpo": [],
+        "searchTermsGtr": [],
+        "isImportedGenes": false,
+        "isAssociatedGene": false,
+        "geneRankPhenolyzer": 28,
+        "searchTermsPhenolyzer": [
+          {
+            "rank": 28,
+            "score": 0.2553,
+            "searchTerm": "dejerine sottas disease"
+          }
+        ]
+      },
+      {
+        "idx": 70,
+        "name": "DUX4",
+        "score": 0.2501,
+        "geneId": "100653046",
+        "source": [
+          "Pheno"
+        ],
+        "inGeneSet": false,
+        "genePanels": "",
+        "geneRankGtr": -1,
+        "searchTermHpo": [],
+        "searchTermsGtr": [],
+        "isImportedGenes": false,
+        "isAssociatedGene": false,
+        "geneRankPhenolyzer": 29,
+        "searchTermsPhenolyzer": [
+          {
+            "rank": 29,
+            "score": 0.2501,
+            "searchTerm": "dejerine sottas disease"
+          }
+        ]
+      },
+      {
+        "idx": 71,
+        "name": "ETS1",
+        "score": 0.2424,
+        "geneId": "2113",
+        "source": [
+          "Pheno"
+        ],
+        "inGeneSet": false,
+        "genePanels": "",
+        "geneRankGtr": -1,
+        "searchTermHpo": [],
+        "searchTermsGtr": [],
+        "isImportedGenes": false,
+        "isAssociatedGene": false,
+        "geneRankPhenolyzer": 30,
+        "searchTermsPhenolyzer": [
+          {
+            "rank": 30,
+            "score": 0.2424,
+            "searchTerm": "dejerine sottas disease"
+          }
+        ]
+      },
+      {
+        "idx": 72,
+        "name": "SPG7",
+        "score": 0.2394,
+        "geneId": "6687",
+        "source": [
+          "Pheno"
+        ],
+        "inGeneSet": false,
+        "genePanels": "",
+        "geneRankGtr": -1,
+        "searchTermHpo": [],
+        "searchTermsGtr": [],
+        "isImportedGenes": false,
+        "isAssociatedGene": false,
+        "geneRankPhenolyzer": 32,
+        "searchTermsPhenolyzer": [
+          {
+            "rank": 32,
+            "score": 0.2394,
+            "searchTerm": "dejerine sottas disease"
+          }
+        ]
+      },
+      {
+        "idx": 73,
+        "name": "FGF3",
+        "score": 0.239,
+        "geneId": "2248",
+        "source": [
+          "Pheno"
+        ],
+        "inGeneSet": false,
+        "genePanels": "",
+        "geneRankGtr": -1,
+        "searchTermHpo": [],
+        "searchTermsGtr": [],
+        "isImportedGenes": false,
+        "isAssociatedGene": false,
+        "geneRankPhenolyzer": 33,
+        "searchTermsPhenolyzer": [
+          {
+            "rank": 33,
+            "score": 0.239,
+            "searchTerm": "dejerine sottas disease"
+          }
+        ]
+      },
+      {
+        "idx": 74,
+        "name": "ISCU",
+        "score": 0.2362,
+        "geneId": "23479",
+        "source": [
+          "Pheno"
+        ],
+        "inGeneSet": false,
+        "genePanels": "",
+        "geneRankGtr": -1,
+        "searchTermHpo": [],
+        "searchTermsGtr": [],
+        "isImportedGenes": false,
+        "isAssociatedGene": false,
+        "geneRankPhenolyzer": 35,
+        "searchTermsPhenolyzer": [
+          {
+            "rank": 35,
+            "score": 0.2362,
+            "searchTerm": "dejerine sottas disease"
+          }
+        ]
+      },
+      {
+        "idx": 75,
+        "name": "MARS2",
+        "score": 0.2333,
+        "geneId": "92935",
+        "source": [
+          "Pheno"
+        ],
+        "inGeneSet": false,
+        "genePanels": "",
+        "geneRankGtr": -1,
+        "searchTermHpo": [],
+        "searchTermsGtr": [],
+        "isImportedGenes": false,
+        "isAssociatedGene": false,
+        "geneRankPhenolyzer": 37,
+        "searchTermsPhenolyzer": [
+          {
+            "rank": 37,
+            "score": 0.2333,
+            "searchTerm": "dejerine sottas disease"
+          }
+        ]
+      },
+      {
+        "idx": 76,
+        "name": "GARS",
+        "score": 0.2319,
+        "geneId": "2617",
+        "source": [
+          "Pheno"
+        ],
+        "inGeneSet": false,
+        "genePanels": "",
+        "geneRankGtr": -1,
+        "searchTermHpo": [],
+        "searchTermsGtr": [],
+        "isImportedGenes": false,
+        "isAssociatedGene": false,
+        "geneRankPhenolyzer": 38,
+        "searchTermsPhenolyzer": [
+          {
+            "rank": 38,
+            "score": 0.2319,
+            "searchTerm": "dejerine sottas disease"
+          }
+        ]
+      },
+      {
+        "idx": 77,
+        "name": "TSEN34",
+        "score": 0.2286,
+        "geneId": "79042",
+        "source": [
+          "Pheno"
+        ],
+        "inGeneSet": false,
+        "genePanels": "",
+        "geneRankGtr": -1,
+        "searchTermHpo": [],
+        "searchTermsGtr": [],
+        "isImportedGenes": false,
+        "isAssociatedGene": false,
+        "geneRankPhenolyzer": 39,
+        "searchTermsPhenolyzer": [
+          {
+            "rank": 39,
+            "score": 0.2286,
+            "searchTerm": "dejerine sottas disease"
+          }
+        ]
+      },
+      {
+        "idx": 78,
+        "name": "TSEN2",
+        "score": 0.2286,
+        "geneId": "80746",
+        "source": [
+          "Pheno"
+        ],
+        "inGeneSet": false,
+        "genePanels": "",
+        "geneRankGtr": -1,
+        "searchTermHpo": [],
+        "searchTermsGtr": [],
+        "isImportedGenes": false,
+        "isAssociatedGene": false,
+        "geneRankPhenolyzer": 40,
+        "searchTermsPhenolyzer": [
+          {
+            "rank": 40,
+            "score": 0.2286,
+            "searchTerm": "dejerine sottas disease"
+          }
+        ]
+      },
+      {
+        "idx": 79,
+        "name": "VRK1",
+        "score": 0.2282,
+        "geneId": "7443",
+        "source": [
+          "Pheno"
+        ],
+        "inGeneSet": false,
+        "genePanels": "",
+        "geneRankGtr": -1,
+        "searchTermHpo": [],
+        "searchTermsGtr": [],
+        "isImportedGenes": false,
+        "isAssociatedGene": false,
+        "geneRankPhenolyzer": 41,
+        "searchTermsPhenolyzer": [
+          {
+            "rank": 41,
+            "score": 0.2282,
+            "searchTerm": "dejerine sottas disease"
+          }
+        ]
+      },
+      {
+        "idx": 80,
+        "name": "SPAST",
+        "score": 0.2271,
+        "geneId": "6683",
+        "source": [
+          "Pheno"
+        ],
+        "inGeneSet": false,
+        "genePanels": "",
+        "geneRankGtr": -1,
+        "searchTermHpo": [],
+        "searchTermsGtr": [],
+        "isImportedGenes": false,
+        "isAssociatedGene": false,
+        "geneRankPhenolyzer": 42,
+        "searchTermsPhenolyzer": [
+          {
+            "rank": 42,
+            "score": 0.2271,
+            "searchTerm": "dejerine sottas disease"
+          }
+        ]
+      },
+      {
+        "idx": 81,
+        "name": "GRN",
+        "score": 0.2228,
+        "geneId": "2896",
+        "source": [
+          "Pheno"
+        ],
+        "inGeneSet": false,
+        "genePanels": "",
+        "geneRankGtr": -1,
+        "searchTermHpo": [],
+        "searchTermsGtr": [],
+        "isImportedGenes": false,
+        "isAssociatedGene": false,
+        "geneRankPhenolyzer": 43,
+        "searchTermsPhenolyzer": [
+          {
+            "rank": 43,
+            "score": 0.2228,
+            "searchTerm": "dejerine sottas disease"
+          }
+        ]
+      },
+      {
+        "idx": 82,
+        "name": "SPG11",
+        "score": 0.2184,
+        "geneId": "80208",
+        "source": [
+          "Pheno"
+        ],
+        "inGeneSet": false,
+        "genePanels": "",
+        "geneRankGtr": -1,
+        "searchTermHpo": [],
+        "searchTermsGtr": [],
+        "isImportedGenes": false,
+        "isAssociatedGene": false,
+        "geneRankPhenolyzer": 44,
+        "searchTermsPhenolyzer": [
+          {
+            "rank": 44,
+            "score": 0.2184,
+            "searchTerm": "dejerine sottas disease"
+          }
+        ]
+      },
+      {
+        "idx": 83,
+        "name": "SPG20",
+        "score": 0.2178,
+        "geneId": "23111",
+        "source": [
+          "Pheno"
+        ],
+        "inGeneSet": false,
+        "genePanels": "",
+        "geneRankGtr": -1,
+        "searchTermHpo": [],
+        "searchTermsGtr": [],
+        "isImportedGenes": false,
+        "isAssociatedGene": false,
+        "geneRankPhenolyzer": 45,
+        "searchTermsPhenolyzer": [
+          {
+            "rank": 45,
+            "score": 0.2178,
+            "searchTerm": "dejerine sottas disease"
+          }
+        ]
+      },
+      {
+        "idx": 84,
+        "name": "KIAA0196",
+        "score": 0.2175,
+        "geneId": "9897",
+        "source": [
+          "Pheno"
+        ],
+        "inGeneSet": false,
+        "genePanels": "",
+        "geneRankGtr": -1,
+        "searchTermHpo": [],
+        "searchTermsGtr": [],
+        "isImportedGenes": false,
+        "isAssociatedGene": false,
+        "geneRankPhenolyzer": 46,
+        "searchTermsPhenolyzer": [
+          {
+            "rank": 46,
+            "score": 0.2175,
+            "searchTerm": "dejerine sottas disease"
+          }
+        ]
+      },
+      {
+        "idx": 85,
+        "name": "AARS",
+        "score": 0.2076,
+        "geneId": "16",
+        "source": [
+          "Pheno"
+        ],
+        "inGeneSet": false,
+        "genePanels": "",
+        "geneRankGtr": -1,
+        "searchTermHpo": [],
+        "searchTermsGtr": [],
+        "isImportedGenes": false,
+        "isAssociatedGene": false,
+        "geneRankPhenolyzer": 49,
+        "searchTermsPhenolyzer": [
+          {
+            "rank": 49,
+            "score": 0.2076,
+            "searchTerm": "dejerine sottas disease"
+          }
+        ]
+      },
+      {
+        "idx": 86,
+        "name": "EXOSC3",
+        "score": 0.2064,
+        "geneId": "51010",
+        "source": [
+          "Pheno"
+        ],
+        "inGeneSet": false,
+        "genePanels": "",
+        "geneRankGtr": -1,
+        "searchTermHpo": [],
+        "searchTermsGtr": [],
+        "isImportedGenes": false,
+        "isAssociatedGene": false,
+        "geneRankPhenolyzer": 50,
+        "searchTermsPhenolyzer": [
+          {
+            "rank": 50,
+            "score": 0.2064,
+            "searchTerm": "dejerine sottas disease"
+          }
+        ]
+      },
+      {
+        "idx": 87,
+        "name": "OPA3",
+        "score": 0.2056,
+        "geneId": "80207",
+        "source": [
+          "Pheno"
+        ],
+        "inGeneSet": false,
+        "genePanels": "",
+        "geneRankGtr": -1,
+        "searchTermHpo": [],
+        "searchTermsGtr": [],
+        "isImportedGenes": false,
+        "isAssociatedGene": false,
+        "geneRankPhenolyzer": 51,
+        "searchTermsPhenolyzer": [
+          {
+            "rank": 51,
+            "score": 0.2056,
+            "searchTerm": "dejerine sottas disease"
+          }
+        ]
+      },
+      {
+        "idx": 88,
+        "name": "GATA2",
+        "score": 0.185,
+        "geneId": "2624",
+        "source": [
+          "Pheno"
+        ],
+        "inGeneSet": false,
+        "genePanels": "",
+        "geneRankGtr": -1,
+        "searchTermHpo": [],
+        "searchTermsGtr": [],
+        "isImportedGenes": false,
+        "isAssociatedGene": false,
+        "geneRankPhenolyzer": 54,
+        "searchTermsPhenolyzer": [
+          {
+            "rank": 54,
+            "score": 0.185,
+            "searchTerm": "dejerine sottas disease"
+          }
+        ]
+      },
+      {
+        "idx": 89,
+        "name": "SEPSECS",
+        "score": 0.1795,
+        "geneId": "51091",
+        "source": [
+          "Pheno"
+        ],
+        "inGeneSet": false,
+        "genePanels": "",
+        "geneRankGtr": -1,
+        "searchTermHpo": [],
+        "searchTermsGtr": [],
+        "isImportedGenes": false,
+        "isAssociatedGene": false,
+        "geneRankPhenolyzer": 57,
+        "searchTermsPhenolyzer": [
+          {
+            "rank": 57,
+            "score": 0.1795,
+            "searchTerm": "dejerine sottas disease"
+          }
+        ]
+      },
+      {
+        "idx": 90,
+        "name": "FRG1",
+        "score": 0.1725,
+        "geneId": "2483",
+        "source": [
+          "Pheno"
+        ],
+        "inGeneSet": false,
+        "genePanels": "",
+        "geneRankGtr": -1,
+        "searchTermHpo": [],
+        "searchTermsGtr": [],
+        "isImportedGenes": false,
+        "isAssociatedGene": false,
+        "geneRankPhenolyzer": 58,
+        "searchTermsPhenolyzer": [
+          {
+            "rank": 58,
+            "score": 0.1725,
+            "searchTerm": "dejerine sottas disease"
+          }
+        ]
+      },
+      {
+        "idx": 91,
+        "name": "PRKCA",
+        "score": 0.1609,
+        "geneId": "5578",
+        "source": [
+          "Pheno"
+        ],
+        "inGeneSet": false,
+        "genePanels": "",
+        "geneRankGtr": -1,
+        "searchTermHpo": [],
+        "searchTermsGtr": [],
+        "isImportedGenes": false,
+        "isAssociatedGene": false,
+        "geneRankPhenolyzer": 59,
+        "searchTermsPhenolyzer": [
+          {
+            "rank": 59,
+            "score": 0.1609,
+            "searchTerm": "dejerine sottas disease"
+          }
+        ]
+      },
+      {
+        "idx": 92,
+        "name": "YBX1",
+        "score": 0.1556,
+        "geneId": "4904",
+        "source": [
+          "Pheno"
+        ],
+        "inGeneSet": false,
+        "genePanels": "",
+        "geneRankGtr": -1,
+        "searchTermHpo": [],
+        "searchTermsGtr": [],
+        "isImportedGenes": false,
+        "isAssociatedGene": false,
+        "geneRankPhenolyzer": 60,
+        "searchTermsPhenolyzer": [
+          {
+            "rank": 60,
+            "score": 0.1556,
+            "searchTerm": "dejerine sottas disease"
+          }
+        ]
+      },
+      {
+        "idx": 93,
+        "name": "AKT1",
+        "score": 0.1527,
+        "geneId": "207",
+        "source": [
+          "Pheno"
+        ],
+        "inGeneSet": false,
+        "genePanels": "",
+        "geneRankGtr": -1,
+        "searchTermHpo": [],
+        "searchTermsGtr": [],
+        "isImportedGenes": false,
+        "isAssociatedGene": false,
+        "geneRankPhenolyzer": 61,
+        "searchTermsPhenolyzer": [
+          {
+            "rank": 61,
+            "score": 0.1527,
+            "searchTerm": "dejerine sottas disease"
+          }
+        ]
+      },
+      {
+        "idx": 94,
+        "name": "AR",
+        "score": 0.1469,
+        "geneId": "367",
+        "source": [
+          "Pheno"
+        ],
+        "inGeneSet": false,
+        "genePanels": "",
+        "geneRankGtr": -1,
+        "searchTermHpo": [],
+        "searchTermsGtr": [],
+        "isImportedGenes": false,
+        "isAssociatedGene": false,
+        "geneRankPhenolyzer": 62,
+        "searchTermsPhenolyzer": [
+          {
+            "rank": 62,
+            "score": 0.1469,
+            "searchTerm": "dejerine sottas disease"
+          }
+        ]
+      },
+      {
+        "idx": 95,
+        "name": "YWHAG",
+        "score": 0.1422,
+        "geneId": "7532",
+        "source": [
+          "Pheno"
+        ],
+        "inGeneSet": false,
+        "genePanels": "",
+        "geneRankGtr": -1,
+        "searchTermHpo": [],
+        "searchTermsGtr": [],
+        "isImportedGenes": false,
+        "isAssociatedGene": false,
+        "geneRankPhenolyzer": 63,
+        "searchTermsPhenolyzer": [
+          {
+            "rank": 63,
+            "score": 0.1422,
+            "searchTerm": "dejerine sottas disease"
+          }
+        ]
+      },
+      {
+        "idx": 96,
+        "name": "UBC",
+        "score": 0.1403,
+        "geneId": "7316",
+        "source": [
+          "Pheno"
+        ],
+        "inGeneSet": false,
+        "genePanels": "",
+        "geneRankGtr": -1,
+        "searchTermHpo": [],
+        "searchTermsGtr": [],
+        "isImportedGenes": false,
+        "isAssociatedGene": false,
+        "geneRankPhenolyzer": 64,
+        "searchTermsPhenolyzer": [
+          {
+            "rank": 64,
+            "score": 0.1403,
+            "searchTerm": "dejerine sottas disease"
+          }
+        ]
+      },
+      {
+        "idx": 97,
+        "name": "CREBBP",
+        "score": 0.1402,
+        "geneId": "1387",
+        "source": [
+          "Pheno"
+        ],
+        "inGeneSet": false,
+        "genePanels": "",
+        "geneRankGtr": -1,
+        "searchTermHpo": [],
+        "searchTermsGtr": [],
+        "isImportedGenes": false,
+        "isAssociatedGene": false,
+        "geneRankPhenolyzer": 65,
+        "searchTermsPhenolyzer": [
+          {
+            "rank": 65,
+            "score": 0.1402,
+            "searchTerm": "dejerine sottas disease"
+          }
+        ]
+      },
+      {
+        "idx": 98,
+        "name": "TP53",
+        "score": 0.1359,
+        "geneId": "7157",
+        "source": [
+          "Pheno"
+        ],
+        "inGeneSet": false,
+        "genePanels": "",
+        "geneRankGtr": -1,
+        "searchTermHpo": [],
+        "searchTermsGtr": [],
+        "isImportedGenes": false,
+        "isAssociatedGene": false,
+        "geneRankPhenolyzer": 66,
+        "searchTermsPhenolyzer": [
+          {
+            "rank": 66,
+            "score": 0.1359,
+            "searchTerm": "dejerine sottas disease"
+          }
+        ]
+      },
+      {
+        "idx": 99,
+        "name": "ITGAV",
+        "score": 0.1347,
+        "geneId": "3685",
+        "source": [
+          "Pheno"
+        ],
+        "inGeneSet": false,
+        "genePanels": "",
+        "geneRankGtr": -1,
+        "searchTermHpo": [],
+        "searchTermsGtr": [],
+        "isImportedGenes": false,
+        "isAssociatedGene": false,
+        "geneRankPhenolyzer": 67,
+        "searchTermsPhenolyzer": [
+          {
+            "rank": 67,
+            "score": 0.1347,
+            "searchTerm": "dejerine sottas disease"
+          }
+        ]
+      },
+      {
+        "idx": 100,
+        "name": "CANX",
+        "score": 0.1285,
+        "geneId": "821",
+        "source": [
+          "Pheno"
+        ],
+        "inGeneSet": false,
+        "genePanels": "",
+        "geneRankGtr": -1,
+        "searchTermHpo": [],
+        "searchTermsGtr": [],
+        "isImportedGenes": false,
+        "isAssociatedGene": false,
+        "geneRankPhenolyzer": 69,
+        "searchTermsPhenolyzer": [
+          {
+            "rank": 69,
+            "score": 0.1285,
+            "searchTerm": "dejerine sottas disease"
+          }
+        ]
+      },
+      {
+        "idx": 101,
+        "name": "YWHAB",
+        "score": 0.1263,
+        "geneId": "7529",
+        "source": [
+          "Pheno"
+        ],
+        "inGeneSet": false,
+        "genePanels": "",
+        "geneRankGtr": -1,
+        "searchTermHpo": [],
+        "searchTermsGtr": [],
+        "isImportedGenes": false,
+        "isAssociatedGene": false,
+        "geneRankPhenolyzer": 70,
+        "searchTermsPhenolyzer": [
+          {
+            "rank": 70,
+            "score": 0.1263,
+            "searchTerm": "dejerine sottas disease"
+          }
+        ]
+      },
+      {
+        "idx": 102,
+        "name": "AKT2",
+        "score": 0.1256,
+        "geneId": "208",
+        "source": [
+          "Pheno"
+        ],
+        "inGeneSet": false,
+        "genePanels": "",
+        "geneRankGtr": -1,
+        "searchTermHpo": [],
+        "searchTermsGtr": [],
+        "isImportedGenes": false,
+        "isAssociatedGene": false,
+        "geneRankPhenolyzer": 71,
+        "searchTermsPhenolyzer": [
+          {
+            "rank": 71,
+            "score": 0.1256,
+            "searchTerm": "dejerine sottas disease"
+          }
+        ]
+      },
+      {
+        "idx": 103,
+        "name": "AKT3",
+        "score": 0.1255,
+        "geneId": "10000",
+        "source": [
+          "Pheno"
+        ],
+        "inGeneSet": false,
+        "genePanels": "",
+        "geneRankGtr": -1,
+        "searchTermHpo": [],
+        "searchTermsGtr": [],
+        "isImportedGenes": false,
+        "isAssociatedGene": false,
+        "geneRankPhenolyzer": 72,
+        "searchTermsPhenolyzer": [
+          {
+            "rank": 72,
+            "score": 0.1255,
+            "searchTerm": "dejerine sottas disease"
+          }
+        ]
+      },
+      {
+        "idx": 104,
+        "name": "HSP90AA1",
+        "score": 0.1253,
+        "geneId": "3320",
+        "source": [
+          "Pheno"
+        ],
+        "inGeneSet": false,
+        "genePanels": "",
+        "geneRankGtr": -1,
+        "searchTermHpo": [],
+        "searchTermsGtr": [],
+        "isImportedGenes": false,
+        "isAssociatedGene": false,
+        "geneRankPhenolyzer": 73,
+        "searchTermsPhenolyzer": [
+          {
+            "rank": 73,
+            "score": 0.1253,
+            "searchTerm": "dejerine sottas disease"
+          }
+        ]
+      },
+      {
+        "idx": 105,
+        "name": "CTNNB1",
+        "score": 0.1248,
+        "geneId": "1499",
+        "source": [
+          "Pheno"
+        ],
+        "inGeneSet": false,
+        "genePanels": "",
+        "geneRankGtr": -1,
+        "searchTermHpo": [],
+        "searchTermsGtr": [],
+        "isImportedGenes": false,
+        "isAssociatedGene": false,
+        "geneRankPhenolyzer": 74,
+        "searchTermsPhenolyzer": [
+          {
+            "rank": 74,
+            "score": 0.1248,
+            "searchTerm": "dejerine sottas disease"
+          }
+        ]
+      },
+      {
+        "idx": 106,
+        "name": "EGF",
+        "score": 0.1226,
+        "geneId": "1950",
+        "source": [
+          "Pheno"
+        ],
+        "inGeneSet": false,
+        "genePanels": "",
+        "geneRankGtr": -1,
+        "searchTermHpo": [],
+        "searchTermsGtr": [],
+        "isImportedGenes": false,
+        "isAssociatedGene": false,
+        "geneRankPhenolyzer": 75,
+        "searchTermsPhenolyzer": [
+          {
+            "rank": 75,
+            "score": 0.1226,
+            "searchTerm": "dejerine sottas disease"
+          }
+        ]
+      },
+      {
+        "idx": 107,
+        "name": "MYC",
+        "score": 0.1215,
+        "geneId": "4609",
+        "source": [
+          "Pheno"
+        ],
+        "inGeneSet": false,
+        "genePanels": "",
+        "geneRankGtr": -1,
+        "searchTermHpo": [],
+        "searchTermsGtr": [],
+        "isImportedGenes": false,
+        "isAssociatedGene": false,
+        "geneRankPhenolyzer": 76,
+        "searchTermsPhenolyzer": [
+          {
+            "rank": 76,
+            "score": 0.1215,
+            "searchTerm": "dejerine sottas disease"
+          }
+        ]
+      },
+      {
+        "idx": 108,
+        "name": "CDKN2A",
+        "score": 0.1209,
+        "geneId": "1029",
+        "source": [
+          "Pheno"
+        ],
+        "inGeneSet": false,
+        "genePanels": "",
+        "geneRankGtr": -1,
+        "searchTermHpo": [],
+        "searchTermsGtr": [],
+        "isImportedGenes": false,
+        "isAssociatedGene": false,
+        "geneRankPhenolyzer": 77,
+        "searchTermsPhenolyzer": [
+          {
+            "rank": 77,
+            "score": 0.1209,
+            "searchTerm": "dejerine sottas disease"
+          }
+        ]
+      },
+      {
+        "idx": 109,
+        "name": "PRKACA",
+        "score": 0.1207,
+        "geneId": "5566",
+        "source": [
+          "Pheno"
+        ],
+        "inGeneSet": false,
+        "genePanels": "",
+        "geneRankGtr": -1,
+        "searchTermHpo": [],
+        "searchTermsGtr": [],
+        "isImportedGenes": false,
+        "isAssociatedGene": false,
+        "geneRankPhenolyzer": 78,
+        "searchTermsPhenolyzer": [
+          {
+            "rank": 78,
+            "score": 0.1207,
+            "searchTerm": "dejerine sottas disease"
+          }
+        ]
+      },
+      {
+        "idx": 110,
+        "name": "RXRA",
+        "score": 0.1207,
+        "geneId": "6256",
+        "source": [
+          "Pheno"
+        ],
+        "inGeneSet": false,
+        "genePanels": "",
+        "geneRankGtr": -1,
+        "searchTermHpo": [],
+        "searchTermsGtr": [],
+        "isImportedGenes": false,
+        "isAssociatedGene": false,
+        "geneRankPhenolyzer": 79,
+        "searchTermsPhenolyzer": [
+          {
+            "rank": 79,
+            "score": 0.1207,
+            "searchTerm": "dejerine sottas disease"
+          }
+        ]
+      },
+      {
+        "idx": 111,
+        "name": "CDK1",
+        "score": 0.1199,
+        "geneId": "983",
+        "source": [
+          "Pheno"
+        ],
+        "inGeneSet": false,
+        "genePanels": "",
+        "geneRankGtr": -1,
+        "searchTermHpo": [],
+        "searchTermsGtr": [],
+        "isImportedGenes": false,
+        "isAssociatedGene": false,
+        "geneRankPhenolyzer": 80,
+        "searchTermsPhenolyzer": [
+          {
+            "rank": 80,
+            "score": 0.1199,
+            "searchTerm": "dejerine sottas disease"
+          }
+        ]
+      },
+      {
+        "idx": 112,
+        "name": "SRC",
+        "score": 0.1193,
+        "geneId": "6714",
+        "source": [
+          "Pheno"
+        ],
+        "inGeneSet": false,
+        "genePanels": "",
+        "geneRankGtr": -1,
+        "searchTermHpo": [],
+        "searchTermsGtr": [],
+        "isImportedGenes": false,
+        "isAssociatedGene": false,
+        "geneRankPhenolyzer": 81,
+        "searchTermsPhenolyzer": [
+          {
+            "rank": 81,
+            "score": 0.1193,
+            "searchTerm": "dejerine sottas disease"
+          }
+        ]
+      },
+      {
+        "idx": 113,
+        "name": "FOS",
+        "score": 0.1185,
+        "geneId": "2353",
+        "source": [
+          "Pheno"
+        ],
+        "inGeneSet": false,
+        "genePanels": "",
+        "geneRankGtr": -1,
+        "searchTermHpo": [],
+        "searchTermsGtr": [],
+        "isImportedGenes": false,
+        "isAssociatedGene": false,
+        "geneRankPhenolyzer": 82,
+        "searchTermsPhenolyzer": [
+          {
+            "rank": 82,
+            "score": 0.1185,
+            "searchTerm": "dejerine sottas disease"
+          }
+        ]
+      },
+      {
+        "idx": 114,
+        "name": "UBB",
+        "score": 0.1183,
+        "geneId": "7314",
+        "source": [
+          "Pheno"
+        ],
+        "inGeneSet": false,
+        "genePanels": "",
+        "geneRankGtr": -1,
+        "searchTermHpo": [],
+        "searchTermsGtr": [],
+        "isImportedGenes": false,
+        "isAssociatedGene": false,
+        "geneRankPhenolyzer": 83,
+        "searchTermsPhenolyzer": [
+          {
+            "rank": 83,
+            "score": 0.1183,
+            "searchTerm": "dejerine sottas disease"
+          }
+        ]
+      },
+      {
+        "idx": 115,
+        "name": "UBA52",
+        "score": 0.1182,
+        "geneId": "7311",
+        "source": [
+          "Pheno"
+        ],
+        "inGeneSet": false,
+        "genePanels": "",
+        "geneRankGtr": -1,
+        "searchTermHpo": [],
+        "searchTermsGtr": [],
+        "isImportedGenes": false,
+        "isAssociatedGene": false,
+        "geneRankPhenolyzer": 84,
+        "searchTermsPhenolyzer": [
+          {
+            "rank": 84,
+            "score": 0.1182,
+            "searchTerm": "dejerine sottas disease"
+          }
+        ]
+      },
+      {
+        "idx": 116,
+        "name": "RPS27A",
+        "score": 0.1182,
+        "geneId": "6233",
+        "source": [
+          "Pheno"
+        ],
+        "inGeneSet": false,
+        "genePanels": "",
+        "geneRankGtr": -1,
+        "searchTermHpo": [],
+        "searchTermsGtr": [],
+        "isImportedGenes": false,
+        "isAssociatedGene": false,
+        "geneRankPhenolyzer": 85,
+        "searchTermsPhenolyzer": [
+          {
+            "rank": 85,
+            "score": 0.1182,
+            "searchTerm": "dejerine sottas disease"
+          }
+        ]
+      },
+      {
+        "idx": 117,
+        "name": "PIK3CA",
+        "score": 0.1172,
+        "geneId": "5290",
+        "source": [
+          "Pheno"
+        ],
+        "inGeneSet": false,
+        "genePanels": "",
+        "geneRankGtr": -1,
+        "searchTermHpo": [],
+        "searchTermsGtr": [],
+        "isImportedGenes": false,
+        "isAssociatedGene": false,
+        "geneRankPhenolyzer": 86,
+        "searchTermsPhenolyzer": [
+          {
+            "rank": 86,
+            "score": 0.1172,
+            "searchTerm": "dejerine sottas disease"
+          }
+        ]
+      },
+      {
+        "idx": 118,
+        "name": "PIK3R1",
+        "score": 0.1171,
+        "geneId": "5295",
+        "source": [
+          "Pheno"
+        ],
+        "inGeneSet": false,
+        "genePanels": "",
+        "geneRankGtr": -1,
+        "searchTermHpo": [],
+        "searchTermsGtr": [],
+        "isImportedGenes": false,
+        "isAssociatedGene": false,
+        "geneRankPhenolyzer": 87,
+        "searchTermsPhenolyzer": [
+          {
+            "rank": 87,
+            "score": 0.1171,
+            "searchTerm": "dejerine sottas disease"
+          }
+        ]
+      },
+      {
+        "idx": 119,
+        "name": "YWHAZ",
+        "score": 0.1164,
+        "geneId": "7534",
+        "source": [
+          "Pheno"
+        ],
+        "inGeneSet": false,
+        "genePanels": "",
+        "geneRankGtr": -1,
+        "searchTermHpo": [],
+        "searchTermsGtr": [],
+        "isImportedGenes": false,
+        "isAssociatedGene": false,
+        "geneRankPhenolyzer": 88,
+        "searchTermsPhenolyzer": [
+          {
+            "rank": 88,
+            "score": 0.1164,
+            "searchTerm": "dejerine sottas disease"
+          }
+        ]
+      },
+      {
+        "idx": 120,
+        "name": "PSMD2",
+        "score": 0.1163,
+        "geneId": "5708",
+        "source": [
+          "Pheno"
+        ],
+        "inGeneSet": false,
+        "genePanels": "",
+        "geneRankGtr": -1,
+        "searchTermHpo": [],
+        "searchTermsGtr": [],
+        "isImportedGenes": false,
+        "isAssociatedGene": false,
+        "geneRankPhenolyzer": 89,
+        "searchTermsPhenolyzer": [
+          {
+            "rank": 89,
+            "score": 0.1163,
+            "searchTerm": "dejerine sottas disease"
+          }
+        ]
+      },
+      {
+        "idx": 121,
+        "name": "PSMC3",
+        "score": 0.1163,
+        "geneId": "5702",
+        "source": [
+          "Pheno"
+        ],
+        "inGeneSet": false,
+        "genePanels": "",
+        "geneRankGtr": -1,
+        "searchTermHpo": [],
+        "searchTermsGtr": [],
+        "isImportedGenes": false,
+        "isAssociatedGene": false,
+        "geneRankPhenolyzer": 90,
+        "searchTermsPhenolyzer": [
+          {
+            "rank": 90,
+            "score": 0.1163,
+            "searchTerm": "dejerine sottas disease"
+          }
+        ]
+      },
+      {
+        "idx": 122,
+        "name": "PSMC2",
+        "score": 0.1163,
+        "geneId": "5701",
+        "source": [
+          "Pheno"
+        ],
+        "inGeneSet": false,
+        "genePanels": "",
+        "geneRankGtr": -1,
+        "searchTermHpo": [],
+        "searchTermsGtr": [],
+        "isImportedGenes": false,
+        "isAssociatedGene": false,
+        "geneRankPhenolyzer": 91,
+        "searchTermsPhenolyzer": [
+          {
+            "rank": 91,
+            "score": 0.1163,
+            "searchTerm": "dejerine sottas disease"
+          }
+        ]
+      },
+      {
+        "idx": 123,
+        "name": "PPP2R1A",
+        "score": 0.116,
+        "geneId": "5518",
+        "source": [
+          "Pheno"
+        ],
+        "inGeneSet": false,
+        "genePanels": "",
+        "geneRankGtr": -1,
+        "searchTermHpo": [],
+        "searchTermsGtr": [],
+        "isImportedGenes": false,
+        "isAssociatedGene": false,
+        "geneRankPhenolyzer": 92,
+        "searchTermsPhenolyzer": [
+          {
+            "rank": 92,
+            "score": 0.116,
+            "searchTerm": "dejerine sottas disease"
+          }
+        ]
+      },
+      {
+        "idx": 124,
+        "name": "HCFC1",
+        "score": 0.1156,
+        "geneId": "3054",
+        "source": [
+          "Pheno"
+        ],
+        "inGeneSet": false,
+        "genePanels": "",
+        "geneRankGtr": -1,
+        "searchTermHpo": [],
+        "searchTermsGtr": [],
+        "isImportedGenes": false,
+        "isAssociatedGene": false,
+        "geneRankPhenolyzer": 93,
+        "searchTermsPhenolyzer": [
+          {
+            "rank": 93,
+            "score": 0.1156,
+            "searchTerm": "dejerine sottas disease"
+          }
+        ]
+      },
+      {
+        "idx": 125,
+        "name": "CLTC",
+        "score": 0.1142,
+        "geneId": "1213",
+        "source": [
+          "Pheno"
+        ],
+        "inGeneSet": false,
+        "genePanels": "",
+        "geneRankGtr": -1,
+        "searchTermHpo": [],
+        "searchTermsGtr": [],
+        "isImportedGenes": false,
+        "isAssociatedGene": false,
+        "geneRankPhenolyzer": 94,
+        "searchTermsPhenolyzer": [
+          {
+            "rank": 94,
+            "score": 0.1142,
+            "searchTerm": "dejerine sottas disease"
+          }
+        ]
+      },
+      {
+        "idx": 126,
+        "name": "EGFR",
+        "score": 0.113,
+        "geneId": "1956",
+        "source": [
+          "Pheno"
+        ],
+        "inGeneSet": false,
+        "genePanels": "",
+        "geneRankGtr": -1,
+        "searchTermHpo": [],
+        "searchTermsGtr": [],
+        "isImportedGenes": false,
+        "isAssociatedGene": false,
+        "geneRankPhenolyzer": 95,
+        "searchTermsPhenolyzer": [
+          {
+            "rank": 95,
+            "score": 0.113,
+            "searchTerm": "dejerine sottas disease"
+          }
+        ]
+      },
+      {
+        "idx": 127,
+        "name": "EP300",
+        "score": 0.1113,
+        "geneId": "2033",
+        "source": [
+          "Pheno"
+        ],
+        "inGeneSet": false,
+        "genePanels": "",
+        "geneRankGtr": -1,
+        "searchTermHpo": [],
+        "searchTermsGtr": [],
+        "isImportedGenes": false,
+        "isAssociatedGene": false,
+        "geneRankPhenolyzer": 96,
+        "searchTermsPhenolyzer": [
+          {
+            "rank": 96,
+            "score": 0.1113,
+            "searchTerm": "dejerine sottas disease"
+          }
+        ]
+      },
+      {
+        "idx": 128,
+        "name": "CALM1",
+        "score": 0.1111,
+        "geneId": "801",
+        "source": [
+          "Pheno"
+        ],
+        "inGeneSet": false,
+        "genePanels": "",
+        "geneRankGtr": -1,
+        "searchTermHpo": [],
+        "searchTermsGtr": [],
+        "isImportedGenes": false,
+        "isAssociatedGene": false,
+        "geneRankPhenolyzer": 97,
+        "searchTermsPhenolyzer": [
+          {
+            "rank": 97,
+            "score": 0.1111,
+            "searchTerm": "dejerine sottas disease"
+          }
+        ]
+      },
+      {
+        "idx": 129,
+        "name": "CDH1",
+        "score": 0.1106,
+        "geneId": "999",
+        "source": [
+          "Pheno"
+        ],
+        "inGeneSet": false,
+        "genePanels": "",
+        "geneRankGtr": -1,
+        "searchTermHpo": [],
+        "searchTermsGtr": [],
+        "isImportedGenes": false,
+        "isAssociatedGene": false,
+        "geneRankPhenolyzer": 98,
+        "searchTermsPhenolyzer": [
+          {
+            "rank": 98,
+            "score": 0.1106,
+            "searchTerm": "dejerine sottas disease"
+          }
+        ]
+      },
+      {
+        "idx": 130,
+        "name": "ITGB1",
+        "score": 0.11,
+        "geneId": "3688",
+        "source": [
+          "Pheno"
+        ],
+        "inGeneSet": false,
+        "genePanels": "",
+        "geneRankGtr": -1,
+        "searchTermHpo": [],
+        "searchTermsGtr": [],
+        "isImportedGenes": false,
+        "isAssociatedGene": false,
+        "geneRankPhenolyzer": 99,
+        "searchTermsPhenolyzer": [
+          {
+            "rank": 99,
+            "score": 0.11,
+            "searchTerm": "dejerine sottas disease"
+          }
+        ]
+      },
+      {
+        "idx": 131,
+        "name": "PPP2R1B",
+        "score": 0.1099,
+        "geneId": "5519",
+        "source": [
+          "Pheno"
+        ],
+        "inGeneSet": false,
+        "genePanels": "",
+        "geneRankGtr": -1,
+        "searchTermHpo": [],
+        "searchTermsGtr": [],
+        "isImportedGenes": false,
+        "isAssociatedGene": false,
+        "geneRankPhenolyzer": 100,
+        "searchTermsPhenolyzer": [
+          {
+            "rank": 100,
+            "score": 0.1099,
+            "searchTerm": "dejerine sottas disease"
+          }
+        ]
+      }
+    ],
+    "gtrFullList": [
+      {
+        "name": "MPZ",
+        "gtrRank": 1,
+        "gtrAssociated": true
+      },
+      {
+        "name": "PMP22",
+        "gtrRank": 2,
+        "gtrAssociated": true
+      },
+      {
+        "name": "EGR2",
+        "gtrRank": 3,
+        "gtrAssociated": true
+      },
+      {
+        "name": "PRX",
+        "gtrRank": 4,
+        "gtrAssociated": true
+      },
+      {
+        "name": "GJB1",
+        "gtrRank": 5,
+        "gtrAssociated": false
+      },
+      {
+        "name": "GDAP1",
+        "gtrRank": 6,
+        "gtrAssociated": false
+      },
+      {
+        "name": "FIG4",
+        "gtrRank": 7,
+        "gtrAssociated": false
+      },
+      {
+        "name": "FGD4",
+        "gtrRank": 8,
+        "gtrAssociated": false
+      },
+      {
+        "name": "AARS1",
+        "gtrRank": 9,
+        "gtrAssociated": false
+      },
+      {
+        "name": "DNM2",
+        "gtrRank": 10,
+        "gtrAssociated": false
+      },
+      {
+        "name": "GARS1",
+        "gtrRank": 11,
+        "gtrAssociated": false
+      },
+      {
+        "name": "HSPB1",
+        "gtrRank": 12,
+        "gtrAssociated": false
+      },
+      {
+        "name": "DYNC1H1",
+        "gtrRank": 13,
+        "gtrAssociated": false
+      },
+      {
+        "name": "NEFL",
+        "gtrRank": 14,
+        "gtrAssociated": false
+      },
+      {
+        "name": "MTMR2",
+        "gtrRank": 15,
+        "gtrAssociated": false
+      },
+      {
+        "name": "SH3TC2",
+        "gtrRank": 16,
+        "gtrAssociated": false
+      },
+      {
+        "name": "SBF2",
+        "gtrRank": 17,
+        "gtrAssociated": false
+      },
+      {
+        "name": "MFN2",
+        "gtrRank": 18,
+        "gtrAssociated": false
+      },
+      {
+        "name": "NDRG1",
+        "gtrRank": 19,
+        "gtrAssociated": false
+      },
+      {
+        "name": "COX6A1",
+        "gtrRank": 20,
+        "gtrAssociated": false
+      },
+      {
+        "name": "LMNA",
+        "gtrRank": 21,
+        "gtrAssociated": false
+      },
+      {
+        "name": "PRPS1",
+        "gtrRank": 22,
+        "gtrAssociated": false
+      },
+      {
+        "name": "RAB7A",
+        "gtrRank": 23,
+        "gtrAssociated": false
+      },
+      {
+        "name": "AIFM1",
+        "gtrRank": 24,
+        "gtrAssociated": false
+      },
+      {
+        "name": "LITAF",
+        "gtrRank": 25,
+        "gtrAssociated": false
+      },
+      {
+        "name": "HSPB8",
+        "gtrRank": 26,
+        "gtrAssociated": false
+      },
+      {
+        "name": "TRPV4",
+        "gtrRank": 27,
+        "gtrAssociated": false
+      },
+      {
+        "name": "GNB4",
+        "gtrRank": 28,
+        "gtrAssociated": false
+      },
+      {
+        "name": "YARS1",
+        "gtrRank": 29,
+        "gtrAssociated": false
+      },
+      {
+        "name": "DHTKD1",
+        "gtrRank": 30,
+        "gtrAssociated": false
+      },
+      {
+        "name": "MED25",
+        "gtrRank": 31,
+        "gtrAssociated": false
+      },
+      {
+        "name": "LRSAM1",
+        "gtrRank": 32,
+        "gtrAssociated": false
+      },
+      {
+        "name": "KARS1",
+        "gtrRank": 33,
+        "gtrAssociated": false
+      },
+      {
+        "name": "PDK3",
+        "gtrRank": 34,
+        "gtrAssociated": false
+      },
+      {
+        "name": "BSCL2",
+        "gtrRank": 35,
+        "gtrAssociated": false
+      },
+      {
+        "name": "SBF1",
+        "gtrRank": 36,
+        "gtrAssociated": false
+      },
+      {
+        "name": "KIF1B",
+        "gtrRank": 37,
+        "gtrAssociated": false
+      },
+      {
+        "name": "PLEKHG5",
+        "gtrRank": 38,
+        "gtrAssociated": false
+      },
+      {
+        "name": "C12orf65",
+        "gtrRank": 39,
+        "gtrAssociated": false
+      },
+      {
+        "name": "ATP1A1",
+        "gtrRank": 40,
+        "gtrAssociated": false
+      },
+      {
+        "name": "HADHB",
+        "gtrRank": 41,
+        "gtrAssociated": false
+      },
+      {
+        "name": "TRIM2",
+        "gtrRank": 42,
+        "gtrAssociated": false
+      },
+      {
+        "name": "INF2",
+        "gtrRank": 43,
+        "gtrAssociated": false
+      },
+      {
+        "name": "IGHMBP2",
+        "gtrRank": 44,
+        "gtrAssociated": false
+      },
+      {
+        "name": "GLA",
+        "gtrRank": 45,
+        "gtrAssociated": false
+      },
+      {
+        "name": "MARS1",
+        "gtrRank": 46,
+        "gtrAssociated": false
+      },
+      {
+        "name": "TFG",
+        "gtrRank": 47,
+        "gtrAssociated": false
+      },
+      {
+        "name": "HINT1",
+        "gtrRank": 48,
+        "gtrAssociated": false
+      },
+      {
+        "name": "HK1",
+        "gtrRank": 49,
+        "gtrAssociated": false
+      },
+      {
+        "name": "KIF5A",
+        "gtrRank": 50,
+        "gtrAssociated": false
+      },
+      {
+        "name": "CTDP1",
+        "gtrRank": 51,
+        "gtrAssociated": false
+      },
+      {
+        "name": "FBLN5",
+        "gtrRank": 52,
+        "gtrAssociated": false
+      },
+      {
+        "name": "HOXD10",
+        "gtrRank": 53,
+        "gtrAssociated": false
+      },
+      {
+        "name": "DNAJB2",
+        "gtrRank": 54,
+        "gtrAssociated": false
+      },
+      {
+        "name": "PEX7",
+        "gtrRank": 55,
+        "gtrAssociated": false
+      },
+      {
+        "name": "PHYH",
+        "gtrRank": 56,
+        "gtrAssociated": false
+      },
+      {
+        "name": "TTR",
+        "gtrRank": 57,
+        "gtrAssociated": false
+      },
+      {
+        "name": "GAN",
+        "gtrRank": 58,
+        "gtrAssociated": false
+      },
+      {
+        "name": "SLC12A6",
+        "gtrRank": 59,
+        "gtrAssociated": false
+      },
+      {
+        "name": "SPTLC1",
+        "gtrRank": 60,
+        "gtrAssociated": false
+      }
+    ],
+    "hpoFullList": [],
+    "workflow_id": "2",
+    "demoTextNote": "",
+    "VennDiagramData": {
+      "gtr": {
+        "count": 60
+      },
+      "ClinPhen": {
+        "count": 0
+      },
+      "phenolyzer": {
+        "count": 100
+      },
+      "gtr_ClinPhen": {
+        "count": 0
+      },
+      "ImportedGenes": {
+        "count": 1
+      },
+      "gtr_phenolyzer": {
+        "count": 29
+      },
+      "gtr_ImportedGenes": {
+        "count": 0
+      },
+      "phenolyzer_ClinPhen": {
+        "count": 0
+      },
+      "ImportedGenes_ClinPhen": {
+        "count": 0
+      },
+      "gtr_phenolyzer_ClinPhen": {
+        "count": 0
+      },
+      "phenolyzer_ImportedGenes": {
+        "count": 0
+      },
+      "gtr_ImportedGenes_ClinPhen": {
+        "count": 0
+      },
+      "gtr_phenolyzer_ImportedGenes": {
+        "count": 0
+      },
+      "phenolyzer_ImportedGenes_ClinPhen": {
+        "count": 0
+      },
+      "gtr_phenolyzer_ImportedGenes_ClinPhen": {
+        "count": 0
+      }
+    },
+    "genesPhenolyzer": [],
+    "datetime_created": 1602178954532,
+    "phenolyzerFullList": [
+      {
+        "name": "EGR2",
+        "phenolyzerRank": 1
+      },
+      {
+        "name": "PMP22",
+        "phenolyzerRank": 2
+      },
+      {
+        "name": "MPZ",
+        "phenolyzerRank": 3
+      },
+      {
+        "name": "TSEN54",
+        "phenolyzerRank": 4
+      },
+      {
+        "name": "GDAP1",
+        "phenolyzerRank": 5
+      },
+      {
+        "name": "NEFL",
+        "phenolyzerRank": 6
+      },
+      {
+        "name": "MTMR2",
+        "phenolyzerRank": 7
+      },
+      {
+        "name": "GAN",
+        "phenolyzerRank": 8
+      },
+      {
+        "name": "MED25",
+        "phenolyzerRank": 9
+      },
+      {
+        "name": "PHYH",
+        "phenolyzerRank": 10
+      },
+      {
+        "name": "ALMS1",
+        "phenolyzerRank": 11
+      },
+      {
+        "name": "RARS2",
+        "phenolyzerRank": 12
+      },
+      {
+        "name": "LMNA",
+        "phenolyzerRank": 13
+      },
+      {
+        "name": "PEX7",
+        "phenolyzerRank": 14
+      },
+      {
+        "name": "FIG4",
+        "phenolyzerRank": 15
+      },
+      {
+        "name": "FA2H",
+        "phenolyzerRank": 16
+      },
+      {
+        "name": "FGD4",
+        "phenolyzerRank": 17
+      },
+      {
+        "name": "LITAF",
+        "phenolyzerRank": 18
+      },
+      {
+        "name": "SBF2",
+        "phenolyzerRank": 19
+      },
+      {
+        "name": "PRX",
+        "phenolyzerRank": 20
+      },
+      {
+        "name": "NDRG1",
+        "phenolyzerRank": 21
+      },
+      {
+        "name": "L1CAM",
+        "phenolyzerRank": 22
+      },
+      {
+        "name": "SH3TC2",
+        "phenolyzerRank": 23
+      },
+      {
+        "name": "DNM2",
+        "phenolyzerRank": 24
+      },
+      {
+        "name": "SEPT9",
+        "phenolyzerRank": 25
+      },
+      {
+        "name": "SMCHD1",
+        "phenolyzerRank": 26
+      },
+      {
+        "name": "PLP1",
+        "phenolyzerRank": 27
+      },
+      {
+        "name": "ALS2",
+        "phenolyzerRank": 28
+      },
+      {
+        "name": "DUX4",
+        "phenolyzerRank": 29
+      },
+      {
+        "name": "ETS1",
+        "phenolyzerRank": 30
+      },
+      {
+        "name": "HSPB1",
+        "phenolyzerRank": 31
+      },
+      {
+        "name": "SPG7",
+        "phenolyzerRank": 32
+      },
+      {
+        "name": "FGF3",
+        "phenolyzerRank": 33
+      },
+      {
+        "name": "RAB7A",
+        "phenolyzerRank": 34
+      },
+      {
+        "name": "ISCU",
+        "phenolyzerRank": 35
+      },
+      {
+        "name": "SBF1",
+        "phenolyzerRank": 36
+      },
+      {
+        "name": "MARS2",
+        "phenolyzerRank": 37
+      },
+      {
+        "name": "GARS",
+        "phenolyzerRank": 38
+      },
+      {
+        "name": "TSEN34",
+        "phenolyzerRank": 39
+      },
+      {
+        "name": "TSEN2",
+        "phenolyzerRank": 40
+      },
+      {
+        "name": "VRK1",
+        "phenolyzerRank": 41
+      },
+      {
+        "name": "SPAST",
+        "phenolyzerRank": 42
+      },
+      {
+        "name": "GRN",
+        "phenolyzerRank": 43
+      },
+      {
+        "name": "SPG11",
+        "phenolyzerRank": 44
+      },
+      {
+        "name": "SPG20",
+        "phenolyzerRank": 45
+      },
+      {
+        "name": "KIAA0196",
+        "phenolyzerRank": 46
+      },
+      {
+        "name": "DYNC1H1",
+        "phenolyzerRank": 47
+      },
+      {
+        "name": "HK1",
+        "phenolyzerRank": 48
+      },
+      {
+        "name": "AARS",
+        "phenolyzerRank": 49
+      },
+      {
+        "name": "EXOSC3",
+        "phenolyzerRank": 50
+      },
+      {
+        "name": "OPA3",
+        "phenolyzerRank": 51
+      },
+      {
+        "name": "LRSAM1",
+        "phenolyzerRank": 52
+      },
+      {
+        "name": "MFN2",
+        "phenolyzerRank": 53
+      },
+      {
+        "name": "GATA2",
+        "phenolyzerRank": 54
+      },
+      {
+        "name": "HSPB8",
+        "phenolyzerRank": 55
+      },
+      {
+        "name": "TRPV4",
+        "phenolyzerRank": 56
+      },
+      {
+        "name": "SEPSECS",
+        "phenolyzerRank": 57
+      },
+      {
+        "name": "FRG1",
+        "phenolyzerRank": 58
+      },
+      {
+        "name": "PRKCA",
+        "phenolyzerRank": 59
+      },
+      {
+        "name": "YBX1",
+        "phenolyzerRank": 60
+      },
+      {
+        "name": "AKT1",
+        "phenolyzerRank": 61
+      },
+      {
+        "name": "AR",
+        "phenolyzerRank": 62
+      },
+      {
+        "name": "YWHAG",
+        "phenolyzerRank": 63
+      },
+      {
+        "name": "UBC",
+        "phenolyzerRank": 64
+      },
+      {
+        "name": "CREBBP",
+        "phenolyzerRank": 65
+      },
+      {
+        "name": "TP53",
+        "phenolyzerRank": 66
+      },
+      {
+        "name": "ITGAV",
+        "phenolyzerRank": 67
+      },
+      {
+        "name": "BSCL2",
+        "phenolyzerRank": 68
+      },
+      {
+        "name": "CANX",
+        "phenolyzerRank": 69
+      },
+      {
+        "name": "YWHAB",
+        "phenolyzerRank": 70
+      },
+      {
+        "name": "AKT2",
+        "phenolyzerRank": 71
+      },
+      {
+        "name": "AKT3",
+        "phenolyzerRank": 72
+      },
+      {
+        "name": "HSP90AA1",
+        "phenolyzerRank": 73
+      },
+      {
+        "name": "CTNNB1",
+        "phenolyzerRank": 74
+      },
+      {
+        "name": "EGF",
+        "phenolyzerRank": 75
+      },
+      {
+        "name": "MYC",
+        "phenolyzerRank": 76
+      },
+      {
+        "name": "CDKN2A",
+        "phenolyzerRank": 77
+      },
+      {
+        "name": "PRKACA",
+        "phenolyzerRank": 78
+      },
+      {
+        "name": "RXRA",
+        "phenolyzerRank": 79
+      },
+      {
+        "name": "CDK1",
+        "phenolyzerRank": 80
+      },
+      {
+        "name": "SRC",
+        "phenolyzerRank": 81
+      },
+      {
+        "name": "FOS",
+        "phenolyzerRank": 82
+      },
+      {
+        "name": "UBB",
+        "phenolyzerRank": 83
+      },
+      {
+        "name": "UBA52",
+        "phenolyzerRank": 84
+      },
+      {
+        "name": "RPS27A",
+        "phenolyzerRank": 85
+      },
+      {
+        "name": "PIK3CA",
+        "phenolyzerRank": 86
+      },
+      {
+        "name": "PIK3R1",
+        "phenolyzerRank": 87
+      },
+      {
+        "name": "YWHAZ",
+        "phenolyzerRank": 88
+      },
+      {
+        "name": "PSMD2",
+        "phenolyzerRank": 89
+      },
+      {
+        "name": "PSMC3",
+        "phenolyzerRank": 90
+      },
+      {
+        "name": "PSMC2",
+        "phenolyzerRank": 91
+      },
+      {
+        "name": "PPP2R1A",
+        "phenolyzerRank": 92
+      },
+      {
+        "name": "HCFC1",
+        "phenolyzerRank": 93
+      },
+      {
+        "name": "CLTC",
+        "phenolyzerRank": 94
+      },
+      {
+        "name": "EGFR",
+        "phenolyzerRank": 95
+      },
+      {
+        "name": "EP300",
+        "phenolyzerRank": 96
+      },
+      {
+        "name": "CALM1",
+        "phenolyzerRank": 97
+      },
+      {
+        "name": "CDH1",
+        "phenolyzerRank": 98
+      },
+      {
+        "name": "ITGB1",
+        "phenolyzerRank": 99
+      },
+      {
+        "name": "PPP2R1B",
+        "phenolyzerRank": 100
+      }
+    ],
+    "datetime_last_modified": 1602179041318,
+    "selectedGenesForGeneSet": [
+      "EGR2",
+      "PMP22",
+      "PRX",
+      "TCOF1"
+    ]
+  },
+  "title": "top 5 genes",
+  "description": "top 5 genes",
+  "created_at": "2020-10-08T17:43:31.566Z",
+  "updated_at": "2020-10-08T17:43:49.706Z",
+  "sample_id": 108,
+  "is_private": true
+}

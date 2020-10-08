@@ -398,9 +398,7 @@ export default {
     selectedGenesForGeneSet: {
       type: Array
     },
-    topGenesSelectedCount: {
-      type: Number
-    }
+    topGenesSelectedCount: null,
   },
   watch:{
     selectedGenesFlag(){
@@ -471,12 +469,29 @@ export default {
   mounted(){
     this.knownGenesData = knownGenes;
     // this.summaryGenes = this.summaryGeneList;
-    this.selected = this.selectedGenesForGeneSet;
-    if(this.selectedGenesForGeneSet.length){
-      this.selectedGenesFlag = true;
-      this.genesTop = this.topGenesSelectedCount;
+    
+    if(this.selectedGenesForGeneSet!==undefined){
+      if(this.selectedGenesForGeneSet.length){
+        this.selected = this.selectedGenesForGeneSet;
+        this.selectedGenesFlag = true;
+        if(this.topGenesSelectedCount!==undefined){
+          this.genesTop = parseInt(this.topGenesSelectedCount);
+        }
+        else {
+          this.genesTop = 0;
+        }
+      }
+      else {
+        this.selected = [];
+      }
+      this.organizeGeneListOnMount();
     }
-    this.organizeGeneList();
+    else {
+      this.selected = [];
+      this.genesTop = 20;
+      this.organizeGeneList();
+    }
+
 
     // this.HpoGenesData = hpo_genes;
     this.HpoTermsTypeaheadData  = HpoTermsData.data;
@@ -574,6 +589,44 @@ export default {
       var idx = this.HPO_Terms_data.indexOf(id);
       var phenotype = this.HPO_Phenotypes_data[idx];
       return `${phenotype} [ ${id} ]`
+    },
+    
+    organizeGeneListOnMount(){
+      var associatedGenes = [];
+      var nonAssociatedGenes = [];
+
+      if(this.summaryGeneList!==undefined){
+        
+        this.summaryGeneList.map(x=>{
+          if(x.isAssociatedGene===true){
+            associatedGenes.push(x);
+          }
+          else{
+            nonAssociatedGenes.push(x);
+          }
+        })
+
+        if(associatedGenes.length){
+          this.summaryGenes = [...associatedGenes, ...nonAssociatedGenes];
+        }
+        else {
+          this.summaryGenes = this.summaryGeneList;
+        }
+        
+        this.summaryGenes.forEach((gene, idx) => {
+          gene.idx = idx;
+          if(this.selected.includes(gene.name)){
+            this.$set(this.summaryGenes[idx], 'inGeneSet', true);
+          }
+          else {
+            this.$set(this.summaryGenes[idx], 'inGeneSet', false);
+          }
+        })
+        
+      }
+      else {
+        this.summaryGenes = [];
+      }
     },
 
     organizeGeneList(){
