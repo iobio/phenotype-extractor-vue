@@ -87,7 +87,7 @@
                 </div>
                 <div class="col-md-1 "></div>
               </div>
-              <v-dialog v-model="copyPasteGenes" max-width="500px">
+              <v-dialog persistent v-model="copyPasteGenes" max-width="500px">
                 <template v-slot:activator="{ on }">
                   <v-btn color="primary" class="mr-3" :class="{'mt-3' : !summaryGenes.length }" v-on="on">
                     <v-icon class="mr-1">add</v-icon>
@@ -98,6 +98,20 @@
                   <v-card-title primary-title>
                   </v-card-title>
                   <v-card-text>
+                    <div>
+                      <v-autocomplete
+                        chips
+                        :items="knownGenesData"
+                        v-model="autocompleteGenes"
+                        clearable
+                        deletable-chips
+                        multiple
+                        small-chips
+                        flat
+                        outlined
+                        label="Select gene(s)"
+                      ></v-autocomplete>
+                    </div>
                     <div id="enter-genes-input">
                       <v-textarea
                         id="copy-paste-genes"
@@ -420,6 +434,9 @@ export default {
       this.vennData = this.venn_diag_data;
     },
     genesTop(){
+    },
+    autocompleteGenes(){
+      console.log("autocompleteGenes", this.autocompleteGenes);
     }
   },
   data () {
@@ -465,6 +482,7 @@ export default {
       genesTop: 20,
       selectedGenesFlag: true,
       warningDialog: false,
+      autocompleteGenes: [],
     }
   },
 
