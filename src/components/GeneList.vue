@@ -112,6 +112,8 @@
                         flat
                         outlined
                         label="Select gene(s)"
+                        :search-input.sync="autoCompleteGenesInputSearch"
+                        @change="autoCompleteGenesInputSearch=''"
                       ></v-autocomplete>
                     </div>
                     <div id="enter-genes-input">
@@ -490,6 +492,7 @@ export default {
       selectedGenesFlag: true,
       warningDialog: false,
       autocompleteGenes: [],
+      autoCompleteGenesInputSearch: '',
     }
   },
 
