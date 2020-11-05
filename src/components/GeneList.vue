@@ -129,7 +129,7 @@
                     <v-btn style="float:right" @click.native="onApplyGenes">
                       Apply
                     </v-btn>
-                    <v-btn style="float:right" @click.native="copyPasteGenes = false, genesToApply = null">
+                    <v-btn style="float:right" @click.native="copyPasteGenes = false, genesToApply = null, autocompleteGenes=[]">
                       Cancel
                     </v-btn>
                   </v-card-actions>
@@ -435,9 +435,6 @@ export default {
     },
     genesTop(){
     },
-    autocompleteGenes(){
-      console.log("autocompleteGenes", this.autocompleteGenes);
-    }
   },
   data () {
     return {
@@ -550,8 +547,14 @@ export default {
       this.copyPasteGenes = false;
       this.dupGenes= "",
       this.byPassedGenes = "";
-      this.genesToApply = this.genesToApply.trim().replace(/\n/g, " ").replace(/,/g, " ").replace(/\s+/g, " ");
-      var arr = this.genesToApply.split(" ");
+      var arr = [];
+      if(this.genesToApply){
+        this.genesToApply = this.genesToApply.trim().replace(/\n/g, " ").replace(/,/g, " ").replace(/\s+/g, " ");
+        arr = [...this.autocompleteGenes, ...this.genesToApply.split(" ")];
+      }
+      else{
+        arr = this.autocompleteGenes;
+      }
       var byPassedGenes = "";
       var byPassedGenesArr = [];
       var duplicateGenes = [];
@@ -580,6 +583,7 @@ export default {
       }
       this.$emit("importedGenes", this.genes);
       this.genesToApply = null;
+      this.autocompleteGenes = [];
     },
 
     checkBeforeDeleteGene(gene){
