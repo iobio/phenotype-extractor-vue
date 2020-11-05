@@ -72,14 +72,14 @@
                     </div> -->
                   </div>
                 </div>
-                <div class="col-md-1"></div>
+                <!-- <div class="col-md-1"></div> -->
 
-                <div class="col-md-3">
+                <div class="col-md-4">
                   <div>
                     <v-text-field
                       v-model="search"
                       append-icon="search"
-                      label="Find gene"
+                      label="Search in gene list"
                       single-line
                       hide-details
                     ></v-text-field>
@@ -90,8 +90,8 @@
               <v-dialog persistent v-model="copyPasteGenes" max-width="500px">
                 <template v-slot:activator="{ on }">
                   <v-btn color="primary" class="mr-3" :class="{'mt-3' : !summaryGenes.length }" v-on="on">
-                    <v-icon class="mr-1">add</v-icon>
-                    Add
+                    <!-- <v-icon class="mr-1">add</v-icon> -->
+                    Add gene list
                   </v-btn>
                 </template>
                 <v-card>
@@ -100,6 +100,8 @@
                   <v-card-text>
                     <div>
                       <v-autocomplete
+                        id="autocompleteGenesInput"
+                        ref="autocompleteGenesInputRef"
                         chips
                         :items="knownGenesData"
                         v-model="autocompleteGenes"
@@ -118,7 +120,7 @@
                         multi-line
                         rows="10"
                         outlined
-                        label="Enter gene names"
+                        label="Paste or add gene names"
                         v-model="genesToApply"
                       >
                       </v-textarea>
@@ -435,6 +437,14 @@ export default {
     },
     genesTop(){
     },
+    autocompleteGenes(){
+      console.log(this.autocompleteGenes);
+      // console.log("id", document.getElementById("autocompleteGenesInput"));
+      // console.log("value",  document.getElementById("autocompleteGenesInput").value);
+      // document.getElementById("autocompleteGenesInput").innerHTML = "";
+      // console.log("value",  document.getElementById("autocompleteGenesInput").value);
+
+    }
   },
   data () {
     return {
@@ -549,7 +559,7 @@ export default {
       this.byPassedGenes = "";
       var arr = [];
       if(this.genesToApply){
-        this.genesToApply = this.genesToApply.trim().replace(/\n/g, " ").replace(/,/g, " ").replace(/\s+/g, " ");
+        this.genesToApply = this.genesToApply.trim().replace(/\n/g, " ").replace(/,/g, " ").replace(/\s+/g, " ").replace(/;/g, " ").replace(/\t+/g, " ");
         arr = [...this.autocompleteGenes, ...this.genesToApply.split(" ")];
       }
       else{
