@@ -430,7 +430,6 @@ export default {
       }
     },
     summaryGeneList(){
-      console.log("summaryGeneList watching and it will call organizeGeneList", this.summaryGeneList);
       // this.summaryGenes = this.summaryGeneList;
       this.organizeGeneList();
     },
@@ -445,7 +444,6 @@ export default {
     autocompleteGenes(){
     },
     selectedGenesForGeneSet(){
-      console.log("watching selectedGenesForGeneSet");
     }
   },
   data () {
@@ -497,7 +495,6 @@ export default {
   },
 
   mounted(){
-    console.log("mounted gene list in GeneList.vue");
     this.knownGenesData = knownGenes;
     // this.summaryGenes = this.summaryGeneList;
     
@@ -630,7 +627,6 @@ export default {
     },
     
     organizeGeneListOnMount(){
-      console.log("organizeGeneListOnMount");
       var associatedGenes = [];
       var nonAssociatedGenes = [];
 
@@ -666,11 +662,9 @@ export default {
       else {
         this.summaryGenes = [];
       }
-      console.log("this.summaryGenes in organizeMount", this.summaryGenes);
     },
 
     organizeGeneList(){
-      console.log("organizeGeneList");
       var associatedGenes = [];
       var nonAssociatedGenes = [];
 
@@ -718,9 +712,8 @@ export default {
         // else {
         //   this.genesTop = 20;
         // }
-        // TODO: Add a check to call this function only when a new term is searched.
+        // check to call this function only when a new term is searched.
         if(this.newTermSearched){
-          console.log("organizeGeneList calls selectTopGenes");
           this.selectTopGenes(this.genesTop);
         }
       }
@@ -738,7 +731,6 @@ export default {
     },
     
     selectItem(item){
-      console.log("selectItem - called by clicking gene");
       if(!item.inGeneSet){
         item.inGeneSet = true;
         this.summaryGenes[item.idx].inGeneSet = true;
@@ -751,7 +743,6 @@ export default {
         this.selected = [...this.selected];
       }
       this.genesTop = this.selected.length;
-      console.log("update_genes_top", this.genesTop);
       this.$emit("update_genes_top", this.genesTop);
 
       this.$emit("add_to_gene_set", this.selected)
@@ -764,7 +755,6 @@ export default {
       this.$emit("add_to_gene_set", this.selected)
     },
     selectTopGenes(numberOfGenesToSelect){
-      console.log("inside selectTopGenes ");
       this.selected = [];
       for (var i = 0; i < this.summaryGenes.length; i++) {
         if(i < numberOfGenesToSelect){
@@ -780,11 +770,9 @@ export default {
       this.$emit("add_to_gene_set", this.selected)
     },
     updateGenesTop(e){
-      console.log("updateGenesTop - called by changing the number");
       if(this.selectedGenesFlag){
         if(this.genesTop>0 && this.genesTop<51){
           this.selectTopGenes(this.genesTop);
-          console.log("update_genes_top", this.genesTop);
           this.$emit("update_genes_top", this.genesTop);
         }
         else {

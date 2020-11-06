@@ -2267,7 +2267,6 @@ export default {
     },
 
     selectReviewTerms(){
-      console.log("new term searched");
       this.$emit("new_term_searched", true);
       this.gtr_terms_expansion_panel = []; //ensures that all expansion panels are closed when opened for edit 
       this.phenolyzer_terms_expansion_panel = []; 
@@ -2955,9 +2954,7 @@ export default {
       if(this.gtrFetchCompleted && this.phenolyzerFetchCompleted && this.hpoFetchCompleted){
         this.searchStatusDialogTimeoutCheck = setTimeout(()=>{
           this.searchStatusDialog = false;
-          console.log("search flag will be false in 5 seconds");
           setTimeout(() => {
-            console.log("new searched term flag to false after closing searchstatusdialog");
             this.$emit("new_term_searched", false);
           },5000)
           if(this.summaryAllGenes.length){

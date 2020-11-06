@@ -183,7 +183,6 @@ export default {
       this.genesTop = number;
     },
     new_term_searched(flag){
-      console.log("newTermSearched", flag);
       this.newTermSearched = flag;
     }
   }
