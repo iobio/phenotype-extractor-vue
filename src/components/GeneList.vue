@@ -416,6 +416,9 @@ export default {
       type: Array
     },
     topGenesSelectedCount: null,
+    newTermSearched: {
+      type: Boolean
+    },
   },
   watch:{
     selectedGenesFlag(){
@@ -427,7 +430,7 @@ export default {
       }
     },
     summaryGeneList(){
-      console.log("summaryGeneList watching and it will call organizeGeneList");
+      console.log("summaryGeneList watching and it will call organizeGeneList", this.summaryGeneList);
       // this.summaryGenes = this.summaryGeneList;
       this.organizeGeneList();
     },
@@ -716,8 +719,10 @@ export default {
         //   this.genesTop = 20;
         // }
         // TODO: Add a check to call this function only when a new term is searched.
-        this.selectTopGenes(this.genesTop);
-        console.log("organizeGeneList calls selectTopGenes");
+        if(this.newTermSearched){
+          console.log("organizeGeneList calls selectTopGenes");
+          this.selectTopGenes(this.genesTop);
+        }
       }
       else {
         this.summaryGenes = [];

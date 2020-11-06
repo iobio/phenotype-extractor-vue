@@ -28,7 +28,8 @@
         @vennData="vennData($event)"
         :demoTextNote="analysis.payload.demoTextNote"
         @VennDiagramData="VennDiagramData($event)"
-        :geneToDelete="geneToDelete">
+        :geneToDelete="geneToDelete"
+        @new_term_searched="new_term_searched($event)">
       </PhenotypeExtractor>
 
       <!-- <Phenotypes
@@ -49,7 +50,8 @@
         @add_to_gene_set="add_to_gene_set($event)"
         :selectedGenesForGeneSet="analysis.payload.selectedGenesForGeneSet"
         @update_genes_top="update_genes_top($event)"
-        :topGenesSelectedCount="analysis.payload.genesTop">
+        :topGenesSelectedCount="analysis.payload.genesTop"
+        :newTermSearched="newTermSearched">
       </GeneList>
     </v-layout>
   </v-container>
@@ -96,6 +98,7 @@ export default {
     deletedGenesList: [],
     selectedGenesForGeneSet: [],
     genesTop: 20,
+    newTermSearched: false,
     // phenotypes: [
     //   [
     //     {
@@ -178,6 +181,10 @@ export default {
     },
     update_genes_top(number){
       this.genesTop = number;
+    },
+    new_term_searched(flag){
+      console.log("newTermSearched", flag);
+      this.newTermSearched = flag;
     }
   }
 };
