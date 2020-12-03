@@ -482,6 +482,18 @@
               <v-card-title>
                 <v-card-text>
                   <div class="mt-1 mb-1" v-if="extractedTermsObj.length && termsReviewDialogPage===0">
+                    <span> 
+                      <v-alert
+                        dense
+                        text dismissible
+                        color="primary"
+                        style="font-size:12px; word-break:break-word"
+                      >
+                      The phenotypes selected from this list will be used to match and select the closest terms in the "GTR", "Phenolyzer" and "HPO" tool. It is very likely that each of the phenotype listed below has additional variants in each tool or synonyms in HPO tool. You can refine or make additional selections in advance mode by clicking the "Refine terms" button below or from the "Review page".
+                      </v-alert>
+
+                    </span>
+
                     <div v-if="basicModeTermsAdded_temp.length>0">
                       <small  style="color: rgba(0, 0, 0, 0.6); font-size: 0.875rem" class="font-weight-thin">Terms Selected: </small>
                       <span v-for="(term, i) in basicModeTermsAdded" v-if="basicModeTermsAdded.length">
@@ -1045,9 +1057,9 @@
                 </div>
                 <div v-else-if="!editReviewSelectedTerms">
                   <!-- <v-btn :disabled="termsReviewDialogPage===1" small color="primary" @click="navigateTermsReviewDialog('back', '#termsReviewDialogContainer-target')"><v-icon>arrow_left</v-icon> Back</v-btn> -->
-                  <v-btn :disabled="termsReviewDialogPage===0" small color="primary" @click="navigateTermsReviewDialog('back', '#termsReviewDialogContainer-target')"><v-icon>arrow_left</v-icon> Back</v-btn>
+                  <v-btn v-if="termsReviewDialogPage!==0" :disabled="termsReviewDialogPage===0" small color="primary" @click="navigateTermsReviewDialog('back', '#termsReviewDialogContainer-target')"><v-icon>arrow_left</v-icon> Back</v-btn>
 
-                  <v-btn v-if="termsReviewDialogPage===0" small color="warning" @click="navigateTermsReviewDialog('next', 'termsReviewDialogContainer-target')"><v-icon class="mr-1">filter_list</v-icon>  Refine terms </v-btn>
+                  <v-btn v-if="termsReviewDialogPage===0" small color="#ffaf4d" style="color:white" @click="navigateTermsReviewDialog('next', 'termsReviewDialogContainer-target')"><v-icon class="mr-1">filter_list</v-icon>  <strong>Refine terms</strong> </v-btn>
                   <v-btn v-if="termsReviewDialogPage===0" small color="primary" @click="navigateTermsReviewDialog('review', 'termsReviewDialogContainer-target')"> Review <v-icon>arrow_right</v-icon></v-btn>
 
                   <v-btn v-if="termsReviewDialogPage!==4 && termsReviewDialogPage!==0" :disabled="termsReviewDialogPage>3" small color="primary" @click="navigateTermsReviewDialog('next', 'termsReviewDialogContainer-target')"> Next <v-icon>arrow_right</v-icon></v-btn>
