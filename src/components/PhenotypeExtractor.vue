@@ -410,6 +410,11 @@
           >
             <v-card>
               <v-card-title class="grey lighten-2">
+                <div v-if="termsReviewDialogPage===0">
+                  <div class="pa-2">
+                    <v-icon color="primary darken-1">sort</v-icon> Select phenotypes
+                  </div>
+                </div>
                 <div v-if="termsReviewDialogPage===1">
                   <div class="pa-2">
                     <v-icon color="primary darken-1">sort</v-icon> GTR (Genetic Testing Registry)
@@ -534,6 +539,42 @@
                 </v-card-text>
               </v-card-title>
               <v-card-text style="height: 430px;" id="termsReviewDialogContainer-target">
+
+
+                <!-- Basic mode review terms table -->
+                <div v-if="extractedTermsObj.length && termsReviewDialogPage===0">
+                  <v-expansion-panels multiple popout focusable :readonly="readonly">
+                    <v-expansion-panel v-for="(term, i) in extractedTermsObj" :key="i">
+                      <v-expansion-panel-header expand-icon="none">
+                        <div>
+                          <div class="row">
+                            <div class="col-md-1">
+                              <v-checkbox color="primary" style="margin-top:-6px; margin-bottom:-35px;" v-model="basicModeTermsAdded_temp" :value="term"></v-checkbox>
+
+                              <!-- <div v-if="reReviewClinicalNote && note_reselect_hpoTerms_Array.includes(term.HPO_Data)">
+                                <v-checkbox color="primary" @click="removeSelectedTermFromReview(term, i, 'HPO')" style="margin-top:-6px; margin-bottom:-35px;" v-model="true_checkboxVal"></v-checkbox>
+                              </div>
+                              <div v-else>
+                                <v-checkbox color="primary" style="margin-top:-6px; margin-bottom:-35px;" v-model="hpoTermsAdded_temp" :value="term"></v-checkbox>
+                              </div> -->
+
+                              <!-- <v-checkbox color="primary" style="margin-top:-6px; margin-bottom:-35px;" v-model="hpoTermsAdded_temp" :value="term"></v-checkbox> -->
+                            </div>
+                            <div class="col-md-11 close-margin-left-20">
+                              <strong> {{ term.DiseaseName }}</strong>
+                            </div>
+                          </div>
+                        </div>
+                      </v-expansion-panel-header>
+                    </v-expansion-panel>
+                  </v-expansion-panels>
+                </div>
+                <div v-if="!extractedTermsObj.length && termsReviewDialogPage===0">
+                  <v-card-text>
+                    <p><v-icon>error_outline</v-icon> No matching terms from this resource</p>
+                  </v-card-text>
+                </div>
+                <!-- End basic mode review table. -->
 
                 <!-- GTR review terms table -->
                 <div v-if="GtrReviewTerms.length && termsReviewDialogPage===1">
@@ -969,7 +1010,9 @@
                   <v-btn small color="primary" @click="clearEditMode('save')"> Save </v-btn>
                 </div>
                 <div v-else-if="!editReviewSelectedTerms">
-                  <v-btn :disabled="termsReviewDialogPage===1" small color="primary" @click="navigateTermsReviewDialog('back', '#termsReviewDialogContainer-target')"><v-icon>arrow_left</v-icon> Back</v-btn>
+                  <!-- <v-btn :disabled="termsReviewDialogPage===1" small color="primary" @click="navigateTermsReviewDialog('back', '#termsReviewDialogContainer-target')"><v-icon>arrow_left</v-icon> Back</v-btn> -->
+                  <v-btn :disabled="termsReviewDialogPage===0" small color="primary" @click="navigateTermsReviewDialog('back', '#termsReviewDialogContainer-target')"><v-icon>arrow_left</v-icon> Back</v-btn>
+
                   <v-btn v-if="termsReviewDialogPage!==4" :disabled="termsReviewDialogPage>3" small color="primary" @click="navigateTermsReviewDialog('next', 'termsReviewDialogContainer-target')"> Next <v-icon>arrow_right</v-icon></v-btn>
                   <v-btn v-if="termsReviewDialogPage===4" small color="primary" @click="selectReviewTerms"> Next <v-icon>arrow_right</v-icon></v-btn>
                 </div>
@@ -1239,6 +1282,7 @@ import SkeletonLoadersSearchTerms from './SkeletonLoadersSearchTerms.vue';
 import VennDiagram from './VennDiagram.vue'
 import Model from '../models/Model';
 var model = new Model();
+var natural = require('natural');
 
 
 export default {
@@ -1337,6 +1381,7 @@ export default {
     GtrTermsAdded_temp: [],
     phenolyzerTermsAdded_temp: [],
     hpoTermsAdded_temp: [],
+    basicModeTermsAdded_temp: [],
     LevenshteinResults: [],
     search_phenolyzerReview: '',
     demoTerms: ['Treacher Collins syndrome ', 'Dejerine-Sottas disease '],
@@ -1466,6 +1511,30 @@ export default {
         this.showSearchTermsLoader = false;
         bus.$emit("hide-gene-table-skeleton-loaders")
       }
+    },
+    GtrTermsAdded_temp(){
+      console.log("GtrTermsAdded_temp watching", this.GtrTermsAdded_temp);
+    },
+    basicModeTermsAdded_temp(){
+      var hpoPhenotypes = [];
+      this.HpoReviewTerms.map(item => {
+        hpoPhenotypes.push(item.phenotype); 
+      })
+      this.GtrTermsAdded_temp = [];
+      this.phenolyzerTermsAdded_temp = [];
+      this.hpoTermsAdded_temp = [];
+      
+      this.basicModeTermsAdded_temp.map(term => {
+        this.GtrTermsAdded_temp.push(term.reviewTerms_gtr[0]);
+        this.phenolyzerTermsAdded_temp.push(term.reviewTerms_phenolyzer[0])
+        var item = term.DiseaseName.replace(/-/g, " ").replace(/\s\s+/g, ' ').toLowerCase().replace("disease", "").replace("syndrome", "").trim();
+        hpoPhenotypes.map(hpo => {
+          if(hpo.toLowerCase().includes(item) || item.toLowerCase().includes(hpo)){
+            var idx = hpoPhenotypes.indexOf(hpo);
+            this.hpoTermsAdded_temp.push(this.HpoReviewTerms[idx])
+          }
+        })
+      })
     }
 
   },
@@ -1880,6 +1949,7 @@ export default {
     },
 
     extract(){
+      console.log("extract");
       this.gtr_terms_expansion_panel = [];
       this.phenolyzer_terms_expansion_panel = [];
       this.WorkflowStepsflag = false;
@@ -1911,7 +1981,7 @@ export default {
               this.extractedTerms.push(x);
             }
           })
-          // console.log(this.extractedTerms);
+          console.log(this.extractedTerms);
 
           this.HpoReviewTerms = [];
           this.fetchHpoTerm();
@@ -1953,7 +2023,7 @@ export default {
             })
 
           })
-          // console.log("this.phenolyzerReviewTerms", this.phenolyzerReviewTerms)
+          console.log("this.phenolyzerReviewTerms", this.phenolyzerReviewTerms)
 
           this.loadingDialog = false;
           // this.clinical_note_text.unshift({
@@ -2047,6 +2117,7 @@ export default {
           })
     },
     openReviewDialog(){
+      console.log("openReviewDialog");
       this.textNotes = this.search.DiseaseName.toLowerCase();
       // this.LevenshteinResults.push(this.search.DiseaseName)
       this.LevenshteinResults = [this.search.DiseaseName]; //when input is selected from typeahead
@@ -2160,6 +2231,7 @@ export default {
       }
     },
     openReviewDialogForExtractedTerms(){
+      console.log("this.extractedTermsObj", this.extractedTermsObj);
       this.GtrReviewTerms = this.extractedTermsObj;
       this.GtrReviewTerms.map(item => {
         item.reviewTerms_gtr = [];
@@ -2191,7 +2263,7 @@ export default {
       })
       setTimeout(()=>{
           this.termsReviewDialog = true;
-          this.termsReviewDialogPage = 1;
+          this.termsReviewDialogPage = 0;
           this.loadingDialog = false;
       },500)
 
