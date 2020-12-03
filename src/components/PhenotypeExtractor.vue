@@ -549,7 +549,13 @@
                         <div>
                           <div class="row">
                             <div class="col-md-1">
-                              <v-checkbox color="primary" style="margin-top:-6px; margin-bottom:-35px;" v-model="basicModeTermsAdded_temp" :value="term"></v-checkbox>
+                              <div v-if="reReviewClinicalNote && note_reselect_basicModeTerms_Array.includes(term.DiseaseName)">
+                                <v-checkbox color="primary" style="margin-top:-6px; margin-bottom:-35px;" v-model="true_checkboxVal"></v-checkbox>
+                              </div>
+                              <div v-else>
+                                <v-checkbox color="primary" style="margin-top:-6px; margin-bottom:-35px;" v-model="basicModeTermsAdded_temp" :value="term"></v-checkbox>
+                                <!-- <v-checkbox color="primary" style="margin-top:-6px; margin-bottom:-35px;" v-model="hpoTermsAdded_temp" :value="term"></v-checkbox> -->
+                              </div>
 
                               <!-- <div v-if="reReviewClinicalNote && note_reselect_hpoTerms_Array.includes(term.HPO_Data)">
                                 <v-checkbox color="primary" @click="removeSelectedTermFromReview(term, i, 'HPO')" style="margin-top:-6px; margin-bottom:-35px;" v-model="true_checkboxVal"></v-checkbox>
@@ -1368,6 +1374,7 @@ export default {
     HpoTermsTypeaheadData: null,
     HpoReviewTerms: [],
     hpoTermsAdded: [],
+    basicModeTermsAdded: [],
     extractedTerms: [],
     extractedTermsObj: [],
     Gtr_searchTermsObj: [],
@@ -1428,6 +1435,7 @@ export default {
     phenolyzerItems: [],
     Hpo_searchTermArray: [],
     Hpo_search_complete_idx: 0,
+    BasicMode_SearchTermArray: [],
     summaryAllGenes: [],
     individualGenesSearchTermPhenolyzer: [],
     individualGtrPanelsSearchObj: {},
@@ -1469,6 +1477,7 @@ export default {
     note_reselect_gtrTerms_Array: [],
     note_reselect_phenolyzerTerms_Array: [],
     note_reselect_hpoTerms_Array: [],
+    note_reselect_basicModeTerms_Array: [],
     note_rereview_idx: null,
     true_checkboxVal: true,
     disabledItems_alert: true,
@@ -1517,7 +1526,6 @@ export default {
       }
     },
     GtrTermsAdded_temp(){
-      console.log("GtrTermsAdded_temp watching", this.GtrTermsAdded_temp);
     },
     basicModeTermsAdded_temp(){
       var hpoPhenotypes = [];
@@ -1860,9 +1868,11 @@ export default {
       this.note_reselect_gtrTerms_Array = [];
       this.note_reselect_phenolyzerTerms_Array = [];
       this.note_reselect_hpoTerms_Array = [];
+      this.note_reselect_basicModeTerms_Array = [];
       let gtr_terms_for_temp = [];
       let phenolyzer_terms_for_temp = [];
       let hpo_terms_for_temp = [];
+      let basic_mode_terms_for_temp = [];
 
       note_details.gtr_terms.map(x => {
         if(this.Gtr_searchTermArray.includes(x.DiseaseName)){
@@ -1887,6 +1897,14 @@ export default {
         }
       })
       this.hpoTermsAdded_temp = hpo_terms_for_temp;
+      
+      note_details.basic_mode_terms.map(x => {
+        if(this.BasicMode_SearchTermArray.includes(x.DiseaseName)){
+          this.note_reselect_basicModeTerms_Array.push(x.DiseaseName);
+          basic_mode_terms_for_temp.push(x);
+        }
+      })
+      this.basicModeTermsAdded_temp = basic_mode_terms_for_temp;
 
       this.WorkflowStepsflag = false;
       this.LevenshteinResults = [];
@@ -2121,7 +2139,6 @@ export default {
           })
     },
     openReviewDialog(){
-      console.log("openReviewDialog");
       this.textNotes = this.search.DiseaseName.toLowerCase();
       // this.LevenshteinResults.push(this.search.DiseaseName)
       this.LevenshteinResults = [this.search.DiseaseName]; //when input is selected from typeahead
@@ -2196,11 +2213,13 @@ export default {
 
     },
     closeReviewDialog(){
+      //Closes the review dialog box 
       this.termsReviewDialog=false;
       this.termsReviewDialogPage = 0;
       this.GtrTermsAdded_temp = [];
       this.phenolyzerTermsAdded_temp = [];
       this.hpoTermsAdded_temp = [];
+      this.basicModeTermsAdded_temp = [];
       if(!this.reReviewClinicalNote){ //Closing the review dialog without selecting any terms still adds the note
         this.clinical_note_text.unshift({
           "note": this.textNotes,
@@ -2208,8 +2227,9 @@ export default {
           "phenolyzer_terms": [],
           "hpo_terms": [],
           "LevenshteinResults": this.LevenshteinResults,
+          "basic_mode_terms": [],
         });
-        var allPhenotypes = [this.GtrTermsAdded, this.phenolyzerTermsAdded, this.hpoTermsAdded, this.clinical_note_text];
+        var allPhenotypes = [this.GtrTermsAdded, this.phenolyzerTermsAdded, this.hpoTermsAdded, this.clinical_note_text, this.basicModeTermsAdded];
         this.$emit('saveSearchedPhenotypes', allPhenotypes)
       }
       this.reReviewClinicalNote = false;
@@ -2275,6 +2295,17 @@ export default {
 
     checkIf_newNote_or_reReview(){
       if(!this.reReviewClinicalNote){
+        
+        var basic_mode_terms = [];
+        this.basicModeTermsAdded_temp.map(x => {
+          var temp = {
+            DiseaseName: x.DiseaseName,
+            reviewTerms_gtr: x.reviewTerms_gtr,
+            reviewTerms_phenolyzer: x.reviewTerms_phenolyzer
+          }
+          basic_mode_terms.push(temp);
+        })
+        
         var hpo_terms = [];
         this.hpoTermsAdded_temp.map(x => {
           var temp = {
@@ -2324,6 +2355,7 @@ export default {
           "hpo_terms": hpo_terms,
           "phenolyzer_terms": phenolyzer_terms,
           "LevenshteinResults": this.LevenshteinResults,
+          "basic_mode_terms": basic_mode_terms
           // "gtrSearchStatus": this.gtrSearchStatus
         });
       }
@@ -2331,6 +2363,7 @@ export default {
         this.clinical_note_text[this.note_rereview_idx].gtr_terms = this.GtrTermsAdded_temp;
         this.clinical_note_text[this.note_rereview_idx].phenolyzer_terms = this.phenolyzerTermsAdded_temp;
         this.clinical_note_text[this.note_rereview_idx].hpo_terms = this.hpoTermsAdded_temp;
+        this.clinical_note_text[this.note_rereview_idx].basic_mode_terms = this.basicModeTermsAdded_temp;
         this.clinical_note_text[this.note_rereview_idx].LevenshteinResults = this.LevenshteinResults;
         // this.clinical_note_text[this.note_rereview_idx].gtrSearchStatus = this.gtrSearchStatus;
 
@@ -2338,6 +2371,7 @@ export default {
         this.note_reselect_gtrTerms_Array = [];
         this.note_reselect_phenolyzerTerms_Array = [];
         this.note_reselect_hpoTerms_Array = [];
+        this.note_reselect_basicModeTerms_Array = [];
         this.note_rereview_idx = null;
       }
     },
@@ -2371,12 +2405,25 @@ export default {
         return o1.HPO_Data !== o2.HPO_Data
       }));
       this.hpoTermsAdded = [...this.hpoTermsAdded, ...this.hpoTermsAdded_temp];
+      
+      this.basicModeTermsAdded_temp = this.basicModeTermsAdded_temp.filter(o1 => this.basicModeTermsAdded.every(o2 => {
+        return o1.HPO_Data !== o2.HPO_Data
+      }));
+      this.basicModeTermsAdded = [...this.basicModeTermsAdded, ...this.basicModeTermsAdded_temp];
+      
+      this.BasicMode_SearchTermArray = [];
+      this.basicModeTermsAdded.map( term => {
+        this.BasicMode_SearchTermArray.push(term.DiseaseName);
+      })
+      
+      console.log("this.BasicMode_SearchTermArray", this.BasicMode_SearchTermArray);
 
       this.GtrTermsAdded_temp = [];
       this.phenolyzerTermsAdded_temp = [];
       this.hpoTermsAdded_temp = [];
+      this.basicModeTermsAdded_temp = [];
       // console.log("this.GtrTermsAdded", this.GtrTermsAdded)
-      var allPhenotypes = [this.GtrTermsAdded, this.phenolyzerTermsAdded, this.hpoTermsAdded, this.clinical_note_text];
+      var allPhenotypes = [this.GtrTermsAdded, this.phenolyzerTermsAdded, this.hpoTermsAdded, this.clinical_note_text, this.basicModeTermsAdded];
       this.$emit('saveSearchedPhenotypes', allPhenotypes)
 
       //Add GTR selected terms from review
