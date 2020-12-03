@@ -481,6 +481,34 @@
               </v-card-title>
               <v-card-title>
                 <v-card-text>
+                  <div class="mt-1 mb-1" v-if="extractedTermsObj.length && termsReviewDialogPage===0">
+                    <div v-if="basicModeTermsAdded_temp.length>0">
+                      <small  style="color: rgba(0, 0, 0, 0.6); font-size: 0.875rem" class="font-weight-thin">Terms Selected: </small>
+                      <span v-for="(term, i) in basicModeTermsAdded" v-if="basicModeTermsAdded.length">
+                      </span>
+                      <span v-for="(term, i) in basicModeTermsAdded_temp" v-if="basicModeTermsAdded_temp.length">
+                        <v-chip v-if="reReviewClinicalNote && note_reselect_basicModeTerms_Array.includes(term.DiseaseName)" class="mr-2 mb-1" small outlined color="primary" close :key="i" @click:close="removeSelectedTermFromReview(term, i, 'BasicMode')">
+                          {{ term.DiseaseName }}
+                        </v-chip>
+                        <v-chip v-else class="mr-2 mb-1" small outlined color="primary" close :key="i" @click:close="removeReviewTerms(term, i, 'BasicMode')">
+                          {{ term.DiseaseName }}
+                        </v-chip>
+                      </span>
+                      <br>
+                      <span v-if="basicModeTermsAdded.length +  basicModeTermsAdded_temp.length >= 5"> 
+                        <v-chip
+                          class="ma-2"
+                          color="#FAF4CA"
+                          label
+                          small
+                          style="border-color: rgb(250, 244, 202);"
+                        >
+                          Select upto 5 phenotypes for optimal performance 
+                        </v-chip>
+                      </span>
+                    </div>
+                  </div>
+                  
                   <div  class="mt-1 mb-1" v-if="GtrReviewTerms.length && termsReviewDialogPage===1">
                     <div v-if="GtrTermsAdded_temp.length>0">
                       <small  style="color: rgba(0, 0, 0, 0.6); font-size: 0.875rem" class="font-weight-thin">Terms Selected: </small>
@@ -550,7 +578,7 @@
                           <div class="row">
                             <div class="col-md-1">
                               <div v-if="reReviewClinicalNote && note_reselect_basicModeTerms_Array.includes(term.DiseaseName)">
-                                <v-checkbox color="primary" style="margin-top:-6px; margin-bottom:-35px;" v-model="true_checkboxVal"></v-checkbox>
+                                <v-checkbox color="primary" @click="removeSelectedTermFromReview(term, i, 'BasicMode')" style="margin-top:-6px; margin-bottom:-35px;" v-model="true_checkboxVal"></v-checkbox>
                               </div>
                               <div v-else>
                                 <v-checkbox color="primary" style="margin-top:-6px; margin-bottom:-35px;" v-model="basicModeTermsAdded_temp" :value="term"></v-checkbox>
@@ -1528,25 +1556,32 @@ export default {
     GtrTermsAdded_temp(){
     },
     basicModeTermsAdded_temp(){
-      var hpoPhenotypes = [];
-      this.HpoReviewTerms.map(item => {
-        hpoPhenotypes.push(item.phenotype); 
-      })
-      this.GtrTermsAdded_temp = [];
-      this.phenolyzerTermsAdded_temp = [];
-      this.hpoTermsAdded_temp = [];
-      
-      this.basicModeTermsAdded_temp.map(term => {
-        this.GtrTermsAdded_temp.push(term.reviewTerms_gtr[0]);
-        this.phenolyzerTermsAdded_temp.push(term.reviewTerms_phenolyzer[0])
-        var item = term.DiseaseName.replace(/-/g, " ").replace(/\s\s+/g, ' ').toLowerCase().replace("disease", "").replace("syndrome", "").trim();
-        hpoPhenotypes.map(hpo => {
-          if(hpo.toLowerCase().includes(item) || item.toLowerCase().includes(hpo)){
-            var idx = hpoPhenotypes.indexOf(hpo);
-            this.hpoTermsAdded_temp.push(this.HpoReviewTerms[idx])
-          }
+      if(!this.reReviewClinicalNote){
+        var hpoPhenotypes = [];
+        this.HpoReviewTerms.map(item => {
+          hpoPhenotypes.push(item.phenotype); 
         })
-      })
+        this.GtrTermsAdded_temp = [];
+        this.phenolyzerTermsAdded_temp = [];
+        this.hpoTermsAdded_temp = [];
+        
+        this.basicModeTermsAdded_temp.map(term => {
+          this.GtrTermsAdded_temp.push(term.reviewTerms_gtr[0]);
+          this.phenolyzerTermsAdded_temp.push(term.reviewTerms_phenolyzer[0])
+          var item = term.DiseaseName.replace(/-/g, " ").replace(/\s\s+/g, ' ').toLowerCase().replace("disease", "").replace("syndrome", "").trim();
+          hpoPhenotypes.map(hpo => {
+            if(hpo.toLowerCase().includes(item) || item.toLowerCase().includes(hpo)){
+              var idx = hpoPhenotypes.indexOf(hpo);
+              this.hpoTermsAdded_temp.push(this.HpoReviewTerms[idx])
+              term.HpoTermSelected = this.HpoReviewTerms[idx]
+            }
+          })
+          //Also attach the selected terms from each tool to the basicModeTermsAdded_temp
+          term.GtrTermSelected = term.reviewTerms_gtr[0];
+          term.PhenolyzerTermSelected = term.reviewTerms_phenolyzer[0];
+        })
+      }
+      console.log("this.basicModeTermsAdded_temp", this.basicModeTermsAdded_temp);
     }
 
   },
@@ -2301,7 +2336,10 @@ export default {
           var temp = {
             DiseaseName: x.DiseaseName,
             reviewTerms_gtr: x.reviewTerms_gtr,
-            reviewTerms_phenolyzer: x.reviewTerms_phenolyzer
+            reviewTerms_phenolyzer: x.reviewTerms_phenolyzer,
+            GtrTermSelected: x.GtrTermSelected,
+            PhenolyzerTermSelected: x.PhenolyzerTermSelected,
+            HpoTermSelected: x.HpoTermSelected,
           }
           basic_mode_terms.push(temp);
         })
@@ -3287,6 +3325,38 @@ export default {
           this.remove(term, indx, component);
           this.removeReviewTerms(term, indx, component);
         }
+        else if (component === 'BasicMode') {
+          this.note_reselect_basicModeTerms_Array.splice(this.note_reselect_basicModeTerms_Array.indexOf(term.DiseaseName), 1);
+          this.note_reselect_basicModeTerms_Array = [...this.note_reselect_basicModeTerms_Array];
+          var indx = this.BasicMode_SearchTermArray.indexOf(term.DiseaseName);
+          var item = this.basicModeTermsAdded_temp[indx]; //This has information such 'GtrTermSelected', 'HpoTermSelected', 'PhenolyzerTermSelected'
+          this.removeReviewTerms(term, indx, component);
+          
+          //Remove GTR terms
+          this.note_reselect_gtrTerms_Array.splice(this.note_reselect_gtrTerms_Array.indexOf(term.DiseaseName), 1);
+          this.note_reselect_gtrTerms_Array = [...this.note_reselect_gtrTerms_Array];
+          var gtr_indx = this.Gtr_searchTermArray.indexOf(term.DiseaseName);
+          this.remove(term, gtr_indx, 'GTR');
+          this.removeReviewTerms(term, indx, 'GTR');
+
+          //Remove Phenolyzer terms 
+          let PhenolyzerTermSelected = term.reviewTerms_phenolyzer[0]
+          this.note_reselect_phenolyzerTerms_Array.splice(this.note_reselect_phenolyzerTerms_Array.indexOf(PhenolyzerTermSelected.value), 1);
+          this.note_reselect_phenolyzerTerms_Array = [...this.note_reselect_phenolyzerTerms_Array];
+          var phenolyzer_indx = this.Phenolyzer_searchTermArray.indexOf(PhenolyzerTermSelected.value);
+          this.remove(PhenolyzerTermSelected, phenolyzer_indx, 'phenolyzer');
+          this.removeReviewTerms(PhenolyzerTermSelected, phenolyzer_indx, 'phenolyzer');
+          
+          //Remove HPO term if exists
+          if(item.HpoTermSelected){
+            let HpoTermSelected = item.HpoTermSelected; 
+            this.note_reselect_hpoTerms_Array.splice(this.note_reselect_hpoTerms_Array.indexOf(HpoTermSelected.HPO_Data), 1);
+            this.note_reselect_hpoTerms_Array = [...this.note_reselect_hpoTerms_Array];
+            var hpo_indx = this.Hpo_searchTermArray.indexOf(HpoTermSelected.hpoNumber);
+            this.remove(HpoTermSelected, hpo_indx, 'HPO');
+            this.removeReviewTerms(HpoTermSelected, hpo_indx, 'HPO');
+          }
+        }
       },
 
       removeReviewTerms(item, idx, component){
@@ -3301,6 +3371,10 @@ export default {
         else if(component === 'HPO'){
           this.hpoTermsAdded_temp.splice(idx,1);
           this.hpoTermsAdded_temp = [...this.hpoTermsAdded_temp];
+        }
+        else if(component === 'BasicMode'){
+          this.basicModeTermsAdded_temp.splice(idx,1);
+          this.basicModeTermsAdded_temp = [...this.basicModeTermsAdded_temp];
         }
       },
 
