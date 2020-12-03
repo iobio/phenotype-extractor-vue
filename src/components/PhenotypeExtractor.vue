@@ -1557,29 +1557,29 @@ export default {
     },
     basicModeTermsAdded_temp(){
       if(!this.reReviewClinicalNote){
-        var hpoPhenotypes = [];
-        this.HpoReviewTerms.map(item => {
-          hpoPhenotypes.push(item.phenotype); 
-        })
-        this.GtrTermsAdded_temp = [];
-        this.phenolyzerTermsAdded_temp = [];
-        this.hpoTermsAdded_temp = [];
-        
-        this.basicModeTermsAdded_temp.map(term => {
-          this.GtrTermsAdded_temp.push(term.reviewTerms_gtr[0]);
-          this.phenolyzerTermsAdded_temp.push(term.reviewTerms_phenolyzer[0])
-          var item = term.DiseaseName.replace(/-/g, " ").replace(/\s\s+/g, ' ').toLowerCase().replace("disease", "").replace("syndrome", "").trim();
-          hpoPhenotypes.map(hpo => {
-            if(hpo.toLowerCase().includes(item) || item.toLowerCase().includes(hpo)){
-              var idx = hpoPhenotypes.indexOf(hpo);
-              this.hpoTermsAdded_temp.push(this.HpoReviewTerms[idx])
-              term.HpoTermSelected = this.HpoReviewTerms[idx]
-            }
-          })
-          //Also attach the selected terms from each tool to the basicModeTermsAdded_temp
-          term.GtrTermSelected = term.reviewTerms_gtr[0];
-          term.PhenolyzerTermSelected = term.reviewTerms_phenolyzer[0];
-        })
+        // var hpoPhenotypes = [];
+        // this.HpoReviewTerms.map(item => {
+        //   hpoPhenotypes.push(item.phenotype); 
+        // })
+        // this.GtrTermsAdded_temp = [];
+        // this.phenolyzerTermsAdded_temp = [];
+        // this.hpoTermsAdded_temp = [];
+        // 
+        // this.basicModeTermsAdded_temp.map(term => {
+        //   this.GtrTermsAdded_temp.push(term.reviewTerms_gtr[0]);
+        //   this.phenolyzerTermsAdded_temp.push(term.reviewTerms_phenolyzer[0])
+        //   var item = term.DiseaseName.replace(/-/g, " ").replace(/\s\s+/g, ' ').toLowerCase().replace("disease", "").replace("syndrome", "").trim();
+        //   hpoPhenotypes.map(hpo => {
+        //     if(hpo.toLowerCase().includes(item) || item.toLowerCase().includes(hpo)){
+        //       var idx = hpoPhenotypes.indexOf(hpo);
+        //       this.hpoTermsAdded_temp.push(this.HpoReviewTerms[idx])
+        //       term.HpoTermSelected = this.HpoReviewTerms[idx]
+        //     }
+        //   })
+        //   //Also attach the selected terms from each tool to the basicModeTermsAdded_temp
+        //   term.GtrTermSelected = term.reviewTerms_gtr[0];
+        //   term.PhenolyzerTermSelected = term.reviewTerms_phenolyzer[0];
+        // })
       }
       console.log("this.basicModeTermsAdded_temp", this.basicModeTermsAdded_temp);
     }
@@ -3490,11 +3490,13 @@ export default {
         }
         else if(navigation==='next'){
           if(this.termsReviewDialogPage === 0){
+            this.setTermsSelectedFromBasicModeForReview();
             this.basicTermsSelectionMode = false;
           }
           this.termsReviewDialogPage = this.termsReviewDialogPage + 1; 
         }
         else if(navigation==='review'){
+          this.setTermsSelectedFromBasicModeForReview();
           this.termsReviewDialogPage = 4; 
         }
         this.gtr_terms_expansion_panel = []; //ensures that all expansion panels are closed when opened for edit 
@@ -3502,6 +3504,32 @@ export default {
 
         let container = document.querySelector("#termsReviewDialogContainer-target"); 
         container.scrollTop = 0
+      },
+      
+      setTermsSelectedFromBasicModeForReview(){
+        var hpoPhenotypes = [];
+        this.HpoReviewTerms.map(item => {
+          hpoPhenotypes.push(item.phenotype); 
+        })
+        this.GtrTermsAdded_temp = [];
+        this.phenolyzerTermsAdded_temp = [];
+        this.hpoTermsAdded_temp = [];
+        
+        this.basicModeTermsAdded_temp.map(term => {
+          this.GtrTermsAdded_temp.push(term.reviewTerms_gtr[0]);
+          this.phenolyzerTermsAdded_temp.push(term.reviewTerms_phenolyzer[0])
+          var item = term.DiseaseName.replace(/-/g, " ").replace(/\s\s+/g, ' ').toLowerCase().replace("disease", "").replace("syndrome", "").trim();
+          hpoPhenotypes.map(hpo => {
+            if(hpo.toLowerCase().includes(item) || item.toLowerCase().includes(hpo)){
+              var idx = hpoPhenotypes.indexOf(hpo);
+              this.hpoTermsAdded_temp.push(this.HpoReviewTerms[idx])
+              term.HpoTermSelected = this.HpoReviewTerms[idx]
+            }
+          })
+          //Also attach the selected terms from each tool to the basicModeTermsAdded_temp
+          term.GtrTermSelected = term.reviewTerms_gtr[0];
+          term.PhenolyzerTermSelected = term.reviewTerms_phenolyzer[0];
+        })
       }
 
   }
