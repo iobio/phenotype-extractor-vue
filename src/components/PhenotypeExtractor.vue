@@ -1013,7 +1013,10 @@
                   <!-- <v-btn :disabled="termsReviewDialogPage===1" small color="primary" @click="navigateTermsReviewDialog('back', '#termsReviewDialogContainer-target')"><v-icon>arrow_left</v-icon> Back</v-btn> -->
                   <v-btn :disabled="termsReviewDialogPage===0" small color="primary" @click="navigateTermsReviewDialog('back', '#termsReviewDialogContainer-target')"><v-icon>arrow_left</v-icon> Back</v-btn>
 
-                  <v-btn v-if="termsReviewDialogPage!==4" :disabled="termsReviewDialogPage>3" small color="primary" @click="navigateTermsReviewDialog('next', 'termsReviewDialogContainer-target')"> Next <v-icon>arrow_right</v-icon></v-btn>
+                  <v-btn v-if="termsReviewDialogPage===0" small color="warning" @click="navigateTermsReviewDialog('next', 'termsReviewDialogContainer-target')"><v-icon class="mr-1">filter_list</v-icon>  Refine terms </v-btn>
+                  <v-btn v-if="termsReviewDialogPage===0" small color="primary" @click="navigateTermsReviewDialog('review', 'termsReviewDialogContainer-target')"> Review <v-icon>arrow_right</v-icon></v-btn>
+
+                  <v-btn v-if="termsReviewDialogPage!==4 && termsReviewDialogPage!==0" :disabled="termsReviewDialogPage>3" small color="primary" @click="navigateTermsReviewDialog('next', 'termsReviewDialogContainer-target')"> Next <v-icon>arrow_right</v-icon></v-btn>
                   <v-btn v-if="termsReviewDialogPage===4" small color="primary" @click="selectReviewTerms"> Next <v-icon>arrow_right</v-icon></v-btn>
                 </div>
                 <v-spacer></v-spacer>
@@ -1480,7 +1483,8 @@ export default {
     hpoTermsAdded_temp_editMode: [],
     countGeneListUpdated: 0, 
     showInfoThatStepIsComplete: false, 
-    showGeneListReadySnackbar: false
+    showGeneListReadySnackbar: false,
+    basicTermsSelectionMode: true,
   }),
   watch: {
     textNotes(){
@@ -3356,10 +3360,21 @@ export default {
       
       navigateTermsReviewDialog(navigation, selector){
         if(navigation==='back'){
-          this.termsReviewDialogPage = this.termsReviewDialogPage - 1; 
+          if(this.basicTermsSelectionMode){
+            this.termsReviewDialogPage = 0;
+          }
+          else {
+            this.termsReviewDialogPage = this.termsReviewDialogPage - 1; 
+          }
         }
         else if(navigation==='next'){
+          if(this.termsReviewDialogPage === 0){
+            this.basicTermsSelectionMode = false;
+          }
           this.termsReviewDialogPage = this.termsReviewDialogPage + 1; 
+        }
+        else if(navigation==='review'){
+          this.termsReviewDialogPage = 4; 
         }
         this.gtr_terms_expansion_panel = []; //ensures that all expansion panels are closed when opened for edit 
         this.phenolyzer_terms_expansion_panel = []; 
