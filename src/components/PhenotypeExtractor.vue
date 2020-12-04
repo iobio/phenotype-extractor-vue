@@ -596,15 +596,6 @@
                                 <v-checkbox color="primary" style="margin-top:-6px; margin-bottom:-35px;" v-model="basicModeTermsAdded_temp" :value="term"></v-checkbox>
                                 <!-- <v-checkbox color="primary" style="margin-top:-6px; margin-bottom:-35px;" v-model="hpoTermsAdded_temp" :value="term"></v-checkbox> -->
                               </div>
-
-                              <!-- <div v-if="reReviewClinicalNote && note_reselect_hpoTerms_Array.includes(term.HPO_Data)">
-                                <v-checkbox color="primary" @click="removeSelectedTermFromReview(term, i, 'HPO')" style="margin-top:-6px; margin-bottom:-35px;" v-model="true_checkboxVal"></v-checkbox>
-                              </div>
-                              <div v-else>
-                                <v-checkbox color="primary" style="margin-top:-6px; margin-bottom:-35px;" v-model="hpoTermsAdded_temp" :value="term"></v-checkbox>
-                              </div> -->
-
-                              <!-- <v-checkbox color="primary" style="margin-top:-6px; margin-bottom:-35px;" v-model="hpoTermsAdded_temp" :value="term"></v-checkbox> -->
                             </div>
                             <div class="col-md-11 close-margin-left-20">
                               <strong> {{ term.DiseaseName }}</strong>
@@ -1568,32 +1559,6 @@ export default {
     GtrTermsAdded_temp(){
     },
     basicModeTermsAdded_temp(){
-      if(!this.reReviewClinicalNote){
-        // var hpoPhenotypes = [];
-        // this.HpoReviewTerms.map(item => {
-        //   hpoPhenotypes.push(item.phenotype); 
-        // })
-        // this.GtrTermsAdded_temp = [];
-        // this.phenolyzerTermsAdded_temp = [];
-        // this.hpoTermsAdded_temp = [];
-        // 
-        // this.basicModeTermsAdded_temp.map(term => {
-        //   this.GtrTermsAdded_temp.push(term.reviewTerms_gtr[0]);
-        //   this.phenolyzerTermsAdded_temp.push(term.reviewTerms_phenolyzer[0])
-        //   var item = term.DiseaseName.replace(/-/g, " ").replace(/\s\s+/g, ' ').toLowerCase().replace("disease", "").replace("syndrome", "").trim();
-        //   hpoPhenotypes.map(hpo => {
-        //     if(hpo.toLowerCase().includes(item) || item.toLowerCase().includes(hpo)){
-        //       var idx = hpoPhenotypes.indexOf(hpo);
-        //       this.hpoTermsAdded_temp.push(this.HpoReviewTerms[idx])
-        //       term.HpoTermSelected = this.HpoReviewTerms[idx]
-        //     }
-        //   })
-        //   //Also attach the selected terms from each tool to the basicModeTermsAdded_temp
-        //   term.GtrTermSelected = term.reviewTerms_gtr[0];
-        //   term.PhenolyzerTermSelected = term.reviewTerms_phenolyzer[0];
-        // })
-      }
-      console.log("this.basicModeTermsAdded_temp", this.basicModeTermsAdded_temp);
     }
 
   },
@@ -2018,7 +1983,6 @@ export default {
     },
 
     extract(){
-      console.log("extract");
       this.gtr_terms_expansion_panel = [];
       this.phenolyzer_terms_expansion_panel = [];
       this.WorkflowStepsflag = false;
@@ -2050,7 +2014,6 @@ export default {
               this.extractedTerms.push(x);
             }
           })
-          console.log(this.extractedTerms);
 
           this.HpoReviewTerms = [];
           this.fetchHpoTerm();
@@ -2092,7 +2055,6 @@ export default {
             })
 
           })
-          console.log("this.phenolyzerReviewTerms", this.phenolyzerReviewTerms)
 
           this.loadingDialog = false;
           // this.clinical_note_text.unshift({
@@ -2302,7 +2264,6 @@ export default {
       }
     },
     openReviewDialogForExtractedTerms(){
-      console.log("this.extractedTermsObj", this.extractedTermsObj);
       this.GtrReviewTerms = this.extractedTermsObj;
       this.GtrReviewTerms.map(item => {
         item.reviewTerms_gtr = [];
@@ -2332,6 +2293,11 @@ export default {
         )
 
       })
+      
+      if(this.extractedTermsObj.length < 5){
+        this.basicModeTermsAdded_temp = this.extractedTermsObj;
+      }
+
       setTimeout(()=>{
           this.termsReviewDialog = true;
           this.termsReviewDialogPage = 0;
@@ -2466,7 +2432,6 @@ export default {
         this.BasicMode_SearchTermArray.push(term.DiseaseName);
       })
       
-      console.log("this.BasicMode_SearchTermArray", this.BasicMode_SearchTermArray);
 
       this.GtrTermsAdded_temp = [];
       this.phenolyzerTermsAdded_temp = [];
