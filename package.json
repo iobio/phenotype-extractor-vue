@@ -26,6 +26,7 @@
     "iobio-api-client": "^0.6.0",
     "jquery": "^3.2.1",
     "material-design-icons-iconfont": "^5.0.1",
+    "natural": "^2.1.5",
     "uiv": "^0.34.2",
     "v-clipboard": "^2.2.2",
     "venn.js": "^0.2.20",
