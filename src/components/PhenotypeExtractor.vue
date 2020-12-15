@@ -1322,7 +1322,6 @@ import SkeletonLoadersSearchTerms from './SkeletonLoadersSearchTerms.vue';
 import VennDiagram from './VennDiagram.vue'
 import Model from '../models/Model';
 var model = new Model();
-var natural = require('natural');
 
 
 export default {
@@ -1353,7 +1352,8 @@ export default {
     }, 
     geneToDelete: {
       type: String
-    }
+    },
+    textNotesLandingPage: null,
   },
   data: () => ({
     search: '',
@@ -1559,6 +1559,12 @@ export default {
     GtrTermsAdded_temp(){
     },
     basicModeTermsAdded_temp(){
+    },
+    textNotesLandingPage(){
+      console.log("textNotesLandingPage", this.textNotesLandingPage);
+      if(this.textNotesLandingPage.length) {
+        this.extract();
+      }
     }
 
   },

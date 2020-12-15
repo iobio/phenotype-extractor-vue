@@ -29,7 +29,8 @@
         :demoTextNote="analysis.payload.demoTextNote"
         @VennDiagramData="VennDiagramData($event)"
         :geneToDelete="geneToDelete"
-        @new_term_searched="new_term_searched($event)">
+        @new_term_searched="new_term_searched($event)"
+        :textNotesLandingPage="textNotesLandingPage">
       </PhenotypeExtractor>
 
       <!-- <Phenotypes
@@ -99,6 +100,8 @@ export default {
     selectedGenesForGeneSet: [],
     genesTop: 20,
     newTermSearched: false,
+    textNotes: '',
+    showLandingPage: true,
     // phenotypes: [
     //   [
     //     {
@@ -184,6 +187,10 @@ export default {
     },
     new_term_searched(flag){
       this.newTermSearched = flag;
+    },
+    extract(){
+      this.showLandingPage = false;
+      this.textNotesLandingPage = this.textNotes;
     }
   }
 };
@@ -191,7 +198,7 @@ export default {
 
 
 <style lang="sass" scoped>
-  #single_entry_input
+  #single_entry_input_landing
     width: 600px
     height: 49px
     margin-top: 7px
@@ -200,7 +207,7 @@ export default {
     border-radius: 0
     font-size: 16px
 
-  #single_entry_input_textarea
+  #single_entry_input_landing_textarea
     width: 600px
     margin-top: 7px
 
