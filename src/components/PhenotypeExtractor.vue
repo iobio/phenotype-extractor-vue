@@ -1561,7 +1561,6 @@ export default {
     basicModeTermsAdded_temp(){
     },
     textNotesLandingPage(){
-      console.log("textNotesLandingPage", this.textNotesLandingPage);
       if(this.textNotesLandingPage.length) {
         this.extract();
       }
