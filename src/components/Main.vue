@@ -8,6 +8,48 @@
     <div style="height: 180px">
 
     </div>
+    <!-- <div class="row" v-if="showLandingPage">
+      <div class="col-md-12">
+        <v-text-field
+          outlined
+          type="text"
+          id="single_entry_input_landing"
+          ref="single_entry_input_landing"
+          v-model="textNotes"
+          autocomplete="off"
+          v-show="textNotes.length<45"
+          placeholder="Enter Phenotypes or Type (paste) Clinical Note"
+        >
+          <template v-slot:append-outer>
+            <v-btn style="margin-top:-10px" large :disabled="textNotes.length<4" @click="extract" color="primary">Submit</v-btn>
+          </template>
+        </v-text-field>
+        <typeahead
+          v-model="search"
+          hide-details="false"
+          target="#single_entry_input_landing"
+          force-select :force-clear="true"
+          :data="DiseaseNames"
+          :limit="parseInt(100)"
+          v-on:keydown="EnterForSearch"
+          v-on:input="mouseSelect"
+          item-key="DiseaseName"/>
+        <v-textarea
+          v-show="textNotes.length>=45"
+          v-model="textNotes"
+          ref="single_entry_input_landing_textarea"
+          id="single_entry_input_landing_textarea"
+          name="input-7-4"
+          rows="2"
+          outlined
+        >
+        <template v-slot:append-outer>
+          <v-btn style="margin-top:-10px" large :disabled="textNotes.length<4" @click="extract" color="primary">Submit</v-btn>
+        </template>
+      </v-textarea>
+      </div>
+    </div> -->
+
       Phenotype Extractor
       <!-- <PhenotypeExtractor
         :phenotypes="phenotypes"

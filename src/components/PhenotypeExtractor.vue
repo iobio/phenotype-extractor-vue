@@ -1562,6 +1562,7 @@ export default {
     },
     textNotesLandingPage(){
       if(this.textNotesLandingPage.length) {
+        this.textNotes = this.textNotesLandingPage
         this.extract();
       }
     }
