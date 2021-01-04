@@ -6,6 +6,8 @@
     >
 
     <div style="height: 180px">
+      <!-- <v-btn color="primary" @click="exportGenes">Export</v-btn> -->
+      <!-- <v-btn color="primary" @click="exportGenesFlag=true">Export</v-btn> -->
 
     </div>
     <!-- <div class="row" v-if="showLandingPage">
@@ -94,7 +96,9 @@
         :selectedGenesForGeneSet="analysis.payload.selectedGenesForGeneSet"
         @update_genes_top="update_genes_top($event)"
         :topGenesSelectedCount="analysis.payload.genesTop"
-        :newTermSearched="newTermSearched">
+        :newTermSearched="newTermSearched"
+        @exported_genes="exported_genes($event)"
+        :exportGenesFlag="exportGenesFlag">
       </GeneList>
     </v-layout>
   </v-container>
@@ -144,6 +148,8 @@ export default {
     newTermSearched: false,
     textNotes: '',
     showLandingPage: true,
+    textNotesLandingPage: '',
+    exportGenesFlag: false,
     // phenotypes: [
     //   [
     //     {
@@ -233,6 +239,14 @@ export default {
     extract(){
       this.showLandingPage = false;
       this.textNotesLandingPage = this.textNotes;
+    },
+    exportGenes() {
+      bus.$emit("exportGenes")
+    },
+    exported_genes(obj){
+      console.log("selected", obj.selected);
+      console.log("summaryGenes", obj.summary);
+      this.exportGenesFlag = obj.exportFlag;
     }
   }
 };

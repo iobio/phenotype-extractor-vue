@@ -419,6 +419,7 @@ export default {
     newTermSearched: {
       type: Boolean
     },
+    exportGenesFlag: null,
   },
   watch:{
     selectedGenesFlag(){
@@ -444,6 +445,11 @@ export default {
     autocompleteGenes(){
     },
     selectedGenesForGeneSet(){
+    },
+    exportGenesFlag(){
+      if(this.exportGenesFlag){
+        this.exportGenesForDownload();
+      }
     }
   },
   data () {
@@ -536,6 +542,10 @@ export default {
     bus.$on("hide-gene-table-skeleton-loaders", ()=>{
       this.geneTableLoading = false;
     });
+    
+    bus.$on("exportGenes", () => {
+      this.exportGenesForDownload();
+    })
 
     this.phenotypes = this.phenotypeTerms;
 
@@ -791,6 +801,13 @@ export default {
         this.warningDialog = true;
         setTimeout(() => (this.warningDialog = false), 4000);
       }
+    },
+    exportGenesForDownload(){
+      this.$emit("exported_genes", {
+        summary: this.summaryGenes,
+        selected: this.selected,
+        exportFlag: false,
+      })
     }
 
   }
