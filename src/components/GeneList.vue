@@ -420,6 +420,9 @@ export default {
       type: Boolean
     },
     exportGenesFlag: null,
+    gtrResourceUsed: null,
+    hpoResourceUsed: null,
+    PhenolyzerResourceUsed: null,
   },
   watch:{
     selectedGenesFlag(){
@@ -456,22 +459,22 @@ export default {
     return {
       search: '',
       summaryGenes: [],
+      genes:[],
       headers: [
         // { text: '', align: 'left', value: 'padding_space', sortable: false, width: '1%'},
         { text: '', align: 'left', value: 'inGeneSet', sortable: false, width: '2%'},
         { text: 'Gene', align: 'left', value: 'name', sortable: false, width: '1%'},
-        { text: '', align: 'left', value: 'associatedGenesBadge', sortable: false, width: '7%'},
-        { text: 'GTR', value: 'searchTermsGtr', sortable: false, width: '18%'},
-        { text: 'Phenolyzer', value: 'searchTermsPhenolyzer', sortable: false, width: '18%'},
-        { text: 'HPO', value: 'searchTermHpo', sortable: false, width: '18%'},
-        { text: 'Added', value: 'isImportedGenes', sortable: false, width: '8%'},
+        { text: '', align: 'left', value: 'associatedGenesBadge', sortable: false, width: this.getColumnWidth('gtr_associated')},
+        { text: this.getColumnName('gtr'), value: 'searchTermsGtr', sortable: false, width: this.getColumnWidth('gtr')},
+        { text: this.getColumnName('phenolyzer'), value: 'searchTermsPhenolyzer', sortable: false, width: this.getColumnWidth('phenolyzer')},
+        { text: this.getColumnName('hpo'), value: 'searchTermHpo', sortable: false, width: this.getColumnWidth('hpo')},
+        { text: this.getColumnName('added'), value: 'isImportedGenes', sortable: false, width: this.getColumnWidth('added')},
         { text: '', align: 'right', value: 'info', sortable: false, width: '1%'},
         { text: '', align: 'left', value: 'actions', sortable: false, width: '1%'},
       ],
       clickedGene: {},
       ncbiSummary: null,
       dialog: false,
-      genes:[],
       copyPasteGenes: false,
       knownGenesData: null,
       genesToApply: null,
@@ -808,7 +811,86 @@ export default {
         selected: this.selected,
         exportFlag: false,
       })
-    }
+    },
+    getColumnWidth(resource){
+      if(resource === 'gtr') {
+        if(this.gtrResourceUsed){
+          return '18%';
+        }
+        else{
+          return '1%';
+        }
+      }
+      if(resource === 'gtr_associated') {
+        if(this.gtrResourceUsed){
+          return '7%';
+        }
+        else{
+          return '1%';
+        }
+      }
+      if(resource === 'phenolyzer') {
+        if(this.PhenolyzerResourceUsed){
+          return '18%';
+        }
+        else{
+          return '1%';
+        }
+      }
+      if(resource === 'hpo') {
+        if(this.hpoResourceUsed){
+          return '18%';
+        }
+        else{
+          return '1%';
+        }
+      }
+      if(resource === 'added') {
+        console.log("genes", this.genes);
+        if(this.genes){
+          return '8%';
+        }
+        else{
+          return '';
+        }
+      }
+    },
+    getColumnName(resource){
+      if(resource === 'gtr') {
+        if(this.gtrResourceUsed){
+          return 'GTR';
+        }
+        else{
+          return '';
+        }
+      }
+      if(resource === 'phenolyzer') {
+        console.log("Here!");
+        if(this.PhenolyzerResourceUsed){
+          return 'Phenolyzer';
+        }
+        else{
+          return '';
+        }
+      }
+      if(resource === 'hpo') {
+        if(this.hpoResourceUsed){
+          return 'HPO';
+        }
+        else{
+          return '';
+        }
+      }
+      if(resource === 'added') {
+        console.log("Here for genes");
+        if(this.genes){
+          return 'Added';
+        }
+        else{
+          return '';
+        }
+      }
+    },
 
   }
 

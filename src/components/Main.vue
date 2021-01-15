@@ -98,7 +98,10 @@
         :topGenesSelectedCount="analysis.payload.genesTop"
         :newTermSearched="newTermSearched"
         @exported_genes="exported_genes($event)"
-        :exportGenesFlag="exportGenesFlag">
+        :exportGenesFlag="exportGenesFlag"
+        :gtrResourceUsed="gtrResourceUsed"
+        :hpoResourceUsed="hpoResourceUsed"
+        :PhenolyzerResourceUsed="PhenolyzerResourceUsed">
       </GeneList>
     </v-layout>
   </v-container>
@@ -150,6 +153,9 @@ export default {
     showLandingPage: true,
     textNotesLandingPage: '',
     exportGenesFlag: false,
+    gtrResourceUsed: false,
+    hpoResourceUsed: false,
+    PhenolyzerResourceUsed: false,
     // phenotypes: [
     //   [
     //     {
@@ -195,10 +201,28 @@ export default {
       this.AddedGenes = genes;
     },
     PhenolyzerGeneList(genes){
+      if(genes.length === 0){
+        this.PhenolyzerResourceUsed = false;
+      }
+      else if(genes.length > 1){
+        this.PhenolyzerResourceUsed = true;
+      }
     },
     HpoGeneList(genes){
+      if(genes.length === 0){
+        this.PhenolyzerResourceUsed = false;
+      }
+      else if(genes.length > 1){
+        this.PhenolyzerResourceUsed = true;
+      }
     },
     GtrGeneList(genes){
+      if(genes.length === 0){
+        this.PhenolyzerResourceUsed = false;
+      }
+      else if(genes.length > 1){
+        this.PhenolyzerResourceUsed = true;
+      }
     },
     UpdateListOnDelete(genes){
       this.summaryGeneList = genes;
