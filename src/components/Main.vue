@@ -210,18 +210,18 @@ export default {
     },
     HpoGeneList(genes){
       if(genes.length === 0){
-        this.PhenolyzerResourceUsed = false;
+        this.hpoResourceUsed = false;
       }
       else if(genes.length > 1){
-        this.PhenolyzerResourceUsed = true;
+        this.hpoResourceUsed = true;
       }
     },
     GtrGeneList(genes){
       if(genes.length === 0){
-        this.PhenolyzerResourceUsed = false;
+        this.gtrResourceUsed = false;
       }
       else if(genes.length > 1){
-        this.PhenolyzerResourceUsed = true;
+        this.gtrResourceUsed = true;
       }
     },
     UpdateListOnDelete(genes){

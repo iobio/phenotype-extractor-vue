@@ -435,6 +435,7 @@ export default {
     },
     summaryGeneList(){
       // this.summaryGenes = this.summaryGeneList;
+      this.organizeTableHeaders();
       this.organizeGeneList();
     },
     phenotypeTerms(){
@@ -460,18 +461,7 @@ export default {
       search: '',
       summaryGenes: [],
       genes:[],
-      headers: [
-        // { text: '', align: 'left', value: 'padding_space', sortable: false, width: '1%'},
-        { text: '', align: 'left', value: 'inGeneSet', sortable: false, width: '2%'},
-        { text: 'Gene', align: 'left', value: 'name', sortable: false, width: '1%'},
-        { text: '', align: 'left', value: 'associatedGenesBadge', sortable: false, width: this.getColumnWidth('gtr_associated')},
-        { text: this.getColumnName('gtr'), value: 'searchTermsGtr', sortable: false, width: this.getColumnWidth('gtr')},
-        { text: this.getColumnName('phenolyzer'), value: 'searchTermsPhenolyzer', sortable: false, width: this.getColumnWidth('phenolyzer')},
-        { text: this.getColumnName('hpo'), value: 'searchTermHpo', sortable: false, width: this.getColumnWidth('hpo')},
-        { text: this.getColumnName('added'), value: 'isImportedGenes', sortable: false, width: this.getColumnWidth('added')},
-        { text: '', align: 'right', value: 'info', sortable: false, width: '1%'},
-        { text: '', align: 'left', value: 'actions', sortable: false, width: '1%'},
-      ],
+      headers: this.organizeTableHeaders(),
       clickedGene: {},
       ncbiSummary: null,
       dialog: false,
@@ -504,6 +494,8 @@ export default {
   },
 
   mounted(){
+    // organize table headers on mount
+    this.organizeTableHeaders();
     this.knownGenesData = knownGenes;
     // this.summaryGenes = this.summaryGeneList;
     
@@ -846,12 +838,11 @@ export default {
         }
       }
       if(resource === 'added') {
-        console.log("genes", this.genes);
-        if(this.genes){
+        if(this.genes !== undefined && this.genes.length > 0){
           return '8%';
         }
         else{
-          return '';
+          return '1%';
         }
       }
     },
@@ -864,8 +855,7 @@ export default {
           return '';
         }
       }
-      if(resource === 'phenolyzer') {
-        console.log("Here!");
+      else if(resource === 'phenolyzer') {
         if(this.PhenolyzerResourceUsed){
           return 'Phenolyzer';
         }
@@ -873,7 +863,7 @@ export default {
           return '';
         }
       }
-      if(resource === 'hpo') {
+      else if(resource === 'hpo') {
         if(this.hpoResourceUsed){
           return 'HPO';
         }
@@ -881,16 +871,37 @@ export default {
           return '';
         }
       }
-      if(resource === 'added') {
-        console.log("Here for genes");
-        if(this.genes){
+      else if(resource === 'added') {
+        if(this.genes !== undefined && this.genes.length > 0){
           return 'Added';
         }
         else{
           return '';
         }
       }
+      else if(resource === 'gene') {
+        if(this.summaryGenes !== undefined && this.summaryGenes.length > 0){
+          return 'Gene';
+        }
+        else{
+          return '';
+        }
+      }
     },
+    organizeTableHeaders() {
+      this.headers = [
+        // { text: '', align: 'left', value: 'padding_space', sortable: false, width: '1%'},
+        { text: '', align: 'left', value: 'inGeneSet', sortable: false, width: '2%'},
+        { text: this.getColumnName('gene'), align: 'left', value: 'name', sortable: false, width: '1%'},
+        { text: '', align: 'left', value: 'associatedGenesBadge', sortable: false, width: this.getColumnWidth('gtr_associated')},
+        { text: this.getColumnName('gtr'), value: 'searchTermsGtr', sortable: false, width: this.getColumnWidth('gtr')},
+        { text: this.getColumnName('phenolyzer'), value: 'searchTermsPhenolyzer', sortable: false, width: this.getColumnWidth('phenolyzer')},
+        { text: this.getColumnName('hpo'), value: 'searchTermHpo', sortable: false, width: this.getColumnWidth('hpo')},
+        { text: this.getColumnName('added'), value: 'isImportedGenes', sortable: false, width: this.getColumnWidth('added')},
+        { text: '', align: 'right', value: 'info', sortable: false, width: '1%'},
+        { text: '', align: 'left', value: 'actions', sortable: false, width: '1%'},
+      ]
+    }
 
   }
 
