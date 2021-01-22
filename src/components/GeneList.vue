@@ -490,6 +490,7 @@ export default {
       warningDialog: false,
       autocompleteGenes: [],
       autoCompleteGenesInputSearch: '',
+      addedGenesFlag: false,
     }
   },
 
@@ -560,6 +561,7 @@ export default {
     },
 
     onApplyGenes(){
+      this.addedGenesFlag = true;
       this.copyPasteGenes = false;
       this.dupGenes= "",
       this.byPassedGenes = "";
@@ -600,6 +602,9 @@ export default {
       this.$emit("importedGenes", this.genes);
       this.genesToApply = null;
       this.autocompleteGenes = [];
+      setTimeout(()=>{
+        this.addedGenesFlag = false;
+      }, 5000)
     },
 
     checkBeforeDeleteGene(gene){
@@ -719,6 +724,9 @@ export default {
         // }
         // check to call this function only when a new term is searched.
         if(this.newTermSearched){
+          this.selectTopGenes(this.genesTop);
+        }
+        else if(this.addedGenesFlag){
           this.selectTopGenes(this.genesTop);
         }
       }
