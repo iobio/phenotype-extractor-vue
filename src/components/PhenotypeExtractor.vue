@@ -1525,6 +1525,7 @@ export default {
     showInfoThatStepIsComplete: false, 
     showGeneListReadySnackbar: false,
     basicTermsSelectionMode: true,
+    hpoIds: [],
   }),
   watch: {
     textNotes(){
@@ -1997,13 +1998,15 @@ export default {
       this.extractedTerms = [];
       this.extractedTermsObj = [];
       this.demoTermsFlag = false;
+      this.hpoIds = [];
       // fetch(`http://nv-dev-new.iobio.io/phenotype-extractor/?notes=${this.textNotes}`)
       // fetch(`http://dev.backend.iobio.io:9003/phenotypeExtractor?notes=${this.textNotes}`)
+      // fetch(`https://backend.iobio.io/phenotypeExtractor?notes=${this.textNotes}`)
       fetch(`https://backend.iobio.io/phenotypeExtractor?notes=${this.textNotes}`)
         .then(res => res.text())
         .then(text => {
           // console.log("text", text);
-          var res = text.replace('JaroWinkler', '"JaroWinkler"').replace('fuzzyResults', '"fuzzyResults"').replace('LevenshteinResults', '"LevenshteinResults"').replace(/'/g, '"');
+          var res = text.replace('JaroWinkler', '"JaroWinkler"').replace('fuzzyResults', '"fuzzyResults"').replace('LevenshteinResults', '"LevenshteinResults"').replace('hpoIds', '"hpoIds"').replace(/'/g, '"');
           var data;
           try {
             data = JSON.parse(res);
@@ -2013,6 +2016,7 @@ export default {
             this.loadingDialog = false;
           }
           // var data = JSON.parse(res);
+          this.hpoIds = data.hpoIds;
           this.LevenshteinResults = data.LevenshteinResults;
           data.LevenshteinResults.map(x=>{
             x = x.trim()
