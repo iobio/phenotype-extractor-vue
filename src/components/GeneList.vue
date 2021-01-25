@@ -423,6 +423,7 @@ export default {
     gtrResourceUsed: null,
     hpoResourceUsed: null,
     PhenolyzerResourceUsed: null,
+    mosaic_gene_set: null,
   },
   watch:{
     selectedGenesFlag(){
@@ -453,6 +454,12 @@ export default {
     exportGenesFlag(){
       if(this.exportGenesFlag){
         this.exportGenesForDownload();
+      }
+    },
+    mosaic_gene_set(){
+      if(this.mosaic_gene_set.length){
+        this.genesToApply = this.mosaic_gene_set;
+        this.onApplyGenes();
       }
     }
   },

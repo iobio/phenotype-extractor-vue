@@ -8,6 +8,7 @@
     <div style="height: 180px">
       <!-- <v-btn color="primary" @click="exportGenes">Export</v-btn> -->
       <!-- <v-btn color="primary" @click="exportGenesFlag=true">Export</v-btn> -->
+      <!-- <v-btn @click="sendMosaicGeneSet" color="primary">Mosaic gene set</v-btn> -->
 
     </div>
     <!-- <div class="row" v-if="showLandingPage">
@@ -101,7 +102,8 @@
         :exportGenesFlag="exportGenesFlag"
         :gtrResourceUsed="gtrResourceUsed"
         :hpoResourceUsed="hpoResourceUsed"
-        :PhenolyzerResourceUsed="PhenolyzerResourceUsed">
+        :PhenolyzerResourceUsed="PhenolyzerResourceUsed"
+        :mosaic_gene_set="mosaic_gene_set">
       </GeneList>
     </v-layout>
   </v-container>
@@ -156,6 +158,7 @@ export default {
     gtrResourceUsed: false,
     hpoResourceUsed: false,
     PhenolyzerResourceUsed: false,
+    mosaic_gene_set: ""
     // phenotypes: [
     //   [
     //     {
@@ -271,6 +274,9 @@ export default {
       console.log("selected", obj.selected);
       console.log("summaryGenes", obj.summary);
       this.exportGenesFlag = obj.exportFlag;
+    },
+    sendMosaicGeneSet(){
+      this.mosaic_gene_set = "TRPV4,SH3TC2,SBF2,RAB7A,PRX,PMP22,PLEKHG5,NEFL,NDRG1,MPZ,MFN2,MED25,LRSAM1,LITAF,HSPB1,HK1,GDAP1,FGD4,EGR2,DNM2"
     }
   }
 };
