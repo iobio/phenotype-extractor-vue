@@ -405,7 +405,7 @@
             v-model="termsReviewDialog"
             scrollable
             persistent :overlay="false"
-            max-width="1000px"
+            max-width="1350px"
             transition="dialog-transition"
           >
             <v-card>
@@ -482,7 +482,7 @@
               <v-card-title>
                 <v-card-text>
                   <div class="mt-1 mb-1" v-if="extractedTermsObj.length && termsReviewDialogPage===0">
-                    <span> 
+                    <!-- <span> 
                       <v-alert
                         dense
                         text dismissible
@@ -492,10 +492,10 @@
                       The phenotypes selected from this list will be used to match and select the closest terms in the "GTR", "Phenolyzer" and "HPO" tool. It is very likely that each of the phenotype listed below has additional variants in each tool or synonyms in HPO tool. You can refine or make additional selections in advance mode by clicking the "Refine terms" button below or from the "Review page".
                       </v-alert>
 
-                    </span>
+                    </span> -->
 
                     <div v-if="basicModeTermsAdded_temp.length>0">
-                      <small  style="color: rgba(0, 0, 0, 0.6); font-size: 0.875rem" class="font-weight-thin">Terms Selected: </small>
+                      <!-- <small  style="color: rgba(0, 0, 0, 0.6); font-size: 0.875rem" class="font-weight-thin">Terms Selected: </small>
                       <span v-for="(term, i) in basicModeTermsAdded" v-if="basicModeTermsAdded.length">
                       </span>
                       <span v-for="(term, i) in basicModeTermsAdded_temp" v-if="basicModeTermsAdded_temp.length">
@@ -505,7 +505,7 @@
                         <v-chip v-else class="mr-2 mb-1" small outlined color="primary" close :key="i" @click:close="removeReviewTerms(term, i, 'BasicMode')">
                           {{ term.DiseaseName }}
                         </v-chip>
-                      </span>
+                      </span> -->
                       <br>
                       <span v-if="basicModeTermsAdded.length +  basicModeTermsAdded_temp.length >= 5"> 
                         <v-chip
@@ -583,7 +583,62 @@
 
                 <!-- Basic mode review terms table -->
                 <div v-if="extractedTermsObj.length && termsReviewDialogPage===0">
-                  <v-expansion-panels multiple popout focusable :readonly="readonly">
+                  
+                  <div class="row">
+                    <div class="col-md-4">
+                      <strong>GTR Terms:</strong>
+                      <div v-for="(term,i) in basicModeTermsAdded_temp">
+                        <div v-for="(item, ind) in term.reviewTerms_gtr">
+                          <div v-if="ind===0" class="row">
+                            <div class="col-md-1">
+                              <v-checkbox color="primary" style="margin-top:-6px; margin-bottom:-35px;" v-model="GtrTermsAdded_temp" :value="item"></v-checkbox>
+                            </div>
+                            <div class="col-md-11">
+                              {{ item.DiseaseName }}
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-md-4">
+                      <strong>Phenolyzer Terms:</strong>
+                      <div v-for="(term,i) in basicModeTermsAdded_temp">
+                        <div v-for="(item, ind) in term.reviewTerms_phenolyzer">
+                          <div v-if="ind===0" class="row">
+                            <div class="col-md-1">
+                              <v-checkbox color="primary" style="margin-top:-6px; margin-bottom:-35px;" v-model="phenolyzerTermsAdded_temp" :value="item"></v-checkbox>
+                            </div>
+                            <div class="col-md-11">
+                              {{ item.value }}
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <br>
+                      <hr>
+
+                    </div>
+                    <div class="col-md-4">
+                      <div v-for="(term, i) in HpoReviewTerms" :key="i">
+                        <div>
+                          <div class="row">
+                            <div class="col-md-1">
+                                <v-checkbox color="primary" style="margin-top:-6px; margin-bottom:-35px;" v-model="hpoTermsAdded_temp" :value="term"></v-checkbox>
+                            </div>
+                            <div class="col-md-11">
+                              <strong> {{ term.HPO_Data }}</strong>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                  </div>
+                  
+
+                  
+                  
+                  <!-- <v-expansion-panels multiple popout focusable :readonly="readonly">
                     <v-expansion-panel v-for="(term, i) in extractedTermsObj" :key="i">
                       <v-expansion-panel-header expand-icon="none">
                         <div>
@@ -594,7 +649,6 @@
                               </div>
                               <div v-else>
                                 <v-checkbox color="primary" style="margin-top:-6px; margin-bottom:-35px;" v-model="basicModeTermsAdded_temp" :value="term"></v-checkbox>
-                                <!-- <v-checkbox color="primary" style="margin-top:-6px; margin-bottom:-35px;" v-model="hpoTermsAdded_temp" :value="term"></v-checkbox> -->
                               </div>
                             </div>
                             <div class="col-md-11 close-margin-left-20">
@@ -604,7 +658,19 @@
                         </div>
                       </v-expansion-panel-header>
                     </v-expansion-panel>
-                  </v-expansion-panels>
+                  </v-expansion-panels> -->
+
+                  <!-- Phenolyzer Terms: 
+                  <div v-for="(term,i) in phenolyzerTermsAdded_temp">
+                    <p>{{ term.value }}</p>
+                  </div>
+                  <br>
+                  HPO Terms: 
+                  <div v-for="(term,i) in hpoTermsAdded_temp">
+                    <p>{{ term.HPO_Data }}</p>
+                  </div>
+                  <br> -->
+
                 </div>
                 <div v-if="!extractedTermsObj.length && termsReviewDialogPage===0">
                   <v-card-text>
@@ -1055,6 +1121,8 @@
 
                   <v-btn v-if="termsReviewDialogPage!==4 && termsReviewDialogPage!==0" :disabled="termsReviewDialogPage>3" small color="primary" @click="navigateTermsReviewDialog('next', 'termsReviewDialogContainer-target')"> Next <v-icon>arrow_right</v-icon></v-btn>
                   <v-btn v-if="termsReviewDialogPage===4" small color="primary" @click="selectReviewTerms"> Next <v-icon>arrow_right</v-icon></v-btn>
+                  <v-btn v-if="termsReviewDialogPage===0" small color="primary" @click="selectReviewTerms"> Generate gene list <v-icon>arrow_right</v-icon></v-btn>
+
                 </div>
                 <v-spacer></v-spacer>
                 <!-- <v-btn :disabled="termsReviewDialogPage!==4" small color="primary" @click="selectReviewTerms">Done</v-btn> -->
@@ -1558,6 +1626,8 @@ export default {
       }
     },
     GtrTermsAdded_temp(){
+      console.log("GtrTermsAdded_temp changing");
+      console.log("this.GtrTermsAdded_temp", this.GtrTermsAdded_temp);
     },
     basicModeTermsAdded_temp(){
     },
@@ -2016,7 +2086,9 @@ export default {
             this.loadingDialog = false;
           }
           // var data = JSON.parse(res);
+          console.log("data", data);
           this.hpoIds = data.hpoIds;
+          console.log("this.hpoIds",this.hpoIds);
           this.LevenshteinResults = data.LevenshteinResults;
           data.LevenshteinResults.map(x=>{
             x = x.trim()
@@ -2306,6 +2378,21 @@ export default {
       
       if(this.extractedTermsObj.length < 5){
         this.basicModeTermsAdded_temp = this.extractedTermsObj;
+        console.log("setting timeout");
+        setTimeout(()=> {
+          this.setTermsSelectedFromBasicModeForReview()
+          console.log("After time out");
+        }, 10000)
+      }
+      else {
+        // this.basicModeTermsAdded_temp = this.extractedTermsObj.slice(0, 5)
+        this.basicModeTermsAdded_temp = this.extractedTermsObj;
+
+        setTimeout(()=> {
+          this.setTermsSelectedFromBasicModeForReview()
+          console.log("After time out");
+        }, 10000)
+
       }
 
       setTimeout(()=>{
@@ -3483,7 +3570,8 @@ export default {
           this.termsReviewDialogPage = this.termsReviewDialogPage + 1; 
         }
         else if(navigation==='review'){
-          this.setTermsSelectedFromBasicModeForReview();
+          // this.setTermsSelectedFromBasicModeForReview();
+          
           this.termsReviewDialogPage = 4; 
         }
         this.gtr_terms_expansion_panel = []; //ensures that all expansion panels are closed when opened for edit 
@@ -3494,6 +3582,7 @@ export default {
       },
       
       setTermsSelectedFromBasicModeForReview(){
+        console.log("basicModeTermsAdded_temp in setTermsSelectedFromBasicModeForReview", this.basicModeTermsAdded_temp);
         var hpoPhenotypes = [];
         this.HpoReviewTerms.map(item => {
           hpoPhenotypes.push(item.phenotype); 
@@ -3502,9 +3591,11 @@ export default {
         this.phenolyzerTermsAdded_temp = [];
         this.hpoTermsAdded_temp = [];
         
-        this.basicModeTermsAdded_temp.map(term => {
-          this.GtrTermsAdded_temp.push(term.reviewTerms_gtr[0]);
-          this.phenolyzerTermsAdded_temp.push(term.reviewTerms_phenolyzer[0])
+        this.basicModeTermsAdded_temp.map((term, index) => {
+          if(index <= 4) {
+            this.GtrTermsAdded_temp.push(term.reviewTerms_gtr[0]);
+            this.phenolyzerTermsAdded_temp.push(term.reviewTerms_phenolyzer[0])
+          }
           var item = term.DiseaseName.replace(/-/g, " ").replace(/\s\s+/g, ' ').toLowerCase().replace("disease", "").replace("syndrome", "").trim();
           hpoPhenotypes.map(hpo => {
             if(hpo.toLowerCase().includes(item) || item.toLowerCase().includes(hpo)){
@@ -3517,6 +3608,10 @@ export default {
           term.GtrTermSelected = term.reviewTerms_gtr[0];
           term.PhenolyzerTermSelected = term.reviewTerms_phenolyzer[0];
         })
+        console.log("this.GtrTermsAdded_temp in setTermsSelectedFromBasicModeForReview", this.GtrTermsAdded_temp);
+      },
+      selectedGtrTermsForReview(){
+        
       }
 
   }
