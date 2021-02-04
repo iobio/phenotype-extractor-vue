@@ -587,6 +587,10 @@
                   <div class="row">
                     <div class="col-md-4">
                       <strong>GTR Terms:</strong>
+                      <br>
+                      Selected terms: {{ GtrTermsAdded_temp.length }}
+                      <br>
+                      Potential terms: {{ potentialGtrTermsCount }}
                       <div v-for="(term,i) in extractedTermsObj">
                         <div v-for="(item, ind) in term.reviewTerms_gtr">
                           <div v-if="ind===0" class="row">
@@ -607,6 +611,10 @@
                     </div>
                     <div class="col-md-4">
                       <strong>Phenolyzer Terms:</strong>
+                      <br>
+                      Selected terms: {{ phenolyzerTermsAdded_temp.length }}
+                      <br>
+                      Potential terms: {{ potentialPhenolyzerTermsCount }}
                       <div v-for="(term,i) in extractedTermsObj">
                         <div v-for="(item, ind) in term.reviewTerms_phenolyzer">
                           <div v-if="ind===0" class="row">
@@ -629,6 +637,11 @@
 
                     </div>
                     <div class="col-md-4">
+                      <strong>HPO Terms:</strong>
+                      <br>
+                      Selected terms: {{ hpoTermsAdded_temp.length }}
+                      <br>
+                      Potential terms: {{ HpoReviewTerms.length }}
                       <div v-for="(term, i) in HpoReviewTerms" :key="i">
                         <div>
                           <div class="row">
@@ -1609,6 +1622,8 @@ export default {
     showGeneListReadySnackbar: false,
     basicTermsSelectionMode: true,
     hpoIds: [],
+    potentialGtrTermsCount: 0,
+    potentialPhenolyzerTermsCount: 0,
   }),
   watch: {
     textNotes(){
@@ -3605,6 +3620,7 @@ export default {
       setTermsSelectedFromBasicModeForReview(){
         console.log("basicModeTermsAdded_temp in setTermsSelectedFromBasicModeForReview", this.basicModeTermsAdded_temp);
         var hpoPhenotypes = [];
+        var hpoAddedTerms = [];
         this.HpoReviewTerms.map(item => {
           hpoPhenotypes.push(item.phenotype); 
         })
@@ -3621,8 +3637,11 @@ export default {
           hpoPhenotypes.map(hpo => {
             if(hpo.toLowerCase().includes(item) || item.toLowerCase().includes(hpo)){
               var idx = hpoPhenotypes.indexOf(hpo);
-              this.hpoTermsAdded_temp.push(this.HpoReviewTerms[idx])
-              term.HpoTermSelected = this.HpoReviewTerms[idx]
+              if(!hpoAddedTerms.includes(this.HpoReviewTerms[idx].phenotype)){
+                this.hpoTermsAdded_temp.push(this.HpoReviewTerms[idx])
+                term.HpoTermSelected = this.HpoReviewTerms[idx]
+                hpoAddedTerms.push(this.HpoReviewTerms[idx].phenotype)
+              }
             }
           })
           //Also attach the selected terms from each tool to the basicModeTermsAdded_temp
@@ -3630,6 +3649,14 @@ export default {
           term.PhenolyzerTermSelected = term.reviewTerms_phenolyzer[0];
         })
         console.log("this.GtrTermsAdded_temp in setTermsSelectedFromBasicModeForReview", this.GtrTermsAdded_temp);
+        this.potentialGtrTermsCount = 0; 
+        this.potentialPhenolyzerTermsCount = 0;
+        this.basicModeTermsAdded_temp.map( term => {
+          this.potentialGtrTermsCount = this.potentialGtrTermsCount + term.reviewTerms_gtr.length; 
+          this.potentialPhenolyzerTermsCount = this.potentialPhenolyzerTermsCount + term.reviewTerms_phenolyzer.length
+        })
+        console.log("potentialGtrTermsCount", this.potentialGtrTermsCount);
+        console.log("phenolyzerTermsCount", this.potentialPhenolyzerTermsCount);
       },
       selectedGtrTermsForReview(){
         
