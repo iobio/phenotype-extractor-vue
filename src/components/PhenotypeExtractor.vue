@@ -3588,7 +3588,7 @@ export default {
         }
         else if(navigation==='next'){
           if(this.termsReviewDialogPage === 0){
-            this.setTermsSelectedFromBasicModeForReview();
+            // this.setTermsSelectedFromBasicModeForReview();
             this.basicTermsSelectionMode = false;
           }
           this.termsReviewDialogPage = this.termsReviewDialogPage + 1; 
