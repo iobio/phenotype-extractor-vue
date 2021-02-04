@@ -2262,6 +2262,16 @@ export default {
           })
     },
     openReviewDialog(){
+      this.gtr_terms_expansion_panel = [];
+      this.phenolyzer_terms_expansion_panel = [];
+      this.WorkflowStepsflag = false;
+      this.LevenshteinResults = [];
+      this.loadingDialog = true;
+      this.extractedTerms = [];
+      this.extractedTermsObj = [];
+      this.demoTermsFlag = false;
+      this.hpoIds = [];
+
       this.textNotes = this.search.DiseaseName.toLowerCase();
       // this.LevenshteinResults.push(this.search.DiseaseName)
       this.LevenshteinResults = [this.search.DiseaseName]; //when input is selected from typeahead
@@ -2270,11 +2280,27 @@ export default {
       //check this for saving phenotype data
       // var allPhenotypes = [this.GtrTermsAdded, this.phenolyzerTermsAdded, this.hpoTermsAdded, this.clinical_note_text];
       // this.$emit('saveSearchedPhenotypes', allPhenotypes)
+      console.log("this.LevenshteinResults", this.LevenshteinResults);
+      this.LevenshteinResults.map(x=>{
+        x = x.trim()
+        if(!this.extractedTerms.includes(x)){
+          this.extractedTerms.push(x);
+        }
+      })
+      console.log("this.extractedTerms", this.extractedTerms);
+      
+      this.extractedTerms.map(x=>{
+        this.extractedTermsObj.push({
+          DiseaseName: x,
+        })
+      })
+
 
       this.GtrReviewTerms = [];
       this.termsExpansionPanel = ['true'];
       this.demoTermsFlag = false;
-      this.GtrReviewTerms.push(this.search);
+      // this.GtrReviewTerms.push(this.search);
+      this.GtrReviewTerms = this.extractedTermsObj;
       this.GtrReviewTerms[0].reviewTerms_gtr = []
 
       var term = this.search.DiseaseName.toLowerCase();
@@ -2294,7 +2320,9 @@ export default {
       })
 
       this.phenolyzerReviewTerms = [];
-      this.phenolyzerReviewTerms.push(this.search);
+      // this.phenolyzerReviewTerms.push(this.search);
+      this.phenolyzerReviewTerms = this.extractedTermsObj;
+
       this.phenolyzerReviewTerms[0].reviewTerms_phenolyzer = []
 
       var str = this.search.DiseaseName.replace(/-/g, " ").replace(/\s\s+/g, ' ').toLowerCase();
@@ -2326,11 +2354,17 @@ export default {
       })
       this.fetchHpoTerm();
 
+      this.basicModeTermsAdded_temp = this.extractedTermsObj;
+      console.log("this.extractedTermsObj", this.extractedTermsObj);
+      setTimeout(()=> {
+        this.setTermsSelectedFromBasicModeForReview()
+        console.log("After time out");
+      }, 4000)
 
 
     setTimeout(()=>{
         this.termsReviewDialog = true;
-        this.termsReviewDialogPage = 1;
+        this.termsReviewDialogPage = 0;
         this.loadingDialog = false;
     },500)
 
@@ -2364,7 +2398,10 @@ export default {
         // this.checkBeforeAddTerm();
         setTimeout(()=>{
           // this.checkBeforeAddTerm();
-          this.openReviewDialog();
+          this.textNotes = this.search.DiseaseName.toLowerCase();
+          this.LevenshteinResults = [this.search.DiseaseName]; //when input is selected from typeahead
+          this.extract();
+          // this.openReviewDialog();
         }, 1000)
       }
     },
@@ -2373,7 +2410,10 @@ export default {
         this.WorkflowStepsflag = false;
         setTimeout(()=>{
           // this.checkBeforeAddTerm();
-          this.openReviewDialog();
+          this.textNotes = this.search.DiseaseName.toLowerCase();
+          this.LevenshteinResults = [this.search.DiseaseName]; //when input is selected from typeahead
+          this.extract();
+          // this.openReviewDialog();
         }, 1000)
       }
     },
