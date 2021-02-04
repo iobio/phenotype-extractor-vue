@@ -591,7 +591,13 @@
                         <div v-for="(item, ind) in term.reviewTerms_gtr">
                           <div v-if="ind===0" class="row">
                             <div class="col-md-1">
-                              <v-checkbox color="primary" style="margin-top:-6px; margin-bottom:-35px;" v-model="GtrTermsAdded_temp" :value="item"></v-checkbox>
+                              <div v-if="reReviewClinicalNote && note_reselect_gtrTerms_Array.includes(item.DiseaseName)">
+                                <v-checkbox color="primary" @click="removeSelectedTermFromReview(term, i, 'BasicMode')" style="margin-top:-6px; margin-bottom:-35px;" v-model="true_checkboxVal"></v-checkbox>
+                              </div>
+                              <div v-else>
+                                <v-checkbox color="primary" style="margin-top:-6px; margin-bottom:-35px;" v-model="GtrTermsAdded_temp" :value="item"></v-checkbox>
+                              </div>
+                              <!-- <v-checkbox color="primary" style="margin-top:-6px; margin-bottom:-35px;" v-model="GtrTermsAdded_temp" :value="item"></v-checkbox> -->
                             </div>
                             <div class="col-md-11">
                               {{ item.DiseaseName }}
@@ -606,7 +612,13 @@
                         <div v-for="(item, ind) in term.reviewTerms_phenolyzer">
                           <div v-if="ind===0" class="row">
                             <div class="col-md-1">
-                              <v-checkbox color="primary" style="margin-top:-6px; margin-bottom:-35px;" v-model="phenolyzerTermsAdded_temp" :value="item"></v-checkbox>
+                              <div v-if="reReviewClinicalNote && note_reselect_phenolyzerTerms_Array.includes(item.value)">
+                                <v-checkbox color="primary" @click="removeSelectedTermFromReview(term, i, 'BasicMode')" style="margin-top:-6px; margin-bottom:-35px;" v-model="true_checkboxVal"></v-checkbox>
+                              </div>
+                              <div v-else>
+                                <v-checkbox color="primary" style="margin-top:-6px; margin-bottom:-35px;" v-model="phenolyzerTermsAdded_temp" :value="item"></v-checkbox>
+                              </div>
+                              <!-- <v-checkbox color="primary" style="margin-top:-6px; margin-bottom:-35px;" v-model="phenolyzerTermsAdded_temp" :value="item"></v-checkbox> -->
                             </div>
                             <div class="col-md-11">
                               {{ item.value }}
@@ -623,7 +635,13 @@
                         <div>
                           <div class="row">
                             <div class="col-md-1">
+                              <div v-if="reReviewClinicalNote && note_reselect_hpoTerms_Array.includes(term.HPO_Data)">
+                                <v-checkbox color="primary" @click="removeSelectedTermFromReview(term, i, 'BasicMode')" style="margin-top:-6px; margin-bottom:-35px;" v-model="true_checkboxVal"></v-checkbox>
+                              </div>
+                              <div v-else>
                                 <v-checkbox color="primary" style="margin-top:-6px; margin-bottom:-35px;" v-model="hpoTermsAdded_temp" :value="term"></v-checkbox>
+                              </div>
+                                <!-- <v-checkbox color="primary" style="margin-top:-6px; margin-bottom:-35px;" v-model="hpoTermsAdded_temp" :value="term"></v-checkbox> -->
                             </div>
                             <div class="col-md-11">
                               <strong> {{ term.HPO_Data }}</strong>
@@ -1950,6 +1968,7 @@ export default {
     }, 
     
     reSelectClinicalNote(note, idx){
+      console.log("called reSelectClinicalNote");
       this.reReviewClinicalNote = true;
       this.textNotes = note;
       this.note_rereview_idx = idx;
@@ -1970,6 +1989,7 @@ export default {
         }
       })
       this.GtrTermsAdded_temp = gtr_terms_for_temp;
+      console.log(" GtrTermsAdded_temp in reSelectClinicalNote", this.GtrTermsAdded_temp);
 
       note_details.phenolyzer_terms.map(x => {
         if(this.Phenolyzer_searchTermArray.includes(x.value)){
@@ -2376,24 +2396,28 @@ export default {
 
       })
       
-      if(this.extractedTermsObj.length < 5){
-        this.basicModeTermsAdded_temp = this.extractedTermsObj;
-        console.log("setting timeout");
-        setTimeout(()=> {
-          this.setTermsSelectedFromBasicModeForReview()
-          console.log("After time out");
-        }, 10000)
-      }
-      else {
-        // this.basicModeTermsAdded_temp = this.extractedTermsObj.slice(0, 5)
-        this.basicModeTermsAdded_temp = this.extractedTermsObj;
+      if(!this.reReviewClinicalNote) { 
+        console.log("this is not a review");
+        if(this.extractedTermsObj.length < 5){
+          this.basicModeTermsAdded_temp = this.extractedTermsObj;
+          console.log("setting timeout");
+          setTimeout(()=> {
+            this.setTermsSelectedFromBasicModeForReview()
+            console.log("After time out");
+          }, 4000)
+        }
+        else {
+          // this.basicModeTermsAdded_temp = this.extractedTermsObj.slice(0, 5)
+          this.basicModeTermsAdded_temp = this.extractedTermsObj;
 
-        setTimeout(()=> {
-          this.setTermsSelectedFromBasicModeForReview()
-          console.log("After time out");
-        }, 10000)
+          setTimeout(()=> {
+            this.setTermsSelectedFromBasicModeForReview()
+            console.log("After time out");
+          }, 4000)
 
+        }
       }
+
 
       setTimeout(()=>{
           this.termsReviewDialog = true;
