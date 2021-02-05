@@ -638,7 +638,6 @@
                           </div>
                         </div>
                         <br>
-                        <hr>
 
                       </div>
                       <div class="col-md-4">
@@ -3671,6 +3670,7 @@ export default {
       setTermsSelectedFromBasicModeForReview(){
         var hpoPhenotypes = [];
         var hpoAddedTerms = [];
+        console.log("this.HpoReviewTerms, hpoNumber, phenotype", this.HpoReviewTerms);
         this.HpoReviewTerms.map(item => {
           hpoPhenotypes.push(item.phenotype); 
         })
