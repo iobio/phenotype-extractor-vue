@@ -3673,7 +3673,6 @@ export default {
       setTermsSelectedFromBasicModeForReview(){
         var hpoPhenotypes = [];
         var hpoAddedTerms = [];
-        console.log("this.HpoReviewTerms, hpoNumber, phenotype", this.HpoReviewTerms);
         this.HpoReviewTerms.map(item => {
           hpoPhenotypes.push(item.phenotype); 
         })
