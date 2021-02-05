@@ -300,7 +300,8 @@
                       </tr>
                       <tr v-if="!showSearchTermsLoader" v-for="(term, i) in Hpo_searchTermsObj" :key="i">
                         <td class="i-text--left i-terms-spacing"  @mouseover="mouseOverHpoTerm(term.HPO_Data)" @mouseleave="hovered_hpo_term=''">
-                          <span>{{ term.HPO_Data }}</span>
+                          <!-- <span>{{ term.HPO_Data }}</span> -->
+                          <span>{{ term.phenotype }} <br> [{{ term.hpoNumber }}]</span>
                         </td>
                         <td class="i-icon--spacing" @mouseover="mouseOverHpoTerm(term.HPO_Data)" @mouseleave="hovered_hpo_term=''">
                           <span v-if="hovered_hpo_term === term.HPO_Data">
@@ -1310,7 +1311,10 @@
                         </thead>
                         <tbody>
                           <tr v-for="(term, i) in Hpo_searchTermsObj" :key="i">
-                            <td>{{ term.HPO_Data }}</td>
+                            <!-- <td>{{ term.HPO_Data }}</td> -->
+                            <td>
+                              {{ term.phenotype }} <br> [{{ term.hpoNumber }}]
+                            </td>
                             <td >
                               <span v-if="term.hpoSearchStatus==='Searching'">
                                 <v-progress-circular

@@ -912,7 +912,7 @@ export default {
     organizeTableHeaders() {
       this.headers = [
         // { text: '', align: 'left', value: 'padding_space', sortable: false, width: '1%'},
-        { text: '', align: 'left', value: 'inGeneSet', sortable: false, width: '2%'},
+        { text: '', align: 'left', value: 'inGeneSet', sortable: false, width: '1%'},
         { text: 'Number', align: 'left', value: 'idx', sortable: false, width: '2%'},
         { text: this.getColumnName('gene'), align: 'left', value: 'name', sortable: false, width: '1%'},
         { text: '', align: 'left', value: 'associatedGenesBadge', sortable: false, width: this.getColumnWidth('gtr_associated')},
