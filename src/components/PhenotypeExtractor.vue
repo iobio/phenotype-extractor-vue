@@ -405,14 +405,14 @@
             v-model="termsReviewDialog"
             scrollable
             persistent :overlay="false"
-            max-width="1350px"
+            max-width="1150px"
             transition="dialog-transition"
           >
             <v-card>
               <v-card-title class="grey lighten-2">
                 <div v-if="termsReviewDialogPage===0">
                   <div class="pa-2">
-                    <v-icon color="primary darken-1">sort</v-icon> Select phenotypes
+                    <v-icon color="primary darken-1">sort</v-icon> Review Gene List Generation
                   </div>
                 </div>
                 <div v-if="termsReviewDialogPage===1">
@@ -479,10 +479,12 @@
                   </div>
                 </v-card-text>
               </v-card-title>
-              <v-card-title>
+              <!-- <v-card-title>
                 <v-card-text>
+                  <div v-if="extractedTermsObj.length && termsReviewDialogPage===0">
+
                   <div class="mt-1 mb-1" v-if="extractedTermsObj.length && termsReviewDialogPage===0">
-                    <!-- <span> 
+                    <span> 
                       <v-alert
                         dense
                         text dismissible
@@ -492,10 +494,10 @@
                       The phenotypes selected from this list will be used to match and select the closest terms in the "GTR", "Phenolyzer" and "HPO" tool. It is very likely that each of the phenotype listed below has additional variants in each tool or synonyms in HPO tool. You can refine or make additional selections in advance mode by clicking the "Refine terms" button below or from the "Review page".
                       </v-alert>
 
-                    </span> -->
+                    </span>
 
                     <div v-if="basicModeTermsAdded_temp.length>0">
-                      <!-- <small  style="color: rgba(0, 0, 0, 0.6); font-size: 0.875rem" class="font-weight-thin">Terms Selected: </small>
+                      <small  style="color: rgba(0, 0, 0, 0.6); font-size: 0.875rem" class="font-weight-thin">Terms Selected: </small>
                       <span v-for="(term, i) in basicModeTermsAdded" v-if="basicModeTermsAdded.length">
                       </span>
                       <span v-for="(term, i) in basicModeTermsAdded_temp" v-if="basicModeTermsAdded_temp.length">
@@ -505,7 +507,7 @@
                         <v-chip v-else class="mr-2 mb-1" small outlined color="primary" close :key="i" @click:close="removeReviewTerms(term, i, 'BasicMode')">
                           {{ term.DiseaseName }}
                         </v-chip>
-                      </span> -->
+                      </span>
                       <br>
                       <span v-if="basicModeTermsAdded.length +  basicModeTermsAdded_temp.length >= 5"> 
                         <v-chip
@@ -577,90 +579,92 @@
                     </div>
                   </div>
                 </v-card-text>
-              </v-card-title>
+              </v-card-title> -->
               <v-card-text style="height: 430px;" id="termsReviewDialogContainer-target">
 
 
                 <!-- Basic mode review terms table -->
                 <div v-if="extractedTermsObj.length && termsReviewDialogPage===0">
                   
-                  <div class="row">
-                    <div class="col-md-4">
-                      <strong>GTR Terms:</strong>
-                      <br>
-                      Selected terms: {{ GtrTermsAdded_temp.length }}
-                      <br>
-                      Potential terms: {{ potentialGtrTermsCount }}
-                      <div v-for="(term,i) in extractedTermsObj">
-                        <div v-for="(item, ind) in term.reviewTerms_gtr">
-                          <div v-if="ind===0" class="row">
-                            <div class="col-md-1">
-                              <div v-if="reReviewClinicalNote && note_reselect_gtrTerms_Array.includes(item.DiseaseName)">
-                                <v-checkbox color="primary" @click="removeSelectedTermFromReview(term, i, 'GTR')" style="margin-top:-6px; margin-bottom:-35px;" v-model="true_checkboxVal"></v-checkbox>
+                  <div class="container">
+                    <div class="row">
+                      <div class="col-md-4">
+                        <TermsModalHeading
+                          heading="GTR Terms"
+                          :selectedTerms="GtrTermsAdded_temp.length"
+                          :potentialTerms="potentialGtrTermsCount">
+                        </TermsModalHeading>
+                        <div v-for="(term,i) in extractedTermsObj">
+                          <div v-for="(item, ind) in term.reviewTerms_gtr">
+                            <div v-if="ind===0" class="row">
+                              <div class="col-md-1">
+                                <div v-if="reReviewClinicalNote && note_reselect_gtrTerms_Array.includes(item.DiseaseName)">
+                                  <v-checkbox color="primary" @click="removeSelectedTermFromReview(term, i, 'GTR')" style="margin-top:-6px; margin-bottom:-35px;" v-model="true_checkboxVal"></v-checkbox>
+                                </div>
+                                <div v-else>
+                                  <v-checkbox color="primary" style="margin-top:-6px; margin-bottom:-35px;" v-model="GtrTermsAdded_temp" :value="item"></v-checkbox>
+                                </div>
                               </div>
-                              <div v-else>
-                                <v-checkbox color="primary" style="margin-top:-6px; margin-bottom:-35px;" v-model="GtrTermsAdded_temp" :value="item"></v-checkbox>
+                              <div class="col-md-11">
+                                {{ item.DiseaseName }}
                               </div>
-                            </div>
-                            <div class="col-md-11">
-                              {{ item.DiseaseName }}
                             </div>
                           </div>
                         </div>
                       </div>
-                    </div>
-                    <div class="col-md-4">
-                      <strong>Phenolyzer Terms:</strong>
-                      <br>
-                      Selected terms: {{ phenolyzerTermsAdded_temp.length }}
-                      <br>
-                      Potential terms: {{ potentialPhenolyzerTermsCount }}
-                      <div v-for="(term,i) in extractedTermsObj">
-                        <div v-for="(item, ind) in term.reviewTerms_phenolyzer">
-                          <div v-if="ind===0" class="row">
-                            <div class="col-md-1">
-                              <div v-if="reReviewClinicalNote && note_reselect_phenolyzerTerms_Array.includes(item.value)">
-                                <v-checkbox color="primary" @click="removeSelectedTermFromReview(term, i, 'phenolyzer')" style="margin-top:-6px; margin-bottom:-35px;" v-model="true_checkboxVal"></v-checkbox>
+                      <div class="col-md-4">
+                        <TermsModalHeading
+                          heading="Phenolyzer Terms"
+                          :selectedTerms="phenolyzerTermsAdded_temp.length"
+                          :potentialTerms="potentialPhenolyzerTermsCount">
+                        </TermsModalHeading>
+                        <div v-for="(term,i) in extractedTermsObj">
+                          <div v-for="(item, ind) in term.reviewTerms_phenolyzer">
+                            <div v-if="ind===0" class="row">
+                              <div class="col-md-1">
+                                <div v-if="reReviewClinicalNote && note_reselect_phenolyzerTerms_Array.includes(item.value)">
+                                  <v-checkbox color="primary" @click="removeSelectedTermFromReview(term, i, 'phenolyzer')" style="margin-top:-6px; margin-bottom:-35px;" v-model="true_checkboxVal"></v-checkbox>
+                                </div>
+                                <div v-else>
+                                  <v-checkbox color="primary" style="margin-top:-6px; margin-bottom:-35px;" v-model="phenolyzerTermsAdded_temp" :value="item"></v-checkbox>
+                                </div>
                               </div>
-                              <div v-else>
-                                <v-checkbox color="primary" style="margin-top:-6px; margin-bottom:-35px;" v-model="phenolyzerTermsAdded_temp" :value="item"></v-checkbox>
+                              <div class="col-md-11">
+                                {{ item.value }}
                               </div>
                             </div>
-                            <div class="col-md-11">
-                              {{ item.value }}
+                          </div>
+                        </div>
+                        <br>
+                        <hr>
+
+                      </div>
+                      <div class="col-md-4">
+                        <TermsModalHeading
+                          heading="HPO Terms"
+                          :selectedTerms="hpoTermsAdded_temp.length"
+                          :potentialTerms="HpoReviewTerms.length">
+                        </TermsModalHeading>
+                        <div v-for="(term, i) in HpoReviewTerms" :key="i">
+                          <div>
+                            <div class="row">
+                              <div class="col-md-1">
+                                <div v-if="reReviewClinicalNote && note_reselect_hpoTerms_Array.includes(term.HPO_Data)">
+                                  <v-checkbox color="primary" @click="removeSelectedTermFromReview(term, i, 'HPO')" style="margin-top:-6px; margin-bottom:-35px;" v-model="true_checkboxVal"></v-checkbox>
+                                </div>
+                                <div v-else>
+                                  <v-checkbox color="primary" style="margin-top:-6px; margin-bottom:-35px;" v-model="hpoTermsAdded_temp" :value="term"></v-checkbox>
+                                </div>
+                              </div>
+                              <div class="col-md-11">
+                                <strong> {{ term.HPO_Data }}</strong>
+                              </div>
                             </div>
                           </div>
                         </div>
                       </div>
-                      <br>
-                      <hr>
 
                     </div>
-                    <div class="col-md-4">
-                      <strong>HPO Terms:</strong>
-                      <br>
-                      Selected terms: {{ hpoTermsAdded_temp.length }}
-                      <br>
-                      Potential terms: {{ HpoReviewTerms.length }}
-                      <div v-for="(term, i) in HpoReviewTerms" :key="i">
-                        <div>
-                          <div class="row">
-                            <div class="col-md-1">
-                              <div v-if="reReviewClinicalNote && note_reselect_hpoTerms_Array.includes(term.HPO_Data)">
-                                <v-checkbox color="primary" @click="removeSelectedTermFromReview(term, i, 'HPO')" style="margin-top:-6px; margin-bottom:-35px;" v-model="true_checkboxVal"></v-checkbox>
-                              </div>
-                              <div v-else>
-                                <v-checkbox color="primary" style="margin-top:-6px; margin-bottom:-35px;" v-model="hpoTermsAdded_temp" :value="term"></v-checkbox>
-                              </div>
-                            </div>
-                            <div class="col-md-11">
-                              <strong> {{ term.HPO_Data }}</strong>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-
                   </div>
                   
 
@@ -1133,9 +1137,15 @@
 
 
               </v-card-text>
-              <v-card-actions class="mb-3">
-                <div class="flex-grow-1"></div>
+              <v-card-actions class="mb-3 ml-5 mr-5 mt-3">
+                <div class=""></div>
+                <v-btn v-if="termsReviewDialogPage===0" @click="navigateTermsReviewDialog('next', 'termsReviewDialogContainer-target')" small style="letter-spacing:0.03em" color="primary" text>
+                  Refine selected terms
+                  <v-icon small class="ml-1">info</v-icon>
+                </v-btn>
                 <!-- <v-btn small color="blue darken-1" round outlined dark text @click="termsReviewDialog=false">Skip</v-btn> -->
+                <v-spacer></v-spacer>
+                <!-- <v-btn :disabled="termsReviewDialogPage!==4" small color="primary" @click="selectReviewTerms">Done</v-btn> -->
                 <div v-if="editReviewSelectedTerms">
                   <v-btn small color="blue-grey lighten-5" @click="clearEditMode('cancel')"> Cancel</v-btn>
                   <v-btn small color="primary" @click="clearEditMode('save')"> Save </v-btn>
@@ -1144,16 +1154,16 @@
                   <!-- <v-btn :disabled="termsReviewDialogPage===1" small color="primary" @click="navigateTermsReviewDialog('back', '#termsReviewDialogContainer-target')"><v-icon>arrow_left</v-icon> Back</v-btn> -->
                   <v-btn v-if="termsReviewDialogPage!==0" :disabled="termsReviewDialogPage===0" small color="primary" @click="navigateTermsReviewDialog('back', '#termsReviewDialogContainer-target')"><v-icon>arrow_left</v-icon> Back</v-btn>
 
-                  <v-btn v-if="termsReviewDialogPage===0" small color="#ffaf4d" style="color:white" @click="navigateTermsReviewDialog('next', 'termsReviewDialogContainer-target')"><v-icon class="mr-1">filter_list</v-icon>  <strong>Refine terms</strong> </v-btn>
-                  <v-btn v-if="termsReviewDialogPage===0" small color="primary" @click="navigateTermsReviewDialog('review', 'termsReviewDialogContainer-target')"> Review <v-icon>arrow_right</v-icon></v-btn>
+                  <!-- <v-btn v-if="termsReviewDialogPage===0" small color="#ffaf4d" style="color:white" @click="navigateTermsReviewDialog('next', 'termsReviewDialogContainer-target')"><v-icon class="mr-1">filter_list</v-icon>  <strong>Refine terms</strong> </v-btn> -->
+                  <!-- <v-btn v-if="termsReviewDialogPage===0" small color="primary" @click="navigateTermsReviewDialog('review', 'termsReviewDialogContainer-target')"> Review <v-icon>arrow_right</v-icon></v-btn> -->
 
                   <v-btn v-if="termsReviewDialogPage!==4 && termsReviewDialogPage!==0" :disabled="termsReviewDialogPage>3" small color="primary" @click="navigateTermsReviewDialog('next', 'termsReviewDialogContainer-target')"> Next <v-icon>arrow_right</v-icon></v-btn>
                   <v-btn v-if="termsReviewDialogPage===4" small color="primary" @click="selectReviewTerms"> Next <v-icon>arrow_right</v-icon></v-btn>
-                  <v-btn v-if="termsReviewDialogPage===0" small color="primary" @click="selectReviewTerms"> Generate gene list <v-icon>arrow_right</v-icon></v-btn>
+                  <v-btn v-if="termsReviewDialogPage===0" small tile outlined color="primary" @click="selectReviewTerms"> Cancel</v-btn>
+                  <v-btn v-if="termsReviewDialogPage===0" small tile color="primary" @click="selectReviewTerms"> Generate gene list</v-btn>
 
                 </div>
-                <v-spacer></v-spacer>
-                <!-- <v-btn :disabled="termsReviewDialogPage!==4" small color="primary" @click="selectReviewTerms">Done</v-btn> -->
+
               </v-card-actions>
             </v-card>
           </v-dialog>
@@ -1417,6 +1427,7 @@ import HpoSearch from './HpoSearch.vue';
 import SkeletonLoadersSearchTerms from './SkeletonLoadersSearchTerms.vue';
 import VennDiagram from './VennDiagram.vue'
 import Model from '../models/Model';
+import TermsModalHeading from '../partials/TermsModalHeading.vue'
 var model = new Model();
 
 
@@ -1428,7 +1439,8 @@ export default {
     PhenolyzerSearch,
     HpoSearch,
     SkeletonLoadersSearchTerms,
-    VennDiagram
+    VennDiagram,
+    TermsModalHeading
   },
   props: {
     phenotypes: {
@@ -2170,7 +2182,7 @@ export default {
 
           })
 
-          this.loadingDialog = false;
+          // this.loadingDialog = false;
           // this.clinical_note_text.unshift({
           //   "note": this.textNotes
           // });
