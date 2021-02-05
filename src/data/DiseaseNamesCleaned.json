@@ -23629,10 +23629,6 @@
    "ConceptID": "C0003492"
  },
  {
-   "DiseaseName": "Coarctation of aorta",
-   "ConceptID": "C1848852"
- },
- {
    "DiseaseName": "Coarctation of the descending aortic arch",
    "ConceptID": "C4022958"
  },
@@ -25369,16 +25365,8 @@
    "ConceptID": "CN220536"
  },
  {
-   "DiseaseName": "Congenital diaphragamitc hernia",
-   "ConceptID": "CN239569"
- },
- {
    "DiseaseName": "Congenital diaphragmatic hernia",
    "ConceptID": "C0235833"
- },
- {
-   "DiseaseName": "Congenital diaphragmatic hernia",
-   "ConceptID": "C1840644"
  },
  {
    "DiseaseName": "Congenital diarrhea",

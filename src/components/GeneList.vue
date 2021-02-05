@@ -148,6 +148,12 @@
               :items-per-page="15"
               class="gene-list-table"
             >
+            <template v-slot:item.idx="{ item }">
+              <span style="margin-left: 15px" @mouseover="mouseOverGeneName(item.name)" @mouseleave="mouseLeaveGeneName">
+                {{ item.idx + 1 }}
+              </span>
+            </template>
+
               <template v-slot:item.name="{ item }">
                 <!-- <span v-if="hoveredGeneName===item.name" class="ml-1" > -->
                 <span style="width:240px" @mouseover="mouseOverGeneName(item.name)" @mouseleave="mouseLeaveGeneName">
@@ -907,6 +913,7 @@ export default {
       this.headers = [
         // { text: '', align: 'left', value: 'padding_space', sortable: false, width: '1%'},
         { text: '', align: 'left', value: 'inGeneSet', sortable: false, width: '2%'},
+        { text: 'Number', align: 'left', value: 'idx', sortable: false, width: '2%'},
         { text: this.getColumnName('gene'), align: 'left', value: 'name', sortable: false, width: '1%'},
         { text: '', align: 'left', value: 'associatedGenesBadge', sortable: false, width: this.getColumnWidth('gtr_associated')},
         { text: this.getColumnName('gtr'), value: 'searchTermsGtr', sortable: false, width: this.getColumnWidth('gtr')},
