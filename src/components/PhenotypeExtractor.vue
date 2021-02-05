@@ -658,7 +658,10 @@
                                 </div>
                               </div>
                               <div class="col-md-11">
-                                {{ term.HPO_Data }}
+                                <div style="margin-top:-5px">
+                                  {{ term.phenotype }} <br> [{{ term.hpoNumber }}]
+                                </div>
+                                <!-- {{ term.HPO_Data }} -->
                               </div>
                             </div>
                           </div>
