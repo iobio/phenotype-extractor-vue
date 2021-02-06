@@ -472,11 +472,14 @@
               <v-card-title style="margin-bottom:-40px">
                 <v-card-text>
                   <div>
-                    <blockquote class="blockquote i-text--left" style="font-size: 13px; word-break: break-word; padding: 16px 24px 16px 24px">
-                      <div style="word-wrap: break-word">
-                        {{ textNotes }}
-                      </div>
-                    </blockquote>
+                    <span class="mb-4" style="color:rgb(135 135 135)"> Clinical Note</span>
+                    
+                    <div style="word-wrap: break-word; padding-top: 8px;font-size: 0.975rem;">
+                      {{ textNotes }}
+                    </div>
+                    <hr>
+                    <!-- <blockquote class="blockquote i-text--left" style="font-size: 13px; word-break: break-word; padding: 16px 24px 16px 24px">
+                    </blockquote> -->
                   </div>
                 </v-card-text>
               </v-card-title>
