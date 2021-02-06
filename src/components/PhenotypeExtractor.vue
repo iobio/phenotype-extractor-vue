@@ -2138,6 +2138,7 @@ export default {
           // console.log("data", data);
           this.hpoIds = data.hpoIds;
           // console.log("this.hpoIds",this.hpoIds);
+          // console.log("data.LevenshteinResults", data.LevenshteinResults);
           this.LevenshteinResults = data.LevenshteinResults;
           data.LevenshteinResults.map(x=>{
             x = x.trim()
@@ -2271,10 +2272,13 @@ export default {
       })
     },
     setPhenolyzerTerms(str){
-      return fetch(`https://backend.iobio.io/hpo/hot/lookup/?term=${str}`)
+      if(str === 'gross motor delays'){
+        str = 'gross motor delay'
+      }
+      var encodedStr = encodeURIComponent(str.trim());
+      return fetch(`https://backend.iobio.io/hpo/hot/lookup/?term=${encodedStr}`)
           .then(response => response.json())
           .then(data => {
-            // console.log(data);
             return data
           })
     },
@@ -2467,14 +2471,14 @@ export default {
           this.basicModeTermsAdded_temp = this.extractedTermsObj;
           setTimeout(()=> {
             this.setTermsSelectedFromBasicModeForReview()
-          }, 4000)
+          }, 2000)
         }
         else {
           // this.basicModeTermsAdded_temp = this.extractedTermsObj.slice(0, 5)
           this.basicModeTermsAdded_temp = this.extractedTermsObj;
           setTimeout(()=> {
             this.setTermsSelectedFromBasicModeForReview()
-          }, 8000)
+          }, 2000)
 
         }
       }
@@ -3685,20 +3689,27 @@ export default {
         this.hpoTermsAdded_temp = [];
         
         this.basicModeTermsAdded_temp.map((term, index) => {
-          if(index <= 6) {
+          // if(index <= 6) {
             this.GtrTermsAdded_temp.push(term.reviewTerms_gtr[0]);
             this.phenolyzerTermsAdded_temp.push(term.reviewTerms_phenolyzer[0])
-          }
+          // }
           var item = term.DiseaseName.replace(/-/g, " ").replace(/\s\s+/g, ' ').toLowerCase().replace("disease", "").replace("syndrome", "").trim();
           hpoPhenotypes.map(hpo => {
-            if(hpo.toLowerCase().includes(item) || item.toLowerCase().includes(hpo)){
-              var idx = hpoPhenotypes.indexOf(hpo);
-              if(!hpoAddedTerms.includes(this.HpoReviewTerms[idx].phenotype)){
-                this.hpoTermsAdded_temp.push(this.HpoReviewTerms[idx])
-                term.HpoTermSelected = this.HpoReviewTerms[idx]
-                hpoAddedTerms.push(this.HpoReviewTerms[idx].phenotype)
-              }
+            var idx = hpoPhenotypes.indexOf(hpo);
+            if(!hpoAddedTerms.includes(this.HpoReviewTerms[idx].phenotype)){
+              this.hpoTermsAdded_temp.push(this.HpoReviewTerms[idx])
+              term.HpoTermSelected = this.HpoReviewTerms[idx]
+              hpoAddedTerms.push(this.HpoReviewTerms[idx].phenotype)
             }
+
+            // if(hpo.toLowerCase().includes(item) || item.toLowerCase().includes(hpo)){
+            //   var idx = hpoPhenotypes.indexOf(hpo);
+            //   if(!hpoAddedTerms.includes(this.HpoReviewTerms[idx].phenotype)){
+            //     this.hpoTermsAdded_temp.push(this.HpoReviewTerms[idx])
+            //     term.HpoTermSelected = this.HpoReviewTerms[idx]
+            //     hpoAddedTerms.push(this.HpoReviewTerms[idx].phenotype)
+            //   }
+            // }
           })
           //Also attach the selected terms from each tool to the basicModeTermsAdded_temp
           term.GtrTermSelected = term.reviewTerms_gtr[0];

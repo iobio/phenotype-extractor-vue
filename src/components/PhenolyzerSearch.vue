@@ -169,6 +169,7 @@ export default {
         geneModel.newSearchCall(searchTerm);
         geneModel.searchPhenolyzerGenes(searchTerm, this.phenolyzerTop,
         (status, error)=> {
+          // console.log("status", status);
           if (status == 'done') {
             if (geneModel.phenolyzerGenes.length == 0) {
               self.phenolyzerStatus = "no genes found."

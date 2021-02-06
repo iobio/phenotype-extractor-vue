@@ -670,8 +670,8 @@ export default class GeneModel {
   searchPhenolyzerGenes(phenotypeTerm, selectGeneCount, statusCallback) {
     var me = this;
     var phenolyzerServer = "https://services.backend.iobio.io/phenolyzer/";
-    var url = phenolyzerServer + '?term=' + phenotypeTerm;
-    // console.log("url is ", url)
+    var url = phenolyzerServer + '?term=' + encodeURIComponent(phenotypeTerm.trim());
+    
     var status = null;
 
     // if(!this.preventSearchCB){
