@@ -2474,14 +2474,14 @@ export default {
           this.basicModeTermsAdded_temp = this.extractedTermsObj;
           setTimeout(()=> {
             this.setTermsSelectedFromBasicModeForReview()
-          }, 2000)
+          }, 4000)
         }
         else {
           // this.basicModeTermsAdded_temp = this.extractedTermsObj.slice(0, 5)
           this.basicModeTermsAdded_temp = this.extractedTermsObj;
           setTimeout(()=> {
             this.setTermsSelectedFromBasicModeForReview()
-          }, 2000)
+          }, 8500)
 
         }
       }
