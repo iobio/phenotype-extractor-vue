@@ -155,7 +155,7 @@
                           <span v-else-if="term.gtrSearchStatus==='NoGenes'">
                             <v-tooltip bottom>
                               <template v-slot:activator="{ on }">
-                                <v-icon color="red" v-on="on">error</v-icon>
+                                <v-icon color="gray" style="font-size:20px" v-on="on">block</v-icon>
                               </template>
                               <span>No genes were found for this term</span>
                             </v-tooltip>
@@ -243,7 +243,7 @@
                           <span v-else-if="term.phenolyzerSearchStatus==='NoGenes'">
                             <v-tooltip bottom>
                               <template v-slot:activator="{ on }">
-                                <v-icon color="red" v-on="on">error</v-icon>
+                                <v-icon color="gray" style="font-size:20px" v-on="on">block</v-icon>
                               </template>
                               <span>No genes were found for this phenotype</span>
                             </v-tooltip>
@@ -321,7 +321,7 @@
                           <span v-else-if="term.hpoSearchStatus==='NoGenes'">
                             <v-tooltip bottom>
                               <template v-slot:activator="{ on }">
-                                <v-icon color="red" v-on="on">error</v-icon>
+                                <v-icon color="gray" style="font-size:20px" v-on="on">block</v-icon>
                               </template>
                               <span>No genes were found for this term</span>
                             </v-tooltip>
@@ -1225,7 +1225,7 @@
                               <span v-else-if="term.gtrSearchStatus==='NoGenes'">
                                 <v-tooltip bottom>
                                   <template v-slot:activator="{ on }">
-                                    <v-icon color="red" v-on="on">error</v-icon>
+                                    <v-icon color="grey" style="font-size:20px" v-on="on">block</v-icon>
                                   </template>
                                   <span>No genes were found for this term</span>
                                 </v-tooltip>
@@ -1282,7 +1282,7 @@
                               <span v-else-if="term.phenolyzerSearchStatus==='NoGenes'">
                                 <v-tooltip bottom>
                                   <template v-slot:activator="{ on }">
-                                    <v-icon color="red" v-on="on">error</v-icon>
+                                    <v-icon color="grey" style="font-size:20px" v-on="on">block</v-icon>
                                   </template>
                                   <span>No genes were found for this phenotype</span>
                                 </v-tooltip>
@@ -1331,7 +1331,7 @@
                               <span v-else-if="term.hpoSearchStatus==='NoGenes'">
                                 <v-tooltip bottom>
                                   <template v-slot:activator="{ on }">
-                                    <v-icon color="red" v-on="on">error</v-icon>
+                                    <v-icon color="grey" style="font-size:20px" v-on="on">block</v-icon>
                                   </template>
                                   <span>No genes were found for this term</span>
                                 </v-tooltip>
