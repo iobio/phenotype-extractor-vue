@@ -1,5 +1,5 @@
 <template>
-  <div class="mb-5 text-center" style="margin-right: 90px">
+  <div class="mb-5 text-center" style="margin-right: 125px">
     <strong class="primary--text" style="font-size: 18px">{{ heading }}</strong>
     <br>
     <div class="mt-2">

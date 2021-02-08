@@ -603,6 +603,7 @@
                         <div v-for="(term,i) in extractedTermsObj">
                           <div v-for="(item, ind) in term.reviewTerms_gtr">
                             <div v-if="ind===0" class="row">
+                              <div class="col-md-1"></div>
                               <div class="col-md-1">
                                 <div v-if="reReviewClinicalNote && note_reselect_gtrTerms_Array.includes(item.DiseaseName)">
                                   <v-checkbox color="primary" @click="removeSelectedTermFromReview(term, i, 'GTR')" style="margin-top:-6px; margin-bottom:-35px;" v-model="true_checkboxVal"></v-checkbox>
@@ -611,7 +612,7 @@
                                   <v-checkbox color="primary" style="margin-top:-6px; margin-bottom:-35px;" v-model="GtrTermsAdded_temp" :value="item"></v-checkbox>
                                 </div>
                               </div>
-                              <div class="col-md-11">
+                              <div class="col-md-10">
                                 {{ item.DiseaseName }}
                               </div>
                             </div>
@@ -627,6 +628,7 @@
                         <div v-for="(term,i) in extractedTermsObj">
                           <div v-for="(item, ind) in term.reviewTerms_phenolyzer">
                             <div v-if="ind===0" class="row">
+                              <div class="col-md-1"></div>
                               <div class="col-md-1">
                                 <div v-if="reReviewClinicalNote && note_reselect_phenolyzerTerms_Array.includes(item.value)">
                                   <v-checkbox color="primary" @click="removeSelectedTermFromReview(term, i, 'phenolyzer')" style="margin-top:-6px; margin-bottom:-35px;" v-model="true_checkboxVal"></v-checkbox>
@@ -635,8 +637,8 @@
                                   <v-checkbox color="primary" style="margin-top:-6px; margin-bottom:-35px;" v-model="phenolyzerTermsAdded_temp" :value="item"></v-checkbox>
                                 </div>
                               </div>
-                              <div class="col-md-11">
-                                {{ item.value }}
+                              <div class="col-md-10">
+                                {{ item.value | to-firstCharacterUppercase }}
                               </div>
                             </div>
                           </div>
@@ -653,6 +655,7 @@
                         <div v-for="(term, i) in HpoReviewTerms" :key="i">
                           <div>
                             <div class="row">
+                              <div class="col-md-1"></div>
                               <div class="col-md-1">
                                 <div v-if="reReviewClinicalNote && note_reselect_hpoTerms_Array.includes(term.HPO_Data)">
                                   <v-checkbox color="primary" @click="removeSelectedTermFromReview(term, i, 'HPO')" style="margin-top:-6px; margin-bottom:-35px;" v-model="true_checkboxVal"></v-checkbox>
@@ -661,7 +664,7 @@
                                   <v-checkbox color="primary" style="margin-top:-6px; margin-bottom:-35px;" v-model="hpoTermsAdded_temp" :value="term"></v-checkbox>
                                 </div>
                               </div>
-                              <div class="col-md-11">
+                              <div class="col-md-10">
                                 <div style="margin-top:-5px">
                                   {{ term.phenotype }} <br> [{{ term.hpoNumber }}]
                                 </div>
