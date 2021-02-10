@@ -147,6 +147,9 @@
               :search="search"
               :items-per-page="15"
               class="gene-list-table"
+              :footer-props="{
+                itemsPerPageOptions:[20, 50, 100, -1]
+              }"
             >
             <template v-slot:item.idx="{ item }">
               <span style="margin-left: 15px" @mouseover="mouseOverGeneName(item.name)" @mouseleave="mouseLeaveGeneName">
