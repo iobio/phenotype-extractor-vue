@@ -1651,6 +1651,7 @@ export default {
     hpoIds: [],
     potentialGtrTermsCount: 0,
     potentialPhenolyzerTermsCount: 0,
+    phenolyzerTermsReturned: []
   }),
   watch: {
     textNotes(){
@@ -2083,8 +2084,11 @@ export default {
         str = str.replace("syndrome", "");
         str = str.trim();
 
+        this.phenolyzerTermsReturned = [];
+        
         var data = this.setPhenolyzerTerms(str);
         data.then(res => {
+          this.phenolyzerTermsReturned = res;
           if(res.length<1){
             var phenotype = item.DiseaseName.replace(/-/g, " ").replace(/\s\s+/g, ' ').toLowerCase().trim()
             item.reviewTerms_phenolyzer.push({
@@ -2163,6 +2167,8 @@ export default {
           })
 
           this.phenolyzerReviewTerms = this.extractedTermsObj;
+          this.phenolyzerTermsReturned = [];
+
           this.phenolyzerReviewTerms.map((item, i) => {
             item.reviewTerms_phenolyzer = [];
 
@@ -2170,9 +2176,10 @@ export default {
             str = str.replace("disease", "");
             str = str.replace("syndrome", "");
             str = str.trim();
-
+            
             var data = this.setPhenolyzerTerms(str);
             data.then(res => {
+              this.phenolyzerTermsReturned.push(item); 
               if(res.length<1){
                 var phenotype = item.DiseaseName.replace(/-/g, " ").replace(/\s\s+/g, ' ').toLowerCase().trim()
                 item.reviewTerms_phenolyzer.push({
@@ -2357,8 +2364,11 @@ export default {
       // str = str.replace("disorder", "");
       str = str.trim();
 
+      this.phenolyzerTermsReturned = [];
+      
       var data = this.setPhenolyzerTerms(str);
       data.then(res => {
+        this.phenolyzerTermsReturned = res;
         //TODO: If res.length is 0, see the example from extracted terms
         res.forEach(x => {
           if(x.value.toLowerCase().trim() !== this.search.DiseaseName.replace(/-/g, " ").replace(/\s\s+/g, ' ').toLowerCase().trim()) {
@@ -2472,21 +2482,14 @@ export default {
 
       })
       
-      if(!this.reReviewClinicalNote) { 
-        if(this.extractedTermsObj.length < 7){
-          this.basicModeTermsAdded_temp = this.extractedTermsObj;
-          setTimeout(()=> {
-            this.setTermsSelectedFromBasicModeForReview()
-          }, 4000)
-        }
-        else {
-          // this.basicModeTermsAdded_temp = this.extractedTermsObj.slice(0, 5)
-          this.basicModeTermsAdded_temp = this.extractedTermsObj;
-          setTimeout(()=> {
-            this.setTermsSelectedFromBasicModeForReview()
-          }, 8500)
-
-        }
+      if(!this.reReviewClinicalNote) {
+        this.basicModeTermsAdded_temp = this.extractedTermsObj; 
+        var interval = setInterval(() => {
+            if(this.HpoReviewTerms.length && this.phenolyzerTermsReturned.length){
+                clearInterval(interval);
+                this.setTermsSelectedFromBasicModeForReview()
+            }
+        }, 1000);     
       }
       else {
         //If it is a reselected note
