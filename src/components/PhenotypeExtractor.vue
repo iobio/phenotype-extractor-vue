@@ -600,6 +600,11 @@
                           :selectedTerms="GtrTermsAdded_temp.length"
                           :potentialTerms="potentialGtrTermsCount">
                         </TermsModalHeading>
+                        <div v-if="!extractedTermsObj.length">
+                          <v-card-text>
+                            <p style="margin-left: -15px;"><v-icon>error_outline</v-icon> No matching terms from this resource</p>
+                          </v-card-text>
+                        </div>
                         <div v-for="(term,i) in extractedTermsObj">
                           <div v-for="(item, ind) in term.reviewTerms_gtr">
                             <div v-if="ind===0" class="row">
@@ -625,6 +630,12 @@
                           :selectedTerms="phenolyzerTermsAdded_temp.length"
                           :potentialTerms="potentialPhenolyzerTermsCount">
                         </TermsModalHeading>
+                        <div v-if="!extractedTermsObj.length">
+                          <v-card-text>
+                            <p style="margin-left: -15px;"><v-icon>error_outline</v-icon> No matching terms from this resource</p>
+                          </v-card-text>
+                        </div>
+
                         <div v-for="(term,i) in extractedTermsObj">
                           <div v-for="(item, ind) in term.reviewTerms_phenolyzer">
                             <div v-if="ind===0" class="row">
@@ -652,6 +663,12 @@
                           :selectedTerms="hpoTermsAdded_temp.length"
                           :potentialTerms="HpoReviewTerms.length">
                         </TermsModalHeading>
+                        <div v-if="!HpoReviewTerms.length">
+                          <v-card-text>
+                            <p style="margin-left: -15px;"><v-icon>error_outline</v-icon> No matching terms from this resource</p>
+                          </v-card-text>
+                        </div>
+
                         <div v-for="(term, i) in HpoReviewTerms" :key="i">
                           <div>
                             <div class="row">
@@ -715,7 +732,7 @@
                   <br> -->
 
                 </div>
-                <div v-if="!extractedTermsObj.length && termsReviewDialogPage===0">
+                <div v-if="!extractedTermsObj.length && !HpoReviewTerms.length && termsReviewDialogPage===0">
                   <v-card-text>
                     <p><v-icon>error_outline</v-icon> No matching terms from this resource</p>
                   </v-card-text>
