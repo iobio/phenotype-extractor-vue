@@ -590,7 +590,7 @@
 
 
                 <!-- Basic mode review terms table -->
-                <div v-if="extractedTermsObj.length && termsReviewDialogPage===0">
+                <div v-if="(extractedTermsObj.length || HpoReviewTerms.length) && termsReviewDialogPage===0">
                   
                   <div class="container">
                     <div class="row">
@@ -2485,7 +2485,7 @@ export default {
       if(!this.reReviewClinicalNote) {
         this.basicModeTermsAdded_temp = this.extractedTermsObj; 
         var interval = setInterval(() => {
-            if(this.HpoReviewTerms.length && this.phenolyzerTermsReturned.length){
+            if(!this.HpoloadingProgressBar && this.phenolyzerTermsReturned.length === this.extractedTermsObj.length){
                 clearInterval(interval);
                 this.setTermsSelectedFromBasicModeForReview()
             }
@@ -3696,6 +3696,16 @@ export default {
         this.GtrTermsAdded_temp = [];
         this.phenolyzerTermsAdded_temp = [];
         this.hpoTermsAdded_temp = [];
+        
+        if(!this.basicModeTermsAdded_temp.length && this.HpoReviewTerms.length){
+          hpoPhenotypes.map(hpo => {
+            var idx = hpoPhenotypes.indexOf(hpo);
+            if(!hpoAddedTerms.includes(this.HpoReviewTerms[idx].phenotype)){
+              this.hpoTermsAdded_temp.push(this.HpoReviewTerms[idx])
+              hpoAddedTerms.push(this.HpoReviewTerms[idx].phenotype)
+            }
+          })
+        }
         
         this.basicModeTermsAdded_temp.map((term, index) => {
           // if(index <= 6) {
