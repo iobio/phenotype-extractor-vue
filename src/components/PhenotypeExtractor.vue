@@ -1221,6 +1221,17 @@
               <!-- <v-divider></v-divider> -->
               <v-card-text>
                 <div class="container">
+                  <v-alert
+                    border="left"
+                    type="success"
+                    dense
+                    style="margin:20px"
+                    v-if="searchStatusCompleteAlert"
+                  >
+                  <span style="font-size: 12px">
+                    Everything is loaded. You can now close this modal.
+                  </span>
+                  </v-alert>
                   <div class="row">
                     <div class="col-md-4">
                       <table class="table">
@@ -1377,6 +1388,10 @@
                   </div>
                 </div>
               </v-card-text>
+              <v-card-actions class="mb-3 ml-5 mr-5 mt-3">
+                <v-spacer></v-spacer>
+                <v-btn :disabled="!searchStatusCompleteAlert" @click="searchStatusDialog=false"  small color="primary" tile> Close</v-btn>
+              </v-card-actions>
             </v-card>
           </v-dialog>
         </v-card>
@@ -1555,6 +1570,7 @@ export default {
     Phenolyzer_idx: 0,
     Hpo_idx: 0,
     searchStatusDialog: false,
+    searchStatusCompleteAlert: false,
     gtrExpansionPanel: ['true'],
     gtrExpansionPanelMultiple: [],
     phenolyzerExpansionPanel: ['true'],
@@ -2024,6 +2040,7 @@ export default {
     
     reSelectClinicalNote(note, idx){
       this.reReviewClinicalNote = true;
+      this.searchStatusCompleteAlert = false;
       this.textNotes = note;
       this.note_rereview_idx = idx;
       let note_details = this.clinical_note_text[idx];
@@ -2145,6 +2162,7 @@ export default {
       this.extractedTermsObj = [];
       this.demoTermsFlag = false;
       this.hpoIds = [];
+      this.searchStatusCompleteAlert = false;
       // fetch(`http://nv-dev-new.iobio.io/phenotype-extractor/?notes=${this.textNotes}`)
       // fetch(`http://dev.backend.iobio.io:9003/phenotypeExtractor?notes=${this.textNotes}`)
       // fetch(`https://backend.iobio.io/phenotypeExtractor?notes=${this.textNotes}`)
@@ -3311,7 +3329,8 @@ export default {
     checkToCloseSearchStatusDialog(){
       if(this.gtrFetchCompleted && this.phenolyzerFetchCompleted && this.hpoFetchCompleted){
         this.searchStatusDialogTimeoutCheck = setTimeout(()=>{
-          this.searchStatusDialog = false;
+          // this.searchStatusDialog = false;
+          this.searchStatusCompleteAlert = true;
           setTimeout(() => {
             this.$emit("new_term_searched", false);
           },5000)
