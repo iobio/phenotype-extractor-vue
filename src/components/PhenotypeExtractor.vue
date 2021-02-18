@@ -753,7 +753,9 @@
                                 </div>
                                 <!-- @click="toggle_expansion_panel(i, 'GTR')" is removed which was opening the respective expansion panel  -->
                                 <div class="col-md-3"> 
-                                  <span><small>{{item.reviewTerms_gtr.length}} more options</small></span>
+                                  <span v-if="item.reviewTerms_gtr.length > 1"><small>{{item.reviewTerms_gtr.length}} options</small></span>
+                                  <span v-if="item.reviewTerms_gtr.length === 1"><small>{{item.reviewTerms_gtr.length}} option</small></span>
+                                  <span class="primary--text ml-1"> <small>({{ getSelectedCount(item.reviewTerms_gtr, 'GTR') }} selected)</small>  </span>
                                   <span><v-icon>unfold_more</v-icon></span>
                                 </div>
                               </div>
@@ -764,7 +766,9 @@
                                   <strong> {{ item.DiseaseName }} </strong>
                                 </div>
                                 <div class="col-md-3">
-                                  <span><small>{{item.reviewTerms_gtr.length}} more options</small></span>
+                                  <span v-if="item.reviewTerms_gtr.length > 1"><small>{{item.reviewTerms_gtr.length}} options</small></span>
+                                  <span v-if="item.reviewTerms_gtr.length === 1"><small>{{item.reviewTerms_gtr.length}} option</small></span>
+                                  <span class="primary--text ml-1"> <small>({{ getSelectedCount(item.reviewTerms_gtr, 'GTR') }} selected)</small>  </span>
                                   <span><v-icon>unfold_more</v-icon></span>
                                 </div>
                               </div>
@@ -818,7 +822,9 @@
                                   <strong> {{ item.reviewTerms_gtr[0].DiseaseName}}</strong>
                                 </div>
                                 <div class="col-md-3">
-                                  <span><small>{{item.reviewTerms_gtr.length}} more options</small></span>
+                                  <span v-if="item.reviewTerms_gtr.length > 1"><small>{{item.reviewTerms_gtr.length}} options</small></span>
+                                  <span v-if="item.reviewTerms_gtr.length === 1"><small>{{item.reviewTerms_gtr.length}} option</small></span>
+                                  <span class="primary--text ml-1"> <small>({{ getSelectedCount(item.reviewTerms_gtr, 'GTR') }} selected)</small>  </span>
                                   <span><v-icon>unfold_more</v-icon></span>
                                 </div>
                               </div>
@@ -831,7 +837,9 @@
                                   <strong> {{ item.DiseaseName }} </strong>
                                 </div>
                                 <div class="col-md-3">
-                                  <span><small>{{item.reviewTerms_gtr.length}} more options</small></span>
+                                  <span v-if="item.reviewTerms_gtr.length > 1"><small>{{item.reviewTerms_gtr.length}} options</small></span>
+                                  <span v-if="item.reviewTerms_gtr.length === 1"><small>{{item.reviewTerms_gtr.length}} option</small></span>
+                                  <span class="primary--text ml-1"> <small>({{ getSelectedCount(item.reviewTerms_gtr, 'GTR') }} selected)</small>  </span>
                                   <span><v-icon>unfold_more</v-icon></span>
                                 </div>
                               </div>
@@ -893,7 +901,9 @@
                                   <strong> {{ item.reviewTerms_phenolyzer[0].value | to-firstCharacterUppercase}}</strong>
                                 </div>
                                 <div class="col-md-3">
-                                  <span><small>{{item.reviewTerms_phenolyzer.length}} more options</small></span>
+                                  <span v-if="item.reviewTerms_phenolyzer.length > 1"><small>{{item.reviewTerms_phenolyzer.length}} options</small></span>
+                                  <span v-if="item.reviewTerms_phenolyzer.length === 1"><small>{{item.reviewTerms_phenolyzer.length}} option</small></span>
+                                  <span class="primary--text ml-1"> <small>({{ getSelectedCount(item.reviewTerms_phenolyzer, 'Phenolyzer') }} selected)</small>  </span>
                                   <span><v-icon>unfold_more</v-icon></span>
                                 </div>
                               </div>
@@ -904,7 +914,9 @@
                                   <strong> {{ item.reviewTerms_phenolyzer[0].value | to-firstCharacterUppercase }} </strong>
                                 </div>
                                 <div class="col-md-3">
-                                  <span><small>{{item.reviewTerms_phenolyzer.length}} more options</small></span>
+                                  <span v-if="item.reviewTerms_phenolyzer.length > 1"><small>{{item.reviewTerms_phenolyzer.length}} options</small></span>
+                                  <span v-if="item.reviewTerms_phenolyzer.length === 1"><small>{{item.reviewTerms_phenolyzer.length}} option</small></span>
+                                  <span class="primary--text ml-1"> <small>({{ getSelectedCount(item.reviewTerms_phenolyzer, 'Phenolyzer') }} selected)</small>  </span>
                                   <span><v-icon>unfold_more</v-icon></span>
                                 </div>
                               </div>
@@ -954,7 +966,9 @@
                                   <strong> {{ item.reviewTerms_phenolyzer[0].value | to-firstCharacterUppercase}}</strong>
                                 </div>
                                 <div class="col-md-3">
-                                  <span><small>{{item.reviewTerms_phenolyzer.length}} more options</small></span>
+                                  <span v-if="item.reviewTerms_phenolyzer.length > 1"><small>{{item.reviewTerms_phenolyzer.length}} options</small></span>
+                                  <span v-if="item.reviewTerms_phenolyzer.length === 1"><small>{{item.reviewTerms_phenolyzer.length}} option</small></span>
+                                  <span class="primary--text ml-1"> <small>({{ getSelectedCount(item.reviewTerms_phenolyzer, 'Phenolyzer') }} selected)</small>  </span>
                                   <span><v-icon>unfold_more</v-icon></span>
                                 </div>
                               </div>
@@ -965,7 +979,9 @@
                                   <strong> {{ item.reviewTerms_phenolyzer[0].value | to-firstCharacterUppercase }} </strong>
                                 </div>
                                 <div class="col-md-3">
-                                  <span><small>{{ item.reviewTerms_phenolyzer.length }} more options</small></span>
+                                  <span v-if="item.reviewTerms_phenolyzer.length > 1"><small>{{item.reviewTerms_phenolyzer.length}} options</small></span>
+                                  <span v-if="item.reviewTerms_phenolyzer.length === 1"><small>{{item.reviewTerms_phenolyzer.length}} option</small></span>
+                                  <span class="primary--text ml-1"> <small>({{ getSelectedCount(item.reviewTerms_phenolyzer, 'Phenolyzer') }} selected)</small>  </span>
                                   <span><v-icon>unfold_more</v-icon></span>
                                 </div>
                               </div>
@@ -1717,6 +1733,7 @@ export default {
       }
     },
     GtrTermsAdded_temp(){
+      console.log("GtrTermsAdded_temp", this.GtrTermsAdded_temp);
     },
     basicModeTermsAdded_temp(){
     },
@@ -1725,6 +1742,9 @@ export default {
         this.textNotes = this.textNotesLandingPage
         this.extract();
       }
+    },
+    GtrReviewTerms(){
+      console.log("this,GtrReviewTerms", this.GtrReviewTerms);
     }
 
   },
@@ -1895,6 +1915,29 @@ export default {
     },
   },
   methods: {
+    getSelectedCount: function(terms, type) {
+      var count = 0; 
+      if(type==='GTR'){
+        terms.map( term => {
+          this.GtrTermsAdded_temp.map(temp => {
+            if(term.DiseaseName === temp.DiseaseName) {
+              count = count + 1;
+            }
+          })
+        })
+      }
+      else {
+        terms.map( term => {
+          this.phenolyzerTermsAdded_temp.map(temp => {
+            if(term.value === temp.value) {
+              count = count + 1;
+            }
+          })
+        })
+      }
+      return count;
+    },
+
     summaryGenesFullList(genes){
       // this.$emit('summaryGenes', genes);
       this.summaryAllGenes = genes;

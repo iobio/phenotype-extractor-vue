@@ -12009,72 +12009,8 @@
    "ConceptID": "C1842981"
  },
  {
-   "DiseaseName": "Aortic aneurysm, ascending, and dissection",
-   "ConceptID": "CN239144"
- },
- {
    "DiseaseName": "Aortic aneurysm",
    "ConceptID": "C0003486"
- },
- {
-   "DiseaseName": "Aortic aneurysm",
-   "ConceptID": "C2072946"
- },
- {
-   "DiseaseName": "Aortic aneurysm, familial abdominal 2",
-   "ConceptID": "C1853364"
- },
- {
-   "DiseaseName": "Aortic aneurysm, familial abdominal 3",
-   "ConceptID": "C2678470"
- },
- {
-   "DiseaseName": "Aortic aneurysm, familial abdominal 4",
-   "ConceptID": "C3280597"
- },
- {
-   "DiseaseName": "Aortic aneurysm, familial thoracic 10",
-   "ConceptID": "C4284414"
- },
- {
-   "DiseaseName": "Aortic aneurysm, familial thoracic 11, susceptibility to",
-   "ConceptID": "C4479235"
- },
- {
-   "DiseaseName": "Aortic aneurysm, familial thoracic 2",
-   "ConceptID": "C1846837"
- },
- {
-   "DiseaseName": "Aortic aneurysm, familial thoracic 4",
-   "ConceptID": "C1851504"
- },
- {
-   "DiseaseName": "Aortic aneurysm, familial thoracic 6",
-   "ConceptID": "C2673186"
- },
- {
-   "DiseaseName": "Aortic aneurysm, familial thoracic 7",
-   "ConceptID": "C3151077"
- },
- {
-   "DiseaseName": "Aortic aneurysm, familial thoracic 8",
-   "ConceptID": "C3809513"
- },
- {
-   "DiseaseName": "Aortic aneurysm, familial thoracic 9",
-   "ConceptID": "C4015368"
- },
- {
-   "DiseaseName": "Aortic aneurysm, familial thoracic (AAT), TGFB3 related",
-   "ConceptID": "CN235351"
- },
- {
-   "DiseaseName": "Aortic aneurysm, familial thoracic, SMAD3 related",
-   "ConceptID": "CN231478"
- },
- {
-   "DiseaseName": "Aortic aneurysm, familial thoracic, TGFB2 related",
-   "ConceptID": "CN231479"
  },
  {
    "DiseaseName": "Aortic arch anomaly with peculiar facies and mental retardation",
@@ -36917,14 +36853,6 @@
    "ConceptID": "C0085639"
  },
  {
-   "DiseaseName": "Familial abdominal aortic aneurysm 1",
-   "ConceptID": "C0162871"
- },
- {
-   "DiseaseName": "Familial abdominal aortic aneurysm",
-   "ConceptID": "CN206207"
- },
- {
    "DiseaseName": "Familial acne inversa 1",
    "ConceptID": "CN028850"
  },
@@ -36955,10 +36883,6 @@
  {
    "DiseaseName": "Familial amyloid polyneuropathy, Iowa type",
    "ConceptID": "C0342608"
- },
- {
-   "DiseaseName": "Familial aortic aneurysms",
-   "ConceptID": "CN240757"
  },
  {
    "DiseaseName": "Familial aortopathy",
@@ -37471,10 +37395,6 @@
  {
    "DiseaseName": "Familial restrictive cardiomyopathy",
    "ConceptID": "C0340429"
- },
- {
-   "DiseaseName": "Familial thoracic aortic aneurysm",
-   "ConceptID": "CN240756"
  },
  {
    "DiseaseName": "Familial triple-negative breast cancer",
@@ -79441,10 +79361,6 @@
    "ConceptID": "C4023719"
  },
  {
-   "DiseaseName": "sporadic abdominal aortic aneurysm",
-   "ConceptID": "CN220053"
- },
- {
    "DiseaseName": "Spotty hyperpigmentation",
    "ConceptID": "C3806179"
  },
@@ -81963,10 +81879,6 @@
  {
    "DiseaseName": "Thoracic aorta calcification",
    "ConceptID": "C1969292"
- },
- {
-   "DiseaseName": "Thoracic aortic aneurysm and aortic dissection",
-   "ConceptID": "CN118826"
  },
  {
    "DiseaseName": "Thoracic aortic dissection",
