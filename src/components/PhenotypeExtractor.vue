@@ -1188,7 +1188,7 @@
 
                   <v-btn v-if="termsReviewDialogPage!==4 && termsReviewDialogPage!==0" tile :disabled="termsReviewDialogPage>3" small color="primary" @click="navigateTermsReviewDialog('next', 'termsReviewDialogContainer-target')"> Next <v-icon>arrow_right</v-icon></v-btn>
                   <v-btn v-if="termsReviewDialogPage===4" small tile color="primary" @click="selectReviewTerms"> Next <v-icon>arrow_right</v-icon></v-btn>
-                  <v-btn v-if="termsReviewDialogPage===0" small tile outlined color="primary" @click="selectReviewTerms"> Cancel</v-btn>
+                  <v-btn v-if="termsReviewDialogPage===0" small tile outlined color="primary" @click="termsReviewDialog=false"> Cancel</v-btn>
                   <v-btn v-if="termsReviewDialogPage===0" small tile color="primary" @click="selectReviewTerms"> Generate gene list</v-btn>
 
                 </div>
@@ -2447,16 +2447,20 @@ export default {
       this.hpoTermsAdded_temp = [];
       this.basicModeTermsAdded_temp = [];
       if(!this.reReviewClinicalNote){ //Closing the review dialog without selecting any terms still adds the note
-        this.clinical_note_text.unshift({
-          "note": this.textNotes,
-          "gtr_terms": [],
-          "phenolyzer_terms": [],
-          "hpo_terms": [],
-          "LevenshteinResults": this.LevenshteinResults,
-          "basic_mode_terms": [],
-        });
-        var allPhenotypes = [this.GtrTermsAdded, this.phenolyzerTermsAdded, this.hpoTermsAdded, this.clinical_note_text, this.basicModeTermsAdded];
-        this.$emit('saveSearchedPhenotypes', allPhenotypes)
+        if(!this.GtrTermsAdded_temp.length && !this.phenolyzerTermsAdded_temp.length && !this.hpoTermsAdded_temp.length){
+          this.termsReviewDialog = false;
+        }
+
+        // this.clinical_note_text.unshift({
+        //   "note": this.textNotes,
+        //   "gtr_terms": [],
+        //   "phenolyzer_terms": [],
+        //   "hpo_terms": [],
+        //   "LevenshteinResults": this.LevenshteinResults,
+        //   "basic_mode_terms": [],
+        // });
+        // var allPhenotypes = [this.GtrTermsAdded, this.phenolyzerTermsAdded, this.hpoTermsAdded, this.clinical_note_text, this.basicModeTermsAdded];
+        // this.$emit('saveSearchedPhenotypes', allPhenotypes)
       }
       this.reReviewClinicalNote = false;
     },
@@ -2631,122 +2635,128 @@ export default {
     },
 
     selectReviewTerms(){
-      this.$emit("new_term_searched", true);
-      this.gtr_terms_expansion_panel = []; //ensures that all expansion panels are closed when opened for edit 
-      this.phenolyzer_terms_expansion_panel = []; 
-      
-      let container = document.querySelector("#termsReviewDialogContainer-target"); 
-      container.scrollTop = 0
-
-      this.checkIf_newNote_or_reReview();
-
-      if(!this.GtrTermsAdded_temp.length && !this.phenolyzerTermsAdded_temp.leng && !this.hpoTermsAdded_temp.leng){
-        this.checkToCloseSearchStatusDialog();
+      if(!this.GtrTermsAdded_temp.length && !this.phenolyzerTermsAdded_temp.length && !this.hpoTermsAdded_temp.length){
+        this.termsReviewDialog = false;
+        this.termsReviewDialogPage = 0;
       }
+      else {
+        this.$emit("new_term_searched", true);
+        this.gtr_terms_expansion_panel = []; //ensures that all expansion panels are closed when opened for edit 
+        this.phenolyzer_terms_expansion_panel = []; 
+        
+        let container = document.querySelector("#termsReviewDialogContainer-target"); 
+        container.scrollTop = 0
 
-      this.GtrTermsAdded_temp = this.GtrTermsAdded_temp.filter(o1 => this.GtrTermsAdded.every(o2 => {
-        return o1.DiseaseName !== o2.DiseaseName
-      })); //Delets duplicate entries
-      this.GtrTermsAdded = [...this.GtrTermsAdded, ...this.GtrTermsAdded_temp];
-      // this.$emit("GtrTerms", this.GtrTermsAdded); //Pass back which can be used in phenotypes component .
+        this.checkIf_newNote_or_reReview();
 
-      this.phenolyzerTermsAdded_temp = this.phenolyzerTermsAdded_temp.filter(o1 => this.phenolyzerTermsAdded.every(o2 => {
-        return o1.value !== o2.value
-      }));
-      this.phenolyzerTermsAdded = [...this.phenolyzerTermsAdded, ...this.phenolyzerTermsAdded_temp];
-
-      this.hpoTermsAdded_temp = this.hpoTermsAdded_temp.filter(o1 => this.hpoTermsAdded.every(o2 => {
-        return o1.HPO_Data !== o2.HPO_Data
-      }));
-      this.hpoTermsAdded = [...this.hpoTermsAdded, ...this.hpoTermsAdded_temp];
-      
-      this.basicModeTermsAdded_temp = this.basicModeTermsAdded_temp.filter(o1 => this.basicModeTermsAdded.every(o2 => {
-        return o1.HPO_Data !== o2.HPO_Data
-      }));
-      this.basicModeTermsAdded = [...this.basicModeTermsAdded, ...this.basicModeTermsAdded_temp];
-      
-      this.BasicMode_SearchTermArray = [];
-      this.basicModeTermsAdded.map( term => {
-        this.BasicMode_SearchTermArray.push(term.DiseaseName);
-      })
-      
-
-      this.GtrTermsAdded_temp = [];
-      this.phenolyzerTermsAdded_temp = [];
-      this.hpoTermsAdded_temp = [];
-      this.basicModeTermsAdded_temp = [];
-      // console.log("this.GtrTermsAdded", this.GtrTermsAdded)
-      var allPhenotypes = [this.GtrTermsAdded, this.phenolyzerTermsAdded, this.hpoTermsAdded, this.clinical_note_text, this.basicModeTermsAdded];
-      this.$emit('saveSearchedPhenotypes', allPhenotypes)
-
-      //Add GTR selected terms from review
-      for (var i = this.gtr_push_idx; i < this.GtrTermsAdded.length; i++) {
-        var term = this.GtrTermsAdded[i];
-        var searchTerm ="";
-        var conceptId = ""
-        searchTerm = term.DiseaseName;
-        conceptId = term.ConceptID;
-        if(!this.multipleSearchTerms.includes(searchTerm) && searchTerm!==undefined){
-          if(searchTerm.length>1){
-            this.multipleSearchTerms.push(searchTerm);
-            this.searchTermsObj.push(term);
-            this.Gtr_searchTermsObj.push(term);
-            this.Gtr_searchTermArray.push(searchTerm);
-            // this.$set(this.Gtr_searchTermsObj[this.gtr_push_idx], 'gtrSearchStatus', "Not started");
-            this.$set(this.Gtr_searchTermsObj[this.gtr_push_idx], 'gtrSearchStatus', "Searching");
-            this.gtr_push_idx = this.gtr_push_idx + 1;
-          }
+        if(!this.GtrTermsAdded_temp.length && !this.phenolyzerTermsAdded_temp.leng && !this.hpoTermsAdded_temp.leng){
+          this.checkToCloseSearchStatusDialog();
         }
-      }
 
-      //Add Phenolyzer selected terms from review
-      for (var i = this.phenolyzer_push_idx; i < this.phenolyzerTermsAdded.length; i++) {
-        var term = this.phenolyzerTermsAdded[i];
-        var searchTerm ="";
-        searchTerm = term.value;
-        if(!this.multipleSearchTerms.includes(searchTerm) && searchTerm!==undefined){
-          if(searchTerm.length>1){
+        this.GtrTermsAdded_temp = this.GtrTermsAdded_temp.filter(o1 => this.GtrTermsAdded.every(o2 => {
+          return o1.DiseaseName !== o2.DiseaseName
+        })); //Delets duplicate entries
+        this.GtrTermsAdded = [...this.GtrTermsAdded, ...this.GtrTermsAdded_temp];
+        // this.$emit("GtrTerms", this.GtrTermsAdded); //Pass back which can be used in phenotypes component .
+
+        this.phenolyzerTermsAdded_temp = this.phenolyzerTermsAdded_temp.filter(o1 => this.phenolyzerTermsAdded.every(o2 => {
+          return o1.value !== o2.value
+        }));
+        this.phenolyzerTermsAdded = [...this.phenolyzerTermsAdded, ...this.phenolyzerTermsAdded_temp];
+
+        this.hpoTermsAdded_temp = this.hpoTermsAdded_temp.filter(o1 => this.hpoTermsAdded.every(o2 => {
+          return o1.HPO_Data !== o2.HPO_Data
+        }));
+        this.hpoTermsAdded = [...this.hpoTermsAdded, ...this.hpoTermsAdded_temp];
+        
+        this.basicModeTermsAdded_temp = this.basicModeTermsAdded_temp.filter(o1 => this.basicModeTermsAdded.every(o2 => {
+          return o1.HPO_Data !== o2.HPO_Data
+        }));
+        this.basicModeTermsAdded = [...this.basicModeTermsAdded, ...this.basicModeTermsAdded_temp];
+        
+        this.BasicMode_SearchTermArray = [];
+        this.basicModeTermsAdded.map( term => {
+          this.BasicMode_SearchTermArray.push(term.DiseaseName);
+        })
+        
+
+        this.GtrTermsAdded_temp = [];
+        this.phenolyzerTermsAdded_temp = [];
+        this.hpoTermsAdded_temp = [];
+        this.basicModeTermsAdded_temp = [];
+        // console.log("this.GtrTermsAdded", this.GtrTermsAdded)
+        var allPhenotypes = [this.GtrTermsAdded, this.phenolyzerTermsAdded, this.hpoTermsAdded, this.clinical_note_text, this.basicModeTermsAdded];
+        this.$emit('saveSearchedPhenotypes', allPhenotypes)
+
+        //Add GTR selected terms from review
+        for (var i = this.gtr_push_idx; i < this.GtrTermsAdded.length; i++) {
+          var term = this.GtrTermsAdded[i];
+          var searchTerm ="";
+          var conceptId = ""
+          searchTerm = term.DiseaseName;
+          conceptId = term.ConceptID;
+          if(!this.multipleSearchTerms.includes(searchTerm) && searchTerm!==undefined){
+            if(searchTerm.length>1){
               this.multipleSearchTerms.push(searchTerm);
               this.searchTermsObj.push(term);
-              this.Phenolyzer_searchTermsObj.push(term);
-              this.Phenolyzer_searchTermArray.push(searchTerm);
-              this.$set(this.Phenolyzer_searchTermsObj[this.phenolyzer_push_idx], 'phenolyzerSearchStatus', "Searching");
-              this.phenolyzer_push_idx = this.phenolyzer_push_idx + 1;
+              this.Gtr_searchTermsObj.push(term);
+              this.Gtr_searchTermArray.push(searchTerm);
+              // this.$set(this.Gtr_searchTermsObj[this.gtr_push_idx], 'gtrSearchStatus', "Not started");
+              this.$set(this.Gtr_searchTermsObj[this.gtr_push_idx], 'gtrSearchStatus', "Searching");
+              this.gtr_push_idx = this.gtr_push_idx + 1;
+            }
           }
         }
-      }
 
-      this.hpoTermsAdded.map(term => {
-        var searchTerm ="";
-        searchTerm = term.HPO_Data;
-        if(term.hpoSearchStatus!=="Completed" || term.hpoSearchStatus===undefined){
-          this.$set(term, 'hpoSearchStatus', "Searching");
-          this.$set(term, 'tool_to_search', 'Hpo');
-          this.$set(term, 'DiseaseName', term.HPO_Data);
-        }
-
-        var res = searchTerm.split(" - ");
-        var hpoId = res[1].replace(/[\])}[{(]/g, '').trim();
-        var phenoTerm = res[0];
-        term.hpoNumber = hpoId;
-        term.phenotype = phenoTerm;
-
-        if(!this.multipleSearchTerms.includes(searchTerm) && searchTerm!==undefined){
-          if(searchTerm.length>1){
-            this.multipleSearchTerms.push(searchTerm);
-            this.searchTermsObj.push(term);
-            this.Hpo_searchTermsObj.push(term);
-            this.Hpo_searchTermArray.push(hpoId);
+        //Add Phenolyzer selected terms from review
+        for (var i = this.phenolyzer_push_idx; i < this.phenolyzerTermsAdded.length; i++) {
+          var term = this.phenolyzerTermsAdded[i];
+          var searchTerm ="";
+          searchTerm = term.value;
+          if(!this.multipleSearchTerms.includes(searchTerm) && searchTerm!==undefined){
+            if(searchTerm.length>1){
+                this.multipleSearchTerms.push(searchTerm);
+                this.searchTermsObj.push(term);
+                this.Phenolyzer_searchTermsObj.push(term);
+                this.Phenolyzer_searchTermArray.push(searchTerm);
+                this.$set(this.Phenolyzer_searchTermsObj[this.phenolyzer_push_idx], 'phenolyzerSearchStatus', "Searching");
+                this.phenolyzer_push_idx = this.phenolyzer_push_idx + 1;
+            }
           }
         }
-      })
 
-      this.termsReviewDialog = false;
-      this.search = '';
-      this.textNotes = '';
-      this.termsReviewDialogPage = 0;
-      if(this.hpoTermsAdded.length || this.GtrTermsAdded.length || this.phenolyzerTermsAdded.length){
-        this.performSearchEvent();
+        this.hpoTermsAdded.map(term => {
+          var searchTerm ="";
+          searchTerm = term.HPO_Data;
+          if(term.hpoSearchStatus!=="Completed" || term.hpoSearchStatus===undefined){
+            this.$set(term, 'hpoSearchStatus', "Searching");
+            this.$set(term, 'tool_to_search', 'Hpo');
+            this.$set(term, 'DiseaseName', term.HPO_Data);
+          }
+
+          var res = searchTerm.split(" - ");
+          var hpoId = res[1].replace(/[\])}[{(]/g, '').trim();
+          var phenoTerm = res[0];
+          term.hpoNumber = hpoId;
+          term.phenotype = phenoTerm;
+
+          if(!this.multipleSearchTerms.includes(searchTerm) && searchTerm!==undefined){
+            if(searchTerm.length>1){
+              this.multipleSearchTerms.push(searchTerm);
+              this.searchTermsObj.push(term);
+              this.Hpo_searchTermsObj.push(term);
+              this.Hpo_searchTermArray.push(hpoId);
+            }
+          }
+        })
+
+        this.termsReviewDialog = false;
+        this.search = '';
+        this.textNotes = '';
+        this.termsReviewDialogPage = 0;
+        if(this.hpoTermsAdded.length || this.GtrTermsAdded.length || this.phenolyzerTermsAdded.length){
+          this.performSearchEvent();
+        }
       }
     },
     performSearchEvent(){
