@@ -73,14 +73,14 @@
             <div v-if="!showSearchTermsLoader">
               <div v-if="clinical_note_text.length">
                 <blockquote v-for="(note, i) in clinical_note_text" :key="i" class="blockquote i-text--left" style="font-size: 13px;">
-                  {{ note.note }}
+                  {{ note.note | to-firstCharacterUppercase }}
                   <span @click="reSelectClinicalNote(note.note, i)">
                     <v-btn text color="primary" small>
                     <span style="font-size:11px">
                       Edit
                      </span></v-btn>
                   </span>
-                  <span @click="deleteInputTerm(note.note, i)">
+                  <span @click="confirmToDeleteInputNote(note.note, i)">
                     <v-btn text color="primary" small>
                     <span style="font-size:11px">
                       Delete
@@ -1435,6 +1435,42 @@
           </v-card>
         </v-dialog>
         <!--End Modal to confirm phenotype deletion -->
+        
+        <!-- Modal to confirm Input note deletion  -->
+        <v-dialog v-model="removeNoteConfirmationDialog" max-width="650">
+          <v-card>
+            <v-card-title >                
+              Are you sure you want to delete the following note? 
+            </v-card-title>
+            <v-card-text>
+              <hr style="margin-top: 0; margin-bottom:10px">
+              <p class="mt-2 pt-2 pb-2">
+                <span class="mt-2 pt-2 pb-2" style="font-size: 14px;">
+                  {{ noteToDelete.note | to-firstCharacterUppercase }}
+                </span>
+              </p>
+              <v-alert
+                border="left"
+                type="warning"
+                dense
+                v-if="searchStatusCompleteAlert"
+                outlined
+              >
+              <span style="font-size: 12px">
+                Deleting this note will remove all the selected terms and genes associated with it. 
+              </span>
+              </v-alert>
+
+            </v-card-text>
+            <v-card-actions>
+              <v-spacer></v-spacer>
+              <v-btn color="primary" small tile @click="deleteInputNote(noteToDelete.note, noteToDelete.idx)">Yes</v-btn>
+              <v-btn color="primary" small outlined tile @click="cancelDeleteInputNote">No</v-btn>
+            </v-card-actions>
+          </v-card>
+        </v-dialog>
+        <!--End Modal to confirm phenotype deletion -->
+
 
 
         <GtrSearch
@@ -1707,7 +1743,10 @@ export default {
     hpoIds: [],
     potentialGtrTermsCount: 0,
     potentialPhenolyzerTermsCount: 0,
-    phenolyzerTermsReturned: []
+    phenolyzerTermsReturned: [],
+    removeNoteConfirmationDialog: false,
+    noteToDelete: {},
+    
   }),
   watch: {
     textNotes(){
@@ -2190,10 +2229,23 @@ export default {
         })(i);
       }
     },
-
     
-    deleteInputTerm(note, idx){
+    confirmToDeleteInputNote(note, idx) {
+      this.noteToDelete = {
+        note, idx
+      }
+      this.removeNoteConfirmationDialog = true; 
+      console.log("this.noteToDelete", this.noteToDelete);
+    },
+    
+    cancelDeleteInputNote(){
+      this.noteToDelete = {};
+      this.removeNoteConfirmationDialog = false;
+    },
+
+    deleteInputNote(note, idx){
       console.log("note", note);
+      this.removeNoteConfirmationDialog = false;
       let note_details = this.clinical_note_text[idx];
       console.log("note_details", note_details);
       console.log("this.clinical_note_text", this.clinical_note_text);
