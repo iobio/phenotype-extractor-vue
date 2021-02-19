@@ -1437,7 +1437,7 @@
         <!--End Modal to confirm phenotype deletion -->
         
         <!-- Modal to confirm Input note deletion  -->
-        <v-dialog v-model="removeNoteConfirmationDialog" max-width="650">
+        <v-dialog persistent v-model="removeNoteConfirmationDialog" max-width="650">
           <v-card>
             <v-card-title >                
               Are you sure you want to delete the following note? 
@@ -1469,7 +1469,31 @@
             </v-card-actions>
           </v-card>
         </v-dialog>
-        <!--End Modal to confirm phenotype deletion -->
+        <!--End Modal to confirm Input note deletion -->
+
+
+        <!-- Deleting note dialog box -->
+          <v-dialog
+            v-model="deletingNoteDialog"
+            hide-overlay
+            width="300"
+            persisitent
+          >
+            <v-card
+              color="primary"
+              dark
+            >
+              <v-card-text>
+                  <p style="color:white">Reorganizing gene list...</p>
+                <v-progress-linear
+                  indeterminate
+                  color="white"
+                  class="mb-0"
+                ></v-progress-linear>
+              </v-card-text>
+            </v-card>
+          </v-dialog>
+          <!-- End Deleting note dialog box -->
 
 
 
@@ -1746,7 +1770,7 @@ export default {
     phenolyzerTermsReturned: [],
     removeNoteConfirmationDialog: false,
     noteToDelete: {},
-    
+    deletingNoteDialog: false,
   }),
   watch: {
     textNotes(){
@@ -1779,7 +1803,6 @@ export default {
       }
     },
     GtrTermsAdded_temp(){
-      console.log("GtrTermsAdded_temp", this.GtrTermsAdded_temp);
     },
     basicModeTermsAdded_temp(){
     },
@@ -1790,7 +1813,6 @@ export default {
       }
     },
     GtrReviewTerms(){
-      console.log("this,GtrReviewTerms", this.GtrReviewTerms);
     }
 
   },
@@ -2128,19 +2150,9 @@ export default {
     },
     
     deleteAndRemoveGtrTermsFromInput(items, note, note_index){
-      console.log("this.GtrTermsAdded", this.GtrTermsAdded);
-      console.log("this.Gtr_searchTermsObj", this.Gtr_searchTermsObj);
-      console.log("this.Gtr_searchTermArray", this.Gtr_searchTermArray);
-      console.log("-----------------------------------");
-      if (!items.length) {
-        this.clinical_note_text.splice(note_index, 1);
-        this.clinical_note_text = [...this.clinical_note_text];
-      }
       for(let i=0; i<items.length; i++){
         ((ind) =>{
           setTimeout(() =>{
-            console.log("terms to remove: ", items[i].DiseaseName);
-            console.log("idx", idx);
             var idx = this.Gtr_searchTermArray.indexOf(items[i].DiseaseName);
             
             bus.$emit('pass_filteredDiseasesItems', this.diseasesProps);
@@ -2160,15 +2172,6 @@ export default {
             this.gtr_push_idx = this.gtr_push_idx - 1;
             this.Gtr_search_complete_idx = this.Gtr_search_complete_idx -1;
             
-            console.log("this.GtrTermsAdded now", this.GtrTermsAdded);
-            console.log("this.Gtr_searchTermsObj now", this.Gtr_searchTermsObj);
-            console.log("this.Gtr_searchTermArray now", this.Gtr_searchTermArray);
-            console.log("-----------------------------------");
-
-            if(i === items.length-1){
-              this.clinical_note_text.splice(note_index, 1);
-              this.clinical_note_text = [...this.clinical_note_text];
-            }
           }, 200 + (2500 * ind));
         })(i);
       }
@@ -2203,13 +2206,10 @@ export default {
     },
     
     deleteAndRemoveHpoTermsFromInput(items){
-      console.log("hpo terms", items);
-      console.log("this.Hpo_searchTermArray", this.Hpo_searchTermArray);
       for(let i=0; i<items.length; i++){
         ((ind) =>{
           setTimeout(() =>{
             var idx = this.Hpo_searchTermArray.indexOf(items[i].hpoNumber);
-      
             bus.$emit("removeHpoTerm", items[i]);
       
             this.multipleSearchTerms.splice(this.multipleSearchTerms.indexOf(items[i].HPO_Data), 1)
@@ -2235,7 +2235,6 @@ export default {
         note, idx
       }
       this.removeNoteConfirmationDialog = true; 
-      console.log("this.noteToDelete", this.noteToDelete);
     },
     
     cancelDeleteInputNote(){
@@ -2244,21 +2243,19 @@ export default {
     },
 
     deleteInputNote(note, idx){
-      console.log("note", note);
       this.removeNoteConfirmationDialog = false;
+      this.deletingNoteDialog = true;
+      bus.$emit("show-gene-table-skeleton-loaders");
+      this.showSearchTermsLoader = true;
+
       let note_details = this.clinical_note_text[idx];
-      console.log("note_details", note_details);
-      console.log("this.clinical_note_text", this.clinical_note_text);
       let gtr_terms_for_temp = [];
       let phenolyzer_terms_for_temp = [];
       let hpo_terms_for_temp = [];
       let basic_mode_terms_for_temp = [];
-      console.log(":this.Gtr_searchTermArray", this.Gtr_searchTermArray);
-      console.log("note_details.gtr_terms", note_details.gtr_terms);
 
       note_details.gtr_terms.map(x => {
         if(this.Gtr_searchTermArray.includes(x.DiseaseName)){
-          // this.note_reselect_gtrTerms_Array.push(x.DiseaseName);
           gtr_terms_for_temp.push(x);
         }
       })
@@ -2275,21 +2272,27 @@ export default {
         }
       })
 
+      var max_count = Math.max(gtr_terms_for_temp.length, phenolyzer_terms_for_temp.length, hpo_terms_for_temp.length);
 
       this.deleteAndRemoveGtrTermsFromInput(gtr_terms_for_temp, note, idx);
       this.deleteAndRemovePhenolyzerTermsFromInput(phenolyzer_terms_for_temp);
       this.deleteAndRemoveHpoTermsFromInput(hpo_terms_for_temp);
+      
+      setTimeout(() => {
+        this.clinical_note_text.splice(idx, 1);
+        this.clinical_note_text = [...this.clinical_note_text];
+        bus.$emit("hide-gene-table-skeleton-loaders")
+        this.showSearchTermsLoader = false;
+        this.deletingNoteDialog = false;
+      }, 200 + (2500 * max_count))
     },
     
     reSelectClinicalNote(note, idx){
-      console.log("note", note);
       this.reReviewClinicalNote = true;
       this.searchStatusCompleteAlert = false;
       this.textNotes = note;
       this.note_rereview_idx = idx;
       let note_details = this.clinical_note_text[idx];
-      console.log("note_details", note_details);
-      console.log("this.clinical_note_text", this.clinical_note_text);
       this.note_reselect_gtrTerms_Array = [];
       this.note_reselect_phenolyzerTerms_Array = [];
       this.note_reselect_hpoTerms_Array = [];
