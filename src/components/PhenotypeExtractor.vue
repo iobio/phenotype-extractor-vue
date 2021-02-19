@@ -2088,11 +2088,15 @@ export default {
       return phenotype; 
     },
     
-    deleteAndRemoveTermsFromInput(items, note, note_index){
+    deleteAndRemoveGtrTermsFromInput(items, note, note_index){
       console.log("this.GtrTermsAdded", this.GtrTermsAdded);
       console.log("this.Gtr_searchTermsObj", this.Gtr_searchTermsObj);
       console.log("this.Gtr_searchTermArray", this.Gtr_searchTermArray);
       console.log("-----------------------------------");
+      if (!items.length) {
+        this.clinical_note_text.splice(note_index, 1);
+        this.clinical_note_text = [...this.clinical_note_text];
+      }
       for(let i=0; i<items.length; i++){
         ((ind) =>{
           setTimeout(() =>{
@@ -2122,13 +2126,71 @@ export default {
             console.log("this.Gtr_searchTermArray now", this.Gtr_searchTermArray);
             console.log("-----------------------------------");
 
-            this.clinical_note_text.splice(note_index, 1);
-            this.clinical_note_text = [...this.clinical_note_text];
-            
+            if(i === items.length-1){
+              this.clinical_note_text.splice(note_index, 1);
+              this.clinical_note_text = [...this.clinical_note_text];
+            }
           }, 200 + (2500 * ind));
         })(i);
       }
     },
+    
+    
+    deleteAndRemovePhenolyzerTermsFromInput(items){
+      for(let i=0; i<items.length; i++){
+        ((ind) =>{
+          setTimeout(() =>{
+            var idx = this.Phenolyzer_searchTermArray.indexOf(items[i].value);
+            
+            bus.$emit("removePhenolyzerTerm", items[i].value);
+            
+            this.multipleSearchTerms.splice(this.multipleSearchTerms.indexOf(items[i].value), 1)
+            this.multipleSearchTerms = [...this.multipleSearchTerms];
+            
+            this.phenolyzerTermsAdded.splice(idx, 1)
+            this.phenolyzerTermsAdded = [...this.phenolyzerTermsAdded];
+            this.Phenolyzer_searchTermsObj.splice(idx, 1);
+            this.Phenolyzer_searchTermsObj = [...this.Phenolyzer_searchTermsObj];
+            this.Phenolyzer_searchTermArray.splice(idx, 1);
+            this.Phenolyzer_searchTermArray = [...this.Phenolyzer_searchTermArray];
+            
+            this.Phenolyzer_idx = this.Phenolyzer_idx - 1;
+            this.phenolyzer_push_idx = this.phenolyzer_push_idx - 1;
+            this.Phenolyzer_search_complete_idx = this.Phenolyzer_search_complete_idx -1;
+                        
+          }, 200 + (2500 * ind));
+        })(i);
+      }
+    },
+    
+    deleteAndRemoveHpoTermsFromInput(items){
+      console.log("hpo terms", items);
+      console.log("this.Hpo_searchTermArray", this.Hpo_searchTermArray);
+      for(let i=0; i<items.length; i++){
+        ((ind) =>{
+          setTimeout(() =>{
+            var idx = this.Hpo_searchTermArray.indexOf(items[i].hpoNumber);
+      
+            bus.$emit("removeHpoTerm", items[i]);
+      
+            this.multipleSearchTerms.splice(this.multipleSearchTerms.indexOf(items[i].HPO_Data), 1)
+            this.multipleSearchTerms = [...this.multipleSearchTerms];
+      
+            this.hpoTermsAdded.splice(idx, 1)
+            this.hpoTermsAdded = [...this.hpoTermsAdded];
+            this.Hpo_searchTermsObj.splice(idx, 1);
+            this.Hpo_searchTermsObj = [...this.Hpo_searchTermsObj];
+            this.Hpo_searchTermArray.splice(idx, 1);
+            this.Hpo_searchTermArray = [...this.Hpo_searchTermArray];
+      
+            this.Hpo_idx = this.Hpo_idx - 1;
+            this.Hpo_search_complete_idx = this.Hpo_search_complete_idx -1;
+      
+          }, 200 + (2500 * ind));
+        })(i);
+      }
+    },
+
     
     deleteInputTerm(note, idx){
       console.log("note", note);
@@ -2148,8 +2210,23 @@ export default {
           gtr_terms_for_temp.push(x);
         }
       })
-      console.log("gtr_terms_for_temp", gtr_terms_for_temp);
-      this.deleteAndRemoveTermsFromInput(gtr_terms_for_temp, note, idx)
+      
+      note_details.phenolyzer_terms.map(x => {
+        if(this.Phenolyzer_searchTermArray.includes(x.value)){
+          phenolyzer_terms_for_temp.push(x);
+        }
+      })
+      
+      note_details.hpo_terms.map(x => {
+        if(this.Hpo_searchTermArray.includes(x.hpoNumber)){
+          hpo_terms_for_temp.push(x);
+        }
+      })
+
+
+      this.deleteAndRemoveGtrTermsFromInput(gtr_terms_for_temp, note, idx);
+      this.deleteAndRemovePhenolyzerTermsFromInput(phenolyzer_terms_for_temp);
+      this.deleteAndRemoveHpoTermsFromInput(hpo_terms_for_temp);
     },
     
     reSelectClinicalNote(note, idx){
