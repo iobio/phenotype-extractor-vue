@@ -73,13 +73,20 @@
             <div v-if="!showSearchTermsLoader">
               <div v-if="clinical_note_text.length">
                 <blockquote v-for="(note, i) in clinical_note_text" :key="i" class="blockquote i-text--left" style="font-size: 13px;">
-                  {{ note.note }}
+                  {{ note.note | to-firstCharacterUppercase }}
                   <span @click="reSelectClinicalNote(note.note, i)">
                     <v-btn text color="primary" small>
                     <span style="font-size:11px">
                       Edit
                      </span></v-btn>
                   </span>
+                  <span @click="confirmToDeleteInputNote(note.note, i)">
+                    <v-btn text color="primary" small>
+                    <span style="font-size:11px">
+                      Delete
+                     </span></v-btn>
+                  </span>
+
                 </blockquote>
               </div>
               <div v-else>
@@ -1428,6 +1435,66 @@
           </v-card>
         </v-dialog>
         <!--End Modal to confirm phenotype deletion -->
+        
+        <!-- Modal to confirm Input note deletion  -->
+        <v-dialog persistent v-model="removeNoteConfirmationDialog" max-width="650">
+          <v-card>
+            <v-card-title >                
+              Are you sure you want to delete the following note? 
+            </v-card-title>
+            <v-card-text>
+              <hr style="margin-top: 0; margin-bottom:10px">
+              <p class="mt-2 pt-2 pb-2">
+                <span class="mt-2 pt-2 pb-2" style="font-size: 14px;">
+                  {{ noteToDelete.note | to-firstCharacterUppercase }}
+                </span>
+              </p>
+              <v-alert
+                border="left"
+                type="warning"
+                dense
+                v-if="searchStatusCompleteAlert"
+                outlined
+              >
+              <span style="font-size: 12px">
+                Deleting this note will remove all the selected terms and genes associated with it. 
+              </span>
+              </v-alert>
+
+            </v-card-text>
+            <v-card-actions>
+              <v-spacer></v-spacer>
+              <v-btn color="primary" small tile @click="deleteInputNote(noteToDelete.note, noteToDelete.idx)">Yes</v-btn>
+              <v-btn color="primary" small outlined tile @click="cancelDeleteInputNote">No</v-btn>
+            </v-card-actions>
+          </v-card>
+        </v-dialog>
+        <!--End Modal to confirm Input note deletion -->
+
+
+        <!-- Deleting note dialog box -->
+          <v-dialog
+            v-model="deletingNoteDialog"
+            hide-overlay
+            width="300"
+            persisitent
+          >
+            <v-card
+              color="primary"
+              dark
+            >
+              <v-card-text>
+                  <p style="color:white">Reorganizing gene list...</p>
+                <v-progress-linear
+                  indeterminate
+                  color="white"
+                  class="mb-0"
+                ></v-progress-linear>
+              </v-card-text>
+            </v-card>
+          </v-dialog>
+          <!-- End Deleting note dialog box -->
+
 
 
         <GtrSearch
@@ -1700,7 +1767,10 @@ export default {
     hpoIds: [],
     potentialGtrTermsCount: 0,
     potentialPhenolyzerTermsCount: 0,
-    phenolyzerTermsReturned: []
+    phenolyzerTermsReturned: [],
+    removeNoteConfirmationDialog: false,
+    noteToDelete: {},
+    deletingNoteDialog: false,
   }),
   watch: {
     textNotes(){
@@ -1733,7 +1803,6 @@ export default {
       }
     },
     GtrTermsAdded_temp(){
-      console.log("GtrTermsAdded_temp", this.GtrTermsAdded_temp);
     },
     basicModeTermsAdded_temp(){
     },
@@ -1744,7 +1813,6 @@ export default {
       }
     },
     GtrReviewTerms(){
-      console.log("this,GtrReviewTerms", this.GtrReviewTerms);
     }
 
   },
@@ -2079,7 +2147,145 @@ export default {
       var idx = this.HPO_Terms_data.indexOf(id);
       var phenotype = this.HPO_Phenotypes_data[idx];
       return phenotype; 
-    }, 
+    },
+    
+    deleteAndRemoveGtrTermsFromInput(items, note, note_index){
+      for(let i=0; i<items.length; i++){
+        ((ind) =>{
+          setTimeout(() =>{
+            var idx = this.Gtr_searchTermArray.indexOf(items[i].DiseaseName);
+            
+            bus.$emit('pass_filteredDiseasesItems', this.diseasesProps);
+            bus.$emit("removeGtrTerm", items[i].DiseaseName);
+            
+            this.multipleSearchTerms.splice(this.multipleSearchTerms.indexOf(items[i].DiseaseName), 1)
+            this.multipleSearchTerms = [...this.multipleSearchTerms];
+            
+            this.GtrTermsAdded.splice(idx, 1)
+            this.GtrTermsAdded = [...this.GtrTermsAdded];
+            this.Gtr_searchTermsObj.splice(idx, 1);
+            this.Gtr_searchTermsObj = [...this.Gtr_searchTermsObj];
+            this.Gtr_searchTermArray.splice(idx, 1);
+            this.Gtr_searchTermArray = [...this.Gtr_searchTermArray];
+            
+            this.Gtr_idx = this.Gtr_idx - 1;
+            this.gtr_push_idx = this.gtr_push_idx - 1;
+            this.Gtr_search_complete_idx = this.Gtr_search_complete_idx -1;
+            
+          }, 200 + (2500 * ind));
+        })(i);
+      }
+    },
+    
+    
+    deleteAndRemovePhenolyzerTermsFromInput(items){
+      for(let i=0; i<items.length; i++){
+        ((ind) =>{
+          setTimeout(() =>{
+            var idx = this.Phenolyzer_searchTermArray.indexOf(items[i].value);
+            
+            bus.$emit("removePhenolyzerTerm", items[i].value);
+            
+            this.multipleSearchTerms.splice(this.multipleSearchTerms.indexOf(items[i].value), 1)
+            this.multipleSearchTerms = [...this.multipleSearchTerms];
+            
+            this.phenolyzerTermsAdded.splice(idx, 1)
+            this.phenolyzerTermsAdded = [...this.phenolyzerTermsAdded];
+            this.Phenolyzer_searchTermsObj.splice(idx, 1);
+            this.Phenolyzer_searchTermsObj = [...this.Phenolyzer_searchTermsObj];
+            this.Phenolyzer_searchTermArray.splice(idx, 1);
+            this.Phenolyzer_searchTermArray = [...this.Phenolyzer_searchTermArray];
+            
+            this.Phenolyzer_idx = this.Phenolyzer_idx - 1;
+            this.phenolyzer_push_idx = this.phenolyzer_push_idx - 1;
+            this.Phenolyzer_search_complete_idx = this.Phenolyzer_search_complete_idx -1;
+                        
+          }, 200 + (2500 * ind));
+        })(i);
+      }
+    },
+    
+    deleteAndRemoveHpoTermsFromInput(items){
+      for(let i=0; i<items.length; i++){
+        ((ind) =>{
+          setTimeout(() =>{
+            var idx = this.Hpo_searchTermArray.indexOf(items[i].hpoNumber);
+            bus.$emit("removeHpoTerm", items[i]);
+      
+            this.multipleSearchTerms.splice(this.multipleSearchTerms.indexOf(items[i].HPO_Data), 1)
+            this.multipleSearchTerms = [...this.multipleSearchTerms];
+      
+            this.hpoTermsAdded.splice(idx, 1)
+            this.hpoTermsAdded = [...this.hpoTermsAdded];
+            this.Hpo_searchTermsObj.splice(idx, 1);
+            this.Hpo_searchTermsObj = [...this.Hpo_searchTermsObj];
+            this.Hpo_searchTermArray.splice(idx, 1);
+            this.Hpo_searchTermArray = [...this.Hpo_searchTermArray];
+      
+            this.Hpo_idx = this.Hpo_idx - 1;
+            this.Hpo_search_complete_idx = this.Hpo_search_complete_idx -1;
+      
+          }, 200 + (2500 * ind));
+        })(i);
+      }
+    },
+    
+    confirmToDeleteInputNote(note, idx) {
+      this.noteToDelete = {
+        note, idx
+      }
+      this.removeNoteConfirmationDialog = true; 
+    },
+    
+    cancelDeleteInputNote(){
+      this.noteToDelete = {};
+      this.removeNoteConfirmationDialog = false;
+    },
+
+    deleteInputNote(note, idx){
+      this.removeNoteConfirmationDialog = false;
+      this.deletingNoteDialog = true;
+      bus.$emit("show-gene-table-skeleton-loaders");
+      this.showSearchTermsLoader = true;
+
+      let note_details = this.clinical_note_text[idx];
+      let gtr_terms_for_temp = [];
+      let phenolyzer_terms_for_temp = [];
+      let hpo_terms_for_temp = [];
+      let basic_mode_terms_for_temp = [];
+
+      note_details.gtr_terms.map(x => {
+        if(this.Gtr_searchTermArray.includes(x.DiseaseName)){
+          gtr_terms_for_temp.push(x);
+        }
+      })
+      
+      note_details.phenolyzer_terms.map(x => {
+        if(this.Phenolyzer_searchTermArray.includes(x.value)){
+          phenolyzer_terms_for_temp.push(x);
+        }
+      })
+      
+      note_details.hpo_terms.map(x => {
+        if(this.Hpo_searchTermArray.includes(x.hpoNumber)){
+          hpo_terms_for_temp.push(x);
+        }
+      })
+
+      var max_count = Math.max(gtr_terms_for_temp.length, phenolyzer_terms_for_temp.length, hpo_terms_for_temp.length);
+
+      this.deleteAndRemoveGtrTermsFromInput(gtr_terms_for_temp, note, idx);
+      this.deleteAndRemovePhenolyzerTermsFromInput(phenolyzer_terms_for_temp);
+      this.deleteAndRemoveHpoTermsFromInput(hpo_terms_for_temp);
+      
+      setTimeout(() => {
+        this.clinical_note_text.splice(idx, 1);
+        this.clinical_note_text = [...this.clinical_note_text];
+        bus.$emit("hide-gene-table-skeleton-loaders")
+        this.showSearchTermsLoader = false;
+        this.deletingNoteDialog = false;
+      }, 200 + (2500 * max_count))
+    },
     
     reSelectClinicalNote(note, idx){
       this.reReviewClinicalNote = true;
