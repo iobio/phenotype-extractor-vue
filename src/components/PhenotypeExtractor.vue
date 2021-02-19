@@ -2284,7 +2284,9 @@ export default {
         bus.$emit("hide-gene-table-skeleton-loaders")
         this.showSearchTermsLoader = false;
         this.deletingNoteDialog = false;
-      }, 200 + (2500 * max_count))
+        var allPhenotypes = [this.GtrTermsAdded, this.phenolyzerTermsAdded, this.hpoTermsAdded, this.clinical_note_text];
+        this.$emit('saveSearchedPhenotypes', allPhenotypes)
+      }, 200 + (3000 * max_count))
     },
     
     reSelectClinicalNote(note, idx){
