@@ -2088,7 +2088,7 @@ export default {
       return phenotype; 
     },
     
-    deleteAndRemoveTermsFromInput(items){
+    deleteAndRemoveTermsFromInput(items, note, note_index){
       console.log("this.GtrTermsAdded", this.GtrTermsAdded);
       console.log("this.Gtr_searchTermsObj", this.Gtr_searchTermsObj);
       console.log("this.Gtr_searchTermArray", this.Gtr_searchTermArray);
@@ -2122,7 +2122,9 @@ export default {
             console.log("this.Gtr_searchTermArray now", this.Gtr_searchTermArray);
             console.log("-----------------------------------");
 
-
+            this.clinical_note_text.splice(note_index, 1);
+            this.clinical_note_text = [...this.clinical_note_text];
+            
           }, 200 + (2500 * ind));
         })(i);
       }
@@ -2147,7 +2149,7 @@ export default {
         }
       })
       console.log("gtr_terms_for_temp", gtr_terms_for_temp);
-      this.deleteAndRemoveTermsFromInput(gtr_terms_for_temp)
+      this.deleteAndRemoveTermsFromInput(gtr_terms_for_temp, note, idx)
     },
     
     reSelectClinicalNote(note, idx){
