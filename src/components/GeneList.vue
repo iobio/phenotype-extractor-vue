@@ -472,7 +472,6 @@ export default {
       }
     },
     selected(){
-      console.log("watching selected", this.selected);
     }
   },
   data () {
@@ -644,16 +643,10 @@ export default {
       let idx = this.genes.findIndex(x => x === this.geneToDelete.name);
       this.genes.splice(idx, 1)
       this.deleteGeneDialog = false;
+      // this.geneTableLoading = true;
       // this.$emit("UpdateListOnDelete", this.summaryGenes)
       // let idx = this.summaryGenes.findIndex(x => x.name === this.geneToDelete.name);
       // this.summaryGenes.splice(idx, 1)
-      // setTimeout(() => {
-      //   this.getSelectedGenesAfterDelete();
-      // }, 2000)
-    },
-    
-    getSelectedGenesAfterDelete(){
-      console.log("selected", this.selected);
     },
 
     getPhenotypFromHPO_id(id){
@@ -773,7 +766,6 @@ export default {
     },
     
     selectItem(item){
-      console.log("called selectItem");
       if(!item.inGeneSet){
         item.inGeneSet = true;
         this.summaryGenes[item.idx].inGeneSet = true;
@@ -798,7 +790,6 @@ export default {
       this.$emit("add_to_gene_set", this.selected)
     },
     selectTopGenes(numberOfGenesToSelect){
-      console.log("called selectTopGenes");
       this.selected = [];
       for (var i = 0; i < this.summaryGenes.length; i++) {
         if(i < numberOfGenesToSelect){
@@ -814,7 +805,6 @@ export default {
       this.$emit("add_to_gene_set", this.selected)
     },
     selectTopGenesAfterDelete(numberOfGenesToSelect){
-      console.log("called selectTopGenesAfterDelete");
       this.selected = [];
       if(this.summaryGenes.length === 0){
         this.selected = [];
@@ -830,8 +820,11 @@ export default {
           this.summaryGenes[i].inGeneSet = false;
         }
       }
+      // this.geneTableLoading = false;
+
       this.$emit("add_to_gene_set", this.selected);
       this.geneToDelete = null;
+
     },
     updateGenesTop(e){
       if(this.selectedGenesFlag){

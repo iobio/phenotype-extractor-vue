@@ -189,11 +189,17 @@ export default {
     this.PhenotypistState = PhenotypistData;
   },
   mounted(){
-    console.log("mounted", this.analysis);
   },
   methods: {
     summaryGenes(genes){
-      this.summaryGeneList = genes;
+      let res = [];
+      genes.map(gene => {
+        if(!this.deletedGenesList.includes(gene.name)){
+          res.push(gene);
+        }
+      })
+
+      this.summaryGeneList = res;
       this.analysis.payload.genesReport = this.summaryGeneList;
     },
     saveSearchedPhenotypes(phenotypes){
@@ -201,7 +207,11 @@ export default {
       this.analysis.payload.phenotypes = phenotypes;
     },
     importedGenes(genes){
+      if(this.deletedGenesList.length){
+        this.deletedGenesList = this.deletedGenesList.filter(item => !genes.includes(item))
+      }
       this.AddedGenes = genes;
+      
     },
     PhenolyzerGeneList(genes){
       if(genes.length === 0){
