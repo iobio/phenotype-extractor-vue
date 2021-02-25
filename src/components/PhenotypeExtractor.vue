@@ -2402,6 +2402,33 @@ export default {
 
       // this.extract();
     },
+    
+    extractHpoIds(str){
+      var newStr = str; 
+      var separators = [',', ';', ' ' ];
+      var arr = newStr.split(new RegExp(separators.join('|'), 'g'));
+
+      var ids = [];
+      arr.map(x => {
+        if(HPO_Terms.includes(x)) {
+          ids.push(x);
+        }
+      })
+      var hpoIds = Array.from(new Set(ids));
+      return hpoIds;
+    },
+    
+    getPhenotypesForHpoIds(arr){
+      var hpoPhenotypes = []; 
+      arr.map( id => {
+        var idx = this.HPO_Terms_data.indexOf(id); 
+        if(idx!== -1){
+          hpoPhenotypes.push(this.HPO_Phenotypes_data[idx]);
+        }
+      })
+      console.log("hpoPhenotypes", hpoPhenotypes);
+      return hpoPhenotypes;
+    },
 
     extract(){
       this.gtr_terms_expansion_panel = [];
@@ -2414,6 +2441,9 @@ export default {
       this.demoTermsFlag = false;
       this.hpoIds = [];
       this.searchStatusCompleteAlert = false;
+      var hpoIds = this.extractHpoIds(this.textNotes);
+      var hpoPhenos = this.getPhenotypesForHpoIds(hpoIds);
+      this.hpoExtractedPhenotypesFromIds = hpoPhenos;
       // fetch(`http://nv-dev-new.iobio.io/phenotype-extractor/?notes=${this.textNotes}`)
       // fetch(`http://dev.backend.iobio.io:9003/phenotypeExtractor?notes=${this.textNotes}`)
       // fetch(`https://backend.iobio.io/phenotypeExtractor?notes=${this.textNotes}`)
@@ -2431,18 +2461,22 @@ export default {
             this.loadingDialog = false;
           }
           // var data = JSON.parse(res);
-          // console.log("data", data);
+          data.hpoIds = hpoIds;
           this.hpoIds = data.hpoIds;
+          console.log("data", data);
           // console.log("this.hpoIds",this.hpoIds);
           // console.log("data.LevenshteinResults", data.LevenshteinResults);
+          data.LevenshteinResults = [...data.LevenshteinResults, ...hpoPhenos];
+          console.log("data.LevenshteinResults", data.LevenshteinResults);
           this.LevenshteinResults = data.LevenshteinResults;
           data.LevenshteinResults.map(x=>{
+            console.log("x", x);
             x = x.trim()
             if(!this.extractedTerms.includes(x)){
               this.extractedTerms.push(x);
             }
           })
-
+          console.log("this.extractedTerms", this.extractedTerms);
           this.HpoReviewTerms = [];
           this.fetchHpoTerm();
 
@@ -2501,7 +2535,8 @@ export default {
     },
     fetchHpoTerm(){
       this.HpoloadingProgressBar = true;
-      const cmd = api.clinphen({ notes: `${this.textNotes}`});
+      var hpoPhenosString = this.hpoExtractedPhenotypesFromIds.join();
+      const cmd = api.clinphen({ notes: `${this.textNotes},${hpoPhenosString}`});
       cmd.then((data) => {
         this.parseTerms(data);
       });
