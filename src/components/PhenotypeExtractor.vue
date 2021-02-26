@@ -557,7 +557,7 @@
                   				small
                           style="border-color: rgb(250, 244, 202);"
                         >
-                          Select upto 5 conditions for optimal performance in GTR 
+                          Select up to 5 conditions for optimal performance in GTR 
                         </v-chip>
                       </span>
                     </div>
