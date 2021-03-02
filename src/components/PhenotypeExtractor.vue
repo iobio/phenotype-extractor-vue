@@ -481,12 +481,25 @@
                   <div>
                     <span class="mb-4" style="color:rgb(135 135 135)"> Clinical Note</span>
                     
-                    <div style="word-wrap: break-word; padding-top: 8px;font-size: 0.975rem;">
+                    <div style="word-wrap: break-word; padding-top: 8px;font-size: 0.975rem; word-break: break-word">
                       {{ textNotes }}
                     </div>
                     <hr>
                     <!-- <blockquote class="blockquote i-text--left" style="font-size: 13px; word-break: break-word; padding: 16px 24px 16px 24px">
                     </blockquote> -->
+                    <div v-if="hpoTermsDetected && !reReviewClinicalNote" class="hpo-terms-detected-card elevation-2">
+                      <v-card class="mb-7">
+                        <v-card-title primary-title class="primary" style="color: white; padding-bottom: 5px !important; padding-top: 5px !important; font-size: 14px">
+                          HPO terms detected
+                        </v-card-title>
+                        <v-card-text style="padding-bottom: 1px !important; padding-top: 1px !important">
+                          <v-radio-group v-model="hpo_radios" mandatory>
+                            <v-radio label="Select inputted HPO terms only" value="inputted_hpo_only"></v-radio>
+                            <v-radio label="Use terms from all sources" value="all_sources_terms"></v-radio>
+                          </v-radio-group>
+                        </v-card-text>
+                      </v-card>
+                    </div>
                   </div>
                 </v-card-text>
               </v-card-title>
@@ -1771,8 +1784,13 @@ export default {
     removeNoteConfirmationDialog: false,
     noteToDelete: {},
     deletingNoteDialog: false,
+    hpoTermsDetected: false,
+    hpo_radios: "inputted_hpo_only"
   }),
   watch: {
+    hpo_radios(){
+      this.setTermsSelectedFromBasicModeForReview();
+    }, 
     textNotes(){
       if(this.textNotes.length===45){
         setTimeout(()=>{
@@ -2402,6 +2420,36 @@ export default {
 
       // this.extract();
     },
+    
+    extractHpoIds(str){
+      var newStr = str; 
+      var separators = [',', ';', ' ' ];
+      var arr = newStr.split(new RegExp(separators.join('|'), 'g'));
+
+      var ids = [];
+      arr.map(x => {
+        if(HPO_Terms.includes(x)) {
+          ids.push(x);
+        }
+      })
+      var hpoIds = Array.from(new Set(ids));
+      if (hpoIds.length) {
+        this.hpoTermsDetected = true;
+        this.hpo_radios = "inputted_hpo_only"
+      }
+      return hpoIds;
+    },
+    
+    getPhenotypesForHpoIds(arr){
+      var hpoPhenotypes = []; 
+      arr.map( id => {
+        var idx = this.HPO_Terms_data.indexOf(id); 
+        if(idx!== -1){
+          hpoPhenotypes.push(this.HPO_Phenotypes_data[idx]);
+        }
+      })
+      return hpoPhenotypes;
+    },
 
     extract(){
       this.gtr_terms_expansion_panel = [];
@@ -2414,6 +2462,10 @@ export default {
       this.demoTermsFlag = false;
       this.hpoIds = [];
       this.searchStatusCompleteAlert = false;
+      this.hpoTermsDetected = false;
+      var hpoIds = this.extractHpoIds(this.textNotes);
+      var hpoPhenos = this.getPhenotypesForHpoIds(hpoIds);
+      this.hpoExtractedPhenotypesFromIds = hpoPhenos;
       // fetch(`http://nv-dev-new.iobio.io/phenotype-extractor/?notes=${this.textNotes}`)
       // fetch(`http://dev.backend.iobio.io:9003/phenotypeExtractor?notes=${this.textNotes}`)
       // fetch(`https://backend.iobio.io/phenotypeExtractor?notes=${this.textNotes}`)
@@ -2431,10 +2483,11 @@ export default {
             this.loadingDialog = false;
           }
           // var data = JSON.parse(res);
-          // console.log("data", data);
+          data.hpoIds = hpoIds;
           this.hpoIds = data.hpoIds;
           // console.log("this.hpoIds",this.hpoIds);
           // console.log("data.LevenshteinResults", data.LevenshteinResults);
+          data.LevenshteinResults = [...data.LevenshteinResults, ...hpoPhenos];
           this.LevenshteinResults = data.LevenshteinResults;
           data.LevenshteinResults.map(x=>{
             x = x.trim()
@@ -2442,7 +2495,6 @@ export default {
               this.extractedTerms.push(x);
             }
           })
-
           this.HpoReviewTerms = [];
           this.fetchHpoTerm();
 
@@ -2501,7 +2553,8 @@ export default {
     },
     fetchHpoTerm(){
       this.HpoloadingProgressBar = true;
-      const cmd = api.clinphen({ notes: `${this.textNotes}`});
+      var hpoPhenosString = this.hpoExtractedPhenotypesFromIds.join();
+      const cmd = api.clinphen({ notes: `${hpoPhenosString},${this.textNotes}`});
       cmd.then((data) => {
         this.parseTerms(data);
       });
@@ -3994,42 +4047,74 @@ export default {
         this.phenolyzerTermsAdded_temp = [];
         this.hpoTermsAdded_temp = [];
         
+        //This is for the condition when there are only HPO terms but no extracted terms. 
+        //Example term: high arched palate Issue: https://github.com/iobio/genepanel.iobio/issues/374
+        
         if(!this.basicModeTermsAdded_temp.length && this.HpoReviewTerms.length){
-          hpoPhenotypes.map(hpo => {
-            var idx = hpoPhenotypes.indexOf(hpo);
-            if(!hpoAddedTerms.includes(this.HpoReviewTerms[idx].phenotype)){
-              this.hpoTermsAdded_temp.push(this.HpoReviewTerms[idx])
-              hpoAddedTerms.push(this.HpoReviewTerms[idx].phenotype)
-            }
-          })
+          if(!this.hpoTermsDetected || (this.hpoTermsDetected && this.hpo_radios === "all_sources_terms")){
+            hpoPhenotypes.map(hpo => {
+              var idx = hpoPhenotypes.indexOf(hpo);
+              if(!hpoAddedTerms.includes(this.HpoReviewTerms[idx].phenotype)){
+                this.hpoTermsAdded_temp.push(this.HpoReviewTerms[idx])
+                hpoAddedTerms.push(this.HpoReviewTerms[idx].phenotype)
+              }
+            })
+          }
+          else{
+            //When only inputted hpo terms are selected
+            hpoPhenotypes.map(hpo => {
+              var idx = hpoPhenotypes.indexOf(hpo);
+              if(!hpoAddedTerms.includes(this.HpoReviewTerms[idx].phenotype)){
+                if(this.hpoExtractedPhenotypesFromIds.includes(hpo)){
+                  this.hpoTermsAdded_temp.push(this.HpoReviewTerms[idx])
+                  hpoAddedTerms.push(this.HpoReviewTerms[idx].phenotype)
+                }
+              }
+            }) 
+          }
         }
         
+        
+        //Normal condiiton:
         this.basicModeTermsAdded_temp.map((term, index) => {
-          // if(index <= 6) {
+          if(!this.hpoTermsDetected || (this.hpoTermsDetected && this.hpo_radios === "all_sources_terms")) {
             this.GtrTermsAdded_temp.push(term.reviewTerms_gtr[0]);
-            this.phenolyzerTermsAdded_temp.push(term.reviewTerms_phenolyzer[0])
-          // }
-          var item = term.DiseaseName.replace(/-/g, " ").replace(/\s\s+/g, ' ').toLowerCase().replace("disease", "").replace("syndrome", "").trim();
-          hpoPhenotypes.map(hpo => {
-            var idx = hpoPhenotypes.indexOf(hpo);
-            if(!hpoAddedTerms.includes(this.HpoReviewTerms[idx].phenotype)){
-              this.hpoTermsAdded_temp.push(this.HpoReviewTerms[idx])
-              term.HpoTermSelected = this.HpoReviewTerms[idx]
-              hpoAddedTerms.push(this.HpoReviewTerms[idx].phenotype)
-            }
+            this.phenolyzerTermsAdded_temp.push(term.reviewTerms_phenolyzer[0]);
+            var item = term.DiseaseName.replace(/-/g, " ").replace(/\s\s+/g, ' ').toLowerCase().replace("disease", "").replace("syndrome", "").trim();
+            hpoPhenotypes.map(hpo => {
+              var idx = hpoPhenotypes.indexOf(hpo);
+              if(!hpoAddedTerms.includes(this.HpoReviewTerms[idx].phenotype)){
+                this.hpoTermsAdded_temp.push(this.HpoReviewTerms[idx])
+                term.HpoTermSelected = this.HpoReviewTerms[idx]
+                hpoAddedTerms.push(this.HpoReviewTerms[idx].phenotype)
+              }
 
-            // if(hpo.toLowerCase().includes(item) || item.toLowerCase().includes(hpo)){
-            //   var idx = hpoPhenotypes.indexOf(hpo);
-            //   if(!hpoAddedTerms.includes(this.HpoReviewTerms[idx].phenotype)){
-            //     this.hpoTermsAdded_temp.push(this.HpoReviewTerms[idx])
-            //     term.HpoTermSelected = this.HpoReviewTerms[idx]
-            //     hpoAddedTerms.push(this.HpoReviewTerms[idx].phenotype)
-            //   }
-            // }
-          })
-          //Also attach the selected terms from each tool to the basicModeTermsAdded_temp
-          term.GtrTermSelected = term.reviewTerms_gtr[0];
-          term.PhenolyzerTermSelected = term.reviewTerms_phenolyzer[0];
+              // if(hpo.toLowerCase().includes(item) || item.toLowerCase().includes(hpo)){
+              //   var idx = hpoPhenotypes.indexOf(hpo);
+              //   if(!hpoAddedTerms.includes(this.HpoReviewTerms[idx].phenotype)){
+              //     this.hpoTermsAdded_temp.push(this.HpoReviewTerms[idx])
+              //     term.HpoTermSelected = this.HpoReviewTerms[idx]
+              //     hpoAddedTerms.push(this.HpoReviewTerms[idx].phenotype)
+              //   }
+              // }
+            })
+            //Also attach the selected terms from each tool to the basicModeTermsAdded_temp
+            term.GtrTermSelected = term.reviewTerms_gtr[0];
+            term.PhenolyzerTermSelected = term.reviewTerms_phenolyzer[0];
+
+          }
+          else {
+            //When only inputted hpo terms are selected
+            hpoPhenotypes.map(hpo => {
+              var idx = hpoPhenotypes.indexOf(hpo);
+              if(!hpoAddedTerms.includes(this.HpoReviewTerms[idx].phenotype)){
+                if(this.hpoExtractedPhenotypesFromIds.includes(hpo)){
+                  this.hpoTermsAdded_temp.push(this.HpoReviewTerms[idx])
+                  hpoAddedTerms.push(this.HpoReviewTerms[idx].phenotype)
+                }
+              }
+            }) 
+          }
         })
         this.potentialGtrTermsCount = 0; 
         this.potentialPhenolyzerTermsCount = 0;
@@ -4173,12 +4258,20 @@ export default {
     padding-top: 5px
     padding-bottom: 5px
     align-items: center
+    
+  .hpo-terms-detected-card
+    .v-label
+      font-size: 14px !important
+      font-weight: 500
+      padding-top: 4px
+
 
 .close-margin-left-40
   margin-left: -40px
   
 .close-margin-left-20
   margin-left: -20px  
+
 
 </style>
 
