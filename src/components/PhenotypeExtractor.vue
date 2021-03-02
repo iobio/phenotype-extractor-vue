@@ -487,6 +487,19 @@
                     <hr>
                     <!-- <blockquote class="blockquote i-text--left" style="font-size: 13px; word-break: break-word; padding: 16px 24px 16px 24px">
                     </blockquote> -->
+                    <div v-if="hpoTermsDetected" class="hpo-terms-detected-card elevation-2">
+                      <v-card class="mb-7">
+                        <v-card-title primary-title class="primary" style="color: white; padding-bottom: 5px !important; padding-top: 5px !important; font-size: 14px">
+                          HPO terms detected
+                        </v-card-title>
+                        <v-card-text style="padding-bottom: 1px !important; padding-top: 1px !important">
+                          <v-radio-group v-model="hpo_radios" mandatory>
+                            <v-radio label="Select inputted HPO terms only" value="inputted_hpo_only"></v-radio>
+                            <v-radio label="Use terms from all sources" value="all_sources_terms"></v-radio>
+                          </v-radio-group>
+                        </v-card-text>
+                      </v-card>
+                    </div>
                   </div>
                 </v-card-text>
               </v-card-title>
@@ -557,7 +570,7 @@
                   				small
                           style="border-color: rgb(250, 244, 202);"
                         >
-                          Select upto 5 conditions for optimal performance in GTR 
+                          Select up to 5 conditions for optimal performance in GTR 
                         </v-chip>
                       </span>
                     </div>
@@ -1771,6 +1784,8 @@ export default {
     removeNoteConfirmationDialog: false,
     noteToDelete: {},
     deletingNoteDialog: false,
+    hpoTermsDetected: false,
+    hpo_radios: "inputted_hpo_only"
   }),
   watch: {
     textNotes(){
@@ -2415,6 +2430,10 @@ export default {
         }
       })
       var hpoIds = Array.from(new Set(ids));
+      if (hpoIds.length) {
+        this.hpoTermsDetected = true;
+        this.hpo_radios = "inputted_hpo_only"
+      }
       return hpoIds;
     },
     
@@ -2441,6 +2460,7 @@ export default {
       this.demoTermsFlag = false;
       this.hpoIds = [];
       this.searchStatusCompleteAlert = false;
+      this.hpoTermsDetected = false;
       var hpoIds = this.extractHpoIds(this.textNotes);
       var hpoPhenos = this.getPhenotypesForHpoIds(hpoIds);
       this.hpoExtractedPhenotypesFromIds = hpoPhenos;
@@ -4040,10 +4060,10 @@ export default {
         }
         
         this.basicModeTermsAdded_temp.map((term, index) => {
-          // if(index <= 6) {
+          if(!this.hpoTermsDetected || (this.hpoTermsDetected && this.hpo_radios === "all_sources_terms")) {
             this.GtrTermsAdded_temp.push(term.reviewTerms_gtr[0]);
             this.phenolyzerTermsAdded_temp.push(term.reviewTerms_phenolyzer[0])
-          // }
+          }
           var item = term.DiseaseName.replace(/-/g, " ").replace(/\s\s+/g, ' ').toLowerCase().replace("disease", "").replace("syndrome", "").trim();
           hpoPhenotypes.map(hpo => {
             var idx = hpoPhenotypes.indexOf(hpo);
@@ -4208,12 +4228,20 @@ export default {
     padding-top: 5px
     padding-bottom: 5px
     align-items: center
+    
+  .hpo-terms-detected-card
+    .v-label
+      font-size: 14px !important
+      font-weight: 500
+      padding-top: 4px
+
 
 .close-margin-left-40
   margin-left: -40px
   
 .close-margin-left-20
   margin-left: -20px  
+
 
 </style>
 
