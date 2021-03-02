@@ -2485,20 +2485,16 @@ export default {
           // var data = JSON.parse(res);
           data.hpoIds = hpoIds;
           this.hpoIds = data.hpoIds;
-          console.log("data", data);
           // console.log("this.hpoIds",this.hpoIds);
           // console.log("data.LevenshteinResults", data.LevenshteinResults);
           data.LevenshteinResults = [...data.LevenshteinResults, ...hpoPhenos];
-          console.log("data.LevenshteinResults", data.LevenshteinResults);
           this.LevenshteinResults = data.LevenshteinResults;
           data.LevenshteinResults.map(x=>{
-            console.log("x", x);
             x = x.trim()
             if(!this.extractedTerms.includes(x)){
               this.extractedTerms.push(x);
             }
           })
-          console.log("this.extractedTerms", this.extractedTerms);
           this.HpoReviewTerms = [];
           this.fetchHpoTerm();
 
