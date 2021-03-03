@@ -487,8 +487,8 @@
                     <hr>
                     <!-- <blockquote class="blockquote i-text--left" style="font-size: 13px; word-break: break-word; padding: 16px 24px 16px 24px">
                     </blockquote> -->
-                    <div v-if="hpoTermsDetected && !reReviewClinicalNote" class="hpo-terms-detected-card elevation-2">
-                      <v-card class="mb-7">
+                    <div v-if="hpoTermsDetected && !reReviewClinicalNote && termsReviewDialogPage===0" class="hpo-terms-detected-card">
+                      <v-card class="mb-7 elevation-2">
                         <v-card-title primary-title class="primary" style="color: white; padding-bottom: 5px !important; padding-top: 5px !important; font-size: 14px">
                           HPO terms detected
                         </v-card-title>
@@ -2483,6 +2483,7 @@ export default {
             this.loadingDialog = false;
           }
           // var data = JSON.parse(res);
+          // console.log("data", data);
           data.hpoIds = hpoIds;
           this.hpoIds = data.hpoIds;
           // console.log("this.hpoIds",this.hpoIds);
@@ -2547,7 +2548,6 @@ export default {
           //check this for saving phenotype data
           // var allPhenotypes = [this.GtrTermsAdded, this.phenolyzerTermsAdded, this.hpoTermsAdded, this.clinical_note_text];
           // this.$emit('saveSearchedPhenotypes', allPhenotypes)
-
           this.openReviewDialogForExtractedTerms();
         })
     },
@@ -2823,6 +2823,11 @@ export default {
           ))
         )
 
+      })
+      
+      //Filters out the terms that do not have "reviewTerms_gtr"
+      this.GtrReviewTerms = this.GtrReviewTerms.filter(term => {
+        return term.reviewTerms_gtr.length > 0;
       })
       
       if(!this.reReviewClinicalNote) {
@@ -4078,8 +4083,12 @@ export default {
         //Normal condiiton:
         this.basicModeTermsAdded_temp.map((term, index) => {
           if(!this.hpoTermsDetected || (this.hpoTermsDetected && this.hpo_radios === "all_sources_terms")) {
-            this.GtrTermsAdded_temp.push(term.reviewTerms_gtr[0]);
-            this.phenolyzerTermsAdded_temp.push(term.reviewTerms_phenolyzer[0]);
+            if(term.reviewTerms_gtr.length){
+              this.GtrTermsAdded_temp.push(term.reviewTerms_gtr[0]);
+            }
+            if(term.reviewTerms_phenolyzer.length){
+              this.phenolyzerTermsAdded_temp.push(term.reviewTerms_phenolyzer[0]);
+            }
             var item = term.DiseaseName.replace(/-/g, " ").replace(/\s\s+/g, ' ').toLowerCase().replace("disease", "").replace("syndrome", "").trim();
             hpoPhenotypes.map(hpo => {
               var idx = hpoPhenotypes.indexOf(hpo);
@@ -4088,18 +4097,18 @@ export default {
                 term.HpoTermSelected = this.HpoReviewTerms[idx]
                 hpoAddedTerms.push(this.HpoReviewTerms[idx].phenotype)
               }
-
-              // if(hpo.toLowerCase().includes(item) || item.toLowerCase().includes(hpo)){
-              //   var idx = hpoPhenotypes.indexOf(hpo);
-              //   if(!hpoAddedTerms.includes(this.HpoReviewTerms[idx].phenotype)){
-              //     this.hpoTermsAdded_temp.push(this.HpoReviewTerms[idx])
-              //     term.HpoTermSelected = this.HpoReviewTerms[idx]
-              //     hpoAddedTerms.push(this.HpoReviewTerms[idx].phenotype)
-              //   }
-              // }
             })
             //Also attach the selected terms from each tool to the basicModeTermsAdded_temp
-            term.GtrTermSelected = term.reviewTerms_gtr[0];
+            if(term.reviewTerms_gtr.length){
+              term.GtrTermSelected = term.reviewTerms_gtr[0];
+            }
+            else{
+              term.GtrTermSelected = {
+                ConceptID: "",
+                DiseaseName: term.DiseaseName
+              }
+            }
+
             term.PhenolyzerTermSelected = term.reviewTerms_phenolyzer[0];
 
           }
