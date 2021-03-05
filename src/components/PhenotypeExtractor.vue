@@ -2603,6 +2603,25 @@ export default {
       if(!this.HpoReviewTerms.length){
         this.matchHpoTermsFromCustomDB();
       }
+      
+      //Ensures the inputted HPO terms are shown at the top
+      var inputtedTerms = [];
+      var clinPhenFoundTerms = [];
+      var temp_HpoReviewTerms = [];
+      if(this.hpoExtractedPhenotypesFromIds.length){
+        this.HpoReviewTerms.map(term => {
+          if(this.hpoIds.includes(term.hpoNumber)){
+            inputtedTerms.push(term);
+          }
+          else {
+            clinPhenFoundTerms.push(term);
+          }
+        })
+        temp_HpoReviewTerms = [...inputtedTerms, ...clinPhenFoundTerms];
+        this.HpoReviewTerms = temp_HpoReviewTerms;
+      }
+      
+      
       this.HpoloadingProgressBar = false;
       // this.HpoReviewTerms = hpoTermArr;
     },
