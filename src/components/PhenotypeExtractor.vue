@@ -2452,7 +2452,7 @@ export default {
     },
 
     extract(){
-      this.textNotes = this.textNotes.replace(/\n/g, '; ');
+      this.textNotes = this.textNotes.replace(/\n/g, ' ');
       var unwanted_char = String.fromCharCode(160);
       this.textNotes = this.textNotes.replace(new RegExp(unwanted_char, "g"), " ");
 
@@ -2493,6 +2493,11 @@ export default {
           this.hpoIds = data.hpoIds;
           // console.log("this.hpoIds",this.hpoIds);
           // console.log("data.LevenshteinResults", data.LevenshteinResults);
+          
+          var termsToExclude = ['short long bones'];
+          
+          data.LevenshteinResults = data.LevenshteinResults.filter(item => !termsToExclude.includes(item))
+
           data.LevenshteinResults = [...data.LevenshteinResults, ...hpoPhenos];
           this.LevenshteinResults = data.LevenshteinResults;
           data.LevenshteinResults.map(x=>{
