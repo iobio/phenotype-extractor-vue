@@ -2452,6 +2452,10 @@ export default {
     },
 
     extract(){
+      this.textNotes = this.textNotes.replace(/\n/g, '; ');
+      var unwanted_char = String.fromCharCode(160);
+      this.textNotes = this.textNotes.replace(new RegExp(unwanted_char, "g"), " ");
+
       this.gtr_terms_expansion_panel = [];
       this.phenolyzer_terms_expansion_panel = [];
       this.WorkflowStepsflag = false;
@@ -2475,6 +2479,7 @@ export default {
           // console.log("text", text);
           var res = text.replace('JaroWinkler', '"JaroWinkler"').replace('fuzzyResults', '"fuzzyResults"').replace('LevenshteinResults', '"LevenshteinResults"').replace('hpoIds', '"hpoIds"').replace(/'/g, '"');
           var data;
+          // console.log("res", res);
           try {
             data = JSON.parse(res);
           }
