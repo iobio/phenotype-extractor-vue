@@ -242,9 +242,17 @@
                               indeterminate
                               color="primary"
                             ></v-progress-circular>
+                            <v-tooltip top>
+                              <template v-slot:activator="{ on }">
+                                <span @click="stopPhenolyzerSearch(term.value)">
+                                  <v-icon small color="grey" style="font-size:18px; cursor: pointer" v-on="on">cancel</v-icon>
+                                </span>
+                              </template>
+                              <span>Cancel search for this term</span>
+                            </v-tooltip>
                             <!-- Running
-                            <br>
-                            <span @click="stopPhenolyzerSearch(term.value)">close</span> -->
+                            <br> -->
+                            <!-- <span @click="stopPhenolyzerSearch(term.value)">close</span> -->
                           </span>
                           <span v-else-if="term.phenolyzerSearchStatus==='Completed'"><v-icon color="green">done</v-icon></span>
                           <span v-else-if="term.phenolyzerSearchStatus==='NoGenes'">
@@ -256,7 +264,15 @@
                             </v-tooltip>
                           </span>
                           <span v-else-if="term.phenolyzerSearchStatus==='NotAvailable'"><v-icon>indeterminate_check_box</v-icon></span>
-                          <span v-else-if="term.phenolyzerSearchStatus==='Cancelled'"><v-icon color="gray lighten-4">cancel</v-icon></span>
+                          <span v-else-if="term.phenolyzerSearchStatus==='Cancelled'">
+                            <!-- <v-icon color="gray lighten-4">cancel</v-icon> -->
+                            <v-tooltip bottom>
+                              <template v-slot:activator="{ on }">
+                                <v-icon small color="gray lighten-4" style="font-size:19px; cursor: pointer" v-on="on">error_outline</v-icon>
+                              </template>
+                              <span>Search for this term was cancelled</span>
+                            </v-tooltip>
+                          </span>
                           <span v-else>
                             <v-tooltip bottom>
                               <template v-slot:activator="{ on }">
@@ -1343,9 +1359,18 @@
                                   indeterminate
                                   color="primary"
                                 ></v-progress-circular>
-                                <!-- <span @click="stopPhenolyzerSearch(term.value)">close</span> -->
+                                <v-tooltip top>
+                                  <template v-slot:activator="{ on }">
+                                    <span @click="stopPhenolyzerSearch(term.value)">
+                                      <v-icon small color="grey" style="font-size:18px; cursor: pointer" v-on="on">cancel</v-icon>
+                                    </span>
+                                  </template>
+                                  <span>Cancel search for this term</span>
+                                </v-tooltip>
                               </span>
-                              <span v-else-if="term.phenolyzerSearchStatus==='Completed'"><v-icon color="green">done</v-icon></span>
+                              <span v-else-if="term.phenolyzerSearchStatus==='Completed'">
+                                <v-icon color="green">done</v-icon>
+                              </span>
                               <span v-else-if="term.phenolyzerSearchStatus==='NoGenes'">
                                 <v-tooltip bottom>
                                   <template v-slot:activator="{ on }">
@@ -1355,7 +1380,9 @@
                                 </v-tooltip>
                               </span>
                               <span v-else-if="term.phenolyzerSearchStatus==='NotAvailable'"><v-icon>indeterminate_check_box</v-icon></span>
-                              <span v-else-if="term.phenolyzerSearchStatus==='Cancelled'"><v-icon color="gray lighten-4">cancel</v-icon></span>
+                              <span v-else-if="term.phenolyzerSearchStatus==='Cancelled'">
+                                <v-icon color="gray lighten-4">error_outline</v-icon>
+                              </span>
                               <span v-else>
                                 <v-tooltip bottom>
                                   <template v-slot:activator="{ on }">
