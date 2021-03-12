@@ -2608,6 +2608,11 @@ export default {
           var occurrences = fields[2];
           var earliness = fields[3];
           var sentence = fields[4];
+
+          if(phenotype === "Aplasia of the left hemidiaphragm"){
+            hpoNumber = "HP:0009112";
+          }
+          
           terms.push(hpoNumber)
           hpoTermArr.push(
             {
