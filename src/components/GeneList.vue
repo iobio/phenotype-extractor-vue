@@ -49,10 +49,14 @@
                               <template v-slot:activator="{ on }">
                                 <v-icon v-on="on" style="font-size:18px; opacity: 0.8">info_outline</v-icon>
                               </template>
-                              <span>
+                              <span v-if="!launchedFromGenePanel">
                                 All variants in the genes selected here will be analyzed in the Review Variants step.
                                 <br>
-                                You can manually add or remove genes from the list, or choose the top N genes (20 by default) to analyse.</span>
+                                You can manually add or remove genes from the list, or choose the top N genes (20 by default) to analyse.
+                              </span>
+                              <span v-if="launchedFromGenePanel">
+                                You can manually add or remove genes from the list, or choose the top N genes (20 by default) to export.
+                              </span>
                             </v-tooltip>                  
                           </span>
                         </span>
@@ -433,6 +437,10 @@ export default {
     hpoResourceUsed: null,
     PhenolyzerResourceUsed: null,
     mosaic_gene_set: null,
+    launchedFromGenePanel: {
+      type: Boolean,
+      default: false
+    }
   },
   watch:{
     selectedGenesFlag(){
@@ -828,14 +836,20 @@ export default {
     },
     updateGenesTop(e){
       if(this.selectedGenesFlag){
-        if(this.genesTop>0 && this.genesTop<51){
+        if(!this.launchedFromGenePanel){
+          if(this.genesTop>0 && this.genesTop<51){
+            this.selectTopGenes(this.genesTop);
+            this.$emit("update_genes_top", this.genesTop);
+          }
+          else {
+            this.deselectAllGenes();
+            this.warningDialog = true;
+            setTimeout(() => (this.warningDialog = false), 4000);
+          }
+        }
+        else{
           this.selectTopGenes(this.genesTop);
           this.$emit("update_genes_top", this.genesTop);
-        }
-        else {
-          this.deselectAllGenes();
-          this.warningDialog = true;
-          setTimeout(() => (this.warningDialog = false), 4000);
         }
       }
     },

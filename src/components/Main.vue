@@ -103,7 +103,8 @@
         :gtrResourceUsed="gtrResourceUsed"
         :hpoResourceUsed="hpoResourceUsed"
         :PhenolyzerResourceUsed="PhenolyzerResourceUsed"
-        :mosaic_gene_set="mosaic_gene_set">
+        :mosaic_gene_set="mosaic_gene_set"
+        :launchedFromGenePanel="launchedFromGenePanel">
       </GeneList>
     </v-layout>
   </v-container>
@@ -158,7 +159,8 @@ export default {
     gtrResourceUsed: false,
     hpoResourceUsed: false,
     PhenolyzerResourceUsed: false,
-    mosaic_gene_set: ""
+    mosaic_gene_set: "",
+    launchedFromGenePanel: true
     // phenotypes: [
     //   [
     //     {
