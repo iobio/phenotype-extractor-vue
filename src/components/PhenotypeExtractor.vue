@@ -1288,7 +1288,7 @@
                     <div class="col-md-4">
                       <table class="table">
                         <thead>
-                          <tr> <strong>GTR Search status</strong></tr>
+                          <tr> <strong>GTR Search Status</strong></tr>
                         </thead>
                         <tbody>
                           <tr v-if="Gtr_searchTermsObj.length" v-for="(term, i) in Gtr_searchTermsObj" :key="i">
@@ -1335,7 +1335,7 @@
                       <table class="table">
                         <thead>
                           <tr>
-                            <strong>Phenolyzer Search status</strong>
+                            <strong>Phenolyzer Search Status</strong>
                             <div v-if="Phenolyzer_searchTermsObj.length>0">
                             </div>
                           </tr>
@@ -1404,7 +1404,7 @@
                     <div class="col-md-4">
                       <table class="table">
                         <thead>
-                          <tr> <strong>HPO Search status</strong></tr>
+                          <tr> <strong>HPO Search Status</strong></tr>
                         </thead>
                         <tbody>
                           <tr v-for="(term, i) in Hpo_searchTermsObj" :key="i">
@@ -1643,9 +1643,9 @@ export default {
     hpoFetchCompleted: true,
     searchTermsObjHeaders: [
       {text: 'Search Term', sortable: false, value: 'DiseaseName'},
-      {text: 'GTR Search status', sortable: false, value: 'gtrSearchStatus'},
-      {text: 'Phenolyzer Search status', sortable: false, value: 'phenolyzerSearchStatus'},
-      {text: 'HPO Search status', sortable: false, value: 'hpoSearchStatus'},
+      {text: 'GTR Search Status', sortable: false, value: 'gtrSearchStatus'},
+      {text: 'Phenolyzer Search Status', sortable: false, value: 'phenolyzerSearchStatus'},
+      {text: 'HPO Search Status', sortable: false, value: 'hpoSearchStatus'},
     ],
     summaryGenes: [],
     gtrGenes: [],
