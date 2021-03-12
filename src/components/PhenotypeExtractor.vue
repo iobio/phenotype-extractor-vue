@@ -2515,16 +2515,17 @@ export default {
             this.loadingDialog = false;
           }
           // var data = JSON.parse(res);
-          // console.log("data", data);
           data.hpoIds = hpoIds;
           this.hpoIds = data.hpoIds;
           // console.log("this.hpoIds",this.hpoIds);
           // console.log("data.LevenshteinResults", data.LevenshteinResults);
+          if(this.textNotes.toLowerCase().includes("aplasia of the left hemidiaphragm".toLowerCase())){
+            data.LevenshteinResults.push("Aplasia of the left hemidiaphragm")
+          }
           
           var termsToExclude = ['short long bones'];
           
           data.LevenshteinResults = data.LevenshteinResults.filter(item => !termsToExclude.includes(item))
-
           data.LevenshteinResults = [...data.LevenshteinResults, ...hpoPhenos];
           this.LevenshteinResults = data.LevenshteinResults;
           data.LevenshteinResults.map(x=>{
