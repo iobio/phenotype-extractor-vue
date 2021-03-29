@@ -1270,12 +1270,12 @@
             v-model="searchStatusDialog"
             scrollable
             :overlay="false"
-            max-width="1000px"
+            max-width="1150px"
             transition="dialog-transition"
           >
             <v-card>
               <v-card-title class="grey lighten-2">
-                <v-icon class="mr-2" color="primary darken-1">youtube_searched_for</v-icon> Status
+                <v-icon class="mr-2" color="primary darken-1">youtube_searched_for</v-icon> Generating Gene List
                 <v-spacer></v-spacer>
                 <span>
                   <v-btn text icon @click="searchStatusDialog=false"><v-icon>close</v-icon></v-btn>
@@ -1297,16 +1297,65 @@
                   </v-alert>
                   <div class="row">
                     <div class="col-md-4">
-                      <table class="table">
+                      
+                      <div class="mb-7 text-center" style="margin-right: 125px">
+                        <strong class="primary--text" style="font-size: 18px">GTR Terms</strong>
+                        <br>
+                        <div class="mt-2 mb-5">
+                          <span><h1 style="display:inline"> {{ Gtr_searchTermsObj.length }}</h1> </span> <span>terms selected</span>
+                        </div>
+                      </div>
+                      <div v-if="Gtr_searchTermsObj.length" v-for="(term, i) in Gtr_searchTermsObj" :key="i">
+                        <div class="row" style="margin-bottom: -8px; margin-top: -8px">
+                          <div class="col-md-1"></div>
+                          <div class="col-md-1">
+                            <span v-if="term.gtrSearchStatus==='Searching'">
+                              <v-progress-circular
+                                :width="2"
+                                :size="20"
+                                indeterminate
+                                color="primary"
+                              ></v-progress-circular>
+                            </span>
+                            <span v-else-if="term.gtrSearchStatus==='Completed'">
+                              <v-icon color="green" style="font-weight: bolder">done</v-icon>
+                            </span>
+                            <span v-else-if="term.gtrSearchStatus==='NoGenes'">
+                              <v-tooltip bottom>
+                                <template v-slot:activator="{ on }">
+                                  <v-icon color="grey" style="font-size:20px" v-on="on">block</v-icon>
+                                </template>
+                                <span>No genes were found for this term</span>
+                              </v-tooltip>
+                            </span>
+                            <span v-else-if="term.gtrSearchStatus==='NotAvailable'"><v-icon>indeterminate_check_box</v-icon></span>
+                            <span v-else>
+                              <v-tooltip bottom>
+                                <template v-slot:activator="{ on }">
+                                  <v-icon color="gray lighten-4" v-on="on">error</v-icon>
+                                </template>
+                                <span>The network request for this term failed. Please delete this term and try again.</span>
+                              </v-tooltip>
+                            </span>
+                          </div>
+                          <div class="col-md-10">
+                            {{ term.DiseaseName }}
+                          </div>
+                        </div>
+
+
+                      </div>
+                      <div v-if="Gtr_searchTermsObj.length<1">
+                        <span><i>Not Selected...</i></span>
+                      </div>
+                      
+                      
+                      <!-- <table class="table">
                         <thead>
                           <tr> <strong>GTR Search Status</strong></tr>
-                          <!-- <tr>
-                            <strong class="primary--text" style="font-size: 18px">GTR Search Status</strong>
-                          </tr> -->
                         </thead>
                         <tbody>
                           <tr v-if="Gtr_searchTermsObj.length" v-for="(term, i) in Gtr_searchTermsObj" :key="i">
-                            <td>{{ term.DiseaseName }}</td>
                             <td >
                               <span v-if="term.gtrSearchStatus==='Searching'">
                                 <v-progress-circular
@@ -1337,12 +1386,13 @@
                                 </v-tooltip>
                               </span>
                             </td>
+                            <td>{{ term.DiseaseName }}</td>
                           </tr>
                         </tbody>
                       </table>
                       <div v-if="Gtr_searchTermsObj.length<1">
                         <span><i>Not Selected...</i></span>
-                      </div>
+                      </div> -->
                     </div>
 
                     <div class="col-md-4">
