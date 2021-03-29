@@ -1289,6 +1289,9 @@
                       <table class="table">
                         <thead>
                           <tr> <strong>GTR Search Status</strong></tr>
+                          <!-- <tr>
+                            <strong class="primary--text" style="font-size: 18px">GTR Search Status</strong>
+                          </tr> -->
                         </thead>
                         <tbody>
                           <tr v-if="Gtr_searchTermsObj.length" v-for="(term, i) in Gtr_searchTermsObj" :key="i">
@@ -1812,7 +1815,8 @@ export default {
     noteToDelete: {},
     deletingNoteDialog: false,
     hpoTermsDetected: false,
-    hpo_radios: "inputted_hpo_only"
+    hpo_radios: "inputted_hpo_only",
+    hpoExtractedIds: [],
   }),
   watch: {
     hpo_radios(){
@@ -2497,6 +2501,7 @@ export default {
       var hpoIds = this.extractHpoIds(this.textNotes);
       var hpoPhenos = this.getPhenotypesForHpoIds(hpoIds);
       this.hpoExtractedPhenotypesFromIds = hpoPhenos;
+      this.hpoExtractedIds = hpoIds;
       // fetch(`http://nv-dev-new.iobio.io/phenotype-extractor/?notes=${this.textNotes}`)
       // fetch(`http://dev.backend.iobio.io:9003/phenotypeExtractor?notes=${this.textNotes}`)
       // fetch(`https://backend.iobio.io/phenotypeExtractor?notes=${this.textNotes}`)
@@ -2650,13 +2655,63 @@ export default {
             clinPhenFoundTerms.push(term);
           }
         })
-        temp_HpoReviewTerms = [...inputtedTerms, ...clinPhenFoundTerms];
+        
+        
+        //Check for terms if missed by clinphen
+        var missedTerms = [];
+        if(inputtedTerms.length < this.hpoExtractedIds.length){
+          var missingTerms = [];
+          var inputtedPhenotypes = [];
+          inputtedTerms.map (x => {
+            inputtedPhenotypes.push(x.phenotype);
+          })
+          this.hpoExtractedPhenotypesFromIds.map(x => {
+            if(!inputtedPhenotypes.includes(x)){
+              missingTerms.push(x)
+            }
+          })
+          if(missingTerms.length){
+            missedTerms = this.matchHpoTermsFromCustomDBForMissingTerms(missingTerms)
+          }
+        }
+        
+        temp_HpoReviewTerms = [...inputtedTerms, ...missedTerms, ...clinPhenFoundTerms];
         this.HpoReviewTerms = temp_HpoReviewTerms;
       }
       
       
       this.HpoloadingProgressBar = false;
       // this.HpoReviewTerms = hpoTermArr;
+    },
+    
+    matchHpoTermsFromCustomDBForMissingTerms(terms){
+      var obj = {}; 
+      terms.map(term => {
+        if(obj[term.trim().toLowerCase()] === undefined){
+          obj[term.trim().toLowerCase()] = true;
+        }
+      })
+      let hpoTermArr = []; 
+      this.HPO_Phenotypes_data.map((term, indx) => {
+        if(obj.hasOwnProperty(term.trim().toLowerCase())){
+          let idx = indx;
+          let hpoNumber = this.HPO_Terms_data[idx];
+          hpoTermArr.push({
+            hpoNumber:hpoNumber,
+            phenotype:term,
+            occurrences:"",
+            earliness:"",
+            sentence:"",
+            HPO_Data: `${term} - [ ${hpoNumber} ] `
+          })
+        }
+      })
+      var addToMissingTerms = [];
+      hpoTermArr.forEach(x => {
+        var found = this.HpoReviewTerms.some(el => el.HPO_Data === x.HPO_Data);
+        if(!found){ addToMissingTerms.push(x)}
+      })
+      return addToMissingTerms;
     },
     matchHpoTermsFromCustomDB(){
       var obj = {}; 
