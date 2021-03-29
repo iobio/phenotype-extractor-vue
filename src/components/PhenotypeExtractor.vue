@@ -627,7 +627,18 @@
 
                 <!-- Basic mode review terms table -->
                 <div v-if="(extractedTermsObj.length || HpoReviewTerms.length) && termsReviewDialogPage===0">
-                  
+                  <v-alert
+                    border="left"
+                    type="warning"
+                    dense outlined dismissible
+                    style="margin:20px"
+                    v-if="showWarningOfMissedHpoTerms"
+                  >
+                    <span style="font-size: 12px">
+                      Some of the inputted HPO terms are missing from terms provided. Please email at <a href="mailto:iobioproject@gmail.com">iobioproject@gmail.com</a> with your HPO terms and help us to fix it. 
+                    </span>
+                  </v-alert>
+
                   <div class="container">
                     <div class="row">
                       <div class="col-md-4">
@@ -1817,6 +1828,7 @@ export default {
     hpoTermsDetected: false,
     hpo_radios: "inputted_hpo_only",
     hpoExtractedIds: [],
+    showWarningOfMissedHpoTerms: false,
   }),
   watch: {
     hpo_radios(){
@@ -2498,6 +2510,7 @@ export default {
       this.hpoIds = [];
       this.searchStatusCompleteAlert = false;
       this.hpoTermsDetected = false;
+      this.showWarningOfMissedHpoTerms = false;
       var hpoIds = this.extractHpoIds(this.textNotes);
       var hpoPhenos = this.getPhenotypesForHpoIds(hpoIds);
       this.hpoExtractedPhenotypesFromIds = hpoPhenos;
@@ -2673,6 +2686,10 @@ export default {
           if(missingTerms.length){
             missedTerms = this.matchHpoTermsFromCustomDBForMissingTerms(missingTerms)
           }
+        }
+        
+        if((inputtedTerms.length + missedTerms.length) < this.hpoExtractedIds.length){
+          this.showWarningOfMissedHpoTerms = true; 
         }
         
         temp_HpoReviewTerms = [...inputtedTerms, ...missedTerms, ...clinPhenFoundTerms];
