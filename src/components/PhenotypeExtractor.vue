@@ -1364,7 +1364,18 @@
                       </div>
                       <div v-if="Phenolyzer_searchTermsObj.length" v-for="(term, i) in Phenolyzer_searchTermsObj" :key="i">
                         <div class="row" style="margin-bottom: -8px; margin-top: -8px">
-                          <div class="col-md-1"></div>
+                          <div class="col-md-1">
+                            <span v-if="term.phenolyzerSearchStatus==='running'">
+                              <v-tooltip top>
+                                <template v-slot:activator="{ on }">
+                                  <span @click="stopPhenolyzerSearch(term.value)">
+                                    <v-icon small color="grey" style="font-size:18px; cursor: pointer" v-on="on">cancel</v-icon>
+                                  </span>
+                                </template>
+                                <span>Cancel search for this term</span>
+                              </v-tooltip>
+                            </span>
+                          </div>
                           <div class="col-md-1">
                             <span v-if="term.phenolyzerSearchStatus==='Searching'">
                               <v-progress-circular
@@ -1375,20 +1386,14 @@
                               ></v-progress-circular>
                             </span>
                             <span v-else-if="term.phenolyzerSearchStatus==='running'">
-                              <v-progress-circular
-                                :width="2"
-                                :size="20"
-                                indeterminate
-                                color="primary"
-                              ></v-progress-circular>
-                              <v-tooltip top>
-                                <template v-slot:activator="{ on }">
-                                  <span @click="stopPhenolyzerSearch(term.value)">
-                                    <v-icon small color="grey" style="font-size:18px; cursor: pointer" v-on="on">cancel</v-icon>
-                                  </span>
-                                </template>
-                                <span>Cancel search for this term</span>
-                              </v-tooltip>
+                              <span>
+                                <v-progress-circular
+                                  :width="2"
+                                  :size="20"
+                                  indeterminate
+                                  color="primary"
+                                ></v-progress-circular>
+                              </span>
                             </span>
                             <span v-else-if="term.phenolyzerSearchStatus==='Completed'">
                               <v-icon color="green" style="font-weight: bolder">done</v-icon>
