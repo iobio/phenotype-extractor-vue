@@ -1951,6 +1951,18 @@ export default {
         }
       }
     })
+    
+    bus.$on("failedPhenolyzerFetchRequest", searchTerm => {
+      var idx = this.Phenolyzer_searchTermArray.indexOf(searchTerm);
+      this.$set(this.Phenolyzer_searchTermsObj[idx], 'phenolyzerSearchStatus', "failed");
+      this.Phenolyzer_search_complete_idx = this.Phenolyzer_search_complete_idx+1;
+      if(this.Phenolyzer_search_complete_idx === this.Phenolyzer_searchTermArray.length){
+        this.phenolyzerFetchCompleted = true;
+        if(!this.phenolyzerSavedState){
+          this.checkToCloseSearchStatusDialog();
+        }
+      }
+    })
 
     bus.$on("failedGtrFetchRequest", searchTerm => {
       var idx = this.Gtr_searchTermArray.indexOf(searchTerm);
@@ -2635,6 +2647,12 @@ export default {
       cmd.then((data) => {
         this.parseTerms(data);
       });
+      // var clinicalNote = `${hpoPhenosString},${this.textNotes}`
+      // fetch(`https://mosaic.chpc.utah.edu/gru-dev/clinphen?notes=${clinicalNote}`)
+      //   .then(res => res.text())
+      //   .then(data => {
+      //     this.parseTerms(data);
+      //   })
     },
     parseTerms(res){
       var count = 0;

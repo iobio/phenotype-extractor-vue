@@ -217,7 +217,12 @@ export default {
               bus.$emit("completePhenolyzerFetchRequest", searchTerm)
               //event that individual search is complete
             }
-          } else {
+          } 
+          else if (status == 'error') {
+            self.phenolyzerStatus = status;
+            bus.$emit("failedPhenolyzerFetchRequest", searchTerm)
+          }
+          else {
             self.phenolyzerStatus = status;
             bus.$emit("RunningPhenolyzerFetchRequest", searchTerm)
             // console.log("self.phenolyzerStatus: ", self.phenolyzerStatus, " searchTerm: ", searchTerm)

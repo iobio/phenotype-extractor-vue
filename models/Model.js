@@ -218,7 +218,7 @@ promiseGetGenePanels(disease) {
                     + '&usehistory=y&retmode=json'
                     + '&term='
                     +  disease.ConceptId +'[DISCUI]&api_key=2ce5a212af98a07c6e770d1e95b99a2fef09';
-                    // console.log("url in promiseGetGenePanels", searchUrl)
+                    console.log("url in promiseGetGenePanels", searchUrl)
 
     $.ajax( searchUrl )
     .done(function(data) {
@@ -230,7 +230,7 @@ promiseGetGenePanels(disease) {
         var queryKey = data["esearchresult"]["querykey"];
 
         var summaryUrl = "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esummary.fcgi?db=gtr" + "&query_key=" + queryKey + "&retmode=json&WebEnv=" + webenv + "&usehistory=y&api_key=2ce5a212af98a07c6e770d1e95b99a2fef09";
-        // console.log("summaryUrl in getpanels", summaryUrl)
+        console.log("summaryUrl in getpanels", summaryUrl)
 
         $.ajax( summaryUrl )
         .done(function(sumData) {

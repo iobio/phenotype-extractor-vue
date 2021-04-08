@@ -705,6 +705,11 @@ export default class GeneModel {
         }
 
         },
+        error: (err) => {
+          if (statusCallback) {
+            statusCallback('error');
+          }
+        },
         fail: ()=> {
           alert("An error occurred in Phenolyzer iobio services. " + thrownError);
           if (statusCallback) {
