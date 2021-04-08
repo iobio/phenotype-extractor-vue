@@ -8849,10 +8849,6 @@
    "ConceptID": "C3888204"
  },
  {
-   "DiseaseName": "Aculeiform cataract",
-   "ConceptID": "C1861832"
- },
- {
    "DiseaseName": "Acute alcohol sensitivity",
    "ConceptID": "C2674838"
  },
@@ -9389,18 +9385,6 @@
    "ConceptID": "C1292164"
  },
  {
-   "DiseaseName": "Adult I blood group with congenital cataract",
-   "ConceptID": "C1862230"
- },
- {
-   "DiseaseName": "Adult i blood group with or without congenital cataract",
-   "ConceptID": "C3276238"
- },
- {
-   "DiseaseName": "Adult i blood group without congenital cataract",
-   "ConceptID": "C1862231"
- },
- {
    "DiseaseName": "Adult junctional epidermolysis bullosa",
    "ConceptID": "C0268374"
  },
@@ -9713,14 +9697,6 @@
    "ConceptID": "C1546180"
  },
  {
-   "DiseaseName": "Age-related cataract",
-   "ConceptID": "C0036646"
- },
- {
-   "DiseaseName": "Age-related cortical cataract",
-   "ConceptID": "C2880562"
- },
- {
    "DiseaseName": "Age-related hearing impairment 1",
    "ConceptID": "C2676230"
  },
@@ -9787,14 +9763,6 @@
  {
    "DiseaseName": "Age-related macular degeneration",
    "ConceptID": "C0242383"
- },
- {
-   "DiseaseName": "Age-related nuclear cataract",
-   "ConceptID": "C1832423"
- },
- {
-   "DiseaseName": "Age-related posterior subcapsular cataract",
-   "ConceptID": "C4023517"
  },
  {
    "DiseaseName": "Aggressive behavior",
@@ -11285,10 +11253,6 @@
    "ConceptID": "CN235144"
  },
  {
-   "DiseaseName": "Aniridia, microcornea, and spontaneously reabsorbed cataract",
-   "ConceptID": "C1862867"
- },
- {
    "DiseaseName": "Aniridia renal agenesis psychomotor retardation",
    "ConceptID": "C1859782"
  },
@@ -11665,10 +11629,6 @@
    "ConceptID": "C1839822"
  },
  {
-   "DiseaseName": "Anterior cortical cataract",
-   "ConceptID": "C1857308"
- },
- {
    "DiseaseName": "Anterior creases of earlobe",
    "ConceptID": "C1851897"
  },
@@ -11725,18 +11685,6 @@
    "ConceptID": "C4023413"
  },
  {
-   "DiseaseName": "Anterior polar cataract 2",
-   "ConceptID": "C1832609"
- },
- {
-   "DiseaseName": "anterior polar cataracts",
-   "ConceptID": "CN228391"
- },
- {
-   "DiseaseName": "Anterior pyramidal cataract",
-   "ConceptID": "C1392099"
- },
- {
    "DiseaseName": "Anterior radial head dislocation",
    "ConceptID": "C2674451"
  },
@@ -11761,16 +11709,8 @@
    "ConceptID": "C2673652"
  },
  {
-   "DiseaseName": "Anterior segment anomalies and cataract",
-   "ConceptID": "C4016751"
- },
- {
    "DiseaseName": "Anterior segment anomalies",
    "ConceptID": "C3152182"
- },
- {
-   "DiseaseName": "Anterior segment anomalies with or without cataract",
-   "ConceptID": "C3551443"
  },
  {
    "DiseaseName": "Anterior segment dysgenesis 3",
@@ -11803,10 +11743,6 @@
  {
    "DiseaseName": "Anterior staphyloma",
    "ConceptID": "C0339206"
- },
- {
-   "DiseaseName": "Anterior subcapsular cataract",
-   "ConceptID": "C1112768"
  },
  {
    "DiseaseName": "Anterior synechiae",
@@ -17909,10 +17845,6 @@
    "ConceptID": "C1970479"
  },
  {
-   "DiseaseName": "Branchiootorenal syndrome with cataract",
-   "ConceptID": "C4016752"
- },
- {
    "DiseaseName": "BRCA2-Related Disorders",
    "ConceptID": "CN239275"
  },
@@ -19325,10 +19257,6 @@
    "ConceptID": "CN239245"
  },
  {
-   "DiseaseName": "Capsular cataract",
-   "ConceptID": "C0339352"
- },
- {
    "DiseaseName": "captopril response - Efficacy",
    "ConceptID": "CN236493"
  },
@@ -20017,284 +19945,8 @@
    "ConceptID": "C0007384"
  },
  {
-   "DiseaseName": "Cataract 11",
-   "ConceptID": "C1864567"
- },
- {
-   "DiseaseName": "Cataract 11, posterior polar",
-   "ConceptID": "C3807150"
- },
- {
-   "DiseaseName": "Cataract 11, posterior polar, with microphthalmia and neurodevelopmental abnormalities",
-   "ConceptID": "C3807151"
- },
- {
-   "DiseaseName": "Cataract 11 with microphthalmia and neurodevelopmental abnormalities",
-   "ConceptID": "C3808029"
- },
- {
-   "DiseaseName": "Cataract 12, multiple types",
-   "ConceptID": "C3808115"
- },
- {
-   "DiseaseName": "Cataract 13 with adult i phenotype",
-   "ConceptID": "C3805373"
- },
- {
-   "DiseaseName": "Cataract 15, multiple types",
-   "ConceptID": "C3809001"
- },
- {
-   "DiseaseName": "Cataract 16, multiple types",
-   "ConceptID": "C3151065"
- },
- {
-   "DiseaseName": "Cataract 19, multiple types",
-   "ConceptID": "C3809004"
- },
- {
-   "DiseaseName": "Cataract 1",
-   "ConceptID": "C1861828"
- },
- {
-   "DiseaseName": "Cataract 21, multiple types",
-   "ConceptID": "C3888097"
- },
- {
-   "DiseaseName": "Cataract 23, multiple types",
-   "ConceptID": "C3808012"
- },
- {
-   "DiseaseName": "Cataract 25",
-   "ConceptID": "C1854021"
- },
- {
-   "DiseaseName": "Cataract 26, multiple types",
-   "ConceptID": "C1854003"
- },
- {
-   "DiseaseName": "Cataract 27",
-   "ConceptID": "C1846520"
- },
- {
-   "DiseaseName": "Cataract 28",
-   "ConceptID": "C1836942"
- },
- {
-   "DiseaseName": "Cataract 29",
-   "ConceptID": "C1861831"
- },
- {
-   "DiseaseName": "Cataract 2, Coppock-like",
-   "ConceptID": "C4015995"
- },
- {
-   "DiseaseName": "Cataract 30",
-   "ConceptID": "C3805411"
- },
- {
-   "DiseaseName": "Cataract 32",
-   "ConceptID": "C1855179"
- },
- {
-   "DiseaseName": "Cataract 33, multiple types",
-   "ConceptID": "C3808107"
- },
- {
-   "DiseaseName": "Cataract 34, multiple types",
-   "ConceptID": "C2751822"
- },
- {
-   "DiseaseName": "Cataract 35",
-   "ConceptID": "C1836272"
- },
- {
-   "DiseaseName": "Cataract 37",
-   "ConceptID": "C3280758"
- },
- {
-   "DiseaseName": "Cataract 39, multiple types",
-   "ConceptID": "C3808800"
- },
- {
-   "DiseaseName": "Cataract 3, multiple types",
-   "ConceptID": "C1832175"
- },
- {
-   "DiseaseName": "Cataract 40",
-   "ConceptID": "C4049004"
- },
- {
-   "DiseaseName": "Cataract 41",
-   "ConceptID": "C1861826"
- },
- {
-   "DiseaseName": "Cataract 43",
-   "ConceptID": "C4225389"
- },
- {
-   "DiseaseName": "Cataract 44",
-   "ConceptID": "C4225300"
- },
- {
-   "DiseaseName": "Cataract 45",
-   "ConceptID": "C4225182"
- },
- {
-   "DiseaseName": "Cataract 6, age-related cortical",
-   "ConceptID": "C4016349"
- },
- {
-   "DiseaseName": "Cataract 6, multiple types",
-   "ConceptID": "C1861825"
- },
- {
-   "DiseaseName": "Cataract 9, autosomal recessive",
-   "ConceptID": "C4015984"
- },
- {
-   "DiseaseName": "Cataract, alopecia, sclerodactyly",
-   "ConceptID": "C1859316"
- },
- {
-   "DiseaseName": "Cataract and cardiomyopathy",
-   "ConceptID": "C1859317"
- },
- {
-   "DiseaseName": "Cataract and congenital ichthyosis",
-   "ConceptID": "C1859315"
- },
- {
-   "DiseaseName": "Cataract, autosomal dominant",
-   "ConceptID": "C1858679"
- },
- {
-   "DiseaseName": "Cataract, Autosomal Dominant Congenital 4",
-   "ConceptID": "CN230134"
- },
- {
-   "DiseaseName": "Cataract, autosomal dominant, multiple types, with microcornea",
-   "ConceptID": "CN071376"
- },
- {
-   "DiseaseName": "Cataract, autosomal dominant nuclear",
-   "ConceptID": "C1852449"
- },
- {
-   "DiseaseName": "Cataract, autosomal recessive congenital 1",
-   "ConceptID": "C1852448"
- },
- {
-   "DiseaseName": "Cataract, autosomal recessive congenital 2",
-   "ConceptID": "C1864908"
- },
- {
-   "DiseaseName": "Cataract, autosomal recessive congenital 4",
-   "ConceptID": "C3151304"
- },
- {
-   "DiseaseName": "Cataract, autosomal recessive congenital 5",
-   "ConceptID": "C3553494"
- },
- {
    "DiseaseName": "Cataract",
    "ConceptID": "C0086543"
- },
- {
-   "DiseaseName": "Cataract",
-   "ConceptID": "C1962983"
- },
- {
-   "DiseaseName": "Cataract, congenital, cerulean type, 4",
-   "ConceptID": "C1857769"
- },
- {
-   "DiseaseName": "Cataract, congenital nuclear, autosomal recessive 2",
-   "ConceptID": "C1857853"
- },
- {
-   "DiseaseName": "Cataract, congenital nuclear, autosomal recessive 3",
-   "ConceptID": "C1969062"
- },
- {
-   "DiseaseName": "Cataract congenital Volkmann type",
-   "ConceptID": "C1861833"
- },
- {
-   "DiseaseName": "Cataract, congenital, with late-onset corneal dystrophy",
-   "ConceptID": "CN185382"
- },
- {
-   "DiseaseName": "Cataract, congenital, with mental impairment and dentate gyrus atrophy",
-   "ConceptID": "C1843257"
- },
- {
-   "DiseaseName": "Cataract, congenital, with microphthalmia",
-   "ConceptID": "C1834919"
- },
- {
-   "DiseaseName": "Cataract, congenital zonular, with sutural opacities",
-   "ConceptID": "C1833229"
- },
- {
-   "DiseaseName": "Cataract, coppock-like",
-   "ConceptID": "C1852438"
- },
- {
-   "DiseaseName": "Cataract, cortical pulverulent, late-onset",
-   "ConceptID": "C1835169"
- },
- {
-   "DiseaseName": "Cataract, floriform",
-   "ConceptID": "C1861830"
- },
- {
-   "DiseaseName": "Cataract Hutterite type",
-   "ConceptID": "C2931791"
- },
- {
-   "DiseaseName": "Cataract, juvenile, with microcornea and glucosuria",
-   "ConceptID": "C2677587"
- },
- {
-   "DiseaseName": "Cataract, polymorphic and lamellar",
-   "ConceptID": "C1835166"
- },
- {
-   "DiseaseName": "Cataract, posterior polar, 3",
-   "ConceptID": "C1854311"
- },
- {
-   "DiseaseName": "Cataract, progressive polymorphic cortical",
-   "ConceptID": "C1852420"
- },
- {
-   "DiseaseName": "Cataract, pulverulent",
-   "ConceptID": "C1833118"
- },
- {
-   "DiseaseName": "Cataract, punctate, progressive juvenile-onset",
-   "ConceptID": "C1852422"
- },
- {
-   "DiseaseName": "Cataracts, Autosomal Dominant",
-   "ConceptID": "CN118822"
- },
- {
-   "DiseaseName": "Cataracts, congenital, with late-onset corneal dystrophy",
-   "ConceptID": "C3805349"
- },
- {
-   "DiseaseName": "Cataract, variable zonular pulverulent",
-   "ConceptID": "C1852429"
- },
- {
-   "DiseaseName": "Cataract with late-onset corneal dystrophy",
-   "ConceptID": "CN178062"
- },
- {
-   "DiseaseName": "Cataract, zonular central nuclear",
-   "ConceptID": "C1852447"
  },
  {
    "DiseaseName": "Catatrichy",
@@ -23617,28 +23269,8 @@
    "ConceptID": "C1862050"
  },
  {
-   "DiseaseName": "Cochleosaccular degeneration of the inner ear and progressive cataracts",
-   "ConceptID": "C1861512"
- },
- {
-   "DiseaseName": "Cockayne syndrome B",
-   "ConceptID": "C0751038"
- },
- {
    "DiseaseName": "Cockayne syndrome",
    "ConceptID": "C0009207"
- },
- {
-   "DiseaseName": "Cockayne syndrome type A",
-   "ConceptID": "C0751039"
- },
- {
-   "DiseaseName": "Cockayne syndrome type II",
-   "ConceptID": "C2931277"
- },
- {
-   "DiseaseName": "Cockayne syndrome, type III",
-   "ConceptID": "C0751037"
  },
  {
    "DiseaseName": "Cocoon syndrome",
@@ -25209,20 +24841,8 @@
    "ConceptID": "C0005754"
  },
  {
-   "DiseaseName": "Congenital blue dot cataract",
-   "ConceptID": "C0344523"
- },
- {
    "DiseaseName": "Congenital cardiomyopathy",
    "ConceptID": "CN239812"
- },
- {
-   "DiseaseName": "Congenital cataract",
-   "ConceptID": "C0009691"
- },
- {
-   "DiseaseName": "Congenital Cataracts, Facial Dysmorphism, and Neuropathy",
-   "ConceptID": "C1858726"
  },
  {
    "DiseaseName": "Congenital central hypoventilation",
@@ -25689,10 +25309,6 @@
    "ConceptID": "C1850746"
  },
  {
-   "DiseaseName": "Congenital nuclear cataract",
-   "ConceptID": "C0158551"
- },
- {
    "DiseaseName": "Congenital ocular coloboma",
    "ConceptID": "C0009363"
  },
@@ -25823,10 +25439,6 @@
  {
    "DiseaseName": "Congenital thrombocytopenia",
    "ConceptID": "C0272278"
- },
- {
-   "DiseaseName": "Congenital total cataract",
-   "ConceptID": "CN042924"
  },
  {
    "DiseaseName": "Congenital uterine anomaly",
@@ -26177,14 +25789,6 @@
    "ConceptID": "C1852561"
  },
  {
-   "DiseaseName": "Coralliform cataract",
-   "ConceptID": "C1392104"
- },
- {
-   "DiseaseName": "Cornea guttata with anterior polar cataract",
-   "ConceptID": "C1852558"
- },
- {
    "DiseaseName": "Corneal arcus",
    "ConceptID": "C0003742"
  },
@@ -26529,10 +26133,6 @@
    "ConceptID": "C1857568"
  },
  {
-   "DiseaseName": "Cortical cataract",
-   "ConceptID": "C0271160"
- },
- {
    "DiseaseName": "Cortical defects wormian bones and dentinogenesis imperfecta",
    "ConceptID": "C1858032"
  },
@@ -26609,16 +26209,8 @@
    "ConceptID": "C0403476"
  },
  {
-   "DiseaseName": "Cortical pulverulent cataract",
-   "ConceptID": "C4021568"
- },
- {
    "DiseaseName": "Cortical sclerosis",
    "ConceptID": "C4025164"
- },
- {
-   "DiseaseName": "Cortical senile cataract",
-   "ConceptID": "C0154980"
  },
  {
    "DiseaseName": "Cortical subperiosteal resorption of humeral metaphyses",
@@ -26903,10 +26495,6 @@
  {
    "DiseaseName": "Cranioectodermal dysplasia",
    "ConceptID": "CN119432"
- },
- {
-   "DiseaseName": "Craniofacial abnormalities, cataracts, congenital heart disease, sacral neural tube defects, and growth and developmental retardation",
-   "ConceptID": "C1842363"
  },
  {
    "DiseaseName": "craniofacial and dermal abnormalities",
@@ -29757,10 +29345,6 @@
    "ConceptID": "C4020919"
  },
  {
-   "DiseaseName": "Dense posterior cortical cataract",
-   "ConceptID": "C4024767"
- },
- {
    "DiseaseName": "Dens evaginatus",
    "ConceptID": "C0266034"
  },
@@ -30799,10 +30383,6 @@
  {
    "DiseaseName": "Diffuse mesangial sclerosis",
    "ConceptID": "C1863240"
- },
- {
-   "DiseaseName": "Diffuse nuclear cataract",
-   "ConceptID": "C4024821"
  },
  {
    "DiseaseName": "Diffuse optic disc pallor",
@@ -32469,112 +32049,12 @@
    "ConceptID": "C4021685"
  },
  {
-   "DiseaseName": "Dyskeratosis congenita, autosomal dominant, 2",
-   "ConceptID": "C3151443"
- },
- {
-   "DiseaseName": "Dyskeratosis congenita, autosomal dominant, 3",
-   "ConceptID": "C3151445"
- },
- {
-   "DiseaseName": "Dyskeratosis congenita, autosomal dominant, 4",
-   "ConceptID": "C3808802"
- },
- {
-   "DiseaseName": "Dyskeratosis congenita, autosomal dominant 6",
-   "ConceptID": "C4225284"
- },
- {
-   "DiseaseName": "Dyskeratosis congenita autosomal dominant",
-   "ConceptID": "C1851970"
- },
- {
-   "DiseaseName": "Dyskeratosis congenita autosomal recessive 1",
-   "ConceptID": "C1857144"
- },
- {
-   "DiseaseName": "Dyskeratosis congenita, autosomal recessive 2",
-   "ConceptID": "C3151441"
- },
- {
-   "DiseaseName": "Dyskeratosis congenita, autosomal recessive, 3",
-   "ConceptID": "C3151442"
- },
- {
-   "DiseaseName": "Dyskeratosis congenita, autosomal recessive, 4",
-   "ConceptID": "C3151444"
- },
- {
-   "DiseaseName": "Dyskeratosis congenita, autosomal recessive, 5",
-   "ConceptID": "C3554656"
- },
- {
-   "DiseaseName": "Dyskeratosis congenita, autosomal recessive 6",
-   "ConceptID": "C4225356"
- },
- {
-   "DiseaseName": "Dyskeratosis congenita, autosomal recessive 7",
-   "ConceptID": "CN232699"
- },
- {
    "DiseaseName": "Dyskeratosis congenita",
    "ConceptID": "C0265965"
  },
  {
-   "DiseaseName": "Dyskeratosis Congenita, Dominant",
-   "ConceptID": "CN239266"
- },
- {
-   "DiseaseName": "Dyskeratosis Congenita, Recessive",
-   "ConceptID": "CN239315"
- },
- {
-   "DiseaseName": "Dyskeratosis congenita X-linked",
-   "ConceptID": "C1148551"
- },
- {
    "DiseaseName": "Dyskinesia",
    "ConceptID": "C0013384"
- },
- {
-   "DiseaseName": "Dyskinesia, familial, with facial myokymia",
-   "ConceptID": "C1847627"
- },
- {
-   "DiseaseName": "Dyskinesia, limb and orofacial, infantile-onset",
-   "ConceptID": "C4310792"
- },
- {
-   "DiseaseName": "Dyskinesia, seizures, and intellectual developmental disorder",
-   "ConceptID": "C4310683"
- },
- {
-   "DiseaseName": "Dyslexia 1",
-   "ConceptID": "C1851967"
- },
- {
-   "DiseaseName": "Dyslexia 2",
-   "ConceptID": "C1838436"
- },
- {
-   "DiseaseName": "Dyslexia 3",
-   "ConceptID": "C1858662"
- },
- {
-   "DiseaseName": "Dyslexia 5",
-   "ConceptID": "C1847184"
- },
- {
-   "DiseaseName": "Dyslexia 6",
-   "ConceptID": "C1847757"
- },
- {
-   "DiseaseName": "Dyslexia 8",
-   "ConceptID": "C1837009"
- },
- {
-   "DiseaseName": "Dyslexia 9",
-   "ConceptID": "C1845296"
  },
  {
    "DiseaseName": "Dyslexia",
@@ -34299,10 +33779,6 @@
  {
    "DiseaseName": "Enamel defects",
    "ConceptID": "C2750331"
- },
- {
-   "DiseaseName": "Enamel hypoplasia, cataracts, and aqueductal stenosis",
-   "ConceptID": "C1833163"
  },
  {
    "DiseaseName": "Enamel-renal syndrome",
@@ -38989,10 +38465,6 @@
    "ConceptID": "C4022807"
  },
  {
-   "DiseaseName": "Foveal hypoplasia 1 with cataract",
-   "ConceptID": "C4017067"
- },
- {
    "DiseaseName": "Foveal hypoplasia 1 with or without anterior segment anomalies",
    "ConceptID": "C4017657"
  },
@@ -39003,10 +38475,6 @@
  {
    "DiseaseName": "Foveal hypoplasia 2",
    "ConceptID": "C1836603"
- },
- {
-   "DiseaseName": "Foveal hypoplasia and presenile cataract syndrome",
-   "ConceptID": "C3805604"
  },
  {
    "DiseaseName": "Foveal hypoplasia, isolated",
@@ -39047,10 +38515,6 @@
  {
    "DiseaseName": "Foveoschisis",
    "ConceptID": "C2674407"
- },
- {
-   "DiseaseName": "FOXE3-Related Cataracts, Autosomal Dominant",
-   "ConceptID": "CN230135"
  },
  {
    "DiseaseName": "Fox-Fordyce disease",
@@ -42921,10 +42385,6 @@
    "ConceptID": "C0015402"
  },
  {
-   "DiseaseName": "Hemorrhagic destruction of the brain, subependymal calcification, and cataracts",
-   "ConceptID": "C3151000"
- },
- {
    "DiseaseName": "Hemorrhagic disease due to alpha-1-antitrypsin Pittsburgh mutation",
    "ConceptID": "CN200394"
  },
@@ -44725,10 +44185,6 @@
    "ConceptID": "C4025148"
  },
  {
-   "DiseaseName": "Hyperferritinemia cataract syndrome",
-   "ConceptID": "C1833213"
- },
- {
    "DiseaseName": "Hyperfibrinogenemia",
    "ConceptID": "C0919890"
  },
@@ -45405,10 +44861,6 @@
    "ConceptID": "C1832776"
  },
  {
-   "DiseaseName": "Hypertrophic neuropathy and cataract",
-   "ConceptID": "C1855885"
- },
- {
    "DiseaseName": "Hypertrophic non-obstructive cardiomyopathy",
    "ConceptID": "C0340425"
  },
@@ -45907,10 +45359,6 @@
  {
    "DiseaseName": "Hypomyelinating leukodystrophy",
    "ConceptID": "CN228461"
- },
- {
-   "DiseaseName": "Hypomyelination and Congenital Cataract",
-   "ConceptID": "C1864663"
  },
  {
    "DiseaseName": "Hypomyelination, global cerebral",
@@ -49701,10 +49149,6 @@
    "ConceptID": "C1843256"
  },
  {
-   "DiseaseName": "Iridescent posterior subcapsular cataract",
-   "ConceptID": "C1864573"
- },
- {
    "DiseaseName": "Iridocorneal endothelial syndrome",
    "ConceptID": "C1840283"
  },
@@ -50897,10 +50341,6 @@
    "ConceptID": "C4022146"
  },
  {
-   "DiseaseName": "Juvenile cataract",
-   "ConceptID": "C0302254"
- },
- {
    "DiseaseName": "Juvenile colonic polyposis",
    "ConceptID": "C4023006"
  },
@@ -50987,10 +50427,6 @@
  {
    "DiseaseName": "Juvenile (Subacute) Hexosaminidase A Deficiency",
    "ConceptID": "CN120377"
- },
- {
-   "DiseaseName": "Juvenile zonular cataracts",
-   "ConceptID": "C1849324"
  },
  {
    "DiseaseName": "Juxtaductal coarctation of the aorta",
@@ -51761,16 +51197,8 @@
    "ConceptID": "C4225202"
  },
  {
-   "DiseaseName": "Lamellar cataract",
-   "ConceptID": "C0266537"
- },
- {
    "DiseaseName": "Lamellar ichthyosis",
    "ConceptID": "CN186176"
- },
- {
-   "DiseaseName": "Lamellar pulverulent cataract",
-   "ConceptID": "C4023735"
  },
  {
    "DiseaseName": "Laminin alpha 2-related dystrophy",
@@ -52491,10 +51919,6 @@
  {
    "DiseaseName": "Left ventricular systolic dysfunction",
    "ConceptID": "C1277187"
- },
- {
-   "DiseaseName": "Leg, absence deformity of, with congenital cataract",
-   "ConceptID": "C1855523"
  },
  {
    "DiseaseName": "Legionellosis",
@@ -56165,10 +55589,6 @@
    "ConceptID": ""
  },
  {
-   "DiseaseName": "Membranous cataract",
-   "ConceptID": "C0524524"
- },
- {
    "DiseaseName": "Membranous choanal atresia",
    "ConceptID": "C4023174"
  },
@@ -57149,10 +56569,6 @@
    "ConceptID": "C3809567"
  },
  {
-   "DiseaseName": "Microcornea, rod-cone dystrophy, cataract, and posterior staphyloma",
-   "ConceptID": "C2674009"
- },
- {
    "DiseaseName": "Microcytic anemia",
    "ConceptID": "C0085576"
  },
@@ -57231,26 +56647,6 @@
  {
    "DiseaseName": "Microphthalmia",
    "ConceptID": "C0026010"
- },
- {
-   "DiseaseName": "Microphthalmia Cataract",
-   "ConceptID": "CN235151"
- },
- {
-   "DiseaseName": "Microphthalmia cataract, partial aniridia",
-   "ConceptID": "CN235143"
- },
- {
-   "DiseaseName": "Microphthalmia, Cataract, Peters anomaly",
-   "ConceptID": "CN235146"
- },
- {
-   "DiseaseName": "Microphthalmia, cataracts, and iris abnormalities",
-   "ConceptID": "C1864722"
- },
- {
-   "DiseaseName": "Microphthalmia Cataract, Sclerocornea",
-   "ConceptID": "CN235152"
  },
  {
    "DiseaseName": "Microphthalmia/coloboma and skeletal dysplasia syndrome",
@@ -59817,26 +59213,6 @@
    "ConceptID": "C2931230"
  },
  {
-   "DiseaseName": "Myopathy, centronuclear, 1",
-   "ConceptID": "C1834558"
- },
- {
-   "DiseaseName": "Myopathy, centronuclear, 3",
-   "ConceptID": "C3280703"
- },
- {
-   "DiseaseName": "Myopathy, centronuclear, 4",
-   "ConceptID": "C3553709"
- },
- {
-   "DiseaseName": "Myopathy, centronuclear, 5",
-   "ConceptID": "C4014814"
- },
- {
-   "DiseaseName": "MYOPATHY, CENTRONUCLEAR, 6, WITH FIBER-TYPE DISPROPORTION",
-   "ConceptID": "C4540345"
- },
- {
    "DiseaseName": "Myopathy, centronuclear",
    "ConceptID": "CN221282"
  },
@@ -59919,10 +59295,6 @@
  {
    "DiseaseName": "Myopathy, myosin storage, autosomal recessive",
    "ConceptID": "C1850709"
- },
- {
-   "DiseaseName": "Myopathy, progressive axial with cataracts",
-   "ConceptID": "CN221568"
  },
  {
    "DiseaseName": "Myopathy, reducing body, X-linked, childhood-onset",
@@ -61441,10 +60813,6 @@
    "ConceptID": "C4540327"
  },
  {
-   "DiseaseName": "Neurodevelopmental disorder with epilepsy, cataracts, feeding difficulties, and delayed brain myelination",
-   "ConceptID": "C4479333"
- },
- {
    "DiseaseName": "Neurodevelopmental disorder with involuntary movements",
    "ConceptID": "C4479569"
  },
@@ -61771,10 +61139,6 @@
  {
    "DiseaseName": "Neuroplasm of the autonomic nervous system",
    "ConceptID": "C4072943"
- },
- {
-   "DiseaseName": "Neuropsychiatric disorder and early-onset cataract",
-   "ConceptID": "C4016618"
  },
  {
    "DiseaseName": "Neurovisceral storage disease with curvilinear bodies",
@@ -62205,10 +61569,6 @@
    "ConceptID": "C4023001"
  },
  {
-   "DiseaseName": "Nonnuclear polymorphic congenital cataract",
-   "ConceptID": "C3888391"
- },
- {
    "DiseaseName": "Non-obstructive azoospermia",
    "ConceptID": "C4021107"
  },
@@ -62605,10 +61965,6 @@
    "ConceptID": "C0392557"
  },
  {
-   "DiseaseName": "nuclear cataracts",
-   "ConceptID": "CN228392"
- },
- {
    "DiseaseName": "Nuclearly-encoded mitochondrial complex V (ATP synthase) deficiency 1",
    "ConceptID": "C2700431"
  },
@@ -62619,14 +61975,6 @@
  {
    "DiseaseName": "Nuclearly-encoded mitochondrial complex V (ATP synthase) deficiency 3",
    "ConceptID": "C3279708"
- },
- {
-   "DiseaseName": "Nuclear pulverulent cataract",
-   "ConceptID": "C4021237"
- },
- {
-   "DiseaseName": "Nuclear punctate cataract",
-   "ConceptID": "C4023649"
  },
  {
    "DiseaseName": "Nuclear receptor subfamily 1, group h, member 5, pseudogene",
@@ -64877,10 +64225,6 @@
    "ConceptID": "C4023255"
  },
  {
-   "DiseaseName": "Partial lipodystrophy, congenital cataracts, and neurodegeneration syndrome",
-   "ConceptID": "C1847582"
- },
- {
    "DiseaseName": "Partial lipodystrophy, Dunnigan",
    "ConceptID": "CN221589"
  },
@@ -67105,10 +66449,6 @@
    "ConceptID": "C1858143"
  },
  {
-   "DiseaseName": "Polycystic kidney, cataract, and congenital blindness",
-   "ConceptID": "C1849771"
- },
- {
    "DiseaseName": "Polycystic kidney disease 2",
    "ConceptID": "C2751306"
  },
@@ -67793,20 +67133,12 @@
    "ConceptID": "C0265879"
  },
  {
-   "DiseaseName": "Posterior capsular cataract",
-   "ConceptID": "C4022388"
- },
- {
    "DiseaseName": "Posterior cerebral artery stenosis",
    "ConceptID": "C1504569"
  },
  {
    "DiseaseName": "Posterior choanal atresia",
    "ConceptID": "C0220723"
- },
- {
-   "DiseaseName": "Posterior cortical cataract",
-   "ConceptID": "C4023650"
  },
  {
    "DiseaseName": "Posterior embryotoxon",
@@ -67873,10 +67205,6 @@
    "ConceptID": "C4021160"
  },
  {
-   "DiseaseName": "Posterior polar cataract",
-   "ConceptID": "C1850191"
- },
- {
    "DiseaseName": "Posterior polymorphous corneal dystrophy 1",
    "ConceptID": "CN029625"
  },
@@ -67917,10 +67245,6 @@
    "ConceptID": "CN241574"
  },
  {
-   "DiseaseName": "Posterior subcapsular cataract",
-   "ConceptID": "C0858617"
- },
- {
    "DiseaseName": "Posterior subluxation of radial head",
    "ConceptID": "C3149878"
  },
@@ -67945,10 +67269,6 @@
    "ConceptID": "C1969679"
  },
  {
-   "DiseaseName": "Posterior Y-sutural cataract",
-   "ConceptID": "C4021560"
- },
- {
    "DiseaseName": "Posterolateral diaphragmatic hernia",
    "ConceptID": "C0265700"
  },
@@ -67963,10 +67283,6 @@
  {
    "DiseaseName": "Postnatal asphyxia",
    "ConceptID": "C0004045"
- },
- {
-   "DiseaseName": "postnatal cataracts",
-   "ConceptID": "CN232327"
  },
  {
    "DiseaseName": "Postnatal cystic hygroma",
@@ -68519,10 +67835,6 @@
  {
    "DiseaseName": "Presacral teratoma",
    "ConceptID": "CN891464"
- },
- {
-   "DiseaseName": "Presenile cataracts",
-   "ConceptID": "C0154971"
  },
  {
    "DiseaseName": "Presenile dementia, Kraepelin type",
@@ -70853,14 +70165,6 @@
    "ConceptID": "C0751559"
  },
  {
-   "DiseaseName": "Pulverulent cataract",
-   "ConceptID": "CN009519"
- },
- {
-   "DiseaseName": "Punctate cataract",
-   "ConceptID": "C1969675"
- },
- {
    "DiseaseName": "Punctate corneal dystrophy",
    "ConceptID": "C4024796"
  },
@@ -73131,10 +72435,6 @@
  {
    "DiseaseName": "Retinal dysplasia, primary",
    "ConceptID": "C1418874"
- },
- {
-   "DiseaseName": "Retinal dystrophy and iris coloboma with or without congenital cataract",
-   "ConceptID": "C4225233"
  },
  {
    "DiseaseName": "Retinal dystrophy",
@@ -80061,10 +79361,6 @@
    "ConceptID": "C3165130"
  },
  {
-   "DiseaseName": "Subcapsular cataract",
-   "ConceptID": "C0235259"
- },
- {
    "DiseaseName": "Subchorionic septal cyst",
    "ConceptID": "C4280801"
  },
@@ -83071,10 +82367,6 @@
  {
    "DiseaseName": "Triangular nasal tip",
    "ConceptID": "C1839765"
- },
- {
-   "DiseaseName": "Triangular nuclear cataract",
-   "ConceptID": "C4023733"
  },
  {
    "DiseaseName": "Triangular shaped 1st metacarpal",
@@ -86851,10 +86143,6 @@
  {
    "DiseaseName": "Zonular cataract",
    "ConceptID": "C1861821"
- },
- {
-   "DiseaseName": "Zonular Pulverulent Cataract",
-   "ConceptID": "CN239280"
  },
  {
    "DiseaseName": "ZTTK syndrome",
