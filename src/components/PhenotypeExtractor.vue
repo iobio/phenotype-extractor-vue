@@ -1488,7 +1488,7 @@
               </v-card-text>
               <v-card-actions class="mb-3 ml-5 mr-5 mt-3">
                 <v-spacer></v-spacer>
-                <v-btn :disabled="!searchStatusCompleteAlert" @click="searchStatusDialog=false"  small color="primary" tile> Close</v-btn>
+                <v-btn :disabled="!searchStatusCompleteAlert" @click="closeSearchStatusDialog"  small color="primary" tile> Close</v-btn>
               </v-card-actions>
             </v-card>
           </v-dialog>
@@ -4214,6 +4214,11 @@ export default {
 
         let container = document.querySelector("#termsReviewDialogContainer-target"); 
         container.scrollTop = 0
+      },
+      
+      closeSearchStatusDialog(){
+        this.searchStatusDialog=false;
+        this.$emit("close_search_status_dialog")
       },
       
       setTermsSelectedFromBasicModeForReview(){

@@ -75,7 +75,8 @@
         @VennDiagramData="VennDiagramData($event)"
         :geneToDelete="geneToDelete"
         @new_term_searched="new_term_searched($event)"
-        :textNotesLandingPage="textNotesLandingPage">
+        :textNotesLandingPage="textNotesLandingPage"
+        @close_search_status_dialog="close_search_status_dialog($event)">
       </PhenotypeExtractor>
 
       <!-- <Phenotypes
@@ -289,6 +290,8 @@ export default {
     },
     sendMosaicGeneSet(){
       this.mosaic_gene_set = "TRPV4,SH3TC2,SBF2,RAB7A,PRX,PMP22,PLEKHG5,NEFL,NDRG1,MPZ,MFN2,MED25,LRSAM1,LITAF,HSPB1,HK1,GDAP1,FGD4,EGR2,DNM2"
+    },
+    close_search_status_dialog(){
     }
   }
 };
