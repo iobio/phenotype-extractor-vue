@@ -42,336 +42,364 @@
       </v-textarea>
       </div>
     </div>
-
-    <div class="col-container row" style="margin-top:-40px">
-        <v-card class="col-flex-note" >
-          <v-card-title primary-title>
-            <span class="terms-heading">
-              Inputs
-              <v-badge
-                :value="clinical_note_text.length"
-                color="#888"
-                left
-                class="ml-7 mb-2"
-              >
-                <span slot="badge">{{ clinical_note_text.length }}</span>
-              </v-badge>
-            </span>
-            <v-spacer></v-spacer>
-          </v-card-title>
-          <v-card-text class="i-clinical_note_text_div">
-            <div v-if="showSearchTermsLoader">
-              <blockquote class="blockquote">
-                <v-skeleton-loader
-                  :loading="loading"
-                  :transition="transition"
-                  type="paragraph"
-                >
-                </v-skeleton-loader>
-              </blockquote>
-            </div>
-            <div v-if="!showSearchTermsLoader">
-              <div v-if="clinical_note_text.length">
-                <blockquote v-for="(note, i) in clinical_note_text" :key="i" class="blockquote i-text--left" style="font-size: 13px;">
-                  {{ note.note | to-firstCharacterUppercase }}
-                  <span @click="reSelectClinicalNote(note.note, i)">
-                    <v-btn text color="primary" small>
-                    <span style="font-size:11px">
-                      Edit
-                     </span></v-btn>
-                  </span>
-                  <span @click="confirmToDeleteInputNote(note.note, i)">
-                    <v-btn text color="primary" small>
-                    <span style="font-size:11px">
-                      Delete
-                     </span></v-btn>
-                  </span>
-
-                </blockquote>
-              </div>
-              <div v-else>
-                <blockquote class="blockquote i-text--left" style="font-size: 14px;">
-                  No clinical is note added.
-                </blockquote>
-              </div>
-            </div>
-          </v-card-text>
-        </v-card>
-
-        <v-card class="col-flex-terms" >
-          <v-card-title primary-title>
-            <span class="terms-heading">Terms</span>
-            <v-spacer></v-spacer>
-          </v-card-title>
+    
+    
+    <!-- Tabs sections -->
+    <v-tabs
+      color="primary"
+      slider-color="primary"
+    >
+      <v-tab>
+        Input
+      </v-tab>
+      <v-tab>
+        HPO
+      </v-tab>
+      <v-tab-item>
+        <v-card >
           <v-card-text>
-            <div class="" style="padding-bottom: 0px; ">
-              <div class="row">
-                <div class="col-md-4">
-                  <table class="table">
-                    <thead>
-                      <tr class="i-text--left">
-                        <span class="badge-label">GTR</span>
-                        <span v-if="Gtr_searchTermsObj.length && !showSearchTermsLoader">
-                          <v-badge
-                            :value="Gtr_searchTermsObj.length"
-                            color="#888"
-                            left
-                            class="ml-8 mb-2"
-                          >
-                            <span slot="badge">{{ Gtr_searchTermsObj.length }}</span>
-                          </v-badge>
-                        </span>
-                        <span v-if="Gtr_searchTermsObj.length>3" style="float:right; margin-right:20px">
-                          <v-icon color="grey lighten-1">unfold_more</v-icon>
-                        </span>
-                      </tr>
-                    </thead>
-                    <tbody class="search_status_tbody">
-                      <tr v-if="showSearchTermsLoader">
-                        <v-skeleton-loader
-                          :loading="loading"
-                          :transition="transition"
-                          type="chip"
-                          class="mt-2"
-                        >
-                        </v-skeleton-loader>
-                      </tr>
-                      <tr v-if="!showSearchTermsLoader && Gtr_searchTermsObj.length" v-for="(term, i) in Gtr_searchTermsObj" :key="i">
-                        <td class="i-text--left i-terms-spacing" @mouseover="mouseOverGtrTerm(term.DiseaseName)" @mouseleave="hovered_gtr_term=''">
-                          <div >
-                            <span>{{ term.DiseaseName }}</span>
-                          </div>
-                        </td>
-                        <td class="i-icon--spacing" @mouseover="mouseOverGtrTerm(term.DiseaseName)" @mouseleave="hovered_gtr_term=''">
-                          <span v-if="hovered_gtr_term === term.DiseaseName">
-                            <v-icon class="ml-1 terms_delete_btn" @click="removePhenotypeShowDialog(term, i, 'GTR')">delete</v-icon>
-                          </span>
-                        </td>
-                        <td >
-                          <span v-if="term.gtrSearchStatus==='Searching'">
-                            <v-progress-circular
-                              :width="2"
-                              :size="20"
-                              indeterminate
-                              color="primary"
-                            ></v-progress-circular>
-                          </span>
-                          <span v-else-if="term.gtrSearchStatus==='Completed'">
-                            <v-icon color="green">done</v-icon>
-                          </span>
-                          <span v-else-if="term.gtrSearchStatus==='NoGenes'">
-                            <v-tooltip bottom>
-                              <template v-slot:activator="{ on }">
-                                <v-icon color="gray" style="font-size:20px" v-on="on">block</v-icon>
-                              </template>
-                              <span>No genes were found for this term</span>
-                            </v-tooltip>
-                          </span>
-                          <span v-else-if="term.gtrSearchStatus==='NotAvailable'"><v-icon>indeterminate_check_box</v-icon></span>
-                          <span v-else>
-                            <v-tooltip bottom>
-                              <template v-slot:activator="{ on }">
-                                <v-icon color="gray lighten-4" v-on="on">error</v-icon>
-                              </template>
-                              <span>The network request for this term failed. Please delete this term and try again.</span>
-                            </v-tooltip>
-                          </span>
-                        </td>
-                      </tr>
-                    </tbody>
-                  </table>
-                  <div class="i-text--left" v-if="Gtr_searchTermsObj.length<1">
-                    <span v-if="!showSearchTermsLoader"><i>Not Selected...</i></span>
+            <div class="col-container row" >
+              <v-card class="col-flex-note" >
+                <v-card-title primary-title>
+                  <span class="terms-heading">
+                    Inputs
+                    <v-badge
+                      :value="clinical_note_text.length"
+                      color="#888"
+                      left
+                      class="ml-7 mb-2"
+                    >
+                      <span slot="badge">{{ clinical_note_text.length }}</span>
+                    </v-badge>
+                  </span>
+                  <v-spacer></v-spacer>
+                </v-card-title>
+                <v-card-text class="i-clinical_note_text_div">
+                  <div v-if="showSearchTermsLoader">
+                    <blockquote class="blockquote">
+                      <v-skeleton-loader
+                        :loading="loading"
+                        :transition="transition"
+                        type="paragraph"
+                      >
+                      </v-skeleton-loader>
+                    </blockquote>
                   </div>
-                </div>
+                  <div v-if="!showSearchTermsLoader">
+                    <div v-if="clinical_note_text.length">
+                      <blockquote v-for="(note, i) in clinical_note_text" :key="i" class="blockquote i-text--left" style="font-size: 13px;">
+                        {{ note.note | to-firstCharacterUppercase }}
+                        <span @click="reSelectClinicalNote(note.note, i)">
+                          <v-btn text color="primary" small>
+                          <span style="font-size:11px">
+                            Edit
+                           </span></v-btn>
+                        </span>
+                        <span @click="confirmToDeleteInputNote(note.note, i)">
+                          <v-btn text color="primary" small>
+                          <span style="font-size:11px">
+                            Delete
+                           </span></v-btn>
+                        </span>
 
-                <div class="col-md-4">
-                  <table class="table">
-                    <thead>
-                      <tr class="i-text--left">
-                        <span class="badge-label">Phenolyzer</span>
-                        <span class="ml-2" v-if="Phenolyzer_searchTermsObj.length && !showSearchTermsLoader">
-                          <v-badge
-                            :value="Phenolyzer_searchTermsObj.length"
-                            color="#888"
-                            left
-                            class="ml-6 mb-2"
-                          >
-                            <span slot="badge">{{ Phenolyzer_searchTermsObj.length }}</span>
-                          </v-badge>
-                        </span>
-                        <span v-if="Phenolyzer_searchTermsObj.length>3" style="float:right; margin-right:7px">
-                          <v-icon color="grey lighten-1">unfold_more</v-icon>
-                        </span>
-                        <!-- <div v-if="Phenolyzer_searchTermsObj.length>0">
-                        </div> -->
-                      </tr>
-                    </thead>
-                    <tbody class="search_status_tbody">
-                      <tr v-if="showSearchTermsLoader">
-                        <v-skeleton-loader
-                          :loading="loading"
-                          :transition="transition"
-                          type="chip"
-                          class="mt-2"
-                        >
-                        </v-skeleton-loader>
-                      </tr>
-                      <tr v-if="!showSearchTermsLoader" v-for="(term, i) in Phenolyzer_searchTermsObj" :key="i">
-                        <td class="i-text--left i-terms-spacing" @mouseover="mouseOverPhenolyzerTerm(term.value)" @mouseleave="hovered_phenolyzer_term=''">
-                          <span>{{ term.value | to-firstCharacterUppercase }}</span>
-                        </td>
-                        <td class="i-icon--spacing" @mouseover="mouseOverPhenolyzerTerm(term.value)" @mouseleave="hovered_phenolyzer_term=''">
-                          <span v-show="hovered_phenolyzer_term === term.value">
-                            <v-icon class="ml-1 terms_delete_btn" @click="removePhenotypeShowDialog(term, i, 'phenolyzer')">delete</v-icon>
-                          </span>
-                        </td>
-                        <td>
-                          <span v-if="term.phenolyzerSearchStatus==='Searching'">
-                            <v-progress-circular
-                              :width="2"
-                              :size="20"
-                              indeterminate
-                              color="primary"
-                            ></v-progress-circular>
-                          </span>
-                          <span v-else-if="term.phenolyzerSearchStatus==='running'">
-                            <v-progress-circular
-                              :width="2"
-                              :size="20"
-                              indeterminate
-                              color="primary"
-                            ></v-progress-circular>
-                            <v-tooltip top>
-                              <template v-slot:activator="{ on }">
-                                <span @click="stopPhenolyzerSearch(term.value)">
-                                  <v-icon small color="grey" style="font-size:18px; cursor: pointer" v-on="on">cancel</v-icon>
+                      </blockquote>
+                    </div>
+                    <div v-else>
+                      <blockquote class="blockquote i-text--left" style="font-size: 14px;">
+                        No clinical is note added.
+                      </blockquote>
+                    </div>
+                  </div>
+                </v-card-text>
+              </v-card>
+
+              <v-card class="col-flex-terms" >
+                <v-card-title primary-title>
+                  <span class="terms-heading">Terms</span>
+                  <v-spacer></v-spacer>
+                </v-card-title>
+                <v-card-text>
+                  <div class="" style="padding-bottom: 0px; ">
+                    <div class="row">
+                      <div class="col-md-4">
+                        <table class="table">
+                          <thead>
+                            <tr class="i-text--left">
+                              <span class="badge-label">GTR</span>
+                              <span v-if="Gtr_searchTermsObj.length && !showSearchTermsLoader">
+                                <v-badge
+                                  :value="Gtr_searchTermsObj.length"
+                                  color="#888"
+                                  left
+                                  class="ml-8 mb-2"
+                                >
+                                  <span slot="badge">{{ Gtr_searchTermsObj.length }}</span>
+                                </v-badge>
+                              </span>
+                              <span v-if="Gtr_searchTermsObj.length>3" style="float:right; margin-right:20px">
+                                <v-icon color="grey lighten-1">unfold_more</v-icon>
+                              </span>
+                            </tr>
+                          </thead>
+                          <tbody class="search_status_tbody">
+                            <tr v-if="showSearchTermsLoader">
+                              <v-skeleton-loader
+                                :loading="loading"
+                                :transition="transition"
+                                type="chip"
+                                class="mt-2"
+                              >
+                              </v-skeleton-loader>
+                            </tr>
+                            <tr v-if="!showSearchTermsLoader && Gtr_searchTermsObj.length" v-for="(term, i) in Gtr_searchTermsObj" :key="i">
+                              <td class="i-text--left i-terms-spacing" @mouseover="mouseOverGtrTerm(term.DiseaseName)" @mouseleave="hovered_gtr_term=''">
+                                <div >
+                                  <span>{{ term.DiseaseName }}</span>
+                                </div>
+                              </td>
+                              <td class="i-icon--spacing" @mouseover="mouseOverGtrTerm(term.DiseaseName)" @mouseleave="hovered_gtr_term=''">
+                                <span v-if="hovered_gtr_term === term.DiseaseName">
+                                  <v-icon class="ml-1 terms_delete_btn" @click="removePhenotypeShowDialog(term, i, 'GTR')">delete</v-icon>
                                 </span>
-                              </template>
-                              <span>Cancel search for this term</span>
-                            </v-tooltip>
-                            <!-- Running
-                            <br> -->
-                            <!-- <span @click="stopPhenolyzerSearch(term.value)">close</span> -->
-                          </span>
-                          <span v-else-if="term.phenolyzerSearchStatus==='Completed'"><v-icon color="green">done</v-icon></span>
-                          <span v-else-if="term.phenolyzerSearchStatus==='NoGenes'">
-                            <v-tooltip bottom>
-                              <template v-slot:activator="{ on }">
-                                <v-icon color="gray" style="font-size:20px" v-on="on">block</v-icon>
-                              </template>
-                              <span>No genes were found for this phenotype</span>
-                            </v-tooltip>
-                          </span>
-                          <span v-else-if="term.phenolyzerSearchStatus==='NotAvailable'"><v-icon>indeterminate_check_box</v-icon></span>
-                          <span v-else-if="term.phenolyzerSearchStatus==='Cancelled'">
-                            <!-- <v-icon color="gray lighten-4">cancel</v-icon> -->
-                            <v-tooltip bottom>
-                              <template v-slot:activator="{ on }">
-                                <v-icon small color="gray lighten-4" style="font-size:19px; cursor: pointer" v-on="on">error_outline</v-icon>
-                              </template>
-                              <span>Search for this term was cancelled</span>
-                            </v-tooltip>
-                          </span>
-                          <span v-else>
-                            <v-tooltip bottom>
-                              <template v-slot:activator="{ on }">
-                                <v-icon color="gray lighten-4" v-on="on">error</v-icon>
-                              </template>
-                              <span>The network request for this term failed. Please delete this term and try again.</span>
-                            </v-tooltip>
-                          </span>
-                        </td>
-                      </tr>
-                    </tbody>
-                  </table>
-                  <!-- <div v-if="Phenolyzer_searchTermsObj.length<2"> -->
-                  <div class="i-text--left" v-if="Phenolyzer_searchTermsObj.length<1">
-                    <span v-if="!showSearchTermsLoader"><i>Not Selected...</i></span>
-                  </div>
-                </div>
+                              </td>
+                              <td >
+                                <span v-if="term.gtrSearchStatus==='Searching'">
+                                  <v-progress-circular
+                                    :width="2"
+                                    :size="20"
+                                    indeterminate
+                                    color="primary"
+                                  ></v-progress-circular>
+                                </span>
+                                <span v-else-if="term.gtrSearchStatus==='Completed'">
+                                  <v-icon color="green">done</v-icon>
+                                </span>
+                                <span v-else-if="term.gtrSearchStatus==='NoGenes'">
+                                  <v-tooltip bottom>
+                                    <template v-slot:activator="{ on }">
+                                      <v-icon color="gray" style="font-size:20px" v-on="on">block</v-icon>
+                                    </template>
+                                    <span>No genes were found for this term</span>
+                                  </v-tooltip>
+                                </span>
+                                <span v-else-if="term.gtrSearchStatus==='NotAvailable'"><v-icon>indeterminate_check_box</v-icon></span>
+                                <span v-else>
+                                  <v-tooltip bottom>
+                                    <template v-slot:activator="{ on }">
+                                      <v-icon color="gray lighten-4" v-on="on">error</v-icon>
+                                    </template>
+                                    <span>The network request for this term failed. Please delete this term and try again.</span>
+                                  </v-tooltip>
+                                </span>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                        <div class="i-text--left" v-if="Gtr_searchTermsObj.length<1">
+                          <span v-if="!showSearchTermsLoader"><i>Not Selected...</i></span>
+                        </div>
+                      </div>
 
-                <div class="col-md-4">
-                  <table class="table">
-                    <thead>
-                      <tr class="i-text--left">
-                        <span class="badge-label">HPO</span>
-                        <span class="ml-2" v-if="Hpo_searchTermsObj.length && !showSearchTermsLoader">
-                          <v-badge
-                            :value="Phenolyzer_searchTermsObj.length"
-                            color="#888"
-                            left
-                            class="ml-6 mb-2"
-                          >
-                            <span slot="badge">{{ Hpo_searchTermsObj.length }}</span>
-                          </v-badge>
-                        </span>
-                        <span v-if="Hpo_searchTermsObj.length>3" style="float:right; margin-right:20px">
-                          <v-icon color="grey lighten-1">unfold_more</v-icon>
-                        </span>
-                      </tr>
-                    </thead>
-                    <tbody class="search_status_tbody">
-                      <tr v-if="showSearchTermsLoader">
-                        <v-skeleton-loader
-                          :loading="loading"
-                          :transition="transition"
-                          type="chip"
-                          class="mt-2"
-                        >
-                        </v-skeleton-loader>
-                      </tr>
-                      <tr v-if="!showSearchTermsLoader" v-for="(term, i) in Hpo_searchTermsObj" :key="i">
-                        <td class="i-text--left i-terms-spacing"  @mouseover="mouseOverHpoTerm(term.HPO_Data)" @mouseleave="hovered_hpo_term=''">
-                          <!-- <span>{{ term.HPO_Data }}</span> -->
-                          <span>{{ term.phenotype }} <br> [{{ term.hpoNumber }}]</span>
-                        </td>
-                        <td class="i-icon--spacing" @mouseover="mouseOverHpoTerm(term.HPO_Data)" @mouseleave="hovered_hpo_term=''">
-                          <span v-if="hovered_hpo_term === term.HPO_Data">
-                            <v-icon class="ml-1 terms_delete_btn" @click="removePhenotypeShowDialog(term, i, 'HPO')">delete</v-icon>
-                          </span>
-                        </td>
-                        <td >
-                          <span v-if="term.hpoSearchStatus==='Searching'">
-                            <v-progress-circular
-                              :width="2"
-                              :size="20"
-                              indeterminate
-                              color="primary"
-                            ></v-progress-circular>
-                          </span>
-                          <span v-else-if="term.hpoSearchStatus==='Completed'"><v-icon color="green">done</v-icon></span>
-                          <span v-else-if="term.hpoSearchStatus==='NoGenes'">
-                            <v-tooltip bottom>
-                              <template v-slot:activator="{ on }">
-                                <v-icon color="gray" style="font-size:20px" v-on="on">block</v-icon>
-                              </template>
-                              <span>No genes were found for this term</span>
-                            </v-tooltip>
-                          </span>
-                          <span v-else-if="term.hpoSearchStatus==='NotAvailable'"><v-icon>indeterminate_check_box</v-icon></span>
-                          <span v-else>
-                            <v-tooltip bottom>
-                              <template v-slot:activator="{ on }">
-                                <v-icon color="gray lighten-4" v-on="on">error</v-icon>
-                              </template>
-                              <span>The network request for this term failed. Please delete this term and try again.</span>
-                            </v-tooltip>
-                          </span>
-                        </td>
-                      </tr>
-                    </tbody>
-                  </table>
-                  <div class="i-text--left" v-if="Hpo_searchTermsObj.length<1">
-                    <span v-if="!showSearchTermsLoader"><i>Not Selected...</i></span>
-                  </div>
-                </div>
+                      <div class="col-md-4">
+                        <table class="table">
+                          <thead>
+                            <tr class="i-text--left">
+                              <span class="badge-label">Phenolyzer</span>
+                              <span class="ml-2" v-if="Phenolyzer_searchTermsObj.length && !showSearchTermsLoader">
+                                <v-badge
+                                  :value="Phenolyzer_searchTermsObj.length"
+                                  color="#888"
+                                  left
+                                  class="ml-6 mb-2"
+                                >
+                                  <span slot="badge">{{ Phenolyzer_searchTermsObj.length }}</span>
+                                </v-badge>
+                              </span>
+                              <span v-if="Phenolyzer_searchTermsObj.length>3" style="float:right; margin-right:7px">
+                                <v-icon color="grey lighten-1">unfold_more</v-icon>
+                              </span>
+                              <!-- <div v-if="Phenolyzer_searchTermsObj.length>0">
+                              </div> -->
+                            </tr>
+                          </thead>
+                          <tbody class="search_status_tbody">
+                            <tr v-if="showSearchTermsLoader">
+                              <v-skeleton-loader
+                                :loading="loading"
+                                :transition="transition"
+                                type="chip"
+                                class="mt-2"
+                              >
+                              </v-skeleton-loader>
+                            </tr>
+                            <tr v-if="!showSearchTermsLoader" v-for="(term, i) in Phenolyzer_searchTermsObj" :key="i">
+                              <td class="i-text--left i-terms-spacing" @mouseover="mouseOverPhenolyzerTerm(term.value)" @mouseleave="hovered_phenolyzer_term=''">
+                                <span>{{ term.value | to-firstCharacterUppercase }}</span>
+                              </td>
+                              <td class="i-icon--spacing" @mouseover="mouseOverPhenolyzerTerm(term.value)" @mouseleave="hovered_phenolyzer_term=''">
+                                <span v-show="hovered_phenolyzer_term === term.value">
+                                  <v-icon class="ml-1 terms_delete_btn" @click="removePhenotypeShowDialog(term, i, 'phenolyzer')">delete</v-icon>
+                                </span>
+                              </td>
+                              <td>
+                                <span v-if="term.phenolyzerSearchStatus==='Searching'">
+                                  <v-progress-circular
+                                    :width="2"
+                                    :size="20"
+                                    indeterminate
+                                    color="primary"
+                                  ></v-progress-circular>
+                                </span>
+                                <span v-else-if="term.phenolyzerSearchStatus==='running'">
+                                  <v-progress-circular
+                                    :width="2"
+                                    :size="20"
+                                    indeterminate
+                                    color="primary"
+                                  ></v-progress-circular>
+                                  <v-tooltip top>
+                                    <template v-slot:activator="{ on }">
+                                      <span @click="stopPhenolyzerSearch(term.value)">
+                                        <v-icon small color="grey" style="font-size:18px; cursor: pointer" v-on="on">cancel</v-icon>
+                                      </span>
+                                    </template>
+                                    <span>Cancel search for this term</span>
+                                  </v-tooltip>
+                                  <!-- Running
+                                  <br> -->
+                                  <!-- <span @click="stopPhenolyzerSearch(term.value)">close</span> -->
+                                </span>
+                                <span v-else-if="term.phenolyzerSearchStatus==='Completed'"><v-icon color="green">done</v-icon></span>
+                                <span v-else-if="term.phenolyzerSearchStatus==='NoGenes'">
+                                  <v-tooltip bottom>
+                                    <template v-slot:activator="{ on }">
+                                      <v-icon color="gray" style="font-size:20px" v-on="on">block</v-icon>
+                                    </template>
+                                    <span>No genes were found for this phenotype</span>
+                                  </v-tooltip>
+                                </span>
+                                <span v-else-if="term.phenolyzerSearchStatus==='NotAvailable'"><v-icon>indeterminate_check_box</v-icon></span>
+                                <span v-else-if="term.phenolyzerSearchStatus==='Cancelled'">
+                                  <!-- <v-icon color="gray lighten-4">cancel</v-icon> -->
+                                  <v-tooltip bottom>
+                                    <template v-slot:activator="{ on }">
+                                      <v-icon small color="gray lighten-4" style="font-size:19px; cursor: pointer" v-on="on">error_outline</v-icon>
+                                    </template>
+                                    <span>Search for this term was cancelled</span>
+                                  </v-tooltip>
+                                </span>
+                                <span v-else>
+                                  <v-tooltip bottom>
+                                    <template v-slot:activator="{ on }">
+                                      <v-icon color="gray lighten-4" v-on="on">error</v-icon>
+                                    </template>
+                                    <span>The network request for this term failed. Please delete this term and try again.</span>
+                                  </v-tooltip>
+                                </span>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                        <!-- <div v-if="Phenolyzer_searchTermsObj.length<2"> -->
+                        <div class="i-text--left" v-if="Phenolyzer_searchTermsObj.length<1">
+                          <span v-if="!showSearchTermsLoader"><i>Not Selected...</i></span>
+                        </div>
+                      </div>
 
-              </div>
+                      <div class="col-md-4">
+                        <table class="table">
+                          <thead>
+                            <tr class="i-text--left">
+                              <span class="badge-label">HPO</span>
+                              <span class="ml-2" v-if="Hpo_searchTermsObj.length && !showSearchTermsLoader">
+                                <v-badge
+                                  :value="Phenolyzer_searchTermsObj.length"
+                                  color="#888"
+                                  left
+                                  class="ml-6 mb-2"
+                                >
+                                  <span slot="badge">{{ Hpo_searchTermsObj.length }}</span>
+                                </v-badge>
+                              </span>
+                              <span v-if="Hpo_searchTermsObj.length>3" style="float:right; margin-right:20px">
+                                <v-icon color="grey lighten-1">unfold_more</v-icon>
+                              </span>
+                            </tr>
+                          </thead>
+                          <tbody class="search_status_tbody">
+                            <tr v-if="showSearchTermsLoader">
+                              <v-skeleton-loader
+                                :loading="loading"
+                                :transition="transition"
+                                type="chip"
+                                class="mt-2"
+                              >
+                              </v-skeleton-loader>
+                            </tr>
+                            <tr v-if="!showSearchTermsLoader" v-for="(term, i) in Hpo_searchTermsObj" :key="i">
+                              <td class="i-text--left i-terms-spacing"  @mouseover="mouseOverHpoTerm(term.HPO_Data)" @mouseleave="hovered_hpo_term=''">
+                                <!-- <span>{{ term.HPO_Data }}</span> -->
+                                <span>{{ term.phenotype }} <br> [{{ term.hpoNumber }}]</span>
+                              </td>
+                              <td class="i-icon--spacing" @mouseover="mouseOverHpoTerm(term.HPO_Data)" @mouseleave="hovered_hpo_term=''">
+                                <span v-if="hovered_hpo_term === term.HPO_Data">
+                                  <v-icon class="ml-1 terms_delete_btn" @click="removePhenotypeShowDialog(term, i, 'HPO')">delete</v-icon>
+                                </span>
+                              </td>
+                              <td >
+                                <span v-if="term.hpoSearchStatus==='Searching'">
+                                  <v-progress-circular
+                                    :width="2"
+                                    :size="20"
+                                    indeterminate
+                                    color="primary"
+                                  ></v-progress-circular>
+                                </span>
+                                <span v-else-if="term.hpoSearchStatus==='Completed'"><v-icon color="green">done</v-icon></span>
+                                <span v-else-if="term.hpoSearchStatus==='NoGenes'">
+                                  <v-tooltip bottom>
+                                    <template v-slot:activator="{ on }">
+                                      <v-icon color="gray" style="font-size:20px" v-on="on">block</v-icon>
+                                    </template>
+                                    <span>No genes were found for this term</span>
+                                  </v-tooltip>
+                                </span>
+                                <span v-else-if="term.hpoSearchStatus==='NotAvailable'"><v-icon>indeterminate_check_box</v-icon></span>
+                                <span v-else>
+                                  <v-tooltip bottom>
+                                    <template v-slot:activator="{ on }">
+                                      <v-icon color="gray lighten-4" v-on="on">error</v-icon>
+                                    </template>
+                                    <span>The network request for this term failed. Please delete this term and try again.</span>
+                                  </v-tooltip>
+                                </span>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                        <div class="i-text--left" v-if="Hpo_searchTermsObj.length<1">
+                          <span v-if="!showSearchTermsLoader"><i>Not Selected...</i></span>
+                        </div>
+                      </div>
+
+                    </div>
+                  </div>
+                </v-card-text>
+              </v-card>
             </div>
           </v-card-text>
         </v-card>
-      </div>
+      </v-tab-item>
+      <v-tab-item>
+        <v-card>
+          <v-card-text flat>
+            HPO
+          </v-card-text>
+        </v-card>
+      </v-tab-item>
+    </v-tabs>
+
+
       <!-- <div v-if="showInfoThatStepIsComplete">
         the following alert shows that the step is completed
         <v-alert
@@ -3811,8 +3839,34 @@ export default {
     },
 
     sendHpoGenesToSummary(genes){
+      console.log("hpo genes", genes);
       this.clinPhenSelectedGenes = genes;
-      this.$emit("HpoGeneList", this.clinPhenSelectedGenes)
+      this.$emit("HpoGeneList", this.clinPhenSelectedGenes);
+      this.countNumberOfHpoSources(genes);
+    },
+    
+    countNumberOfHpoSources(genes){
+      var obj = {};
+      var arr =[];
+      if (genes.length) {
+        var len = genes[0].hpoSource; 
+        
+        for(var i=1; i<=len; i++){
+          if(obj[i] === undefined){
+            obj[i] = 0;
+          }
+        }
+        
+        genes.map (x => {
+          obj[x.hpoSource] = obj[x.hpoSource] + 1;
+        })
+        
+        for(var prop in obj ){
+          arr.push({"name": prop, "count": obj[prop]})
+        }
+      console.log("obj", obj);
+      }
+      console.log("arr", arr);
     },
 
     hpoIndividualGenes(obj){
