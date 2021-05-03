@@ -48,6 +48,7 @@
     <v-tabs
       color="primary"
       slider-color="primary"
+      v-model="tab_idx"
     >
       <v-tab>
         Input
@@ -55,9 +56,13 @@
       <v-tab>
         HPO
       </v-tab>
-      <v-tab-item>
+    </v-tabs>
+    
+    <div>
+      <div v-show="tab_idx===0">
         <v-card >
           <v-card-text>
+
             <div class="col-container row" >
               <v-card class="col-flex-note" >
                 <v-card-title primary-title>
@@ -389,15 +394,24 @@
             </div>
           </v-card-text>
         </v-card>
-      </v-tab-item>
-      <v-tab-item>
+      </div>
+      <div v-show="tab_idx===1">
         <v-card>
           <v-card-text flat>
+            <div class="hpo-genes-bar-chart">
+              
+            </div>
+            
+            <div class="hpo-genes-bar-chart-new">
+              
+            </div>
+
+
             HPO
           </v-card-text>
         </v-card>
-      </v-tab-item>
-    </v-tabs>
+      </div>
+    </div>
 
 
       <!-- <div v-if="showInfoThatStepIsComplete">
@@ -1662,6 +1676,8 @@ import VennDiagram from './VennDiagram.vue'
 import Model from '../models/Model';
 import TermsModalHeading from '../partials/TermsModalHeading.vue'
 var model = new Model();
+import * as d3 from "d3";
+
 
 
 export default {
@@ -1878,8 +1894,13 @@ export default {
     hpo_radios: "inputted_hpo_only",
     hpoExtractedIds: [],
     showWarningOfMissedHpoTerms: false,
+    hpoGenesCountForBarChart: [],
+    tab_idx: 0,
   }),
   watch: {
+    tab_idx(){
+      console.log("tab", this.tab_idx);
+    },
     hpo_radios(){
       this.setTermsSelectedFromBasicModeForReview();
     }, 
@@ -3867,6 +3888,9 @@ export default {
       console.log("obj", obj);
       }
       console.log("arr", arr);
+      this.hpoGenesCountForBarChart = arr;
+      this.drawHpoGenesBarChart();
+      this.drawHpoGenesBarChartNew();
     },
 
     hpoIndividualGenes(obj){
@@ -4369,6 +4393,183 @@ export default {
         this.termsReviewDialog = true;
         this.termsReviewDialogPage = 0;
 
+      },
+      
+      updateChart(event) {
+        var extent = event.selection;
+        const [x0, x1] = extent.map(this.x.invert);
+        var lower = Math.floor(x0);
+        var higher = Math.floor(x1);
+        console.log("lower", lower);
+        console.log("higher", higher);
+      },
+      
+      drawHpoGenesBarChartNew(){
+        console.log("Called new");
+
+        d3.select(".hpo-genes-bar-chart-new").select("svg").remove();
+
+        const svg = d3
+          .select(".hpo-genes-bar-chart-new")
+          .append("svg")
+          .attr("width", 300)
+          .attr("height", 300);
+
+        // create margins & dimensions
+        const margin = { top: 20, right: 20, bottom: 100, left: 100 };
+        const graphWidth = 300 - margin.left - margin.right;
+        const graphHeight = 300 - margin.top - margin.bottom;
+
+        const graph = svg
+          .append("g")
+          .attr("width", graphWidth)
+          .attr("height", graphHeight)
+          .attr("transform", `translate(${margin.left}, ${margin.top})`);
+
+        // create axes groups
+        const xAxisGroup = graph
+          .append("g")
+          .attr("transform", `translate(0, ${graphHeight})`);
+
+        const yAxisGroup = graph.append("g");
+
+        this.y = d3
+          .scaleLinear()
+          .domain([0, d3.max(this.hpoGenesCountForBarChart, (d) => d.count)])
+          .range([graphHeight, 0]);
+
+        this.x = d3
+          .scaleLinear()
+          .domain([1, this.hpoGenesCountForBarChart.length])
+          .range([0, graphWidth]);
+
+        // join the data to circs
+        const rects = graph.selectAll("rect").data(this.hpoGenesCountForBarChart);
+
+        // add attrs to circs already in the DOM
+        rects
+          .attr("width", 20)
+          .attr("height", (d) => graphHeight - this.y(d.count))
+          .attr("fill", "orange")
+          .attr("x", (d) => this.x(d.name))
+          .attr("y", (d) => this.y(d.count));
+
+        // append the enter selection to the DOM
+        rects
+          .enter()
+          .append("rect")
+          .attr("width", 20)
+          .attr("height", (d) => graphHeight - this.y(d.count))
+          .attr("fill", "orange")
+          .attr("x", (d) => this.x(d.name))
+          .attr("y", (d) => this.y(d.count));
+
+        // console.log(this.x.invert(150));
+
+        // create & call axesit
+        const xAxis = d3.axisBottom(this.x).ticks(this.hpoGenesCountForBarChart.length - 1);
+        const yAxis = d3
+          .axisLeft(this.y)
+          .ticks(3)
+          .tickFormat((d) => d + " count");
+
+        xAxisGroup.call(xAxis);
+        yAxisGroup.call(yAxis);
+
+        xAxisGroup
+          .selectAll("text")
+          .attr("transform", "rotate(-40)")
+          .attr("text-anchor", "end");
+
+        graph.call(
+          d3
+            .brushX() // Add the brush feature using the d3.brush function
+            .extent([
+              [0, 0],
+              [graphWidth + 20, graphHeight],
+            ]) // initialise the brush area: start at 0,0 and finishes at width,height: it means I select the whole graph area
+            .on("start end", this.updateChart)
+        );
+      },
+      
+      drawHpoGenesBarChart() {
+        console.log("Called");
+        // select the svg container first
+        // d3.select("svg").remove();
+        d3.select(".hpo-genes-bar-chart").select("svg").remove();
+        const svg = d3
+          .select(".hpo-genes-bar-chart")
+          .append("svg")
+          .attr("width", 300)
+          .attr("height", 300);
+
+        // create margins & dimensions
+        const margin = { top: 20, right: 20, bottom: 100, left: 100 };
+        const graphWidth = 300 - margin.left - margin.right;
+        const graphHeight = 300 - margin.top - margin.bottom;
+
+        const graph = svg
+          .append("g")
+          .attr("width", graphWidth)
+          .attr("height", graphHeight)
+          .attr("transform", `translate(${margin.left}, ${margin.top})`);
+
+        // create axes groups
+        const xAxisGroup = graph
+          .append("g")
+          .attr("transform", `translate(0, ${graphHeight})`);
+
+        const yAxisGroup = graph.append("g");
+
+        // d3.json("menu.json").then((data) => {
+        const y = d3
+          .scaleLinear()
+          .domain([0, d3.max(this.hpoGenesCountForBarChart, (d) => d.count)])
+          .range([graphHeight, 0]);
+
+        const x = d3
+          .scaleBand()
+          .domain(this.hpoGenesCountForBarChart.map((item) => item.name))
+          .range([0, graphWidth])
+          .paddingInner(0.2)
+          .paddingOuter(0.2);
+
+        // join the data to circs
+        const rects = graph.selectAll("rect").data(this.hpoGenesCountForBarChart);
+
+        // add attrs to circs already in the DOM
+        rects
+          .attr("width", x.bandwidth)
+          .attr("height", (d) => graphHeight - y(d.count))
+          .attr("fill", "orange")
+          .attr("x", (d) => x(d.name))
+          .attr("y", (d) => y(d.count));
+
+        // append the enter selection to the DOM
+        rects
+          .enter()
+          .append("rect")
+          .attr("width", x.bandwidth)
+          .attr("height", (d) => graphHeight - y(d.count))
+          .attr("fill", "orange")
+          .attr("x", (d) => x(d.name))
+          .attr("y", (d) => y(d.count));
+
+        // create & call axesit
+        const xAxis = d3.axisBottom(x);
+        const yAxis = d3
+          .axisLeft(y)
+          .ticks(3)
+          .tickFormat((d) => d + " count");
+
+        xAxisGroup.call(xAxis);
+        yAxisGroup.call(yAxis);
+
+        xAxisGroup
+          .selectAll("text")
+          .attr("transform", "rotate(-40)")
+          .attr("text-anchor", "end");
+        // });
       },
 
   }
