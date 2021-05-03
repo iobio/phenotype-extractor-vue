@@ -568,6 +568,10 @@ export default {
     bus.$on("exportGenes", () => {
       this.exportGenesForDownload();
     })
+    
+    bus.$on("hpoSelectionRange", (arr) => {
+      this.selectGenesForHpoTermsCount(arr);
+    })
 
     this.phenotypes = this.phenotypeTerms;
 
@@ -763,6 +767,46 @@ export default {
       else {
         this.summaryGenes = [];
       }
+    },
+    
+    selectGenesForHpoTermsCount(arr){
+      let lower = arr[0];
+      let higher = arr[1];
+      console.log("lower in genelist", lower);
+      console.log("higher in genelist", higher);
+
+      this.selected = [];
+      
+      if(higher === lower){
+        this.summaryGenes.map(gene => {
+          if(gene.searchTermHpo.length === higher){
+            gene.inGeneSet = true;
+            this.selected.push(gene.name);
+          }
+          else { 
+            gene.inGeneSet = false;
+          }
+        })
+      }
+      else {
+        this.summaryGenes.map(gene => {
+          if(gene.searchTermHpo.length >= lower && gene.searchTermHpo.length <= higher){
+            gene.inGeneSet = true;
+            this.selected.push(gene.name);
+          }
+          else { 
+            gene.inGeneSet = false;
+          }
+        })
+
+      }
+      
+
+      this.genesTop = this.selected.length;
+      this.$emit("update_genes_top", this.genesTop);
+      
+      this.$emit("add_to_gene_set", this.selected)
+
     },
 
     mouseOverGeneName(gene){
