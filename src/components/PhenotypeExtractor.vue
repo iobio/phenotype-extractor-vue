@@ -402,8 +402,6 @@
               
             </div>
             
-
-            HPO
           </v-card-text>
         </v-card>
       </div>
@@ -3887,7 +3885,7 @@ export default {
       console.log("arr", arr);
       this.hpoGenesCountForBarChart = arr;
       // this.drawHpoGenesBarChart();
-      drawingD3(this.hpoGenesCountForBarChart)
+      drawHpoGenesBarChart(this.hpoGenesCountForBarChart)
     },
 
     hpoIndividualGenes(obj){
@@ -4391,155 +4389,16 @@ export default {
         this.termsReviewDialogPage = 0;
 
       },
-      
-      updateChart(event) {
-        
-        var extent = event.selection;
-
-        var newInput = [];
-        var brushArea = event.selection;
-
-        console.log("brushArea", brushArea);
-
-        if (brushArea === null) brushArea = this.x.range();
-
-        console.log("this.xScale2.domain()", this.xScale2.domain());
-
-        this.xScale2.domain().forEach((d) => {
-          var pos = this.xScale2(d) + this.xScale2.bandwidth() / 2;
-          if (pos >= brushArea[0] && pos <= brushArea[1]) {
-            newInput.push(d);
-          }
-        });
-
-        console.log("newInput", newInput);
-
-        var left = this.xScale2(d3.min(newInput));
-        var right = this.xScale2(d3.max(newInput)) + this.xScale2.bandwidth();
-
-        console.log("left", left);
-        console.log("right", right);
-        
-        bus.$emit("hpoSelectionRange", [newInput[0], newInput[newInput.length - 1]])
-
-        // var extent = event.selection;
-        // const [x0, x1] = extent.map(this.x.invert);
-        // var lower = Math.floor(x0);
-        // var higher = Math.floor(x1);
-        // console.log("lower", lower);
-        // console.log("higher", higher);
-        // bus.$emit("hpoSelectionRange", [lower, higher])
-      },
-      
-      drawHpoGenesBarChart(){
-
-        d3.select(".hpo-genes-bar-chart").select("svg").remove();
-
-        const svg = d3
-          .select(".hpo-genes-bar-chart")
-          .append("svg")
-          .attr("width", 300)
-          .attr("height", 300);
-
-        // create margins & dimensions
-        const margin = { top: 20, right: 20, bottom: 100, left: 100 };
-        const graphWidth = 300 - margin.left - margin.right;
-        const graphHeight = 300 - margin.top - margin.bottom;
-
-        const graph = svg
-          .append("g")
-          .attr("width", graphWidth)
-          .attr("height", graphHeight)
-          .attr("transform", `translate(${margin.left}, ${margin.top})`);
-
-        // create axes groups
-        const xAxisGroup = graph
-          .append("g")
-          .attr("transform", `translate(0, ${graphHeight})`);
-
-        const yAxisGroup = graph.append("g");
-
-        this.y = d3
-          .scaleLinear()
-          .domain([0, d3.max(this.hpoGenesCountForBarChart, (d) => d.count)])
-          .range([graphHeight, 0]);
-
-        // this.x = d3
-        //   .scaleLinear()
-        //   .domain([1, this.hpoGenesCountForBarChart.length])
-        //   .range([0, graphWidth]);
-        
-        this.x = d3
-          .scaleBand()
-          .domain(this.hpoGenesCountForBarChart.map((item) => item.name))
-          .range([0, graphWidth])
-          .paddingInner(0.2)
-          .paddingOuter(0.2);
-
-        this.xScale2 = d3
-          .scaleBand()
-          .domain(this.hpoGenesCountForBarChart.map((item) => item.name))
-          .range([0, graphWidth])
-          .paddingInner(0.2)
-          .paddingOuter(0.2);
-
-
-
-        // join the data to circs
-        const rects = graph.selectAll("rect").data(this.hpoGenesCountForBarChart);
-
-        // add attrs to circs already in the DOM
-        rects
-          .attr("width", this.x.bandwidth)
-          .attr("height", (d) => graphHeight - this.y(d.count))
-          .attr("fill", "orange")
-          .attr("x", (d) => this.x(d.name))
-          .attr("y", (d) => this.y(d.count));
-
-        // append the enter selection to the DOM
-        rects
-          .enter()
-          .append("rect")
-          .attr("width", this.x.bandwidth)
-          .attr("height", (d) => graphHeight - this.y(d.count))
-          .attr("fill", "orange")
-          .attr("x", (d) => this.x(d.name))
-          .attr("y", (d) => this.y(d.count));
-
-        // console.log(this.x.invert(150));
-
-        // create & call axesit
-        const xAxis = d3.axisBottom(this.x).ticks(this.hpoGenesCountForBarChart.length - 1);
-        const yAxis = d3
-          .axisLeft(this.y)
-          .ticks(3)
-          .tickFormat((d) => d + " count");
-
-        xAxisGroup.call(xAxis);
-        yAxisGroup.call(yAxis);
-
-        xAxisGroup
-          .selectAll("text")
-          .attr("transform", "rotate(-40)")
-          .attr("text-anchor", "end");
-
-        graph.call(
-           d3
-             .brushX() // Add the brush feature using the d3.brush function
-             .extent([
-               [0, 0],
-               [graphWidth, graphHeight],
-             ]) // initialise the brush area: start at 0,0 and finishes at width,height: it means I select the whole graph area
-             .on("start end", this.updateChart)
-         );
-      },
 
   }
 };
 
 var xScale2 = null;
+var rects = null;
+var x = null;
 
-function drawingD3(menu) {
+
+function drawHpoGenesBarChart(menu) {
   // select the svg container first
   
   d3.select(".hpo-genes-bar-chart").select("svg").remove();
@@ -4574,7 +4433,7 @@ function drawingD3(menu) {
     .domain([0, d3.max(menu, (d) => d.count)])
     .range([graphHeight, 0]);
 
-  const x = d3
+  x = d3
     .scaleBand()
     .domain(menu.map((item) => item.name))
     .range([0, graphWidth])
@@ -4591,13 +4450,6 @@ function drawingD3(menu) {
   // join the data to circs
   const rects = graph.selectAll("rect").data(menu);
 
-  // add attrs to circs already in the DOM
-  rects
-    .attr("width", x.bandwidth)
-    .attr("height", (d) => graphHeight - y(d.count))
-    .attr("fill", "orange")
-    .attr("x", (d) => x(d.name))
-    .attr("y", (d) => y(d.count));
 
   // append the enter selection to the DOM
   rects
@@ -4606,6 +4458,7 @@ function drawingD3(menu) {
     .attr("width", x.bandwidth)
     .attr("height", (d) => graphHeight - y(d.count))
     .attr("fill", "orange")
+    .attr("class", "rects")
     .attr("x", (d) => x(d.name))
     .attr("y", (d) => y(d.count));
 
@@ -4616,7 +4469,7 @@ function drawingD3(menu) {
   const yAxis = d3
     .axisLeft(y)
     .ticks(3)
-    .tickFormat((d) => d + " count");
+    .tickFormat((d) => d + " genes");
 
   xAxisGroup.call(xAxis);
   yAxisGroup.call(yAxis);
@@ -4644,11 +4497,7 @@ function brushing(event) {
   var newInput = [];
   var brushArea = event.selection;
 
-  console.log("brushArea", brushArea);
-
-  if (brushArea === null) brushArea = this.x.range();
-
-  console.log("this.xScale2.domain()", xScale2.domain());
+  if (brushArea === null) brushArea = x.range();
 
   xScale2.domain().forEach((d) => {
     var pos = xScale2(d) + xScale2.bandwidth() / 2;
@@ -4656,16 +4505,25 @@ function brushing(event) {
       newInput.push(d);
     }
   });
+  
+  d3.selectAll(".rects").attr("fill", (d) => {
+    if (d.name !== undefined) {
+      var val = d.name;
+      var pos = xScale2(val) + xScale2.bandwidth() / 2;
+      if (pos >= brushArea[0] && pos <= brushArea[1]) {
+        return "red";
+      } else {
+        return "orange";
+      }
+    }
+  });
 
-  console.log("newInput", newInput);
 
   bus.$emit("hpoSelectionRange", [newInput[0], newInput[newInput.length - 1]]);
 
   var left = xScale2(d3.min(newInput));
   var right = xScale2(d3.max(newInput)) + xScale2.bandwidth();
 
-  console.log("left", left);
-  console.log("right", right);
 
   if (event.sourceEvent) {
     d3.select(this).transition().call(event.target.move, [left, right]);
