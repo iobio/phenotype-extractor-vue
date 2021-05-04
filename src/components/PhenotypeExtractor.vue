@@ -127,7 +127,83 @@
                   <div class="" style="padding-bottom: 0px; ">
                     <div class="row">
                       <div class="col-md-4">
-                        <table class="table">
+                        <div class="mb-7 text-center" style="margin-right: 125px">
+                          <strong class="primary--text" style="font-size: 18px">GTR</strong>
+                          <!-- <div class="mt-1 mb-2" >
+                            <span v-if="!showSearchTermsLoader && Gtr_searchTermsObj.length">
+                              <h1 style="display:inline"> {{ Gtr_searchTermsObj.length }}</h1> 
+                            </span> 
+                            <span v-if="!showSearchTermsLoader && Gtr_searchTermsObj.length">terms</span>
+                          </div> -->
+                        </div>
+                        <div v-if="showSearchTermsLoader">
+                          <v-skeleton-loader
+                            :loading="loading"
+                            :transition="transition"
+                            type="chip"
+                            class="mt-2"
+                          >
+                          </v-skeleton-loader>
+                        </div>
+                        <div class="search_status_tbody">
+                          <div v-if="!showSearchTermsLoader && Gtr_searchTermsObj.length" v-for="(term, i) in Gtr_searchTermsObj" :key="i" >
+                            <div class="row search_status_tbody" style="margin-bottom: -8px; margin-top: -8px">
+                              <div class="col-md-1">
+                                <span v-if="term.gtrSearchStatus==='Searching'">
+                                  <v-progress-circular
+                                    :width="2"
+                                    :size="20"
+                                    indeterminate
+                                    color="primary"
+                                  ></v-progress-circular>
+                                </span>
+                                <span v-else-if="term.gtrSearchStatus==='Completed'">
+                                  <v-icon color="green" style="font-weight: bolder">done</v-icon>
+                                </span>
+                                <span v-else-if="term.gtrSearchStatus==='NoGenes'">
+                                  <v-tooltip bottom>
+                                    <template v-slot:activator="{ on }">
+                                      <v-icon color="grey" style="font-size:20px" v-on="on">block</v-icon>
+                                    </template>
+                                    <span>No genes were found for this term</span>
+                                  </v-tooltip>
+                                </span>
+                                <span v-else-if="term.gtrSearchStatus==='NotAvailable'"><v-icon>indeterminate_check_box</v-icon></span>
+                                <span v-else>
+                                  <v-tooltip bottom>
+                                    <template v-slot:activator="{ on }">
+                                      <v-icon color="gray lighten-4" v-on="on">error</v-icon>
+                                    </template>
+                                    <span>The network request for this term failed. Please delete this term and try again.</span>
+                                  </v-tooltip>
+                                </span>
+                              </div>
+                              <div class="col-md-9" @mouseover="mouseOverGtrTerm(term.DiseaseName)" @mouseleave="hovered_gtr_term=''">
+                                <div class="ml-1" style="text-align: left !important;" >
+                                  <span>{{ term.DiseaseName }}</span>
+                                </div>
+                              </div>
+                              <div class="col-md-1" @mouseover="mouseOverGtrTerm(term.DiseaseName)" @mouseleave="hovered_gtr_term=''">
+                                <div >
+                                  <span v-if="hovered_gtr_term === term.DiseaseName">
+                                    <v-icon class="ml-1 terms_delete_btn" @click="removePhenotypeShowDialog(term, i, 'GTR')">delete</v-icon>
+                                  </span>
+                                </div>
+                              </div>
+                            </div>
+
+                          </div>
+                        </div>
+                        <!-- <div v-if="Gtr_searchTermsObj.length<1">
+                          <p style="margin-left: 20px;"><v-icon>error_outline</v-icon> Not Selected...</p>
+                        </div> -->
+                        <div class="i-text--left" style="margin-left: 35px;" v-if="Gtr_searchTermsObj.length<1">
+                          <span v-if="!showSearchTermsLoader"><i>Not Selected...</i></span>
+                        </div> 
+
+
+
+                        <!-- <table class="table">
                           <thead>
                             <tr class="i-text--left">
                               <span class="badge-label">GTR</span>
@@ -202,7 +278,7 @@
                         </table>
                         <div class="i-text--left" v-if="Gtr_searchTermsObj.length<1">
                           <span v-if="!showSearchTermsLoader"><i>Not Selected...</i></span>
-                        </div>
+                        </div> -->
                       </div>
 
                       <div class="col-md-4">
