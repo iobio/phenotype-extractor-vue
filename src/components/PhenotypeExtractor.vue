@@ -4392,13 +4392,42 @@ export default {
       },
       
       updateChart(event) {
+        
         var extent = event.selection;
-        const [x0, x1] = extent.map(this.x.invert);
-        var lower = Math.floor(x0);
-        var higher = Math.floor(x1);
-        console.log("lower", lower);
-        console.log("higher", higher);
-        bus.$emit("hpoSelectionRange", [lower, higher])
+
+        var newInput = [];
+        var brushArea = event.selection;
+
+        console.log("brushArea", brushArea);
+
+        if (brushArea === null) brushArea = this.x.range();
+
+        console.log("this.xScale2.domain()", this.xScale2.domain());
+
+        this.xScale2.domain().forEach((d) => {
+          var pos = this.xScale2(d) + this.xScale2.bandwidth() / 2;
+          if (pos >= brushArea[0] && pos <= brushArea[1]) {
+            newInput.push(d);
+          }
+        });
+
+        console.log("newInput", newInput);
+
+        var left = this.xScale2(d3.min(newInput));
+        var right = this.xScale2(d3.max(newInput)) + this.xScale2.bandwidth();
+
+        console.log("left", left);
+        console.log("right", right);
+        
+        bus.$emit("hpoSelectionRange", [newInput[0], newInput[newInput.length - 1]])
+
+        // var extent = event.selection;
+        // const [x0, x1] = extent.map(this.x.invert);
+        // var lower = Math.floor(x0);
+        // var higher = Math.floor(x1);
+        // console.log("lower", lower);
+        // console.log("higher", higher);
+        // bus.$emit("hpoSelectionRange", [lower, higher])
       },
       
       drawHpoGenesBarChart(){
@@ -4434,17 +4463,33 @@ export default {
           .domain([0, d3.max(this.hpoGenesCountForBarChart, (d) => d.count)])
           .range([graphHeight, 0]);
 
+        // this.x = d3
+        //   .scaleLinear()
+        //   .domain([1, this.hpoGenesCountForBarChart.length])
+        //   .range([0, graphWidth]);
+        
         this.x = d3
-          .scaleLinear()
-          .domain([1, this.hpoGenesCountForBarChart.length])
-          .range([0, graphWidth]);
+          .scaleBand()
+          .domain(this.hpoGenesCountForBarChart.map((item) => item.name))
+          .range([0, graphWidth])
+          .paddingInner(0.2)
+          .paddingOuter(0.2);
+
+        this.xScale2 = d3
+          .scaleBand()
+          .domain(this.hpoGenesCountForBarChart.map((item) => item.name))
+          .range([0, graphWidth])
+          .paddingInner(0.2)
+          .paddingOuter(0.2);
+
+
 
         // join the data to circs
         const rects = graph.selectAll("rect").data(this.hpoGenesCountForBarChart);
 
         // add attrs to circs already in the DOM
         rects
-          .attr("width", 20)
+          .attr("width", this.x.bandwidth)
           .attr("height", (d) => graphHeight - this.y(d.count))
           .attr("fill", "orange")
           .attr("x", (d) => this.x(d.name))
@@ -4454,7 +4499,7 @@ export default {
         rects
           .enter()
           .append("rect")
-          .attr("width", 20)
+          .attr("width", this.x.bandwidth)
           .attr("height", (d) => graphHeight - this.y(d.count))
           .attr("fill", "orange")
           .attr("x", (d) => this.x(d.name))
@@ -4478,14 +4523,14 @@ export default {
           .attr("text-anchor", "end");
 
         graph.call(
-          d3
-            .brushX() // Add the brush feature using the d3.brush function
-            .extent([
-              [0, 0],
-              [graphWidth + 20, graphHeight],
-            ]) // initialise the brush area: start at 0,0 and finishes at width,height: it means I select the whole graph area
-            .on("start end", this.updateChart)
-        );
+           d3
+             .brushX() // Add the brush feature using the d3.brush function
+             .extent([
+               [0, 0],
+               [graphWidth, graphHeight],
+             ]) // initialise the brush area: start at 0,0 and finishes at width,height: it means I select the whole graph area
+             .on("start end", this.updateChart)
+         );
       },
 
   }
