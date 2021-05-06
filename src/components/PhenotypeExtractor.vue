@@ -59,16 +59,21 @@
     </v-tabs>
     
     <div>
-      <div v-show="tab_idx===0">
+      <!-- <div v-show="tab_idx===0">  -->
+      <div > 
         <div >
           <div>
 
             <div class="col-container row" >
               
               <!-- flex-text-note  -->
-              <v-card class="col-flex-note" v-show="tab_idx===0">
+              <v-card class="col-flex-note" v-show="tab_idx===0 || tab_idx===1">
                 <v-card-title primary-title>
-                  <span class="terms-heading">
+                  <strong class="terms-heading primary--text" style="font-size: 16px">
+                    Inputs
+                  </strong>
+
+                  <!-- <span class="terms-heading">
                     Inputs
                     <v-badge
                       :value="clinical_note_text.length"
@@ -78,7 +83,7 @@
                     >
                       <span slot="badge">{{ clinical_note_text.length }}</span>
                     </v-badge>
-                  </span>
+                  </span> -->
                   <v-spacer></v-spacer>
                 </v-card-title>
                 <v-card-text class="i-clinical_note_text_div">
@@ -131,10 +136,48 @@
                 </v-card-text>
               </v-card>
               <!-- end flex text note -->
+  
+              
+              <!-- flex hpo visualizations  -->
+              <v-card class="col-flex-note" v-show="tab_idx===1">
+                <v-card-title primary-title>
+
+                  <strong class="terms-heading primary--text" style="font-size: 16px">
+                    Unique HPO
+                  </strong>
+
+                  <v-spacer></v-spacer>
+                </v-card-title>
+                <v-card-text class="i-clinical_note_text_div">
+                  <div v-show="showSearchTermsLoader">
+                    <blockquote class="blockquote">
+                      <v-skeleton-loader
+                        :loading="loading"
+                        :transition="transition"
+                        type="paragraph"
+                      >
+                      </v-skeleton-loader>
+                    </blockquote>
+                  </div>
+                  <div v-show="!showSearchTermsLoader">
+                    <div v-show="Hpo_searchTermsObj.length">
+                      <div class="hpo-genes-bar-chart">
+                        
+                      </div>
+                    </div>
+                    <div v-show="!Hpo_searchTermsObj.length">
+                      <blockquote class="blockquote i-text--left" style="font-size: 14px;">
+                        No HPO terrms added.
+                      </blockquote>
+                    </div>
+                  </div>
+                </v-card-text>
+              </v-card>
+              <!-- end flex hpo visualizations -->
               
               
               <!-- flex-gtr-terms -->
-              <v-card class="col-flex-terms">
+              <v-card class="col-flex-terms"  v-show="tab_idx===0">
                 <v-card-title primary-title>
                   <strong class="terms-heading primary--text" style="font-size: 16px">
                     GTR
@@ -194,14 +237,17 @@
                           </div>
                         </div>
                         <div class="col-md-1" style="padding-top: 5px;" @mouseover="mouseOverGtrTerm(term.DiseaseName)" @mouseleave="hovered_gtr_term=''">
-                          <div >
-                            <span v-if="hovered_gtr_term === term.DiseaseName">
-                              <v-icon class="ml-1 terms_delete_btn" @click="removePhenotypeShowDialog(term, i, 'GTR')">delete</v-icon>
+                          <v-btn text color="primary" small>
+                            <span>
+                              <v-icon small style="font-size:11px" class="ml-1" @click="removePhenotypeShowDialog(term, i, 'GTR')">delete</v-icon>
                             </span>
-                          </div>
+                          </v-btn>
                         </div>
                       </div>
 
+                    </div>
+                    <div v-if="Gtr_searchTermsObj.length<1">
+                      <span v-if="!showSearchTermsLoader"><i>Not Selected...</i></span>
                     </div>
                   </div>
                 </v-card-text>
@@ -211,7 +257,7 @@
 
 
               <!-- flex-Phenolyzer-terms -->
-              <v-card class="col-flex-terms">
+              <v-card class="col-flex-terms"  v-show="tab_idx===0">
                 <v-card-title primary-title>
                   <strong class="terms-heading primary--text" style="font-size: 16px">
                     Phenolyzer
@@ -280,14 +326,18 @@
                       </div>
 
                     </div>
+                    <div v-if="Gtr_searchTermsObj.length<1">
+                      <span v-if="!showSearchTermsLoader"><i>Not Selected...</i></span>
+                    </div>
+
                   </div>
                 </v-card-text>
               </v-card>
               <!-- end flex phenolyzer terms -->     
               
               
-              <!-- flex-gtr-terms -->
-              <v-card class="col-flex-terms">
+              <!-- flex-hpo-terms -->
+              <v-card class="col-flex-terms"  v-show="tab_idx===0 || tab_idx===1">
                 <v-card-title primary-title>
                   <strong class="terms-heading primary--text" style="font-size: 16px">
                     HPO
@@ -356,6 +406,10 @@
                       </div>
 
                     </div>
+                    <div v-if="Hpo_searchTermsObj.length<1">
+                      <span v-if="!showSearchTermsLoader"><i>Not Selected...</i></span>
+                    </div>
+
                   </div>
                 </v-card-text>
               </v-card>
@@ -365,7 +419,7 @@
           </div>
         </div>
       </div>
-      <div v-show="tab_idx===1">
+      <!-- <div v-show="tab_idx===1">
         <v-card>
           <v-card-text flat>
             <div class="hpo-genes-bar-chart">
@@ -374,7 +428,7 @@
             
           </v-card-text>
         </v-card>
-      </div>
+      </div> -->
     </div>
 
 
