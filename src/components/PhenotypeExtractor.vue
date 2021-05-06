@@ -94,22 +94,33 @@
                   </div>
                   <div v-if="!showSearchTermsLoader">
                     <div v-if="clinical_note_text.length">
-                      <blockquote v-for="(note, i) in clinical_note_text" :key="i" class="blockquote i-text--left" style="font-size: 13px;">
-                        {{ note.note | to-firstCharacterUppercase }}
-                        <span @click="reSelectClinicalNote(note.note, i)">
-                          <v-btn text color="primary" small>
-                          <span style="font-size:11px">
-                            Edit
-                           </span></v-btn>
-                        </span>
-                        <span @click="confirmToDeleteInputNote(note.note, i)">
-                          <v-btn text color="primary" small>
-                          <span style="font-size:11px">
-                            Delete
-                           </span></v-btn>
-                        </span>
-
-                      </blockquote>
+                      <div v-for="(note, i) in clinical_note_text" :key="i" class=" i-text--left row" style="font-size: 13px;">
+                        <div class="col-md-1" style="padding: 5px; padding-left: 11px">
+                          {{i + 1}}
+                        </div>
+                        <div class="col-md-9" style="padding: 5px; margin-left: -5px">
+                          {{ note.note | to-firstCharacterUppercase }}
+                        </div>
+                        <div class="col-md-1" style="padding: 5px;">
+                          <span @click="reSelectClinicalNote(note.note, i)">
+                            <v-btn text color="primary" small>
+                              <span>
+                                <v-icon small style="font-size:11px">edit</v-icon>
+                               </span>
+                             </v-btn>
+                          </span>
+                        </div>
+                        <div class="col-md-1" style="padding: 5px;">
+                          <span @click="confirmToDeleteInputNote(note.note, i)">
+                            <v-btn text color="primary" small>
+                              <span>
+                                <v-icon small style="font-size:11px">delete</v-icon>
+                               </span>
+                             </v-btn>
+                          </span>
+                        </div>
+                         
+                      </div>
                     </div>
                     <div v-else>
                       <blockquote class="blockquote i-text--left" style="font-size: 14px;">
@@ -199,13 +210,17 @@
               
 
 
-              <!-- flex-gtr-terms -->
+              <!-- flex-Phenolyzer-terms -->
               <v-card class="col-flex-terms">
                 <v-card-title primary-title>
-                  <span class="terms-heading">
-                    Gtr
-                  </span>
+                  <strong class="terms-heading primary--text" style="font-size: 16px">
+                    Phenolyzer
+                  </strong>
                   <v-spacer></v-spacer>
+                  <div style="color:#ababab" v-if="Gtr_searchTermsObj.length">
+                    <span><h4 style="display:inline"> {{Gtr_searchTermsObj.length}} </h4> </span> 
+                    <span style="font-size:12px">terms</span>
+                  </div>
                 </v-card-title>
                 <v-card-text class="search_status_tbody">
                   <div v-if="showSearchTermsLoader">
@@ -220,17 +235,17 @@
                   <div class="">
                     <div v-if="!showSearchTermsLoader && Gtr_searchTermsObj.length" v-for="(term, i) in Gtr_searchTermsObj" :key="i" >
                       <div class="row " style="margin-bottom: -8px; margin-top: -8px">
-                        <div class="col-md-1">
+                        <div class="col-md-1" style="padding-top: 5px;">
                           <span v-if="term.gtrSearchStatus==='Searching'">
                             <v-progress-circular
                               :width="2"
-                              :size="20"
+                              :size="18"
                               indeterminate
                               color="primary"
                             ></v-progress-circular>
                           </span>
                           <span v-else-if="term.gtrSearchStatus==='Completed'">
-                            <v-icon color="green" style="font-weight: bolder">done</v-icon>
+                            <v-icon color="green" style="font-weight: bolder; font-size:18px"">done</v-icon>
                           </span>
                           <span v-else-if="term.gtrSearchStatus==='NoGenes'">
                             <v-tooltip bottom>
@@ -250,12 +265,12 @@
                             </v-tooltip>
                           </span>
                         </div>
-                        <div class="col-md-9" @mouseover="mouseOverGtrTerm(term.DiseaseName)" @mouseleave="hovered_gtr_term=''">
-                          <div class="ml-1" style="text-align: left !important;" >
+                        <div class="col-md-9" style="padding-top: 5px;" @mouseover="mouseOverGtrTerm(term.DiseaseName)" @mouseleave="hovered_gtr_term=''">
+                          <div class="ml-1" style="text-align: left !important; font-size: 13px" >
                             <span>{{ term.DiseaseName }}</span>
                           </div>
                         </div>
-                        <div class="col-md-1" @mouseover="mouseOverGtrTerm(term.DiseaseName)" @mouseleave="hovered_gtr_term=''">
+                        <div class="col-md-1" style="padding-top: 5px;" @mouseover="mouseOverGtrTerm(term.DiseaseName)" @mouseleave="hovered_gtr_term=''">
                           <div >
                             <span v-if="hovered_gtr_term === term.DiseaseName">
                               <v-icon class="ml-1 terms_delete_btn" @click="removePhenotypeShowDialog(term, i, 'GTR')">delete</v-icon>
@@ -274,10 +289,14 @@
               <!-- flex-gtr-terms -->
               <v-card class="col-flex-terms">
                 <v-card-title primary-title>
-                  <span class="terms-heading">
-                    Gtr
-                  </span>
+                  <strong class="terms-heading primary--text" style="font-size: 16px">
+                    HPO
+                  </strong>
                   <v-spacer></v-spacer>
+                  <div style="color:#ababab" v-if="Hpo_searchTermsObj.length">
+                    <span><h4 style="display:inline"> {{Hpo_searchTermsObj.length}} </h4> </span> 
+                    <span style="font-size:12px">terms</span>
+                  </div>
                 </v-card-title>
                 <v-card-text class="search_status_tbody">
                   <div v-if="showSearchTermsLoader">
@@ -290,21 +309,21 @@
                     </v-skeleton-loader>
                   </div>
                   <div class="">
-                    <div v-if="!showSearchTermsLoader && Gtr_searchTermsObj.length" v-for="(term, i) in Gtr_searchTermsObj" :key="i" >
+                    <div v-if="!showSearchTermsLoader && Hpo_searchTermsObj.length" v-for="(term, i) in Hpo_searchTermsObj" :key="i" >
                       <div class="row " style="margin-bottom: -8px; margin-top: -8px">
-                        <div class="col-md-1">
-                          <span v-if="term.gtrSearchStatus==='Searching'">
+                        <div class="col-md-1" style="padding-top: 5px;">
+                          <span v-if="term.hpoSearchStatus==='Searching'">
                             <v-progress-circular
                               :width="2"
-                              :size="20"
+                              :size="18"
                               indeterminate
                               color="primary"
                             ></v-progress-circular>
                           </span>
-                          <span v-else-if="term.gtrSearchStatus==='Completed'">
-                            <v-icon color="green" style="font-weight: bolder">done</v-icon>
+                          <span v-else-if="term.hpoSearchStatus==='Completed'">
+                            <v-icon color="green" style="font-weight: bolder; font-size:18px"">done</v-icon>
                           </span>
-                          <span v-else-if="term.gtrSearchStatus==='NoGenes'">
+                          <span v-else-if="term.hpoSearchStatus==='NoGenes'">
                             <v-tooltip bottom>
                               <template v-slot:activator="{ on }">
                                 <v-icon color="grey" style="font-size:20px" v-on="on">block</v-icon>
@@ -312,7 +331,7 @@
                               <span>No genes were found for this term</span>
                             </v-tooltip>
                           </span>
-                          <span v-else-if="term.gtrSearchStatus==='NotAvailable'"><v-icon>indeterminate_check_box</v-icon></span>
+                          <span v-else-if="term.hpoSearchStatus==='NotAvailable'"><v-icon>indeterminate_check_box</v-icon></span>
                           <span v-else>
                             <v-tooltip bottom>
                               <template v-slot:activator="{ on }">
@@ -322,15 +341,15 @@
                             </v-tooltip>
                           </span>
                         </div>
-                        <div class="col-md-9" @mouseover="mouseOverGtrTerm(term.DiseaseName)" @mouseleave="hovered_gtr_term=''">
-                          <div class="ml-1" style="text-align: left !important;" >
-                            <span>{{ term.DiseaseName }}</span>
+                        <div class="col-md-9" style="padding-top: 5px;" @mouseover="mouseOverHpoTerm(term.HPO_Data)" @mouseleave="hovered_hpo_term=''">
+                          <div class="ml-1" style="text-align: left !important; font-size: 13px" >
+                            <span>{{ term.phenotype }} <br> [{{ term.hpoNumber }}]</span>
                           </div>
                         </div>
-                        <div class="col-md-1" @mouseover="mouseOverGtrTerm(term.DiseaseName)" @mouseleave="hovered_gtr_term=''">
+                        <div class="col-md-1" style="padding-top: 5px;" @mouseover="mouseOverHpoTerm(term.HPO_Data)" @mouseleave="hovered_hpo_term=''">
                           <div >
-                            <span v-if="hovered_gtr_term === term.DiseaseName">
-                              <v-icon class="ml-1 terms_delete_btn" @click="removePhenotypeShowDialog(term, i, 'GTR')">delete</v-icon>
+                            <span v-if="hovered_hpo_term === term.HPO_Data">
+                              <v-icon class="ml-1 terms_delete_btn" @click="removePhenotypeShowDialog(term, i, 'HPO')">delete</v-icon>
                             </span>
                           </div>
                         </div>
