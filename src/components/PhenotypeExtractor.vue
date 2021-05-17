@@ -320,10 +320,10 @@
                     </v-skeleton-loader>
                   </div>
                   <div class="">
-                    <div v-if="!showSearchTermsLoader && Gtr_searchTermsObj.length" v-for="(term, i) in Gtr_searchTermsObj" :key="i" >
+                    <div v-if="!showSearchTermsLoader && Phenolyzer_searchTermsObj.length" v-for="(term, i) in Phenolyzer_searchTermsObj" :key="i" >
                       <div class="row " style="margin-bottom: -8px; margin-top: -8px">
                         <div class="col-md-1" style="padding-top: 5px;">
-                          <span v-if="term.gtrSearchStatus==='Searching'">
+                          <span v-if="term.phenolyzerSearchStatus==='Searching'">
                             <v-progress-circular
                               :width="2"
                               :size="18"
@@ -331,18 +331,42 @@
                               color="primary"
                             ></v-progress-circular>
                           </span>
-                          <span v-else-if="term.gtrSearchStatus==='Completed'">
+                          <span v-else-if="term.phenolyzerSearchStatus==='running'">
+                            <v-progress-circular
+                              :width="2"
+                              :size="18"
+                              indeterminate
+                              color="primary"
+                            ></v-progress-circular>
+                            <v-tooltip top>
+                              <template v-slot:activator="{ on }">
+                                <span @click="stopPhenolyzerSearch(term.value)">
+                                  <v-icon small color="grey" style="font-size:18px; cursor: pointer" v-on="on">cancel</v-icon>
+                                </span>
+                              </template>
+                              <span>Cancel search for this term</span>
+                            </v-tooltip>
+                          </span>
+                          <span v-else-if="term.phenolyzerSearchStatus==='Completed'">
                             <v-icon color="green" style="font-weight: bolder; font-size:18px"">done</v-icon>
                           </span>
-                          <span v-else-if="term.gtrSearchStatus==='NoGenes'">
+                          <span v-else-if="term.phenolyzerSearchStatus==='NoGenes'">
                             <v-tooltip bottom>
                               <template v-slot:activator="{ on }">
-                                <v-icon color="grey" style="font-size:20px" v-on="on">block</v-icon>
+                                <v-icon color="grey" style="font-size:18px" v-on="on">block</v-icon>
                               </template>
                               <span>No genes were found for this term</span>
                             </v-tooltip>
                           </span>
-                          <span v-else-if="term.gtrSearchStatus==='NotAvailable'"><v-icon>indeterminate_check_box</v-icon></span>
+                          <span v-else-if="term.phenolyzerSearchStatus==='NotAvailable'"><v-icon>indeterminate_check_box</v-icon></span>
+                          <span v-else-if="term.phenolyzerSearchStatus==='Cancelled'">
+                            <v-tooltip bottom>
+                              <template v-slot:activator="{ on }">
+                                <v-icon small color="gray lighten-4" style="font-size:18px; cursor: pointer" v-on="on">error_outline</v-icon>
+                              </template>
+                              <span>Search for this term was cancelled</span>
+                            </v-tooltip>
+                          </span>
                           <span v-else>
                             <v-tooltip bottom>
                               <template v-slot:activator="{ on }">
@@ -352,15 +376,15 @@
                             </v-tooltip>
                           </span>
                         </div>
-                        <div class="col-md-9" style="padding-top: 5px;" @mouseover="mouseOverGtrTerm(term.DiseaseName)" @mouseleave="hovered_gtr_term=''">
+                        <div class="col-md-9" style="padding-top: 5px;" @mouseover="mouseOverPhenolyzerTerm(term.value)" @mouseleave="hovered_phenolyzer_term=''">
                           <div class="ml-1" style="text-align: left !important; font-size: 13px" >
-                            <span>{{ term.DiseaseName }}</span>
+                            <span>{{ term.value | to-firstCharacterUppercase }}</span>
                           </div>
                         </div>
-                        <div class="col-md-1" style="padding-top: 5px;" @mouseover="mouseOverGtrTerm(term.DiseaseName)" @mouseleave="hovered_gtr_term=''">
+                        <div class="col-md-1" style="padding-top: 5px;" @mouseover="mouseOverPhenolyzerTerm(term.value)" @mouseleave="hovered_phenolyzer_term=''">
                           <div >
-                            <span v-if="hovered_gtr_term === term.DiseaseName">
-                              <v-icon class="ml-1 terms_delete_btn" @click="removePhenotypeShowDialog(term, i, 'GTR')">delete</v-icon>
+                            <span v-if="hovered_phenolyzer_term === term.value">
+                              <v-icon class="ml-1 terms_delete_btn" @click="removePhenotypeShowDialog(term, i, 'phenolyzer')">delete</v-icon>
                             </span>
                           </div>
                         </div>
