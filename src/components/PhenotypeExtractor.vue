@@ -753,6 +753,14 @@
                             <p style="margin-left: -15px;"><v-icon>error_outline</v-icon> No matching terms from this resource</p>
                           </v-card-text>
                         </div>
+                        
+                        <div class="ml-7" style="margin-bottom: -20px">
+                          <v-switch
+                            v-model="gtrSelectSwitch"
+                            label="Select all"
+                            color="primary"
+                          ></v-switch>
+                        </div>
                         <div v-for="(term,i) in extractedTermsObj">
                           <div v-for="(item, ind) in term.reviewTerms_gtr">
                             <div v-if="ind===0" class="row">
@@ -783,7 +791,14 @@
                             <p style="margin-left: -15px;"><v-icon>error_outline</v-icon> No matching terms from this resource</p>
                           </v-card-text>
                         </div>
-
+                        
+                        <div class="ml-7" style="margin-bottom: -20px">
+                          <v-switch
+                            v-model="phenolyzerSelectSwitch"
+                            label="Select all"
+                            color="primary"
+                          ></v-switch>
+                        </div>
                         <div v-for="(term,i) in extractedTermsObj">
                           <div v-for="(item, ind) in term.reviewTerms_phenolyzer">
                             <div v-if="ind===0" class="row">
@@ -817,6 +832,13 @@
                           </v-card-text>
                         </div>
 
+                        <div class="ml-7" style="margin-bottom: -20px">
+                          <v-switch
+                            v-model="hpoSelectSwitch"
+                            label="Select all"
+                            color="primary"
+                          ></v-switch>
+                        </div>
                         <div v-for="(term, i) in HpoReviewTerms" :key="i">
                           <div>
                             <div class="row">
@@ -1955,8 +1977,52 @@ export default {
     showWarningOfMissedHpoTerms: false,
     hpoGenesCountForBarChart: [],
     tab_idx: 0,
+    gtrSelectSwitch: true,
+    phenolyzerSelectSwitch: true,
+    hpoSelectSwitch: true,
   }),
   watch: {
+    gtrSelectSwitch(){
+      if(this.gtrSelectSwitch){
+        this.GtrTermsAdded_temp = [];
+        this.extractedTermsObj.map(term => {
+          term.reviewTerms_gtr.map((item, ind) => {
+            if (ind === 0) {
+              this.GtrTermsAdded_temp.push(item);
+            }
+          })
+        })
+      }
+      else if (!this.gtrSelectSwitch) {
+        this.GtrTermsAdded_temp = [];
+      }
+    },
+    phenolyzerSelectSwitch() {
+      if(this.phenolyzerSelectSwitch){
+        this.phenolyzerTermsAdded_temp = [];
+        this.extractedTermsObj.map(term => {
+          term.reviewTerms_phenolyzer.map((item, ind) => {
+            if (ind === 0) {
+              this.phenolyzerTermsAdded_temp.push(item);
+            }
+          })
+        })
+      }
+      else if (!this.phenolyzerSelectSwitch) {
+        this.phenolyzerTermsAdded_temp = [];
+      }
+    },
+    hpoSelectSwitch(){
+      if(this.hpoSelectSwitch){
+        this.hpoTermsAdded_temp = [];
+        this.HpoReviewTerms.map(term => {
+          this.hpoTermsAdded_temp.push(term);
+        })
+      }
+      else if (!this.hpoSelectSwitch) {
+        this.hpoTermsAdded_temp = [];
+      }
+    },
     tab_idx(){
       console.log("tab", this.tab_idx);
     },
@@ -1993,6 +2059,7 @@ export default {
       }
     },
     GtrTermsAdded_temp(){
+      console.log("GtrTermsAdded_temp", this.GtrTermsAdded_temp);
     },
     basicModeTermsAdded_temp(){
     },
