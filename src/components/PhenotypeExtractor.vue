@@ -67,7 +67,7 @@
             <div class="col-container row" >
               
               <!-- flex-text-note  -->
-              <v-card class="col-flex-note" v-show="tab_idx===0 || tab_idx===1">
+              <v-card class="col-flex-note" v-show="tab_idx===0">
                 <v-card-title primary-title>
                   <strong class="terms-heading primary--text" style="font-size: 16px">
                     Inputs
@@ -138,8 +138,49 @@
               <!-- end flex text note -->
   
               
+              <!-- flex hpo distribution visualizations  -->
+              <v-card class="col-flex-terms" v-show="tab_idx===1">
+                <v-card-title primary-title>
+
+                  <strong class="terms-heading primary--text" style="font-size: 16px">
+                    HPO distribution
+                  </strong>
+
+                  <v-spacer></v-spacer>
+                </v-card-title>
+                <v-card-text class="i-clinical_note_text_div">
+                  <div class="hpo-histogram">
+                    
+                  </div>
+                  <!-- <div v-show="showSearchTermsLoader">
+                    <blockquote class="blockquote">
+                      <v-skeleton-loader
+                        :loading="loading"
+                        :transition="transition"
+                        type="paragraph"
+                      >
+                      </v-skeleton-loader>
+                    </blockquote>
+                  </div>
+                  <div v-show="!showSearchTermsLoader">
+                    <div v-show="Hpo_searchTermsObj.length">
+                      <div class="hpo-histogram">
+                        
+                      </div>
+                    </div>
+                    <div v-show="!Hpo_searchTermsObj.length">
+                      <blockquote class="blockquote i-text--left" style="font-size: 14px;">
+                        No HPO terrms added.
+                      </blockquote>
+                    </div>
+                  </div> -->
+                </v-card-text>
+              </v-card>
+              <!-- end flex hpo visualizations -->
+              
+              
               <!-- flex hpo visualizations  -->
-              <v-card class="col-flex-note" v-show="tab_idx===1">
+              <v-card class="col-flex-terms" v-show="tab_idx===1">
                 <v-card-title primary-title>
 
                   <strong class="terms-heading primary--text" style="font-size: 16px">
@@ -173,7 +214,7 @@
                   </div>
                 </v-card-text>
               </v-card>
-              <!-- end flex hpo visualizations -->
+              <!-- end flex hpo distribution visualizations -->
               
               
               <!-- flex-gtr-terms -->
@@ -1971,6 +2012,7 @@ export default {
   },
 
   mounted(){
+    this.drawHistogram()
     this.textNotes =this.demoTextNote;
     this.HPO_Terms_data = HPO_Terms;
     this.HPO_Phenotypes_data = HPO_Phenotypes;
@@ -3909,7 +3951,8 @@ export default {
       console.log("arr", arr);
       this.hpoGenesCountForBarChart = arr;
       // this.drawHpoGenesBarChart();
-      drawHpoGenesBarChart(this.hpoGenesCountForBarChart)
+      drawHpoGenesBarChart(this.hpoGenesCountForBarChart);
+      // this.drawHistogram()
     },
 
     hpoIndividualGenes(obj){
@@ -4413,6 +4456,105 @@ export default {
         this.termsReviewDialogPage = 0;
 
       },
+      
+      drawHistogram() {
+        d3.select(".hpo-histogram").select("svg").remove();
+
+      var margin = { top: 20, right: 20, bottom: 30, left: 40 };
+      var height = 250;
+      var width = 250;
+
+      var color = "rgb(37 157 241)";
+      const svg = d3
+        .select(".hpo-histogram")
+        .append("svg")
+        .attr("width", 250)
+        .attr("height", 250);
+
+      var data = [
+            0.168,
+            0.181,
+            0.206,
+            0.0646,
+            1.0,
+            0.1215,
+            0.080,
+            0.4905,
+            0.1761,
+            0.1237,
+            0.653,
+            0.035,
+            0.269,
+            0.1116,
+          ];
+
+      var bins = d3.bin().thresholds(4)(data);
+      console.log("bins", bins);
+
+      var xAxis = (g) =>
+        g
+          .attr("transform", `translate(0,${height - margin.bottom})`)
+          .call(
+            d3
+              .axisBottom(x)
+              .ticks(4)
+              .tickSizeOuter(0)
+          )
+          .call((g) =>
+            g
+              .append("text")
+              .attr("x", width - margin.right)
+              .attr("y", -4)
+              .attr("fill", "currentColor")
+              .attr("font-weight", "bold")
+              .attr("text-anchor", "end")
+              .text("")
+          );
+
+      var yAxis = (g) =>
+        g
+          .attr("transform", `translate(${margin.left},0)`)
+          .call(d3.axisLeft(y).ticks(height / 40))
+          .call((g) => g.select(".domain").remove())
+          .call((g) =>
+            g
+              .select(".tick:last-of-type text")
+              .clone()
+              .attr("x", 4)
+              .attr("text-anchor", "start")
+              .attr("font-weight", "bold")
+              .text("count")
+          );
+
+      var x = d3
+        .scaleLinear()
+        .domain([bins[0].x0, bins[bins.length - 1].x1])
+        .range([margin.left, width - margin.right]);
+
+      var y = d3
+        .scaleLinear()
+        .domain([0, d3.max(bins, (d) => d.length)])
+        .nice()
+        .range([height - margin.bottom, margin.top]);
+
+      svg
+        .append("g")
+        .attr("fill", color)
+        .selectAll("rect")
+        .data(bins)
+        .join("rect")
+        .attr("x", (d) => {
+          console.log("x0", d);
+          return x(d.x0) + 1;
+        })
+        .attr("width", (d) => Math.max(0, x(d.x1) - x(d.x0) - 1))
+        .attr("y", (d) => y(d.length))
+        .attr("height", (d) => y(0) - y(d.length));
+
+      svg.append("g").call(xAxis);
+
+      svg.append("g").call(yAxis);
+    },
 
   }
 };
