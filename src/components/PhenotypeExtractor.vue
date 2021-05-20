@@ -4635,7 +4635,6 @@ export default {
         .data(bins)
         .join("rect")
         .attr("x", (d) => {
-          console.log("x0", d);
           return x(d.x0) + 1;
         })
         .attr("width", (d) => Math.max(0, x(d.x1) - x(d.x0) - 1))
@@ -4653,6 +4652,8 @@ export default {
 var xScale2 = null;
 var rects = null;
 var x = null;
+var y = null;
+var yScale2 = null;
 
 
 function drawHpoGenesBarChart(menu) {
@@ -4685,18 +4686,37 @@ function drawHpoGenesBarChart(menu) {
   const yAxisGroup = graph.append("g");
 
   // d3.json("menu.json").then((data) => {
-  const y = d3
+  // const y = d3
+  //   .scaleLinear()
+  //   .domain([0, d3.max(menu, (d) => d.count)])
+  //   .range([graphHeight, 0]);
+    
+  x = d3
     .scaleLinear()
     .domain([0, d3.max(menu, (d) => d.count)])
-    .range([graphHeight, 0]);
-
-  x = d3
+    .range([0, graphHeight]);  
+    
+  y = d3
     .scaleBand()
     .domain(menu.map((item) => item.name))
-    .range([0, graphWidth])
+    .range([graphWidth, 0])
     .paddingInner(0.2)
     .paddingOuter(0.2);
+    
+  yScale2 = d3
+    .scaleBand()
+    .domain(menu.map((item) => item.name))
+    .range([graphWidth, 0])
+    .paddingInner(0.2)
+    .paddingOuter(0.2);  
 
+  // x = d3
+  //   .scaleBand()
+  //   .domain(menu.map((item) => item.name))
+  //   .range([0, graphWidth])
+  //   .paddingInner(0.2)
+  //   .paddingOuter(0.2);
+  // 
   xScale2 = d3
     .scaleBand()
     .domain(menu.map((item) => item.name))
@@ -4709,24 +4729,37 @@ function drawHpoGenesBarChart(menu) {
 
 
   // append the enter selection to the DOM
+  // rects
+  //   .enter()
+  //   .append("rect")
+  //   .attr("width", x.bandwidth)
+  //   .attr("height", (d) => graphHeight - y(d.count))
+  //   .attr("fill", "orange")
+  //   .attr("class", "rects")
+  //   .attr("x", (d) => x(d.name))
+  //   .attr("y", (d) => y(d.count));
+  
   rects
     .enter()
     .append("rect")
-    .attr("width", x.bandwidth)
-    .attr("height", (d) => graphHeight - y(d.count))
-    .attr("fill", "orange")
+    .attr("height", y.bandwidth)
+    .attr("width", (d) => {
+      return x(d.count);
+    })
+    .attr("fill", "rgb(37 157 241)")
     .attr("class", "rects")
-    .attr("x", (d) => x(d.name))
-    .attr("y", (d) => y(d.count));
+    .attr("y", (d) => y(d.name))
+    .attr("x", (d) => {
+      return 0;
+    });
 
   // console.log(this.x.invert(150));
 
   // create & call axesit
-  const xAxis = d3.axisBottom(x);
+  const xAxis = d3.axisBottom(x).ticks(3);
   const yAxis = d3
     .axisLeft(y)
-    .ticks(3)
-    .tickFormat((d) => d + " genes");
+    .ticks(3);
 
   xAxisGroup.call(xAxis);
   yAxisGroup.call(yAxis);
@@ -4739,7 +4772,7 @@ function drawHpoGenesBarChart(menu) {
 
   graph.call(
     d3
-      .brushX() // Add the brush feature using the d3.brush function
+      .brushY() // Add the brush feature using the d3.brush function
       .extent([
         [0, 0],
         [graphWidth, graphHeight],
@@ -4754,10 +4787,10 @@ function brushing(event) {
   var newInput = [];
   var brushArea = event.selection;
 
-  if (brushArea === null) brushArea = x.range();
+  if (brushArea === null) brushArea = y.range();
 
-  xScale2.domain().forEach((d) => {
-    var pos = xScale2(d) + xScale2.bandwidth() / 2;
+  yScale2.domain().forEach((d) => {
+    var pos = yScale2(d) + yScale2.bandwidth() / 2;
     if (pos >= brushArea[0] && pos <= brushArea[1]) {
       newInput.push(d);
     }
@@ -4766,11 +4799,11 @@ function brushing(event) {
   d3.selectAll(".rects").attr("fill", (d) => {
     if (d.name !== undefined) {
       var val = d.name;
-      var pos = xScale2(val) + xScale2.bandwidth() / 2;
+      var pos = yScale2(val) + yScale2.bandwidth() / 2;
       if (pos >= brushArea[0] && pos <= brushArea[1]) {
-        return "red";
+        return "steelblue";
       } else {
-        return "orange";
+        return "rgb(37 157 241)";
       }
     }
   });
@@ -4778,12 +4811,26 @@ function brushing(event) {
 
   bus.$emit("hpoSelectionRange", [newInput[0], newInput[newInput.length - 1]]);
 
-  var left = xScale2(d3.min(newInput));
-  var right = xScale2(d3.max(newInput)) + xScale2.bandwidth();
+  var left = yScale2(d3.min(newInput));
+  var right = yScale2(d3.max(newInput)) + yScale2.bandwidth();
+  var top = null;
+  var bottom = null;
 
+  if (left > right) {
+    top = right;
+    bottom = left;
+  } else {
+    top = left;
+    bottom = right;
+  }
+
+  if (newInput.length > 1) {
+    top = top - yScale2.bandwidth();
+    bottom = bottom + yScale2.bandwidth();
+  }
 
   if (event.sourceEvent) {
-    d3.select(this).transition().call(event.target.move, [left, right]);
+    d3.select(this).transition().call(event.target.move, [top, bottom]);
   }
 }
 
