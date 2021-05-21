@@ -26,6 +26,7 @@ export default {
   components: {
   },
   props: {
+    HpoSearchTermCount: 0
   },
   data(){
     let self = this;
@@ -68,6 +69,13 @@ export default {
       mode: '',
       snackbarTimeout: 4000,
       hpoGenesSearchTermObj: {},
+      hpoCount: null,
+    }
+  },
+  
+  watch: {
+    HpoSearchTermCount(){
+      console.log("HpoSearchTermCount", this.HpoSearchTermCount);
     }
   },
 
@@ -78,10 +86,16 @@ export default {
         .then( data => {
           this.HpoGenesData = data;
         })
+        
+    fetch('https://s3.amazonaws.com/ped.test.files/gene_hpo_count.json')
+      .then( res => res.json())
+        .then( data => {
+          this.hpoCount = data;
+        })    
     this.HpoTermsTypeaheadData  = HpoTermsData.data;
     this.HPO_Terms_data = HPO_Terms;
     this.HPO_Phenotypes_data = HPO_Phenotypes;
-
+    console.log("HpoSearchTermCount mounted", this.HpoSearchTermCount);
     bus.$on("singleTermSearchHPO", (x)=>{
       this.searchInput = x;
       this.checked = false;
@@ -215,6 +229,7 @@ export default {
                 hpoTerm: [term],
                 componentSource: "ClinPhen",
                 hpoSource:1,
+                specificityScore: this.calculateSpecificityScore(gene_name, 1, this.HpoSearchTermCount),
               })
             }
             else if(genes.includes(gene_name)){
@@ -223,6 +238,7 @@ export default {
                 this.items[idx].searchTermIndex.push(i+1);
                 this.items[idx].hpoTerm.push(term);
                 this.items[idx].hpoSource = this.items[idx].hpoSource+1;
+                this.items[idx].specificityScore = this.calculateSpecificityScore(gene_name, this.items[idx].hpoSource, this.HpoSearchTermCount);
               }
             }
           })
@@ -236,6 +252,16 @@ export default {
       // console.log("items in hpo", this.items)
       this.$emit("HpoFullGeneList", this.items)
       bus.$emit("completeFetchRequest", "hpo");
+    },
+    
+    calculateSpecificityScore: function(gene, matched_terms, searched_terms){
+      var associatedTerms = 0;
+      var score = 0;
+      if (this.hpoCount[gene] !== undefined) {
+        associatedTerms = this.hpoCount[gene].count;
+        score = matched_terms / (searched_terms * associatedTerms)
+      }
+      return score.toFixed(4);
     },
 
     noOfSourcesSvg: function(){

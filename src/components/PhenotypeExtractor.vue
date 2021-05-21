@@ -1733,6 +1733,7 @@
         </PhenolyzerSearch>
 
         <HpoSearch
+          v-bind:HpoSearchTermCount="Hpo_searchTermsObj.length"
           @hpoIndividualGenes="hpoIndividualGenes($event)"
           @HpoFullGeneList="HpoFullGeneList($event)"
           @individualGenesObjHpo="individualGenesObjHpo($event)">
@@ -2318,7 +2319,8 @@ export default {
             geneRankGtr: gene.geneRankGtr,
             geneRankPhenolyzer: gene.geneRankPhenolyzer,
             isImportedGenes: gene.isImportedGenes,
-            isAssociatedGene: gene.isAssociatedGene
+            isAssociatedGene: gene.isAssociatedGene,
+            specificityScore: gene.specificityScore,
           }
         })
         this.$emit('summaryGenes', clinData);
