@@ -136,7 +136,45 @@
                 </v-card-text>
               </v-card>
               <!-- end flex text note -->
-  
+
+
+              <!-- flex hpo visualizations  -->
+              <v-card class="col-flex-terms" v-show="tab_idx===1">
+                <v-card-title primary-title>
+
+                  <strong class="terms-heading primary--text" style="font-size: 16px">
+                    Genes overlap with terms
+                  </strong>
+
+                  <v-spacer></v-spacer>
+                </v-card-title>
+                <v-card-text class="i-clinical_note_text_div">
+                  <div v-show="showSearchTermsLoader">
+                    <blockquote class="blockquote">
+                      <v-skeleton-loader
+                        :loading="loading"
+                        :transition="transition"
+                        type="paragraph"
+                      >
+                      </v-skeleton-loader>
+                    </blockquote>
+                  </div>
+                  <div v-show="!showSearchTermsLoader">
+                    <div v-show="Hpo_searchTermsObj.length">
+                      <div class="hpo-genes-bar-chart">
+                        
+                      </div>
+                    </div>
+                    <div v-show="!Hpo_searchTermsObj.length">
+                      <blockquote class="blockquote i-text--left" style="font-size: 14px;">
+                        No HPO terrms added.
+                      </blockquote>
+                    </div>
+                  </div>
+                </v-card-text>
+              </v-card>
+              <!-- end flex hpo distribution visualizations -->
+              
               
               <!-- flex hpo distribution visualizations  -->
               <v-card class="col-flex-terms" v-show="tab_idx===1">
@@ -178,45 +216,7 @@
               </v-card>
               <!-- end flex hpo visualizations -->
               
-              
-              <!-- flex hpo visualizations  -->
-              <v-card class="col-flex-terms" v-show="tab_idx===1">
-                <v-card-title primary-title>
-
-                  <strong class="terms-heading primary--text" style="font-size: 16px">
-                    Unique HPO
-                  </strong>
-
-                  <v-spacer></v-spacer>
-                </v-card-title>
-                <v-card-text class="i-clinical_note_text_div">
-                  <div v-show="showSearchTermsLoader">
-                    <blockquote class="blockquote">
-                      <v-skeleton-loader
-                        :loading="loading"
-                        :transition="transition"
-                        type="paragraph"
-                      >
-                      </v-skeleton-loader>
-                    </blockquote>
-                  </div>
-                  <div v-show="!showSearchTermsLoader">
-                    <div v-show="Hpo_searchTermsObj.length">
-                      <div class="hpo-genes-bar-chart">
-                        
-                      </div>
-                    </div>
-                    <div v-show="!Hpo_searchTermsObj.length">
-                      <blockquote class="blockquote i-text--left" style="font-size: 14px;">
-                        No HPO terrms added.
-                      </blockquote>
-                    </div>
-                  </div>
-                </v-card-text>
-              </v-card>
-              <!-- end flex hpo distribution visualizations -->
-              
-              
+                            
               <!-- flex-gtr-terms -->
               <v-card class="col-flex-terms"  v-show="tab_idx===0">
                 <v-card-title primary-title>
