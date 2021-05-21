@@ -304,8 +304,8 @@
                     Phenolyzer
                   </strong>
                   <v-spacer></v-spacer>
-                  <div style="color:#ababab" v-if="Gtr_searchTermsObj.length">
-                    <span><h4 style="display:inline"> {{Gtr_searchTermsObj.length}} </h4> </span> 
+                  <div style="color:#ababab" v-if="Phenolyzer_searchTermsObj.length">
+                    <span><h4 style="display:inline"> {{Phenolyzer_searchTermsObj.length}} </h4> </span> 
                     <span style="font-size:12px">terms</span>
                   </div>
                 </v-card-title>
@@ -381,17 +381,25 @@
                             <span>{{ term.value | to-firstCharacterUppercase }}</span>
                           </div>
                         </div>
-                        <div class="col-md-1" style="padding-top: 5px;" @mouseover="mouseOverPhenolyzerTerm(term.value)" @mouseleave="hovered_phenolyzer_term=''">
+                        <!-- <div class="col-md-1" style="padding-top: 5px;" @mouseover="mouseOverPhenolyzerTerm(term.value)" @mouseleave="hovered_phenolyzer_term=''">
                           <div >
                             <span v-if="hovered_phenolyzer_term === term.value">
                               <v-icon class="ml-1 terms_delete_btn" @click="removePhenotypeShowDialog(term, i, 'phenolyzer')">delete</v-icon>
                             </span>
                           </div>
-                        </div>
+                        </div> -->
+                        <div class="col-md-1" style="padding-top: 5px;" @mouseover="mouseOverPhenolyzerTerm(term.value)" @mouseleave="hovered_phenolyzer_term=''">
+                          <v-btn text color="primary" small>
+                            <span>
+                              <v-icon small style="font-size:11px" class="ml-1" @click="removePhenotypeShowDialog(term, i, 'phenolyzer')">delete</v-icon>
+                            </span>
+                          </v-btn>
+                        </div>                        
+
                       </div>
 
                     </div>
-                    <div v-if="Gtr_searchTermsObj.length<1">
+                    <div v-if="Phenolyzer_searchTermsObj.length<1">
                       <span v-if="!showSearchTermsLoader"><i>Not Selected...</i></span>
                     </div>
 
@@ -462,14 +470,13 @@
                           </div>
                         </div>
                         <div class="col-md-1" style="padding-top: 5px;" @mouseover="mouseOverHpoTerm(term.HPO_Data)" @mouseleave="hovered_hpo_term=''">
-                          <div >
-                            <span v-if="hovered_hpo_term === term.HPO_Data">
-                              <v-icon class="ml-1 terms_delete_btn" @click="removePhenotypeShowDialog(term, i, 'HPO')">delete</v-icon>
+                          <v-btn text color="primary" small>
+                            <span>
+                              <v-icon small style="font-size:11px" class="ml-1" @click="removePhenotypeShowDialog(term, i, 'HPO')">delete</v-icon>
                             </span>
-                          </div>
-                        </div>
+                          </v-btn>
+                        </div>                        
                       </div>
-
                     </div>
                     <div v-if="Hpo_searchTermsObj.length<1">
                       <span v-if="!showSearchTermsLoader"><i>Not Selected...</i></span>
@@ -2005,6 +2012,7 @@ export default {
     gtrSelectSwitch: true,
     phenolyzerSelectSwitch: true,
     hpoSelectSwitch: true,
+    scaledHpoScores: [],
   }),
   watch: {
     gtrSelectSwitch(){
@@ -2049,7 +2057,6 @@ export default {
       }
     },
     tab_idx(){
-      console.log("tab", this.tab_idx);
     },
     hpo_radios(){
       this.setTermsSelectedFromBasicModeForReview();
@@ -2084,7 +2091,6 @@ export default {
       }
     },
     GtrTermsAdded_temp(){
-      console.log("GtrTermsAdded_temp", this.GtrTermsAdded_temp);
     },
     basicModeTermsAdded_temp(){
     },
@@ -2104,7 +2110,7 @@ export default {
   },
 
   mounted(){
-    this.drawHistogram()
+    // this.drawHistogram()
     this.textNotes =this.demoTextNote;
     this.HPO_Terms_data = HPO_Terms;
     this.HPO_Phenotypes_data = HPO_Phenotypes;
@@ -2300,11 +2306,25 @@ export default {
       }
       return count;
     },
+    
+    calculateHpoScaledScore(genes){
+      var scoresArr = [];
+      this.scaledHpoScores = [];
+      genes.map(gene => {
+        scoresArr.push(gene.specificityScore)
+      })
+      var maxScore = Math.max(...scoresArr);
+      scoresArr.map(x => {
+        var scaledScore = x/maxScore;
+        this.scaledHpoScores.push(scaledScore.toFixed(4))
+      })
+      this.drawHistogram()
+    },
 
     summaryGenesFullList(genes){
       // this.$emit('summaryGenes', genes);
       this.summaryAllGenes = genes;
-      console.log("this.summaryAllGenes in phenotypeEx", this.summaryAllGenes);
+      this.calculateHpoScaledScore(genes);
       this.getIndividualGeneList();
       var clinData = this.summaryAllGenes.map(gene=> {
           return {
@@ -4014,7 +4034,7 @@ export default {
     },
 
     sendHpoGenesToSummary(genes){
-      console.log("hpo genes", genes);
+      // console.log("hpo genes", genes);
       this.clinPhenSelectedGenes = genes;
       this.$emit("HpoGeneList", this.clinPhenSelectedGenes);
       this.countNumberOfHpoSources(genes);
@@ -4039,9 +4059,9 @@ export default {
         for(var prop in obj ){
           arr.push({"name": prop, "count": obj[prop]})
         }
-      console.log("obj", obj);
+      // console.log("obj", obj);
       }
-      console.log("arr", arr);
+      // console.log("arr", arr);
       this.hpoGenesCountForBarChart = arr;
       // this.drawHpoGenesBarChart();
       drawHpoGenesBarChart(this.hpoGenesCountForBarChart);
@@ -4564,24 +4584,9 @@ export default {
         .attr("width", 250)
         .attr("height", 250);
 
-      var data = [
-            0.168,
-            0.181,
-            0.206,
-            0.0646,
-            1.0,
-            0.1215,
-            0.080,
-            0.4905,
-            0.1761,
-            0.1237,
-            0.653,
-            0.035,
-            0.269,
-            0.1116,
-          ];
+      var data = this.scaledHpoScores;
 
-      var bins = d3.bin().thresholds(4)(data);
+      var bins = d3.bin().thresholds(6)(data);
       console.log("bins", bins);
 
       var xAxis = (g) =>
@@ -4590,7 +4595,7 @@ export default {
           .call(
             d3
               .axisBottom(x)
-              .ticks(4)
+              .ticks(6)
               .tickSizeOuter(0)
           )
           .call((g) =>
@@ -4666,7 +4671,7 @@ function drawHpoGenesBarChart(menu) {
   const svg = d3
     .select(".hpo-genes-bar-chart")
     .append("svg")
-    .attr("width", 300)
+    .attr("width", 400)
     .attr("height", 300);
 
   // create margins & dimensions

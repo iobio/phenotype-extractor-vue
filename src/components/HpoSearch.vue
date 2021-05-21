@@ -75,7 +75,6 @@ export default {
   
   watch: {
     HpoSearchTermCount(){
-      console.log("HpoSearchTermCount", this.HpoSearchTermCount);
     }
   },
 
@@ -95,7 +94,6 @@ export default {
     this.HpoTermsTypeaheadData  = HpoTermsData.data;
     this.HPO_Terms_data = HPO_Terms;
     this.HPO_Phenotypes_data = HPO_Phenotypes;
-    console.log("HpoSearchTermCount mounted", this.HpoSearchTermCount);
     bus.$on("singleTermSearchHPO", (x)=>{
       this.searchInput = x;
       this.checked = false;
