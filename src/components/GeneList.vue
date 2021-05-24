@@ -772,16 +772,12 @@ export default {
     selectGenesForHpoTermsCount(arr){
       let lower = arr[0];
       let higher = arr[1];
-      console.log("lower in genelist", lower);
-      console.log("higher in genelist", higher);
 
       this.selected = [];
       
       if(higher === lower){
         this.summaryGenes.map(gene => {
-          console.log("gene.searchTermHpo.length", gene.searchTermHpo.length);
           if(gene.searchTermHpo.length == higher){
-            console.log("here", gene.name);
             gene.inGeneSet = true;
             this.selected.push(gene.name);
           }
@@ -803,7 +799,6 @@ export default {
 
       }
       
-      console.log("this.selected", this.selected);
       this.genesTop = this.selected.length;
       this.$emit("update_genes_top", this.genesTop);
       

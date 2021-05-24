@@ -187,10 +187,7 @@
                   <v-spacer></v-spacer>
                 </v-card-title>
                 <v-card-text class="i-clinical_note_text_div">
-                  <div class="hpo-histogram">
-                    
-                  </div>
-                  <!-- <div v-show="showSearchTermsLoader">
+                  <div v-show="showSearchTermsLoader">
                     <blockquote class="blockquote">
                       <v-skeleton-loader
                         :loading="loading"
@@ -211,7 +208,7 @@
                         No HPO terrms added.
                       </blockquote>
                     </div>
-                  </div> -->
+                  </div>
                 </v-card-text>
               </v-card>
               <!-- end flex hpo visualizations -->
@@ -2316,6 +2313,9 @@ export default {
       var maxScore = Math.max(...scoresArr);
       scoresArr.map(x => {
         var scaledScore = x/maxScore;
+        if (maxScore == x) {
+          scaledScore = 0.9999;
+        }
         this.scaledHpoScores.push(scaledScore.toFixed(4))
       })
       this.drawHistogram()
@@ -4595,7 +4595,7 @@ export default {
           .call(
             d3
               .axisBottom(x)
-              .ticks(6)
+              .ticks(4)
               .tickSizeOuter(0)
           )
           .call((g) =>
@@ -4768,12 +4768,30 @@ function drawHpoGenesBarChart(menu) {
     .axisLeft(y)
     .ticks(3);
 
-  xAxisGroup.call(xAxis);
-  yAxisGroup.call(yAxis);
+  xAxisGroup.call(xAxis).call((g) => {
+    g.append("text")
+      .attr("x", margin.right + 70)
+      .attr("y", 30)
+      .attr("fill", "currentColor")
+      .attr("font-weight", "bold")
+      .attr("text-anchor", "end")
+      .text("Genes");
+  });
+  
+  
+  yAxisGroup.call(yAxis).call((g) => {
+    g.append("text")
+      .attr("x", margin.right + 110)
+      .attr("y", 35)
+      .attr("fill", "currentColor")
+      .attr("font-weight", "bold")
+      .attr("text-anchor", "end")
+      .attr("transform", "rotate(90)")
+      .text("Search terms");
+  });
 
   xAxisGroup
     .selectAll("text")
-    .attr("transform", "rotate(-40)")
     .attr("text-anchor", "end");
   // });
 
