@@ -2749,6 +2749,9 @@ export default {
       })
       var hpoIds = Array.from(new Set(ids));
       if (hpoIds.length) {
+        this.gtrSelectSwitch = false;
+        this.phenolyzerSelectSwitch = false;
+        this.hpoSelectSwitch = false;
         this.hpoTermsDetected = true;
         this.hpo_radios = "inputted_hpo_only"
       }
@@ -2770,6 +2773,10 @@ export default {
       this.textNotes = this.textNotes.replace(/\n/g, ' ');
       var unwanted_char = String.fromCharCode(160);
       this.textNotes = this.textNotes.replace(new RegExp(unwanted_char, "g"), " ");
+
+      this.gtrSelectSwitch = true;
+      this.phenolyzerSelectSwitch = true;
+      this.hpoSelectSwitch = true;
 
       this.gtr_terms_expansion_panel = [];
       this.phenolyzer_terms_expansion_panel = [];
