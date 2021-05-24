@@ -372,12 +372,14 @@ import d3 from 'd3'
             summaryGenes[i].hpoTerm = this.clinPhenSelectedGenes[idx].hpoTerm;
             summaryGenes[i].searchTermIndexHpo = this.clinPhenSelectedGenes[idx].searchTermIndex;
             summaryGenes[i].sourceHPO = this.clinPhenSelectedGenes[idx].searchTermIndexSVG;
+            summaryGenes[i].specificityScore = this.clinPhenSelectedGenes[idx].specificityScore;
           }
           else {
             summaryGenes[i].isClinPhen = false;
             summaryGenes[i].hpoTerm = [];
             summaryGenes[i].searchTermIndexHpo = [];
             summaryGenes[i].sourceHPO = [];
+            summaryGenes[i].specificityScore = 0;
           }
         })
 
@@ -832,12 +834,14 @@ import d3 from 'd3'
             summaryGenes[i].hpoTerm = this.clinPhenSelectedGenes[idx].hpoTerm;
             summaryGenes[i].searchTermIndexHpo = this.clinPhenSelectedGenes[idx].searchTermIndex;
             summaryGenes[i].sourceHPO = this.clinPhenSelectedGenes[idx].searchTermIndexSVG;
+            summaryGenes[i].specificityScore = this.clinPhenSelectedGenes[idx].specificityScore;
           }
           else {
             summaryGenes[i].isClinPhen = false;
             summaryGenes[i].hpoTerm = [];
             summaryGenes[i].searchTermIndexHpo = [];
             summaryGenes[i].sourceHPO = [];
+            summaryGenes[i].specificityScore = 0;
           }
         })
         summaryGenes.map(x => {

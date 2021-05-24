@@ -4,6 +4,7 @@
       text-center
       wrap
     >
+    <!-- <div class="canvas"></div> -->
 
     <div style="height: 180px">
       <!-- <v-btn color="primary" @click="exportGenes">Export</v-btn> -->
@@ -112,6 +113,8 @@
 </template>
 
 <script>
+import * as d3 from "d3";
+
 import { Client } from 'iobio-api-client';
 const api = new Client('backend.iobio.io', { secure: true });
 import DiseaseNamesData from '../data/DiseaseNames.json';
@@ -129,7 +132,6 @@ import PhenotypistData from '../data/PhenotypistState.json';
 import Model from '../models/Model';
 var model = new Model();
 import Phenotypes from './Phenotypes.vue';
-
 
 export default {
   name: 'Main',
@@ -161,7 +163,7 @@ export default {
     hpoResourceUsed: false,
     PhenolyzerResourceUsed: false,
     mosaic_gene_set: "",
-    launchedFromGenePanel: true
+    launchedFromGenePanel: true,
     // phenotypes: [
     //   [
     //     {
@@ -192,6 +194,7 @@ export default {
     this.PhenotypistState = PhenotypistData;
   },
   mounted(){
+    // this.generateArc();
   },
   methods: {
     summaryGenes(genes){
@@ -203,6 +206,7 @@ export default {
       })
 
       this.summaryGeneList = res;
+      console.log("this.summaryGeneList", this.summaryGeneList);
       this.analysis.payload.genesReport = this.summaryGeneList;
     },
     saveSearchedPhenotypes(phenotypes){
