@@ -156,7 +156,7 @@
 
                   <v-spacer></v-spacer>
                 </v-card-title>
-                <v-card-text class="i-clinical_note_text_div">
+                <v-card-text class="i-clinical_note_viz_div">
                   <div v-show="showSearchTermsLoader">
                     <blockquote class="blockquote">
                       <v-skeleton-loader
@@ -202,7 +202,7 @@
 
                   <v-spacer></v-spacer>
                 </v-card-title>
-                <v-card-text class="i-clinical_note_text_div">
+                <v-card-text class="i-clinical_note_viz_div">
                   <div v-show="showSearchTermsLoader">
                     <blockquote class="blockquote">
                       <v-skeleton-loader
@@ -4960,6 +4960,12 @@ function brushing(event) {
     max-height: 252px
     // min-height: 104px
     overflow-y: scroll
+    
+  .i-clinical_note_viz_div
+    display: block
+    max-height: 252px
+    // min-height: 104px
+    // overflow-y: scroll  
 
   .i-note_and_terms_row
     display: flex
