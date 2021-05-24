@@ -140,10 +140,18 @@
 
               <!-- flex hpo visualizations  -->
               <v-card class="col-flex-terms" v-show="tab_idx===1">
-                <v-card-title primary-title>
+                <v-card-title primary-title style="margin-bottom: -30px;">
 
                   <strong class="terms-heading primary--text" style="font-size: 16px">
                     Genes overlap with terms
+                    <v-tooltip top>
+                      <template v-slot:activator="{ on }">
+                        <v-icon v-on="on" small style="font-size:16px; opacity: 0.8" class="ml-1">info_outline</v-icon>
+                      </template>
+                      <span>
+                        Help text
+                      </span>
+                    </v-tooltip>      
                   </strong>
 
                   <v-spacer></v-spacer>
@@ -178,10 +186,18 @@
               
               <!-- flex hpo distribution visualizations  -->
               <v-card class="col-flex-terms" v-show="tab_idx===1">
-                <v-card-title primary-title>
+                <v-card-title primary-title style="margin-bottom: -30px;">
 
                   <strong class="terms-heading primary--text" style="font-size: 16px">
-                    HPO distribution
+                    Gene specificity score
+                    <v-tooltip top>
+                      <template v-slot:activator="{ on }">
+                        <v-icon v-on="on" small style="font-size:16px; opacity: 0.8" class="ml-1">info_outline</v-icon>
+                      </template>
+                      <span>
+                        Help text
+                      </span>
+                    </v-tooltip>      
                   </strong>
 
                   <v-spacer></v-spacer>
@@ -4601,12 +4617,12 @@ export default {
           .call((g) =>
             g
               .append("text")
-              .attr("x", width - margin.right)
-              .attr("y", -4)
+              .attr("x", width/2)
+              .attr("y", 25)
               .attr("fill", "currentColor")
               .attr("font-weight", "bold")
               .attr("text-anchor", "end")
-              .text("")
+              .text("score")
           );
 
       var yAxis = (g) =>
@@ -4618,10 +4634,12 @@ export default {
             g
               .select(".tick:last-of-type text")
               .clone()
-              .attr("x", 4)
+              .attr("x", 105)
+              .attr("y", 35)
               .attr("text-anchor", "start")
               .attr("font-weight", "bold")
-              .text("count")
+              .text("Genes")
+              .attr("transform", "rotate(90)")
           );
 
       var x = d3
