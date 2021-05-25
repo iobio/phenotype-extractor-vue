@@ -51,10 +51,10 @@
       v-model="tab_idx"
     >
       <v-tab>
-        Input
+        <strong>Input</strong>
       </v-tab>
       <v-tab>
-        HPO
+        <strong>HPO</strong>
       </v-tab>
     </v-tabs>
     
@@ -173,7 +173,7 @@
                         
                       </div>
                     </div>
-                    <div v-show="!Hpo_searchTermsObj.length">
+                    <div v-show="!Hpo_searchTermsObj.length" style="margin-top:30px">
                       <blockquote class="blockquote i-text--left" style="font-size: 14px;">
                         No HPO terrms added.
                       </blockquote>
@@ -219,7 +219,7 @@
                         
                       </div>
                     </div>
-                    <div v-show="!Hpo_searchTermsObj.length">
+                    <div v-show="!Hpo_searchTermsObj.length" style="margin-top:30px">
                       <blockquote class="blockquote i-text--left" style="font-size: 14px;">
                         No HPO terrms added.
                       </blockquote>
