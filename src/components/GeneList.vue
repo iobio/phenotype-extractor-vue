@@ -572,6 +572,10 @@ export default {
     bus.$on("hpoSelectionRange", (arr) => {
       this.selectGenesForHpoTermsCount(arr);
     })
+    
+    bus.$on("hpoScaledScoreRange", (arr) => {
+      this.selectGenesFromScaledScore(arr);
+    })
 
     this.phenotypes = this.phenotypeTerms;
 
@@ -767,6 +771,28 @@ export default {
       else {
         this.summaryGenes = [];
       }
+    },
+    
+    selectGenesFromScaledScore(arr){
+      let lower = arr[0];
+      let higher = arr[1];
+
+      this.selected = [];
+      this.summaryGenes.map(gene => {
+        if(Number(gene.scaledScore) >= lower && Number(gene.scaledScore) <= higher){
+          gene.inGeneSet = true;
+          this.selected.push(gene.name);
+        }
+        else { 
+          gene.inGeneSet = false;
+        }
+      })
+      
+      this.genesTop = this.selected.length;
+      this.$emit("update_genes_top", this.genesTop);
+      
+      this.$emit("add_to_gene_set", this.selected)
+
     },
     
     selectGenesForHpoTermsCount(arr){
