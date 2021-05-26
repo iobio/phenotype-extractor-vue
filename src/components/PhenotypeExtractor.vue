@@ -2026,6 +2026,7 @@ export default {
     phenolyzerSelectSwitch: true,
     hpoSelectSwitch: true,
     scaledHpoScores: [],
+    x: null,
   }),
   watch: {
     gtrSelectSwitch(){
@@ -2326,15 +2327,20 @@ export default {
       genes.map(gene => {
         scoresArr.push(gene.specificityScore)
       })
-      var maxScore = Math.max(...scoresArr);
+      this.maxScore = Math.max(...scoresArr);
       scoresArr.map(x => {
-        var scaledScore = x/maxScore;
-        if (maxScore == x) {
+        var scaledScore = x/this.maxScore;
+        if (this.maxScore == x) {
           scaledScore = 0.9999;
         }
         this.scaledHpoScores.push(scaledScore.toFixed(4))
       })
       this.drawHistogram()
+    },
+    
+    calculateScaledScore(specificityScore){
+      var scaledScore =  specificityScore/this.maxScore;
+      return scaledScore.toFixed(4)
     },
 
     summaryGenesFullList(genes){
@@ -2357,10 +2363,11 @@ export default {
             isImportedGenes: gene.isImportedGenes,
             isAssociatedGene: gene.isAssociatedGene,
             specificityScore: gene.specificityScore,
+            scaledScore: this.calculateScaledScore(gene.specificityScore)
           }
         })
         this.$emit('summaryGenes', clinData);
-
+        // console.log("clinData", clinData);
     },
 
     getIndividualGeneList(){
@@ -4617,7 +4624,7 @@ export default {
           .attr("transform", `translate(0,${height - margin.bottom})`)
           .call(
             d3
-              .axisBottom(x)
+              .axisBottom(this.x)
               .ticks(4)
               .tickSizeOuter(0)
           )
@@ -4649,7 +4656,7 @@ export default {
               .attr("transform", "rotate(90)")
           );
 
-      var x = d3
+      this.x = d3
         .scaleLinear()
         .domain([bins[0].x0, bins[bins.length - 1].x1])
         .range([margin.left, width - margin.right]);
@@ -4667,15 +4674,36 @@ export default {
         .data(bins)
         .join("rect")
         .attr("x", (d) => {
-          return x(d.x0) + 1;
+          return this.x(d.x0) + 1;
         })
-        .attr("width", (d) => Math.max(0, x(d.x1) - x(d.x0) - 1))
+        .attr("width", (d) => Math.max(0, this.x(d.x1) - this.x(d.x0) - 1))
         .attr("y", (d) => y(d.length))
         .attr("height", (d) => y(0) - y(d.length));
 
       svg.append("g").call(xAxis);
 
       svg.append("g").call(yAxis);
+      
+      svg.call(
+        d3
+          .brushX() // Add the brush feature using the d3.brush function
+          .extent([
+            [margin.left, margin.top],
+            [width - margin.right, height - margin.bottom],
+          ]) // initialise the brush area: start at 0,0 and finishes at width,height: it means I select the whole graph area
+          .on("brush", this.brsuhHistogram)
+      );
+    },
+    brsuhHistogram(event) {
+      var extent = event.selection;
+
+      var newInput = [];
+      var brushArea = event.selection;
+
+      console.log("brushArea", brushArea);
+      var [x0, x1] = event.selection.map(this.x.invert);
+      console.log("x0", x0.toFixed(4));
+      console.log("x1", x1.toFixed(4));
     },
 
   }
