@@ -517,6 +517,13 @@ export default {
       autocompleteGenes: [],
       autoCompleteGenesInputSearch: '',
       addedGenesFlag: false,
+      setGenesOverlapFlag: false,
+      setSpecificityScoreFlag: false,
+      lower_genesoverlap: 0,
+      higher_genesoverlap: 0,
+      lower_scaledScore: 0,
+      higher_scaledScore: 0,
+      
     }
   },
 
@@ -573,10 +580,18 @@ export default {
       this.selectGenesForHpoTermsCount(arr);
     })
     
+    bus.$on("filterOnGenesOverlap", (flag) => {
+      this.setGenesOverlapFlag = flag;
+    })
+    
     bus.$on("hpoScaledScoreRange", (arr) => {
       this.selectGenesFromScaledScore(arr);
     })
-
+    
+    bus.$on("filterOnSpecificityScore", (flag) => {
+      this.setSpecificityScoreFlag = flag;
+    })
+    
     this.phenotypes = this.phenotypeTerms;
 
   },
@@ -776,15 +791,29 @@ export default {
     selectGenesFromScaledScore(arr){
       let lower = arr[0];
       let higher = arr[1];
+      
+      this.lower_scaledScore = lower;
+      this.higher_scaledScore = higher;
 
       this.selected = [];
       this.summaryGenes.map(gene => {
-        if(Number(gene.scaledScore) >= lower && Number(gene.scaledScore) <= higher){
-          gene.inGeneSet = true;
-          this.selected.push(gene.name);
+        if(this.setGenesOverlapFlag){
+          if((gene.searchTermHpo.length >= this.lower_genesoverlap && gene.searchTermHpo.length <= this.higher_genesoverlap) && (Number(gene.scaledScore) >= lower && Number(gene.scaledScore) <= higher)){
+            gene.inGeneSet = true;
+            this.selected.push(gene.name);
+          }
+          else{
+            gene.inGeneSet = false;
+          }
         }
-        else { 
-          gene.inGeneSet = false;
+        else {
+          if(Number(gene.scaledScore) >= lower && Number(gene.scaledScore) <= higher){
+            gene.inGeneSet = true;
+            this.selected.push(gene.name);
+          }
+          else { 
+            gene.inGeneSet = false;
+          }
         }
       })
       
@@ -798,6 +827,9 @@ export default {
     selectGenesForHpoTermsCount(arr){
       let lower = arr[0];
       let higher = arr[1];
+      
+      this.lower_genesoverlap = lower;
+      this.higher_genesoverlap = higher;
 
       this.selected = [];
       

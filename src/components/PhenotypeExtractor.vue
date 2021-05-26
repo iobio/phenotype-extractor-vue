@@ -2784,6 +2784,9 @@ export default {
       this.gtrSelectSwitch = true;
       this.phenolyzerSelectSwitch = true;
       this.hpoSelectSwitch = true;
+      
+      bus.$emit("filterOnSpecificityScore", false);
+      bus.$emit("filterOnGenesOverlap", false);
 
       this.gtr_terms_expansion_panel = [];
       this.phenolyzer_terms_expansion_panel = [];
@@ -4704,6 +4707,7 @@ export default {
       var [x0, x1] = event.selection.map(this.x.invert);
       console.log("x0", x0.toFixed(4));
       console.log("x1", x1.toFixed(4));
+      bus.$emit("filterOnSpecificityScore", true)
       bus.$emit("hpoScaledScoreRange", [x0.toFixed(4), x1.toFixed(4)])
     },
 
@@ -4887,7 +4891,7 @@ function brushing(event) {
     }
   });
 
-
+  bus.$emit("filterOnGenesOverlap", true);
   bus.$emit("hpoSelectionRange", [newInput[0], newInput[newInput.length - 1]]);
 
   var left = yScale2(d3.min(newInput));
