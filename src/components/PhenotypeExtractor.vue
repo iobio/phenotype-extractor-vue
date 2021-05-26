@@ -4884,7 +4884,7 @@ function brushing(event) {
       var val = d.name;
       var pos = yScale2(val) + yScale2.bandwidth() / 2;
       if (pos >= brushArea[0] && pos <= brushArea[1]) {
-        return "steelblue";
+        return "rgb(62 146 204)";
       } else {
         return "rgb(37 157 241)";
       }

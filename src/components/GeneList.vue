@@ -833,9 +833,9 @@ export default {
 
       this.selected = [];
       
-      if(higher === lower){
+      if(this.setSpecificityScoreFlag){
         this.summaryGenes.map(gene => {
-          if(gene.searchTermHpo.length == higher){
+          if((Number(gene.scaledScore) >= this.lower_scaledScore && Number(gene.scaledScore) <= this.higher_scaledScore) &&(gene.searchTermHpo.length >= lower && gene.searchTermHpo.length <= higher)){
             gene.inGeneSet = true;
             this.selected.push(gene.name);
           }
@@ -845,16 +845,29 @@ export default {
         })
       }
       else {
-        this.summaryGenes.map(gene => {
-          if(gene.searchTermHpo.length >= lower && gene.searchTermHpo.length <= higher){
-            gene.inGeneSet = true;
-            this.selected.push(gene.name);
-          }
-          else { 
-            gene.inGeneSet = false;
-          }
-        })
+        if(higher === lower){
+          this.summaryGenes.map(gene => {
+            if(gene.searchTermHpo.length == higher){
+              gene.inGeneSet = true;
+              this.selected.push(gene.name);
+            }
+            else { 
+              gene.inGeneSet = false;
+            }
+          })
+        }
+        else {
+          this.summaryGenes.map(gene => {
+            if(gene.searchTermHpo.length >= lower && gene.searchTermHpo.length <= higher){
+              gene.inGeneSet = true;
+              this.selected.push(gene.name);
+            }
+            else { 
+              gene.inGeneSet = false;
+            }
+          })
 
+        }
       }
       
       this.genesTop = this.selected.length;
