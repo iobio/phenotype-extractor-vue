@@ -20,7 +20,7 @@
                 </span>
               </strong>
               <VennDiagram
-                v-show="summaryGenes.length"
+                v-show="summaryGenes.length && selectedTab=='Input'"
                 :vennData="vennData">
               </VennDiagram>
 
@@ -525,7 +525,7 @@ export default {
       higher_genesoverlap: 0,
       lower_scaledScore: 0,
       higher_scaledScore: 0,
-      
+      selectedTab: "Input"
     }
   },
 
@@ -592,6 +592,10 @@ export default {
     
     bus.$on("filterOnSpecificityScore", (flag) => {
       this.setSpecificityScoreFlag = flag;
+    })
+    
+    bus.$on("selected-tab", (tab) => {
+      this.selectedTab = tab;
     })
     
     this.phenotypes = this.phenotypeTerms;

@@ -2071,6 +2071,12 @@ export default {
       }
     },
     tab_idx(){
+      if(this.tab_idx == 1){
+        bus.$emit("selected-tab", "HPO")
+      }
+      else if(this.tab_idx == 0){
+        bus.$emit("selected-tab", "Input")
+      }
     },
     hpo_radios(){
       this.setTermsSelectedFromBasicModeForReview();
@@ -4632,6 +4638,13 @@ export default {
               .tickSizeOuter(0)
           )
           .call((g) =>
+            g.selectAll(".domain").attr("stroke-width", 0.3).attr("stroke", "#606060")
+          )
+          .call((g) =>
+            g.selectAll("line").attr("stroke-width", 0.3).attr("stroke", "#606060")
+          )
+          .call((g) => g.selectAll("text").attr("fill", "#606060"))
+          .call((g) =>
             g
               .append("text")
               .attr("x", width/2)
@@ -4647,6 +4660,10 @@ export default {
           .attr("transform", `translate(${margin.left},0)`)
           .call(d3.axisLeft(y).ticks(height / 40))
           .call((g) => g.select(".domain").remove())
+          .call((g) =>
+            g.selectAll("line").attr("stroke-width", 0.3).attr("stroke", "#606060")
+          )
+          .call((g) => g.selectAll("text").attr("fill", "#606060"))
           .call((g) =>
             g
               .select(".tick:last-of-type text")
@@ -4823,27 +4840,43 @@ function drawHpoGenesBarChart(menu) {
     .axisLeft(y)
     .ticks(3);
 
-  xAxisGroup.call(xAxis).call((g) => {
-    g.append("text")
-      .attr("x", margin.right + 70)
-      .attr("y", 30)
-      .attr("fill", "currentColor")
-      .attr("font-weight", "bold")
-      .attr("text-anchor", "end")
-      .text("Genes");
-  });
+  xAxisGroup.call(xAxis)
+    .call((g) =>
+      g.selectAll(".domain").attr("stroke-width", 0.3).attr("stroke", "#606060")
+    )
+    .call((g) =>
+      g.selectAll("line").attr("stroke-width", 0.3).attr("stroke", "#606060")
+    )
+    .call((g) => g.selectAll("text").attr("fill", "#606060"))
+    .call((g) => {
+      g.append("text")
+        .attr("x", margin.right + 70)
+        .attr("y", 30)
+        .attr("fill", "currentColor")
+        .attr("font-weight", "bold")
+        .attr("text-anchor", "end")
+        .text("Genes");
+    });
   
   
-  yAxisGroup.call(yAxis).call((g) => {
-    g.append("text")
-      .attr("x", margin.right + 110)
-      .attr("y", 35)
-      .attr("fill", "currentColor")
-      .attr("font-weight", "bold")
-      .attr("text-anchor", "end")
-      .attr("transform", "rotate(90)")
-      .text("Search terms");
-  });
+  yAxisGroup.call(yAxis)
+    .call((g) =>
+      g.selectAll("line").attr("stroke-width", 0.3).attr("stroke", "#606060")
+    )
+    .call((g) => g.selectAll("text").attr("fill", "#606060"))
+    .call((g) => {
+      g.append("text")
+        .attr("x", margin.right + 110)
+        .attr("y", 35)
+        .attr("fill", "currentColor")
+        .attr("font-weight", "bold")
+        .attr("text-anchor", "end")
+        .attr("transform", "rotate(90)")
+        .text("Search terms");
+    })
+    .call((g) =>
+      g.selectAll(".domain").attr("stroke-width", 0.3).attr("stroke", "#606060")
+    );
 
   xAxisGroup
     .selectAll("text")
