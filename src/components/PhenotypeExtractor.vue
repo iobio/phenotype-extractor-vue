@@ -169,7 +169,7 @@
                   </div>
                   <div v-show="!showSearchTermsLoader">
                     <div v-show="Hpo_searchTermsObj.length">
-                      <div class="hpo-genes-bar-chart">
+                      <div class="hpo-genes-bar-chart" style="text-align: center;">
                         
                       </div>
                     </div>
@@ -215,7 +215,7 @@
                   </div>
                   <div v-show="!showSearchTermsLoader">
                     <div v-show="Hpo_searchTermsObj.length">
-                      <div class="hpo-histogram">
+                      <div class="hpo-histogram" style="text-align: center;">
                         
                       </div>
                     </div>
