@@ -350,6 +350,8 @@
             :gene="clickedGene.name"
             :ncbiSummary="ncbiSummary"
             :geneData="clickedGene"
+            :specificityScore="clickedGene.specificityScore"
+            :scaledScore="clickedGene.scaledScore"
             >
           </GeneCard>
          </v-card-text>
@@ -517,6 +519,13 @@ export default {
       autocompleteGenes: [],
       autoCompleteGenesInputSearch: '',
       addedGenesFlag: false,
+      setGenesOverlapFlag: false,
+      setSpecificityScoreFlag: false,
+      lower_genesoverlap: 0,
+      higher_genesoverlap: 0,
+      lower_scaledScore: 0,
+      higher_scaledScore: 0,
+      
     }
   },
 
@@ -572,7 +581,19 @@ export default {
     bus.$on("hpoSelectionRange", (arr) => {
       this.selectGenesForHpoTermsCount(arr);
     })
-
+    
+    bus.$on("filterOnGenesOverlap", (flag) => {
+      this.setGenesOverlapFlag = flag;
+    })
+    
+    bus.$on("hpoScaledScoreRange", (arr) => {
+      this.selectGenesFromScaledScore(arr);
+    })
+    
+    bus.$on("filterOnSpecificityScore", (flag) => {
+      this.setSpecificityScoreFlag = flag;
+    })
+    
     this.phenotypes = this.phenotypeTerms;
 
   },
@@ -769,15 +790,54 @@ export default {
       }
     },
     
+    selectGenesFromScaledScore(arr){
+      let lower = arr[0];
+      let higher = arr[1];
+      
+      this.lower_scaledScore = lower;
+      this.higher_scaledScore = higher;
+
+      this.selected = [];
+      this.summaryGenes.map(gene => {
+        if(this.setGenesOverlapFlag){
+          if((gene.searchTermHpo.length >= this.lower_genesoverlap && gene.searchTermHpo.length <= this.higher_genesoverlap) && (Number(gene.scaledScore) >= lower && Number(gene.scaledScore) <= higher)){
+            gene.inGeneSet = true;
+            this.selected.push(gene.name);
+          }
+          else{
+            gene.inGeneSet = false;
+          }
+        }
+        else {
+          if(Number(gene.scaledScore) >= lower && Number(gene.scaledScore) <= higher){
+            gene.inGeneSet = true;
+            this.selected.push(gene.name);
+          }
+          else { 
+            gene.inGeneSet = false;
+          }
+        }
+      })
+      
+      this.genesTop = this.selected.length;
+      this.$emit("update_genes_top", this.genesTop);
+      
+      this.$emit("add_to_gene_set", this.selected)
+
+    },
+    
     selectGenesForHpoTermsCount(arr){
       let lower = arr[0];
       let higher = arr[1];
+      
+      this.lower_genesoverlap = lower;
+      this.higher_genesoverlap = higher;
 
       this.selected = [];
       
-      if(higher === lower){
+      if(this.setSpecificityScoreFlag){
         this.summaryGenes.map(gene => {
-          if(gene.searchTermHpo.length == higher){
+          if((Number(gene.scaledScore) >= this.lower_scaledScore && Number(gene.scaledScore) <= this.higher_scaledScore) &&(gene.searchTermHpo.length >= lower && gene.searchTermHpo.length <= higher)){
             gene.inGeneSet = true;
             this.selected.push(gene.name);
           }
@@ -787,16 +847,29 @@ export default {
         })
       }
       else {
-        this.summaryGenes.map(gene => {
-          if(gene.searchTermHpo.length >= lower && gene.searchTermHpo.length <= higher){
-            gene.inGeneSet = true;
-            this.selected.push(gene.name);
-          }
-          else { 
-            gene.inGeneSet = false;
-          }
-        })
+        if(higher === lower){
+          this.summaryGenes.map(gene => {
+            if(gene.searchTermHpo.length == higher){
+              gene.inGeneSet = true;
+              this.selected.push(gene.name);
+            }
+            else { 
+              gene.inGeneSet = false;
+            }
+          })
+        }
+        else {
+          this.summaryGenes.map(gene => {
+            if(gene.searchTermHpo.length >= lower && gene.searchTermHpo.length <= higher){
+              gene.inGeneSet = true;
+              this.selected.push(gene.name);
+            }
+            else { 
+              gene.inGeneSet = false;
+            }
+          })
 
+        }
       }
       
       this.genesTop = this.selected.length;

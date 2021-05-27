@@ -8,6 +8,10 @@
       {{ncbiSummary.summary}}
     </span>
     <br><br>
+    <span id="gene-card-heading">HPO Specificity score:</span> {{specificityScore}}
+    <br>
+    <span id="gene-card-heading">HPO Scaled score:</span> {{scaledScore}}
+    <br><br>
     <span id="gene-card-heading">Chromosome:</span> {{ncbiSummary.chromosome}}
     <br>
     <span id="gene-card-heading">Cytogenetic Location: </span>{{ncbiSummary.maplocation}}
@@ -36,7 +40,9 @@
       },
       geneData: {
         type: Object
-      }
+      },
+      specificityScore: null,
+      scaledScore: null,
     },
     data(){
       return {
