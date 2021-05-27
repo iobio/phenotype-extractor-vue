@@ -4703,10 +4703,7 @@ export default {
       var newInput = [];
       var brushArea = event.selection;
 
-      console.log("brushArea", brushArea);
       var [x0, x1] = event.selection.map(this.x.invert);
-      console.log("x0", x0.toFixed(4));
-      console.log("x1", x1.toFixed(4));
       bus.$emit("filterOnSpecificityScore", true)
       bus.$emit("hpoScaledScoreRange", [x0.toFixed(4), x1.toFixed(4)])
     },

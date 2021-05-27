@@ -350,6 +350,8 @@
             :gene="clickedGene.name"
             :ncbiSummary="ncbiSummary"
             :geneData="clickedGene"
+            :specificityScore="clickedGene.specificityScore"
+            :scaledScore="clickedGene.scaledScore"
             >
           </GeneCard>
          </v-card-text>
