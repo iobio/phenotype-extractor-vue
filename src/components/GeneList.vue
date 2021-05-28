@@ -5,19 +5,22 @@
       <div class="col-md-12">
         <v-card>
           <span v-show="summaryGenes.length && selectedTab=='HPO'">
-            <v-alert
-              v-if="setGenesOverlapFlag || setSpecificityScoreFlag"
-              dense
-              text
-              color="success"
-              style="font-size:12px; word-break:break-word;margin-bottom: -20px;"
-            >
-             <div>
-               <span v-if="setGenesOverlapFlag"> {{ filterTermsIntersectText }} </span>
-               <span v-if="setGenesOverlapFlag && setSpecificityScoreFlag && filterTermsIntersectText.length && filterSpecificityScoreText.length"><strong> AND </strong></span>
-               <span v-if="setSpecificityScoreFlag"> {{ filterSpecificityScoreText }}</span>
-             </div>
-             </v-alert>
+            <div v-if="filterTermsIntersectText.length || filterSpecificityScoreText.length">
+              <v-alert
+                v-if="setGenesOverlapFlag || setSpecificityScoreFlag"
+                dense
+                text
+                color="success"
+                style="font-size:12px; word-break:break-word;margin-bottom: -20px;"
+              >
+               <div style="text-align:center">
+                 <span v-if="setGenesOverlapFlag"> {{ filterTermsIntersectText }} </span>
+                 <span v-if="setGenesOverlapFlag && setSpecificityScoreFlag && filterTermsIntersectText.length && filterSpecificityScoreText.length"><strong> AND </strong></span>
+                 <span v-if="setSpecificityScoreFlag"> {{ filterSpecificityScoreText }}</span>
+               </div>
+               </v-alert>
+
+            </div>
           </span>
           <div id="gene-data-table" >
             <v-card-title>

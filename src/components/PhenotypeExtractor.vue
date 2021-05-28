@@ -4722,7 +4722,6 @@ export default {
 
       var newInput = [];
       var brushArea = event.selection;
-      console.log("brushArea", brushArea);
       if(brushArea == null){
         bus.$emit("filterOnSpecificityScore", true)
         bus.$emit("hpoScaledScoreRange", [0, 0])
