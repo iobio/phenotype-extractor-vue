@@ -4,6 +4,21 @@
     <div class="row">
       <div class="col-md-12">
         <v-card>
+          <span v-show="summaryGenes.length && selectedTab=='HPO'">
+            <v-alert
+              v-if="setGenesOverlapFlag || setSpecificityScoreFlag"
+              dense
+              text
+              color="success"
+              style="font-size:12px; word-break:break-word;margin-bottom: -20px;"
+            >
+             <div>
+               <span v-if="setGenesOverlapFlag"> {{ filterTermsIntersectText }} </span>
+               <span v-if="setGenesOverlapFlag && setSpecificityScoreFlag && filterTermsIntersectText.length && filterSpecificityScoreText.length"><strong> AND </strong></span>
+               <span v-if="setSpecificityScoreFlag"> {{ filterSpecificityScoreText }}</span>
+             </div>
+             </v-alert>
+          </span>
           <div id="gene-data-table" >
             <v-card-title>
               <strong>
@@ -525,7 +540,9 @@ export default {
       higher_genesoverlap: 0,
       lower_scaledScore: 0,
       higher_scaledScore: 0,
-      selectedTab: "Input"
+      selectedTab: "Input",
+      filterSpecificityScoreText: "",
+      filterTermsIntersectText: "",
     }
   },
 
@@ -800,6 +817,15 @@ export default {
       
       this.lower_scaledScore = lower;
       this.higher_scaledScore = higher;
+      
+      if (lower == higher) {
+        if (lower == 0) {
+          this.filterSpecificityScoreText = "";
+        }
+      }
+      else {
+        this.filterSpecificityScoreText = ` Genes with a specificity score => ${lower} and <= ${higher}.`;
+      }
 
       this.selected = [];
       this.summaryGenes.map(gene => {
@@ -838,6 +864,18 @@ export default {
       this.higher_genesoverlap = higher;
 
       this.selected = [];
+      
+      if (lower == higher) {
+        if (lower == undefined) {
+          this.filterTermsIntersectText = "";
+        }
+        else {
+          this.filterTermsIntersectText = `Genes associated with ${lower} HPO terms `;
+        }
+      }
+      else {
+        this.filterTermsIntersectText = `Genes associated with => ${lower} and <= ${higher} HPO terms `;
+      }
       
       if(this.setSpecificityScoreFlag){
         this.summaryGenes.map(gene => {

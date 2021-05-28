@@ -3380,6 +3380,9 @@ export default {
     },
 
     selectReviewTerms(){
+      bus.$emit("filterOnSpecificityScore", false);
+      bus.$emit("filterOnGenesOverlap", false);
+
       if(!this.GtrTermsAdded_temp.length && !this.phenolyzerTermsAdded_temp.length && !this.hpoTermsAdded_temp.length){
         this.termsReviewDialog = false;
         this.termsReviewDialogPage = 0;
@@ -4711,7 +4714,7 @@ export default {
             [margin.left, margin.top],
             [width - margin.right, height - margin.bottom],
           ]) // initialise the brush area: start at 0,0 and finishes at width,height: it means I select the whole graph area
-          .on("brush", this.brsuhHistogram)
+          .on("start end", this.brsuhHistogram)
       );
     },
     brsuhHistogram(event) {
@@ -4719,10 +4722,16 @@ export default {
 
       var newInput = [];
       var brushArea = event.selection;
-
-      var [x0, x1] = event.selection.map(this.x.invert);
-      bus.$emit("filterOnSpecificityScore", true)
-      bus.$emit("hpoScaledScoreRange", [x0.toFixed(4), x1.toFixed(4)])
+      console.log("brushArea", brushArea);
+      if(brushArea == null){
+        bus.$emit("filterOnSpecificityScore", true)
+        bus.$emit("hpoScaledScoreRange", [0, 0])
+      }
+      else {
+        var [x0, x1] = event.selection.map(this.x.invert);
+        bus.$emit("filterOnSpecificityScore", true)
+        bus.$emit("hpoScaledScoreRange", [x0.toFixed(4), x1.toFixed(4)])
+      }
     },
 
   }
