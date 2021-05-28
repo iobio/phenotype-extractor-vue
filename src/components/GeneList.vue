@@ -824,6 +824,7 @@ export default {
       if (lower == higher) {
         if (lower == 0) {
           this.filterSpecificityScoreText = "";
+          this.setSpecificityScoreFlag = false;
         }
       }
       else {
@@ -871,6 +872,7 @@ export default {
       if (lower == higher) {
         if (lower == undefined) {
           this.filterTermsIntersectText = "";
+          this.setGenesOverlapFlag = false;
         }
         else {
           this.filterTermsIntersectText = `Genes associated with ${lower} HPO terms `;
