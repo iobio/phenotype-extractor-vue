@@ -4615,16 +4615,16 @@ export default {
       drawHistogram() {
         d3.select(".hpo-histogram").select("svg").remove();
 
-      var margin = { top: 20, right: 20, bottom: 30, left: 40 };
-      var height = 250;
-      var width = 250;
+      var margin = { top: 20, right: 20, bottom: 100, left: 40 };
+      var height = 300;
+      var width = 400;
 
       var color = "rgb(37 157 241)";
       const svg = d3
         .select(".hpo-histogram")
         .append("svg")
-        .attr("width", 250)
-        .attr("height", 250);
+        .attr("width", 400)
+        .attr("height", 300);
 
       var data = this.scaledHpoScores;
 
