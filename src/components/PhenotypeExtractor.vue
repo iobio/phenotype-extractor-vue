@@ -4615,7 +4615,7 @@ export default {
       drawHistogram() {
         d3.select(".hpo-histogram").select("svg").remove();
 
-      var margin = { top: 20, right: 20, bottom: 100, left: 40 };
+      var margin = { top: 20, right: 20, bottom: 100, left: 60 };
       var height = 300;
       var width = 400;
 
@@ -4651,17 +4651,19 @@ export default {
             g
               .append("text")
               .attr("x", width/2)
-              .attr("y", 25)
+              .attr("y", 33)
               .attr("fill", "currentColor")
-              .attr("font-weight", "bold")
               .attr("text-anchor", "end")
+              .attr("font-weight", "500")
+              .attr("font-size", "13px")
+              .attr("font-family", "Roboto, sans-serif")
               .text("score")
           );
 
       var yAxis = (g) =>
         g
           .attr("transform", `translate(${margin.left},0)`)
-          .call(d3.axisLeft(y).ticks(height / 40))
+          .call(d3.axisLeft(y).ticks(4))
           .call((g) => g.select(".domain").remove())
           .call((g) =>
             g.selectAll("line").attr("stroke-width", 0.3).attr("stroke", "#606060")
@@ -4672,9 +4674,12 @@ export default {
               .select(".tick:last-of-type text")
               .clone()
               .attr("x", 105)
-              .attr("y", 35)
+              .attr("y", 42)
               .attr("text-anchor", "start")
-              .attr("font-weight", "bold")
+              .attr("text-anchor", "end")
+              .attr("font-weight", "500")
+              .attr("font-size", "13px")
+              .attr("font-family", "Roboto, sans-serif")
               .text("Genes")
               .attr("transform", "rotate(90)")
           );
@@ -4687,7 +4692,6 @@ export default {
       var y = d3
         .scaleLinear()
         .domain([0, d3.max(bins, (d) => d.length)])
-        .nice()
         .range([height - margin.bottom, margin.top]);
 
       svg
@@ -4755,20 +4759,20 @@ function drawHpoGenesBarChart(menu) {
     .attr("height", 300);
 
   // create margins & dimensions
-  const margin = { top: 20, right: 20, bottom: 100, left: 100 };
-  const graphWidth = 300 - margin.left - margin.right;
-  const graphHeight = 300 - margin.top - margin.bottom;
+  const margin = { top: 20, right: 20, bottom: 100, left: 60 };
+  const graphHeight = 400 - margin.left - margin.right;
+  const graphWidth = 300 - margin.top - margin.bottom;
 
   const graph = svg
     .append("g")
-    .attr("width", graphWidth)
-    .attr("height", graphHeight)
+    .attr("width", graphHeight)
+    .attr("height", graphWidth)
     .attr("transform", `translate(${margin.left}, ${margin.top})`);
 
-  // create axes groups
-  const xAxisGroup = graph
-    .append("g")
-    .attr("transform", `translate(0, ${graphHeight})`);
+    // create axes groups
+    const xAxisGroup = graph
+      .append("g")
+      .attr("transform", `translate(0, ${graphWidth})`);
 
   const yAxisGroup = graph.append("g");
 
@@ -4843,7 +4847,7 @@ function drawHpoGenesBarChart(menu) {
   // console.log(this.x.invert(150));
 
   // create & call axesit
-  const xAxis = d3.axisBottom(x).ticks(3);
+  const xAxis = d3.axisBottom(x).ticks(4);
   const yAxis = d3
     .axisLeft(y)
     .ticks(3);
@@ -4858,12 +4862,15 @@ function drawHpoGenesBarChart(menu) {
     .call((g) => g.selectAll("text").attr("fill", "#606060"))
     .call((g) => {
       g.append("text")
-        .attr("x", margin.right + 70)
-        .attr("y", 30)
-        .attr("fill", "currentColor")
-        .attr("font-weight", "bold")
-        .attr("text-anchor", "end")
-        .text("Genes");
+      .attr("x", margin.right + 140)
+      .attr("y", 35)
+      .attr("fill", "currentColor")
+      .attr("font-weight", "bold")
+      .attr("text-anchor", "end")
+      .attr("font-weight", "500")
+      .attr("font-size", "13px")
+      .attr("font-family", "Roboto, sans-serif")
+      .text("Genes");
     });
   
   
@@ -4871,16 +4878,19 @@ function drawHpoGenesBarChart(menu) {
     .call((g) =>
       g.selectAll("line").attr("stroke-width", 0.3).attr("stroke", "#606060")
     )
+    .call((g) => g.select(".domain").remove())
     .call((g) => g.selectAll("text").attr("fill", "#606060"))
     .call((g) => {
       g.append("text")
-        .attr("x", margin.right + 110)
-        .attr("y", 35)
-        .attr("fill", "currentColor")
-        .attr("font-weight", "bold")
-        .attr("text-anchor", "end")
-        .attr("transform", "rotate(90)")
-        .text("Search terms");
+      .attr("x", margin.right + 120)
+      .attr("y", 35)
+      .attr("fill", "currentColor")
+      .attr("font-weight", "500")
+      .attr("font-size", "13px")
+      .attr("font-family", "Roboto, sans-serif")
+      .attr("text-anchor", "end")
+      .attr("transform", "rotate(90)")
+      .text("Search terms");
     })
     .call((g) =>
       g.selectAll(".domain").attr("stroke-width", 0.3).attr("stroke", "#606060")
@@ -4896,7 +4906,7 @@ function drawHpoGenesBarChart(menu) {
       .brushY() // Add the brush feature using the d3.brush function
       .extent([
         [0, 0],
-        [graphWidth, graphHeight],
+        [graphHeight, graphWidth],
       ]) // initialise the brush area: start at 0,0 and finishes at width,height: it means I select the whole graph area
       .on("start end", brushing)
   );
