@@ -1520,7 +1520,12 @@
 
                       </div>
                       <div v-if="Gtr_searchTermsObj.length<1">
-                        <p style="margin-left: 20px;"><v-icon>error_outline</v-icon> No terms were selected</p>
+                        <p style="margin-left: 20px;">
+                          <img style="margin-left: -25px" width="300" height="150px" src="../assets/missing_terms.svg" alt="" />
+                          <p  style="margin-left: 30px;">
+                            <v-icon>error_outline</v-icon> No terms were selected
+                          </p>
+                        </p>
                       </div>
                     </div>
                     <!-- End GTR search status -->
@@ -1599,7 +1604,12 @@
 
                       </div>
                       <div v-if="Phenolyzer_searchTermsObj.length<1">
-                        <p style="margin-left: 20px;"><v-icon>error_outline</v-icon> No terms were selected</p>
+                        <p style="margin-left: 20px;">
+                          <img style="margin-left: -25px" width="300" height="150px" src="../assets/missing_terms.svg" alt="" />
+                          <p  style="margin-left: 30px;">
+                            <v-icon>error_outline</v-icon> No terms were selected
+                          </p>
+                        </p>
                       </div>
                     </div>
                     <!-- End Phenolyzer search status -->
@@ -1651,7 +1661,12 @@
                         </div>
                       </div>
                       <div v-if="Hpo_searchTermsObj.length<1">
-                        <p style="margin-left: 20px;"><v-icon>error_outline</v-icon> No terms were selected</p>
+                        <p style="margin-left: 20px;">
+                          <img style="margin-left: -25px" width="300" height="150px" src="../assets/missing_terms.svg" alt="" />
+                          <p  style="margin-left: 30px;">
+                            <v-icon>error_outline</v-icon> No terms were selected
+                          </p>
+                        </p>
                       </div>
                     </div>
                     <!-- End HPO search status -->
