@@ -128,7 +128,7 @@
                       </div>
                     </div>
                     <div v-else>
-                      <img width="475px" height="155px" src="../assets/missing_note_2.svg" alt="" />
+                      <img width="475px" height="155px" :src="MissingNoteIcon" alt="" />
                       <center class="mt-2 ml-5"> No clinical note added</center>
                     </div>
                   </div>
@@ -299,7 +299,7 @@
                     </div>
                     <div v-if="Gtr_searchTermsObj.length<1">
                       <span v-if="!showSearchTermsLoader">
-                        <img width="300" height="150px" src="../assets/missing_terms.svg" alt="" />
+                        <img width="300" height="150px" :src="require('../assets/missing_terms.svg')" alt="" />
                         <p>Not Selected...</p>
                       </span>
                     </div>
@@ -414,7 +414,8 @@
                     </div>
                     <div v-if="Phenolyzer_searchTermsObj.length<1">
                       <span v-if="!showSearchTermsLoader">
-                        <img width="300" height="150px" src="../assets/missing_terms.svg" alt="" />
+                        <MissingTermsIcon />
+                        <!-- <img width="300" height="150px" src="../assets/missing_terms.svg" alt="" /> -->
                         <p>Not Selected...</p>
                       </span>
                     </div>
@@ -1825,7 +1826,8 @@ import TermsModalHeading from '../partials/TermsModalHeading.vue'
 var model = new Model();
 import * as d3 from "d3";
 
-
+import MissingNoteIcon from '../assets/missing_note_2.svg';
+import MissingTermsIcon from '../partials/MissingTermsIcon.vue'
 
 export default {
   name: 'PhenotypeExtractor',
@@ -1836,7 +1838,8 @@ export default {
     HpoSearch,
     SkeletonLoadersSearchTerms,
     VennDiagram,
-    TermsModalHeading
+    TermsModalHeading,
+    MissingTermsIcon,
   },
   props: {
     phenotypes: {
@@ -2048,6 +2051,7 @@ export default {
     hpoSelectSwitch: true,
     scaledHpoScores: [],
     x: null,
+    MissingNoteIcon: MissingNoteIcon
   }),
   watch: {
     gtrSelectSwitch(){
