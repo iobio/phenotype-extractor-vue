@@ -128,7 +128,7 @@
                       </div>
                     </div>
                     <div v-else>
-                      <img width="475px" height="155px" :src="MissingNoteIcon" alt="" />
+                      <MissingNoteIcon />
                       <center class="mt-2 ml-5"> No clinical note added</center>
                     </div>
                   </div>
@@ -173,7 +173,9 @@
                       </div>
                     </div>
                     <div v-show="!Hpo_searchTermsObj.length" style="margin-top:30px">
-                      <img width="475px" height="155px" src="../assets/missing_note_viz.svg" alt="" />
+                      <div v-if="tab_idx === 1">
+                        <MissingNoteVizIcon />
+                      </div>
                       <center class="mt-2 ml-5"> No HPO terrms added</center>
                     </div>
                   </div>
@@ -218,7 +220,7 @@
                       </div>
                     </div>
                     <div v-show="!Hpo_searchTermsObj.length" style="margin-top:30px">
-                      <img width="475px" height="155px" src="../assets/missing_note_viz.svg" alt="" />
+                      <MissingNoteVizIcon/>
                       <center class="mt-2 ml-5"> No HPO terrms added</center>
                     </div>
                   </div>
@@ -299,8 +301,9 @@
                     </div>
                     <div v-if="Gtr_searchTermsObj.length<1">
                       <span v-if="!showSearchTermsLoader">
-                        <img width="300" height="150px" :src="require('../assets/missing_terms.svg')" alt="" />
-                        <p>Not Selected...</p>
+                        <MissingTermsIcon tab="0">
+                        </MissingTermsIcon>
+                        <p style="text-align: center;"><center>Not Selected...</center></p>
                       </span>
                     </div>
                   </div>
@@ -414,9 +417,9 @@
                     </div>
                     <div v-if="Phenolyzer_searchTermsObj.length<1">
                       <span v-if="!showSearchTermsLoader">
-                        <MissingTermsIcon />
-                        <!-- <img width="300" height="150px" src="../assets/missing_terms.svg" alt="" /> -->
-                        <p>Not Selected...</p>
+                        <MissingTermsIcon tab="0">
+                        </MissingTermsIcon>
+                        <p style="text-align: center;"><center>Not Selected...</center></p>
                       </span>
                     </div>
 
@@ -497,8 +500,9 @@
                     </div>
                     <div v-if="Hpo_searchTermsObj.length<1">
                       <span v-if="!showSearchTermsLoader">
-                        <img width="300" height="150px" src="../assets/missing_terms.svg" alt="" />
-                        <p>Not Selected...</p>
+                        <MissingTermsIcon :tab="tab_idx">
+                        </MissingTermsIcon>
+                        <p style="text-align: center;"><center>Not Selected...</center></p>
                       </span>
                     </div>
 
@@ -1522,7 +1526,10 @@
                       </div>
                       <div v-if="Gtr_searchTermsObj.length<1">
                         <p style="margin-left: 20px;">
-                          <img style="margin-left: -25px" width="300" height="150px" src="../assets/missing_terms.svg" alt="" />
+                          <div style="margin-left: -25px">
+                            <MissingTermsIcon :tab="tab_idx">
+                            </MissingTermsIcon>
+                          </div>
                           <p  style="margin-left: 30px;">
                             <v-icon>error_outline</v-icon> No terms were selected
                           </p>
@@ -1606,7 +1613,10 @@
                       </div>
                       <div v-if="Phenolyzer_searchTermsObj.length<1">
                         <p style="margin-left: 20px;">
-                          <img style="margin-left: -25px" width="300" height="150px" src="../assets/missing_terms.svg" alt="" />
+                          <div style="margin-left: -25px">
+                            <MissingTermsIcon :tab="tab_idx">
+                            </MissingTermsIcon>
+                          </div>
                           <p  style="margin-left: 30px;">
                             <v-icon>error_outline</v-icon> No terms were selected
                           </p>
@@ -1663,7 +1673,10 @@
                       </div>
                       <div v-if="Hpo_searchTermsObj.length<1">
                         <p style="margin-left: 20px;">
-                          <img style="margin-left: -25px" width="300" height="150px" src="../assets/missing_terms.svg" alt="" />
+                          <div style="margin-left: -25px">
+                            <MissingTermsIcon tab="0">
+                            </MissingTermsIcon>
+                          </div>
                           <p  style="margin-left: 30px;">
                             <v-icon>error_outline</v-icon> No terms were selected
                           </p>
@@ -1826,8 +1839,9 @@ import TermsModalHeading from '../partials/TermsModalHeading.vue'
 var model = new Model();
 import * as d3 from "d3";
 
-import MissingNoteIcon from '../assets/missing_note_2.svg';
+import MissingNoteIcon from '../partials/MissingNoteIcon.vue';
 import MissingTermsIcon from '../partials/MissingTermsIcon.vue'
+import MissingNoteVizIcon from '../partials/MissingNoteVizIcon.vue'
 
 export default {
   name: 'PhenotypeExtractor',
@@ -1840,6 +1854,8 @@ export default {
     VennDiagram,
     TermsModalHeading,
     MissingTermsIcon,
+    MissingNoteIcon,
+    MissingNoteVizIcon,
   },
   props: {
     phenotypes: {
@@ -2051,7 +2067,6 @@ export default {
     hpoSelectSwitch: true,
     scaledHpoScores: [],
     x: null,
-    MissingNoteIcon: MissingNoteIcon
   }),
   watch: {
     gtrSelectSwitch(){

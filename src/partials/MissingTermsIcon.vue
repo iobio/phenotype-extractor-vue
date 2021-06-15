@@ -1,10 +1,10 @@
 <template>
   <div>
-    <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="300" height="150" viewBox="0 0 539 426">
+    <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="300" height="140" viewBox="0 0 539 426">
       <defs>
         <linearGradient id="linear-gradient" x1="0.596" y1="1" x2="1" y2="1" gradientUnits="objectBoundingBox">
-          <stop offset="0" stop-color="#e6e6e6"/>
-          <stop offset="1" stop-color="#d5d5d5"/>
+          <stop offset="0" style="stop-color:#e6e6e6; stop-opacity:1"/>
+          <stop offset="1" style="stop-color:#d5d5d5; stop-opacity:1"/>
         </linearGradient>
         <filter id="Rectangle_1" x="7" y="0" width="351" height="385" filterUnits="userSpaceOnUse">
           <feOffset dy="3" input="SourceAlpha"/>
@@ -18,7 +18,7 @@
         <g id="Group_2" data-name="Group 2" transform="translate(369.165 -20.318) rotate(14)">
           <rect id="Rectangle_1-2" data-name="Rectangle 1" width="269.018" height="325" transform="translate(223 507)" fill="#efefef"/>
           <rect id="Rectangle_2" data-name="Rectangle 2" width="225.018" height="277" transform="translate(245 531)" fill="#fff"/>
-          <rect id="Rectangle_6" data-name="Rectangle 6" width="175" height="39" transform="translate(241.081 573.375)" fill="url(#linear-gradient)"/>
+          <rect id="Rectangle_6" data-name="Rectangle 6" width="175" height="39" transform="translate(241.081 573.375)" :fill="tab == 0? 'url(#linear-gradient)' : '#e1e1e1'"/>
           <rect id="Rectangle_7" data-name="Rectangle 7" width="109" height="35" transform="translate(254.91 632.835)" fill="#f2f2f2"/>
         </g>
         <g id="Group_1" data-name="Group 1">
@@ -26,7 +26,7 @@
             <rect id="Rectangle_1-3" data-name="Rectangle 1" width="291" height="325" transform="translate(37 27)" fill="#efefef"/>
           </g>
           <rect id="Rectangle_2-2" data-name="Rectangle 2" width="247" height="277" transform="translate(245 531)" fill="#fff"/>
-          <rect id="Rectangle_6-2" data-name="Rectangle 6" width="177" height="36" transform="translate(268 578)" fill="url(#linear-gradient)"/>
+          <rect id="Rectangle_6-2" data-name="Rectangle 6" width="177" height="36" transform="translate(268 578)" :fill="tab == 0? 'url(#linear-gradient)' : '#e1e1e1'"/>
           <rect id="Rectangle_7-2" data-name="Rectangle 7" width="109" height="35" transform="translate(274 630)" fill="#f2f2f2"/>
           <rect id="Rectangle_8" data-name="Rectangle 8" width="156" height="22" transform="translate(268 760)" fill="#e1e1e1"/>
         </g>
@@ -70,6 +70,7 @@
   export default {
     name: 'MissingTermsIcon',
     props: {
+      tab: 0, 
     },
     data (){
       return {
