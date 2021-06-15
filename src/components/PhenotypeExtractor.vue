@@ -128,9 +128,8 @@
                       </div>
                     </div>
                     <div v-else>
-                      <blockquote class="blockquote i-text--left" style="font-size: 14px;">
-                        No clinical is note added.
-                      </blockquote>
+                      <img width="475px" height="155px" src="../assets/missing_note_2.svg" alt="" />
+                      <center class="mt-2 ml-5"> No clinical note added</center>
                     </div>
                   </div>
                 </v-card-text>
@@ -174,9 +173,8 @@
                       </div>
                     </div>
                     <div v-show="!Hpo_searchTermsObj.length" style="margin-top:30px">
-                      <blockquote class="blockquote i-text--left" style="font-size: 14px;">
-                        No HPO terrms added.
-                      </blockquote>
+                      <img width="475px" height="155px" src="../assets/missing_note_viz.svg" alt="" />
+                      <center class="mt-2 ml-5"> No HPO terrms added</center>
                     </div>
                   </div>
                 </v-card-text>
@@ -220,9 +218,8 @@
                       </div>
                     </div>
                     <div v-show="!Hpo_searchTermsObj.length" style="margin-top:30px">
-                      <blockquote class="blockquote i-text--left" style="font-size: 14px;">
-                        No HPO terrms added.
-                      </blockquote>
+                      <img width="475px" height="155px" src="../assets/missing_note_viz.svg" alt="" />
+                      <center class="mt-2 ml-5"> No HPO terrms added</center>
                     </div>
                   </div>
                 </v-card-text>
@@ -301,7 +298,10 @@
 
                     </div>
                     <div v-if="Gtr_searchTermsObj.length<1">
-                      <span v-if="!showSearchTermsLoader"><i>Not Selected...</i></span>
+                      <span v-if="!showSearchTermsLoader">
+                        <img width="300" height="150px" src="../assets/missing_terms.svg" alt="" />
+                        <p>Not Selected...</p>
+                      </span>
                     </div>
                   </div>
                 </v-card-text>
@@ -413,7 +413,10 @@
 
                     </div>
                     <div v-if="Phenolyzer_searchTermsObj.length<1">
-                      <span v-if="!showSearchTermsLoader"><i>Not Selected...</i></span>
+                      <span v-if="!showSearchTermsLoader">
+                        <img width="300" height="150px" src="../assets/missing_terms.svg" alt="" />
+                        <p>Not Selected...</p>
+                      </span>
                     </div>
 
                   </div>
@@ -492,7 +495,10 @@
                       </div>
                     </div>
                     <div v-if="Hpo_searchTermsObj.length<1">
-                      <span v-if="!showSearchTermsLoader"><i>Not Selected...</i></span>
+                      <span v-if="!showSearchTermsLoader">
+                        <img width="300" height="150px" src="../assets/missing_terms.svg" alt="" />
+                        <p>Not Selected...</p>
+                      </span>
                     </div>
 
                   </div>
