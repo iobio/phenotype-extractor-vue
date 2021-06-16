@@ -5071,7 +5071,7 @@ function brushing(event) {
 
   .search_status_tbody
     display: block
-    max-height: 170px
+    max-height: 252px
     overflow-y: scroll
 
   .i-text--left
