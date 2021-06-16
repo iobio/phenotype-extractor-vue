@@ -556,6 +556,7 @@ export default {
       selectedTab: "Input",
       filterSpecificityScoreText: "",
       filterTermsIntersectText: "",
+      stateSummaryGenes: [],
     }
   },
 
@@ -621,6 +622,7 @@ export default {
           else if (!this.setSpecificityScoreFlag) {
             this.selected = [];
             this.genesTop = this.selected.length;
+            this.organizeListBasedOnFilters();
             this.$emit("update_genes_top", this.genesTop);
             this.$emit("add_to_gene_set", this.selected)
           }
@@ -652,6 +654,7 @@ export default {
           else if (!this.setGenesOverlapFlag) {
             this.selected = [];
             this.genesTop = this.selected.length;
+            this.organizeListBasedOnFilters();
             this.$emit("update_genes_top", this.genesTop);
             this.$emit("add_to_gene_set", this.selected)
           }
@@ -846,6 +849,8 @@ export default {
             this.$set(this.summaryGenes[idx], 'inGeneSet', false);
           }
         })
+        
+        this.stateSummaryGenes = [...this.summaryGenes]; 
 
         // if(this.summaryGenes.length < 20){
         //   this.genesTop = this.summaryGenes.length;
@@ -909,7 +914,8 @@ export default {
       this.$emit("update_genes_top", this.genesTop);
       
       this.$emit("add_to_gene_set", this.selected)
-
+      
+      this.organizeListBasedOnFilters();
     },
     
     selectGenesForHpoTermsCount(){      
@@ -971,9 +977,34 @@ export default {
       this.genesTop = this.selected.length;
       this.$emit("update_genes_top", this.genesTop);
       
-      this.$emit("add_to_gene_set", this.selected)
-
+      this.$emit("add_to_gene_set", this.selected); 
+      
+      this.organizeListBasedOnFilters();
     },
+    
+    organizeListBasedOnFilters(){
+      console.log("selected", this.selected);
+      var selectedArr = []; 
+      var notSelected = []; 
+            
+      this.stateSummaryGenes.map(gene => {
+        if(this.selected.includes(gene.name)){
+          selectedArr.push(gene); 
+        }
+        else {
+          notSelected.push(gene); 
+        }
+      })
+      
+      var temp = [...selectedArr, ...notSelected]; 
+      this.summaryGenes = temp; 
+      
+      if(!this.selected.length){
+        this.summaryGenes.map(gene => {
+          gene.inGeneSet = false;
+        })
+      }
+    }, 
 
     mouseOverGeneName(gene){
       this.hoveredGeneName = gene;
