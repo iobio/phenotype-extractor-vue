@@ -1,0 +1,103 @@
+<template>
+  <div>
+    <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" style="width:320px; height:300px" viewBox="0 0 576 457">
+      <defs>
+        <filter id="Rectangle_22" x="113" y="0" width="317" height="343" filterUnits="userSpaceOnUse">
+          <feOffset dy="3" input="SourceAlpha"/>
+          <feGaussianBlur stdDeviation="5" result="blur"/>
+          <feFlood flood-opacity="0.161"/>
+          <feComposite operator="in" in2="blur"/>
+          <feComposite in="SourceGraphic"/>
+        </filter>
+        <filter id="Rectangle_23" x="73.5" y="24.5" width="316" height="110" filterUnits="userSpaceOnUse">
+          <feOffset dy="5" input="SourceAlpha"/>
+          <feGaussianBlur stdDeviation="7.5" result="blur-2"/>
+          <feFlood flood-opacity="0.161"/>
+          <feComposite operator="in" in2="blur-2"/>
+          <feComposite in="SourceGraphic"/>
+        </filter>
+        <linearGradient id="linear-gradient" x1="0.53" y1="1" x2="0.895" y2="1" gradientUnits="objectBoundingBox">
+          <stop offset="0" stop-color="#e6e6e6"/>
+          <stop offset="1" stop-color="#bfbfbf"/>
+        </linearGradient>
+        <filter id="Rectangle_23-2" x="164.5" y="118.5" width="316" height="110" filterUnits="userSpaceOnUse">
+          <feOffset dy="5" input="SourceAlpha"/>
+          <feGaussianBlur stdDeviation="7.5" result="blur-3"/>
+          <feFlood flood-opacity="0.161"/>
+          <feComposite operator="in" in2="blur-3"/>
+          <feComposite in="SourceGraphic"/>
+        </filter>
+        <filter id="Rectangle_23-3" x="88.5" y="212.5" width="316" height="110" filterUnits="userSpaceOnUse">
+          <feOffset dy="5" input="SourceAlpha"/>
+          <feGaussianBlur stdDeviation="7.5" result="blur-4"/>
+          <feFlood flood-opacity="0.161"/>
+          <feComposite operator="in" in2="blur-4"/>
+          <feComposite in="SourceGraphic"/>
+        </filter>
+      </defs>
+      <g id="Group_14" data-name="Group 14" transform="translate(-852 -218)">
+        <g id="Group_13" data-name="Group 13">
+          <g transform="matrix(1, 0, 0, 1, 852, 218)" filter="url(#Rectangle_22)">
+            <rect id="Rectangle_22-2" data-name="Rectangle 22" width="287" height="313" rx="35" transform="translate(128 12)" fill="#f8fbff"/>
+          </g>
+          <g id="Group_9" data-name="Group 9" transform="translate(75 -317)">
+            <g id="Group_8" data-name="Group 8" transform="translate(-9 -52)">
+              <g transform="matrix(1, 0, 0, 1, 786, 587)" filter="url(#Rectangle_23)">
+                <rect id="Rectangle_23-4" data-name="Rectangle 23" width="271" height="65" rx="15" transform="translate(96 42)" fill="#fff"/>
+              </g>
+              <rect id="Rectangle_3" data-name="Rectangle 3" width="131" height="12" rx="6" transform="translate(954.2 645.305)" fill="url(#linear-gradient)"/>
+              <rect id="Rectangle_18" data-name="Rectangle 18" width="168" height="13" rx="6.5" transform="translate(954 663)" fill="#f2f2f2"/>
+              <g id="library_add_check_black_24dp" transform="translate(909 642)">
+                <path id="Path_14" data-name="Path 14" d="M0,0H35V35H0Z" fill="none"/>
+                <path id="Path_15" data-name="Path 15" d="M29.9,2H11.3A3.109,3.109,0,0,0,8.2,5.1V23.7a3.109,3.109,0,0,0,3.1,3.1H29.9A3.109,3.109,0,0,0,33,23.7V5.1A3.109,3.109,0,0,0,29.9,2ZM18.228,20.6,12.85,15.175l2.17-2.186,3.208,3.224L26.18,8.2l2.17,2.185L18.229,20.6ZM5.1,8.2H2V29.9A3.109,3.109,0,0,0,5.1,33H26.8V29.9H5.1Z" transform="translate(0 0)" fill="#6698e9"/>
+              </g>
+            </g>
+          </g>
+          <g id="Group_10" data-name="Group 10" transform="translate(166 -223)">
+            <g id="Group_8-2" data-name="Group 8" transform="translate(-9 -52)">
+              <g transform="matrix(1, 0, 0, 1, 695, 493)" filter="url(#Rectangle_23-2)">
+                <rect id="Rectangle_23-5" data-name="Rectangle 23" width="271" height="65" rx="15" transform="translate(187 136)" fill="#fff"/>
+              </g>
+              <rect id="Rectangle_3-2" data-name="Rectangle 3" width="131" height="12" rx="6" transform="translate(954.2 645.305)" fill="url(#linear-gradient)"/>
+              <rect id="Rectangle_18-2" data-name="Rectangle 18" width="168" height="13" rx="6.5" transform="translate(954 663)" fill="#f2f2f2"/>
+              <g id="library_add_check_black_24dp-2" data-name="library_add_check_black_24dp" transform="translate(909 642)">
+                <path id="Path_14-2" data-name="Path 14" d="M0,0H35V35H0Z" fill="none"/>
+                <path id="Path_15-2" data-name="Path 15" d="M29.9,2H11.3A3.109,3.109,0,0,0,8.2,5.1V23.7a3.109,3.109,0,0,0,3.1,3.1H29.9A3.109,3.109,0,0,0,33,23.7V5.1A3.109,3.109,0,0,0,29.9,2ZM18.228,20.6,12.85,15.175l2.17-2.186,3.208,3.224L26.18,8.2l2.17,2.185L18.229,20.6ZM5.1,8.2H2V29.9A3.109,3.109,0,0,0,5.1,33H26.8V29.9H5.1Z" transform="translate(0 0)" fill="#6698e9"/>
+              </g>
+            </g>
+          </g>
+          <g id="Group_11" data-name="Group 11" transform="translate(90 -129)">
+            <g id="Group_8-3" data-name="Group 8" transform="translate(-9 -52)">
+              <g transform="matrix(1, 0, 0, 1, 771, 399)" filter="url(#Rectangle_23-3)">
+                <rect id="Rectangle_23-6" data-name="Rectangle 23" width="271" height="65" rx="15" transform="translate(111 230)" fill="#fff"/>
+              </g>
+              <rect id="Rectangle_3-3" data-name="Rectangle 3" width="131" height="12" rx="6" transform="translate(954.2 645.305)" fill="url(#linear-gradient)"/>
+              <rect id="Rectangle_18-3" data-name="Rectangle 18" width="168" height="13" rx="6.5" transform="translate(954 663)" fill="#f2f2f2"/>
+              <g id="library_add_check_black_24dp-3" data-name="library_add_check_black_24dp" transform="translate(909 642)">
+                <path id="Path_14-3" data-name="Path 14" d="M0,0H35V35H0Z" fill="none"/>
+                <path id="Path_15-3" data-name="Path 15" d="M29.9,2H11.3A3.109,3.109,0,0,0,8.2,5.1V23.7a3.109,3.109,0,0,0,3.1,3.1H29.9A3.109,3.109,0,0,0,33,23.7V5.1A3.109,3.109,0,0,0,29.9,2ZM18.228,20.6,12.85,15.175l2.17-2.186,3.208,3.224L26.18,8.2l2.17,2.185L18.229,20.6ZM5.1,8.2H2V29.9A3.109,3.109,0,0,0,5.1,33H26.8V29.9H5.1Z" transform="translate(0 0)" fill="#6698e9"/>
+              </g>
+            </g>
+          </g>
+        </g>
+        <g id="Group_12" data-name="Group 12" transform="translate(498 -30)">
+          <circle id="Ellipse_20" data-name="Ellipse 20" cx="28" cy="28" r="28" transform="translate(728.887 537.882)" fill="#6698e9"/>
+          <path id="Path_27" data-name="Path 27" d="M349.838,369.653h-9.469v-10.1a3.558,3.558,0,1,0-7.1,0v10.1H323.8a3.8,3.8,0,0,0,0,7.573h9.469v10.1a3.556,3.556,0,1,0,7.1,0v-10.1h9.469a3.8,3.8,0,0,0,0-7.573Z" transform="translate(420.29 193.474)" fill="#fff"/>
+        </g>
+        <text id="No_gene_list_available_" data-name="No gene list available " transform="translate(965 628)" fill="#707070" font-size="30" font-family="Poppins-Medium, Poppins" font-weight="500"><tspan x="0" y="0">No gene list available </tspan></text>
+      </g>
+    </svg>  
+  </div>
+</template>
+
+<script>
+  export default {
+    name: 'MissingGeneListIcon',
+    props: {
+    },
+    data (){
+      return {
+      }
+    }
+  }
+</script>

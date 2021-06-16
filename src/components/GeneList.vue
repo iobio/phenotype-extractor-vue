@@ -173,6 +173,13 @@
                 itemsPerPageOptions:[20, 50, 100, -1]
               }"
             >
+            
+            <template v-slot:no-data>
+              <div class="table-no-data pt-2">
+                <MissingGeneListIcon />
+              </div>
+            </template>
+
             <template v-slot:item.idx="{ item }">
               <span style="margin-left: 15px" @mouseover="mouseOverGeneName(item.name)" @mouseleave="mouseLeaveGeneName">
                 {{ item.idx + 1 }}
@@ -428,12 +435,15 @@ import Phenotypes from './Phenotypes.vue';
 import VennDiagram from './VennDiagram.vue'; 
 import GeneCard from './GeneCard.vue'
 
+import MissingGeneListIcon from '../partials/MissingGeneListIcon.vue'; 
+
 export default {
   name: 'GeneList',
   components: {
     Phenotypes,
     VennDiagram, 
-    GeneCard
+    GeneCard,
+    MissingGeneListIcon
   },
   props: {
     summaryGeneList: {
@@ -1153,12 +1163,20 @@ export default {
           return '';
         }
       }
+      else if(resource === 'number') {
+        if(this.summaryGenes !== undefined && this.summaryGenes.length > 0){
+          return 'Number';
+        }
+        else{
+          return '';
+        }
+      }
     },
     organizeTableHeaders() {
       this.headers = [
         // { text: '', align: 'left', value: 'padding_space', sortable: false, width: '1%'},
         { text: '', align: 'left', value: 'inGeneSet', sortable: false, width: '1%'},
-        { text: 'Number', align: 'left', value: 'idx', sortable: false, width: '2%'},
+        { text: this.getColumnName('number'), align: 'left', value: 'idx', sortable: false, width: '2%'},
         { text: this.getColumnName('gene'), align: 'left', value: 'name', sortable: false, width: '1%'},
         { text: '', align: 'left', value: 'associatedGenesBadge', sortable: false, width: this.getColumnWidth('gtr_associated')},
         { text: this.getColumnName('gtr'), value: 'searchTermsGtr', sortable: false, width: this.getColumnWidth('gtr')},
@@ -1204,4 +1222,10 @@ export default {
     padding-bottom: 10px
     padding-top: 10px
     text-align: center  
+    
+  .v-data-table__empty-wrapper 
+    background: white !important
+    
+  .table-no-data
+    background: white !important  
 </style>
