@@ -1462,7 +1462,7 @@
               <!-- <v-divider></v-divider> -->
               <v-card-text>
                 <div class="container">
-                  <v-alert
+                  <!-- <v-alert
                     border="left"
                     type="success"
                     dense
@@ -1472,7 +1472,7 @@
                   <span style="font-size: 12px">
                     Everything is loaded. You can now close this modal.
                   </span>
-                  </v-alert>
+                  </v-alert> -->
                   
                   <div class="row">
                     
@@ -1688,6 +1688,24 @@
                   </div> <!-- End row -->
                 </div><!-- End container -->
               </v-card-text>
+              <v-card-actions>
+                <div class="text-center mt-1" style="width:100%" >
+                  <center v-if="this.fetchCompleteWaitingToCompile">
+                    <v-progress-circular
+                      :width="2"
+                      :size="20"
+                      indeterminate
+                      color="primary"
+                      class="mr-2"
+                    ></v-progress-circular>
+                    Compiling gene list
+                  </center>
+                  <center v-if="this.searchStatusCompleteAlert">
+                    <v-icon class="mr-2" color="green" style="font-weight: bolder">done</v-icon>
+                    Gene list is compiled. You can now close this modal.
+                  </center>
+                </div>
+              </v-card-actions>
               <v-card-actions class="mb-3 ml-5 mr-5 mt-3">
                 <v-spacer></v-spacer>
                 <v-btn :disabled="!searchStatusCompleteAlert" @click="closeSearchStatusDialog"  small color="primary" tile> Close</v-btn>
@@ -2067,6 +2085,7 @@ export default {
     hpoSelectSwitch: true,
     scaledHpoScores: [],
     x: null,
+    fetchCompleteWaitingToCompile: false,
   }),
   watch: {
     gtrSelectSwitch(){
@@ -2678,6 +2697,7 @@ export default {
     reSelectClinicalNote(note, idx){
       this.reReviewClinicalNote = true;
       this.searchStatusCompleteAlert = false;
+      this.fetchCompleteWaitingToCompile = false;
       this.textNotes = note;
       this.note_rereview_idx = idx;
       let note_details = this.clinical_note_text[idx];
@@ -2844,6 +2864,7 @@ export default {
       this.demoTermsFlag = false;
       this.hpoIds = [];
       this.searchStatusCompleteAlert = false;
+      this.fetchCompleteWaitingToCompile = false;
       this.hpoTermsDetected = false;
       this.showWarningOfMissedHpoTerms = false;
       var hpoIds = this.extractHpoIds(this.textNotes);
@@ -3437,7 +3458,7 @@ export default {
 
         this.checkIf_newNote_or_reReview();
 
-        if(!this.GtrTermsAdded_temp.length && !this.phenolyzerTermsAdded_temp.leng && !this.hpoTermsAdded_temp.leng){
+        if(!this.GtrTermsAdded_temp.length && !this.phenolyzerTermsAdded_temp.length && !this.hpoTermsAdded_temp.length){
           this.checkToCloseSearchStatusDialog();
         }
 
@@ -4156,9 +4177,11 @@ export default {
 
     checkToCloseSearchStatusDialog(){
       if(this.gtrFetchCompleted && this.phenolyzerFetchCompleted && this.hpoFetchCompleted){
+        this.fetchCompleteWaitingToCompile = true; 
         this.searchStatusDialogTimeoutCheck = setTimeout(()=>{
           // this.searchStatusDialog = false;
           this.searchStatusCompleteAlert = true;
+          this.fetchCompleteWaitingToCompile = false; 
           setTimeout(() => {
             this.$emit("new_term_searched", false);
           },5000)
@@ -4669,7 +4692,6 @@ export default {
       var data = this.scaledHpoScores;
 
       var bins = d3.bin().thresholds(6)(data);
-      console.log("bins", bins);
 
       var xAxis = (g) =>
         g
