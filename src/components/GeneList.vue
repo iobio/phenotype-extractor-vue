@@ -96,7 +96,7 @@
                 <!-- <div class="col-md-1"></div> -->
 
                 <div class="col-md-4">
-                  <div>
+                  <div v-if="summaryGenes.length">
                     <v-text-field
                       v-model="search"
                       append-icon="search"
