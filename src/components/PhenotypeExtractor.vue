@@ -51,7 +51,7 @@
       v-model="tab_idx"
     >
       <v-tab>
-        <strong>Input</strong>
+        <strong>Summary</strong>
       </v-tab>
       <v-tab>
         <strong>HPO</strong>
@@ -509,7 +509,62 @@
                   </div>
                 </v-card-text>
               </v-card>
-              <!-- end flex hpo terms -->                       
+              <!-- end flex hpo terms -->  
+              
+              
+              <!-- flex-manually-added-genes -->
+              <v-card class="col-flex-terms"  v-show="tab_idx===0">
+                <v-card-title primary-title>
+                  <strong class="terms-heading primary--text" style="font-size: 16px">
+                    Added genes 
+                  </strong>
+                  <v-spacer></v-spacer>
+                  <div style="color:#ababab" v-if="manuallyAddedGenes.length">
+                    <span><h4 style="display:inline"> {{manuallyAddedGenes.length}} </h4> </span> 
+                    <span style="font-size:12px">genes</span>
+                  </div>
+                </v-card-title>
+                <v-card-text class="search_status_tbody">
+                  <div v-if="showSearchTermsLoader">
+                    <v-skeleton-loader
+                      :loading="loading"
+                      :transition="transition"
+                      type="chip"
+                      class="mt-2"
+                    >
+                    </v-skeleton-loader>
+                  </div>
+                  <div v-if="manuallyAddedGenes.length" >
+                    <div class="added_genes_block" >
+                      <div > 
+                        {{ manuallyAddedGenes.join(", ") }}
+                      </div>
+                    </div>
+                    <br>
+                    <v-btn @click="manuallyAddGenesEvent" outlined small color="primary" class="mr-3">
+                      <v-icon class="mr-1">add</v-icon>
+                      Manually Add Genes
+                    </v-btn>                    
+
+                  </div>
+                  <div v-if="!manuallyAddedGenes.length">
+                    <span v-if="!showSearchTermsLoader">
+
+                      <MissingTermsIcon :tab="tab_idx">
+                      </MissingTermsIcon>
+                      <br>
+                      <v-btn @click="manuallyAddGenesEvent" outlined small color="primary" class="mr-3">
+                        <v-icon class="mr-1">add</v-icon>
+                        Manually Add Genes
+                      </v-btn>                    
+                    </span>
+                  </div>
+
+
+                </v-card-text>
+              </v-card>
+              <!-- end manually added genes -->                       
+                     
 
             </div>
           </div>
@@ -4579,6 +4634,10 @@ export default {
         this.$emit("close_search_status_dialog")
       },
       
+      manuallyAddGenesEvent(){
+        bus.$emit("manually-add-genes")
+      },
+      
       setTermsSelectedFromBasicModeForReview(){
         var hpoPhenotypes = [];
         var hpoAddedTerms = [];
@@ -5095,6 +5154,16 @@ function brushing(event) {
     display: block
     max-height: 252px
     overflow-y: scroll
+    
+  .added_genes_block
+    display: block
+    max-height: 150px
+    overflow-y: scroll
+    background: #f7f7f7
+    padding: 10px
+    height: 150px
+    text-align: justify 
+    word-spacing: -2px
 
   .i-text--left
     text-align: left

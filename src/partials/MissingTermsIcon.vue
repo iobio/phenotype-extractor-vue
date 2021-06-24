@@ -1,6 +1,6 @@
 <template>
   <div>
-    <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="300" height="140" viewBox="0 0 539 426">
+    <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="200" height="140" viewBox="0 0 539 426">
       <defs>
         <linearGradient id="linear-gradient" x1="0.596" y1="1" x2="1" y2="1" gradientUnits="objectBoundingBox">
           <stop offset="0" style="stop-color:#e6e6e6; stop-opacity:1"/>

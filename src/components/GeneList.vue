@@ -109,12 +109,12 @@
                 <div class="col-md-1 "></div>
               </div>
               <v-dialog persistent v-model="copyPasteGenes" max-width="500px">
-                <template v-slot:activator="{ on }">
+                <!-- <template v-slot:activator="{ on }">
                   <v-btn color="primary" class="mr-3" :class="{'mt-3' : !summaryGenes.length }" v-on="on">
                     <v-icon class="mr-1">add</v-icon>
                     Manually Add Genes
                   </v-btn>
-                </template>
+                </template> -->
                 <v-card>
                   <v-card-title primary-title>
                   </v-card-title>
@@ -674,6 +674,10 @@ export default {
     
     bus.$on("selected-tab", (tab) => {
       this.selectedTab = tab;
+    })
+    
+    bus.$on("manually-add-genes", () => {
+      this.copyPasteGenes = true;
     })
     
     this.phenotypes = this.phenotypeTerms;

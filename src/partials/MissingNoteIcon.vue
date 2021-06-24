@@ -1,6 +1,6 @@
 <template>
   <div>
-    <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="475" height="155" viewBox="0 0 894 770.54">
+    <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="355" height="155" viewBox="0 0 894 770.54">
       <defs>
         <filter id="Path_10" x="119.399" y="286.798" width="733.839" height="483.742" filterUnits="userSpaceOnUse">
           <feOffset dy="5" input="SourceAlpha"/>
