@@ -704,6 +704,8 @@ export default {
       this.copyPasteGenes = false;
       this.dupGenes= "",
       this.byPassedGenes = "";
+      this.newlyAddedManualGenes = []; 
+      
       var arr = [];
       if(this.genesToApply){
         this.genesToApply = this.genesToApply.trim().replace(/\n/g, " ").replace(/,/g, " ").replace(/\s+/g, " ").replace(/;/g, " ").replace(/\t+/g, " ");
@@ -741,9 +743,24 @@ export default {
       this.$emit("importedGenes", this.genes);
       this.genesToApply = null;
       this.autocompleteGenes = [];
+      
+            
+      var uppercasedArr = arr.map(gene => gene.toUpperCase());
+
+      if(this.genes.length){
+        this.genes.map(x => {
+          if(uppercasedArr.includes(x)) {
+            this.newlyAddedManualGenes.push(x);
+          }
+        })
+      }
+      else {
+        this.newlyAddedManualGenes = this.genes;
+      }
+      
       setTimeout(()=>{
         this.addedGenesFlag = false;
-        console.log("addedGenesFlag false", this.addedGenesFlag);
+        this.newlyAddedManualGenes = []; 
       }, 5000)
     },
 
@@ -816,8 +833,6 @@ export default {
     },
 
     organizeGeneList(){
-      console.log("here");
-      console.log("addedGenesFlag", this.addedGenesFlag);
       var associatedGenes = [];
       var nonAssociatedGenes = [];
 
@@ -873,17 +888,16 @@ export default {
         // }
         // check to call this function only when a new term is searched.
         if(this.newTermSearched){
-          this.selectTopGenes(this.genesTop);
-        }
-        else if(this.addedGenesFlag){
-          // this.selectTopGenes(this.genesTop);
-          // this.selectTopGenesAfterNewAdded(); 
-          if(this.selected.length){
-            this.organizeListBasedOnFilters();
+          if(this.launchedFromGenePanel){
+            this.selectTopGenes(20);
           }
           else {
             this.selectTopGenes(this.genesTop);
           }
+        }
+        else if(this.addedGenesFlag){
+          this.organizeListBasedOnFilters();
+          // this.selectTopGenes(this.genesTop);
         }
         else if(this.geneToDelete){
           this.selectTopGenesAfterDelete(this.genesTop);
@@ -1022,9 +1036,15 @@ export default {
           }
         })
       }
-      else {
-        this.stateSummaryGenes.map(gene => {
-          if(this.selected.includes(gene.name)){
+      else if(this.selectedTab === 'Input'){
+        this.stateSummaryGenes.map((gene, i) => {
+          if(this.selected.includes(gene.name) || this.newlyAddedManualGenes.includes(gene.name)){
+            gene.inGeneSet = true;
+            if(!this.selected.includes(gene.name)){
+              this.selected.push(gene.name)
+            }
+            // this.$set(this.stateSummaryGenes[i], 'inGeneSet', true);
+
             selectedArr.push(gene); 
           }
           else {
@@ -1041,12 +1061,15 @@ export default {
           gene.inGeneSet = false;
         })
       }
+      else {
+        this.genesTop = this.selected.length;
+        this.$emit("update_genes_top", this.genesTop);
+
+        this.$emit("add_to_gene_set", this.selected)
+      }
     },
     
     organizeGeneListBasedOnSelectedTab(tab){
-      console.log("called organizeGeneListBasedOnSelectedTab");
-      console.log("this.stateSummaryGenes", this.stateSummaryGenes);
-      console.log("this.stateHpoSummaryGenes.length", this.stateHpoSummaryGenes.length);
       var temp = []; 
       if(tab === "HPO"){
         var temp_summary_genes = []; 
