@@ -557,6 +557,7 @@ export default {
       filterSpecificityScoreText: "",
       filterTermsIntersectText: "",
       stateSummaryGenes: [],
+      stateHpoSummaryGenes: [], 
     }
   },
 
@@ -742,6 +743,7 @@ export default {
       this.autocompleteGenes = [];
       setTimeout(()=>{
         this.addedGenesFlag = false;
+        console.log("addedGenesFlag false", this.addedGenesFlag);
       }, 5000)
     },
 
@@ -814,6 +816,8 @@ export default {
     },
 
     organizeGeneList(){
+      console.log("here");
+      console.log("addedGenesFlag", this.addedGenesFlag);
       var associatedGenes = [];
       var nonAssociatedGenes = [];
 
@@ -856,6 +860,10 @@ export default {
         })
         
         this.stateSummaryGenes = [...this.summaryGenes]; 
+        if(!this.addedGenesFlag){
+          //Set stateHPOGenes summary to empty when new terms are searched but not when new genes are added. 
+          this.stateHpoSummaryGenes = []; 
+        }
 
         // if(this.summaryGenes.length < 20){
         //   this.genesTop = this.summaryGenes.length;
@@ -868,7 +876,8 @@ export default {
           this.selectTopGenes(this.genesTop);
         }
         else if(this.addedGenesFlag){
-          this.selectTopGenes(this.genesTop);
+          // this.selectTopGenes(this.genesTop);
+          // this.selectTopGenesAfterNewAdded(); 
         }
         else if(this.geneToDelete){
           this.selectTopGenesAfterDelete(this.genesTop);
@@ -989,7 +998,16 @@ export default {
     
     organizeListBasedOnFilters(){
       var selectedArr = []; 
-      var notSelected = []; 
+      var notSelected = [];
+      
+      var state_summary = []; 
+      
+      if(this.selectedTab === 'HPO'){
+        state_summary = this.stateHpoSummaryGenes; 
+      }
+      else {
+        state_summary = this.stateSummaryGenes; 
+      }
             
       this.stateSummaryGenes.map(gene => {
         if(this.selected.includes(gene.name)){
@@ -1015,21 +1033,32 @@ export default {
     },
     
     organizeGeneListBasedOnSelectedTab(tab){
+      console.log("called organizeGeneListBasedOnSelectedTab");
       console.log("this.stateSummaryGenes", this.stateSummaryGenes);
+      console.log("this.stateHpoSummaryGenes.length", this.stateHpoSummaryGenes.length);
       var temp = []; 
       if(tab === "HPO"){
+        var temp_summary_genes = []; 
+        this.stateHpoSummaryGenes.length > 0 ? temp_summary_genes = this.stateHpoSummaryGenes : temp_summary_genes = this.stateSummaryGenes
         this.stateSummaryGenes.map(gene => {
           if(gene.searchTermHpo.length) {
             temp.push(gene); 
           }
         })
+        if (!this.stateHpoSummaryGenes.length) {
+          this.stateHpoSummaryGenes = temp; 
+        }
+        this.organizeListBasedOnFilters(); 
       }
       else if(tab === "Input"){
         this.stateSummaryGenes.map(gene => {
           temp.push(gene); 
         })
+        this.summaryGenes = temp;
+        // this.organizeListBasedOnFilters(); 
       }
-      this.summaryGenes = temp;
+      console.log("stateHpoSummaryGenes", this.stateHpoSummaryGenes);
+      // this.summaryGenes = temp;
       this.organizeTableHeaders();
     },
 
