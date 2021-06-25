@@ -541,11 +541,12 @@
                       </div>
                     </div>
                     <br>
-                    <v-btn @click="manuallyAddGenesEvent" outlined small color="primary" class="mr-3">
-                      <v-icon class="mr-1">add</v-icon>
-                      Manually Add Genes
-                    </v-btn>                    
-
+                    <center>
+                      <v-btn @click="manuallyAddGenesEvent" outlined small color="primary" class="mr-3">
+                        <v-icon class="mr-1">add</v-icon>
+                        Manually Add Genes
+                      </v-btn>   
+                    </center>
                   </div>
                   <div v-if="!manuallyAddedGenes.length">
                     <span v-if="!showSearchTermsLoader">
@@ -553,10 +554,12 @@
                       <MissingTermsIcon :tab="tab_idx">
                       </MissingTermsIcon>
                       <br>
-                      <v-btn @click="manuallyAddGenesEvent" outlined small color="primary" class="mr-3">
-                        <v-icon class="mr-1">add</v-icon>
-                        Manually Add Genes
-                      </v-btn>                    
+                      <center>
+                        <v-btn @click="manuallyAddGenesEvent" outlined small color="primary" class="mr-3">
+                          <v-icon class="mr-1">add</v-icon>
+                          Manually Add Genes
+                        </v-btn>                    
+                      </center>
                     </span>
                   </div>
 
