@@ -1015,6 +1015,7 @@ export default {
     },
     
     organizeGeneListBasedOnSelectedTab(tab){
+      console.log("this.stateSummaryGenes", this.stateSummaryGenes);
       var temp = []; 
       if(tab === "HPO"){
         this.stateSummaryGenes.map(gene => {
@@ -1170,6 +1171,14 @@ export default {
           return '1%';
         }
       }
+      else if(resource === 'hpo_score') {
+        if(this.hpoResourceUsed && this.selectedTab === 'HPO'){
+          return '8%';
+        }
+        else{
+          return '1%';
+        }
+      }
       if(resource === 'added') {
         if(this.genes !== undefined && this.genes.length > 0 && this.selectedTab !== 'HPO'){
           return '8%';
@@ -1199,6 +1208,14 @@ export default {
       else if(resource === 'hpo') {
         if(this.hpoResourceUsed){
           return 'HPO';
+        }
+        else{
+          return '';
+        }
+      }
+      else if(resource === 'hpo_score') {
+        if(this.hpoResourceUsed  && this.selectedTab === 'HPO'){
+          return 'Score';
         }
         else{
           return '';
@@ -1263,6 +1280,14 @@ export default {
           return '';
         }
       }
+      else if(resource === 'hpo_score') {
+        if(this.hpoResourceUsed && this.selectedTab === 'HPO'){
+          return 'scaledScore';
+        }
+        else{
+          return '';
+        }
+      }
       else if(resource === 'added') {
         if(this.genes !== undefined && this.genes.length > 0  && this.selectedTab !== 'HPO'){
           return 'isImportedGenes';
@@ -1284,6 +1309,7 @@ export default {
         { text: this.getColumnName('phenolyzer'), value: this.getColumnValue('phenolyzer'), sortable: false, width: this.getColumnWidth('phenolyzer')},
         { text: this.getColumnName('hpo'), value: 'searchTermHpo', sortable: false, width: this.getColumnWidth('hpo')},
         { text: this.getColumnName('added'), value: this.getColumnValue('isImportedGenes'), sortable: false, width: this.getColumnWidth('added')},
+        { text: this.getColumnName('hpo_score'), value: this.getColumnValue('hpo_score'), sortable: false, width: this.getColumnWidth('hpo_score')},
         { text: '', align: 'right', value: 'info', sortable: false, width: '1%'},
         { text: '', align: 'left', value: 'actions', sortable: false, width: '1%'},
       ]
