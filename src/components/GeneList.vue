@@ -878,6 +878,12 @@ export default {
         else if(this.addedGenesFlag){
           // this.selectTopGenes(this.genesTop);
           // this.selectTopGenesAfterNewAdded(); 
+          if(this.selected.length){
+            this.organizeListBasedOnFilters();
+          }
+          else {
+            this.selectTopGenes(this.genesTop);
+          }
         }
         else if(this.geneToDelete){
           this.selectTopGenesAfterDelete(this.genesTop);
@@ -1003,24 +1009,29 @@ export default {
       var state_summary = []; 
       
       if(this.selectedTab === 'HPO'){
-        state_summary = this.stateHpoSummaryGenes; 
+        this.stateSummaryGenes.map(gene => {
+          if(this.selected.includes(gene.name)){
+            if(gene.searchTermHpo.length){
+              selectedArr.push(gene); 
+            }
+          }
+          else {
+            if(gene.searchTermHpo.length){
+              notSelected.push(gene); 
+            }
+          }
+        })
       }
       else {
-        state_summary = this.stateSummaryGenes; 
-      }
-            
-      this.stateSummaryGenes.map(gene => {
-        if(this.selected.includes(gene.name)){
-          if(gene.searchTermHpo.length){
+        this.stateSummaryGenes.map(gene => {
+          if(this.selected.includes(gene.name)){
             selectedArr.push(gene); 
           }
-        }
-        else {
-          if(gene.searchTermHpo.length){
+          else {
             notSelected.push(gene); 
           }
-        }
-      })
+        })
+      }
       
       var temp = [...selectedArr, ...notSelected]; 
       this.summaryGenes = temp; 
@@ -1054,11 +1065,9 @@ export default {
         this.stateSummaryGenes.map(gene => {
           temp.push(gene); 
         })
-        this.summaryGenes = temp;
-        // this.organizeListBasedOnFilters(); 
+        // this.summaryGenes = temp;
+        this.organizeListBasedOnFilters(); 
       }
-      console.log("stateHpoSummaryGenes", this.stateHpoSummaryGenes);
-      // this.summaryGenes = temp;
       this.organizeTableHeaders();
     },
 
