@@ -557,7 +557,8 @@ export default {
       filterSpecificityScoreText: "",
       filterTermsIntersectText: "",
       stateSummaryGenes: [],
-      stateHpoSummaryGenes: [], 
+      stateHpoSummaryGenes: [],
+      newlyAddedManualGenes: [],
     }
   },
 
