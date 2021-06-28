@@ -4753,7 +4753,7 @@ export default {
 
       var data = this.scaledHpoScores;
 
-      var bins = d3.bin().thresholds(6)(data);
+      var bins = d3.bin().thresholds(data.length/10)(data);
 
       var xAxis = (g) =>
         g
@@ -4818,18 +4818,59 @@ export default {
         .domain([0, d3.max(bins, (d) => d.length)])
         .range([height - margin.bottom, margin.top]);
 
+
+      // Line chart
+      // svg
+      //   .append("path")
+      //   .data([bins])
+      //   .attr("fill", "none")
+      //   .attr("stroke", "rgb(37 157 241)")
+      //   .attr("stroke-width", 1.5)
+      //   .attr(
+      //     "d",
+      //     d3
+      //       .line()
+      //       .x((d) => {
+      //         return this.x(d.x0) + 1;
+      //       })
+      //       .y(function (d) {
+      //         return y(d.length);
+      //       })
+      //   );
+        
+      //Area chart   
       svg
-        .append("g")
-        .attr("fill", color)
-        .selectAll("rect")
-        .data(bins)
-        .join("rect")
-        .attr("x", (d) => {
-          return this.x(d.x0) + 1;
-        })
-        .attr("width", (d) => Math.max(0, this.x(d.x1) - this.x(d.x0) - 1))
-        .attr("y", (d) => y(d.length))
-        .attr("height", (d) => y(0) - y(d.length));
+        .append("path")
+        .data([bins])
+        .attr("fill", "rgb(37 157 241)")
+        .attr("stroke", "rgb(37 157 241)")
+        .attr("stroke-width", 1.5)
+        .attr(
+          "d",
+          d3
+            .area()
+            .x((d) => {
+              return this.x(d.x0) + 1;
+            })
+            .y0(y(0))
+            .y1(function (d) {
+              return y(d.length);
+            })
+      );
+        
+      //Histogram  
+      // svg
+      //   .append("g")
+      //   .attr("fill", color)
+      //   .selectAll("rect")
+      //   .data(bins)
+      //   .join("rect")
+      //   .attr("x", (d) => {
+      //     return this.x(d.x0) + 1;
+      //   })
+      //   .attr("width", (d) => Math.max(0, this.x(d.x1) - this.x(d.x0) - 1))
+      //   .attr("y", (d) => y(d.length))
+      //   .attr("height", (d) => y(0) - y(d.length));
 
       svg.append("g").call(xAxis);
 
