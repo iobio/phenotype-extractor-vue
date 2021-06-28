@@ -43,11 +43,12 @@
       </div>
     </div>
     
-    
     <!-- Tabs sections -->
     <v-tabs
+      :background-color="launchedFromGenePanel ? 'primary' : 'white'"
+      :dark="launchedFromGenePanel? true : false"
       color="primary"
-      slider-color="primary"
+      :slider-color="launchedFromGenePanel ? 'white' : 'primary'"
       v-model="tab_idx"
     >
       <v-tab>
@@ -1953,6 +1954,7 @@ export default {
       type: String
     },
     textNotesLandingPage: null,
+    launchedFromGenePanel: false,
   },
   data: () => ({
     search: '',
