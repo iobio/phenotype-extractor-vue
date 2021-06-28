@@ -48,7 +48,7 @@
       :background-color="launchedFromGenePanel ? 'primary' : 'white'"
       :dark="launchedFromGenePanel? true : false"
       color="primary"
-      :slider-color="launchedFromGenePanel ? 'white' : 'primary'"
+      :slider-color="launchedFromGenePanel ? 'yellow' : 'primary'"
       v-model="tab_idx"
     >
       <v-tab>
