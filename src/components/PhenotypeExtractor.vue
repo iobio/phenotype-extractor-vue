@@ -502,8 +502,10 @@
                     </div>
                     <div v-if="Hpo_searchTermsObj.length<1">
                       <span v-if="!showSearchTermsLoader">
-                        <MissingTermsIcon :tab="tab_idx">
-                        </MissingTermsIcon>
+                        <center>
+                          <MissingTermsIcon :tab="tab_idx">
+                          </MissingTermsIcon>
+                        </center>
                         <p style="text-align: center;"><center>Not Selected...</center></p>
                       </span>
                     </div>
@@ -1586,7 +1588,7 @@
                       </div>
                       <div v-if="Gtr_searchTermsObj.length<1">
                         <p style="margin-left: 20px;">
-                          <div style="margin-left: -25px">
+                          <div style="margin-left: 25px">
                             <MissingTermsIcon :tab="tab_idx">
                             </MissingTermsIcon>
                           </div>
@@ -1673,7 +1675,7 @@
                       </div>
                       <div v-if="Phenolyzer_searchTermsObj.length<1">
                         <p style="margin-left: 20px;">
-                          <div style="margin-left: -25px">
+                          <div style="margin-left: 25px">
                             <MissingTermsIcon :tab="tab_idx">
                             </MissingTermsIcon>
                           </div>
@@ -1733,7 +1735,7 @@
                       </div>
                       <div v-if="Hpo_searchTermsObj.length<1">
                         <p style="margin-left: 20px;">
-                          <div style="margin-left: -25px">
+                          <div style="margin-left: 25px">
                             <MissingTermsIcon tab="0">
                             </MissingTermsIcon>
                           </div>
