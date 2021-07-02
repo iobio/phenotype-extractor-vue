@@ -2152,7 +2152,7 @@ export default {
   }),
   watch: {
     gtrSelectSwitch(){
-      if(this.gtrSelectSwitch){
+      if(this.gtrSelectSwitch && this.hpo_radios != 'all_sources_terms'){
         this.GtrTermsAdded_temp = [];
         this.extractedTermsObj.map(term => {
           term.reviewTerms_gtr.map((item, ind) => {
@@ -2167,7 +2167,7 @@ export default {
       }
     },
     phenolyzerSelectSwitch() {
-      if(this.phenolyzerSelectSwitch){
+      if(this.phenolyzerSelectSwitch && this.hpo_radios != 'all_sources_terms'){
         this.phenolyzerTermsAdded_temp = [];
         this.extractedTermsObj.map(term => {
           term.reviewTerms_phenolyzer.map((item, ind) => {
@@ -2182,7 +2182,7 @@ export default {
       }
     },
     hpoSelectSwitch(){
-      if(this.hpoSelectSwitch){
+      if(this.hpoSelectSwitch && this.hpo_radios != 'all_sources_terms'){
         this.hpoTermsAdded_temp = [];
         this.HpoReviewTerms.map(term => {
           this.hpoTermsAdded_temp.push(term);
@@ -2202,6 +2202,16 @@ export default {
     },
     hpo_radios(){
       this.setTermsSelectedFromBasicModeForReview();
+      if(this.hpo_radios === 'all_sources_terms'){
+        this.gtrSelectSwitch = true;
+        this.phenolyzerSelectSwitch = true;
+        this.hpoSelectSwitch = true;
+      }
+      else {
+        this.gtrSelectSwitch = false;
+        this.phenolyzerSelectSwitch = false;
+        // this.hpoSelectSwitch = false;
+      }
     }, 
     textNotes(){
       if(this.textNotes.length===45){
