@@ -118,7 +118,7 @@
                           </span>
                         </div>
                         <div class="col-md-1" style="padding: 5px;">
-                          <span @click="confirmToDeleteInputNote(note.note, i)">
+                          <span style="margin-left: -6px" @click="confirmToDeleteInputNote(note.note, i)">
                             <v-btn text color="primary" small>
                               <span>
                                 <v-icon small style="font-size:11px">delete</v-icon>
@@ -292,11 +292,13 @@
                           </div>
                         </div>
                         <div class="col-md-1" style="padding-top: 5px;" @mouseover="mouseOverGtrTerm(term.DiseaseName)" @mouseleave="hovered_gtr_term=''">
-                          <v-btn text color="primary" small>
-                            <span>
-                              <v-icon small style="font-size:11px" class="ml-1" @click="removePhenotypeShowDialog(term, i, 'GTR')">delete</v-icon>
-                            </span>
-                          </v-btn>
+                          <div style="margin-left: -12px">
+                            <v-btn text color="primary" small>
+                              <span>
+                                <v-icon small style="font-size:11px" class="ml-1" @click="removePhenotypeShowDialog(term, i, 'GTR')">delete</v-icon>
+                              </span>
+                            </v-btn>
+                          </div>
                         </div>
                       </div>
 
@@ -407,11 +409,13 @@
                           </div>
                         </div> -->
                         <div class="col-md-1" style="padding-top: 5px;" @mouseover="mouseOverPhenolyzerTerm(term.value)" @mouseleave="hovered_phenolyzer_term=''">
-                          <v-btn text color="primary" small>
-                            <span>
-                              <v-icon small style="font-size:11px" class="ml-1" @click="removePhenotypeShowDialog(term, i, 'phenolyzer')">delete</v-icon>
-                            </span>
-                          </v-btn>
+                          <div style="margin-left: -12px">
+                            <v-btn text color="primary" small>
+                              <span>
+                                <v-icon small style="font-size:11px" class="ml-1" @click="removePhenotypeShowDialog(term, i, 'phenolyzer')">delete</v-icon>
+                              </span>
+                            </v-btn>
+                          </div>
                         </div>                        
 
                       </div>
@@ -492,11 +496,13 @@
                           </div>
                         </div>
                         <div class="col-md-1" style="padding-top: 5px;" @mouseover="mouseOverHpoTerm(term.HPO_Data)" @mouseleave="hovered_hpo_term=''">
-                          <v-btn text color="primary" small>
-                            <span>
-                              <v-icon small style="font-size:11px" class="ml-1" @click="removePhenotypeShowDialog(term, i, 'HPO')">delete</v-icon>
-                            </span>
-                          </v-btn>
+                          <div :style="tab_idx==0 ? 'margin-left: -12px' : 'margin-left: 0' ">
+                            <v-btn text color="primary" small>
+                              <span>
+                                <v-icon small style="font-size:11px" class="ml-1" @click="removePhenotypeShowDialog(term, i, 'HPO')">delete</v-icon>
+                              </span>
+                            </v-btn>
+                          </div>
                         </div>                        
                       </div>
                     </div>
