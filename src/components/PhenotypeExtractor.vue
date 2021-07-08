@@ -150,7 +150,9 @@
                         <v-icon v-on="on" small style="font-size:16px; opacity: 0.8" class="ml-1">info_outline</v-icon>
                       </template>
                       <span>
-                        Help text
+                        This visualization allows to select genes that overlaps with N HPO terms. 
+                        <br>For example, if you want to select 
+                        genes with 2 or more HPO terms, brush the chart through Y axis.  
                       </span>
                     </v-tooltip>      
                   </strong>
@@ -197,7 +199,9 @@
                         <v-icon v-on="on" small style="font-size:16px; opacity: 0.8" class="ml-1">info_outline</v-icon>
                       </template>
                       <span>
-                        Help text
+                        Gene specificity score shows how specific a gene is to an HPO term. 
+                        <br>The range of the specificity score is between 0 and 1. 
+                        <br>Higher the score, more specific is the gene to an HPO term. You can interact with the chart by brushing along the X-axis.
                       </span>
                     </v-tooltip>      
                   </strong>
