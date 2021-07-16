@@ -1350,7 +1350,7 @@ export default {
           return '';
         }
       }
-      else if(resource === 'added') {
+      else if(resource === 'isImportedGenes') {
         if(this.genes !== undefined && this.genes.length > 0  && this.selectedTab !== 'HPO'){
           return 'isImportedGenes';
         }
