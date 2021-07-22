@@ -78,7 +78,11 @@
         @new_term_searched="new_term_searched($event)"
         :textNotesLandingPage="textNotesLandingPage"
         @close_search_status_dialog="close_search_status_dialog($event)"
-        :launchedFromGenePanel="launchedFromGenePanel">
+        :launchedFromGenePanel="launchedFromGenePanel"
+        :scaled_hpo_scores_props="analysis.payload.scaledHpoScores"
+        :specificityScoreBrushArea="analysis.payload.specificityScoreBrushArea"
+        @scaled_hpo_scores="scaled_hpo_scores($event)"
+        @specificity_brush_area="specificity_brush_area($event)">
       </PhenotypeExtractor>
 
       <!-- <Phenotypes
@@ -129,6 +133,7 @@ import PhenotypeExtractor from './PhenotypeExtractor.vue'
 import GeneList from './GeneList.vue'
 import analysisData from '../data/analysis.json';
 // import analysisData from '../data/mosaic_analysis.json';
+// import analysisData from '../data/mosaic_analysis_2021.json';
 import PhenotypistData from '../data/PhenotypistState.json';
 import Model from '../models/Model';
 var model = new Model();
@@ -209,10 +214,12 @@ export default {
       this.summaryGeneList = res;
       console.log("this.summaryGeneList", this.summaryGeneList);
       this.analysis.payload.genesReport = this.summaryGeneList;
+      console.log("genesReport", this.analysis.payload.genesReport);
     },
     saveSearchedPhenotypes(phenotypes){
       console.log("phenotypes", phenotypes)
       this.analysis.payload.phenotypes = phenotypes;
+      console.log("phenotypes", this.analysis.payload.phenotypes);
     },
     importedGenes(genes){
       if(this.deletedGenesList.length){
@@ -253,6 +260,7 @@ export default {
       this.venn_diag_data = data;
     },
     VennDiagramData(obj){
+      console.log("VennDiagramData", obj);
       this.analysis.payload.VennDiagramData = obj
     }, 
     gene_to_delete(gene){
@@ -274,6 +282,7 @@ export default {
     },
     add_to_gene_set(genes){
       this.selectedGenesForGeneSet = genes;
+      console.log("this.selectedGenesForGeneSet", this.selectedGenesForGeneSet);
     },
     update_genes_top(number){
       this.genesTop = number;
@@ -297,6 +306,13 @@ export default {
       this.mosaic_gene_set = "TRPV4,SH3TC2,SBF2,RAB7A,PRX,PMP22,PLEKHG5,NEFL,NDRG1,MPZ,MFN2,MED25,LRSAM1,LITAF,HSPB1,HK1,GDAP1,FGD4,EGR2,DNM2"
     },
     close_search_status_dialog(){
+    },
+    scaled_hpo_scores(scores){
+      this.analysis.payload.scaledHpoScores = scores;
+      console.log("this.analysis.payload.scaledHpoScores", this.analysis.payload.scaledHpoScores);
+    },
+    specificity_brush_area(area){
+      this.analysis.payload.specificityScoreBrushArea = area;
     }
   }
 };

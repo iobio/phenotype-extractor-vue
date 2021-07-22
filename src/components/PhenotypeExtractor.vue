@@ -1968,6 +1968,8 @@ export default {
     },
     textNotesLandingPage: null,
     launchedFromGenePanel: false,
+    scaled_hpo_scores_props: null,
+    specificityScoreBrushArea: null,
   },
   data: () => ({
     search: '',
@@ -2159,6 +2161,7 @@ export default {
     scaledHpoScores: [],
     x: null,
     fetchCompleteWaitingToCompile: false,
+    scaledHpoScoresProps: [],
   }),
   watch: {
     gtrSelectSwitch(){
@@ -2277,6 +2280,11 @@ export default {
     this.HPO_Terms_data = HPO_Terms;
     this.HPO_Phenotypes_data = HPO_Phenotypes;
     this.HpoTermsTypeaheadData  = HpoTermsData.data;
+    
+    if(this.scaled_hpo_scores_props.length){
+      this.scaledHpoScoresProps = this.scaled_hpo_scores_props;
+      this.drawHistogram();
+    }
 
     bus.$on("completePhenolyzerFetchRequest", searchTerm => {
       var idx = this.Phenolyzer_searchTermArray.indexOf(searchTerm);
@@ -2483,6 +2491,7 @@ export default {
         }
         this.scaledHpoScores.push(scaledScore.toFixed(4))
       })
+      this.$emit("scaled_hpo_scores", this.scaledHpoScores);
       this.drawHistogram()
     },
     
@@ -4775,6 +4784,10 @@ export default {
         .append("svg")
         .attr("width", 400)
         .attr("height", 300);
+      
+      if(this.scaledHpoScoresProps.length){
+        this.scaledHpoScores = this.scaledHpoScoresProps;
+      }  
 
       var data = this.scaledHpoScores;
 
@@ -4901,30 +4914,66 @@ export default {
 
       svg.append("g").call(yAxis);
       
-      svg.call(
-        d3
-          .brushX() // Add the brush feature using the d3.brush function
-          .extent([
-            [margin.left, margin.top],
-            [width - margin.right, height - margin.bottom],
-          ]) // initialise the brush area: start at 0,0 and finishes at width,height: it means I select the whole graph area
-          .on("start end", this.brsuhHistogram)
-      );
+      // svg.call(
+      //   d3
+      //     .brushX() // Add the brush feature using the d3.brush function
+      //     .extent([
+      //       [margin.left, margin.top],
+      //       [width - margin.right, height - margin.bottom],
+      //     ]) // initialise the brush area: start at 0,0 and finishes at width,height: it means I select the whole graph area
+      //     .on("start end", this.brsuhHistogram)
+      // );
+      
+      var xBrush = d3
+        .brushX() // Add the brush feature using the d3.brush function
+        .extent([
+          [margin.left, margin.top],
+          [width - margin.right, height - margin.bottom],
+        ]) // initialise the brush area: start at 0,0 and finishes at width,height: it means I select the whole graph area
+        .on("brush", this.brsuhHistogram);
+        
+        // svg
+        //   .append("g")
+        //   .attr("class", "brush")
+        //   .call(xBrush)
+          
+        if(this.scaledHpoScoresProps.length){
+          svg
+            .append("g")
+            .attr("class", "brush")
+            .call(xBrush)
+            .call(xBrush.move, this.specificityScoreBrushArea);  
+        }
+        else {
+          svg
+            .append("g")
+            .attr("class", "brush")
+            .call(xBrush)
+        }  
+
     },
     brsuhHistogram(event) {
-      var extent = event.selection;
+      if(!this.scaledHpoScoresProps.length){
+        var extent = event.selection;
 
-      var newInput = [];
-      var brushArea = event.selection;
-      if(brushArea == null){
-        bus.$emit("filterOnSpecificityScore", true)
-        bus.$emit("hpoScaledScoreRange", [0, 0])
+        var newInput = [];
+        var brushArea = event.selection;
+        this.$emit("specificity_brush_area", brushArea)
+        
+        if(brushArea == null){
+          bus.$emit("filterOnSpecificityScore", true)
+          bus.$emit("hpoScaledScoreRange", [0, 0])
+        }
+        else {
+          var [x0, x1] = event.selection.map(this.x.invert);
+          bus.$emit("filterOnSpecificityScore", true)
+          bus.$emit("hpoScaledScoreRange", [x0.toFixed(4), x1.toFixed(4)])
+        }
       }
       else {
-        var [x0, x1] = event.selection.map(this.x.invert);
-        bus.$emit("filterOnSpecificityScore", true)
-        bus.$emit("hpoScaledScoreRange", [x0.toFixed(4), x1.toFixed(4)])
+        this.scaledHpoScoresProps = [];
       }
+
     },
 
   }
