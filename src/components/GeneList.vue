@@ -470,7 +470,9 @@ export default {
     launchedFromGenePanel: {
       type: Boolean,
       default: false
-    }
+    },
+    stateHpoSummaryGenesProps: null,
+    stateSummaryGenesProps: null,
   },
   watch:{
     selectedGenesFlag(){
@@ -567,6 +569,14 @@ export default {
     this.organizeTableHeaders();
     this.knownGenesData = knownGenes;
     // this.summaryGenes = this.summaryGeneList;
+    
+    if(this.stateSummaryGenesProps.length){
+      this.stateSummaryGenes = this.stateSummaryGenesProps;
+    }
+    
+    if(this.stateHpoSummaryGenesProps.length){
+      this.stateHpoSummaryGenes = this.stateHpoSummaryGenesProps;
+    }
     
     if(this.selectedGenesForGeneSet!==undefined){
       if(this.selectedGenesForGeneSet.length){
@@ -876,9 +886,12 @@ export default {
         })
         
         this.stateSummaryGenes = [...this.summaryGenes]; 
+        this.$emit("state_summary_genes", this.stateSummaryGenes); 
+        
         if(!this.addedGenesFlag){
           //Set stateHPOGenes summary to empty when new terms are searched but not when new genes are added. 
-          this.stateHpoSummaryGenes = []; 
+          this.stateHpoSummaryGenes = [];
+          this.$emit("state_hpo_summary_genes", this.stateHpoSummaryGenes)
         }
 
         // if(this.summaryGenes.length < 20){
@@ -1082,6 +1095,7 @@ export default {
         })
         if (!this.stateHpoSummaryGenes.length) {
           this.stateHpoSummaryGenes = temp; 
+          this.$emit("state_hpo_summary_genes", this.stateHpoSummaryGenes)
         }
         this.organizeListBasedOnFilters(); 
       }

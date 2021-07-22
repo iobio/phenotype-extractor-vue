@@ -114,7 +114,11 @@
         :hpoResourceUsed="hpoResourceUsed"
         :PhenolyzerResourceUsed="PhenolyzerResourceUsed"
         :mosaic_gene_set="mosaic_gene_set"
-        :launchedFromGenePanel="launchedFromGenePanel">
+        :launchedFromGenePanel="launchedFromGenePanel"
+        :stateHpoSummaryGenesProps="analysis.payload.stateHpoSummaryGenes"
+        :stateSummaryGenesProps="analysis.payload.stateSummaryGenes"
+        @state_hpo_summary_genes="state_hpo_summary_genes($event)"
+        @state_summary_genes="state_summary_genes($event)">
       </GeneList>
     </v-layout>
   </v-container>
@@ -317,6 +321,12 @@ export default {
     hpo_genes_bar_chart(count){
       this.analysis.payload.hpoGenesCountForBarChart = count;
     },
+    state_hpo_summary_genes(genes){
+      this.analysis.payload.stateHpoSummaryGenes = genes;
+    },
+    state_summary_genes(genes){
+      this.analysis.payload.stateSummaryGenes = genes;
+    }
   }
 };
 </script>

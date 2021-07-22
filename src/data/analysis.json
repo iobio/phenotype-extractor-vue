@@ -1089,7 +1089,9 @@
     "scaledHpoScores": [],
     "specificityScoreBrushArea": [],
     "hpoGenesCountForBarChart": [],
-    "hpoBarChartBrushArea": []
+    "hpoBarChartBrushArea": [],
+    "stateHpoSummaryGenes": [],
+    "stateSummaryGenes": []
   },
   "updated_at": "2019-11-06T15:08:54.647Z",
   "id": 74,
