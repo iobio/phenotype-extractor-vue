@@ -1087,7 +1087,9 @@
     "phenolyzerFullList": [],
     "datetime_last_modified": 1573062574944,
     "scaledHpoScores": [],
-    "specificityScoreBrushArea": []
+    "specificityScoreBrushArea": [],
+    "hpoGenesCountForBarChart": [],
+    "hpoBarChartBrushArea": []
   },
   "updated_at": "2019-11-06T15:08:54.647Z",
   "id": 74,

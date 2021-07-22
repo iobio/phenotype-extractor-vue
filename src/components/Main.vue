@@ -81,8 +81,11 @@
         :launchedFromGenePanel="launchedFromGenePanel"
         :scaled_hpo_scores_props="analysis.payload.scaledHpoScores"
         :specificityScoreBrushArea="analysis.payload.specificityScoreBrushArea"
+        :hpo_genes_bar_chart_props="analysis.payload.hpoGenesCountForBarChart"
+        :hpo_bar_chart_brush_area_props="analysis.payload.hpoBarChartBrushArea"
         @scaled_hpo_scores="scaled_hpo_scores($event)"
-        @specificity_brush_area="specificity_brush_area($event)">
+        @specificity_brush_area="specificity_brush_area($event)"
+        @hpo_genes_bar_chart="hpo_genes_bar_chart($event)">
       </PhenotypeExtractor>
 
       <!-- <Phenotypes
@@ -131,9 +134,9 @@ import { bus } from '../main';
 import GtrSearch from './GtrSearch.vue';
 import PhenotypeExtractor from './PhenotypeExtractor.vue'
 import GeneList from './GeneList.vue'
-import analysisData from '../data/analysis.json';
+// import analysisData from '../data/analysis.json';
 // import analysisData from '../data/mosaic_analysis.json';
-// import analysisData from '../data/mosaic_analysis_2021.json';
+import analysisData from '../data/mosaic_analysis_2021.json';
 import PhenotypistData from '../data/PhenotypistState.json';
 import Model from '../models/Model';
 var model = new Model();
@@ -201,6 +204,9 @@ export default {
   },
   mounted(){
     // this.generateArc();
+    bus.$on("hpo_bar_chart_brush_area", (area) => {
+      this.analysis.payload.hpoBarChartBrushArea = area;
+    })
   },
   methods: {
     summaryGenes(genes){
@@ -212,14 +218,10 @@ export default {
       })
 
       this.summaryGeneList = res;
-      console.log("this.summaryGeneList", this.summaryGeneList);
       this.analysis.payload.genesReport = this.summaryGeneList;
-      console.log("genesReport", this.analysis.payload.genesReport);
     },
     saveSearchedPhenotypes(phenotypes){
-      console.log("phenotypes", phenotypes)
       this.analysis.payload.phenotypes = phenotypes;
-      console.log("phenotypes", this.analysis.payload.phenotypes);
     },
     importedGenes(genes){
       if(this.deletedGenesList.length){
@@ -282,7 +284,6 @@ export default {
     },
     add_to_gene_set(genes){
       this.selectedGenesForGeneSet = genes;
-      console.log("this.selectedGenesForGeneSet", this.selectedGenesForGeneSet);
     },
     update_genes_top(number){
       this.genesTop = number;
@@ -309,11 +310,13 @@ export default {
     },
     scaled_hpo_scores(scores){
       this.analysis.payload.scaledHpoScores = scores;
-      console.log("this.analysis.payload.scaledHpoScores", this.analysis.payload.scaledHpoScores);
     },
     specificity_brush_area(area){
       this.analysis.payload.specificityScoreBrushArea = area;
-    }
+    },
+    hpo_genes_bar_chart(count){
+      this.analysis.payload.hpoGenesCountForBarChart = count;
+    },
   }
 };
 </script>

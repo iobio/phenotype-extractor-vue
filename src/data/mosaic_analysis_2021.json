@@ -10040,7 +10040,18 @@
       "0.0710",
       "0.0860"
     ],
-    "specificityScoreBrushArea": [146, 298]
+    "specificityScoreBrushArea": [146, 298],
+    "hpoGenesCountForBarChart": [
+      {
+          "name": "1",
+          "count": 214
+      },
+      {
+          "name": "2",
+          "count": 14
+      }
+    ],
+    "hpoBarChartBrushArea": [16.36363636363636, 81.81818181818181]
   },
   "title": "top 5 genes",
   "description": "top 5 genes",

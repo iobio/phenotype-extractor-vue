@@ -1970,6 +1970,8 @@ export default {
     launchedFromGenePanel: false,
     scaled_hpo_scores_props: null,
     specificityScoreBrushArea: null,
+    hpo_genes_bar_chart_props: null,
+    hpo_bar_chart_brush_area_props: null,
   },
   data: () => ({
     search: '',
@@ -2284,6 +2286,12 @@ export default {
     if(this.scaled_hpo_scores_props.length){
       this.scaledHpoScoresProps = this.scaled_hpo_scores_props;
       this.drawHistogram();
+    }
+    
+    if(this.hpo_genes_bar_chart_props.length){
+      hpoGenesCountForBarChartProps = this.hpo_genes_bar_chart_props;
+      hpoBarChartBrushArea = this.hpo_bar_chart_brush_area_props
+      drawHpoGenesBarChart(hpoGenesCountForBarChartProps); 
     }
 
     bus.$on("completePhenolyzerFetchRequest", searchTerm => {
@@ -4258,6 +4266,7 @@ export default {
       }
       // console.log("arr", arr);
       this.hpoGenesCountForBarChart = arr;
+      this.$emit("hpo_genes_bar_chart", this.hpoGenesCountForBarChart);
       // this.drawHpoGenesBarChart();
       drawHpoGenesBarChart(this.hpoGenesCountForBarChart);
       // this.drawHistogram()
@@ -4984,7 +4993,8 @@ var rects = null;
 var x = null;
 var y = null;
 var yScale2 = null;
-
+var hpoGenesCountForBarChartProps = [];
+var hpoBarChartBrushArea = [];
 
 function drawHpoGenesBarChart(menu) {
   // select the svg container first
@@ -5140,67 +5150,95 @@ function drawHpoGenesBarChart(menu) {
     .attr("text-anchor", "end");
   // });
 
-  graph.call(
-    d3
-      .brushY() // Add the brush feature using the d3.brush function
-      .extent([
-        [0, 0],
-        [graphHeight, graphWidth],
-      ]) // initialise the brush area: start at 0,0 and finishes at width,height: it means I select the whole graph area
-      .on("start end", brushing)
-  );
+  // graph.call(
+  //   d3
+  //     .brushY() // Add the brush feature using the d3.brush function
+  //     .extent([
+  //       [0, 0],
+  //       [graphHeight, graphWidth],
+  //     ]) // initialise the brush area: start at 0,0 and finishes at width,height: it means I select the whole graph area
+  //     .on("start end", brushing)
+  // );
+  
+  var yBrush = d3
+    .brushY() // Add the brush feature using the d3.brush function
+    .extent([
+      [0, 0],
+      [graphHeight, graphWidth],
+    ]) // initialise the brush area: start at 0,0 and finishes at width,height: it means I select the whole graph area
+    .on("start end", brushing)
+  
+  if(hpoGenesCountForBarChartProps.length){
+    graph
+      .append("g")
+      .attr("class", "brush")
+      .call(yBrush)
+      .call(yBrush.move, hpoBarChartBrushArea);
+  }
+  else {
+    graph
+      .append("g")
+      .attr("class", "brush")
+      .call(yBrush)
+  }
 }
 
 function brushing(event) {
-  var extent = event.selection;
+  if(!hpoGenesCountForBarChartProps.length){
+    var extent = event.selection;
 
-  var newInput = [];
-  var brushArea = event.selection;
+    var newInput = [];
+    var brushArea = event.selection;
+    bus.$emit("hpo_bar_chart_brush_area", brushArea);
+    
+    if (brushArea === null) brushArea = y.range();
 
-  if (brushArea === null) brushArea = y.range();
-
-  yScale2.domain().forEach((d) => {
-    var pos = yScale2(d) + yScale2.bandwidth() / 2;
-    if (pos >= brushArea[0] && pos <= brushArea[1]) {
-      newInput.push(d);
-    }
-  });
-  
-  d3.selectAll(".rects").attr("fill", (d) => {
-    if (d.name !== undefined) {
-      var val = d.name;
-      var pos = yScale2(val) + yScale2.bandwidth() / 2;
+    yScale2.domain().forEach((d) => {
+      var pos = yScale2(d) + yScale2.bandwidth() / 2;
       if (pos >= brushArea[0] && pos <= brushArea[1]) {
-        return "rgb(62 146 204)";
-      } else {
-        return "rgb(37 157 241)";
+        newInput.push(d);
       }
+    });
+    
+    d3.selectAll(".rects").attr("fill", (d) => {
+      if (d.name !== undefined) {
+        var val = d.name;
+        var pos = yScale2(val) + yScale2.bandwidth() / 2;
+        if (pos >= brushArea[0] && pos <= brushArea[1]) {
+          return "rgb(62 146 204)";
+        } else {
+          return "rgb(37 157 241)";
+        }
+      }
+    });
+
+    bus.$emit("filterOnGenesOverlap", true);
+    bus.$emit("hpoSelectionRange", [newInput[0], newInput[newInput.length - 1]]);
+
+    var left = yScale2(d3.min(newInput));
+    var right = yScale2(d3.max(newInput)) + yScale2.bandwidth();
+    var top = null;
+    var bottom = null;
+
+    if (left > right) {
+      top = right;
+      bottom = left;
+    } else {
+      top = left;
+      bottom = right;
     }
-  });
 
-  bus.$emit("filterOnGenesOverlap", true);
-  bus.$emit("hpoSelectionRange", [newInput[0], newInput[newInput.length - 1]]);
+    if (newInput.length > 1) {
+      top = top - yScale2.bandwidth();
+      bottom = bottom + yScale2.bandwidth();
+    }
 
-  var left = yScale2(d3.min(newInput));
-  var right = yScale2(d3.max(newInput)) + yScale2.bandwidth();
-  var top = null;
-  var bottom = null;
-
-  if (left > right) {
-    top = right;
-    bottom = left;
-  } else {
-    top = left;
-    bottom = right;
+    if (event.sourceEvent) {
+      d3.select(this).transition().call(event.target.move, [top, bottom]);
+    }
   }
-
-  if (newInput.length > 1) {
-    top = top - yScale2.bandwidth();
-    bottom = bottom + yScale2.bandwidth();
-  }
-
-  if (event.sourceEvent) {
-    d3.select(this).transition().call(event.target.move, [top, bottom]);
+  else {
+    hpoGenesCountForBarChartProps = [];
   }
 }
 
