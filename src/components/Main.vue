@@ -117,9 +117,17 @@
         :launchedFromGenePanel="launchedFromGenePanel"
         :stateHpoSummaryGenesProps="analysis.payload.stateHpoSummaryGenes"
         :stateSummaryGenesProps="analysis.payload.stateSummaryGenes"
+        :filterTermsIntersectTextProps="analysis.payload.filterTermsIntersectText"
+        :filterSpecificityScoreTextProps="analysis.payload.filterSpecificityScoreText"
+        :setGenesOverlapFlagProps="analysis.payload.setGenesOverlapFlag"
+        :setSpecificityScoreFlagProps="analysis.payload.setSpecificityScoreFlag"
         @state_hpo_summary_genes="state_hpo_summary_genes($event)"
         @state_summary_genes="state_summary_genes($event)"
-        @reorder_summary_genes="reorder_summary_genes($event)">
+        @reorder_summary_genes="reorder_summary_genes($event)"
+        @filter_terms_inspect_text="filter_terms_inspect_text($event)"
+        @filter_specificity_score_text="filter_specificity_score_text($event)"
+        @set_genes_overlap_flag="set_genes_overlap_flag($event)"
+        @set_specificity_score_flag="set_specificity_score_flag($event)">
       </GeneList>
     </v-layout>
   </v-container>
@@ -323,7 +331,6 @@ export default {
       this.analysis.payload.scaledHpoScores = scores;
     },
     specificity_brush_area(area){
-      console.log("brushArea", area);
       this.analysis.payload.specificityScoreBrushArea = area;
     },
     hpo_genes_bar_chart(count){
@@ -334,6 +341,18 @@ export default {
     },
     state_summary_genes(genes){
       this.analysis.payload.stateSummaryGenes = genes;
+    },
+    filter_terms_inspect_text(text){
+      this.analysis.payload.filterTermsIntersectText = text;
+    },
+    filter_specificity_score_text(text){
+      this.analysis.payload.filterSpecificityScoreText = text;
+    },
+    set_genes_overlap_flag(flag){
+      this.analysis.payload.setGenesOverlapFlag = flag;
+    },
+    set_specificity_score_flag(flag){
+      this.analysis.payload.setSpecificityScoreFlag = flag;
     }
   }
 };

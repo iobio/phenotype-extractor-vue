@@ -473,6 +473,10 @@ export default {
     },
     stateHpoSummaryGenesProps: null,
     stateSummaryGenesProps: null,
+    filterTermsIntersectTextProps: null,
+    filterSpecificityScoreTextProps: null,
+    setGenesOverlapFlagProps: null,
+    setSpecificityScoreFlagProps: null,
   },
   watch:{
     selectedGenesFlag(){
@@ -578,6 +582,16 @@ export default {
       this.stateHpoSummaryGenes = this.stateHpoSummaryGenesProps;
     }
     
+    if(this.filterTermsIntersectTextProps.length){
+      this.filterTermsIntersectText = this.filterTermsIntersectTextProps;
+      this.setGenesOverlapFlag = this.setGenesOverlapFlagProps;
+    }
+    
+    if(this.filterSpecificityScoreTextProps.length){
+      this.filterSpecificityScoreText = this.filterSpecificityScoreTextProps;
+      this.setSpecificityScoreFlag = this.setSpecificityScoreFlagProps;
+    }
+    
     if(this.selectedGenesForGeneSet!==undefined){
       if(this.selectedGenesForGeneSet.length){
         this.selected = this.selectedGenesForGeneSet;
@@ -627,7 +641,11 @@ export default {
       if(this.lower_genesoverlap == this.higher_genesoverlap){
         if(this.lower_genesoverlap == undefined){
           this.filterTermsIntersectText = "";
+          this.$emit("filter_terms_inspect_text", this.filterTermsIntersectText);
+
           this.setGenesOverlapFlag = false;
+          this.$emit("set_genes_overlap_flag", this.setGenesOverlapFlag);
+          
           if(this.setSpecificityScoreFlag){
             this.selectGenesFromScaledScore();
           }
@@ -650,6 +668,7 @@ export default {
     
     bus.$on("filterOnGenesOverlap", (flag) => {
       this.setGenesOverlapFlag = flag;
+      this.$emit("set_genes_overlap_flag", this.setGenesOverlapFlag);
     })
     
     bus.$on("hpoScaledScoreRange", (arr) => {
@@ -658,7 +677,11 @@ export default {
       if(this.lower_scaledScore == this.higher_scaledScore){
         if(this.lower_scaledScore == 0) {
           this.filterSpecificityScoreText = "";
+          this.$emit("filter_specificity_score_text", this.filterSpecificityScoreText);
+          
           this.setSpecificityScoreFlag = false;
+          this.$emit("set_specificity_score_flag", this.setSpecificityScoreFlag);
+          
           if (this.setGenesOverlapFlag) {
             this.selectGenesForHpoTermsCount();
             return;
@@ -682,6 +705,7 @@ export default {
     
     bus.$on("filterOnSpecificityScore", (flag) => {
       this.setSpecificityScoreFlag = flag;
+      this.$emit("set_specificity_score_flag", this.setSpecificityScoreFlag);
     })
     
     bus.$on("selected-tab", (tab) => {
@@ -931,11 +955,15 @@ export default {
         if (lower == 0) {
           this.filterSpecificityScoreText = "";
           this.setSpecificityScoreFlag = false;
+          this.$emit("set_specificity_score_flag", this.setSpecificityScoreFlag);
         }
       }
       else {
         this.filterSpecificityScoreText = ` Genes with a specificity score => ${lower} and <= ${higher}.`;
       }
+      
+      this.$emit("filter_specificity_score_text", this.filterSpecificityScoreText);
+
       
       this.summaryGenes.map(gene => {
         if(this.setGenesOverlapFlag){
@@ -976,6 +1004,7 @@ export default {
         if (lower == undefined) {
           this.filterTermsIntersectText = "";
           this.setGenesOverlapFlag = false;
+          this.$emit("set_genes_overlap_flag", this.setGenesOverlapFlag)
         }
         else {
           this.filterTermsIntersectText = `Genes associated with ${lower} HPO terms `;
@@ -984,6 +1013,8 @@ export default {
       else {
         this.filterTermsIntersectText = `Genes associated with => ${lower} and <= ${higher} HPO terms `;
       }
+      
+      this.$emit("filter_terms_inspect_text", this.filterTermsIntersectText);
       
       if(this.setSpecificityScoreFlag){
         this.summaryGenes.map(gene => {

@@ -21567,7 +21567,11 @@
           "idx": 227,
           "inGeneSet": false
       }
-    ]
+    ],
+    "filterTermsIntersectText": "Genes associated with 2 HPO terms",
+    "filterSpecificityScoreText": "Genes with a specificity score => 0.2406 and <= 0.7562.",
+    "setGenesOverlapFlag": true,
+    "setSpecificityScoreFlag": true
   },
   "title": "top 5 genes",
   "description": "top 5 genes",
