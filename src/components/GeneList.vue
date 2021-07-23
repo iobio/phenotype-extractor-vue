@@ -828,7 +828,7 @@ export default {
         }
         
         this.summaryGenes.forEach((gene, idx) => {
-          gene.idx = idx;
+          // gene.idx = idx; //this changes the order of the previous list
           if(this.selected.includes(gene.name)){
             this.$set(this.summaryGenes[idx], 'inGeneSet', true);
           }
@@ -1081,6 +1081,8 @@ export default {
 
         this.$emit("add_to_gene_set", this.selected)
       }
+      console.log("this.summaryGenes changed", this.summaryGenes);
+      this.$emit("reorder_summary_genes", this.summaryGenes)
     },
     
     organizeGeneListBasedOnSelectedTab(tab){

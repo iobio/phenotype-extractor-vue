@@ -75,7 +75,7 @@
       }
     ],
     "genesGtr": [],
-    "genesTop": "20",
+    "genesTop": "12",
     "variants": [],
     "sample_id": "108",
     "phenotypes": [
@@ -3613,35 +3613,6 @@
           "inGeneSet": true
       },
       {
-          "name": "HK1",
-          "source": [
-              "ClinPhen"
-          ],
-          "geneId": "",
-          "score": "",
-          "genePanels": "",
-          "searchTermHpo": [
-              {
-                  "searchTerm": "HP:0011096",
-                  "hpoPhenotype": "Peripheral demyelination"
-              },
-              {
-                  "searchTerm": "HP:0000763",
-                  "hpoPhenotype": "Sensory neuropathy"
-              }
-          ],
-          "searchTermsPhenolyzer": [],
-          "searchTermsGtr": [],
-          "geneRankGtr": -1,
-          "geneRankPhenolyzer": -1,
-          "isImportedGenes": false,
-          "isAssociatedGene": false,
-          "specificityScore": "0.0110",
-          "scaledScore": "0.1100",
-          "idx": 11,
-          "inGeneSet": true
-      },
-      {
           "name": "ND6",
           "source": [
               "ClinPhen"
@@ -3671,6 +3642,35 @@
           "inGeneSet": true
       },
       {
+          "name": "HK1",
+          "source": [
+              "ClinPhen"
+          ],
+          "geneId": "",
+          "score": "",
+          "genePanels": "",
+          "searchTermHpo": [
+              {
+                  "searchTerm": "HP:0011096",
+                  "hpoPhenotype": "Peripheral demyelination"
+              },
+              {
+                  "searchTerm": "HP:0000763",
+                  "hpoPhenotype": "Sensory neuropathy"
+              }
+          ],
+          "searchTermsPhenolyzer": [],
+          "searchTermsGtr": [],
+          "geneRankGtr": -1,
+          "geneRankPhenolyzer": -1,
+          "isImportedGenes": false,
+          "isAssociatedGene": false,
+          "specificityScore": "0.0110",
+          "scaledScore": "0.1100",
+          "idx": 11,
+          "inGeneSet": false
+      },
+      {
           "name": "ND4",
           "source": [
               "ClinPhen"
@@ -3697,7 +3697,7 @@
           "specificityScore": "0.0077",
           "scaledScore": "0.0770",
           "idx": 13,
-          "inGeneSet": true
+          "inGeneSet": false
       },
       {
           "name": "TPRKB",
@@ -3722,7 +3722,7 @@
           "specificityScore": "0.0122",
           "scaledScore": "0.1220",
           "idx": 14,
-          "inGeneSet": true
+          "inGeneSet": false
       },
       {
           "name": "COQ7",
@@ -3747,7 +3747,7 @@
           "specificityScore": "0.0200",
           "scaledScore": "0.2000",
           "idx": 15,
-          "inGeneSet": true
+          "inGeneSet": false
       },
       {
           "name": "GCDH",
@@ -3772,7 +3772,7 @@
           "specificityScore": "0.0086",
           "scaledScore": "0.0860",
           "idx": 16,
-          "inGeneSet": true
+          "inGeneSet": false
       },
       {
           "name": "MAT1A",
@@ -3797,7 +3797,7 @@
           "specificityScore": "0.0556",
           "scaledScore": "0.5560",
           "idx": 17,
-          "inGeneSet": true
+          "inGeneSet": false
       },
       {
           "name": "KIF1C",
@@ -3822,7 +3822,7 @@
           "specificityScore": "0.0147",
           "scaledScore": "0.1470",
           "idx": 18,
-          "inGeneSet": true
+          "inGeneSet": false
       },
       {
           "name": "ABCA1",
@@ -3847,7 +3847,7 @@
           "specificityScore": "0.0111",
           "scaledScore": "0.1110",
           "idx": 19,
-          "inGeneSet": true
+          "inGeneSet": false
       },
       {
           "name": "PRX",
@@ -9808,7 +9808,7 @@
     ],
     "datetime_last_modified": 1602179041318,
     "selectedGenesForGeneSet": [
-      "ATP6", "GALC", "ND5", "PMP22", "TRNW", "PLP1", "PRPS1", "ND1", "TRNL1", "CTDP1", "PSAP", "HK1", "ND6", "ND4", "TPRKB", "COQ7", "GCDH", "MAT1A", "KIF1C", "ABCA1"
+      "ATP6", "GALC", "ND5", "PMP22", "TRNW", "PLP1", "PRPS1", "ND1", "TRNL1", "CTDP1", "PSAP", "ND6"
     ],
     "scaledHpoScores": [
       "0.0800",
@@ -10040,7 +10040,7 @@
       "0.0710",
       "0.0860"
     ],
-    "specificityScoreBrushArea": [146, 298],
+    "specificityScoreBrushArea": [82, 301],
     "hpoGenesCountForBarChart": [
       {
           "name": "1",

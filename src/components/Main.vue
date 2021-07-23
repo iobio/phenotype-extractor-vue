@@ -118,7 +118,8 @@
         :stateHpoSummaryGenesProps="analysis.payload.stateHpoSummaryGenes"
         :stateSummaryGenesProps="analysis.payload.stateSummaryGenes"
         @state_hpo_summary_genes="state_hpo_summary_genes($event)"
-        @state_summary_genes="state_summary_genes($event)">
+        @state_summary_genes="state_summary_genes($event)"
+        @reorder_summary_genes="reorder_summary_genes($event)">
       </GeneList>
     </v-layout>
   </v-container>
@@ -224,6 +225,11 @@ export default {
       this.summaryGeneList = res;
       this.analysis.payload.genesReport = this.summaryGeneList;
     },
+    reorder_summary_genes(genes){
+      if(genes.length){
+        this.analysis.payload.genesReport = genes;
+      }
+    },
     saveSearchedPhenotypes(phenotypes){
       this.analysis.payload.phenotypes = phenotypes;
     },
@@ -288,6 +294,7 @@ export default {
     },
     add_to_gene_set(genes){
       this.selectedGenesForGeneSet = genes;
+      console.log("this.selectedGenesForGeneSet", this.selectedGenesForGeneSet);
     },
     update_genes_top(number){
       this.genesTop = number;
@@ -316,6 +323,7 @@ export default {
       this.analysis.payload.scaledHpoScores = scores;
     },
     specificity_brush_area(area){
+      console.log("brushArea", area);
       this.analysis.payload.specificityScoreBrushArea = area;
     },
     hpo_genes_bar_chart(count){
