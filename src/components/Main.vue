@@ -78,7 +78,14 @@
         @new_term_searched="new_term_searched($event)"
         :textNotesLandingPage="textNotesLandingPage"
         @close_search_status_dialog="close_search_status_dialog($event)"
-        :launchedFromGenePanel="launchedFromGenePanel">
+        :launchedFromGenePanel="launchedFromGenePanel"
+        :scaled_hpo_scores_props="analysis.payload.scaledHpoScores"
+        :specificityScoreBrushArea="analysis.payload.specificityScoreBrushArea"
+        :hpo_genes_bar_chart_props="analysis.payload.hpoGenesCountForBarChart"
+        :hpo_bar_chart_brush_area_props="analysis.payload.hpoBarChartBrushArea"
+        @scaled_hpo_scores="scaled_hpo_scores($event)"
+        @specificity_brush_area="specificity_brush_area($event)"
+        @hpo_genes_bar_chart="hpo_genes_bar_chart($event)">
       </PhenotypeExtractor>
 
       <!-- <Phenotypes
@@ -107,7 +114,20 @@
         :hpoResourceUsed="hpoResourceUsed"
         :PhenolyzerResourceUsed="PhenolyzerResourceUsed"
         :mosaic_gene_set="mosaic_gene_set"
-        :launchedFromGenePanel="launchedFromGenePanel">
+        :launchedFromGenePanel="launchedFromGenePanel"
+        :stateHpoSummaryGenesProps="analysis.payload.stateHpoSummaryGenes"
+        :stateSummaryGenesProps="analysis.payload.stateSummaryGenes"
+        :filterTermsIntersectTextProps="analysis.payload.filterTermsIntersectText"
+        :filterSpecificityScoreTextProps="analysis.payload.filterSpecificityScoreText"
+        :setGenesOverlapFlagProps="analysis.payload.setGenesOverlapFlag"
+        :setSpecificityScoreFlagProps="analysis.payload.setSpecificityScoreFlag"
+        @state_hpo_summary_genes="state_hpo_summary_genes($event)"
+        @state_summary_genes="state_summary_genes($event)"
+        @reorder_summary_genes="reorder_summary_genes($event)"
+        @filter_terms_inspect_text="filter_terms_inspect_text($event)"
+        @filter_specificity_score_text="filter_specificity_score_text($event)"
+        @set_genes_overlap_flag="set_genes_overlap_flag($event)"
+        @set_specificity_score_flag="set_specificity_score_flag($event)">
       </GeneList>
     </v-layout>
   </v-container>
@@ -127,8 +147,9 @@ import { bus } from '../main';
 import GtrSearch from './GtrSearch.vue';
 import PhenotypeExtractor from './PhenotypeExtractor.vue'
 import GeneList from './GeneList.vue'
-import analysisData from '../data/analysis.json';
+// import analysisData from '../data/analysis.json';
 // import analysisData from '../data/mosaic_analysis.json';
+import analysisData from '../data/mosaic_analysis_2021.json';
 import PhenotypistData from '../data/PhenotypistState.json';
 import Model from '../models/Model';
 var model = new Model();
@@ -196,6 +217,9 @@ export default {
   },
   mounted(){
     // this.generateArc();
+    bus.$on("hpo_bar_chart_brush_area", (area) => {
+      this.analysis.payload.hpoBarChartBrushArea = area;
+    })
   },
   methods: {
     summaryGenes(genes){
@@ -207,11 +231,14 @@ export default {
       })
 
       this.summaryGeneList = res;
-      console.log("this.summaryGeneList", this.summaryGeneList);
       this.analysis.payload.genesReport = this.summaryGeneList;
     },
+    reorder_summary_genes(genes){
+      if(genes.length){
+        this.analysis.payload.genesReport = genes;
+      }
+    },
     saveSearchedPhenotypes(phenotypes){
-      console.log("phenotypes", phenotypes)
       this.analysis.payload.phenotypes = phenotypes;
     },
     importedGenes(genes){
@@ -253,6 +280,7 @@ export default {
       this.venn_diag_data = data;
     },
     VennDiagramData(obj){
+      console.log("VennDiagramData", obj);
       this.analysis.payload.VennDiagramData = obj
     }, 
     gene_to_delete(gene){
@@ -274,6 +302,7 @@ export default {
     },
     add_to_gene_set(genes){
       this.selectedGenesForGeneSet = genes;
+      console.log("this.selectedGenesForGeneSet", this.selectedGenesForGeneSet);
     },
     update_genes_top(number){
       this.genesTop = number;
@@ -297,6 +326,33 @@ export default {
       this.mosaic_gene_set = "TRPV4,SH3TC2,SBF2,RAB7A,PRX,PMP22,PLEKHG5,NEFL,NDRG1,MPZ,MFN2,MED25,LRSAM1,LITAF,HSPB1,HK1,GDAP1,FGD4,EGR2,DNM2"
     },
     close_search_status_dialog(){
+    },
+    scaled_hpo_scores(scores){
+      this.analysis.payload.scaledHpoScores = scores;
+    },
+    specificity_brush_area(area){
+      this.analysis.payload.specificityScoreBrushArea = area;
+    },
+    hpo_genes_bar_chart(count){
+      this.analysis.payload.hpoGenesCountForBarChart = count;
+    },
+    state_hpo_summary_genes(genes){
+      this.analysis.payload.stateHpoSummaryGenes = genes;
+    },
+    state_summary_genes(genes){
+      this.analysis.payload.stateSummaryGenes = genes;
+    },
+    filter_terms_inspect_text(text){
+      this.analysis.payload.filterTermsIntersectText = text;
+    },
+    filter_specificity_score_text(text){
+      this.analysis.payload.filterSpecificityScoreText = text;
+    },
+    set_genes_overlap_flag(flag){
+      this.analysis.payload.setGenesOverlapFlag = flag;
+    },
+    set_specificity_score_flag(flag){
+      this.analysis.payload.setSpecificityScoreFlag = flag;
     }
   }
 };
