@@ -2379,6 +2379,12 @@ export default {
     bus.$on("closeVennDiagramPanel", ()=>{
       this.toggle_gene_overlap_button();
     })
+    
+    bus.$on("hpo_bar_chart_brush_area_bus", (area) => {
+      console.log("called hpo_bar_chart_brush_area", area);
+      this.$emit("hpo_bar_chart_brush_area", area)
+      // this.analysis.payload.hpoBarChartBrushArea = area;
+    })
 
     //Check if there is saved state
     if(this.phenotypes.length){
@@ -5189,7 +5195,7 @@ function brushing(event) {
 
     var newInput = [];
     var brushArea = event.selection;
-    bus.$emit("hpo_bar_chart_brush_area", brushArea);
+    bus.$emit("hpo_bar_chart_brush_area_bus", brushArea);
     
     if (brushArea === null) brushArea = y.range();
 

@@ -83,6 +83,7 @@
         :specificityScoreBrushArea="analysis.payload.specificityScoreBrushArea"
         :hpo_genes_bar_chart_props="analysis.payload.hpoGenesCountForBarChart"
         :hpo_bar_chart_brush_area_props="analysis.payload.hpoBarChartBrushArea"
+        @hpo_bar_chart_brush_area="hpo_bar_chart_brush_area($event)"
         @scaled_hpo_scores="scaled_hpo_scores($event)"
         @specificity_brush_area="specificity_brush_area($event)"
         @hpo_genes_bar_chart="hpo_genes_bar_chart($event)">
@@ -147,9 +148,9 @@ import { bus } from '../main';
 import GtrSearch from './GtrSearch.vue';
 import PhenotypeExtractor from './PhenotypeExtractor.vue'
 import GeneList from './GeneList.vue'
-// import analysisData from '../data/analysis.json';
+import analysisData from '../data/analysis.json';
 // import analysisData from '../data/mosaic_analysis.json';
-import analysisData from '../data/mosaic_analysis_2021.json';
+// import analysisData from '../data/mosaic_analysis_2021.json';
 import PhenotypistData from '../data/PhenotypistState.json';
 import Model from '../models/Model';
 var model = new Model();
@@ -217,9 +218,9 @@ export default {
   },
   mounted(){
     // this.generateArc();
-    bus.$on("hpo_bar_chart_brush_area", (area) => {
-      this.analysis.payload.hpoBarChartBrushArea = area;
-    })
+    // bus.$on("hpo_bar_chart_brush_area", (area) => {
+    //   this.analysis.payload.hpoBarChartBrushArea = area;
+    // })
   },
   methods: {
     summaryGenes(genes){
@@ -329,6 +330,9 @@ export default {
     },
     scaled_hpo_scores(scores){
       this.analysis.payload.scaledHpoScores = scores;
+    },
+    hpo_bar_chart_brush_area(area){
+      this.analysis.payload.hpoBarChartBrushArea = area;
     },
     specificity_brush_area(area){
       this.analysis.payload.specificityScoreBrushArea = area;

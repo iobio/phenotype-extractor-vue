@@ -488,6 +488,7 @@ export default {
       }
     },
     summaryGeneList(){
+      console.log("summaryGeneList is watching", this.summaryGeneList);
       // this.summaryGenes = this.summaryGeneList;
       this.organizeTableHeaders();
       this.organizeGeneList();
@@ -870,7 +871,7 @@ export default {
     organizeGeneList(){
       var associatedGenes = [];
       var nonAssociatedGenes = [];
-
+      console.log("summaryGeneList in organizeGeneList", this.organizeGeneList);
       if(this.summaryGeneList!==undefined){
         
         // this.summaryGeneList.forEach((gene, idx) => {
