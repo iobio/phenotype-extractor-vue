@@ -488,7 +488,6 @@ export default {
       }
     },
     summaryGeneList(){
-      console.log("summaryGeneList is watching", this.summaryGeneList);
       // this.summaryGenes = this.summaryGeneList;
       this.organizeTableHeaders();
       this.organizeGeneList();
@@ -619,6 +618,7 @@ export default {
     // this.HpoGenesData = hpo_genes;
     this.HpoTermsTypeaheadData  = HpoTermsData.data;
     this.HPO_Terms_data = HPO_Terms;
+    console.log("this.HPO_Terms_data in mounted", this.HPO_Terms_data);
     this.HPO_Phenotypes_data = HPO_Phenotypes;
     this.vennData = this.venn_diag_data;
   },
@@ -825,12 +825,14 @@ export default {
     },
 
     getPhenotypFromHPO_id(id){
+      console.log("this.HPO_Terms_data in getPhenotypFromHPO_id", this.HPO_Terms_data);
       var idx = this.HPO_Terms_data.indexOf(id);
       var phenotype = this.HPO_Phenotypes_data[idx];
       return `${phenotype} [ ${id} ]`
     },
     
     organizeGeneListOnMount(){
+      console.log("summary gene list on mount", this.summaryGeneList);
       var associatedGenes = [];
       var nonAssociatedGenes = [];
 
@@ -869,9 +871,9 @@ export default {
     },
 
     organizeGeneList(){
+      console.log("organizeGeneList", this.summaryGeneList);
       var associatedGenes = [];
       var nonAssociatedGenes = [];
-      console.log("summaryGeneList in organizeGeneList", this.organizeGeneList);
       if(this.summaryGeneList!==undefined){
         
         // this.summaryGeneList.forEach((gene, idx) => {
