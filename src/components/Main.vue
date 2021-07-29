@@ -116,8 +116,8 @@
         :PhenolyzerResourceUsed="PhenolyzerResourceUsed"
         :mosaic_gene_set="mosaic_gene_set"
         :launchedFromGenePanel="launchedFromGenePanel"
-        :stateHpoSummaryGenesProps="analysis.payload.stateHpoSummaryGenes"
-        :stateSummaryGenesProps="analysis.payload.stateSummaryGenes"
+        :stateHpoSummaryGenesProps="stateHpoSummaryGenesProps"
+        :stateSummaryGenesProps="stateSummaryGenesProps"
         :filterTermsIntersectTextProps="analysis.payload.filterTermsIntersectText"
         :filterSpecificityScoreTextProps="analysis.payload.filterSpecificityScoreText"
         :setGenesOverlapFlagProps="analysis.payload.setGenesOverlapFlag"
@@ -148,9 +148,9 @@ import { bus } from '../main';
 import GtrSearch from './GtrSearch.vue';
 import PhenotypeExtractor from './PhenotypeExtractor.vue'
 import GeneList from './GeneList.vue'
-import analysisData from '../data/analysis.json';
+// import analysisData from '../data/analysis.json';
 // import analysisData from '../data/mosaic_analysis.json';
-// import analysisData from '../data/mosaic_analysis_2021.json';
+import analysisData from '../data/mosaic_analysis_2021.json';
 import PhenotypistData from '../data/PhenotypistState.json';
 import Model from '../models/Model';
 var model = new Model();
@@ -187,6 +187,8 @@ export default {
     PhenolyzerResourceUsed: false,
     mosaic_gene_set: "",
     launchedFromGenePanel: true,
+    stateSummaryGenesProps: [],
+    stateHpoSummaryGenesProps: [],
     // phenotypes: [
     //   [
     //     {
@@ -215,6 +217,9 @@ export default {
   created(){
     this.analysis = analysisData;
     this.PhenotypistState = PhenotypistData;
+    this.stateHpoSummaryGenesProps = this.analysis.payload.stateHpoSummaryGenes;
+    this.stateSummaryGenesProps = this.analysis.payload.stateSummaryGenes; 
+    console.log("this.stateSummaryGenesProps", this.stateSummaryGenesProps);
   },
   mounted(){
     // this.generateArc();
@@ -235,9 +240,9 @@ export default {
       this.analysis.payload.genesReport = this.summaryGeneList;
     },
     reorder_summary_genes(genes){
-      if(genes.length){
-        this.analysis.payload.genesReport = genes;
-      }
+      // if(genes.length){
+      //   this.analysis.payload.genesReport = genes;
+      // }
     },
     saveSearchedPhenotypes(phenotypes){
       this.analysis.payload.phenotypes = phenotypes;

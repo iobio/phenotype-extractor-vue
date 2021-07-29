@@ -4253,7 +4253,17 @@
       "PMP22",
       "PRX",
       "TCOF1"
-    ]
+    ],
+    "scaledHpoScores": [],
+    "specificityScoreBrushArea": [],
+    "hpoGenesCountForBarChart": [],
+    "hpoBarChartBrushArea": [],
+    "stateHpoSummaryGenes": [],
+    "stateSummaryGenes": [],
+    "filterTermsIntersectText": "",
+    "filterSpecificityScoreText": "",
+    "setGenesOverlapFlag": false,
+    "setSpecificityScoreFlag": false
   },
   "title": "top 5 genes",
   "description": "top 5 genes",

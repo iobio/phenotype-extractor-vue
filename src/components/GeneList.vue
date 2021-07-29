@@ -901,17 +901,26 @@ export default {
           this.summaryGenes = this.summaryGeneList;
         }
         
+        var selectedArr = []; 
+        var notSelected = [];
+        var temp = [];
+
         this.summaryGenes.forEach((gene, idx) => {
           if(!gene.idx){
             gene.idx = idx; 
           }
           if(this.selected.includes(gene.name)){
             this.$set(this.summaryGenes[idx], 'inGeneSet', true);
+            selectedArr.push(gene); 
           }
           else {
             this.$set(this.summaryGenes[idx], 'inGeneSet', false);
+            notSelected.push(gene);
           }
         })
+        
+        var temp = [...selectedArr, ...notSelected]; 
+        this.summaryGenes = temp; 
         
         this.stateSummaryGenes = [...this.summaryGenes]; 
         this.$emit("state_summary_genes", this.stateSummaryGenes); 
@@ -1132,7 +1141,7 @@ export default {
         })
         if (!this.stateHpoSummaryGenes.length) {
           this.stateHpoSummaryGenes = temp; 
-          this.$emit("state_hpo_summary_genes", this.stateHpoSummaryGenes)
+          // this.$emit("state_hpo_summary_genes", this.stateHpoSummaryGenes)
         }
         this.organizeListBasedOnFilters(); 
       }

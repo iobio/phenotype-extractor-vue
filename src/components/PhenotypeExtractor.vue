@@ -2446,7 +2446,9 @@ export default {
         this.Hpo_searchTermArray.push(term.hpoNumber);
         this.multipleSearchTerms.push(term.HPO_Data);
       })
-      this.Hpo_performSearchEvent_saved()
+      setTimeout(()=>{
+        this.Hpo_performSearchEvent_saved();
+      }, 10000)
     }
 
     if(this.phenotypes.length && this.phenotypes[3].length){
@@ -4216,6 +4218,7 @@ export default {
     },
 
     Hpo_performSearchEvent_saved(){
+      console.log("inside Hpo_performSearchEvent_saved");
       // this.hpoFetchCompleted = false;
       // console.log("performing saved search")
       let startVal = this.Hpo_idx;

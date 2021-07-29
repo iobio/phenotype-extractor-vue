@@ -84,6 +84,7 @@ export default {
       .then( res => res.json())
         .then( data => {
           this.HpoGenesData = data;
+          console.log("got this.HpoGenesData");
         })
         
     fetch('https://s3.amazonaws.com/ped.test.files/gene_hpo_count.json')
@@ -281,6 +282,7 @@ export default {
     },
 
     getIndividualGenes(term){
+      console.log("this.HpoGenesData", this.HpoGenesData);
       var genes = [];
       var individualGenes= [];
       if(this.hpoGenesSearchTermObj[term]===undefined){
