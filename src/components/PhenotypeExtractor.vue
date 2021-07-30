@@ -4218,7 +4218,6 @@ export default {
     },
 
     Hpo_performSearchEvent_saved(){
-      console.log("inside Hpo_performSearchEvent_saved");
       // this.hpoFetchCompleted = false;
       // console.log("performing saved search")
       let startVal = this.Hpo_idx;

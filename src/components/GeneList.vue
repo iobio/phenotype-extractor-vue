@@ -870,7 +870,6 @@ export default {
     },
 
     organizeGeneList(){
-      console.log("organizeGeneList", this.summaryGeneList);
       var associatedGenes = [];
       var nonAssociatedGenes = [];
       if(this.summaryGeneList!==undefined){
@@ -911,16 +910,16 @@ export default {
           }
           if(this.selected.includes(gene.name)){
             this.$set(this.summaryGenes[idx], 'inGeneSet', true);
-            selectedArr.push(gene); 
+            // selectedArr.push(gene); 
           }
           else {
             this.$set(this.summaryGenes[idx], 'inGeneSet', false);
-            notSelected.push(gene);
+            // notSelected.push(gene);
           }
         })
         
-        var temp = [...selectedArr, ...notSelected]; 
-        this.summaryGenes = temp; 
+        // var temp = [...selectedArr, ...notSelected]; 
+        // this.summaryGenes = temp; 
         
         this.stateSummaryGenes = [...this.summaryGenes]; 
         this.$emit("state_summary_genes", this.stateSummaryGenes); 
@@ -1200,7 +1199,10 @@ export default {
           this.summaryGenes[i].inGeneSet = false;
         }
       }
-      this.$emit("add_to_gene_set", this.selected)
+      this.genesTop = this.selected.length;
+      this.$emit("update_genes_top", this.genesTop);
+
+      this.$emit("add_to_gene_set", this.selected);
     },
     selectTopGenesAfterDelete(numberOfGenesToSelect){
       this.selected = [];
@@ -1219,6 +1221,8 @@ export default {
         }
       }
       // this.geneTableLoading = false;
+      this.genesTop = this.selected.length;
+      this.$emit("update_genes_top", this.genesTop);
 
       this.$emit("add_to_gene_set", this.selected);
       this.geneToDelete = null;
