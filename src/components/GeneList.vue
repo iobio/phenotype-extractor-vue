@@ -853,15 +853,23 @@ export default {
           this.summaryGenes = this.summaryGeneList;
         }
         
+        var selectedArr = []; 
+        var notSelected = [];
+        var temp = [];
+
         this.summaryGenes.forEach((gene, idx) => {
           // gene.idx = idx; //this changes the order of the previous list
           if(this.selected.includes(gene.name)){
             this.$set(this.summaryGenes[idx], 'inGeneSet', true);
+            selectedArr.push(gene); 
           }
           else {
             this.$set(this.summaryGenes[idx], 'inGeneSet', false);
+            notSelected.push(gene);
           }
         })
+        var temp = [...selectedArr, ...notSelected]; 
+        this.summaryGenes = temp; 
         
       }
       else {
