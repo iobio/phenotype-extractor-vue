@@ -148,9 +148,9 @@ import { bus } from '../main';
 import GtrSearch from './GtrSearch.vue';
 import PhenotypeExtractor from './PhenotypeExtractor.vue'
 import GeneList from './GeneList.vue'
-// import analysisData from '../data/analysis.json';
+import analysisData from '../data/analysis.json';
 // import analysisData from '../data/mosaic_analysis.json';
-import analysisData from '../data/mosaic_analysis_2021.json';
+// import analysisData from '../data/mosaic_analysis_2021.json';
 import PhenotypistData from '../data/PhenotypistState.json';
 import Model from '../models/Model';
 var model = new Model();
@@ -186,7 +186,7 @@ export default {
     hpoResourceUsed: false,
     PhenolyzerResourceUsed: false,
     mosaic_gene_set: "",
-    launchedFromGenePanel: true,
+    launchedFromGenePanel: false,
     stateSummaryGenesProps: [],
     stateHpoSummaryGenesProps: [],
     // phenotypes: [

@@ -942,7 +942,7 @@ export default {
             this.selectTopGenes(20);
           }
           else {
-            this.selectTopGenes(this.genesTop);
+            this.selectTopGenes(20);
           }
         }
         else if(this.addedGenesFlag){
@@ -1124,8 +1124,8 @@ export default {
 
         this.$emit("add_to_gene_set", this.selected)
       }
-      console.log("this.summaryGenes changed", this.summaryGenes);
-      this.$emit("reorder_summary_genes", this.summaryGenes)
+      // console.log("this.summaryGenes changed", this.summaryGenes);
+      // this.$emit("reorder_summary_genes", this.summaryGenes)
     },
     
     organizeGeneListBasedOnSelectedTab(tab){
