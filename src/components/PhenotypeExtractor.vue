@@ -70,8 +70,8 @@
               
               <!-- flex-text-note  -->
               <v-card class="col-flex-note" v-show="tab_idx===0">
-                <v-card-title primary-title>
-                  <strong class="terms-heading primary--text" style="font-size: 16px">
+                <v-card-title primary-title style="padding-top: 6px; padding-bottom: 4px">
+                  <strong class="terms-heading" style="font-size: 16px">
                     Inputs
                   </strong>
 
@@ -141,9 +141,9 @@
 
               <!-- flex hpo visualizations  -->
               <v-card class="col-flex-terms" v-show="tab_idx===1">
-                <v-card-title primary-title style="margin-bottom: -30px;">
+                <v-card-title primary-title style="margin-bottom: -30px; padding-top: 6px; padding-bottom: 4px">
 
-                  <strong class="terms-heading primary--text" style="font-size: 16px">
+                  <strong class="terms-heading" style="font-size: 16px">
                     Genes overlap with terms
                     <v-tooltip top>
                       <template v-slot:activator="{ on }">
@@ -190,9 +190,9 @@
               
               <!-- flex hpo distribution visualizations  -->
               <v-card class="col-flex-terms" v-show="tab_idx===1">
-                <v-card-title primary-title style="margin-bottom: -30px;">
+                <v-card-title primary-title style="margin-bottom: -30px; padding-top: 6px; padding-bottom: 4px">
 
-                  <strong class="terms-heading primary--text" style="font-size: 16px">
+                  <strong class="terms-heading" style="font-size: 16px">
                     Gene specificity score
                     <v-tooltip top>
                       <template v-slot:activator="{ on }">
@@ -237,8 +237,8 @@
                             
               <!-- flex-gtr-terms -->
               <v-card class="col-flex-terms"  v-show="tab_idx===0">
-                <v-card-title primary-title>
-                  <strong class="terms-heading primary--text" style="font-size: 16px">
+                <v-card-title primary-title style="padding-top: 6px; padding-bottom: 4px">
+                  <strong class="terms-heading" style="font-size: 16px">
                     GTR
                   </strong>
                   <v-spacer></v-spacer>
@@ -323,8 +323,8 @@
 
               <!-- flex-Phenolyzer-terms -->
               <v-card class="col-flex-terms"  v-show="tab_idx===0">
-                <v-card-title primary-title>
-                  <strong class="terms-heading primary--text" style="font-size: 16px">
+                <v-card-title primary-title style="padding-top: 6px; padding-bottom: 4px">
+                  <strong class="terms-heading" style="font-size: 16px">
                     Phenolyzer
                   </strong>
                   <v-spacer></v-spacer>
@@ -441,8 +441,8 @@
               
               <!-- flex-hpo-terms -->
               <v-card class="col-flex-terms"  v-show="tab_idx===0 || tab_idx===1">
-                <v-card-title primary-title>
-                  <strong class="terms-heading primary--text" style="font-size: 16px">
+                <v-card-title primary-title style="padding-top: 6px; padding-bottom: 4px">
+                  <strong class="terms-heading" style="font-size: 16px">
                     HPO
                   </strong>
                   <v-spacer></v-spacer>
@@ -528,8 +528,8 @@
               
               <!-- flex-manually-added-genes -->
               <v-card class="col-flex-terms"  v-show="tab_idx===0">
-                <v-card-title primary-title>
-                  <strong class="terms-heading primary--text" style="font-size: 16px">
+                <v-card-title primary-title style="padding-top: 6px; padding-bottom: 4px">
+                  <strong class="terms-heading" style="font-size: 16px">
                     Added genes 
                   </strong>
                   <v-spacer></v-spacer>
@@ -5393,6 +5393,7 @@ function brushing(event) {
     padding-top: 5px
     padding-bottom: 5px
     align-items: center
+    font-weight: 800
     
   .hpo-terms-detected-card
     .v-label
