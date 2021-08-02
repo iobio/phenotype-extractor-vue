@@ -144,16 +144,24 @@
                 <v-card-title primary-title style="margin-bottom: -30px; padding-top: 6px; padding-bottom: 4px">
 
                   <strong class="terms-heading" style="font-size: 16px">
-                    Genes overlap with terms
-                    <v-tooltip top>
+                    Overlapping HPO terms
+                    <v-tooltip top content-class='overlapping-hpo-tooltip'>
                       <template v-slot:activator="{ on }">
                         <v-icon v-on="on" small style="font-size:16px; opacity: 0.8" class="ml-1">info_outline</v-icon>
                       </template>
-                      <span>
-                        This visualization allows to select genes that overlaps with N HPO terms. 
-                        <br>For example, if you want to select 
-                        genes with 2 or more HPO terms, brush the chart through Y axis.  
-                      </span>
+                      <div style="width:400px">
+                        <span>
+                          The number of genes that overlap a specific number of user-defined HPO terms. 
+                          <br><br>
+                          For example, the bar with a value of 1 represents how many returned genes overlap exactly 1 HPO term. 
+                          <br><br>
+                          To update the gene list to only include genes that overlap at least 3 HPO terms, drag on the chart as shown below:
+                          <br>
+                          <center>
+                            <img width="380px" src="https://user-images.githubusercontent.com/523111/127333656-bc34158f-121a-4635-acaf-f085048ed4b0.png" alt="">
+                          </center>
+                        </span>
+                      </div>
                     </v-tooltip>      
                   </strong>
 
@@ -5408,6 +5416,8 @@ function brushing(event) {
 .close-margin-left-20
   margin-left: -20px  
 
+.overlapping-hpo-tooltip
+  opacity: 1!important
 
 </style>
 

@@ -1133,7 +1133,7 @@ export default {
         this.$emit("add_to_gene_set", this.selected)
       }
       // console.log("this.summaryGenes changed", this.summaryGenes);
-      // this.$emit("reorder_summary_genes", this.summaryGenes)
+      this.$emit("reorder_summary_genes", this.summaryGenes)
     },
     
     organizeGeneListBasedOnSelectedTab(tab){
