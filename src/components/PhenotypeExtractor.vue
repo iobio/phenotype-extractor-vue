@@ -201,16 +201,22 @@
                 <v-card-title primary-title style="margin-bottom: -30px; padding-top: 6px; padding-bottom: 4px">
 
                   <strong class="terms-heading" style="font-size: 16px">
-                    Gene specificity score
+                    Specificity score
                     <v-tooltip top>
                       <template v-slot:activator="{ on }">
                         <v-icon v-on="on" small style="font-size:16px; opacity: 0.8" class="ml-1">info_outline</v-icon>
                       </template>
-                      <span>
-                        Gene specificity score shows how specific a gene is to an HPO term. 
-                        <br>The range of the specificity score is between 0 and 1. 
-                        <br>Higher the score, more specific is the gene to an HPO term. You can interact with the chart by brushing along the X-axis.
-                      </span>
+                      <div style="width:400px">
+                        <span>
+                          The lower the score, the more HPO terms this gene is associated with, and consequently, it is less likely to have a strong association. 
+                          <br><br>
+                          Dragging on the chart will update the gene list to include only those with scores in the specified range:
+                          <br>
+                          <center>
+                            <img width="380px" src="https://user-images.githubusercontent.com/523111/127334758-861d7b07-6ac8-42a7-9da3-254bb21882f7.png" alt="">
+                          </center>
+                        </span>
+                      </div>
                     </v-tooltip>      
                   </strong>
 
@@ -4844,7 +4850,7 @@ export default {
               .attr("font-weight", "500")
               .attr("font-size", "13px")
               .attr("font-family", "Roboto, sans-serif")
-              .text("score")
+              .text("Specificity score")
           );
 
       var yAxis = (g) =>
@@ -5155,7 +5161,7 @@ function drawHpoGenesBarChart(menu) {
       .attr("font-family", "Roboto, sans-serif")
       .attr("text-anchor", "end")
       .attr("transform", "rotate(90)")
-      .text("Search terms");
+      .text("User-defined HPO terms");
     })
     .call((g) =>
       g.selectAll(".domain").attr("stroke-width", 0.3).attr("stroke", "#606060")
