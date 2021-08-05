@@ -145,7 +145,7 @@
 
                   <strong class="terms-heading" style="font-size: 16px">
                     Overlapping HPO terms
-                    <v-tooltip top content-class='overlapping-hpo-tooltip'>
+                    <v-tooltip top content-class='overlapping-hpo-tooltip' class="custom-tooltip">
                       <template v-slot:activator="{ on }">
                         <v-icon v-on="on" small style="font-size:16px; opacity: 0.8" class="ml-1">info_outline</v-icon>
                       </template>
@@ -206,8 +206,12 @@
                       <template v-slot:activator="{ on }">
                         <v-icon v-on="on" small style="font-size:16px; opacity: 0.8" class="ml-1">info_outline</v-icon>
                       </template>
-                      <div style="width:400px">
+                      <div style="width:400px; z-index: 10; opacity: 1">
                         <span>
+                          The specificity score shows how specific a gene is to an HPO term. 
+                          <br><br>
+                          It is calculated by taking ratio of matched terms for a gene to the number of searched HPO terms and then multiplying by a reciprocal of total number of HPO terms associated to a gene.
+                          <br><br> 
                           The lower the score, the more HPO terms this gene is associated with, and consequently, it is less likely to have a strong association. 
                           <br><br>
                           Dragging on the chart will update the gene list to include only those with scores in the specified range:
@@ -4843,7 +4847,7 @@ export default {
           .call((g) =>
             g
               .append("text")
-              .attr("x", width/2)
+              .attr("x", width/2 + 60)
               .attr("y", 33)
               .attr("fill", "currentColor")
               .attr("text-anchor", "end")
@@ -4866,7 +4870,7 @@ export default {
             g
               .select(".tick:last-of-type text")
               .clone()
-              .attr("x", 105)
+              .attr("x", 92)
               .attr("y", 42)
               .attr("text-anchor", "start")
               .attr("text-anchor", "end")
@@ -5153,7 +5157,7 @@ function drawHpoGenesBarChart(menu) {
     .call((g) => g.selectAll("text").attr("fill", "#606060"))
     .call((g) => {
       g.append("text")
-      .attr("x", margin.right + 120)
+      .attr("x", margin.right + 150)
       .attr("y", 35)
       .attr("fill", "currentColor")
       .attr("font-weight", "500")
@@ -5423,8 +5427,16 @@ function brushing(event) {
   margin-left: -20px  
 
 .overlapping-hpo-tooltip
-  opacity: 1!important
+  opacity: 1 !important
 
+.custom-tooltip
+  opacity: 1 !important
+  
+.v-tooltip__content 
+  opacity: 1 !important
+  z-index: 10 !important
+
+  
 </style>
 
 <style>.cls-1{fill:none;stroke:#455a64;stroke-miterlimit:10;}.cls-2{font-size:10.47px;fill:#455a64;font-family:Raleway-Bold, Raleway;font-weight:700;letter-spacing:-0.03em;}</style>
