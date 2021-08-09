@@ -147,7 +147,7 @@
                     Overlapping HPO terms
                     <v-tooltip top content-class='overlapping-hpo-tooltip' class="custom-tooltip">
                       <template v-slot:activator="{ on }">
-                        <v-icon v-on="on" small style="font-size:16px; opacity: 0.8" class="ml-1">info_outline</v-icon>
+                        <v-icon v-on="on" small style="font-size:16px; opacity: 0.8 ; cursor: help;" class="ml-1">info_outline</v-icon>
                       </template>
                       <div style="width:400px">
                         <span>
@@ -155,10 +155,10 @@
                           <br><br>
                           For example, the bar with a value of 1 represents how many returned genes overlap exactly 1 HPO term. 
                           <br><br>
-                          To update the gene list to only include genes that overlap at least 3 HPO terms, drag on the chart as shown below:
+                          To update the gene list to only include genes that overlap at least 4 HPO terms, drag on the chart as shown below:
                           <br>
                           <center>
-                            <img width="380px" src="https://user-images.githubusercontent.com/523111/127333656-bc34158f-121a-4635-acaf-f085048ed4b0.png" alt="">
+                            <img width="380px" src="https://user-images.githubusercontent.com/16284713/128780743-653ddf47-3f30-496d-aecf-c726a83d6a20.png" alt="">
                           </center>
                         </span>
                       </div>
@@ -204,7 +204,7 @@
                     Specificity score
                     <v-tooltip top>
                       <template v-slot:activator="{ on }">
-                        <v-icon v-on="on" small style="font-size:16px; opacity: 0.8" class="ml-1">info_outline</v-icon>
+                        <v-icon v-on="on" small style="font-size:16px; opacity: 0.8; cursor: help;" class="ml-1">info_outline</v-icon>
                       </template>
                       <div style="width:400px; z-index: 10; opacity: 1">
                         <span>
@@ -217,7 +217,7 @@
                           Dragging on the chart will update the gene list to include only those with scores in the specified range:
                           <br>
                           <center>
-                            <img width="380px" src="https://user-images.githubusercontent.com/523111/127334758-861d7b07-6ac8-42a7-9da3-254bb21882f7.png" alt="">
+                            <img width="380px" src="https://user-images.githubusercontent.com/16284713/128780746-ba14a9a4-cbdd-4775-b954-e348a6e80a43.png" alt="">
                           </center>
                         </span>
                       </div>

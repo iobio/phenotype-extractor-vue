@@ -488,7 +488,7 @@ export default {
       }
     },
     summaryGeneList(){
-      console.log("summaryGeneList changed watching", this.summaryGeneList);
+      // console.log("summaryGeneList changed watching", this.summaryGeneList);
       // this.summaryGenes = this.summaryGeneList;
       this.organizeTableHeaders();
       this.organizeGeneList();
@@ -831,7 +831,7 @@ export default {
     },
     
     organizeGeneListOnMount(){
-      console.log("summary gene list on mount", this.summaryGeneList);
+      // console.log("summary gene list on mount", this.summaryGeneList);
       var associatedGenes = [];
       var nonAssociatedGenes = [];
 
