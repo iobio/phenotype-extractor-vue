@@ -70,7 +70,7 @@
               
               <!-- flex-text-note  -->
               <v-card class="col-flex-note" v-show="tab_idx===0">
-                <v-card-title primary-title style="padding-top: 6px; padding-bottom: 4px">
+                <v-card-title primary-title style="padding-top: 6px; padding-bottom: 2px">
                   <strong class="terms-heading" style="font-size: 16px">
                     Inputs
                   </strong>
@@ -141,7 +141,7 @@
 
               <!-- flex hpo visualizations  -->
               <v-card class="col-flex-terms" v-show="tab_idx===1">
-                <v-card-title primary-title style="margin-bottom: -30px; padding-top: 6px; padding-bottom: 4px">
+                <v-card-title primary-title style="margin-bottom: -30px; padding-top: 6px; padding-bottom: 2px">
 
                   <strong class="terms-heading" style="font-size: 16px">
                     Overlapping HPO terms
@@ -198,7 +198,7 @@
               
               <!-- flex hpo distribution visualizations  -->
               <v-card class="col-flex-terms" v-show="tab_idx===1">
-                <v-card-title primary-title style="margin-bottom: -30px; padding-top: 6px; padding-bottom: 4px">
+                <v-card-title primary-title style="margin-bottom: -30px; padding-top: 6px; padding-bottom: 2px">
 
                   <strong class="terms-heading" style="font-size: 16px">
                     Specificity score
@@ -255,7 +255,7 @@
                             
               <!-- flex-gtr-terms -->
               <v-card class="col-flex-terms"  v-show="tab_idx===0">
-                <v-card-title primary-title style="padding-top: 6px; padding-bottom: 4px">
+                <v-card-title primary-title style="padding-top: 6px; padding-bottom: 2px">
                   <strong class="terms-heading" style="font-size: 16px">
                     GTR
                   </strong>
@@ -341,7 +341,7 @@
 
               <!-- flex-Phenolyzer-terms -->
               <v-card class="col-flex-terms"  v-show="tab_idx===0">
-                <v-card-title primary-title style="padding-top: 6px; padding-bottom: 4px">
+                <v-card-title primary-title style="padding-top: 6px; padding-bottom: 2px">
                   <strong class="terms-heading" style="font-size: 16px">
                     Phenolyzer
                   </strong>
@@ -459,7 +459,7 @@
               
               <!-- flex-hpo-terms -->
               <v-card class="col-flex-terms"  v-show="tab_idx===0 || tab_idx===1">
-                <v-card-title primary-title style="padding-top: 6px; padding-bottom: 4px">
+                <v-card-title primary-title style="padding-top: 6px; padding-bottom: 2px">
                   <strong class="terms-heading" style="font-size: 16px">
                     HPO
                   </strong>
@@ -546,7 +546,7 @@
               
               <!-- flex-manually-added-genes -->
               <v-card class="col-flex-terms"  v-show="tab_idx===0">
-                <v-card-title primary-title style="padding-top: 6px; padding-bottom: 4px">
+                <v-card-title primary-title style="padding-top: 6px; padding-bottom: 2px">
                   <strong class="terms-heading" style="font-size: 16px">
                     Added genes 
                   </strong>
@@ -5408,8 +5408,8 @@ function brushing(event) {
     margin-left: 0px
     min-width: 170px
     justify-content: flex-start
-    padding-top: 5px
-    padding-bottom: 5px
+    // padding-top: 5px
+    // padding-bottom: 5px
     align-items: center
     font-weight: 800
     
