@@ -2399,7 +2399,6 @@ export default {
     })
     
     bus.$on("hpo_bar_chart_brush_area_bus", (area) => {
-      console.log("called hpo_bar_chart_brush_area", area);
       this.$emit("hpo_bar_chart_brush_area", area)
       // this.analysis.payload.hpoBarChartBrushArea = area;
     })
@@ -4965,7 +4964,7 @@ export default {
           [margin.left, margin.top],
           [width - margin.right, height - margin.bottom],
         ]) // initialise the brush area: start at 0,0 and finishes at width,height: it means I select the whole graph area
-        .on("brush", this.brsuhHistogram);
+        .on("start end", this.brsuhHistogram);
         
         // svg
         //   .append("g")
