@@ -141,7 +141,7 @@
 
               <!-- flex hpo visualizations  -->
               <v-card class="col-flex-terms" v-show="tab_idx===1">
-                <v-card-title primary-title style="margin-bottom: -30px; padding-top: 6px; padding-bottom: 2px">
+                <v-card-title primary-title style="margin-bottom: -30px; padding-top: 6px">
 
                   <strong class="terms-heading" style="font-size: 16px">
                     Overlapping HPO terms
@@ -150,6 +150,7 @@
                         <v-icon v-on="on" small style="font-size:16px; opacity: 0.8 ; cursor: help;" class="ml-1">info_outline</v-icon>
                       </template>
                       <div style="width:400px">
+                        <strong class="mt-2" style="font-size:16px">Overlapping HPO terms</strong> <br><br>
                         <span>
                           The number of genes that overlap a specific number of user-defined HPO terms. 
                           <br><br>
@@ -198,7 +199,7 @@
               
               <!-- flex hpo distribution visualizations  -->
               <v-card class="col-flex-terms" v-show="tab_idx===1">
-                <v-card-title primary-title style="margin-bottom: -30px; padding-top: 6px; padding-bottom: 2px">
+                <v-card-title primary-title style="margin-bottom: -30px; padding-top: 6px">
 
                   <strong class="terms-heading" style="font-size: 16px">
                     Specificity score
@@ -207,10 +208,9 @@
                         <v-icon v-on="on" small style="font-size:16px; opacity: 0.8; cursor: help;" class="ml-1">info_outline</v-icon>
                       </template>
                       <div style="width:400px; z-index: 10; opacity: 1">
+                        <strong class="mt-2" style="font-size:16px">Specificity score</strong> <br><br>
                         <span>
-                          The specificity score shows how specific a gene is to an HPO term. 
-                          <br><br>
-                          It is calculated by taking ratio of matched terms for a gene to the number of searched HPO terms and then multiplying by a reciprocal of total number of HPO terms associated to a gene.
+                          It is a scaled score between zero and one that is proportional to the number of HPO terms the gene is associated with.
                           <br><br> 
                           The lower the score, the more HPO terms this gene is associated with, and consequently, it is less likely to have a strong association. 
                           <br><br>
@@ -4809,7 +4809,7 @@ export default {
       drawHistogram() {
         d3.select(".hpo-histogram").select("svg").remove();
 
-      var margin = { top: 20, right: 20, bottom: 100, left: 60 };
+      var margin = { top: 20, right: 20, bottom: 100, left: 100 };
       var height = 300;
       var width = 400;
 
@@ -4847,7 +4847,7 @@ export default {
           .call((g) =>
             g
               .append("text")
-              .attr("x", width/2 + 60)
+              .attr("x", width/2 + 90)
               .attr("y", 33)
               .attr("fill", "currentColor")
               .attr("text-anchor", "end")
@@ -4870,15 +4870,15 @@ export default {
             g
               .select(".tick:last-of-type text")
               .clone()
-              .attr("x", 92)
-              .attr("y", 42)
+              .attr("x", -32)
+              .attr("y", 72)
               .attr("text-anchor", "start")
               .attr("text-anchor", "end")
               .attr("font-weight", "500")
               .attr("font-size", "13px")
               .attr("font-family", "Roboto, sans-serif")
               .text("Genes")
-              .attr("transform", "rotate(90)")
+              .attr("transform", "rotate(0)")
           );
 
       this.x = d3
@@ -5034,7 +5034,7 @@ function drawHpoGenesBarChart(menu) {
     .attr("height", 300);
 
   // create margins & dimensions
-  const margin = { top: 20, right: 20, bottom: 100, left: 60 };
+  const margin = { top: 20, right: 20, bottom: 100, left: 100 };
   const graphHeight = 400 - margin.left - margin.right;
   const graphWidth = 300 - margin.top - margin.bottom;
 
@@ -5137,7 +5137,7 @@ function drawHpoGenesBarChart(menu) {
     .call((g) => g.selectAll("text").attr("fill", "#606060"))
     .call((g) => {
       g.append("text")
-      .attr("x", margin.right + 140)
+      .attr("x", margin.right + 130)
       .attr("y", 35)
       .attr("fill", "currentColor")
       .attr("font-weight", "bold")
@@ -5157,15 +5157,27 @@ function drawHpoGenesBarChart(menu) {
     .call((g) => g.selectAll("text").attr("fill", "#606060"))
     .call((g) => {
       g.append("text")
-      .attr("x", margin.right + 150)
-      .attr("y", 35)
-      .attr("fill", "currentColor")
-      .attr("font-weight", "500")
-      .attr("font-size", "13px")
-      .attr("font-family", "Roboto, sans-serif")
-      .attr("text-anchor", "end")
-      .attr("transform", "rotate(90)")
-      .text("User-defined HPO terms");
+        .attr("x", -25)
+        .attr("y", 87)
+        .attr("fill", "currentColor")
+        .attr("font-weight", "500")
+        .attr("font-size", "13px")
+        .attr("font-family", "Roboto, sans-serif")
+        .attr("text-anchor", "end")
+        .attr("transform", "rotate(0)")
+        .text("User-defined");
+    })
+    .call((g) => {
+      g.append("text")
+        .attr("x", -31)
+        .attr("y", 102)
+        .attr("fill", "currentColor")
+        .attr("font-weight", "500")
+        .attr("font-size", "13px")
+        .attr("font-family", "Roboto, sans-serif")
+        .attr("text-anchor", "end")
+        .attr("transform", "rotate(0)")
+        .text("HPO terms");
     })
     .call((g) =>
       g.selectAll(".domain").attr("stroke-width", 0.3).attr("stroke", "#606060")
