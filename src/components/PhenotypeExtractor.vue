@@ -159,7 +159,7 @@
                           To update the gene list to only include genes that overlap at least 4 HPO terms, drag on the chart as shown below:
                           <br>
                           <center>
-                            <img width="380px" src="https://user-images.githubusercontent.com/16284713/128780743-653ddf47-3f30-496d-aecf-c726a83d6a20.png" alt="">
+                            <img width="380px" src="https://user-images.githubusercontent.com/16284713/131709647-c81272e4-5a3d-4b18-8497-e4ac197e6d3d.png" alt="">
                           </center>
                         </span>
                       </div>
@@ -217,7 +217,7 @@
                           Dragging on the chart will update the gene list to include only those with scores in the specified range:
                           <br>
                           <center>
-                            <img width="380px" src="https://user-images.githubusercontent.com/16284713/128780746-ba14a9a4-cbdd-4775-b954-e348a6e80a43.png" alt="">
+                            <img width="380px" src="https://user-images.githubusercontent.com/16284713/131709618-198bc045-5774-4477-9eff-5e826203b862.png" alt="">
                           </center>
                         </span>
                       </div>
@@ -4869,15 +4869,15 @@ export default {
             g
               .select(".tick:last-of-type text")
               .clone()
-              .attr("x", -32)
-              .attr("y", 72)
+              .attr("x", -45)
+              .attr("y", -37)
               .attr("text-anchor", "start")
               .attr("text-anchor", "end")
               .attr("font-weight", "500")
               .attr("font-size", "13px")
               .attr("font-family", "Roboto, sans-serif")
               .text("Genes")
-              .attr("transform", "rotate(0)")
+              .attr("transform", "rotate(270)")
           );
 
       this.x = d3
@@ -5156,27 +5156,15 @@ function drawHpoGenesBarChart(menu) {
     .call((g) => g.selectAll("text").attr("fill", "#606060"))
     .call((g) => {
       g.append("text")
-        .attr("x", -25)
-        .attr("y", 87)
-        .attr("fill", "currentColor")
-        .attr("font-weight", "500")
-        .attr("font-size", "13px")
-        .attr("font-family", "Roboto, sans-serif")
-        .attr("text-anchor", "end")
-        .attr("transform", "rotate(0)")
-        .text("User-defined");
-    })
-    .call((g) => {
-      g.append("text")
-        .attr("x", -31)
-        .attr("y", 102)
-        .attr("fill", "currentColor")
-        .attr("font-weight", "500")
-        .attr("font-size", "13px")
-        .attr("font-family", "Roboto, sans-serif")
-        .attr("text-anchor", "end")
-        .attr("transform", "rotate(0)")
-        .text("HPO terms");
+      .attr("x", -36)
+      .attr("y", -25)
+      .attr("fill", "currentColor")
+      .attr("font-weight", "500")
+      .attr("font-size", "13px")
+      .attr("font-family", "Roboto, sans-serif")
+      .attr("text-anchor", "end")
+      .attr("transform", "rotate(270)")
+      .text("Entered HPO terms");
     })
     .call((g) =>
       g.selectAll(".domain").attr("stroke-width", 0.3).attr("stroke", "#606060")
