@@ -1869,7 +1869,9 @@
               dark
             >
               <v-card-text>
-                  <p style="color:white">Reorganizing gene list...</p>
+                  <p style="color:white">
+                    {{ clinical_note_text.length == 1 && manuallyAddedGenes.length == 0 ? 'Clearing gene list...' : 'Regoranizing gene list...' }}
+                  </p>
                 <v-progress-linear
                   indeterminate
                   color="white"
@@ -2776,7 +2778,7 @@ export default {
       this.removeNoteConfirmationDialog = false;
       this.deletingNoteDialog = true;
       bus.$emit("show-gene-table-skeleton-loaders");
-      this.showSearchTermsLoader = true;
+      this.showSearchTermsLoader = true;      
 
       let note_details = this.clinical_note_text[idx];
       let gtr_terms_for_temp = [];
