@@ -391,7 +391,7 @@
       <!-- End modal to show gene info -->
       
       
-      <!-- Dialog to show warning to select upto 50 genes  -->
+      <!-- Dialog to show warning to select upto 100 genes  -->
       <v-dialog
         v-model="warningDialog"
         hide-overlay
@@ -410,12 +410,12 @@
         </v-card-title>
           <v-card-text style="padding-bottom:30px">
             <span class="mt-2 mb-2" style="font-size:16px">
-              Please select upto 50 genes for review. 
+              Please select up to 100 genes for review. 
             </span>
           </v-card-text>
         </v-card>
       </v-dialog>
-    <!--End Dialog to show warning to select upto 50 genes  -->
+    <!--End Dialog to show warning to select up to 100 genes  -->
 
     </v-layout>
   </v-container>
@@ -1239,7 +1239,7 @@ export default {
     updateGenesTop(e){
       if(this.selectedGenesFlag){
         if(!this.launchedFromGenePanel){
-          if(this.genesTop>0 && this.genesTop<51){
+          if(this.genesTop>0 && this.genesTop<101){
             this.selectTopGenes(this.genesTop);
             this.$emit("update_genes_top", this.genesTop);
           }
