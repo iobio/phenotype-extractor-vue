@@ -55,7 +55,7 @@
                           class="form-control editTextInput"
                           type="number"
                           min="0"
-                          max="50"
+                          max="100"
                           v-model="genesTop"
                           autocomplete="off"
                           style="display:inline"
